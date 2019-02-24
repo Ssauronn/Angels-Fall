@@ -41,13 +41,13 @@ dashManaRegen = 75;
 
 // Movement Variables and Scripts (Setting up groundwork for movement engine)
 scr_player_input();
-var max_speed_ = 90.000;
+var max_speed_ = 5.000;
 var current_speed_ = 0.000;
-var player_acceleration_ = 30.000;
+var player_acceleration_ = 1.000;
 xinput = 0;
 yinput = 0;
 var current_direction_ = point_direction(0, 0, 0, 0); // set to 0, 0, 0, 0
-var friction_ = 300.000;
+var friction_ = max_speed_ * 2.700;
 var bounce_percent_ = 0.666;
 var collision_object_ = obj_wall;
 initialize_movement_entity(max_speed_, current_speed_, player_acceleration_, current_direction_, friction_, bounce_percent_, collision_object_, obj_ground_hurtbox);
@@ -56,9 +56,10 @@ initialize_movement_entity(max_speed_, current_speed_, player_acceleration_, cur
 // Image speed and dashing variables
 xDashPosition = mouse_x;
 yDashPosition = mouse_y;
-dashTime = 20 * (1 / userInterfaceGameSpeed);
+dashTime = 3 * (1 / userInterfaceGameSpeed);
 dashTimer = 0;
-dashSpeed = maxSpeed * 2;
+baseDashSpeed = maxSpeed * 2;
+dashSpeed = baseDashSpeed;
 dashDir = point_direction(obj_player.x, obj_player.y, xDashPosition, yDashPosition);
 
 // Image Speed Initialization

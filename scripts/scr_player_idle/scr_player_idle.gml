@@ -1,6 +1,6 @@
 // Set friction amount, which is set to a higher number while in dash script
 if instance_exists(obj_player) {
-	frictionAmount = 300.00;
+	frictionAmount = baseFrictionAmount * playerTotalSpeed;
 	// Dashing script initilization
 	if key_dash {
 		if playerCurrentStamina >= dashStaminaCost {

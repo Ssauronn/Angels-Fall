@@ -7,15 +7,16 @@ if dashTimer <= 0 {
 	// take an extra game frame to switch to running script.
 	playerState = playerstates.run;
 	playerStateSprite = playerstates.run;
-	frictionAmount = 600.00;
+	frictionAmount = baseFrictionAmount * playerTotalSpeed;
 	playerCurrentMana += dashManaRegen;
 }
-
 else {
 	// Else if the dash script is not over yet, set the speed to the correct dash speed value and move
 	// in the direction of that dash
 	currentSpeed = dashSpeed * playerTotalSpeed;
 	currentDirection = dashDir;
+	frictionAmount = baseFrictionAmount * (dashSpeed / maxSpeed) * playerTotalSpeed;
 	move_movement_entity(false);
 }
+
 

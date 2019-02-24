@@ -18,6 +18,7 @@ maxSpeed = max_speed_ * playerTotalSpeed;
 currentSpeed = current_speed_;
 acceleration = player_acceleration_ * playerTotalSpeed;
 currentDirection = current_direction_;
+baseFrictionAmount = friction_;
 frictionAmount = friction_ * playerTotalSpeed;
 bouncePercent = bounce_percent_;
 globalvar collisionObjects, collisionFound;
