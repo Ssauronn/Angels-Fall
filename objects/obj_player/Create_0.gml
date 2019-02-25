@@ -38,7 +38,6 @@ magicManaCost = 800;
 dashStaminaCost = 150;
 dashManaRegen = 75;
 
-
 // Movement Variables and Scripts (Setting up groundwork for movement engine)
 scr_player_input();
 var max_speed_ = 5.000;
