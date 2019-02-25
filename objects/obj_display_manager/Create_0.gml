@@ -53,3 +53,4 @@ window_set_size(idealWidth * cameraZoom, idealHeight * cameraZoom);
 
 room_goto(room_next(room));
 
+
