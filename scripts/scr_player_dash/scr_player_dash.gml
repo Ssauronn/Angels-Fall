@@ -14,6 +14,10 @@ if dashTimer <= 0 {
 else {
 	// Else if the dash script is not over yet, set the speed to the correct dash speed value and move
 	// in the direction of that dash
+	
+	// This line parially controls how the movement is handled when above obj_player.maxSpeed while and 
+	// right after a dash was executed.
+	playerRecentlyDashed = true;
 	currentSpeed = dashSpeed * playerTotalSpeed;
 	currentDirection = dashDir;
 	frictionAmount = baseFrictionAmount * (dashSpeed / maxSpeed) * playerTotalSpeed;

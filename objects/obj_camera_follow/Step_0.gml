@@ -1,4 +1,5 @@
-/// @description Move Camera
+/// @description Obselete - Keeping for legacy purposes - Move Camera
+/*
 if followObject != noone {
 	moveXTo = followObject.x;
 	moveYTo = followObject.y;

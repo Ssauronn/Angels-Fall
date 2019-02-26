@@ -1,5 +1,5 @@
+/// @description Obselete - keeping for legacy purposes - Manage the views for all rooms
 /*
-/// @description Manage the views for all rooms
 // Set up camera management variables, specifically the ideal height and width (I set to height
 // because I want the height to be static). Width can vary without impacting gameplay too much. 
 // I also set camera zoom variables.
