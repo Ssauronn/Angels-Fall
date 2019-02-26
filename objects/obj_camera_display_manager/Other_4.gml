@@ -1,0 +1,6 @@
+/// @description Asign Camera to View
+view_camera[0] = camera;
+view_enabled = true;
+view_visible[0] = true;
+
+

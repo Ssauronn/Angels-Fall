@@ -9,6 +9,7 @@ if dashTimer <= 0 {
 	playerStateSprite = playerstates.run;
 	frictionAmount = baseFrictionAmount * playerTotalSpeed;
 	playerCurrentMana += dashManaRegen;
+	playerRecentlyDashed = true;
 }
 else {
 	// Else if the dash script is not over yet, set the speed to the correct dash speed value and move

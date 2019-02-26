@@ -70,6 +70,9 @@ key_parry = (keyboard_check_pressed(ord("F")));
 	}
 }
 
+// Camera functions
+key_zoom = (keyboard_check_pressed(ord("Z")));
+
 
 
 
