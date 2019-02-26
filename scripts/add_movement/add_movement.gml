@@ -45,10 +45,16 @@ currentDirection = point_direction(0, 0, x_speed_, y_speed_);
 // will decrease player currentSpeed while above max_speed_, and decreasing the multiple below 1
 // will increase player currentSpeed while above max_speed_.
 if currentSpeed > max_speed_ {
-	currentSpeed -= acceleration_ * 1.1;
+	if playerRecentlyDashed {
+		currentSpeed -= acceleration_ * 1.1;
+	}
+	else {
+		currentSpeed = max_speed_;
+	}
 }
 else {
 	currentSpeed = min(currentSpeed, max_speed_);
+	playerRecentlyDashed = false;
 }
 
 

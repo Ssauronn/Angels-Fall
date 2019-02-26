@@ -40,7 +40,7 @@ dashManaRegen = 75;
 
 // Movement Variables and Scripts (Setting up groundwork for movement engine)
 scr_player_input();
-var max_speed_ = 5.000;
+var max_speed_ = 4.000;
 var current_speed_ = 0.000;
 var player_acceleration_ = 1.000;
 xinput = 0;
@@ -53,9 +53,10 @@ initialize_movement_entity(max_speed_, current_speed_, player_acceleration_, cur
 
 
 // Image speed and dashing variables
+playerRecentlyDashed = false;
 xDashPosition = mouse_x;
 yDashPosition = mouse_y;
-dashTime = 3 * (1 / userInterfaceGameSpeed);
+dashTime = 10 * (1 / userInterfaceGameSpeed);
 dashTimer = 0;
 baseDashSpeed = maxSpeed * 2;
 dashSpeed = baseDashSpeed;

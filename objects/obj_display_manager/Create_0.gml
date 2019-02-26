@@ -1,3 +1,4 @@
+/*
 /// @description Manage the views for all rooms
 // Set up camera management variables, specifically the ideal height and width (I set to height
 // because I want the height to be static). Width can vary without impacting gameplay too much. 
@@ -22,6 +23,7 @@ idealWidth = round(idealWidth);
 
 // Here we use the bitwise operator AND to round the aspect ratio up one pixel if the current
 // aspect ratio is an odd number. We do this because odd numbers never scale well
+/*
 if idealHeight & 1 {
 	idealHeight += 1;
 }

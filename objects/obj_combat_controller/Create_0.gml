@@ -3,9 +3,6 @@ globalvar camera, userInterfaceGameSpeed, enemiesDealtDamage, animecroPool, anim
 // Variable used to control how fast the game progresses. If less than 1, all processes run slower, including but not limited to timers, animation speeds, movement speeds, etc.
 userInterfaceGameSpeed = 1.000;
 
-// Variable used to hold the ID of the camera I create to view the room
-camera = camera_create_view(0, 0, 20480, 15360, 0, obj_player, -1, -1, 10240, 7680);
-
 // Variables used to control the pool of Animecro gained by kills, and the multiplier associated with that
 enemiesDealtDamage = 0;
 animecroPool = 0;
