@@ -38,8 +38,8 @@ weightAtWhichEnemyIsCurrentlyFocusingTargetAt = 0;
 weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt = 0;
 
 // Tether ranges - normally standard
-tetherXRange = camera_get_view_width(camera);
-tetherYRange = camera_get_view_height(camera);
+tetherXRange = camera_get_view_width(view_camera[0]);
+tetherYRange = camera_get_view_height(view_camera[0]);
 #endregion
 
 
