@@ -199,7 +199,7 @@ if instance_exists(obj_player) {
 							}
 							/// ---SET THE WEIGHT AT WHICH EACH OBJECT WANTS TO ATTACK EACH POTENTIAL TARGET BASED ON PROXIMITY---
 							for (k = 0; k <= ds_grid_height(enemy_target_grid_) - 1; k++) {
-								ds_grid_set(enemy_target_grid_, 2, k, ((obj_ai_decision_making.objectProximityToTargetForTargetingPurposesStartWeight * 2) * (1 - (ds_grid_get(enemy_target_grid_, 1, k) / camera_get_view_width(camera)))));
+								ds_grid_set(enemy_target_grid_, 2, k, ((obj_ai_decision_making.objectProximityToTargetForTargetingPurposesStartWeight * 2) * (1 - (ds_grid_get(enemy_target_grid_, 1, k) / camera_get_view_width(view_camera[0])))));
 							}
 							/*
 							/// ---SET THE WEIGHT AT WHICH THE OBJECT WANTS TO ATTACK EACH POTENTIAL TARGET BASED ON WHAT KIND OF PLAYSTYLE THE TARGET HAS---
@@ -478,7 +478,7 @@ if instance_exists(obj_player) {
 							}
 							/// ---SET THE WEIGHT AT WHICH EACH OBJECT WANTS TO ATTACK EACH POTENTIAL TARGET BASED ON PROXIMITY---
 							for (k = 0; k <= ds_grid_height(minion_target_grid_) - 1; k++) {
-								ds_grid_set(minion_target_grid_, 2, k, ((obj_ai_decision_making.objectProximityToTargetForTargetingPurposesStartWeight * 2) * (1 - (ds_grid_get(minion_target_grid_, 1, k) / camera_get_view_width(camera)))));
+								ds_grid_set(minion_target_grid_, 2, k, ((obj_ai_decision_making.objectProximityToTargetForTargetingPurposesStartWeight * 2) * (1 - (ds_grid_get(minion_target_grid_, 1, k) / camera_get_view_width(view_camera[0])))));
 							}
 							/// ---SET THE WEIGHT AT WHICH THE OBJECT WANTS TO ATTACK EACH POTENTIAL TARGET BASED ON WHAT KIND OF PLAYSTYLE THE TARGET HAS---
 							if (instance_to_reference_.objectArchetype == "Healer") || (instance_to_reference_.objectArchetype == "Ranged DPS") {
@@ -574,7 +574,7 @@ if instance_exists(obj_player) {
 					else {
 						instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight = obj_ai_decision_making.targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight;
 					}
-					instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForHeavyMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(camera)));
+					instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForHeavyMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])));
 					instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight = (instance_to_reference_.percentageOfDamageToTargetTotalHPHeavyMeleeAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineStartWeight * 2))
 					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
 						instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight = (((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyMeleeEngineStartWeight));
@@ -596,7 +596,7 @@ if instance_exists(obj_player) {
 					else {
 						instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight = obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight;
 					}
-					instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForLightMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(camera)));
+					instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForLightMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])));
 					instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight = (instance_to_reference_.percentageOfDamageToTargetCurrentHPLightMeleeAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetCurrentHPForLightMeleeEngineStartWeight * 2))
 					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
 						if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) {
@@ -651,7 +651,7 @@ if instance_exists(obj_player) {
 						instance_to_reference_.targetCurrentHPPercentForHeavyRangedEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
 					}
 					instance_to_reference_.selfCurrentHPPercentForHeavyRangedEngineTotalWeight = instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
-					instance_to_reference_.objectProximityToTargetForHeavyRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(camera)) * (obj_ai_decision_making.objectProximityToTargetForHeavyRangedEngineStartWeight * 2);
+					instance_to_reference_.objectProximityToTargetForHeavyRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForHeavyRangedEngineStartWeight * 2);
 					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
 						if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) {
 							instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyRangedEngineStartWeight);
@@ -705,7 +705,7 @@ if instance_exists(obj_player) {
 						instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - ((playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForLightRangedEngineStartWeight * 2));
 					}
 					instance_to_reference_.selfCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForLightRangedEngineStartWeight * 2));
-					instance_to_reference_.objectProximityToTargetForLightRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(camera)) * (obj_ai_decision_making.objectProximityToTargetForLightRangedEngineStartWeight * 2);
+					instance_to_reference_.objectProximityToTargetForLightRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForLightRangedEngineStartWeight * 2);
 					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
 						instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight = ((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightRangedEngineStartWeight);
 					}
@@ -737,7 +737,7 @@ if instance_exists(obj_player) {
 						instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForRunAwayEngineStartWeight * 2);
 						instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * ((1 / attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight)
 					}
-					instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight = ((obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.objectProximityToTarget / camera_get_view_width(camera)) * (obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2)))
+					instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight = ((obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2)))
 					if instance_to_reference_.combatFriendlyStatus = "Enemy" {
 						if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
 							instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);

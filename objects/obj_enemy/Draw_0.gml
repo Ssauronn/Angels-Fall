@@ -10,9 +10,9 @@ if variable_instance_exists(self, "slowEnemyTimeWithParryActive") {
 if instance_exists(currentTargetToFocus) {
 	draw_arrow(x, y, currentTargetToFocus.x, currentTargetToFocus.y, 2000)
 }
-//draw_rectangle(camera_get_view_x(camera) - 32, camera_get_view_y(camera) - 32, camera_get_view_x(camera) + (tetherXRange / 2), camera_get_view_y(camera) + (tetherYRange / 2), true)
-//draw_rectangle(camera_get_view_x(camera) - (tetherXRange / 2) + 100, camera_get_view_y(camera) - (tetherYRange / 2) + 100, camera_get_view_x(camera) + (tetherXRange / 2) - 100, camera_get_view_y(camera) + (tetherYRange / 2) - 100, true)
-//draw_rectangle((camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) - (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) - (tetherYRange / 2), (camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) + (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) + (tetherYRange / 2), true)
+//draw_rectangle(camera_get_view_x(view_camera[0]) - 32, camera_get_view_y(view_camera[0]) - 32, camera_get_view_x(view_camera[0]) + (tetherXRange / 2), camera_get_view_y(view_camera[0]) + (tetherYRange / 2), true)
+//draw_rectangle(camera_get_view_x(view_camera[0]) - (tetherXRange / 2) + 100, camera_get_view_y(view_camera[0]) - (tetherYRange / 2) + 100, camera_get_view_x(view_camera[0]) + (tetherXRange / 2) - 100, camera_get_view_y(view_camera[0]) + (tetherYRange / 2) - 100, true)
+//draw_rectangle((camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2), true)
 draw_text_ext_transformed(x, y, string(self.id), 10, 32, 1, 1, 0);
 
 

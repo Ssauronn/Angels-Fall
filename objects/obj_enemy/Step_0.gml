@@ -56,7 +56,7 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 }
 
 // Detect whether enemies are within player's field of view
-if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) - (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) - (tetherYRange / 2), (camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) + (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) + (tetherYRange / 2))) {
+if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	// If there are already other enemies within player's field of view
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		// As long as the object hasn't already been detected, executed code
@@ -119,7 +119,7 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 	}
 }
 // If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
-if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) - (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) - (tetherYRange / 2), (camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) + (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) + (tetherYRange / 2))) {
+if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	currentTargetToFocus = noone;
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if (ds_list_find_index(objectIDsInBattle, self) != -1) {
@@ -153,7 +153,7 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 }
 // Remove specifically the targets of those targeting other objects out of tether range
 if instance_exists(currentTargetToFocus) {
-	if !(rectangle_in_rectangle(currentTargetToFocus.bbox_left, currentTargetToFocus.bbox_top, currentTargetToFocus.bbox_right, currentTargetToFocus.bbox_bottom, (camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) - (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) - (tetherYRange / 2), (camera_get_view_x(camera) + (camera_get_view_width(camera) / 2)) + (tetherXRange / 2), (camera_get_view_y(camera) + (camera_get_view_height(camera) / 2)) + (tetherYRange / 2))) {
+	if !(rectangle_in_rectangle(currentTargetToFocus.bbox_left, currentTargetToFocus.bbox_top, currentTargetToFocus.bbox_right, currentTargetToFocus.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 		currentTargetToFocus = noone;
 	}
 }
@@ -308,7 +308,7 @@ if instance_exists(self) {
 	}
 	if instance_exists(enemyGroundHurtbox) {
 		enemyGroundHurtbox.x = x;
-		enemyGroundHurtbox.y = y + 450;
+		enemyGroundHurtbox.y = y + (32 / 2) - (32 / 5);
 	}
 }
 

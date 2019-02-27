@@ -2,8 +2,8 @@
 
 var enemy_name_ = argument0;
 switch (enemy_name_) {
-	case "Mage": 
-		
+	case "Mage":
+		#region Mage
 		// Speed variable for specific enemies
 		enemyGameSpeed = 1;
 		enemyTotalSpeed = 1;
@@ -37,10 +37,10 @@ switch (enemy_name_) {
 		enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.9;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 1500;
-		enemyHeavyMeleeAttackRange = 1500;
-		enemyLightRangedAttackRange = camera_get_view_height(camera);
-		enemyHeavyRangedAttackRange = camera_get_view_height(camera);
+		enemyLightMeleeAttackRange = 32;
+		enemyHeavyMeleeAttackRange = 32;
+		enemyLightRangedAttackRange = camera_get_view_height(view_camera[0]);
+		enemyHeavyRangedAttackRange = camera_get_view_height(view_camera[0]);
 		#endregion
 		
 		// Enemy Movement Variables
@@ -94,7 +94,7 @@ switch (enemy_name_) {
 		enemyHurtbox.image_index = enemyImageIndex;
 		enemyHurtbox.visible = false;
 		enemyHurtbox.owner = self;
-		enemyGroundHurtbox = instance_create_depth(x, y + 450, -999, obj_ground_hurtbox);
+		enemyGroundHurtbox = instance_create_depth(x, y + (32 / 2) - (32 / 5), -999, obj_ground_hurtbox);
 		enemyGroundHurtbox.sprite_index = spr_ground_hurtbox;
 		enemyGroundHurtbox.image_index = 0;
 		enemyGroundHurtbox.visible = false;
@@ -106,10 +106,11 @@ switch (enemy_name_) {
 		scrAttack3 = scr_mage_attack3;
 		scrAttack4 = scr_mage_attack4;
 		#endregion
-		break;
-	
-	case "Healer": 
 		
+		#endregion
+		break;
+	case "Healer": 
+		#region Healer
 		// Speed variable for specific enemies
 		enemyGameSpeed = 1;
 		enemyTotalSpeed = 1;
@@ -142,10 +143,10 @@ switch (enemy_name_) {
 		enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.9;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 1500;
-		enemyHeavyMeleeAttackRange = 1500;
-		enemyLightRangedAttackRange = camera_get_view_height(camera);
-		enemyHeavyRangedAttackRange = camera_get_view_height(camera);
+		enemyLightMeleeAttackRange = 32;
+		enemyHeavyMeleeAttackRange = 32;
+		enemyLightRangedAttackRange = camera_get_view_height(view_camera[0]);
+		enemyHeavyRangedAttackRange = camera_get_view_height(view_camera[0]);
 		#endregion
 		
 		// Enemy Movement Variables
@@ -198,7 +199,7 @@ switch (enemy_name_) {
 		enemyHurtbox.image_index = enemyImageIndex;
 		enemyHurtbox.visible = false;
 		enemyHurtbox.owner = self;
-		enemyGroundHurtbox = instance_create_depth(x, y + 450, -999, obj_ground_hurtbox);
+		enemyGroundHurtbox = instance_create_depth(x, y + (32 / 2) - (32 / 5), -999, obj_ground_hurtbox);
 		enemyGroundHurtbox.sprite_index = spr_ground_hurtbox;
 		enemyGroundHurtbox.image_index = 0;
 		enemyGroundHurtbox.visible = false;
@@ -210,8 +211,9 @@ switch (enemy_name_) {
 		scrAttack3 = scr_healer_attack3;
 		scrAttack4 = scr_healer_attack4;
 		#endregion
+		
+		#endregion
 		break;
-	
 }
 
 
