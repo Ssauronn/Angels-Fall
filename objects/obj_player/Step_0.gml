@@ -148,7 +148,7 @@ if instance_exists(self) {
 	}
 	if instance_exists(playerGroundHurtbox) {
 		playerGroundHurtbox.x = x;
-		playerGroundHurtbox.y = y + 450;
+		playerGroundHurtbox.y = y + (32 / 2) - (32 / 5);
 	}
 }
 

@@ -37,6 +37,8 @@ if !decisionMadeForTargetAndAction {
 	// If the object calling this script has no enemy target to evaluate then it must be a minion
 	// with no "Enemy" object on screen, and it should be following the player.
 	else {
+		// Commented out code below is the code to use after a script passively_follow_player is implemented.
+		// Delete this and the comment above after implementing code below.
 		/*
 		enemystate = enemystates.passivelyfollowplayer;
 		enemyStateSprite = enemystates.passivelyfollowplayer;
@@ -70,6 +72,9 @@ if chosenEngine != "" {
 			if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
 				
 			}
+		}
+		else if chosenEngine == "Light Melee" {
+			
 		}
 	}
 	else {
