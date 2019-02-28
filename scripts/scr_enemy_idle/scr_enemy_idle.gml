@@ -98,7 +98,7 @@ if chosenEngine != "" {
 				set chosenEngine = "" upon ending of attack script;
 				set decisionMadeForTargetAndAction to false upon ending of attack script;
 			}
-			*/
+			*/  
 		}
 		else if chosenEngine == "Light Melee" {
 			
