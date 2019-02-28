@@ -70,8 +70,35 @@ if chosenEngine != "" {
 			// if necessary until current resource reaches action resource cost, execute action,
 			// reset everything.
 			if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
+				/*
+				if alreadyTriedToChase == false {
+					change state to try_to_chase
+					set alreadyTriedToChase to true
+					set a timer for chasing
+					exit state once timer finishes
+				}
 				
+				*/
 			}
+			/*
+			else if enemyCurrentStamina < heavy melee stamina cost {
+				Evaluate current stamina and stamina regen vs heavy melee cost, set timer based on
+				exact amount of frames + 1 needed to get to the stamina cost.
+					-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
+					than necessary in case, for example, target walks out of range and the timer is no
+					longer counting down because we're in try_to_chase state
+				wait for stamina timer to reach <= 0
+				if (stamina timer <= 0) && (enemyCurrentStamina < heavy melee stamina cost) {
+				(if stamina still hasn't reached stamina cost, meaning regen has been debuffed)
+					chosenEngine = "Light Ranged";
+				}
+			}
+			else {
+				execute melee attack script
+				set chosenEngine = "" upon ending of attack script;
+				set decisionMadeForTargetAndAction to false upon ending of attack script;
+			}
+			*/
 		}
 		else if chosenEngine == "Light Melee" {
 			
@@ -79,7 +106,11 @@ if chosenEngine != "" {
 	}
 	else {
 		if chosenEngine == "Heavy Ranged" {
-			
+			/*
+			IF THE LIGHT RANGED ENGINE IS UNABLE TO BE EXECUTED WE NEED ENEMY TO RUN; THIS IS BECAUSE
+			WE SEND ALL FAILED ATTACKS FOR STAMINA ABILITIES TO THIS STATE AND IF THOSE FAIL, THAT MEANS
+			THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
+			*/
 		}
 		else if chosenEngine == "Light Ranged" {
 			
