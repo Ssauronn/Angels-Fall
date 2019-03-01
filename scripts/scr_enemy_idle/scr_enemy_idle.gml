@@ -259,7 +259,7 @@ if chosenEngine != "" {
 				// is executed, resetting decision making process.
 				
 				// If obj_enemy is within range and has the mana, change the chosenEngine = "Heavy Ranged"
-				if (point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < enemyHeavyRangedAttackRange) && (enemyCurrentMana >= heavy ranged mana cost) {
+				if (point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= enemyHeavyRangedAttackRange) && (enemyCurrentMana >= heavy ranged mana cost) {
 					chosenEngine = "Heavy Ranged";
 				}
 				// Else if obj_enemy has the stamina (its obviously already within range since melee attack
@@ -274,6 +274,15 @@ if chosenEngine != "" {
 				else if enemyCurrentStamina >= light melee stamina cost {
 					chosenEngine = "Light Melee";
 				}
+				// Else if obj_enemy is a healer, is within enemyHealRange, and has the mana required, change
+				// the chosenEngine = "Heal Ally"
+				else if objectArchetype == "Healer" {
+					if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealRange) && (enemyCurrentMana >= enemyHealManaCost) {
+						chosenEngine = "Heal Ally";
+					}
+				}
+				// Else if not a single other action can be executed, completely restart script and try to make
+				// a new decision.
 				else {
 					chosenEngine = "";
 					decisionMadeForTargetAndAction = false;
@@ -296,7 +305,7 @@ if chosenEngine != "" {
 				// is executed, resetting decision making process.
 				
 				// If obj_enemy is within range and has the mana, change the chosenEngine = "Heavy Ranged"
-				if (point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < enemyHeavyRangedAttackRange) && (enemyCurrentMana >= heavy ranged mana cost) {
+				if (point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= enemyHeavyRangedAttackRange) && (enemyCurrentMana >= heavy ranged mana cost) {
 					chosenEngine = "Heavy Ranged";
 				}
 				// Else if obj_enemy has the stamina (its obviously already within range since melee attack
@@ -311,6 +320,15 @@ if chosenEngine != "" {
 				else if enemyCurrentStamina >= light melee stamina cost {
 					chosenEngine = "Light Melee";
 				}
+				// Else if obj_enemy is a healer, is within enemyHealRange, and has the mana required, change
+				// the chosenEngine = "Heal Ally"
+				else if objectArchetype == "Healer" {
+					if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealRange) && (enemyCurrentMana >= enemyHealManaCost) {
+						chosenEngine = "Heal Ally";
+					}
+				}
+				// Else if not a single other action can be executed, completely restart script and try to make
+				// a new decision.
 				else {
 					chosenEngine = "";
 					decisionMadeForTargetAndAction = false;
