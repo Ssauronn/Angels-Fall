@@ -46,9 +46,6 @@ tetherYRange = camera_get_view_height(view_camera[0]);
 #region VARIABLES USED BY ALL ACTION ENGINES
 // Action chosen variable, set at the very end of scr_ai_decisions
 chosenEngine = "";
-// Action chosen variable, set at the very end of scr_ai_decisions if the previously chosen engine
-// could not be executed.
-chosenEngineUnableToBeExecuted = false;
 // The percentage of this specific object's current HP compared to this object's max HP
 selfCurrentHPPercent = 1;
 targetCurrentPercentageOfStaminaAndMana = 0;
