@@ -894,6 +894,8 @@ if instance_exists(obj_player) {
 						instance_to_reference_.chosenEngine = "Heal Ally";
 					}
 				}
+				/*
+				This block of code is already executed in above code, delete after testing
 				if (!instance_to_reference_.chosenEngineUnableToBeExecuted) {
 					if instance_to_reference_.objectArchetype != "Healer" {
 						if (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
@@ -914,7 +916,7 @@ if instance_exists(obj_player) {
 							chosenEngine = "Heal Ally";
 						}
 					}
-				}
+				}*/
 			//}
 		//}		
 	}

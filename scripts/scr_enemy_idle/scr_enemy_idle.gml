@@ -37,87 +37,95 @@ if !decisionMadeForTargetAndAction {
 	// If the object calling this script has no enemy target to evaluate then it must be a minion
 	// with no "Enemy" object on screen, and it should be following the player.
 	else {
-		// Commented out code below is the code to use after a script passively_follow_player is implemented.
-		// Delete this and the comment above after implementing code below.
 		/*
-		enemystate = enemystates.passivelyfollowplayer;
-		enemyStateSprite = enemystates.passivelyfollowplayer;
-		if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-			enemyDirectionFacing = enemydirection.right;
+		if (playerCurrentHP >= playerMaxHP) || (objectArchetype != "Healer") {
+			Commented out code below is the code to use after a script passively_follow_player is implemented.
+			Delete this and the comment above after implementing code below.
+			
+			enemystate = enemystates.passivelyfollowplayer;
+			enemyStateSprite = enemystates.passivelyfollowplayer;
+			if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+				enemyDirectionFacing = enemydirection.right;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+				enemyDirectionFacing = enemydirection.up;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+				enemyDirectionFacing = enemydirection.left;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+				enemyDirectionFacing = enemydirection.down;
+			}
 		}
-		else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-			enemyDirectionFacing = enemydirection.up;
-		}
-		else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-			enemyDirectionFacing = enemydirection.left;
-		}
-		else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-			enemyDirectionFacing = enemydirection.down;
+		/*
+		If the object follows player and no valid path is found, continue to search for path
+		If no path is found and object exists screen view, destroy object
+		If path is found and object exists screen view, start timer, if object enters screen again reset timer
+		If timer reaches 0 and object still has not entered view, destroy object
+		This will allow for minions that cannot follow player to not continue to take up processing power, and
+		minions that are left too far behind player to not continue to take up processing power as well.
+		*/
+		/*
+		else {
+			chosenEngine = "Heal Ally";
+			currentTargetToHeal = obj_player;
+			decisionMadeForTargetAndAction = true;
 		}
 		*/
 	}
 }
 
-// Determine if the enemy has enough resources to use chosen action and if so, execute
-// chosen action
+// Determine if the enemy can fulfill various requirements to execute chosen action and if so, execute action
 if chosenEngine != "" {
-	if !chosenEngineUnableToBeExecuted {
-		if chosenEngine == "Heavy Melee" {
-			// close distance for a set period of time, if target not reached, revert to an
-			// alternate decision making process where only ranged attacks are usable for the next
-			// action. if target reached, determine if current resource amount matches or exceeds
-			// resource cost, if so, execute action, if not wait and continue moving towards target
-			// if necessary until current resource reaches action resource cost, execute action,
-			// reset everything.
-			if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
-				/*
-				if alreadyTriedToChase == false {
-					change state to try_to_chase
-					set alreadyTriedToChase to true
-					set a timer for chasing
-					exit state once timer finishes
-				}
-				
-				*/
-			}
+	if chosenEngine == "Heavy Melee" {
+		if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
 			/*
-			else if enemyCurrentStamina < heavy melee stamina cost {
-				Evaluate current stamina and stamina regen vs heavy melee cost, set timer based on
-				exact amount of frames + 1 needed to get to the stamina cost.
-					-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
-					than necessary in case, for example, target walks out of range and the timer is no
-					longer counting down because we're in try_to_chase state
-				wait for stamina timer to reach <= 0
-				if (stamina timer <= 0) && (enemyCurrentStamina < heavy melee stamina cost) {
-				(if stamina still hasn't reached stamina cost, meaning regen has been debuffed)
-					chosenEngine = "Light Ranged";
-				}
+			if alreadyTriedToChase == false {
+				change state to try_to_chase
+				set alreadyTriedToChase to true
+				set a timer for chasing
+				exit state once timer finishes, or exit immediately if no path to target is immediately found
 			}
-			else {
-				execute melee attack script
-				set chosenEngine = "" upon ending of attack script;
-				set decisionMadeForTargetAndAction to false upon ending of attack script;
+			else if alreadyTriedToChase = true {
+				change chosenEngine = "Light Ranged";
 			}
-			*/  
-		}
-		else if chosenEngine == "Light Melee" {
-			
-		}
-	}
-	else {
-		if chosenEngine == "Heavy Ranged" {
-			/*
-			IF THE LIGHT RANGED ENGINE IS UNABLE TO BE EXECUTED WE NEED ENEMY TO RUN; THIS IS BECAUSE
-			WE SEND ALL FAILED ATTACKS FOR STAMINA ABILITIES TO THIS STATE AND IF THOSE FAIL, THAT MEANS
-			THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
 			*/
 		}
-		else if chosenEngine == "Light Ranged" {
-			
+		/*
+		else if heavy melee stamina cost > enemyCurrentStamina {
+			Evaluate current stamina and stamina regen vs heavy melee cost, set timer based on
+			exact amount of frames + 1 needed to get to the stamina cost.
+				-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
+				than necessary in case, for example, target walks out of range and the timer is no
+				longer counting down because we're in try_to_chase state
+			wait for stamina timer to reach <= 0
+			if (stamina timer <= 0) && (enemyCurrentStamina < heavy melee stamina cost) {
+			(if stamina still hasn't reached stamina cost, meaning regen has been debuffed)
+				chosenEngine = "Light Ranged";
+			}
 		}
-		else if chosenEngine == "Heal Ally" {
-			
+		else {
+			execute melee attack script
+			set chosenEngine = "" upon ending of attack script;
+			set decisionMadeForTargetAndAction to false upon ending of attack script;
 		}
+		*/  
+	}
+	else if chosenEngine == "Light Melee" {
+		
+	}
+	if chosenEngine == "Heavy Ranged" {
+		/*
+		IF THE LIGHT RANGED ENGINE IS UNABLE TO BE EXECUTED WE NEED ENEMY TO RUN; THIS IS BECAUSE
+		WE SEND ALL FAILED ATTACKS FOR STAMINA ABILITIES TO THIS STATE AND IF THOSE FAIL, THAT MEANS
+		THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
+		*/
+	}
+	else if chosenEngine == "Light Ranged" {
+		
+	}
+	else if chosenEngine == "Heal Ally" {
+		
 	}
 }
 
