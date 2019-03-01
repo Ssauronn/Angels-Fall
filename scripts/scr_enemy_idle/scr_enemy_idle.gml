@@ -87,6 +87,7 @@ if chosenEngine != "" {
 				set alreadyTriedToChase to true
 				set a timer for chasing
 				exit state once timer finishes, or exit immediately if no path to target is immediately found
+					-This timer needs to be reduced in obj_enemy step event
 			}
 			else if alreadyTriedToChase = true {
 				change chosenEngine = "Light Ranged";
@@ -110,21 +111,21 @@ if chosenEngine != "" {
 		// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 		// has enough stamina to execute attack) then execute heavy melee attack
 		else {
-			execute melee attack script
+			execute heavy melee attack script
 			set chosenEngine = "" upon ending of attack script;
 			set decisionMadeForTargetAndAction to false upon ending of attack script;
 			enemyState = enemyestates.heavyMeleeAttack;
 			enemyStateSprite = enemystates.heavyMeleeAttack;
-			if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+			if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 0) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 45)) || ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 315) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= 360)) {
 				enemyDirectionFacing = enemydirection.right;
 			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 45) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 135)) {
 				enemyDirectionFacing = enemydirection.up;
 			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 135) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 225)) {
 				enemyDirectionFacing = enemydirection.left;
 			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 225) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 315)) {
 				enemyDirectionFacing = enemydirection.down;
 			}
 		}
@@ -139,6 +140,7 @@ if chosenEngine != "" {
 				set alreadyTriedToChase to true
 				set a timer for chasing
 				exit state once timer finishes, or exit immediately if no path to target is immediately found
+					-This timer needs to be reduced in obj_enemy step event
 			}
 			else if alreadyTriedToChase = true {
 				change chosenEngine = "Light Ranged";
@@ -162,38 +164,251 @@ if chosenEngine != "" {
 		// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 		// has enough stamina to execute attack) then execute light melee attack
 		else {
-			execute melee attack script
+			execute light melee attack script
 			set chosenEngine = "" upon ending of attack script;
 			set decisionMadeForTargetAndAction to false upon ending of attack script;
 			enemyState = enemyestates.lightMeleeAttack;
 			enemyStateSprite = enemystates.lightMeleeAttack;
-			if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+			if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 0) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 45)) || ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 315) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= 360)) {
 				enemyDirectionFacing = enemydirection.right;
 			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 45) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 135)) {
 				enemyDirectionFacing = enemydirection.up;
 			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 135) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 225)) {
 				enemyDirectionFacing = enemydirection.left;
 			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 225) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 315)) {
 				enemyDirectionFacing = enemydirection.down;
 			}
 		}
 		*/
 	}
-	if chosenEngine == "Heavy Ranged" {
+	else if chosenEngine == "Heavy Ranged" {
+		// If the obj_enemy is not within enemyHeavyRangedAttackRange
+		if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyRangedAttackRange {
+			/*
+			if alreadyTriedToChase == false {
+				change state to try_to_chase
+				set alreadyTriedToChase to true
+				set a timer for chasing
+				exit state once timer finishes, or exit immediately if no path to target is immediately found
+					-This timer needs to be reduced in obj_enemy step event
+			}
+			else if alreadyTriedToChase = true {
+				change chosenEngine = "Light Ranged";
+			}
+			*/
+		}
 		/*
-		IF THE LIGHT RANGED ENGINE IS UNABLE TO BE EXECUTED WE NEED ENEMY TO RUN; THIS IS BECAUSE
-		WE SEND ALL FAILED ATTACKS FOR STAMINA ABILITIES TO THIS STATE AND IF THOSE FAIL, THAT MEANS
-		THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
+		// Else if the obj_enemy doesn't have enough mana to execute attack
+		else if heavy ranged mana cost > enemyCurrentMana {
+			Evaluate current mana and mana regen vs heavy ranged cost, set timer based on
+			exact amount of frames + 1 needed to get to the mana cost.
+				-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
+				than necessary in case, for example, target walks out of range and the timer is no
+				longer counting down because we're in try_to_chase state
+			wait for mana timer to reach <= 0
+			if (mana timer <= 0) && (enemyCurrentMana < heavy ranged mana cost) {
+			(if mana still hasn't reached mana cost, meaning regen has been debuffed)
+				chosenEngine = "Light Ranged";
+			}
+		}
+		// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
+		// has enough mana to execute attack) then execute heavy ranged attack
+		else {
+			execute heavy ranged attack script
+			set chosenEngine = "" upon ending of attack script;
+			set decisionMadeForTargetAndAction to false upon ending of attack script;
+			enemyState = enemyestates.heavyRangedAttack;
+			enemyStateSprite = enemystates.heavyRangedAttack;
+			if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 0) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 45)) || ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 315) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= 360)) {
+				enemyDirectionFacing = enemydirection.right;
+			}
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 45) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 135)) {
+				enemyDirectionFacing = enemydirection.up;
+			}
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 135) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 225)) {
+				enemyDirectionFacing = enemydirection.left;
+			}
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 225) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 315)) {
+				enemyDirectionFacing = enemydirection.down;
+			}
+		}
 		*/
 	}
 	else if chosenEngine == "Light Ranged" {
-		
+		/*
+		IF ANY OTHER ENGINE IS UNABLE TO BE EXECUTED WE NEED ENEMY TO RUN EITHER TOWARDS OR AWAY FROM TARGET; 
+		THIS IS BECAUSE WE SEND ALL FAILED ATTACKS FOR STAMINA AND MANA ABILITIES TO THIS STATE AND IF THOSE 
+		FAIL, THAT MEANS THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
+		*/
+		/*
+		// If enemy is not within light ranged attack range
+		if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyLightRangedAttackRange {
+			if alreadyTriedToChase == false {
+				change state to try_to_chase
+				set alreadyTriedToChase to true
+				set a timer for chasing
+				exit state once timer finishes, or exit immediately if no path to target is immediately found
+					-This timer needs to be reduced in obj_enemy step event
+			}
+			// If obj_enemy cannot execute light ranged attack
+			else if alreadyTriedToChase = true {
+				// Last checks to see if any other attack can be executed - if not, the very last statement
+				// is executed, resetting decision making process.
+				
+				// If obj_enemy is within range and has the mana, change the chosenEngine = "Heavy Ranged"
+				if (point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= enemyHeavyRangedAttackRange) && (enemyCurrentMana >= heavy ranged mana cost) {
+					chosenEngine = "Heavy Ranged";
+				}
+				// Else if obj_enemy has the stamina (its obviously already within range since melee attack
+				// range is inherently less than light ranged attack range), change the chosenEngine = "Heavy 
+				// Melee"
+				else if enemyCurrentStamina >= heavy melee stamina cost {
+					chosenEngine = "Heavy Melee";
+				}
+				// Else if obj_enemy has the stamina (its obviously already within range since melee attack
+				// range is inherently less than light ranged attack range), change the chosenEngine = "Light 
+				// Melee"
+				else if enemyCurrentStamina >= light melee stamina cost {
+					chosenEngine = "Light Melee";
+				}
+				// Else if obj_enemy is a healer, is within enemyHealRange, and has the mana required, change
+				// the chosenEngine = "Heal Ally"
+				else if objectArchetype == "Healer" {
+					if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealRange) && (enemyCurrentMana >= enemyHealManaCost) {
+						chosenEngine = "Heal Ally";
+					}
+				}
+				// Else if not a single other action can be executed, completely restart script and try to make
+				// a new decision.
+				else {
+					chosenEngine = "";
+					decisionMadeForTargetAndAction = false;
+					alreadyTriedToChase = false;
+					exit;
+				}
+			}
+		}
+		// If the light ranged engine cannot be executed because there is not enough mana
+		else if light ranged mana cost > enemyCurrentMana {
+			Evaluate current mana and mana regen vs heavy ranged cost, set timer based on
+			exact amount of frames + 1 needed to get to the mana cost.
+				-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
+				than necessary in case, for example, target walks out of range and the timer is no
+				longer counting down because we're in try_to_chase state
+			wait for mana timer to reach <= 0
+			if (mana timer <= 0) && (enemyCurrentMana < heavy ranged mana cost) {
+			(if mana still hasn't reached mana cost, meaning regen has been debuffed)
+				// Last checks to see if any other attack can be executed - if not, the very last statement
+				// is executed, resetting decision making process.
+				
+				// If obj_enemy is within range and has the mana, change the chosenEngine = "Heavy Ranged"
+				if (point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= enemyHeavyRangedAttackRange) && (enemyCurrentMana >= heavy ranged mana cost) {
+					chosenEngine = "Heavy Ranged";
+				}
+				// Else if obj_enemy has the stamina (its obviously already within range since melee attack
+				// range is inherently less than light ranged attack range), change the chosenEngine = "Heavy 
+				// Melee"
+				else if enemyCurrentStamina >= heavy melee stamina cost {
+					chosenEngine = "Heavy Melee";
+				}
+				// Else if obj_enemy has the stamina (its obviously already within range since melee attack
+				// range is inherently less than light ranged attack range), change the chosenEngine = "Light 
+				// Melee"
+				else if enemyCurrentStamina >= light melee stamina cost {
+					chosenEngine = "Light Melee";
+				}
+				// Else if obj_enemy is a healer, is within enemyHealRange, and has the mana required, change
+				// the chosenEngine = "Heal Ally"
+				else if objectArchetype == "Healer" {
+					if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealRange) && (enemyCurrentMana >= enemyHealManaCost) {
+						chosenEngine = "Heal Ally";
+					}
+				}
+				// Else if not a single other action can be executed, completely restart script and try to make
+				// a new decision.
+				else {
+					chosenEngine = "";
+					decisionMadeForTargetAndAction = false;
+					alreadyTriedToChase = false;
+					exit;
+				}
+			}
+		}
+		else {
+			execute light ranged attack script
+			set chosenEngine = "" upon ending of attack script;
+			set decisionMadeForTargetAndAction to false upon ending of attack script;
+			enemyState = enemyestates.lightRangedAttack;
+			enemyStateSprite = enemystates.lightRangedAttack;
+			if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 0) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 45)) || ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 315) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= 360)) {
+				enemyDirectionFacing = enemydirection.right;
+			}
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 45) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 135)) {
+				enemyDirectionFacing = enemydirection.up;
+			}
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 135) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 225)) {
+				enemyDirectionFacing = enemydirection.left;
+			}
+			else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 225) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 315)) {
+				enemyDirectionFacing = enemydirection.down;
+			}
+		}
+		*/
 	}
 	else if chosenEngine == "Heal Ally" {
-		
+		// If the obj_enemy is not within enemyHealRange
+		if point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) > enemyHealRange {
+			/*
+			if alreadyTriedToChase == false {
+				change state to try_to_chase
+				set alreadyTriedToChase to true
+				set a timer for chasing
+				exit state once timer finishes, or exit immediately if no path to target is immediately found
+					-This timer needs to be reduced in obj_enemy step event
+			}
+			else if alreadyTriedToChase = true {
+				change chosenEngine = "Light Ranged";
+			}
+			*/
+		}/*
+		// Else if the obj_enemy doesn't have enough mana to execute heal
+		else if heal mana cost > enemyCurrentMana {
+			Evaluate current mana and mana regen vs heal cost, set timer based on
+			exact amount of frames + 1 needed to get to the mana cost.
+				-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
+				than necessary in case, for example, target walks out of range and the timer is no
+				longer counting down because we're in try_to_chase state
+			wait for mana timer to reach <= 0
+			if (mana timer <= 0) && (enemyCurrentMana < heal mana cost) {
+			(if mana still hasn't reached mana cost, meaning regen has been debuffed)
+				chosenEngine = "Light Ranged";
+			}
+		}
+		// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
+		// has enough mana to execute heal) then execute heal
+		else {
+			execute heal currentTargetToHeal script
+			set chosenEngine = "" upon ending of heal script;
+			set decisionMadeForTargetAndAction to false upon ending of heal script;
+			enemyState = enemyestates.healAlly;
+			enemyStateSprite = enemystates.healAlly;
+			if ((point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) >= 0) && (point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) < 45)) || ((point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) >= 315) && (point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= 360)) {
+				enemyDirectionFacing = enemydirection.right;
+			}
+			else if ((point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) >= 45) && (point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) < 135)) {
+				enemyDirectionFacing = enemydirection.up;
+			}
+			else if ((point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) >= 135) && (point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) < 225)) {
+				enemyDirectionFacing = enemydirection.left;
+			}
+			else if ((point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) >= 225) && (point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y) < 315)) {
+				enemyDirectionFacing = enemydirection.down;
+			}
+		}
+		*/
 	}
 }
 
@@ -203,6 +418,7 @@ After we send the object to a new state, the following variables need to be rese
 
 chosenEngine
 decisionMadeForTargetAndAction
+alreadyTriedToChase
 
 */
 
