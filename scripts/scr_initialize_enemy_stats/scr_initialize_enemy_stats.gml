@@ -135,18 +135,21 @@ switch (enemy_name_) {
 		enemyHeavyMeleeAttackDamage = 200;
 		enemyLightRangedAttackDamage = 100;
 		enemyHeavyRangedAttackDamage = 200;
+		enemyHealValue = 300;
 
 		// Enemies Attacks' Resrouces Costs
 		enemyLightMeleeAttackStamCost = enemyMaxStamina * 0.6;
 		enemyHeavyMeleeAttackStamCost = enemyMaxStamina * 0.9;
-		enemyLightRangedAttackManaCost = enemyMaxMana * 0.6;
-		enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.9;
+		enemyLightRangedAttackManaCost = enemyMaxMana * 0.5;
+		enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.8;
+		enemyHealManaCost = enemyMaxMana * 0.9;
 		
 		// Enemies' Attack Ranges
 		enemyLightMeleeAttackRange = 32;
 		enemyHeavyMeleeAttackRange = 32;
 		enemyLightRangedAttackRange = camera_get_view_height(view_camera[0]);
 		enemyHeavyRangedAttackRange = camera_get_view_height(view_camera[0]);
+		enemyHealRange = camera_get_view_height(view_camera[0]);
 		#endregion
 		
 		// Enemy Movement Variables
