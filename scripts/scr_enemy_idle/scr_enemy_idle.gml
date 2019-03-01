@@ -75,9 +75,11 @@ if !decisionMadeForTargetAndAction {
 	}
 }
 
-// Determine if the enemy can fulfill various requirements to execute chosen action and if so, execute action
+// If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
+	// If the chosen engine is a Heavy Melee attack
 	if chosenEngine == "Heavy Melee" {
+		// If the obj_enemy is not within enemyHeavyMeleeAttackRange
 		if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
 			/*
 			if alreadyTriedToChase == false {
@@ -92,6 +94,7 @@ if chosenEngine != "" {
 			*/
 		}
 		/*
+		// Else if the obj_enemy doesn't have enough stamina to execute attack
 		else if heavy melee stamina cost > enemyCurrentStamina {
 			Evaluate current stamina and stamina regen vs heavy melee cost, set timer based on
 			exact amount of frames + 1 needed to get to the stamina cost.
@@ -104,15 +107,80 @@ if chosenEngine != "" {
 				chosenEngine = "Light Ranged";
 			}
 		}
+		// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
+		// has enough stamina to execute attack) then execute heavy melee attack
 		else {
 			execute melee attack script
 			set chosenEngine = "" upon ending of attack script;
 			set decisionMadeForTargetAndAction to false upon ending of attack script;
+			enemyState = enemyestates.heavyMeleeAttack;
+			enemyStateSprite = enemystates.heavyMeleeAttack;
+			if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+				enemyDirectionFacing = enemydirection.right;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+				enemyDirectionFacing = enemydirection.up;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+				enemyDirectionFacing = enemydirection.left;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+				enemyDirectionFacing = enemydirection.down;
+			}
 		}
 		*/  
 	}
 	else if chosenEngine == "Light Melee" {
-		
+		// If the obj_enemy is not within enemyLightMeleeAttackRange
+		if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyLightMeleeAttackRange {
+			/*
+			if alreadyTriedToChase == false {
+				change state to try_to_chase
+				set alreadyTriedToChase to true
+				set a timer for chasing
+				exit state once timer finishes, or exit immediately if no path to target is immediately found
+			}
+			else if alreadyTriedToChase = true {
+				change chosenEngine = "Light Ranged";
+			}
+			*/
+		}
+		/*
+		// Else if the obj_enemy doesn't have enough stamina to execute attack
+		else if light melee stamina cost > enemyCurrentStamina {
+			Evaluate current stamina and stamina regen vs light melee cost, set timer based on
+			exact amount of frames + 1 needed to get to the stamina cost.
+				-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
+				than necessary in case, for example, target walks out of range and the timer is no
+				longer counting down because we're in try_to_chase state
+			wait for stamina timer to reach <= 0
+			if (stamina timer <= 0) && (enemyCurrentStamina < light melee stamina cost) {
+			(if stamina still hasn't reached stamina cost, meaning regen has been debuffed)
+				chosenEngine = "Light Ranged";
+			}
+		}
+		// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
+		// has enough stamina to execute attack) then execute light melee attack
+		else {
+			execute melee attack script
+			set chosenEngine = "" upon ending of attack script;
+			set decisionMadeForTargetAndAction to false upon ending of attack script;
+			enemyState = enemyestates.lightMeleeAttack;
+			enemyStateSprite = enemystates.lightMeleeAttack;
+			if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+				enemyDirectionFacing = enemydirection.right;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+				enemyDirectionFacing = enemydirection.up;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+				enemyDirectionFacing = enemydirection.left;
+			}
+			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+				enemyDirectionFacing = enemydirection.down;
+			}
+		}
+		*/
 	}
 	if chosenEngine == "Heavy Ranged" {
 		/*
