@@ -40,12 +40,18 @@ weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt = 0;
 // Tether ranges - normally standard
 tetherXRange = camera_get_view_width(view_camera[0]);
 tetherYRange = camera_get_view_height(view_camera[0]);
+
+// Variable to determine if enemy was, or currently is, in combat
+enemyInCombat = false;
+enemyWasInCombat = false;
 #endregion
 
 
 #region VARIABLES USED BY ALL ACTION ENGINES
 // Action chosen variable, set at the very end of scr_ai_decisions
+// Variable used to stop endless chasing of target
 chosenEngine = "";
+alreadyTriedToChase = false;
 // The percentage of this specific object's current HP compared to this object's max HP
 selfCurrentHPPercent = 1;
 targetCurrentPercentageOfStaminaAndMana = 0;
@@ -140,8 +146,13 @@ enemyName = "";
 // State Machine Variables
 enum enemystates {
 	idle,
-	melee,
-	magic
+	passivelyFollowPlayer,
+	moveWithinAttackRange,
+	lightMeleeAttack,
+	heavyMeleeAttack,
+	lightRangedAttack,
+	heavyRangedAttack,
+	healAlly
 }
 enum enemydirection {
 	right,
