@@ -45,41 +45,63 @@ if !decisionMadeForTargetAndAction {
 	// If the object calling this script has no enemy target to evaluate then it must be a minion
 	// with no "Enemy" object on screen, and it should be following the player.
 	else {
-		/*
-		if (playerCurrentHP >= playerMaxHP) || (objectArchetype != "Healer") {
-			Commented out code below is the code to use after a script passively_follow_player is implemented.
-			Delete this and the comment above after implementing code below.
-			
-			enemystate = enemystates.passivelyFollowPlayer;
-			enemyStateSprite = enemystates.passivelyFollowPlayer;
-			if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-				enemyDirectionFacing = enemydirection.right;
-			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-				enemyDirectionFacing = enemydirection.up;
-			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-				enemyDirectionFacing = enemydirection.left;
-			}
-			else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-				enemyDirectionFacing = enemydirection.down;
+		// Redundant check making sure we only set an object to follow player if its a minion
+		if combatFriendlyStatus == "Minion" {
+			// Checking to make sure there is no combat currently - if there is, do not just passively
+			// follow player
+			if !ds_exists(objectIDsInBattle, ds_type_list) {
+				// If the player is at max HP, or the object isn't a healer, then just follow the player
+				if (playerCurrentHP >= playerMaxHP) || (objectArchetype != "Healer") {
+					chosenEngine = "";
+					decisionMadeForTargetAndAction = false;
+					alreadyTriedToChase = false;
+					enemyState = enemystates.passivelyFollowPlayer;
+					enemyStateSprite = enemystates.passivelyFollowPlayer;
+					if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+						enemyDirectionFacing = enemydirection.right;
+					}
+					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+						enemyDirectionFacing = enemydirection.up;
+					}
+					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+						enemyDirectionFacing = enemydirection.left;
+					}
+					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+						enemyDirectionFacing = enemydirection.down;
+					}
+				}
+				/*
+				If the object follows player and no valid path is found, continue to search for path
+				If no path is found and object exists screen view, destroy object
+				If path is found and object exists screen view, start timer, if object enters screen again reset timer
+				If timer reaches 0 and object still has not entered view, destroy object
+				This will allow for minions that cannot follow player to not continue to take up processing power, and
+				minions that are left too far behind player to not continue to take up processing power as well.
+				*/
+				// Else if the player is missing health and the object is a healer, then heal the player
+				else {
+					// Set the state the enemy is going to, set the chosen engine, make sure a decision is made, 
+					// and then heal the player
+					enemyState = enemystates.healAlly;
+					enemyStateSprite = enemystates.healAlly;
+					chosenEngine = "Heal Ally";
+					currentTargetToHeal = obj_player;
+					decisionMadeForTargetAndAction = true;
+					if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+						enemyDirectionFacing = enemydirection.right;
+					}
+					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+						enemyDirectionFacing = enemydirection.up;
+					}
+					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+						enemyDirectionFacing = enemydirection.left;
+					}
+					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+						enemyDirectionFacing = enemydirection.down;
+					}
+				}
 			}
 		}
-		/*
-		If the object follows player and no valid path is found, continue to search for path
-		If no path is found and object exists screen view, destroy object
-		If path is found and object exists screen view, start timer, if object enters screen again reset timer
-		If timer reaches 0 and object still has not entered view, destroy object
-		This will allow for minions that cannot follow player to not continue to take up processing power, and
-		minions that are left too far behind player to not continue to take up processing power as well.
-		*/
-		/*
-		else {
-			chosenEngine = "Heal Ally";
-			currentTargetToHeal = obj_player;
-			decisionMadeForTargetAndAction = true;
-		}
-		*/
 	}
 }
 
@@ -87,20 +109,20 @@ if !decisionMadeForTargetAndAction {
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {
 		if instance_exists(currentTargetToFocus) {
-		// If the chosen engine is a Heavy Melee attack
-		if chosenEngine == "Heavy Melee" {
-			// If the obj_enemy is not within enemyHeavyMeleeAttackRange
-			if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
+			// If the chosen engine is a Heavy Melee attack
+			if chosenEngine == "Heavy Melee" {
+				// If the obj_enemy is not within enemyHeavyMeleeAttackRange
+				if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
 				/*
 					if alreadyTriedToChase == false {
-						change state to try_to_chase
-						set alreadyTriedToChase to true
+						enemyState = enemystates.moveWithinAttackRange
+						set alreadyTriedToChase to true at the end of the script
 						set a timer for chasing
 						exit state once timer finishes, or exit immediately if no path to target is immediately found
 							-This timer needs to be reduced in obj_enemy step event
 					}
 					else if alreadyTriedToChase = true {
-						change chosenEngine = "Light Ranged";
+						cchosenEngine = "Light Ranged";
 					}
 					*/
 				}
