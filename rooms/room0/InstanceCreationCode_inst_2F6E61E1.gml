@@ -1,3 +1,5 @@
-enemyName = "Healer";
+enemyName = "Mage";
 combatFriendlyStatus = "Enemy";
-objectArchetype = "Healer";
+objectArchetype = "Ranged DPS";
+
+

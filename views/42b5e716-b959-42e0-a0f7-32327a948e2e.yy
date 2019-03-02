@@ -4,7 +4,8 @@
     "mvc": "1.1",
     "name": "42b5e716-b959-42e0-a0f7-32327a948e2e",
     "children": [
-        "74b075f8-ff75-4d22-b0bb-02d00538d8ee"
+        "034c3d9a-30a7-4c39-8bf0-4151526ce236",
+        "87f36390-e970-4c10-9987-620c094c0b26"
     ],
     "filterType": "GMSprite",
     "folderName": "grp_enemy",

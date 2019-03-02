@@ -39,11 +39,27 @@
             }
         },
         {
+            "Key": "0220e1df-4862-4e94-9c9e-25916c498b13",
+            "Value": {
+                "id": "a28a5dbb-6692-4aec-b72f-5808774012a6",
+                "resourcePath": "sprites\\spr_enemy_healer_light_ranged\\spr_enemy_healer_light_ranged.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "032e7f80-1faa-44df-8555-2d9eabd55ec9",
             "Value": {
                 "id": "c48aeb3e-bcf9-4b4d-9d6f-5016a01377ae",
                 "resourcePath": "scripts\\scr_player_parry_ready\\scr_player_parry_ready.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "034c3d9a-30a7-4c39-8bf0-4151526ce236",
+            "Value": {
+                "id": "f9e63b8a-bf33-4bc4-b98a-05aa01947548",
+                "resourcePath": "views\\034c3d9a-30a7-4c39-8bf0-4151526ce236.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -100,6 +116,14 @@
                 "id": "03f7d3d3-8f62-4773-9704-3a8d4ace79c4",
                 "resourcePath": "scripts\\scr_player_idle\\scr_player_idle.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "08c922b0-b9b1-4c60-961f-a62c0953099a",
+            "Value": {
+                "id": "7c2b6ea5-ae36-4053-acbb-f63d2ac98982",
+                "resourcePath": "sprites\\spr_enemy_mage_light_melee\\spr_enemy_mage_light_melee.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -378,7 +402,7 @@
             "Key": "3d2cc270-7166-479c-b122-2eb2720189b1",
             "Value": {
                 "id": "a0ea2208-1084-43a4-8993-f18634857299",
-                "resourcePath": "scripts\\scr_mage_attack1\\scr_mage_attack1.yy",
+                "resourcePath": "scripts\\scr_mage_light_melee\\scr_mage_light_melee.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -388,6 +412,14 @@
                 "id": "cf9cd16c-e44a-45c0-bdc1-1fba2095aa20",
                 "resourcePath": "objects\\obj_ground_hurtbox\\obj_ground_hurtbox.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "406b935f-d20e-4f2c-a853-d1cecb1c9ce5",
+            "Value": {
+                "id": "2ae92b6f-028d-4d19-979c-8b8ef8bd3233",
+                "resourcePath": "sprites\\spr_enemy_mage_heavy_melee\\spr_enemy_mage_heavy_melee.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -507,6 +539,14 @@
             "Value": {
                 "id": "eade57b8-2a09-4e4f-b045-50bb9da13450",
                 "resourcePath": "sprites\\spr_player_parry_effect_right\\spr_player_parry_effect_right.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "57ac679d-cf69-4642-902e-72ba48b75dc5",
+            "Value": {
+                "id": "a0967cbd-4ca1-41ca-91ff-5accf4a1dab7",
+                "resourcePath": "sprites\\spr_enemy_healer_light_melee\\spr_enemy_healer_light_melee.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -658,7 +698,7 @@
             "Key": "74b075f8-ff75-4d22-b0bb-02d00538d8ee",
             "Value": {
                 "id": "d5141a66-8b17-4867-b752-895690a576ba",
-                "resourcePath": "sprites\\spr_enemy\\spr_enemy.yy",
+                "resourcePath": "sprites\\spr_enemy_mage_idle\\spr_enemy_mage_idle.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -684,6 +724,14 @@
                 "id": "a47d7bb7-fa0f-4353-8976-fbdbde15c587",
                 "resourcePath": "views\\771bb317-e0e4-4fdb-b56a-5913d8970d4c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "77475bf3-d486-43e4-aca6-4d8430b92cb7",
+            "Value": {
+                "id": "5579db31-165c-4b2a-af70-29de4552603f",
+                "resourcePath": "sprites\\spr_enemy_healer_heal_ally\\spr_enemy_healer_heal_ally.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -754,7 +802,7 @@
             "Key": "836fce16-d2fe-4824-9759-5a98a9b57a1b",
             "Value": {
                 "id": "baf8c56c-f5cf-4b4d-a56e-a6d2123529b3",
-                "resourcePath": "scripts\\scr_healer_attack2\\scr_healer_attack2.yy",
+                "resourcePath": "scripts\\scr_healer_heavy_melee\\scr_healer_heavy_melee.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -778,7 +826,7 @@
             "Key": "86cd9206-b0fb-41b9-b377-0ae585a42de0",
             "Value": {
                 "id": "43447866-9a88-489e-9134-cca444aae220",
-                "resourcePath": "scripts\\scr_healer_attack4\\scr_healer_attack4.yy",
+                "resourcePath": "scripts\\scr_healer_heavy_ranged\\scr_healer_heavy_ranged.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -788,6 +836,14 @@
                 "id": "dd52be20-3314-4763-925a-d29cc0d9bd6f",
                 "resourcePath": "sprites\\spr_player_parry_ready_up\\spr_player_parry_ready_up.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "87f36390-e970-4c10-9987-620c094c0b26",
+            "Value": {
+                "id": "9264f2c9-fad0-41e8-bec3-e7d406d9a889",
+                "resourcePath": "views\\87f36390-e970-4c10-9987-620c094c0b26.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -810,7 +866,7 @@
             "Key": "8c545737-5732-4234-8155-40fe5bda92a5",
             "Value": {
                 "id": "fa9f4bc7-4824-4248-86d3-87960f0d11c1",
-                "resourcePath": "scripts\\scr_healer_attack1\\scr_healer_attack1.yy",
+                "resourcePath": "scripts\\scr_healer_light_melee\\scr_healer_light_melee.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -834,7 +890,7 @@
             "Key": "8f6a6470-a579-49eb-988f-56c77b63117b",
             "Value": {
                 "id": "3e9428c7-f8b4-4f99-9488-4d4b7a725de8",
-                "resourcePath": "scripts\\scr_mage_attack3\\scr_mage_attack3.yy",
+                "resourcePath": "scripts\\scr_mage_light_ranged\\scr_mage_light_ranged.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -898,7 +954,7 @@
             "Key": "9bd697a2-c1de-4f04-884f-5fd90679e66a",
             "Value": {
                 "id": "95d4515e-ca18-49c4-b522-7137a8273a88",
-                "resourcePath": "scripts\\scr_mage_attack2\\scr_mage_attack2.yy",
+                "resourcePath": "scripts\\scr_mage_heavy_melee\\scr_mage_heavy_melee.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -967,6 +1023,14 @@
             }
         },
         {
+            "Key": "a98d2566-56cd-463d-b8ba-9f8e991eaaf9",
+            "Value": {
+                "id": "4603ee88-f2cb-420f-b9fa-f860d6b7bd1b",
+                "resourcePath": "sprites\\spr_enemy_healer_idle\\spr_enemy_healer_idle.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "a9f16799-9234-4c2a-aabc-fe41eeb1a63d",
             "Value": {
                 "id": "2cdc284a-f77a-4fe7-8af2-7483ade82978",
@@ -1015,6 +1079,22 @@
             }
         },
         {
+            "Key": "b5e290ad-0f3a-48b5-9e2c-49adabc650f3",
+            "Value": {
+                "id": "19c1f8cc-432a-4f0a-9900-8eadb1b91cac",
+                "resourcePath": "sprites\\spr_enemy_mage_heavy_ranged\\spr_enemy_mage_heavy_ranged.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "b7c43555-097e-4fb3-8d28-8a2bfade1823",
+            "Value": {
+                "id": "f555217f-c7fd-427b-8af5-8879f0456c1e",
+                "resourcePath": "scripts\\scr_healer_heal_ally\\scr_healer_heal_ally.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b8d8dfdf-e37d-4bf6-b1e5-dc736e7f87c6",
             "Value": {
                 "id": "79d38fa7-2a43-4270-9209-5300191b8f0a",
@@ -1044,6 +1124,14 @@
                 "id": "3e410449-dcd7-4e0f-bb21-92c08b03658b",
                 "resourcePath": "views\\c11419b3-1898-4b6d-aee8-2bc3f1d464b0.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "c394ce92-5bc3-44e1-80fb-85d93692aa8a",
+            "Value": {
+                "id": "9a4fb600-79fe-4e65-9ccc-6480c4578c61",
+                "resourcePath": "sprites\\spr_enemy_mage_light_ranged\\spr_enemy_mage_light_ranged.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -1247,6 +1335,14 @@
             }
         },
         {
+            "Key": "ecc7b4fb-3cc4-4a44-a6f2-88645e561943",
+            "Value": {
+                "id": "e52b5da1-6796-4a1c-a11d-27927206035a",
+                "resourcePath": "sprites\\spr_enemy_healer_heavy_ranged\\spr_enemy_healer_heavy_ranged.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "f1433270-592c-47dc-b638-6fd7c38644dc",
             "Value": {
                 "id": "c5739fc5-c806-4836-8734-992998ee87e7",
@@ -1274,7 +1370,7 @@
             "Key": "f589efc0-e9c7-4ce1-ac73-086377476634",
             "Value": {
                 "id": "7cfe6b7a-ecce-47a3-acb8-f81676a2afaf",
-                "resourcePath": "scripts\\scr_healer_attack3\\scr_healer_attack3.yy",
+                "resourcePath": "scripts\\scr_healer_light_ranged\\scr_healer_light_ranged.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1298,7 +1394,7 @@
             "Key": "f7a5b51b-3888-417d-8abb-ba3d872e6f53",
             "Value": {
                 "id": "0d59717d-5342-4880-b6d4-698c9ea7d1f1",
-                "resourcePath": "scripts\\scr_mage_attack4\\scr_mage_attack4.yy",
+                "resourcePath": "scripts\\scr_mage_heavy_ranged\\scr_mage_heavy_ranged.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1315,6 +1411,14 @@
             "Value": {
                 "id": "f8c975a5-0fed-4875-a1a2-0e25c3e9b666",
                 "resourcePath": "sprites\\spr_player_idle_right\\spr_player_idle_right.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "f9b2a7d7-9a3d-4c72-8136-ebcf09c594b5",
+            "Value": {
+                "id": "2856cb92-e4ae-4c64-bfcb-cc28c161b918",
+                "resourcePath": "sprites\\spr_enemy_healer_heavy_melee\\spr_enemy_healer_heavy_melee.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -1358,18 +1462,19 @@
         "032e7f80-1faa-44df-8555-2d9eabd55ec9",
         "a3280395-dabd-44f7-8bda-319593ffdb4d",
         "79579f9e-c59f-4b55-8106-e1276cfafca6",
+        "98b0742f-f509-4575-8f6d-ca86584326ce",
+        "2f025f61-5d31-4cee-af6e-c61b006b9d56",
         "e6878d78-177c-4b66-b303-edf8644cffde",
         "14827802-bd3e-41ca-ad9e-0913561d3d78",
         "0ff0e326-5d5c-4feb-bbe4-7ef251f05dd6",
         "3d094b82-0ff8-435f-956c-a3365019e3f3",
         "ebed4767-13fc-4154-8589-efd76de46c30",
         "b24f1e48-14a8-431c-950b-14ab6e762333",
-        "98b0742f-f509-4575-8f6d-ca86584326ce",
-        "2f025f61-5d31-4cee-af6e-c61b006b9d56",
         "8c545737-5732-4234-8155-40fe5bda92a5",
         "836fce16-d2fe-4824-9759-5a98a9b57a1b",
         "f589efc0-e9c7-4ce1-ac73-086377476634",
         "86cd9206-b0fb-41b9-b377-0ae585a42de0",
+        "b7c43555-097e-4fb3-8d28-8a2bfade1823",
         "3d2cc270-7166-479c-b122-2eb2720189b1",
         "9bd697a2-c1de-4f04-884f-5fd90679e66a",
         "8f6a6470-a579-49eb-988f-56c77b63117b",

@@ -11,6 +11,9 @@ enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
 // Set the max movement speed for each individual enemy
 maxSpeed = baseMaxSpeed * enemyTotalSpeed;
 
+tetherXRange = camera_get_view_width(view_camera[0]);
+tetherYRange = camera_get_view_height(view_camera[0]);
+
 
 #region Variables Changed by obj_ai_decision_making to Control Each Enemy
 if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
@@ -55,13 +58,31 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 	}
 }
 
+var instance_to_reference_, j;
 // Detect whether enemies are within player's field of view
 if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	// If there are already other enemies within player's field of view
 	if ds_exists(objectIDsInBattle, ds_type_list) {
-		// As long as the object hasn't already been detected, executed code
+		// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
 		if ds_list_find_index(objectIDsInBattle, self) == -1 {
+			/* 
+			If the object hasn't already been detected, reset the decision making variable 
+			decisionMadeForTargetAndAction so that the object can make a combat decision immediately
+			in scr_ai_decisions (although decisionMadeForTargetAndAction is actually checked for in 
+			the scr_enemy_idle script (enemystates.idle). 
+			*/
+			decisionMadeForTargetAndAction = false;
+			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
+				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+				instance_to_reference_.decisionMadeForTargetAndAction = false;
+			}
+			// Add this object's ID to the list of objects in battle (objectIDsInBattle)
 			ds_list_add(objectIDsInBattle, self);
+			/*
+			The next if/else statement checks for the combatFriendlyStatus (whether the object is an enemy
+			or friend to the player) and then adjusts the correct variable depending on the object's 
+			objectArchetype (what kind of role the enemy fills).
+			*/
 			if combatFriendlyStatus == "Enemy" {
 				switch (objectArchetype) {
 					case "Healer": enemyHealersInBattle += 1;
@@ -90,11 +111,18 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 	}
 	// If this is the first enemy to enter player's field of view
 	else {
-		objectIDsInBattle = ds_list_create();
-		ds_list_add(objectIDsInBattle, self);
+		/*
+		As long as the enemy in the player's view is an enemy, start up the combat list (objectIDsInBattle)
+		---We don't do this for minions because if JUST a minion is in view, that doesn't mean the player is
+		in combat, it just means the player has minions following.
+		*/
 		if combatFriendlyStatus == "Enemy" {
+			decisionMadeForTargetAndAction = false;
+			objectIDsInBattle = ds_list_create();
+			ds_list_add(objectIDsInBattle, self);
 			switch (objectArchetype) {
 				case "Healer": enemyHealersInBattle += 1;
+					currentTargetToHeal = noone;
 					break;
 				case "Tank": enemyTanksInBattle += 1;
 					break;
@@ -104,29 +132,26 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 					break;
 			}
 		}
-		else if combatFriendlyStatus == "Minion" {
-			switch (objectArchetype) {
-				case "Healer": friendlyHealersInBattle += 1;
-					break;
-				case "Tank": friendlyTanksInBattle += 1;
-					break;
-				case "Melee DPS": friendlyMeleeDPSInBattle += 1;
-					break;
-				case "Ranged DPS": friendlyRangedDPSInBattle += 1;
-					break;
-			}
-		}
 	}
 }
+
 // If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
 if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	currentTargetToFocus = noone;
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if (ds_list_find_index(objectIDsInBattle, self) != -1) {
+			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
+				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+				instance_to_reference_.decisionMadeForTargetAndAction = false;
+			}
 			ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
 			if combatFriendlyStatus == "Enemy" {
 				switch (objectArchetype) {
 					case "Healer": enemyHealersInBattle -= 1;
+						currentTargetToHeal = noone;
 						break;
 					case "Tank": enemyTanksInBattle -= 1;
 						break;
@@ -139,6 +164,7 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 			else if combatFriendlyStatus == "Minion" {
 				switch (objectArchetype) {
 					case "Healer": friendlyHealersInBattle -= 1;
+						currentTargetToHeal = noone;
 						break;
 					case "Tank": friendlyTanksInBattle -= 1;
 						break;
@@ -148,6 +174,32 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 						break;
 				}
 			}
+		}
+	}
+}
+if variable_global_exists("objectIDsInBattle") {
+	show_debug_message(string(enemyHealersInBattle) + ": enemyHealersInBattle.");
+	show_debug_message(string(enemyTanksInBattle) + ": enemyTanksInBattle");
+	show_debug_message(string(enemyMeleeDPSInBattle) + ": enemyMeleeDPSInBattle");
+	show_debug_message(string(enemyRangedDPSInBattle) + ": enemyRanedDPSInBattle");
+	show_debug_message("...");
+	show_debug_message(string(friendlyHealersInBattle) + ": friendlyHealersInBattle");
+	show_debug_message(string(friendlyTanksInBattle) + ": friendlyTanksInBattle");
+	show_debug_message(string(friendlyMeleeDPSInBattle) + ": friendlyMeleeDPSInBattle");
+	show_debug_message(string(friendlyRangedDPSInBattle) + ": friendlyRangedDPSInBattle");
+	show_debug_message("...");
+	if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= 0 {
+		if ds_exists(objectIDsInBattle, ds_type_list) {
+			ds_list_destroy(objectIDsInBattle);
+			objectIDsInBattle = -1;
+			friendlyHealersInBattle = 0;
+			friendlyTanksInBattle = 0;
+			friendlyMeleeDPSInBattle = 0;
+			friendlyRangedDPSInBattle = 0;
+			enemyHealersInBattle = 0;
+			enemyTanksInBattle = 0;
+			enemyMeleeDPSInBattle = 0;
+			enemyRangedDPSInBattle = 0;
 		}
 	}
 }
@@ -268,11 +320,19 @@ if alreadyHitTimer >= 0 {
 
 // Switch statement for State Machine
 switch (enemyState) {
-	case enemystates.idle: scr_TEST_enemy_idle();
+	case enemystates.idle: scr_enemy_idle();
 		break;
-	case enemystates.melee: scr_TEST_enemy_melee();
+	case enemystates.lightMeleeAttack: script_execute(scrAttack1);
 		break;
-	case enemystates.magic: scr_TEST_enemy_ranged();
+	case enemystates.heavyMeleeAttack: script_execute(scrAttack2);
+		break;
+	case enemystates.lightRangedAttack: script_execute(scrAttack3);
+		break;
+	case enemystates.heavyRangedAttack: script_execute(scrAttack4);
+		break;
+	case enemystates.healAlly: script_execute(scrHealAlly);
+		break;
+	case enemystates.moveWithinAttackRange: script_execute(scrMoveWithinAttackRange);
 		break;
 }
 

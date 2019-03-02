@@ -50,18 +50,26 @@ switch (enemy_name_) {
 		currentSpeed = 0;
 
 		#region Enemy Sprite Table and Sprite Setting Variables
-		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy;
-		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy;
-		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy;
-		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.right] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.up] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.left] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.down] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.right] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.up] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.left] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.down] = spr_enemy;
+		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_mage_idle;
+		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_mage_idle;
+		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_mage_idle;
+		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy_mage_idle;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.right] = spr_enemy_mage_light_melee;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.up] = spr_enemy_mage_light_melee;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.left] = spr_enemy_mage_light_melee;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.down] = spr_enemy_mage_light_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.right] = spr_enemy_mage_heavy_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.up] = spr_enemy_mage_heavy_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.left] = spr_enemy_mage_heavy_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.down] = spr_enemy_mage_heavy_melee;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.right] = spr_enemy_mage_light_ranged;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.up] = spr_enemy_mage_light_ranged;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.left] = spr_enemy_mage_light_ranged;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.down] = spr_enemy_mage_light_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.right] = spr_enemy_mage_heavy_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.up] = spr_enemy_mage_heavy_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.left] = spr_enemy_mage_heavy_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.down] = spr_enemy_mage_heavy_ranged;
 		
 		
 		enemyStateSprite = enemystates.idle;
@@ -101,10 +109,12 @@ switch (enemy_name_) {
 		enemyGroundHurtbox.owner = self;
 		#endregion
 		#region Enemy Scripts to Use Table and Script Setting Variables
-		scrAttack1 = scr_mage_attack1;
-		scrAttack2 = scr_mage_attack2;
-		scrAttack3 = scr_mage_attack3;
-		scrAttack4 = scr_mage_attack4;
+		scrMoveWithinAttackRange = scr_move_within_attack_range()
+		scrAttack1 = scr_mage_light_melee();
+		scrAttack2 = scr_mage_heavy_melee();
+		scrAttack3 = scr_mage_light_ranged();
+		scrAttack4 = scr_mage_heavy_ranged();
+		scrHealAlly = noone;
 		#endregion
 		
 		#endregion
@@ -158,18 +168,30 @@ switch (enemy_name_) {
 		currentSpeed = 0;
 
 		#region Enemy Sprite Table and Sprite Setting Variables
-		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy;
-		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy;
-		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy;
-		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.right] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.up] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.left] = spr_enemy;
-		enemySprite[enemystates.melee, enemydirection.down] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.right] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.up] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.left] = spr_enemy;
-		enemySprite[enemystates.magic, enemydirection.down] = spr_enemy;
+		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_healer_idle;
+		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_healer_idle;
+		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_healer_idle;
+		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy_healer_idle;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.right] = spr_enemy_healer_light_melee;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.up] = spr_enemy_healer_light_melee;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.left] = spr_enemy_healer_light_melee;
+		enemySprite[enemystates.lightMeleeAttack, enemydirection.down] = spr_enemy_healer_light_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.right] = spr_enemy_healer_heavy_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.up] = spr_enemy_healer_heavy_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.left] = spr_enemy_healer_heavy_melee;
+		enemySprite[enemystates.heavyMeleeAttack, enemydirection.down] = spr_enemy_healer_heavy_melee;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.right] = spr_enemy_healer_light_ranged;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.up] = spr_enemy_healer_light_ranged;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.left] = spr_enemy_healer_light_ranged;
+		enemySprite[enemystates.lightRangedAttack, enemydirection.down] = spr_enemy_healer_light_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.right] = spr_enemy_healer_heavy_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.up] = spr_enemy_healer_heavy_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.left] = spr_enemy_healer_heavy_ranged;
+		enemySprite[enemystates.heavyRangedAttack, enemydirection.down] = spr_enemy_healer_heavy_ranged;
+		enemySprite[enemystates.healAlly, enemydirection.right] = spr_enemy_healer_heal_ally;
+		enemySprite[enemystates.healAlly, enemydirection.up] = spr_enemy_healer_heal_ally;
+		enemySprite[enemystates.healAlly, enemydirection.left] = spr_enemy_healer_heal_ally;
+		enemySprite[enemystates.healAlly, enemydirection.down] = spr_enemy_healer_heal_ally;
 		
 		
 		enemyStateSprite = enemystates.idle;
@@ -209,10 +231,12 @@ switch (enemy_name_) {
 		enemyGroundHurtbox.owner = self;
 		#endregion
 		#region Enemy Scripts to Use Table and Script Setting Variables
-		scrAttack1 = scr_healer_attack1;
-		scrAttack2 = scr_healer_attack2;
-		scrAttack3 = scr_healer_attack3;
-		scrAttack4 = scr_healer_attack4;
+		scrMoveWithinAttackRange = scr_move_within_attack_range();
+		scrAttack1 = scr_healer_light_melee();
+		scrAttack2 = scr_healer_heavy_melee();
+		scrAttack3 = scr_healer_light_ranged();
+		scrAttack4 = scr_healer_heavy_ranged();
+		scrHealAlly = scr_healer_heal_ally();
 		#endregion
 		
 		#endregion
