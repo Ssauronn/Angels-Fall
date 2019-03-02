@@ -62,6 +62,8 @@ var instance_to_reference_, j;
 // Detect whether enemies are within player's field of view
 if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	// If there are already other enemies within player's field of view
+	show_debug_message(string(id) + "'s state is: " + string(enemyState));
+	show_debug_message(string(id) + "'s engine choice is: " + string(chosenEngine));
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
 		if ds_list_find_index(objectIDsInBattle, self) == -1 {
@@ -178,16 +180,6 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 	}
 }
 if variable_global_exists("objectIDsInBattle") {
-	show_debug_message(string(enemyHealersInBattle) + ": enemyHealersInBattle.");
-	show_debug_message(string(enemyTanksInBattle) + ": enemyTanksInBattle");
-	show_debug_message(string(enemyMeleeDPSInBattle) + ": enemyMeleeDPSInBattle");
-	show_debug_message(string(enemyRangedDPSInBattle) + ": enemyRanedDPSInBattle");
-	show_debug_message("...");
-	show_debug_message(string(friendlyHealersInBattle) + ": friendlyHealersInBattle");
-	show_debug_message(string(friendlyTanksInBattle) + ": friendlyTanksInBattle");
-	show_debug_message(string(friendlyMeleeDPSInBattle) + ": friendlyMeleeDPSInBattle");
-	show_debug_message(string(friendlyRangedDPSInBattle) + ": friendlyRangedDPSInBattle");
-	show_debug_message("...");
 	if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= 0 {
 		if ds_exists(objectIDsInBattle, ds_type_list) {
 			ds_list_destroy(objectIDsInBattle);

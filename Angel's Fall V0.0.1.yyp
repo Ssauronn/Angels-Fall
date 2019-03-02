@@ -279,6 +279,14 @@
             }
         },
         {
+            "Key": "2cf098b8-9b09-469a-a213-8d208f392c86",
+            "Value": {
+                "id": "ee1ff28b-9302-4c19-aada-7b073b7e45f0",
+                "resourcePath": "sprites\\spr_enemy_healer_run\\spr_enemy_healer_run.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "2d0bd8e0-861a-4025-926c-eb4b13d43365",
             "Value": {
                 "id": "29af031c-085d-4dd4-8916-ff55936f1355",
@@ -1339,6 +1347,14 @@
             "Value": {
                 "id": "e52b5da1-6796-4a1c-a11d-27927206035a",
                 "resourcePath": "sprites\\spr_enemy_healer_heavy_ranged\\spr_enemy_healer_heavy_ranged.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "ed73a18f-7f79-4f53-b118-c3df682c3917",
+            "Value": {
+                "id": "8284f5d3-a075-4526-96bd-00f074582516",
+                "resourcePath": "sprites\\spr_enemy_mage_run\\spr_enemy_mage_run.yy",
                 "resourceType": "GMSprite"
             }
         },
