@@ -52,6 +52,8 @@ enemyWasInCombat = false;
 // Variable used to stop endless chasing of target
 chosenEngine = "";
 alreadyTriedToChase = false;
+// Variable used to count down how long to chase target
+alreadyTriedToChaseTimer = 0;
 // The percentage of this specific object's current HP compared to this object's max HP
 selfCurrentHPPercent = 1;
 targetCurrentPercentageOfStaminaAndMana = 0;

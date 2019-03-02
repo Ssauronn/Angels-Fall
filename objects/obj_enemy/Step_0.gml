@@ -317,6 +317,9 @@ if !instance_exists(alreadyHit) {
 if alreadyHitTimer >= 0 {
 	alreadyHitTimer -= 1;
 }
+if alreadyTriedToChaseTimer > 0 {
+	alreadyTriedToChase -= 1;
+}
 
 // Switch statement for State Machine
 switch (enemyState) {

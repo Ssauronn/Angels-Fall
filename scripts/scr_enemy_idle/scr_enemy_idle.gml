@@ -87,20 +87,20 @@ if !decisionMadeForTargetAndAction {
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {
 		if instance_exists(currentTargetToFocus) {
-		// If the chosen engine is a Heavy Melee attack
-		if chosenEngine == "Heavy Melee" {
-			// If the obj_enemy is not within enemyHeavyMeleeAttackRange
-			if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
+			// If the chosen engine is a Heavy Melee attack
+			if chosenEngine == "Heavy Melee" {
+				// If the obj_enemy is not within enemyHeavyMeleeAttackRange
+				if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
 				/*
 					if alreadyTriedToChase == false {
-						change state to scr_move_within_attack_range
-						set alreadyTriedToChase to true
+						enemyState = enemystates.moveWithinAttackRange
+						set alreadyTriedToChase to true at the end of the script
 						set a timer for chasing
 						exit state once timer finishes, or exit immediately if no path to target is immediately found
 							-This timer needs to be reduced in obj_enemy step event
 					}
 					else if alreadyTriedToChase = true {
-						change chosenEngine = "Light Ranged";
+						cchosenEngine = "Light Ranged";
 					}
 					*/
 				}
