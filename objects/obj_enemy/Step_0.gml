@@ -322,6 +322,10 @@ if alreadyHitTimer >= 0 {
 switch (enemyState) {
 	case enemystates.idle: scr_enemy_idle();
 		break;
+	case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
+		break;
+	case enemystates.moveWithinAttackRange: script_execute(scrMoveWithinAttackRange);
+		break;
 	case enemystates.lightMeleeAttack: script_execute(scrAttack1);
 		break;
 	case enemystates.heavyMeleeAttack: script_execute(scrAttack2);
@@ -331,8 +335,6 @@ switch (enemyState) {
 	case enemystates.heavyRangedAttack: script_execute(scrAttack4);
 		break;
 	case enemystates.healAlly: script_execute(scrHealAlly);
-		break;
-	case enemystates.moveWithinAttackRange: script_execute(scrMoveWithinAttackRange);
 		break;
 }
 

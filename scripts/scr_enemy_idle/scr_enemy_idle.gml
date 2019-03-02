@@ -93,7 +93,7 @@ if chosenEngine != "" {
 			if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
 				/*
 					if alreadyTriedToChase == false {
-						change state to try_to_chase
+						change state to scr_move_within_attack_range
 						set alreadyTriedToChase to true
 						set a timer for chasing
 						exit state once timer finishes, or exit immediately if no path to target is immediately found
