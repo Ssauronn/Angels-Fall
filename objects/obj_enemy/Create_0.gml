@@ -1,5 +1,7 @@
 /// @description Create Varialbes
 
+myPath = undefined;
+
 #region ENGINE VARIABLES TO CONTROL EACH INDIVIDUAL ENEMY
 // Variable used to control when the specific enemy calls scr_ai_decisions to set a course of
 // action.

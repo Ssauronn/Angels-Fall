@@ -104,6 +104,9 @@ if !decisionMadeForTargetAndAction {
 		}
 	}
 }
+scr_move_within_attack_range();
+
+
 
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
@@ -161,7 +164,7 @@ if chosenEngine != "" {
 						enemyDirectionFacing = enemydirection.down;
 					}
 				}
-				*/  
+				*/ 
 			}
 			else if chosenEngine == "Light Melee" {
 				// If the obj_enemy is not within enemyLightMeleeAttackRange
