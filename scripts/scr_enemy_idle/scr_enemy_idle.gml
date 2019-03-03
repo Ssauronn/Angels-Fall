@@ -122,7 +122,7 @@ if chosenEngine != "" {
 							-This timer needs to be reduced in obj_enemy step event
 					}
 					else if alreadyTriedToChase = true {
-						cchosenEngine = "Light Ranged";
+						chosenEngine = "Light Ranged";
 					}
 					*/
 				}
