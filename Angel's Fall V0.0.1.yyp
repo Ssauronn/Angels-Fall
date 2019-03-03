@@ -191,6 +191,14 @@
             }
         },
         {
+            "Key": "12348e03-c08a-49e2-8e22-948338e3e570",
+            "Value": {
+                "id": "91cc2c8f-f5aa-46c9-8103-bdfb86b2d1b5",
+                "resourcePath": "objects\\obj_movement_grid\\obj_movement_grid.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "14827802-bd3e-41ca-ad9e-0913561d3d78",
             "Value": {
                 "id": "d8ee0fc0-e32c-47e8-994f-d6b43cfd04ad",
