@@ -5,6 +5,8 @@ if instance_exists(currentTargetToFocus) {
 	USING add_movement SCRIPT (already adapted)
 	if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > 32 {
 		myPath = path_add();
+		path_set_kind(myPath, 1);
+		path_set_precision(myPath, 8);
 		mp_grid_path(roomMovementGrid, myPath, x, y, currentTargetToFocus.x - 32, currentTargetToFocus.y - 32, true);
 		path_start(myPath, 3, path_action_stop, true);
 	}

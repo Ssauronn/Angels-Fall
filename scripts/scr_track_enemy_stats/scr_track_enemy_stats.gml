@@ -22,6 +22,9 @@ enemyTotalBonusResistance = 0; // + whatever bonus resistances the enemy has
 
 // Set Speed variables for enemies
 enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
+maxSpeed = baseMaxSpeed * enemyTotalSpeed;
+acceleration = baseAcceleration * enemyTotalSpeed;
+frictionAmount = baseFrictionAmount * enemyTotalSpeed;
 
 
 // Destroy self if HP drops below 0

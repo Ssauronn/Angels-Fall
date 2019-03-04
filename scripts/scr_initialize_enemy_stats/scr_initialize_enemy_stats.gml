@@ -44,10 +44,16 @@ switch (enemy_name_) {
 		#endregion
 		
 		// Enemy Movement Variables
-		currentDirection = 0;
 		baseMaxSpeed = obj_player.baseMaxSpeed * 1;
 		maxSpeed = baseMaxSpeed * enemyTotalSpeed;
+		baseFrictionAmount = maxSpeed * 2.700;
+		frictionAmount = baseFrictionAmount * enemyTotalSpeed;
+		baseAcceleration = maxSpeed * 0.250;
+		acceleration = baseAcceleration * enemyTotalSpeed;
 		currentSpeed = 0;
+		currentDirection = 0;
+		collisionFound = -1;
+		myPath = undefined;
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_mage_idle;
@@ -171,9 +177,16 @@ switch (enemy_name_) {
 		#endregion
 		
 		// Enemy Movement Variables
-		currentDirection = 0;
 		baseMaxSpeed = obj_player.baseMaxSpeed * 1;
+		maxSpeed = baseMaxSpeed * enemyTotalSpeed;
+		baseFrictionAmount = maxSpeed * 2.700;
+		frictionAmount = baseFrictionAmount * enemyTotalSpeed;
+		baseAcceleration = maxSpeed * 0.250;
+		acceleration = baseAcceleration * enemyTotalSpeed;
 		currentSpeed = 0;
+		currentDirection = 0;
+		collisionFound = -1;
+		myPath = undefined;
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_healer_idle;
