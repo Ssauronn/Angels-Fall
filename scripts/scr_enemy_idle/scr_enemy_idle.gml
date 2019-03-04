@@ -104,14 +104,15 @@ if !decisionMadeForTargetAndAction {
 		}
 	}
 }
-scr_move_within_attack_range();
-
-
 
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {
 		if instance_exists(currentTargetToFocus) {
+			
+			// Here for debugging purposes, need to call this in the right places ONLY otherwise
+			scr_move_within_attack_range()
+			
 			// If the chosen engine is a Heavy Melee attack
 			if chosenEngine == "Heavy Melee" {
 				// If the obj_enemy is not within enemyHeavyMeleeAttackRange
@@ -309,10 +310,10 @@ if chosenEngine != "" {
 						else if enemyCurrentStamina >= light melee stamina cost {
 							chosenEngine = "Light Melee";
 						}
-						// Else if obj_enemy is a healer, is within enemyHealRange, and has the mana required, change
+						// Else if obj_enemy is a healer, is within enemyHealAllyRange, and has the mana required, change
 						// the chosenEngine = "Heal Ally"
 						else if objectArchetype == "Healer" {
-							if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealRange) && (enemyCurrentMana >= enemyHealManaCost) {
+							if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealAllyRange) && (enemyCurrentMana >= enemyHealManaCost) {
 								chosenEngine = "Heal Ally";
 							}
 						}
@@ -355,10 +356,10 @@ if chosenEngine != "" {
 						else if enemyCurrentStamina >= light melee stamina cost {
 							chosenEngine = "Light Melee";
 						}
-						// Else if obj_enemy is a healer, is within enemyHealRange, and has the mana required, change
+						// Else if obj_enemy is a healer, is within enemyHealAllyRange, and has the mana required, change
 						// the chosenEngine = "Heal Ally"
 						else if objectArchetype == "Healer" {
-							if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealRange) && (enemyCurrentMana >= enemyHealManaCost) {
+							if (point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) <= enemyHealAllyRange) && (enemyCurrentMana >= enemyHealManaCost) {
 								chosenEngine = "Heal Ally";
 							}
 						}
@@ -399,8 +400,8 @@ if chosenEngine != "" {
 		if currentTargetToHeal != noone {
 			if instance_exists(currentTargetToHeal) {
 				if chosenEngine == "Heal Ally" {
-					// If the obj_enemy is not within enemyHealRange
-					if point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) > enemyHealRange {
+					// If the obj_enemy is not within enemyHealAllyRange
+					if point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) > enemyHealAllyRange {
 						/*
 						if alreadyTriedToChase == false {
 							change state to try_to_chase

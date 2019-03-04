@@ -6,6 +6,8 @@ var i;
 with (obj_enemy) {
 	if path_exists(myPath) {
 		path_delete(myPath);
+		myPath = undefined;
+		pathCreated = false;
 	}
 }
 
