@@ -5,6 +5,7 @@ playerTotalSpeed = (playerGameSpeed + userInterfaceGameSpeed) / 2;
 
 // Set the max speed the player object can move at, depending on playerTotalSpeed
 maxSpeed = baseMaxSpeed * playerTotalSpeed;
+acceleration = baseAcceleration * playerTotalSpeed;
 frictionAmount = baseFrictionAmount * playerTotalSpeed;
 dashSpeed = baseDashSpeed * playerTotalSpeed;
 

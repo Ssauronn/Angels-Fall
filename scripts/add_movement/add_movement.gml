@@ -55,41 +55,45 @@ if self.object_index == obj_player {
 if self.object_index != obj_player {
 	// If the object calling this script is not explicitely trying to heal a target
 	if weightAtWhichEnemyIsCurrentlyFocusingTargetAt >= weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt {
-		// If the object calling this has a focus target
-		if instance_exists(currentTargetToFocus) {
-			#region X Axis Movement
-			// If the object movement in the x axis is positive and the target's x location is not in the
-			// positive x direction, apply friction
-			if (sign(x_speed_) == 1) && (sign(currentTargetToFocus.x - x) != 1) {
-				x_speed_ = approach_number(x_speed_, 0, frictionAmount);
-			}
-			// If the object movement in the x axis is negative and the target's x location is not in the
-			// negative x direction, apply friction
-			else if (sign(x_speed_) == -1) && (sign(currentTargetToFocus.x - x)!= -1) {
-				x_speed_ = approach_number(x_speed_, 0, frictionAmount);
-			}
-			// Else if neither above are true, then the object needs to be executing movements in a direction 
-			// not equal to the current direction, and so apply acceleration to that object.
-			else {
-				x_speed_ += x_acceleration_;
-			}
-			#endregion
-			#region Y Axis Movement
-			// If the object movement in the y axis is positive and the down button is not held down,
-			// apply friction
-			if (sign(y_speed_) == 1) && (sign(currentTargetToFocus.y - y) != 1) {
-				y_speed_ = approach_number(y_speed_, 0, frictionAmount);
-			}
-			// Else if the object movement in the y axis is negative and the up button is not held down,
-			// apply friction
-			else if (sign(y_speed_) == -1) && (sign(currentTargetToFocus.y - y) != -1) {
-				y_speed_ = approach_number(y_speed_, 0, frictionAmount);
-			}
-			// Else if neither above are true, then the object must be executing movements in a direction
-			// not equal to the current direction, and so apply acceleration to that object.
-			else {
-				y_speed_ += y_acceleration_;
-			}
+		var target_ = currentTargetToFocus;
+	}
+	else {
+		var target_ = currentTargetToHeal
+	}
+	// If the object calling this has a focus target
+	if instance_exists(target_) {
+		#region X Axis Movement
+		// If the object movement in the x axis is positive and the target's x location is not in the
+		// positive x direction, apply friction
+		if (sign(x_speed_) == 1) && (sign(target_.x - x) != 1) {
+			x_speed_ = approach_number(x_speed_, 0, frictionAmount);
+		}
+		// If the object movement in the x axis is negative and the target's x location is not in the
+		// negative x direction, apply friction
+		else if (sign(x_speed_) == -1) && (sign(target_.x - x)!= -1) {
+			x_speed_ = approach_number(x_speed_, 0, frictionAmount);
+		}
+		// Else if neither above are true, then the object needs to be executing movements in a direction 
+		// not equal to the current direction, and so apply acceleration to that object.
+		else {
+			x_speed_ += x_acceleration_;
+		}
+		#endregion
+		#region Y Axis Movement
+		// If the object movement in the y axis is positive and the down button is not held down,
+		// apply friction
+		if (sign(y_speed_) == 1) && (sign(target_.y - y) != 1) {
+			y_speed_ = approach_number(y_speed_, 0, frictionAmount);
+		}
+		// Else if the object movement in the y axis is negative and the up button is not held down,
+		// apply friction
+		else if (sign(y_speed_) == -1) && (sign(target_.y - y) != -1) {
+			y_speed_ = approach_number(y_speed_, 0, frictionAmount);
+		}
+		// Else if neither above are true, then the object must be executing movements in a direction
+		// not equal to the current direction, and so apply acceleration to that object.
+		else {
+			y_speed_ += y_acceleration_;
 		}
 	}
 	#endregion

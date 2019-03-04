@@ -44,10 +44,32 @@ switch (enemy_name_) {
 		#endregion
 		
 		// Enemy Movement Variables
-		currentDirection = 0;
 		baseMaxSpeed = obj_player.baseMaxSpeed * 1;
 		maxSpeed = baseMaxSpeed * enemyTotalSpeed;
+		baseFrictionAmount = maxSpeed * 2.700;
+		frictionAmount = baseFrictionAmount * enemyTotalSpeed;
+		baseAcceleration = maxSpeed * 0.250;
+		acceleration = baseAcceleration * enemyTotalSpeed;
 		currentSpeed = 0;
+		currentDirection = 0;
+		collisionFound = -1;
+		
+		// Path variables
+		// Path the enemy will follow
+		myPath = undefined;
+		// This is set to false because even though a path was created, it wasn't assigned an actual
+		// path to follow
+		pathCreated = false;
+		// Enemy start locations for the path
+		pathStartX = 0;
+		pathStartY = 0;
+		// Target Focus and Target Heal x and y locations to move to
+		pathEndXGoal = 0;
+		pathEndYGoal = 0;
+		// The actual path coordinates on the next path position
+		pathPos = 0;
+		pathNextXPos = 0;
+		pathNextYPos = 0;
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_mage_idle;
@@ -116,14 +138,7 @@ switch (enemy_name_) {
 		enemyGroundHurtbox.visible = false;
 		enemyGroundHurtbox.owner = self;
 		#endregion
-		#region Enemy Scripts to Use Table and Script Setting Variables
-		scrMoveWithinAttackRange = scr_move_within_attack_range()
-		scrAttack1 = scr_mage_light_melee();
-		scrAttack2 = scr_mage_heavy_melee();
-		scrAttack3 = scr_mage_light_ranged();
-		scrAttack4 = scr_mage_heavy_ranged();
-		scrHealAlly = noone;
-		#endregion
+		show_debug_message(string(enemyState))
 		
 		#endregion
 		break;
@@ -167,13 +182,36 @@ switch (enemy_name_) {
 		enemyHeavyMeleeAttackRange = 32;
 		enemyLightRangedAttackRange = camera_get_view_height(view_camera[0]);
 		enemyHeavyRangedAttackRange = camera_get_view_height(view_camera[0]);
-		enemyHealRange = camera_get_view_height(view_camera[0]);
+		enemyHealAllyRange = camera_get_view_height(view_camera[0]);
 		#endregion
 		
 		// Enemy Movement Variables
-		currentDirection = 0;
 		baseMaxSpeed = obj_player.baseMaxSpeed * 1;
+		maxSpeed = baseMaxSpeed * enemyTotalSpeed;
+		baseFrictionAmount = maxSpeed * 2.700;
+		frictionAmount = baseFrictionAmount * enemyTotalSpeed;
+		baseAcceleration = maxSpeed * 0.250;
+		acceleration = baseAcceleration * enemyTotalSpeed;
 		currentSpeed = 0;
+		currentDirection = 0;
+		collisionFound = -1;
+		
+		// Path variables
+		// Path the enemy will follow
+		myPath = undefined;
+		// This is set to false because even though a path was created, it wasn't assigned an actual
+		// path to follow
+		pathCreated = false;
+		// Enemy start locations for the path
+		pathStartX = 0;
+		pathStartY = 0;
+		// Target Focus and Target Heal x and y locations to move to
+		pathEndXGoal = 0;
+		pathEndYGoal = 0;
+		// The actual path coordinates on the next path position
+		pathPos = 0;
+		pathNextXPos = 0;
+		pathNextYPos = 0;
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_healer_idle;
@@ -245,14 +283,6 @@ switch (enemy_name_) {
 		enemyGroundHurtbox.image_index = 0;
 		enemyGroundHurtbox.visible = false;
 		enemyGroundHurtbox.owner = self;
-		#endregion
-		#region Enemy Scripts to Use Table and Script Setting Variables
-		scrMoveWithinAttackRange = scr_move_within_attack_range();
-		scrAttack1 = scr_healer_light_melee();
-		scrAttack2 = scr_healer_heavy_melee();
-		scrAttack3 = scr_healer_light_ranged();
-		scrAttack4 = scr_healer_heavy_ranged();
-		scrHealAlly = scr_healer_heal_ally();
 		#endregion
 		
 		#endregion

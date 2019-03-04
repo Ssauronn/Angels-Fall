@@ -313,25 +313,8 @@ if alreadyTriedToChaseTimer > 0 {
 	alreadyTriedToChase -= 1;
 }
 
-// Switch statement for State Machine
-switch (enemyState) {
-	case enemystates.idle: scr_enemy_idle();
-		break;
-	case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
-		break;
-	case enemystates.moveWithinAttackRange: script_execute(scrMoveWithinAttackRange);
-		break;
-	case enemystates.lightMeleeAttack: script_execute(scrAttack1);
-		break;
-	case enemystates.heavyMeleeAttack: script_execute(scrAttack2);
-		break;
-	case enemystates.lightRangedAttack: script_execute(scrAttack3);
-		break;
-	case enemystates.heavyRangedAttack: script_execute(scrAttack4);
-		break;
-	case enemystates.healAlly: script_execute(scrHealAlly);
-		break;
-}
+// Switch statement for State Machine - Called through script
+scr_change_states(enemyName);
 
 
 // Set the image index

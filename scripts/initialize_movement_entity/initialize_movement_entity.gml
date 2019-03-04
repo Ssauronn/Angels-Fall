@@ -16,12 +16,13 @@ var bounce_percent_ = argument[5];
 baseMaxSpeed = max_speed_;
 maxSpeed = max_speed_ * playerTotalSpeed;
 currentSpeed = current_speed_;
+baseAcceleration = player_acceleration_;
 acceleration = player_acceleration_ * playerTotalSpeed;
 currentDirection = current_direction_;
 baseFrictionAmount = friction_;
 frictionAmount = friction_ * playerTotalSpeed;
 bouncePercent = bounce_percent_;
-globalvar collisionObjects, collisionFound;
+globalvar collisionObjects//, collisionFound;
 var i = 0;
 var iteration_ = 0;
 if (argument_count > 6) {
