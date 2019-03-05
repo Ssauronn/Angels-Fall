@@ -105,6 +105,7 @@ if !decisionMadeForTargetAndAction {
 	}
 }
 
+
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {

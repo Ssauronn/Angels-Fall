@@ -4,8 +4,10 @@ if ds_exists(roomMovementGrid, ds_type_grid) {
 }
 var i;
 with (obj_enemy) {
-	if path_exists(myPath) {
-		path_delete(myPath);
+	if !is_undefined(myPath) {
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
 		myPath = undefined;
 		pathCreated = false;
 	}
