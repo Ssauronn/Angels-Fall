@@ -1,5 +1,5 @@
 ///@description Move within attack range
-var distance_ = 0;
+var distance_ = 64;
 var target_ = noone;
 switch (chosenEngine) {
 	case "Light Melee": distance_ = enemyLightMeleeAttackRange;
@@ -30,32 +30,25 @@ if weightAtWhichEnemyIsCurrentlyFocusingTargetAt >= weightAtWhichEnemyIsCurrentl
 		CODE BELOW NEEDS TO BE EDITED TO WORK INSTEAD WITH move_movement_entity (needs to be adapted) SCRIPT 
 		USING add_movement SCRIPT (already adapted)
 		*/
-		if point_distance(pathStartX, pathStartY, pathEndXGoal, pathEndYGoal) > distance_ {
-			if !pathCreated {
-				myPath = path_add();
-				pathCreated = true;
-				if !mp_grid_path(roomMovementGrid, myPath, pathStartX, pathStartY, pathEndXGoal, pathEndYGoal, distance_) {
-					// Set chosenEngine = "Light Ranged", reset other variables, set alreadyTriedToChase
-					// equal to true, and reset timer for chasing
-				}
-				else {
-					path_set_kind(myPath, 1);
-					path_set_precision(myPath, 8);
-				}
-			}
+		if point_distance(pathStartX, pathStartY, target_.x, target_.y) > distance_ {
+			
 			/*
 			call add_movement, after doing so evaluate point_distance to pathEndGoal, if point distance
 			plus currentSpeed is still greater than distance_ then do nothing, otherwise destroy myPath
-			to prevent a memory leak, set it equal to undefined again, and set patchCreated = false;
+			to prevent a memory leak, set it equal to undefined again, and set pathCreated = false;
 			*/
-			/*
+			
 			//old code
-			myPath = path_add();
-			path_set_kind(myPath, 1);
-			path_set_precision(myPath, 8);
-			mp_grid_path(roomMovementGrid, myPath, x, y, currentTargetToFocus.x - 32, currentTargetToFocus.y - 32, true);
-			path_start(myPath, 3, path_action_stop, true);
-			*/
+			if !pathCreated {
+				myPath = path_add();
+				path_set_kind(myPath, 1);
+				path_set_precision(myPath, 8);
+				mp_grid_path(roomMovementGrid, myPath, x, y, pathEndXGoal, pathEndYGoal, true);
+			}
+			//path_start(myPath, 3, path_action_stop, true);
+			enemyGroundHurtbox.solid = false;
+			mp_potential_step(pathEndXGoal, pathEndYGoal, 3, false);
+			enemyGroundHurtbox.solid = true;
 		}
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 

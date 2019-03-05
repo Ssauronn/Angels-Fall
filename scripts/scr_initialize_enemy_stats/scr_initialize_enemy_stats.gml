@@ -39,8 +39,8 @@ switch (enemy_name_) {
 		// Enemies' Attack Ranges
 		enemyLightMeleeAttackRange = 32;
 		enemyHeavyMeleeAttackRange = 32;
-		enemyLightRangedAttackRange = camera_get_view_height(view_camera[0]);
-		enemyHeavyRangedAttackRange = camera_get_view_height(view_camera[0]);
+		enemyLightRangedAttackRange = 32 * 2;
+		enemyHeavyRangedAttackRange = 32 * 2;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -67,7 +67,7 @@ switch (enemy_name_) {
 		pathEndXGoal = 0;
 		pathEndYGoal = 0;
 		// The actual path coordinates on the next path position
-		pathPos = 0;
+		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 
@@ -180,9 +180,9 @@ switch (enemy_name_) {
 		// Enemies' Attack Ranges
 		enemyLightMeleeAttackRange = 32;
 		enemyHeavyMeleeAttackRange = 32;
-		enemyLightRangedAttackRange = camera_get_view_height(view_camera[0]);
-		enemyHeavyRangedAttackRange = camera_get_view_height(view_camera[0]);
-		enemyHealAllyRange = camera_get_view_height(view_camera[0]);
+		enemyLightRangedAttackRange = 32 * 2;
+		enemyHeavyRangedAttackRange = 32 * 2;
+		enemyHealAllyRange = 32 * 2;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -209,7 +209,7 @@ switch (enemy_name_) {
 		pathEndXGoal = 0;
 		pathEndYGoal = 0;
 		// The actual path coordinates on the next path position
-		pathPos = 0;
+		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 

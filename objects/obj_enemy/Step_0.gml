@@ -338,6 +338,7 @@ enemyAnimationImageIndex += enemyImageIndexSpeed;
 // that the player has equipped.
 image_index = enemyImageIndex;
 
+
 // Hurtbox and Ground Hurtbox Sprite Setting and Location Setting - must be done after obj_enemy
 // sprites and locations have changed so that the hurtboxes don't lag a frame behind the obj_enemy
 if instance_exists(self) {
