@@ -45,7 +45,10 @@ if weightAtWhichEnemyIsCurrentlyFocusingTargetAt >= weightAtWhichEnemyIsCurrentl
 				path_set_precision(myPath, 8);
 				mp_grid_path(roomMovementGrid, myPath, x, y, pathEndXGoal, pathEndYGoal, true);
 			}
-			path_start(myPath, 3, path_action_stop, true);
+			//path_start(myPath, 3, path_action_stop, true);
+			enemyGroundHurtbox.solid = false;
+			mp_potential_step(pathEndXGoal, pathEndYGoal, 3, false);
+			enemyGroundHurtbox.solid = true;
 		}
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
