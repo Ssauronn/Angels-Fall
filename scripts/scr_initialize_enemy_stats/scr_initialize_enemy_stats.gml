@@ -44,7 +44,7 @@ switch (enemy_name_) {
 		#endregion
 		
 		// Enemy Movement Variables
-		baseMaxSpeed = obj_player.baseMaxSpeed * 1;
+		baseMaxSpeed = obj_player.baseMaxSpeed * 0.8;
 		maxSpeed = baseMaxSpeed * enemyTotalSpeed;
 		baseFrictionAmount = maxSpeed * 2.700;
 		frictionAmount = baseFrictionAmount * enemyTotalSpeed;
@@ -67,7 +67,7 @@ switch (enemy_name_) {
 		pathEndXGoal = 0;
 		pathEndYGoal = 0;
 		// The actual path coordinates on the next path position
-		pathPos = 1;
+		pathPos = 0;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 
@@ -186,7 +186,7 @@ switch (enemy_name_) {
 		#endregion
 		
 		// Enemy Movement Variables
-		baseMaxSpeed = obj_player.baseMaxSpeed * 1;
+		baseMaxSpeed = obj_player.baseMaxSpeed * 0.8;
 		maxSpeed = baseMaxSpeed * enemyTotalSpeed;
 		baseFrictionAmount = maxSpeed * 2.700;
 		frictionAmount = baseFrictionAmount * enemyTotalSpeed;
@@ -209,7 +209,7 @@ switch (enemy_name_) {
 		pathEndXGoal = 0;
 		pathEndYGoal = 0;
 		// The actual path coordinates on the next path position
-		pathPos = 1;
+		pathPos = 0;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 
