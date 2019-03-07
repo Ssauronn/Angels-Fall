@@ -15,4 +15,9 @@ if instance_exists(currentTargetToFocus) {
 draw_rectangle((camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2) + 1, (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2) + 1, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2) - 1, (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2) - 1, true)
 draw_text_ext_transformed(x, y, string(self.id), 10, 32, 1, 1, 0);
 
+if !is_undefined(myPath) {
+	if path_exists(myPath) {
+		draw_path(myPath, x, y, false)
+	}
+}
 

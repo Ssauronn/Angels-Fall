@@ -37,10 +37,10 @@ switch (enemy_name_) {
 		enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.9;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 32;
-		enemyHeavyMeleeAttackRange = 32;
-		enemyLightRangedAttackRange = 32 * 2;
-		enemyHeavyRangedAttackRange = 32 * 2;
+		enemyLightMeleeAttackRange = 32 * 2;
+		enemyHeavyMeleeAttackRange = 32 * 2;
+		enemyLightRangedAttackRange = 32 * 4;
+		enemyHeavyRangedAttackRange = 32 * 4;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -61,13 +61,13 @@ switch (enemy_name_) {
 		// path to follow
 		pathCreated = false;
 		// Enemy start locations for the path
-		pathStartX = 0;
-		pathStartY = 0;
+		groundHurtboxX = 0;
+		groundHurtboxY = 0;
 		// Target Focus and Target Heal x and y locations to move to
 		pathEndXGoal = 0;
 		pathEndYGoal = 0;
 		// The actual path coordinates on the next path position
-		pathPos = 0;
+		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 
@@ -178,11 +178,11 @@ switch (enemy_name_) {
 		enemyHealManaCost = enemyMaxMana * 0.9;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 32;
-		enemyHeavyMeleeAttackRange = 32;
-		enemyLightRangedAttackRange = 32 * 2;
-		enemyHeavyRangedAttackRange = 32 * 2;
-		enemyHealAllyRange = 32 * 2;
+		enemyLightMeleeAttackRange = 32 * 2;
+		enemyHeavyMeleeAttackRange = 32 * 2;
+		enemyLightRangedAttackRange = 32 * 4;
+		enemyHeavyRangedAttackRange = 32 * 4;
+		enemyHealAllyRange = 32 * 4;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -203,13 +203,13 @@ switch (enemy_name_) {
 		// path to follow
 		pathCreated = false;
 		// Enemy start locations for the path
-		pathStartX = 0;
-		pathStartY = 0;
+		groundHurtboxX = 0;
+		groundHurtboxY = 0;
 		// Target Focus and Target Heal x and y locations to move to
 		pathEndXGoal = 0;
 		pathEndYGoal = 0;
 		// The actual path coordinates on the next path position
-		pathPos = 0;
+		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 
