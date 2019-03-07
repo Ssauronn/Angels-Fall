@@ -59,7 +59,6 @@ if chosenEngine != "Heal Ally" {
 		USING add_movement SCRIPT (already adapted)
 		*/
 		if point_distance(groundHurtboxX, groundHurtboxY, target_.x, target_.y) > distance_ {
-			
 			/*
 			call add_movement, after doing so evaluate point_distance to pathEndGoal, if point distance
 			plus currentSpeed is still greater than distance_ then do nothing, otherwise destroy myPath
@@ -103,11 +102,14 @@ if chosenEngine != "Heal Ally" {
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
 			// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
+			// Path variables being reset
 			pathPos = 1;
 			pathCreated = false;
 			if path_exists(myPath) {
 				path_delete(myPath);
 			}
+			// State swapping variables being reset
+			alreadyTriedToChase = true;
 		}
 		
 	}
@@ -121,7 +123,6 @@ if chosenEngine == "Heal Ally" {
 		USING add_movement SCRIPT (already adapted)
 		*/
 		if point_distance(groundHurtboxX, groundHurtboxY, target_.x, target_.y) > distance_ {
-			
 			/*
 			call add_movement, after doing so evaluate point_distance to pathEndGoal, if point distance
 			plus currentSpeed is still greater than distance_ then do nothing, otherwise destroy myPath
@@ -175,5 +176,15 @@ if chosenEngine == "Heal Ally" {
 	}
 }
 #endregion
-
+// If the timer for alreadyTriedToChase (alreadyTriedToChaseTimer) hits 0, that means that the enemy
+// has already tried to chase for the max amount of time, and we need to move onto a different attack.
+if alreadyTriedToChaseTimer <= 0 {
+	// Reset path variables
+	pathPos = 1;
+	pathCreated = false;
+	if path_exists(myPath) {
+		path_delete(myPath);
+	}
+	// Reset the state variables, and set alreadyTriedToChase = true
+}
 

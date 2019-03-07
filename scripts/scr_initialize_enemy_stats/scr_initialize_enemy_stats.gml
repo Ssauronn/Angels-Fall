@@ -70,6 +70,7 @@ switch (enemy_name_) {
 		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
+		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_mage_idle;
@@ -138,7 +139,6 @@ switch (enemy_name_) {
 		enemyGroundHurtbox.visible = false;
 		enemyGroundHurtbox.owner = self;
 		#endregion
-		show_debug_message(string(enemyState))
 		
 		#endregion
 		break;

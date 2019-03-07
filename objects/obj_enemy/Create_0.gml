@@ -38,8 +38,8 @@ weightAtWhichEnemyIsCurrentlyFocusingTargetAt = 0;
 weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt = 0;
 
 // Tether ranges - normally standard
-tetherXRange = camera_get_view_width(view_camera[0]);
-tetherYRange = camera_get_view_height(view_camera[0]);
+tetherXRange = camera_get_view_width(view_camera[0]) * 2;
+tetherYRange = camera_get_view_height(view_camera[0]) * 2;
 
 // Variable to determine if enemy was, or currently is, in combat
 enemyInCombat = false;
@@ -49,8 +49,8 @@ enemyWasInCombat = false;
 
 #region VARIABLES USED BY ALL ACTION ENGINES
 // Action chosen variable, set at the very end of scr_ai_decisions
-// Variable used to stop endless chasing of target
 chosenEngine = "";
+// Variable used to stop endless chasing of target
 alreadyTriedToChase = false;
 // Variable used to count down how long to chase target
 alreadyTriedToChaseTimer = 0;

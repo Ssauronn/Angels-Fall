@@ -11,8 +11,8 @@ enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
 // Set the max movement speed for each individual enemy
 maxSpeed = baseMaxSpeed * enemyTotalSpeed;
 
-tetherXRange = camera_get_view_width(view_camera[0]);
-tetherYRange = camera_get_view_height(view_camera[0]);
+tetherXRange = camera_get_view_width(view_camera[0]) * 2;
+tetherYRange = camera_get_view_height(view_camera[0]) * 2;
 
 
 #region Variables Changed by obj_ai_decision_making to Control Each Enemy
@@ -62,8 +62,6 @@ var instance_to_reference_, j;
 // Detect whether enemies are within player's field of view
 if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	// If there are already other enemies within player's field of view
-	show_debug_message(string(id) + "'s state is: " + string(enemyState));
-	show_debug_message(string(id) + "'s engine choice is: " + string(chosenEngine));
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
 		if ds_list_find_index(objectIDsInBattle, self) == -1 {
