@@ -33,4 +33,12 @@ if enemyCurrentHP <= 0 {
 	instance_destroy(self);
 }
 
+if enemyTimeUntilNextStaminaAbilityUsableTimer > 0 {
+	enemyTimeUntilNextStaminaAbilityUsableTimer -= 1;
+}
+
+if enemyTimeUntilNextManaAbilityUsableTimer > 0 {
+	enemyTimeUntilNextManaAbilityUsableTimer -= 1;
+}
+
 

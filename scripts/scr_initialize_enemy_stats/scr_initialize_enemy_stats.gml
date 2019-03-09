@@ -15,9 +15,13 @@ switch (enemy_name_) {
 		enemyCurrentHP = enemyMaxHP;
 		enemyMaxStamina = 1000;
 		enemyStaminaRegeneration = (enemyMaxStamina * 0.5) / room_speed;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 		enemyCurrentStamina = enemyMaxStamina;
 		enemyMaxMana = 1000;
 		enemyManaRegeneration = (enemyMaxMana * 0.5) / room_speed;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance
@@ -154,9 +158,13 @@ switch (enemy_name_) {
 		enemyCurrentHP = enemyMaxHP;
 		enemyMaxStamina = 1000;
 		enemyStaminaRegeneration = (enemyMaxStamina * 0.5) / room_speed;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 		enemyCurrentStamina = enemyMaxStamina;
 		enemyMaxMana = 1000;
 		enemyManaRegeneration = (enemyMaxMana * 0.5) / room_speed;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance

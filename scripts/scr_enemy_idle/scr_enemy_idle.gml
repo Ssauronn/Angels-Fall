@@ -106,121 +106,109 @@ if !decisionMadeForTargetAndAction {
 }
 
 
+
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {
 		if instance_exists(currentTargetToFocus) {
-			
-			// Here for debugging purposes, need to call this in the right places ONLY otherwise
-			scr_move_within_attack_range()
-			
+			#region Heavy Melee
 			// If the chosen engine is a Heavy Melee attack
 			if chosenEngine == "Heavy Melee" {
 				// If the obj_enemy is not within enemyHeavyMeleeAttackRange
 				if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
-				/*
-					if alreadyTriedToChase == false {
-						enemyState = enemystates.moveWithinAttackRange
-						set alreadyTriedToChase to true at the end of the script
-						set a timer for chasing
-						exit state once timer finishes, or exit immediately if no path to target is immediately found
-							-This timer needs to be reduced in obj_enemy step event
+					// If the enemy hasn't already tried to chase it's target, then chase the target.
+					if alreadyTriedToChase == false { 
+						enemyState = enemystates.moveWithinAttackRange;
+						enemyStateSprite = enemystates.moveWithinAttackRange;
+						alreadyTriedToChaseTimer = room_speed * 5;
 					}
+					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
+					// and don't try to continue to chase the target.
 					else if alreadyTriedToChase = true {
 						chosenEngine = "Light Ranged";
+						decisionMadeForTargetAndAction = true;
 					}
-					*/
 				}
-				/*
 				// Else if the obj_enemy doesn't have enough stamina to execute attack
-				else if heavy melee stamina cost > enemyCurrentStamina {
-					Evaluate current stamina and stamina regen vs heavy melee cost, set timer based on
-					exact amount of frames + 1 needed to get to the stamina cost.
-						-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
-						than necessary in case, for example, target walks out of range and the timer is no
-						longer counting down because we're in try_to_chase state
-					wait for stamina timer to reach <= 0
-					if (stamina timer <= 0) && (enemyCurrentStamina < heavy melee stamina cost) {
-					(if stamina still hasn't reached stamina cost, meaning regen has been debuffed)
+				else if enemyHeavyMeleeAttackStamCost > enemyCurrentStamina {
+					// Evaluate current stamina and stamina regen vs heavy melee cost, set timer based on
+					// exact amount of frames + 1 needed to get to the stamina cost.
+					if !enemyTimeUntilNextStaminaAbilityUsableTimerSet {
+						var time_to_get_required_stam_ = round((enemyHeavyMeleeAttackStamCost - enemyCurrentStamina) / enemyStaminaRegeneration) + 1;
+						enemyTimeUntilNextStaminaAbilityUsableTimer = time_to_get_required_stam_;
+						enemyTimeUntilNextStaminaAbilityUsableTimerSet = true;
+					}
+					// If stamina still hasn't gotten above the required stamina cost, meaning regen has been
+					// debuffed
+					else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyHeavyMeleeAttackStamCost) {
 						chosenEngine = "Light Ranged";
+						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 					}
 				}
 				// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 				// has enough stamina to execute attack) then execute heavy melee attack
 				else {
-					execute heavy melee attack script
-					set chosenEngine = "" upon ending of attack script;
-					set decisionMadeForTargetAndAction to false upon ending of attack script;
-					enemyState = enemyestates.heavyMeleeAttack;
-					enemyStateSprite = enemystates.heavyMeleeAttack;
-					if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 0) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 45)) || ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 315) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= 360)) {
-						enemyDirectionFacing = enemydirection.right;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 45) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 135)) {
-						enemyDirectionFacing = enemydirection.up;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 135) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 225)) {
-						enemyDirectionFacing = enemydirection.left;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 225) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 315)) {
-						enemyDirectionFacing = enemydirection.down;
-					}
-				}
-				*/ 
+					// execute heavy melee attack script
+					enemyState = enemystates.lightMeleeAttack;
+					enemyStateSprite = enemystates.lightMeleeAttack;
+					chosenEngine = "";
+					decisionMadeForTargetAndAction = false;
+					alreadyTriedToChaseTimer = 0;
+					alreadyTriedToChase = false;
+					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+					enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+				} 
 			}
+			#endregion
+			#region Light Melee
 			else if chosenEngine == "Light Melee" {
 				// If the obj_enemy is not within enemyLightMeleeAttackRange
 				if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyLightMeleeAttackRange {
-					/*
-					if alreadyTriedToChase == false {
-						change state to try_to_chase
-						set alreadyTriedToChase to true
-						set a timer for chasing
-						exit state once timer finishes, or exit immediately if no path to target is immediately found
-							-This timer needs to be reduced in obj_enemy step event
+					// If the enemy hasn't already tried to chase it's target, then chase the target.
+					if alreadyTriedToChase == false { 
+						enemyState = enemystates.moveWithinAttackRange;
+						enemyStateSprite = enemystates.moveWithinAttackRange;
+						alreadyTriedToChaseTimer = room_speed * 5;
 					}
+					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
+					// and don't try to continue to chase the target.
 					else if alreadyTriedToChase = true {
-						change chosenEngine = "Light Ranged";
-					}
-					*/
-				}
-				/*
-				// Else if the obj_enemy doesn't have enough stamina to execute attack
-				else if light melee stamina cost > enemyCurrentStamina {
-					Evaluate current stamina and stamina regen vs light melee cost, set timer based on
-					exact amount of frames + 1 needed to get to the stamina cost.
-						-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
-						than necessary in case, for example, target walks out of range and the timer is no
-						longer counting down because we're in try_to_chase state
-					wait for stamina timer to reach <= 0
-					if (stamina timer <= 0) && (enemyCurrentStamina < light melee stamina cost) {
-					(if stamina still hasn't reached stamina cost, meaning regen has been debuffed)
 						chosenEngine = "Light Ranged";
+						decisionMadeForTargetAndAction = true;
+					}
+				}
+				// Else if the obj_enemy doesn't have enough stamina to execute attack
+				else if enemyLightMeleeAttackStamCost > enemyCurrentStamina {
+					// Evaluate current stamina and stamina regen vs light melee cost, set timer based on
+					// exact amount of frames + 1 needed to get to the stamina cost.
+					if !enemyTimeUntilNextStaminaAbilityUsableTimerSet {
+						var time_to_get_required_stam_ = round((enemyLightMeleeAttackStamCost - enemyCurrentStamina) / enemyStaminaRegeneration) + 1;
+						enemyTimeUntilNextStaminaAbilityUsableTimer = time_to_get_required_stam_;
+						enemyTimeUntilNextStaminaAbilityUsableTimerSet = true;
+					}
+					// If stamina still hasn't gotten above the required stamina cost, meaning regen has been
+					// debuffed
+					else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyLightMeleeAttackStamCost) {
+						chosenEngine = "Light Ranged";
+						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 					}
 				}
 				// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 				// has enough stamina to execute attack) then execute light melee attack
 				else {
-					execute light melee attack script
-					set chosenEngine = "" upon ending of attack script;
-					set decisionMadeForTargetAndAction to false upon ending of attack script;
-					enemyState = enemyestates.lightMeleeAttack;
+					// execute light melee attack script
+					enemyState = enemystates.lightMeleeAttack;
 					enemyStateSprite = enemystates.lightMeleeAttack;
-					if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 0) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 45)) || ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 315) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= 360)) {
-						enemyDirectionFacing = enemydirection.right;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 45) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 135)) {
-						enemyDirectionFacing = enemydirection.up;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 135) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 225)) {
-						enemyDirectionFacing = enemydirection.left;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 225) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 315)) {
-						enemyDirectionFacing = enemydirection.down;
-					}
+					chosenEngine = "";
+					decisionMadeForTargetAndAction = false;
+					alreadyTriedToChaseTimer = 0;
+					alreadyTriedToChase = false;
+					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+					enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 				}
-				*/
 			}
+			#endregion
+			#region Heavy Ranged
 			else if chosenEngine == "Heavy Ranged" {
 				// If the obj_enemy is not within enemyHeavyRangedAttackRange
 				if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyRangedAttackRange {
@@ -274,6 +262,8 @@ if chosenEngine != "" {
 				}
 				*/
 			}
+			#endregion
+			#region Light Ranged
 			else if chosenEngine == "Light Ranged" {
 				/*
 				IF ANY OTHER ENGINE IS UNABLE TO BE EXECUTED WE NEED ENEMY TO RUN EITHER TOWARDS OR AWAY FROM TARGET; 
@@ -395,11 +385,13 @@ if chosenEngine != "" {
 				}
 				*/
 			}
+			#endregion
 		}
 	}
 	if objectArchetype == "Healer" {
 		if currentTargetToHeal != noone {
 			if instance_exists(currentTargetToHeal) {
+				#region Heal Ally
 				if chosenEngine == "Heal Ally" {
 					// If the obj_enemy is not within enemyHealAllyRange
 					if point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) > enemyHealAllyRange {
@@ -452,6 +444,7 @@ if chosenEngine != "" {
 					}
 					*/
 				}
+				#endregion
 			}
 		}
 	}

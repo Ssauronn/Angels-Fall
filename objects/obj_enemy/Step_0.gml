@@ -311,6 +311,10 @@ if alreadyTriedToChaseTimer > 0 {
 	alreadyTriedToChase -= 1;
 }
 
+// Script used to set the direction the object will face every frame
+scr_determine_direction_facing();
+show_debug_message(string(self) + "'s direction facing is: " + string(enemyDirectionFacing));
+
 // Switch statement for State Machine - Called through script
 scr_change_states(enemyName);
 

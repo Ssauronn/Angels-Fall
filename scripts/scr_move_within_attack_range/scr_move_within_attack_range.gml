@@ -30,12 +30,14 @@ switch (chosenEngine) {
 		target_ = currentTargetToHeal;
 		break;
 }
-// These variables are created before the path itself is created
-if target_.object_index == obj_player {
-	target_ = target_.playerGroundHurtbox;
-}
-else {
-	target_ = target_.enemyGroundHurtbox;
+if instance_exists(target_) {
+	// These variables are created before the path itself is created
+	if target_.object_index == obj_player {
+		target_ = target_.playerGroundHurtbox;
+	}
+	else {
+		target_ = target_.enemyGroundHurtbox;
+	}
 }
 groundHurtboxX = enemyGroundHurtbox.x;
 groundHurtboxY = enemyGroundHurtbox.y;
@@ -108,8 +110,13 @@ if chosenEngine != "Heal Ally" {
 			if path_exists(myPath) {
 				path_delete(myPath);
 			}
-			// State swapping variables being reset
-			alreadyTriedToChase = true;
+			// Reset the state variables, and set alreadyTriedToChase = true
+			alreadyTriedToChase = false;
+			alreadyTriedToChaseTimer = 0;
+			decisionMadeForTargetAndAction = false;
+			chosenEngine = "";
+			enemyState = enemystates.idle;
+			enemyStateSprite = enemystates.idle;
 		}
 		
 	}
@@ -121,7 +128,7 @@ if chosenEngine == "Heal Ally" {
 		/*
 		CODE BELOW NEEDS TO BE EDITED TO WORK INSTEAD WITH move_movement_entity (needs to be adapted) SCRIPT 
 		USING add_movement SCRIPT (already adapted)
-		*/
+		*/	
 		if point_distance(groundHurtboxX, groundHurtboxY, target_.x, target_.y) > distance_ {
 			/*
 			call add_movement, after doing so evaluate point_distance to pathEndGoal, if point distance
@@ -171,6 +178,13 @@ if chosenEngine == "Heal Ally" {
 			if path_exists(myPath) {
 				path_delete(myPath);
 			}
+			// Reset the state variables, and set alreadyTriedToChase = true
+			alreadyTriedToChase = false;
+			alreadyTriedToChaseTimer = 0;
+			decisionMadeForTargetAndAction = false;
+			chosenEngine = "";
+			enemyState = enemystates.idle;
+			enemyStateSprite = enemystates.idle;
 		}
 		
 	}
@@ -186,5 +200,11 @@ if alreadyTriedToChaseTimer <= 0 {
 		path_delete(myPath);
 	}
 	// Reset the state variables, and set alreadyTriedToChase = true
+	alreadyTriedToChase = true;
+	decisionMadeForTargetAndAction = false;
+	chosenEngine = "";
+	enemyState = enemystates.idle;
+	enemyStateSprite = enemystates.idle;
 }
+
 
