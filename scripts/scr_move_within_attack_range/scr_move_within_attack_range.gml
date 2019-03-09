@@ -30,6 +30,8 @@ switch (chosenEngine) {
 		target_ = currentTargetToHeal;
 		break;
 }
+// If the instance exists, set local variable target_ equal to the instance's target. Otherwise, if its
+// target doesn't exist, reset variables, as we obviously don't want to chase a non-existant thing.
 if instance_exists(target_) {
 	// These variables are created before the path itself is created
 	if target_.object_index == obj_player {
@@ -38,6 +40,17 @@ if instance_exists(target_) {
 	else {
 		target_ = target_.enemyGroundHurtbox;
 	}
+}
+else {
+	enemyState = enemystates.idle;
+	enemyStateSprite = enemystates.idle;
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChaseTimer = 0;
+	alreadyTriedToChase = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	exit;
 }
 groundHurtboxX = enemyGroundHurtbox.x;
 groundHurtboxY = enemyGroundHurtbox.y;
@@ -113,8 +126,6 @@ if chosenEngine != "Heal Ally" {
 			// Reset the state variables, and set alreadyTriedToChase = true
 			alreadyTriedToChase = false;
 			alreadyTriedToChaseTimer = 0;
-			decisionMadeForTargetAndAction = false;
-			chosenEngine = "";
 			enemyState = enemystates.idle;
 			enemyStateSprite = enemystates.idle;
 		}
@@ -181,8 +192,6 @@ if chosenEngine == "Heal Ally" {
 			// Reset the state variables, and set alreadyTriedToChase = true
 			alreadyTriedToChase = false;
 			alreadyTriedToChaseTimer = 0;
-			decisionMadeForTargetAndAction = false;
-			chosenEngine = "";
 			enemyState = enemystates.idle;
 			enemyStateSprite = enemystates.idle;
 		}
@@ -201,8 +210,6 @@ if alreadyTriedToChaseTimer <= 0 {
 	}
 	// Reset the state variables, and set alreadyTriedToChase = true
 	alreadyTriedToChase = true;
-	decisionMadeForTargetAndAction = false;
-	chosenEngine = "";
 	enemyState = enemystates.idle;
 	enemyStateSprite = enemystates.idle;
 }

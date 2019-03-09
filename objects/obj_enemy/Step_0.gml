@@ -72,9 +72,13 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 			the scr_enemy_idle script (enemystates.idle). 
 			*/
 			decisionMadeForTargetAndAction = false;
+			// Set every instance that is or will about to be idling to make a new decision. If the instance is currently
+			// chasing a target though, don't reset that decision, as we want the instance to finish out it's chain of actions.
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-				instance_to_reference_.decisionMadeForTargetAndAction = false;
+				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+					instance_to_reference_.decisionMadeForTargetAndAction = false;
+				}
 			}
 			// Add this object's ID to the list of objects in battle (objectIDsInBattle)
 			ds_list_add(objectIDsInBattle, self);
@@ -143,9 +147,13 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 	alreadyTriedToChase = false;
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if (ds_list_find_index(objectIDsInBattle, self) != -1) {
+			// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
+			// isn't currently chasing its target (if it is, we want it to finish out it's series of actions first)
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-				instance_to_reference_.decisionMadeForTargetAndAction = false;
+				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+					instance_to_reference_.decisionMadeForTargetAndAction = false;
+				}
 			}
 			ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
 			if combatFriendlyStatus == "Enemy" {
@@ -353,6 +361,7 @@ if instance_exists(self) {
 		enemyGroundHurtbox.y = y + 13;
 	}
 }
+show_debug_message(string(id) + "'s decision made? " + string(decisionMadeForTargetAndAction));
 
 
 /*
