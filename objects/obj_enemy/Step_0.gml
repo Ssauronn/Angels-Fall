@@ -11,8 +11,8 @@ enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
 // Set the max movement speed for each individual enemy
 maxSpeed = baseMaxSpeed * enemyTotalSpeed;
 
-tetherXRange = camera_get_view_width(view_camera[0]);
-tetherYRange = camera_get_view_height(view_camera[0]);
+tetherXRange = camera_get_view_width(view_camera[0]) * 2;
+tetherYRange = camera_get_view_height(view_camera[0]) * 2;
 
 
 #region Variables Changed by obj_ai_decision_making to Control Each Enemy
@@ -62,8 +62,6 @@ var instance_to_reference_, j;
 // Detect whether enemies are within player's field of view
 if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	// If there are already other enemies within player's field of view
-	show_debug_message(string(id) + "'s state is: " + string(enemyState));
-	show_debug_message(string(id) + "'s engine choice is: " + string(chosenEngine));
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
 		if ds_list_find_index(objectIDsInBattle, self) == -1 {
@@ -74,9 +72,13 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 			the scr_enemy_idle script (enemystates.idle). 
 			*/
 			decisionMadeForTargetAndAction = false;
+			// Set every instance that is or will about to be idling to make a new decision. If the instance is currently
+			// chasing a target though, don't reset that decision, as we want the instance to finish out it's chain of actions.
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-				instance_to_reference_.decisionMadeForTargetAndAction = false;
+				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+					instance_to_reference_.decisionMadeForTargetAndAction = false;
+				}
 			}
 			// Add this object's ID to the list of objects in battle (objectIDsInBattle)
 			ds_list_add(objectIDsInBattle, self);
@@ -145,9 +147,13 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 	alreadyTriedToChase = false;
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if (ds_list_find_index(objectIDsInBattle, self) != -1) {
+			// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
+			// isn't currently chasing its target (if it is, we want it to finish out it's series of actions first)
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-				instance_to_reference_.decisionMadeForTargetAndAction = false;
+				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+					instance_to_reference_.decisionMadeForTargetAndAction = false;
+				}
 			}
 			ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
 			if combatFriendlyStatus == "Enemy" {
@@ -313,6 +319,9 @@ if alreadyTriedToChaseTimer > 0 {
 	alreadyTriedToChase -= 1;
 }
 
+// Script used to set the direction the object will face every frame
+scr_determine_direction_facing();
+
 // Switch statement for State Machine - Called through script
 scr_change_states(enemyName);
 
@@ -349,9 +358,10 @@ if instance_exists(self) {
 	}
 	if instance_exists(enemyGroundHurtbox) {
 		enemyGroundHurtbox.x = x;
-		enemyGroundHurtbox.y = y + (32 / 2) - (32 / 5);
+		enemyGroundHurtbox.y = y + 13;
 	}
 }
+show_debug_message(string(id) + "'s decision made? " + string(decisionMadeForTargetAndAction));
 
 
 /*

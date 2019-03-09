@@ -289,7 +289,6 @@ if instance_exists(obj_player) {
 											instance_to_reference_.currentTargetToFocus = ds_grid_get(enemy_target_grid_, 0, k);
 											instance_to_reference_.weightAtWhichEnemyIsCurrentlyFocusingTargetAt = weight_at_which_this_target_would_be_focused_at_;
 										}
-										show_debug_message(string(instance_to_reference_) + "'s target is: " + string(instance_to_reference_.currentTargetToFocus));
 									}
 								}
 							}

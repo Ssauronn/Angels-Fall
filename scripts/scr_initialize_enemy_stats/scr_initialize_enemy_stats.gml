@@ -15,9 +15,13 @@ switch (enemy_name_) {
 		enemyCurrentHP = enemyMaxHP;
 		enemyMaxStamina = 1000;
 		enemyStaminaRegeneration = (enemyMaxStamina * 0.5) / room_speed;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 		enemyCurrentStamina = enemyMaxStamina;
 		enemyMaxMana = 1000;
 		enemyManaRegeneration = (enemyMaxMana * 0.5) / room_speed;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance
@@ -70,6 +74,7 @@ switch (enemy_name_) {
 		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
+		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_mage_idle;
@@ -132,13 +137,12 @@ switch (enemy_name_) {
 		enemyHurtbox.image_index = enemyImageIndex;
 		enemyHurtbox.visible = false;
 		enemyHurtbox.owner = self;
-		enemyGroundHurtbox = instance_create_depth(x, y + (32 / 2) - (32 / 5), -999, obj_ground_hurtbox);
+		enemyGroundHurtbox = instance_create_depth(x, y + 13, -999, obj_ground_hurtbox);
 		enemyGroundHurtbox.sprite_index = spr_ground_hurtbox;
 		enemyGroundHurtbox.image_index = 0;
 		enemyGroundHurtbox.visible = false;
 		enemyGroundHurtbox.owner = self;
 		#endregion
-		show_debug_message(string(enemyState))
 		
 		#endregion
 		break;
@@ -154,9 +158,13 @@ switch (enemy_name_) {
 		enemyCurrentHP = enemyMaxHP;
 		enemyMaxStamina = 1000;
 		enemyStaminaRegeneration = (enemyMaxStamina * 0.5) / room_speed;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 		enemyCurrentStamina = enemyMaxStamina;
 		enemyMaxMana = 1000;
 		enemyManaRegeneration = (enemyMaxMana * 0.5) / room_speed;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance
@@ -278,7 +286,7 @@ switch (enemy_name_) {
 		enemyHurtbox.image_index = enemyImageIndex;
 		enemyHurtbox.visible = false;
 		enemyHurtbox.owner = self;
-		enemyGroundHurtbox = instance_create_depth(x, y + (32 / 2) - (32 / 5), -999, obj_ground_hurtbox);
+		enemyGroundHurtbox = instance_create_depth(x, y + 13, -999, obj_ground_hurtbox);
 		enemyGroundHurtbox.sprite_index = spr_ground_hurtbox;
 		enemyGroundHurtbox.image_index = 0;
 		enemyGroundHurtbox.visible = false;
