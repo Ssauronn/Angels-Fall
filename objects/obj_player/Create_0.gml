@@ -181,7 +181,7 @@ playerHurtbox.image_index = playerImageIndex;
 playerHurtbox.visible = false;
 playerHurtbox.owner = self;
 
-playerGroundHurtbox = instance_create_depth(x, y + (32 / 2) - (32 / 5), -999, obj_ground_hurtbox);
+playerGroundHurtbox = instance_create_depth(x, y + 13, -999, obj_ground_hurtbox);
 playerGroundHurtbox.sprite_index = spr_ground_hurtbox;
 playerGroundHurtbox.mask_index = spr_ground_hurtbox;
 playerGroundHurtbox.image_index = 0;

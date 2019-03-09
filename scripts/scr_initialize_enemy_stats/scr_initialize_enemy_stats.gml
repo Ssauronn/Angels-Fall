@@ -137,7 +137,7 @@ switch (enemy_name_) {
 		enemyHurtbox.image_index = enemyImageIndex;
 		enemyHurtbox.visible = false;
 		enemyHurtbox.owner = self;
-		enemyGroundHurtbox = instance_create_depth(x, y + (32 / 2) - (32 / 5), -999, obj_ground_hurtbox);
+		enemyGroundHurtbox = instance_create_depth(x, y + 13, -999, obj_ground_hurtbox);
 		enemyGroundHurtbox.sprite_index = spr_ground_hurtbox;
 		enemyGroundHurtbox.image_index = 0;
 		enemyGroundHurtbox.visible = false;
@@ -286,7 +286,7 @@ switch (enemy_name_) {
 		enemyHurtbox.image_index = enemyImageIndex;
 		enemyHurtbox.visible = false;
 		enemyHurtbox.owner = self;
-		enemyGroundHurtbox = instance_create_depth(x, y + (32 / 2) - (32 / 5), -999, obj_ground_hurtbox);
+		enemyGroundHurtbox = instance_create_depth(x, y + 13, -999, obj_ground_hurtbox);
 		enemyGroundHurtbox.sprite_index = spr_ground_hurtbox;
 		enemyGroundHurtbox.image_index = 0;
 		enemyGroundHurtbox.visible = false;

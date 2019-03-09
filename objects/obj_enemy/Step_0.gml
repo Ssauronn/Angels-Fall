@@ -313,7 +313,6 @@ if alreadyTriedToChaseTimer > 0 {
 
 // Script used to set the direction the object will face every frame
 scr_determine_direction_facing();
-show_debug_message(string(self) + "'s direction facing is: " + string(enemyDirectionFacing));
 
 // Switch statement for State Machine - Called through script
 scr_change_states(enemyName);
@@ -351,7 +350,7 @@ if instance_exists(self) {
 	}
 	if instance_exists(enemyGroundHurtbox) {
 		enemyGroundHurtbox.x = x;
-		enemyGroundHurtbox.y = y + (32 / 2) - (32 / 5);
+		enemyGroundHurtbox.y = y + 13;
 	}
 }
 
