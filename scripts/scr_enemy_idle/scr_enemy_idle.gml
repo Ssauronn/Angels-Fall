@@ -211,56 +211,49 @@ if chosenEngine != "" {
 			#region Heavy Ranged
 			else if chosenEngine == "Heavy Ranged" {
 				// If the obj_enemy is not within enemyHeavyRangedAttackRange
-				if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyRangedAttackRange {
-					/*
-					if alreadyTriedToChase == false {
-						change state to try_to_chase
-						set alreadyTriedToChase to true
-						set a timer for chasing
-						exit state once timer finishes, or exit immediately if no path to target is immediately found
-							-This timer needs to be reduced in obj_enemy step event
+				if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyLightMeleeAttackRange {
+					// If the enemy hasn't already tried to chase it's target, then chase the target.
+					if alreadyTriedToChase == false { 
+						enemyState = enemystates.moveWithinAttackRange;
+						enemyStateSprite = enemystates.moveWithinAttackRange;
+						alreadyTriedToChaseTimer = room_speed * 5;
 					}
+					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
+					// and don't try to continue to chase the target.
 					else if alreadyTriedToChase = true {
-						change chosenEngine = "Light Ranged";
-					}
-					*/
-				}
-				/*
-				// Else if the obj_enemy doesn't have enough mana to execute attack
-				else if heavy ranged mana cost > enemyCurrentMana {
-					Evaluate current mana and mana regen vs heavy ranged cost, set timer based on
-					exact amount of frames + 1 needed to get to the mana cost.
-						-This timer needs to be reduced in obj_enemy step event to avoid longer wait times
-						than necessary in case, for example, target walks out of range and the timer is no
-						longer counting down because we're in try_to_chase state
-					wait for mana timer to reach <= 0
-					if (mana timer <= 0) && (enemyCurrentMana < heavy ranged mana cost) {
-					(if mana still hasn't reached mana cost, meaning regen has been debuffed)
 						chosenEngine = "Light Ranged";
+						decisionMadeForTargetAndAction = true;
+					}
+				}
+				// Else if the obj_enemy doesn't have enough mana to execute attack
+				else if enemyHeavyRangedAttackManaCost > enemyCurrentMana {
+					// Evaluate current mana and mana regen vs heavy ranged cost, set timer based on
+					// exact amount of frames + 1 needed to get to the mana cost.
+					if !enemyTimeUntilNextManaAbilityUsableTimerSet {
+						var time_to_get_required_stam_ = round((enemyHeavyRangedAttackManaCost - enemyCurrentMana) / enemyManaRegeneration) + 1;
+						enemyTimeUntilNextManaAbilityUsableTimer = time_to_get_required_stam_;
+						enemyTimeUntilNextManaAbilityUsableTimerSet = true;
+					}
+					// If mana still hasn't gotten above the required mana cost, meaning regen has been
+					// debuffed
+					else if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyHeavyRangedAttackManaCost) {
+						chosenEngine = "Light Ranged";
+						enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 					}
 				}
 				// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 				// has enough mana to execute attack) then execute heavy ranged attack
 				else {
-					execute heavy ranged attack script
-					set chosenEngine = "" upon ending of attack script;
-					set decisionMadeForTargetAndAction to false upon ending of attack script;
-					enemyState = enemyestates.heavyRangedAttack;
+					// execute light melee attack script
+					enemyState = enemystates.heavyRangedAttack;
 					enemyStateSprite = enemystates.heavyRangedAttack;
-					if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 0) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 45)) || ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 315) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= 360)) {
-						enemyDirectionFacing = enemydirection.right;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 45) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 135)) {
-						enemyDirectionFacing = enemydirection.up;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 135) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 225)) {
-						enemyDirectionFacing = enemydirection.left;
-					}
-					else if ((point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) >= 225) && (point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y) < 315)) {
-						enemyDirectionFacing = enemydirection.down;
-					}
+					chosenEngine = "";
+					decisionMadeForTargetAndAction = false;
+					alreadyTriedToChaseTimer = 0;
+					alreadyTriedToChase = false;
+					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+					enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 				}
-				*/
 			}
 			#endregion
 			#region Light Ranged
