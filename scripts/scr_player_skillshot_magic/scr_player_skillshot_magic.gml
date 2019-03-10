@@ -1,10 +1,10 @@
 ///@description SkillshotMagicState
 // Create the playerBulletHitbox after frame 2
 if instance_exists(obj_player) {
-	if (instance_exists(playerBulletHitbox)) && (hitboxCreated == false) {
+	if (instance_exists(playerBulletHitbox)) && (!hitboxCreated) {
 		instance_destroy(playerBulletHitbox);
 	}
-	if (hitboxCreated == false) && (playerImageIndex > 6) {
+	if (!hitboxCreated) && (playerImageIndex > 6) {
 		hitboxCreated = true;
 		var owner_ = id;
 		var player_x_ = obj_player.x;

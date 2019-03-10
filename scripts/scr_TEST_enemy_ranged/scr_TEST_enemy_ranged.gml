@@ -1,7 +1,7 @@
 #region Create Bullet Traveling Towards Player
 if currentTargetToFocus != noone {
 	if instance_exists(currentTargetToFocus) {
-		if hitboxCreated == false {
+		if !hitboxCreated {
 			hitboxCreated = true;
 			var owner_ = self;
 			var enemy_x_ = x;
