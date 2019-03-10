@@ -38,7 +38,7 @@ if !decisionMadeForTargetAndAction {
 		}
 	}
 	// If the object calling this script has an enemy target to evaluate
-	if (enemy_found_ == true) && (self_in_combat_) {
+	if (enemy_found_) && (self_in_combat_) {
 		scr_ai_decisions();
 		decisionMadeForTargetAndAction = true;
 	}

@@ -1,6 +1,6 @@
 // Create the playerMeleeHitbox after frame 2
 if instance_exists(obj_player) {
-	if (hitboxCreated == false) && (playerImageIndex > 2) {
+	if (!hitboxCreated) && (playerImageIndex > 2) {
 		var owner_ = id;
 		hitboxCreated = true;
 		switch (playerDirectionFacing) {
