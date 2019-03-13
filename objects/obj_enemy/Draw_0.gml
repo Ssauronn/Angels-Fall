@@ -1,7 +1,7 @@
 /// @description Draw Self and Healthbar
 draw_set_alpha(1);
 draw_healthbar(x - 16, y - 22, x + 16, y - 18, (enemyCurrentHP / enemyMaxHP) * 100, c_black, c_red, c_lime, 0, false, false);
-draw_self();
+draw_sprite(enemySprite[enemyStateSprite, enemyDirectionFacing], enemyImageIndex, x, y);
 if variable_instance_exists(self, "slowEnemyTimeWithParryActive") {
 	if slowEnemyTimeWithParryActive {
 		draw_rectangle_color(x - 16, y - 4, x + 16, y + 4, c_purple, c_purple, c_purple, c_purple, false)
