@@ -66,6 +66,7 @@ groundHurtboxY = enemyGroundHurtbox.y;
 	pathEndYGoal = target_.y;
 //}
 
+
 #region If the object isn't trying to get in range of a friendly object to heal an ally
 if chosenEngine != "Heal Ally" {
 	if instance_exists(currentTargetToFocus) {
@@ -93,7 +94,7 @@ if chosenEngine != "Heal Ally" {
 					if point_distance(x, y, target_.x, target_.y) > distance_ {
 						solid = false;
 						with object_self_ {
-							mp_potential_step(pathEndXGoal, pathEndYGoal, maxSpeed, false);
+							mp_potential_step(pathEndXGoal, pathEndYGoal, currentSpeed, false);
 						}
 						solid = true;
 					}
@@ -108,12 +109,13 @@ if chosenEngine != "Heal Ally" {
 					object_self_.pathNextYPos = path_get_point_y(object_self_.myPath, object_self_.pathPos);
 					solid = false;
 					with object_self_ {
-						mp_potential_step(pathNextXPos, pathNextYPos, maxSpeed, false);
+						mp_potential_step(pathNextXPos, pathNextYPos, currentSpeed, false);
 					}
 					solid = true;
 				}
 			}
 		}
+		// Else if we are within the correct range, revert to idle
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
 			// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
@@ -129,7 +131,22 @@ if chosenEngine != "Heal Ally" {
 			enemyState = enemystates.idle;
 			enemyStateSprite = enemystates.idle;
 		}
-		
+	}
+	// Else if the currentTargetToFocus doesn't exist, revert to idle
+	else {
+		// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
+		// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
+		// Path variables being reset
+		pathPos = 1;
+		pathCreated = false;
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
+		// Reset the state variables, and set alreadyTriedToChase = true
+		alreadyTriedToChase = false;
+		alreadyTriedToChaseTimer = 0;
+		enemyState = enemystates.idle;
+		enemyStateSprite = enemystates.idle;
 	}
 }
 #endregion
@@ -160,7 +177,7 @@ if chosenEngine == "Heal Ally" {
 					if point_distance(x, y, target_.x, target_.y) > distance_ {
 						solid = false;
 						with object_self_ {
-							mp_potential_step(pathEndXGoal, pathEndYGoal, maxSpeed, false);
+							mp_potential_step(pathEndXGoal, pathEndYGoal, currentSpeed, false);
 						}
 						solid = true;
 					}
@@ -175,12 +192,13 @@ if chosenEngine == "Heal Ally" {
 					object_self_.pathNextYPos = path_get_point_y(object_self_.myPath, object_self_.pathPos);
 					solid = false;
 					with object_self_ {
-						mp_potential_step(pathNextXPos, pathNextYPos, maxSpeed, false);
+						mp_potential_step(pathNextXPos, pathNextYPos, currentSpeed, false);
 					}
 					solid = true;
 				}
 			}
 		}
+		// Else if we are within correct range, revert to idle
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
 			// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
@@ -195,10 +213,27 @@ if chosenEngine == "Heal Ally" {
 			enemyState = enemystates.idle;
 			enemyStateSprite = enemystates.idle;
 		}
-		
+	}
+	// Else if the currentTargetToHeal doesn't exist, revert to idle
+	else {
+		// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
+		// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
+		// Path variables being reset
+		pathPos = 1;
+		pathCreated = false;
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
+		// Reset the state variables, and set alreadyTriedToChase = true
+		alreadyTriedToChase = false;
+		alreadyTriedToChaseTimer = 0;
+		enemyState = enemystates.idle;
+		enemyStateSprite = enemystates.idle;
 	}
 }
 #endregion
+
+
 // If the timer for alreadyTriedToChase (alreadyTriedToChaseTimer) hits 0, that means that the enemy
 // has already tried to chase for the max amount of time, and we need to move onto a different attack.
 if alreadyTriedToChaseTimer <= 0 {

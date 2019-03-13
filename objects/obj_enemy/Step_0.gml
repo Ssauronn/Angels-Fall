@@ -1,4 +1,7 @@
 /// @description Change Variables
+#region if instance_exists(self) {
+if instance_exists(self) {
+#endregion
 // Initialize variables if stats, sprite table, and scripts using have not yet been set
 if !enemyStatsAndSpritesInitialized {
 	scr_initialize_enemy_stats(enemyName);
@@ -325,6 +328,31 @@ scr_determine_direction_facing();
 // Switch statement for State Machine - Called through script
 scr_change_states(enemyName);
 
+// Increase speed to max if the enemy needs to chase an object
+if (enemyState == enemystates.moveWithinAttackRange) || (enemyState == enemystates.passivelyFollowPlayer) {
+	if currentSpeed < maxSpeed {
+		currentSpeed += acceleration;
+	}
+	else {
+		currentSpeed = maxSpeed;
+	}
+}
+// Else if the enemy doesn't ened to chase an object, reduce its speed
+else if currentSpeed != 0 {
+	currentSpeed = 0;
+	/*
+	The lines below can only be used if we continue to move the object in scr_move_within_attack_range or 
+	scr_determine_direction_facing AFTER within range, until currentSpeed is 0. Currently, enemies stop immediately,
+	which should look better over time.
+	*/
+	// Reduces current speed so that if the currentSpeed is at maxSpeed, it'll take 0.25 seconds to slow to 0
+	// currentSpeed -= (maxSpeed / (room_speed)) * 4;
+}
+// Make sure enemy speed can't exceed maxSpeed
+if (currentSpeed > maxSpeed) || (currentSpeed < 0) {
+	currentSpeed = maxSpeed;
+}
+
 
 // Set the image index
 if enemyImageIndex >= sprite_get_number(enemySprite[enemyStateSprite, enemyDirectionFacing]) {
@@ -362,6 +390,7 @@ if instance_exists(self) {
 	}
 }
 show_debug_message(string(id) + "'s decision made? " + string(decisionMadeForTargetAndAction));
+show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));
 
 
 /*
@@ -415,6 +444,10 @@ show_debug_message("Total Run Away Engine Weight AFTER Multiplier" + string(runA
 show_debug_message("- BREAK -");
 show_debug_message("- BREAK -");
 show_debug_message("");
+*/
+#region if instance_exists(self) { // closing brackets
+}
+#endregion
 
 
 

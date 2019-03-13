@@ -1,112 +1,123 @@
 // If the enemy is in idle state, it should not be moving
-set_movement_variables(0, currentDirection, maxSpeed);
-
-// If the enemy has not yet made an action decision, make that decision based on the game
-// variables set right at the moment this is called
-if !decisionMadeForTargetAndAction {
-	var instance_to_reference_, self_in_combat_, temporary_instance_to_reference_, enemy_found_, i;
-	enemy_found_ = false;
-	self_in_combat_ = false;
-	// If there are obj_enemy objects on screen, whether friendly or enemy
-	if ds_exists(objectIDsInBattle, ds_type_list) {
-		for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
-			instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
-			// If the object info we're accessing to compare against this own object is not itself
-			if instance_to_reference_ != self {
-				// If the object's combat status is a minion
-				if self.combatFriendlyStatus == "Minion" {
-					// If an enemy obj_enemy object exists, set enemy_found_ as true
-					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+#region Make Action Decision
+if instance_exists(self) {
+	// If the enemy has not yet made an action decision, make that decision based on the game
+	// variables set right at the moment this is called
+	if !decisionMadeForTargetAndAction {
+		var instance_to_reference_, self_in_combat_, temporary_instance_to_reference_, enemy_found_, i;
+		enemy_found_ = false;
+		self_in_combat_ = false;
+		// If there are obj_enemy objects on screen, whether friendly or enemy
+		if ds_exists(objectIDsInBattle, ds_type_list) {
+			for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+				// If the object info we're accessing to compare against this own object is not itself
+				if instance_to_reference_ != self {
+					// If the object's combat status is a minion
+					if self.combatFriendlyStatus == "Minion" {
+						// If an enemy obj_enemy object exists, set enemy_found_ as true
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							enemy_found_ = true;
+							self_in_combat_ = true;
+						}
+					}
+					else if self.combatFriendlyStatus == "Enemy" {
 						enemy_found_ = true;
 						self_in_combat_ = true;
 					}
 				}
-				else if self.combatFriendlyStatus == "Enemy" {
-					enemy_found_ = true;
-					self_in_combat_ = true;
-				}
-			}
-			// If the instance_to_reference_ is the object calling this script, then the object is in combat
-			// (since this line won't even run unless an obj_enemy with combatFriendlyStatus set to == 
-			// "Enemy" is within tether range).
-			else if instance_to_reference_ == self {
-				if combatFriendlyStatus == "Enemy" { 
-					enemy_found_ = true;
-					self_in_combat_ = true;
+				// If the instance_to_reference_ is the object calling this script, then the object is in combat
+				// (since this line won't even run unless an obj_enemy with combatFriendlyStatus set to == 
+				// "Enemy" is within tether range).
+				else if instance_to_reference_ == self {
+					if combatFriendlyStatus == "Enemy" { 
+						enemy_found_ = true;
+						self_in_combat_ = true;
+					}
 				}
 			}
 		}
-	}
-	// If the object calling this script has an enemy target to evaluate
-	if (enemy_found_) && (self_in_combat_) {
-		scr_ai_decisions();
-		decisionMadeForTargetAndAction = true;
-	}
-	// If the object calling this script has no enemy target to evaluate then it must be a minion
-	// with no "Enemy" object on screen, and it should be following the player.
-	else {
-		// Redundant check making sure we only set an object to follow player if its a minion
-		if combatFriendlyStatus == "Minion" {
-			// Checking to make sure there is no combat currently - if there is, do not just passively
-			// follow player
-			if !ds_exists(objectIDsInBattle, ds_type_list) {
-				// If the player is at max HP, or the object isn't a healer, then just follow the player
-				if (playerCurrentHP >= playerMaxHP) || (objectArchetype != "Healer") {
-					chosenEngine = "";
-					decisionMadeForTargetAndAction = false;
-					alreadyTriedToChase = false;
-					enemyState = enemystates.passivelyFollowPlayer;
-					enemyStateSprite = enemystates.passivelyFollowPlayer;
-					if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-						enemyDirectionFacing = enemydirection.right;
+		// If the object calling this script has an enemy target to evaluate
+		if (enemy_found_) && (self_in_combat_) {
+			scr_ai_decisions();
+			decisionMadeForTargetAndAction = true;
+		}
+		// If the object calling this script has no enemy target to evaluate then it must be a minion
+		// with no "Enemy" object on screen, and it should be following the player.
+		else {
+			// Redundant check making sure we only set an object to follow player if its a minion
+			if combatFriendlyStatus == "Minion" {
+				// Checking to make sure there is no combat currently - if there is, do not just passively
+				// follow player
+				if !ds_exists(objectIDsInBattle, ds_type_list) {
+					// If the player is at max HP, or the object isn't a healer, then just follow the player
+					if (playerCurrentHP >= playerMaxHP) || (objectArchetype != "Healer") {
+						chosenEngine = "";
+						decisionMadeForTargetAndAction = false;
+						alreadyTriedToChase = false;
+						enemyState = enemystates.passivelyFollowPlayer;
+						enemyStateSprite = enemystates.passivelyFollowPlayer;
+						if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+							enemyDirectionFacing = enemydirection.right;
+						}
+						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+							enemyDirectionFacing = enemydirection.up;
+						}
+						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+							enemyDirectionFacing = enemydirection.left;
+						}
+						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+							enemyDirectionFacing = enemydirection.down;
+						}
 					}
-					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-						enemyDirectionFacing = enemydirection.up;
-					}
-					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-						enemyDirectionFacing = enemydirection.left;
-					}
-					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-						enemyDirectionFacing = enemydirection.down;
-					}
-				}
-				/*
-				If the object follows player and no valid path is found, continue to search for path
-				If no path is found and object exists screen view, destroy object
-				If path is found and object exists screen view, start timer, if object enters screen again reset timer
-				If timer reaches 0 and object still has not entered view, destroy object
-				This will allow for minions that cannot follow player to not continue to take up processing power, and
-				minions that are left too far behind player to not continue to take up processing power as well.
-				*/
-				// Else if the player is missing health and the object is a healer, then heal the player
-				else {
-					// Set the state the enemy is going to, set the chosen engine, make sure a decision is made, 
-					// and then heal the player
-					enemyState = enemystates.healAlly;
-					enemyStateSprite = enemystates.healAlly;
-					chosenEngine = "Heal Ally";
-					currentTargetToHeal = obj_player;
-					decisionMadeForTargetAndAction = true;
-					if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-						enemyDirectionFacing = enemydirection.right;
-					}
-					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-						enemyDirectionFacing = enemydirection.up;
-					}
-					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-						enemyDirectionFacing = enemydirection.left;
-					}
-					else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-						enemyDirectionFacing = enemydirection.down;
+					/*
+					If the object follows player and no valid path is found, continue to search for path
+					If no path is found and object exists screen view, destroy object
+					If path is found and object exists screen view, start timer, if object enters screen again reset timer
+					If timer reaches 0 and object still has not entered view, destroy object
+					This will allow for minions that cannot follow player to not continue to take up processing power, and
+					minions that are left too far behind player to not continue to take up processing power as well.
+					*/
+					// Else if the player is missing health and the object is a healer, then heal the player
+					else {
+						// Set the state the enemy is going to, set the chosen engine, make sure a decision is made, 
+						// and then heal the player
+						enemyState = enemystates.healAlly;
+						enemyStateSprite = enemystates.healAlly;
+						chosenEngine = "Heal Ally";
+						currentTargetToHeal = obj_player;
+						decisionMadeForTargetAndAction = true;
+						if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+							enemyDirectionFacing = enemydirection.right;
+						}
+						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+							enemyDirectionFacing = enemydirection.up;
+						}
+						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+							enemyDirectionFacing = enemydirection.left;
+						}
+						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+							enemyDirectionFacing = enemydirection.down;
+						}
 					}
 				}
 			}
 		}
 	}
 }
+else {
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+}
+#endregion
 
-
-
+chosenEngine = "Light Ranged"
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {
@@ -121,6 +132,7 @@ if chosenEngine != "" {
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
 						alreadyTriedToChaseTimer = room_speed * 5;
+						enemyImageIndex = 0;
 					}
 					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
 					// and don't try to continue to chase the target.
@@ -154,6 +166,7 @@ if chosenEngine != "" {
 					enemyStateSprite = enemystates.lightMeleeAttack;
 					chosenEngine = "";
 					decisionMadeForTargetAndAction = false;
+					enemyImageIndex = 0;
 					alreadyTriedToChaseTimer = 0;
 					alreadyTriedToChase = false;
 					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
@@ -170,6 +183,7 @@ if chosenEngine != "" {
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
 						alreadyTriedToChaseTimer = room_speed * 5;
+						enemyImageIndex = 0;
 					}
 					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
 					// and don't try to continue to chase the target.
@@ -203,6 +217,7 @@ if chosenEngine != "" {
 					enemyStateSprite = enemystates.lightMeleeAttack;
 					chosenEngine = "";
 					decisionMadeForTargetAndAction = false;
+					enemyImageIndex = 0;
 					alreadyTriedToChaseTimer = 0;
 					alreadyTriedToChase = false;
 					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
@@ -219,6 +234,7 @@ if chosenEngine != "" {
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
 						alreadyTriedToChaseTimer = room_speed * 5;
+						enemyImageIndex = 0;
 					}
 					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
 					// and don't try to continue to chase the target.
@@ -252,6 +268,7 @@ if chosenEngine != "" {
 					enemyStateSprite = enemystates.heavyRangedAttack;
 					chosenEngine = "";
 					decisionMadeForTargetAndAction = false;
+					enemyImageIndex = 0;
 					alreadyTriedToChaseTimer = 0;
 					alreadyTriedToChase = false;
 					enemyTimeUntilNextManaAbilityUsableTimer = 0;
@@ -273,6 +290,7 @@ if chosenEngine != "" {
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
 						alreadyTriedToChaseTimer = room_speed * 5;
+						enemyImageIndex = 0;
 					}
 					// If obj_enemy cannot execute light ranged attack
 					else if alreadyTriedToChase {
@@ -382,6 +400,7 @@ if chosenEngine != "" {
 					enemyStateSprite = enemystates.lightRangedAttack;
 					chosenEngine = "";
 					decisionMadeForTargetAndAction = false;
+					enemyImageIndex = 0;
 					alreadyTriedToChaseTimer = 0;
 					alreadyTriedToChase = false;
 					enemyTimeUntilNextManaAbilityUsableTimer = 0;
@@ -436,6 +455,7 @@ if chosenEngine != "" {
 						enemyStateSprite = enemystates.healAlly;
 						chosenEngine = "";
 						decisionMadeForTargetAndAction = false;
+						enemyImageIndex = 0;
 						alreadyTriedToChaseTimer = 0;
 						alreadyTriedToChase = false;
 						enemyTimeUntilNextManaAbilityUsableTimer = 0;

@@ -5,7 +5,7 @@
 
 var start = argument0;
 var target = argument1;
-var rate = argument2 / 60;
+var rate = argument2 / room_speed;
 
 if start > target {
 	return max(start - rate, target);

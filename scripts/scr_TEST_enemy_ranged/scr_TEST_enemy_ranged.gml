@@ -2,6 +2,7 @@
 if currentTargetToFocus != noone {
 	if instance_exists(currentTargetToFocus) {
 		if !hitboxCreated {
+			
 			hitboxCreated = true;
 			var owner_ = self;
 			var enemy_x_ = x;
