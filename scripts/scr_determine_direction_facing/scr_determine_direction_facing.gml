@@ -29,7 +29,7 @@ if (enemyState != enemystates.passivelyFollowPlayer) || ((enemyState == enemysta
 		// target to heal.
 		else if chosenEngine == "Heal Ally" {
 			if instance_exists(currentTargetToHeal) {
-				var point_direction_ = point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y);
+				var point_direction_ = point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y);
 				currentDirection = point_direction_;
 				if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {
 					enemyDirectionFacing = enemydirection.right;

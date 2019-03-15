@@ -136,6 +136,9 @@ if instance_exists(obj_player) {
 										ds_grid_set(enemy_heal_target_grid_, 7, iteration_, ((number_of_enemies_next_to_enemy_heal_target_ / obj_ai_decision_making.idealAmountOfTotalPotentialEnemyTargetsAdjacentToSpecificPotentialHealTarget) * (obj_ai_decision_making.potentialHealTargetsAdjacentEnemiesStartWeight * 2)));
 										if instance_exists(temporary_instance_to_reference_) {
 											weight_at_which_this_heal_target_would_be_focused_at_ = (ds_grid_get(enemy_heal_target_grid_, 2, iteration_) + ds_grid_get(enemy_heal_target_grid_, 3, iteration_) + ds_grid_get(enemy_heal_target_grid_, 6, iteration_) + ds_grid_get(enemy_heal_target_grid_, 7, iteration_));
+											if ((ds_grid_get(enemy_heal_target_grid_, 0, iteration_) == "Minion") || (ds_grid_get(enemy_heal_target_grid_, 0, iteration_) == "Player")) || (ds_grid_get(enemy_heal_target_grid_, 2, iteration_) == 0) {
+												weight_at_which_this_heal_target_would_be_focused_at_ = 0;
+											}
 											if temporary_instance_to_reference_ == instance_to_reference_.currentTargetToHeal {
 												instance_to_reference_.weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt = weight_at_which_this_heal_target_would_be_focused_at_;
 											}
@@ -419,6 +422,9 @@ if instance_exists(obj_player) {
 											--------------IMPORTANT-----------
 											*/
 											weight_at_which_this_heal_target_would_be_focused_at_ = (ds_grid_get(minion_heal_target_grid_, 2, iteration_) + ds_grid_get(minion_heal_target_grid_, 3, iteration_) + ds_grid_get(minion_heal_target_grid_, 6, iteration_) + ds_grid_get(minion_heal_target_grid_, 7, iteration_));
+											if (ds_grid_get(minion_heal_target_grid_, 0, iteration_) == "Enemy") || (ds_grid_get(minion_heal_target_grid_, 2, iteration_) == 0) {
+												weight_at_which_this_heal_target_would_be_focused_at_ = 0;
+											}
 											if temporary_instance_to_reference_ == instance_to_reference_.currentTargetToHeal {
 												instance_to_reference_.weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt = weight_at_which_this_heal_target_would_be_focused_at_;
 											}

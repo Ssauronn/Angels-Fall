@@ -162,6 +162,8 @@ playerImageIndex = 0.00;
 playerImageIndexSpeed = 0.3 * playerTotalSpeed;
 playerAnimationImageIndex = 0.00;
 playerAnimationSprite = noone;
+playerAnimationX = 0;
+playerAnimationY = 0;
 
 // Attacking variables
 lastAttackButtonPressed = "";

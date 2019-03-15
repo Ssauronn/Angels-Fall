@@ -140,7 +140,43 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 			}
 		}
 	}
+	// After the above calculations, if the enemy is a minion, but not combat has been initiated and its still within range, 
+	// then create a ds_list meant for tracking just minions outside of combat (objectIDsFollowingPlayer)
+	if (combatFriendlyStatus == "Minion") && (!ds_exists(objectIDsInBattle, ds_type_list)) && (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
+		if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+			if ds_list_find_index(objectIDsFollowingPlayer, self) == -1 {
+				/* 
+				If the object hasn't already been detected, reset the decision making variable 
+				decisionMadeForTargetAndAction so that the object can make a combat decision immediately
+				in scr_ai_decisions (although decisionMadeForTargetAndAction is actually checked for in 
+				the scr_enemy_idle script (enemystates.idle). 
+				*/
+				decisionMadeForTargetAndAction = false;
+				// Set every instance that is or will about to be idling to make a new decision. If the instance is currently
+				// chasing a target though, don't reset that decision, as we want the instance to finish out it's chain of actions.
+				for (j = 0; j <= ds_list_size(objectIDsFollowingPlayer) - 1; j++) {
+					instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, j);
+					if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+						instance_to_reference_.decisionMadeForTargetAndAction = false;
+					}
+				}
+				// Add itself's ID to the list of objects following the player
+				ds_list_add(objectIDsFollowingPlayer, self);
+			}
+		}
+		// Create the ds_list objectIDsFollowingPlayer if it doesn't already exist and add the object's information to the ds_list
+		else {
+			// As long as this object hasn't already been added to the list, add its information
+			decisionMadeForTargetAndAction = false;
+			objectIDsFollowingPlayer = ds_list_create();
+			ds_list_add(objectIDsFollowingPlayer, self);
+			if objectArchetype == "Healer" {
+				currentTargetToHeal = noone;
+			}
+		}
+	}
 }
+
 
 // If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
 if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
@@ -158,7 +194,21 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 					instance_to_reference_.decisionMadeForTargetAndAction = false;
 				}
 			}
-			ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+			if ds_list_size(objectIDsInBattle) == 1 {
+				ds_list_destroy(objectIDsInBattle);
+				objectIDsInBattle = -1;
+				friendlyHealersInBattle = 0;
+				friendlyTanksInBattle = 0;
+				friendlyMeleeDPSInBattle = 0;
+				friendlyRangedDPSInBattle = 0;
+				enemyHealersInBattle = 0;
+				enemyTanksInBattle = 0;
+				enemyMeleeDPSInBattle = 0;
+				enemyRangedDPSInBattle = 0;
+			}
+			else {
+				ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+			}
 			if combatFriendlyStatus == "Enemy" {
 				switch (objectArchetype) {
 					case "Healer": enemyHealersInBattle -= 1;
@@ -187,7 +237,27 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 			}
 		}
 	}
+	else if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+		if ds_list_find_index(objectIDsFollowingPlayer, self) != -1 {
+			// Set every instance that wasn't destroyed/left the tether area to make a new decision
+			for (j = 0; j <= ds_list_size(objectIDsFollowingPlayer) - 1; j++) {
+				instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, j);
+				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+					instance_to_reference_.decisionMadeForTargetAndAction = false;
+				}
+			}
+			if ds_list_size(objectIDsFollowingPlayer) == 1 {
+				ds_list_destroy(objectIDsFollowingPlayer);
+				objectIDsFollowingPlayer = -1;
+			}
+			else {
+				ds_list_delete(objectIDsFollowingPlayer, ds_list_find_index(objectIDsFollowingPlayer, self));
+			}
+		}
+	}
 }
+
+// If there are no enemies in battle, get rid of the objectIDsInBattle list
 if variable_global_exists("objectIDsInBattle") {
 	if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= 0 {
 		if ds_exists(objectIDsInBattle, ds_type_list) {
@@ -204,6 +274,18 @@ if variable_global_exists("objectIDsInBattle") {
 		}
 	}
 }
+// If the list objectIDsInBattle still exists, then an object must be in combat, so destroy the list of objects not in combat
+// just following the player.
+if variable_global_exists("objectIDsFollowingPlayer") {
+	if ds_exists(objectIDsInBattle, ds_type_list) {
+		if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+			ds_list_destroy(objectIDsFollowingPlayer);
+			objectIDsFollowingPlayer = -1;
+		}
+	}
+}
+
+
 // Remove specifically the targets of those targeting other objects out of tether range
 if instance_exists(currentTargetToFocus) {
 	if !(rectangle_in_rectangle(currentTargetToFocus.bbox_left, currentTargetToFocus.bbox_top, currentTargetToFocus.bbox_right, currentTargetToFocus.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
@@ -360,6 +442,7 @@ if enemyImageIndex >= sprite_get_number(enemySprite[enemyStateSprite, enemyDirec
 }
 if enemyAnimationImageIndex >= sprite_get_number(enemyAnimationSprite) {
 	enemyAnimationImageIndex = -1;
+	enemyAnimationSprite = noone;
 }
 enemyImageIndexSpeed = 0.3 * enemyTotalSpeed;
 enemyImageIndex += enemyImageIndexSpeed;

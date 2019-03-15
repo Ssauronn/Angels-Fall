@@ -110,6 +110,7 @@ if playerImageIndex >= sprite_get_number(playerSprite[playerStateSprite, playerD
 }
 if playerAnimationImageIndex >= sprite_get_number(playerAnimationSprite) {
 	playerAnimationImageIndex = -1;
+	playerAnimationSprite = noone;
 }
 playerImageIndexSpeed = 0.3 * playerTotalSpeed;
 playerImageIndex += playerImageIndexSpeed;

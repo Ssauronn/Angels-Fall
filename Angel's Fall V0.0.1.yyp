@@ -351,6 +351,14 @@
             }
         },
         {
+            "Key": "32f220cf-e0a5-4e87-b133-51411d40fa74",
+            "Value": {
+                "id": "15f8977b-9556-4652-ace4-318bb6ee034b",
+                "resourcePath": "sprites\\spr_aoe_heal\\spr_aoe_heal.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "3402c7ae-8647-4abb-ab90-667d8d665693",
             "Value": {
                 "id": "b1666856-2087-42f7-bcaf-415b52da212f",
@@ -1489,6 +1497,8 @@
     ],
     "script_order": [
         "86739193-7487-4575-852a-9b161b887976",
+        "98b0742f-f509-4575-8f6d-ca86584326ce",
+        "2f025f61-5d31-4cee-af6e-c61b006b9d56",
         "07c1614d-ad7a-467b-b49c-9c066ebbeea4",
         "2bcbb92d-d033-4513-b07d-cc3d50e451a4",
         "ac122cb6-7187-41ef-aa86-5591fccc14f4",
@@ -1502,8 +1512,6 @@
         "032e7f80-1faa-44df-8555-2d9eabd55ec9",
         "a3280395-dabd-44f7-8bda-319593ffdb4d",
         "79579f9e-c59f-4b55-8106-e1276cfafca6",
-        "98b0742f-f509-4575-8f6d-ca86584326ce",
-        "2f025f61-5d31-4cee-af6e-c61b006b9d56",
         "3d094b82-0ff8-435f-956c-a3365019e3f3",
         "ebed4767-13fc-4154-8589-efd76de46c30",
         "b24f1e48-14a8-431c-950b-14ab6e762333",
