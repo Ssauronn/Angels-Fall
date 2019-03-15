@@ -159,7 +159,7 @@ if chosenEngine != "" {
 					}
 					// If stamina still hasn't gotten above the required stamina cost, meaning regen has been
 					// debuffed
-					else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyHeavyMeleeAttackStamCost) {
+					else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyHeavyMeleeAttackStamCost) && (enemyTimeUntilNextStaminaAbilityUsableTimerSet) {
 						chosenEngine = "Light Ranged";
 						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 					}
@@ -210,7 +210,7 @@ if chosenEngine != "" {
 					}
 					// If stamina still hasn't gotten above the required stamina cost, meaning regen has been
 					// debuffed
-					else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyLightMeleeAttackStamCost) {
+					else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyLightMeleeAttackStamCost) && (enemyTimeUntilNextStaminaAbilityUsableTimerSet) {
 						chosenEngine = "Light Ranged";
 						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 					}
@@ -261,7 +261,7 @@ if chosenEngine != "" {
 					}
 					// If mana still hasn't gotten above the required mana cost, meaning regen has been
 					// debuffed
-					else if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyHeavyRangedAttackManaCost) {
+					else if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyHeavyRangedAttackManaCost) && (enemyTimeUntilNextManaAbilityUsableTimerSet) {
 						chosenEngine = "Light Ranged";
 						enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 					}
@@ -316,8 +316,8 @@ if chosenEngine != "" {
 								// If the heal target is a player, set local variables to player values. Else, set
 								// to enemy values.
 								if currentTargetToHeal.object_index == obj_player {
-									var current_target_to_heal_current_hp_ = currentTargetToHeal.playerCurrentHP;
-									var current_target_to_heal_max_hp_ = currentTargetToHeal.playerMaxHP;
+									var current_target_to_heal_current_hp_ = playerCurrentHP;
+									var current_target_to_heal_max_hp_ = playerMaxHP;
 								}
 								else {
 									var current_target_to_heal_current_hp_ = currentTargetToHeal.enemyCurrentHP;
@@ -355,7 +355,7 @@ if chosenEngine != "" {
 						enemyTimeUntilNextManaAbilityUsableTimerSet = true;
 					}
 					// If mana has not been regen'd enough, meaning regen was debuffed
-					if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyLightRangedAttackManaCost) {
+					if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyLightRangedAttackManaCost) && (enemyTimeUntilNextManaAbilityUsableTimerSet) {
 						// Last checks to see if any other attack can be executed - if not, the very last statement
 						// is executed, resetting decision making process.
 						
@@ -371,8 +371,8 @@ if chosenEngine != "" {
 								// If the heal target is a player, set local variables to player values. Else, set
 								// to enemy values.
 								if currentTargetToHeal.object_index == obj_player {
-									var current_target_to_heal_current_hp_ = currentTargetToHeal.playerCurrentHP;
-									var current_target_to_heal_max_hp_ = currentTargetToHeal.playerMaxHP;
+									var current_target_to_heal_current_hp_ = playerCurrentHP;
+									var current_target_to_heal_max_hp_ = playerMaxHP;
 								}
 								else {
 									var current_target_to_heal_current_hp_ = currentTargetToHeal.enemyCurrentHP;
@@ -448,7 +448,7 @@ if chosenEngine != "" {
 						}
 						// If mana still hasn't gotten above the required mana cost, meaning regen has been
 						// debuffed
-						else if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyHealManaCost) {
+						else if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyHealManaCost) && (enemyTimeUntilNextManaAbilityUsableTimerSet) {
 							chosenEngine = "Light Ranged";
 							enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 						}

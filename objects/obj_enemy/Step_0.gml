@@ -442,6 +442,7 @@ if enemyImageIndex >= sprite_get_number(enemySprite[enemyStateSprite, enemyDirec
 }
 if enemyAnimationImageIndex >= sprite_get_number(enemyAnimationSprite) {
 	enemyAnimationImageIndex = -1;
+	enemyAnimationSprite = noone;
 }
 enemyImageIndexSpeed = 0.3 * enemyTotalSpeed;
 enemyImageIndex += enemyImageIndexSpeed;

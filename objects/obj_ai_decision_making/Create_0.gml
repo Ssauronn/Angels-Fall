@@ -26,12 +26,12 @@ numberOfPlayerAttacksToTrack = 20;
 playerAttackPatternWeight = attackPatternStartWeight;
 #endregion
 #region	FOR HEALERS ONLY - HEAL TARGET ENGINE
-potentialHealTargetsCurrentHPStartWeight = 0.325;
+potentialHealTargetsCurrentHPStartWeight = 0.575;
 potentialHealTargetsAreDifferentArchetypesStartWeight = 0.225;
 potentialTargetsMaximumDistanceToBeConsideredAdjacentToSpecificPotentialHealTarget = camera_get_view_width(view_camera[0]) / 5;
-idealAmountOfTotalPotentialHealTargetsAdjacentToSpecificPotentialHealTarget = 3;
+idealAmountOfTotalPotentialHealTargetsAdjacentToSpecificPotentialHealTarget = 2.875;
 potentialHealTargetsAdjacentAlliesStartWeight = 0.175;
-idealAmountOfTotalPotentialEnemyTargetsAdjacentToSpecificPotentialHealTarget = 3;
+idealAmountOfTotalPotentialEnemyTargetsAdjacentToSpecificPotentialHealTarget = 2.875;
 potentialHealTargetsAdjacentEnemiesStartWeight = 0.275;
 #endregion
 

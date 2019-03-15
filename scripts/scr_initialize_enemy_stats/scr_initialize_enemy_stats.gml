@@ -113,6 +113,8 @@ switch (enemy_name_) {
 		enemyImageIndexSpeed = 0.3 * enemyTotalSpeed;
 		enemyAnimationImageIndex = 0.00;
 		enemyAnimationSprite = noone;
+		enemyAnimationX = 0;
+		enemyAnimationY = 0;
 		#endregion
 		#region Hitbox and Hurtbox Variables
 		// Enemy Hitbox variables
@@ -265,6 +267,8 @@ switch (enemy_name_) {
 		enemyImageIndexSpeed = 0.3 * enemyTotalSpeed;
 		enemyAnimationImageIndex = 0.00;
 		enemyAnimationSprite = noone;
+		enemyAnimationX = 0;
+		enemyAnimationY = 0;
 		#endregion
 		#region Hitbox and Hurtbox Variables
 		// Enemy Hitbox variables

@@ -15,6 +15,14 @@ if instance_exists(currentTargetToHeal) {
 		else {
 			target_ = target_.enemyGroundHurtbox;
 		}
+		
+		// Set animation variables to their correct, respective values
+		enemyAnimationSprite = spr_aoe_heal;
+		enemyAnimationImageIndex = 0;
+		enemyAnimationX = target_.x;
+		enemyAnimationY = target_.y;
+		
+		
 		// If the object calling this state is an enemy, make sure it only heals other enemies
 		if combatFriendlyStatus == "Enemy" {
 			for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
