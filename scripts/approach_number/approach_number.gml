@@ -4,15 +4,15 @@
 ///@argument2 RateOfChangePerSecond
 
 var start = argument0;
-var target = argument1;
+var target_ = argument1;
 var rate = argument2 / room_speed;
 
-if start > target {
-	return max(start - rate, target);
+if start > target_ {
+	return max(start - rate, target_);
 }
-else if start < target {
-	return min(start + rate, target);
+else if start < target_ {
+	return min(start + rate, target_);
 }
-else return target;
+else return target_;
 
 

@@ -117,7 +117,14 @@ else {
 }
 #endregion
 
-chosenEngine = "Light Ranged"
+// NEEDS TO BE REMOVED
+if !(keyboard_check(ord("F"))) {
+	chosenEngine = "Light Ranged"
+}
+else {
+	chosenEngine = "Heal Ally";
+}
+
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {

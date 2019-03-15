@@ -1,6 +1,7 @@
 /// @description AI Decision Making Variables
-globalvar objectIDsInBattle, lastEnemyHitByPlayer, lastEnemyHitByMinion, enemyHealersInBattle, enemyTanksInBattle, enemyMeleeDPSInBattle, enemyRangedDPSInBattle, friendlyHealersInBattle, friendlyTanksInBattle, friendlyMeleeDPSInBattle, friendlyRangedDPSInBattle;
+globalvar objectIDsInBattle, objectIDsFollowingPlayer, lastEnemyHitByPlayer, lastEnemyHitByMinion, enemyHealersInBattle, enemyTanksInBattle, enemyMeleeDPSInBattle, enemyRangedDPSInBattle, friendlyHealersInBattle, friendlyTanksInBattle, friendlyMeleeDPSInBattle, friendlyRangedDPSInBattle;
 objectIDsInBattle = ds_list_create();
+objectIDsFollowingPlayer = ds_list_create();
 lastEnemyHitByPlayer = noone;
 lastEnemyHitByMinion = noone;
 enemyHealersInBattle = 0;
