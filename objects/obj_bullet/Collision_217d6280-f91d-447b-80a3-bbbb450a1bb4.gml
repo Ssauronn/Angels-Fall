@@ -98,46 +98,46 @@ if !other_owner_is_player_ {
 	row_to_delete_ = -1;
 	// Delete the info in the ds_list pertaining to the deleted bullet, and destroy the ds_list if necessary
 	// Check to see if any bullet hitboxes exist
-	if ds_exists(obj_combat_controller.enemyBulletHitboxList, ds_type_list) {
+	if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {
 		// Check to see if the first hitbox exists
-		if (instance_exists(ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyBulletHitboxList)){
+		if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
 			// Check to see if there are more than 1 hitboxes active
-			if ds_list_size(obj_combat_controller.enemyBulletHitboxList) > 1 {
+			if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
 				// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
-				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyBulletHitboxList) - 1; i++) {
-					if ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, i) == self {
+				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
+					if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 						row_to_delete_ = i;
 					}
 				}
 				// Redundant check, prevents bugs
 				if row_to_delete_ != -1 {
 					// Delete and destroy the specific line that contains the bullet object
-					ds_list_delete(obj_combat_controller.enemyBulletHitboxList, row_to_delete_);
+					ds_list_delete(obj_combat_controller.enemyHitboxList, row_to_delete_);
 				}
 			}
 			// If there's only one hitbox active, it must be the one colliding with the player, so erase the hitbox ds_list
 			else {
-				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyBulletHitboxList) - 1; i++) {
-					if !instance_exists(ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, i)) {
-						ds_list_delete(obj_combat_controller.enemyBulletHitboxList, i);
+				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
+					if !instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, i)) {
+						ds_list_delete(obj_combat_controller.enemyHitboxList, i);
 					}
 				}
-				if ds_list_size(obj_combat_controller.enemyBulletHitboxList) < 1 {
-					ds_list_destroy(obj_combat_controller.enemyBulletHitboxList);
-					obj_combat_controller.enemyBulletHitboxList = noone;
+				if ds_list_size(obj_combat_controller.enemyHitboxList) < 1 {
+					ds_list_destroy(obj_combat_controller.enemyHitboxList);
+					obj_combat_controller.enemyHitboxList = noone;
 				}
 			}
 		}
 		// If the first hitbox doesn't exist, erase the hitbox ds_list, as no hitbox now exists
 		else {
-			for (i = 0; i <= ds_list_size(obj_combat_controller.enemyBulletHitboxList) - 1; i++) {
-				if !instance_exists(ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, i)) {
-					ds_list_delete(obj_combat_controller.enemyBulletHitboxList, i);
+			for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
+				if !instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, i)) {
+					ds_list_delete(obj_combat_controller.enemyHitboxList, i);
 				}
 			}
-			if ds_list_size(obj_combat_controller.enemyBulletHitboxList) < 1 {
-				ds_list_destroy(obj_combat_controller.enemyBulletHitboxList);
-				obj_combat_controller.enemyBulletHitboxList = noone;
+			if ds_list_size(obj_combat_controller.enemyHitboxList) < 1 {
+				ds_list_destroy(obj_combat_controller.enemyHitboxList);
+				obj_combat_controller.enemyHitboxList = noone;
 			}
 		}
 	}
@@ -150,20 +150,20 @@ else {
 	row_to_delete_ = -1;
 	// Delete the info in the ds_list pertaining to the deleted bullet, and destroy the ds_list if necessary
 	// Check to see if any bullet hitboxes exist
-	if ds_exists(obj_combat_controller.enemyBulletHitboxList, ds_type_list) {
+	if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {
 		// Check to see if the first hitbox exists
-		if (instance_exists(ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyBulletHitboxList)){
+		if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
 			// Check to see if there are more than 1 hitboxes active
-			if ds_list_size(obj_combat_controller.enemyBulletHitboxList) > 1 {
+			if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
 				// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
-				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyBulletHitboxList) - 1; i++) {
-					if ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, i) == self {
+				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
+					if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 						row_to_delete_ = i;
 					}
 				}
 				// Apply the slow to the enemy in case the attack was parried instead
 				if obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy {
-					with ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, row_to_delete_) {
+					with ds_list_find_value(obj_combat_controller.enemyHitboxList, row_to_delete_) {
 						with owner_ {
 							obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
 							enemyGameSpeed = 0;
@@ -178,14 +178,14 @@ else {
 				// Redundant check, prevents bugs
 				if row_to_delete_ != -1 {
 					// Delete and destroy the specific line that contains the bullet object
-					ds_list_delete(obj_combat_controller.enemyBulletHitboxList, row_to_delete_);
+					ds_list_delete(obj_combat_controller.enemyHitboxList, row_to_delete_);
 				}
 			}
 			// If there's only one hitbox active, it must be the one colliding with the player, so erase the hitbox ds_list
 			else {
 				// Apply the slow in case the attack was successfully parried
 				if obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy {
-					with ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, 0) {
+					with ds_list_find_value(obj_combat_controller.enemyHitboxList, 0) {
 						with owner_ {
 							obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
 							enemyGameSpeed = 0;
@@ -198,27 +198,27 @@ else {
 					}
 				}
 				// Erase the hitbox ds_list assuming it needs erasing
-				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyBulletHitboxList) - 1; i++) {
-					if !instance_exists(ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, i)) {
-						ds_list_delete(obj_combat_controller.enemyBulletHitboxList, i);
+				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
+					if !instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, i)) {
+						ds_list_delete(obj_combat_controller.enemyHitboxList, i);
 					}
 				}
-				if ds_list_size(obj_combat_controller.enemyBulletHitboxList) < 1 {
-					ds_list_destroy(obj_combat_controller.enemyBulletHitboxList);
-					obj_combat_controller.enemyBulletHitboxList = noone;
+				if ds_list_size(obj_combat_controller.enemyHitboxList) < 1 {
+					ds_list_destroy(obj_combat_controller.enemyHitboxList);
+					obj_combat_controller.enemyHitboxList = noone;
 				}
 			}
 		}
 		// If the first hitbox doesn't exist, erase the hitbox ds_list, as no hitbox now exists
 		else {
-			for (i = 0; i <= ds_list_size(obj_combat_controller.enemyBulletHitboxList) - 1; i++) {
-				if !instance_exists(ds_list_find_value(obj_combat_controller.enemyBulletHitboxList, i)) {
-					ds_list_delete(obj_combat_controller.enemyBulletHitboxList, i);
+			for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
+				if !instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, i)) {
+					ds_list_delete(obj_combat_controller.enemyHitboxList, i);
 				}
 			}
-			if ds_list_size(obj_combat_controller.enemyBulletHitboxList) < 1 {
-				ds_list_destroy(obj_combat_controller.enemyBulletHitboxList);
-				obj_combat_controller.enemyBulletHitboxList = noone;
+			if ds_list_size(obj_combat_controller.enemyHitboxList) < 1 {
+				ds_list_destroy(obj_combat_controller.enemyHitboxList);
+				obj_combat_controller.enemyHitboxList = noone;
 			}
 		}
 	}

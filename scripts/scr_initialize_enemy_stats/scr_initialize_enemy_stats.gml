@@ -123,11 +123,11 @@ switch (enemy_name_) {
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
-		enemyBulletHitbox = noone;
+		enemyHitbox = noone;
 		if instance_exists(obj_player) {
-			enemyBulletHitboxSpeed = obj_player.maxSpeed * 1.1;
+			enemyHitboxSpeed = obj_player.maxSpeed * 1.1;
 		}
-		enemyBulletHitboxDirection = 0;
+		enemyHitboxDirection = 0;
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*
@@ -277,11 +277,11 @@ switch (enemy_name_) {
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
-		enemyBulletHitbox = noone;
+		enemyHitbox = noone;
 		if instance_exists(obj_player) {
-			enemyBulletHitboxSpeed = obj_player.maxSpeed * 1.1;
+			enemyHitboxSpeed = obj_player.maxSpeed * 1.1;
 		}
-		enemyBulletHitboxDirection = 0;
+		enemyHitboxDirection = 0;
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*

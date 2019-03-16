@@ -42,25 +42,25 @@ playerTotalBonusResistance = 0; // + whatever resistances the player has
 
 #region Move Bullet Objects
 // Move bullet objects
-if ds_exists(enemyBulletHitboxList, ds_type_list) {
+if ds_exists(enemyHitboxList, ds_type_list) {
 	var i, test_;
-	for (i = 0; i <= ds_list_size(enemyBulletHitboxList) - 1; i++) {
-		if instance_exists(ds_list_find_value(enemyBulletHitboxList, i)) {
-			with ds_list_find_value(enemyBulletHitboxList, i) {
+	for (i = 0; i <= ds_list_size(enemyHitboxList) - 1; i++) {
+		if instance_exists(ds_list_find_value(enemyHitboxList, i)) {
+			with ds_list_find_value(enemyHitboxList, i) {
 				// Move the bullet as long as the parent object still exists
 				if instance_exists(owner) {
-					x += lengthdir_x(enemyBulletHitboxSpeed, enemyBulletHitboxDirection) * owner.enemyTotalSpeed;
-					y += lengthdir_y(enemyBulletHitboxSpeed, enemyBulletHitboxDirection) * owner.enemyTotalSpeed;
-					if lengthdir_x(enemyBulletHitboxSpeed, enemyBulletHitboxDirection) == 0 {
+					x += lengthdir_x(enemyHitboxSpeed, enemyHitboxDirection) * owner.enemyTotalSpeed;
+					y += lengthdir_y(enemyHitboxSpeed, enemyHitboxDirection) * owner.enemyTotalSpeed;
+					if lengthdir_x(enemyHitboxSpeed, enemyHitboxDirection) == 0 {
 						test_ = 1;
 					}
 				}
 				// Destroy any bullets that still exist 
 				else if !instance_exists(owner) {
 					with obj_combat_controller {
-						if ds_exists(enemyBulletHitboxList, ds_type_list) {
-							instance_destroy(ds_list_find_value(enemyBulletHitboxList, i));
-							ds_list_delete(enemyBulletHitboxList, i);
+						if ds_exists(enemyHitboxList, ds_type_list) {
+							instance_destroy(ds_list_find_value(enemyHitboxList, i));
+							ds_list_delete(enemyHitboxList, i);
 						}
 					}
 				}
