@@ -170,9 +170,12 @@ lastAttackButtonPressed = "";
 
 // Player Hitbox Variables
 playerMeleeHitbox = noone;
-playerBulletHitbox = noone;
-playerBulletHitboxDirection = 0;
-playerBulletHitboxSpeed = maxSpeed * 1.1;
+playerHitbox = noone;
+playerHitboxType = "";
+playerHitboxValue = 0;
+playerHitboxHeal = false;
+playerHitboxDirection = 0;
+playerProjectileHitboxSpeed = maxSpeed * 1.1;
 hitboxCreated = false;
 comboTrue = "";
 

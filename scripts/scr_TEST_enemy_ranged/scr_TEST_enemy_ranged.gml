@@ -36,8 +36,8 @@ if currentTargetToFocus != noone {
 			enemyHitbox.image_angle = point_direction(enemy_x_, enemy_y_, player_x_, player_y_);
 			enemyHitbox.owner = owner_;
 			// Set direction using linear interpolation (lerp function) to guess where the player will be at the moment of firing the projectile - equation boiled down is lerp(bullet.x, bullet.x + player currentSpeed, distance between bullet and player / bulletSpeed (this gives us how many frames it will take to reach the player)
-			enemyHitbox.enemyHitboxDirection = point_direction(enemyHitbox.x, enemyHitbox.y, lerp(currentTargetToFocus.x, currentTargetToFocus.x + lengthdir_x(currentTargetToFocus.currentSpeed, currentTargetToFocus.currentDirection), (point_distance(enemyHitbox.x, enemyHitbox.y, currentTargetToFocus.x, currentTargetToFocus.y) / enemyHitboxSpeed)), lerp(currentTargetToFocus.y, currentTargetToFocus.y + lengthdir_y(currentTargetToFocus.currentSpeed, currentTargetToFocus.currentDirection), (point_distance(enemyHitbox.x, enemyHitbox.y, currentTargetToFocus.x, currentTargetToFocus.y) / enemyHitboxSpeed)))
-			enemyHitbox.enemyHitboxSpeed = enemyHitboxSpeed;
+			enemyHitbox.enemyProjectileHitboxDirection = point_direction(enemyHitbox.x, enemyHitbox.y, lerp(currentTargetToFocus.x, currentTargetToFocus.x + lengthdir_x(currentTargetToFocus.currentSpeed, currentTargetToFocus.currentDirection), (point_distance(enemyHitbox.x, enemyHitbox.y, currentTargetToFocus.x, currentTargetToFocus.y) / enemyProjectileHitboxSpeed)), lerp(currentTargetToFocus.y, currentTargetToFocus.y + lengthdir_y(currentTargetToFocus.currentSpeed, currentTargetToFocus.currentDirection), (point_distance(enemyHitbox.x, enemyHitbox.y, currentTargetToFocus.x, currentTargetToFocus.y) / enemyProjectileHitboxSpeed)))
+			enemyHitbox.enemyProjectileHitboxSpeed = enemyProjectileHitboxSpeed;
 	
 	
 			// Create bullets and store their id's in a ds_list for later use

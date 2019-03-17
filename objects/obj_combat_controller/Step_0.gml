@@ -40,27 +40,51 @@ playerTotalBonusDamage = 1 + obj_skill_tree.primeBonusDamagePercentAsDecimal; //
 playerTotalBonusResistance = 0; // + whatever resistances the player has
 
 
-#region Move Bullet Objects
-// Move bullet objects
+#region Move Hitbox Objects
+// Move player hitbox objects
+if ds_exists(playerHitboxList, ds_type_list) {
+	var i;
+	for (i = 0; i <= ds_list_size(playerHitboxList) - 1; i++) {
+		if instance_exists(ds_list_find_value(playerHitboxList, i)) {
+			with ds_list_find_value(playerHitboxList, i) {
+				if playerHitboxType = "Projectile" {
+					// Move the hitbox as long as the parent object still exists
+					if instance_exists(owner) {
+						x += lengthdir_x(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
+						y += lengthdir_y(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
+					}
+					else if !instance_exists(owner) {
+						with obj_combat_controller {
+							if ds_exists(playerHitboxList, ds_type_list) {
+								instance_destroy(ds_list_find_value(playerHitboxList, i));
+								ds_list_delete(playerHitboxList, i);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// Move enemy hitbox objects
 if ds_exists(enemyHitboxList, ds_type_list) {
-	var i, test_;
+	var i;
 	for (i = 0; i <= ds_list_size(enemyHitboxList) - 1; i++) {
 		if instance_exists(ds_list_find_value(enemyHitboxList, i)) {
 			with ds_list_find_value(enemyHitboxList, i) {
-				// Move the bullet as long as the parent object still exists
-				if instance_exists(owner) {
-					x += lengthdir_x(enemyHitboxSpeed, enemyHitboxDirection) * owner.enemyTotalSpeed;
-					y += lengthdir_y(enemyHitboxSpeed, enemyHitboxDirection) * owner.enemyTotalSpeed;
-					if lengthdir_x(enemyHitboxSpeed, enemyHitboxDirection) == 0 {
-						test_ = 1;
+				if enemyHitboxType = "Projectile" {
+					// Move the hitbox as long as the parent object still exists
+					if instance_exists(owner) {
+						x += lengthdir_x(enemyProjectileHitboxSpeed, enemyProjectileHitboxDirection) * owner.enemyTotalSpeed;
+						y += lengthdir_y(enemyProjectileHitboxSpeed, enemyProjectileHitboxDirection) * owner.enemyTotalSpeed;
 					}
-				}
-				// Destroy any bullets that still exist 
-				else if !instance_exists(owner) {
-					with obj_combat_controller {
-						if ds_exists(enemyHitboxList, ds_type_list) {
-							instance_destroy(ds_list_find_value(enemyHitboxList, i));
-							ds_list_delete(enemyHitboxList, i);
+					// Destroy any hitboxes that still exist 
+					else if !instance_exists(owner) {
+						with obj_combat_controller {
+							if ds_exists(enemyHitboxList, ds_type_list) {
+								instance_destroy(ds_list_find_value(enemyHitboxList, i));
+								ds_list_delete(enemyHitboxList, i);
+							}
 						}
 					}
 				}

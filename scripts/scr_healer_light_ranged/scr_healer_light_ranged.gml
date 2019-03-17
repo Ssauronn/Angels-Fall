@@ -6,7 +6,7 @@ if instance_exists(currentTargetToFocus) {
 		owner_ = self;
 		target_= currentTargetToFocus;
 		// Set direction using linear interpolation (lerp function) to guess where the player will be at the moment of firing the projectile - equation boiled down is lerp(bullet.x, bullet.x + player currentSpeed, distance between bullet and player / bulletSpeed (this gives us how many frames it will take to reach the player)
-		var point_direction_ = point_direction(x, y, lerp(target_.x, target_.x + lengthdir_x(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyHitboxSpeed)), lerp(target_.y, target_.y + lengthdir_y(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyHitboxSpeed)));
+		var point_direction_ = point_direction(x, y, lerp(target_.x, target_.x + lengthdir_x(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyProjectileHitboxSpeed)), lerp(target_.y, target_.y + lengthdir_y(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyProjectileHitboxSpeed)));
 		// Create the bullet hitbox itself
 		if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {
 			enemyHitbox = instance_create_depth(x + 32, y, -999, obj_bullet);
@@ -25,8 +25,12 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.mask_index = spr_enemy_bullet_hitbox;
 		enemyHitbox.image_angle = point_direction(owner_.x, owner_.y, target_.x, target_.y);
 		enemyHitbox.owner = owner_;
-		enemyHitbox.enemyHitboxDirection = point_direction_;
-		enemyHitbox.enemyHitboxSpeed = enemyHitboxSpeed;
+		enemyHitbox.enemyHitboxType = "Projectile";
+		enemyHitbox.enemyHitboxHeal = false;
+		enemyHitbox.enemyProjectileHitboxDirection = point_direction_;
+		enemyHitbox.enemyProjectileHitboxSpeed = enemyProjectileHitboxSpeed;
+		enemyHitbox.enemyHitboxValue = enemyLightRangedAttackDamage;
+		enemyHitbox.enemyHitboxCollisionFound = false;
 		
 		
 		

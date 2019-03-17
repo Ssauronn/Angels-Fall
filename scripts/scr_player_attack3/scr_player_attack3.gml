@@ -76,7 +76,7 @@ if instance_exists(obj_player) {
 			var player_y_ = obj_player.y;
 			var mouse_x_ = mouse_x;
 			var mouse_y_ = mouse_y;
-			playerBulletHitboxDirection = point_direction(player_x_, player_y_, mouse_x_, mouse_y_);
+			playerHitboxDirection = point_direction(player_x_, player_y_, mouse_x_, mouse_y_);
 		}
 	}
 	#endregion
