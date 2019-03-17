@@ -578,7 +578,7 @@
             "Key": "5b302184-2037-40d3-aadd-37feb2aafcb3",
             "Value": {
                 "id": "fcac67ac-4bfa-47fb-8d36-3a583f45b5a6",
-                "resourcePath": "objects\\obj_bullet\\obj_bullet.yy",
+                "resourcePath": "objects\\obj_hitbox\\obj_hitbox.yy",
                 "resourceType": "GMObject"
             }
         },

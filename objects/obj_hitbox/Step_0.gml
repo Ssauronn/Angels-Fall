@@ -14,7 +14,7 @@ if !is_undefined(owner) {
 					if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
 						// Check to see if there are more than 1 hitboxes active
 						if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
-							// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
+							// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 							for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
 								if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 									row_to_delete_ = i;
@@ -69,7 +69,7 @@ if !is_undefined(owner) {
 					if (instance_exists(ds_list_find_value(obj_combat_controller.playerHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.playerHitboxList)){
 						// Check to see if there are more than 1 hitboxes active
 						if ds_list_size(obj_combat_controller.playerHitboxList) > 1 {
-							// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
+							// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 							for (i = 0; i <= ds_list_size(obj_combat_controller.playerHitboxList) - 1; i++) {
 								if ds_list_find_value(obj_combat_controller.playerHitboxList, i) == self {
 									row_to_delete_ = i;
@@ -124,7 +124,7 @@ if !is_undefined(owner) {
 				if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
 					// Check to see if there are more than 1 hitboxes active
 					if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
-						// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
+						// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 						for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
 							if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 								row_to_delete_ = i;
@@ -175,7 +175,7 @@ if !is_undefined(owner) {
 				if (instance_exists(ds_list_find_value(obj_combat_controller.playerHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.playerHitboxList)){
 					// Check to see if there are more than 1 hitboxes active
 					if ds_list_size(obj_combat_controller.playerHitboxList) > 1 {
-						// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
+						// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 						for (i = 0; i <= ds_list_size(obj_combat_controller.playerHitboxList) - 1; i++) {
 							if ds_list_find_value(obj_combat_controller.playerHitboxList, i) == self {
 								row_to_delete_ = i;
@@ -230,7 +230,7 @@ else {
 		if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
 			// Check to see if there are more than 1 hitboxes active
 			if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
-				// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
+				// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
 					if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 						row_to_delete_ = i;

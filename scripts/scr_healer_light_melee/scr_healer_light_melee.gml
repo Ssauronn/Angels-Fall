@@ -6,7 +6,7 @@ if instance_exists(currentTargetToFocus) {
 		owner_ = self;
 		target_ = currentTargetToFocus;
 		point_direction_ = point_direction(x, y, target_.x, target_.y);
-		enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_bullet);
+		enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
 	}
 }
 #endregion

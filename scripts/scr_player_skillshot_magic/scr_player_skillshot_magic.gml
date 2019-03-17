@@ -10,16 +10,16 @@ if instance_exists(obj_player) {
 		var mouse_y_ = mouse_y;
 		switch (playerDirectionFacing) {
 			case playerdirection.right:
-				playerHitbox = instance_create_depth(x + 32, y, -999, obj_bullet);
+				playerHitbox = instance_create_depth(x + 32, y, -999, obj_hitbox);
 				break;
 			case playerdirection.up:
-				playerHitbox = instance_create_depth(x, y - 32, -999, obj_bullet);
+				playerHitbox = instance_create_depth(x, y - 32, -999, obj_hitbox);
 				break;
 			case playerdirection.left:
-				playerHitbox = instance_create_depth(x - 32, y, -999, obj_bullet);
+				playerHitbox = instance_create_depth(x - 32, y, -999, obj_hitbox);
 				break;
 			case playerdirection.down:
-				playerHitbox = instance_create_depth(x, y + 32, -999, obj_bullet);
+				playerHitbox = instance_create_depth(x, y + 32, -999, obj_hitbox);
 				break;
 		}
 		playerHitbox.sprite_index = spr_player_bullet_hitbox;

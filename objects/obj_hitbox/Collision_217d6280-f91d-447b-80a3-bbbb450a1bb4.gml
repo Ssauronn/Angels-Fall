@@ -141,7 +141,7 @@ if (!other_owner_is_player_) && ((owner_is_minion_ && other_owner_is_enemy) || (
 		if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
 			// Check to see if there are more than 1 hitboxes active
 			if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
-				// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the target
+				// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the target
 				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
 					if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 						row_to_delete_ = i;
@@ -193,7 +193,7 @@ else if (other_owner_is_player_) && (owner_is_enemy_) {
 		if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
 			// Check to see if there are more than 1 hitboxes active
 			if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
-				// Here I'm setting the local variable "i" to the obj_bullet ID that just hit the player
+				// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
 					if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 						row_to_delete_ = i;

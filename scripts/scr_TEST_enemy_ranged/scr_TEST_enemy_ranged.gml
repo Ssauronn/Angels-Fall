@@ -22,13 +22,13 @@ if currentTargetToFocus != noone {
 				enemyDirectionFacing = enemydirection.down;
 			}
 			switch (enemyDirectionFacing) {
-				case enemydirection.right: enemyHitbox = instance_create_depth(x + 32, y, -999, obj_bullet);
+				case enemydirection.right: enemyHitbox = instance_create_depth(x + 32, y, -999, obj_hitbox);
 					break;
-				case enemydirection.up: enemyHitbox = instance_create_depth(x, y - 32, -999, obj_bullet);
+				case enemydirection.up: enemyHitbox = instance_create_depth(x, y - 32, -999, obj_hitbox);
 					break;
-				case enemydirection.left: enemyHitbox = instance_create_depth(x - 32, y, -999, obj_bullet);
+				case enemydirection.left: enemyHitbox = instance_create_depth(x - 32, y, -999, obj_hitbox);
 					break;
-				case enemydirection.down: enemyHitbox = instance_create_depth(x, y + 32, -999, obj_bullet);
+				case enemydirection.down: enemyHitbox = instance_create_depth(x, y + 32, -999, obj_hitbox);
 					break;
 			}
 			enemyHitbox.sprite_index = spr_enemy_bullet_hitbox;
