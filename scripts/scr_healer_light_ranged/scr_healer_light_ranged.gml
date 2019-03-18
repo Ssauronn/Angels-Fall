@@ -9,16 +9,16 @@ if instance_exists(currentTargetToFocus) {
 		var point_direction_ = point_direction(x, y, lerp(target_.x, target_.x + lengthdir_x(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyProjectileHitboxSpeed)), lerp(target_.y, target_.y + lengthdir_y(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyProjectileHitboxSpeed)));
 		// Create the bullet hitbox itself
 		if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {
-			enemyHitbox = instance_create_depth(x + 32, y, -999, obj_hitbox);
+			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
 		}
 		else if (point_direction_ <= 135) && (point_direction_ > 45) {
-			enemyHitbox = instance_create_depth(x, y - 32, -999, obj_hitbox);
+			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
 		}
 		else if (point_direction_ <= 235) && (point_direction_ > 135) {
-			enemyHitbox = instance_create_depth(x - 32, y, -999, obj_hitbox);
+			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
 		}
 		else if (point_direction_ <= 315) && (point_direction_ > 235) {
-			enemyHitbox = instance_create_depth(x, y + 32, -999, obj_hitbox);
+			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
 		}
 		// Set bullet hitbox variables
 		enemyHitbox.sprite_index = spr_enemy_bullet_hitbox;
