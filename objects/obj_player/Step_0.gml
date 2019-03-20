@@ -80,8 +80,6 @@ switch (playerState) {
 		break;
 	case playerstates.attack5: scr_player_attack5();
 		break;
-	case playerstates.attack6: scr_player_attack6();
-		break;
 	case playerstates.skillshotmagic: scr_player_skillshot_magic();
 		break;
 }
@@ -125,14 +123,6 @@ playerAnimationImageIndex += playerImageIndexSpeed;
 // The line above is an example of using a sprite table for each different armor type to draw the armor
 // that the player has equipped.
 image_index = playerImageIndex;
-
-// Move the bullets fired by the player
-if instance_exists(playerBulletHitbox) {
-	with (playerBulletHitbox) {
-		x += lengthdir_x(obj_player.playerBulletHitboxSpeed, obj_player.playerBulletHitboxDirection) * playerTotalSpeed;
-		y += lengthdir_y(obj_player.playerBulletHitboxSpeed, obj_player.playerBulletHitboxDirection) * playerTotalSpeed;
-	}
-}
 
 
 // Dashing timer

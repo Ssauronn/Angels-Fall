@@ -5,6 +5,7 @@ switch (comboTrue) {
 		break;
 	case "Attack Up 1":
 		lastAttackButtonPressed = "Attack Up 1";
+		comboTrue = "";
 		break;
 	case "Attack Left 1":
 		lastAttackButtonPressed = "Attack Left 1";
@@ -76,22 +77,6 @@ switch (comboTrue) {
 		break;
 	case "Attack Down 5":
 		lastAttackButtonPressed = "Attack Down 5";
-		comboTrue = "";
-		break;
-	case "Attack Right 6":
-		lastAttackButtonPressed = "Attack Right 6";
-		comboTrue = "";
-		break;
-	case "Attack Up 6":
-		lastAttackButtonPressed = "Attack Up 6";
-		comboTrue = "";
-		break;
-	case "Attack Left 6":
-		lastAttackButtonPressed = "Attack Left 6";
-		comboTrue = "";
-		break;
-	case "Attack Down 6":
-		lastAttackButtonPressed = "Attack Down 6";
 		comboTrue = "";
 		break;
 	case "Skillshot Magic Right":

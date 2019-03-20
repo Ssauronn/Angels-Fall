@@ -8,8 +8,9 @@ enemiesDealtDamage = 0;
 animecroPool = 0;
 animecroMultiplier = 1;
 
-// Variable used to control what bullets should be moved where
-enemyBulletHitboxList = noone;
+// Variables used to control what bullets should be moved where
+playerHitboxList = noone;
+enemyHitboxList = noone;
 
 // Variables used to control the combo timer and count for the player
 comboCounter = 0;

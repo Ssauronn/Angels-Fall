@@ -123,11 +123,16 @@ switch (enemy_name_) {
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
-		enemyBulletHitbox = noone;
+		enemyHitbox = noone;
+		// Possible hitbox types are: "Projectile", "Target", "Target AoE", "Melee"
+		enemyHitboxType = "";
+		// If this is set to true, that's a switch telling the collisions to heal the correct targets
+		// instead of dealing damage to enemies
+		enemyHitboxHeal = false;
 		if instance_exists(obj_player) {
-			enemyBulletHitboxSpeed = obj_player.maxSpeed * 1.1;
+			enemyProjectileHitboxSpeed = obj_player.maxSpeed * 1.1;
 		}
-		enemyBulletHitboxDirection = 0;
+		enemyProjectileHitboxDirection = 0;
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*
@@ -277,11 +282,16 @@ switch (enemy_name_) {
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
-		enemyBulletHitbox = noone;
+		enemyHitbox = noone;
+		// Possible hitbox types are: "Projectile", "Target", "Target AoE", "Melee"
+		enemyHitboxType = "";
+		// If this is set to true, that's a switch telling the collisions to heal the correct targets
+		// instead of dealing damage to enemies
+		enemyHitboxHeal = false;
 		if instance_exists(obj_player) {
-			enemyBulletHitboxSpeed = obj_player.maxSpeed * 1.1;
+			enemyProjectileHitboxSpeed = obj_player.maxSpeed * 1.1;
 		}
-		enemyBulletHitboxDirection = 0;
+		enemyProjectileHitboxDirection = 0;
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*

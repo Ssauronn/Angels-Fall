@@ -578,7 +578,7 @@
             "Key": "5b302184-2037-40d3-aadd-37feb2aafcb3",
             "Value": {
                 "id": "fcac67ac-4bfa-47fb-8d36-3a583f45b5a6",
-                "resourcePath": "objects\\obj_bullet\\obj_bullet.yy",
+                "resourcePath": "objects\\obj_hitbox\\obj_hitbox.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -835,14 +835,6 @@
             "Value": {
                 "id": "baf8c56c-f5cf-4b4d-a56e-a6d2123529b3",
                 "resourcePath": "scripts\\scr_healer_heavy_melee\\scr_healer_heavy_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "83f695e7-9c6d-4da9-86af-ca90126f81ba",
-            "Value": {
-                "id": "708b8772-603b-43ca-8359-d478b7d1798b",
-                "resourcePath": "scripts\\scr_player_attack6\\scr_player_attack6.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1507,7 +1499,6 @@
         "6d06f7c2-977f-4e94-a0a1-a455090f34d2",
         "31572666-9579-48ed-9aa3-3b6e60abd7bf",
         "602da417-15a6-4b36-8652-caf4c746e444",
-        "83f695e7-9c6d-4da9-86af-ca90126f81ba",
         "79d953b3-0d80-4529-908a-36e8dcc5c3d9",
         "032e7f80-1faa-44df-8555-2d9eabd55ec9",
         "a3280395-dabd-44f7-8bda-319593ffdb4d",

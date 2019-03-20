@@ -1,9 +1,6 @@
 ///@description SkillshotMagicState
-// Create the playerBulletHitbox after frame 2
+// Create the playerHitbox after frame 6
 if instance_exists(obj_player) {
-	if (instance_exists(playerBulletHitbox)) && (!hitboxCreated) {
-		instance_destroy(playerBulletHitbox);
-	}
 	if (!hitboxCreated) && (playerImageIndex > 6) {
 		hitboxCreated = true;
 		var owner_ = id;
@@ -13,33 +10,36 @@ if instance_exists(obj_player) {
 		var mouse_y_ = mouse_y;
 		switch (playerDirectionFacing) {
 			case playerdirection.right:
-				playerBulletHitbox = instance_create_depth(x + 32, y, -999, obj_bullet);
-				playerBulletHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.mask_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.image_angle = playerBulletHitboxDirection;
-				playerBulletHitbox.owner = owner_;
+				playerHitbox = instance_create_depth(x + lengthdir_x(32, playerHitboxDirection), y + lengthdir_y(32, playerHitboxDirection), -999, obj_hitbox);
 				break;
 			case playerdirection.up:
-				playerBulletHitbox = instance_create_depth(x, y - 32, -999, obj_bullet);
-				playerBulletHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.mask_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.image_angle = playerBulletHitboxDirection;
-				playerBulletHitbox.owner = owner_;
+				playerHitbox = instance_create_depth(x + lengthdir_x(32, playerHitboxDirection), y + lengthdir_y(32, playerHitboxDirection), -999, obj_hitbox);
 				break;
 			case playerdirection.left:
-				playerBulletHitbox = instance_create_depth(x - 32, y, -999, obj_bullet);
-				playerBulletHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.mask_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.image_angle = playerBulletHitboxDirection;
-				playerBulletHitbox.owner = owner_;
+				playerHitbox = instance_create_depth(x + lengthdir_x(32, playerHitboxDirection), y + lengthdir_y(32, playerHitboxDirection), -999, obj_hitbox);
 				break;
 			case playerdirection.down:
-				playerBulletHitbox = instance_create_depth(x, y + 32, -999, obj_bullet);
-				playerBulletHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.mask_index = spr_player_bullet_hitbox;
-				playerBulletHitbox.image_angle = playerBulletHitboxDirection;
-				playerBulletHitbox.owner = owner_;
+				playerHitbox = instance_create_depth(x + lengthdir_x(32, playerHitboxDirection), y + lengthdir_y(32, playerHitboxDirection), -999, obj_hitbox);
 				break;
+		}
+		playerHitbox.sprite_index = spr_player_bullet_hitbox;
+		playerHitbox.mask_index = spr_player_bullet_hitbox;
+		playerHitbox.image_angle = playerHitboxDirection;
+		playerHitbox.owner = owner_;
+		playerHitbox.playerProjectileHitboxSpeed = playerProjectileHitboxSpeed;
+		playerHitbox.playerHitboxDirection = playerHitboxDirection;
+		playerHitbox.playerHitboxType = "Projectile";
+		playerHitbox.playerHitboxHeal = false;
+		playerHitbox.playerHitboxValue = playerBulletAttackValue;
+		playerHitbox.playerHitboxCollisionFound = false;
+		playerHitbox.playerHitboxLifetime = room_speed * 5;
+		
+		if ds_exists(obj_combat_controller.playerHitboxList, ds_type_list) {
+			ds_list_set(obj_combat_controller.playerHitboxList, ds_list_size(obj_combat_controller.playerHitboxList), playerHitbox);
+		}
+		else {
+			obj_combat_controller.playerHitboxList = ds_list_create();
+			ds_list_set(obj_combat_controller.playerHitboxList, 0, playerHitbox);
 		}
 	}
 	// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
