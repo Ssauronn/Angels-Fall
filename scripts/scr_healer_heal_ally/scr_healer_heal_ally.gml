@@ -33,6 +33,15 @@ if instance_exists(currentTargetToHeal) {
 		enemyHitbox.enemyHitboxValue = enemyHealValue;
 		enemyHitbox.enemyHitboxCollisionFound = false;
 		enemyHitbox.enemyHitboxLifetime = 1;
+		
+		// Store bullet ID's in a ds_list for later use (to move and manipulate)
+		if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {
+			ds_list_set(obj_combat_controller.enemyHitboxList, ds_list_size(obj_combat_controller.enemyHitboxList), enemyHitbox);
+		}
+		else {
+			obj_combat_controller.enemyHitboxList = ds_list_create();
+			ds_list_set(obj_combat_controller.enemyHitboxList, 0, enemyHitbox);
+		}
 	}
 }
 // Else if the instance to heal doesn't even exist, then just revert back to idle state

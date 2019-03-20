@@ -59,18 +59,6 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina -= meleeStaminaCost;
 		playerCurrentMana += meleeManaRegen;
 		break;
-	case "Attack Right 6":
-	case "Attack Up 6":
-	case "Attack Left 6":
-	case "Attack Down 6":
-		set_movement_variables(0, playerDirectionFacing, maxSpeed);
-		playerState = playerstates.attack6;
-		playerStateSprite = playerstates.attack6;
-		lastAttackButtonPressed = "";
-		playerImageIndex = 0;
-		playerCurrentStamina -= meleeStaminaCost;
-		playerCurrentMana += meleeManaRegen;
-		break;
 	case "Skillshot Magic Right":
 	case "Skillshot Magic Up":
 	case "Skillshot Magic Left":

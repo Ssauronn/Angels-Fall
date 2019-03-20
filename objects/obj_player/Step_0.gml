@@ -80,8 +80,6 @@ switch (playerState) {
 		break;
 	case playerstates.attack5: scr_player_attack5();
 		break;
-	case playerstates.attack6: scr_player_attack6();
-		break;
 	case playerstates.skillshotmagic: scr_player_skillshot_magic();
 		break;
 }

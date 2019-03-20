@@ -1,5 +1,5 @@
 ///@description SkillshotMagicState
-// Create the playerHitbox after frame 2
+// Create the playerHitbox after frame 6
 if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 6) {
 		hitboxCreated = true;
@@ -30,7 +30,7 @@ if instance_exists(obj_player) {
 		playerHitbox.playerHitboxDirection = playerHitboxDirection;
 		playerHitbox.playerHitboxType = "Projectile";
 		playerHitbox.playerHitboxHeal = false;
-		playerHitbox.playerHitboxValue = 100;
+		playerHitbox.playerHitboxValue = playerBulletAttackValue;
 		playerHitbox.playerHitboxCollisionFound = false;
 		playerHitbox.playerHitboxLifetime = room_speed * 5;
 		

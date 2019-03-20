@@ -89,7 +89,6 @@ enum playerstates {
 	attack3,
 	attack4,
 	attack5,
-	attack6,
 	skillshotmagic,
 	mousetargetaoemagic,
 	selftargetaoemagic,
@@ -146,10 +145,6 @@ playerSprite[playerstates.attack5, playerdirection.right] = spr_player_attack_ri
 playerSprite[playerstates.attack5, playerdirection.up] = spr_player_attack_up_5;
 playerSprite[playerstates.attack5, playerdirection.left] = spr_player_attack_left_5;
 playerSprite[playerstates.attack5, playerdirection.down] = spr_player_attack_down_5;
-playerSprite[playerstates.attack6, playerdirection.right] = spr_player_attack_right_6;
-playerSprite[playerstates.attack6, playerdirection.up] = spr_player_attack_up_6;
-playerSprite[playerstates.attack6, playerdirection.left] = spr_player_attack_left_6;
-playerSprite[playerstates.attack6, playerdirection.down] = spr_player_attack_down_6;
 playerSprite[playerstates.skillshotmagic, playerdirection.right] = spr_player_skillshot_magic_right;
 playerSprite[playerstates.skillshotmagic, playerdirection.up] = spr_player_skillshot_magic_up;
 playerSprite[playerstates.skillshotmagic, playerdirection.left] = spr_player_skillshot_magic_left;
@@ -169,7 +164,6 @@ playerAnimationY = 0;
 lastAttackButtonPressed = "";
 
 // Player Hitbox Variables
-playerMeleeHitbox = noone;
 playerHitbox = noone;
 playerHitboxType = "";
 playerHitboxValue = 0;
@@ -178,6 +172,16 @@ playerHitboxDirection = 0;
 playerProjectileHitboxSpeed = maxSpeed * 1.1;
 hitboxCreated = false;
 comboTrue = "";
+
+// Basic attack damage values
+playerMeleeAttackOneValue = 100;
+playerMeleeAttackTwoValue = playerMeleeAttackOneValue;
+playerMeleeAttackThreeValue = playerMeleeAttackOneValue;
+playerMeleeAttackFourValue = playerMeleeAttackOneValue * 1.25;
+playerMeleeAttackFiveValue = playerMeleeAttackOneValue * 1.5;
+
+// Spell attack damage values
+playerBulletAttackValue = 200;
 
 // Player Hurtbox Variables
 playerHurtbox = instance_create_depth(x, y, -999, obj_hurtbox);
