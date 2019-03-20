@@ -31,6 +31,7 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.enemyProjectileHitboxSpeed = enemyProjectileHitboxSpeed;
 		enemyHitbox.enemyHitboxValue = enemyLightRangedAttackDamage;
 		enemyHitbox.enemyHitboxCollisionFound = false;
+		enemyHitbox.enemyHitboxLifetime = room_speed * 5;
 		
 		
 		

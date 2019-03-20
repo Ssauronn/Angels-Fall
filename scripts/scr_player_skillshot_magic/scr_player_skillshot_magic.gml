@@ -32,6 +32,7 @@ if instance_exists(obj_player) {
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = 100;
 		playerHitbox.playerHitboxCollisionFound = false;
+		playerHitbox.playerHitboxLifetime = room_speed * 5;
 		
 		if ds_exists(obj_combat_controller.playerHitboxList, ds_type_list) {
 			ds_list_set(obj_combat_controller.playerHitboxList, ds_list_size(obj_combat_controller.playerHitboxList), playerHitbox);

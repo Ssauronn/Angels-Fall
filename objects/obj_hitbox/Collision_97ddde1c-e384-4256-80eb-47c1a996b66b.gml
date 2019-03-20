@@ -1,4 +1,5 @@
 /// @description Destroy object if collision found with wall
+
 var owner_is_player_, owner_is_enemy_;
 owner_is_player_ = false;
 owner_is_enemy_ = false;
@@ -22,6 +23,5 @@ else if owner_is_enemy_ {
 		enemyHitboxCollisionFound = true;
 	}
 }
-
 
 
