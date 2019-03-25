@@ -1247,6 +1247,14 @@
             }
         },
         {
+            "Key": "cf41e500-c1e9-45a4-a33c-69ac7aa02695",
+            "Value": {
+                "id": "0e529c2f-a4c8-4218-ab7c-91e81f7d94a4",
+                "resourcePath": "scripts\\scr_healer_ai_out_of_combat_targeting\\scr_healer_ai_out_of_combat_targeting.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d0af984f-e484-4de8-ac7b-fc0ee0b9fe41",
             "Value": {
                 "id": "7dc0f678-4b57-4ef6-84d6-9b3af7d36b6a",
@@ -1503,6 +1511,7 @@
         "032e7f80-1faa-44df-8555-2d9eabd55ec9",
         "a3280395-dabd-44f7-8bda-319593ffdb4d",
         "79579f9e-c59f-4b55-8106-e1276cfafca6",
+        "cf41e500-c1e9-45a4-a33c-69ac7aa02695",
         "3d094b82-0ff8-435f-956c-a3365019e3f3",
         "ebed4767-13fc-4154-8589-efd76de46c30",
         "b24f1e48-14a8-431c-950b-14ab6e762333",

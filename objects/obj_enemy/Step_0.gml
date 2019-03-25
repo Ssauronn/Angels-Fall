@@ -389,6 +389,11 @@ if instance_exists(obj_player) {
 }
 #endregion
 
+// Timer for spacing out heals, so healers can't spam heals
+if healAllyEngineTimer > 0 {
+	healAllyEngineTimer -= 1 * enemyTotalSpeed;
+}
+
 // Change and track all HP, Stamina, and Mana stats for the enemy
 scr_track_enemy_stats();
 
@@ -398,10 +403,10 @@ if !instance_exists(alreadyHit) {
 	alreadyHit = -1;
 }
 if alreadyHitTimer >= 0 {
-	alreadyHitTimer -= 1;
+	alreadyHitTimer -= 1 * enemyTotalSpeed;
 }
 if alreadyTriedToChaseTimer > 0 {
-	alreadyTriedToChase -= 1;
+	alreadyTriedToChase -= 1 * enemyTotalSpeed;
 }
 
 // Script used to set the direction the object will face every frame
@@ -518,16 +523,27 @@ show_debug_message("Total Light Ranged Engine Weight AFTER Multiplier = " + stri
 show_debug_message("- BREAK -");
 show_debug_message("And for run away: ");
 show_debug_message("For " + string(self.id) + " these are the following weights:");
-show_debug_message(string(selfCurrentHPPercentForRunAwayEngineTotalWeight) + "selfCurrentHPPercentForRunAwayEngineTotalWeight");
-show_debug_message(string(objectProximityToTargetForRunAwayEngineTotalWeight) + "objectProximityToTargetForRunAwayEngineTotalWeight");
-show_debug_message(string(targetCurrentHPPercentForRunAwayEngineTotalWeight) + "targetCurrentHPPercentForRunAwayEngineTotalWeight");
-show_debug_message(string(targetIsDifferentArchetypesForRunAwayEngineTotalWeight) + "targetIsDifferentArchetypesForRunAwayEngineTotalWeight");
-show_debug_message(string(totalEnemiesInBattleForRunAwayEngineTotalWeight) + "totalEnemiesInBattleForRunAwayEngineTotalWeight");
-show_debug_message("Total Run Away Engine Weight AFTER Multiplier" + string(runAwayEngineTotalWeight));
+show_debug_message(string(selfCurrentHPPercentForRunAwayEngineTotalWeight) + " = selfCurrentHPPercentForRunAwayEngineTotalWeight");
+show_debug_message(string(objectProximityToTargetForRunAwayEngineTotalWeight) + " = objectProximityToTargetForRunAwayEngineTotalWeight");
+show_debug_message(string(targetCurrentHPPercentForRunAwayEngineTotalWeight) + " = targetCurrentHPPercentForRunAwayEngineTotalWeight");
+show_debug_message(string(targetIsDifferentArchetypesForRunAwayEngineTotalWeight) + " = targetIsDifferentArchetypesForRunAwayEngineTotalWeight");
+show_debug_message(string(totalEnemiesInBattleForRunAwayEngineTotalWeight) + " = totalEnemiesInBattleForRunAwayEngineTotalWeight");
+show_debug_message("Total Run Away Engine Weight AFTER Multiplier = " + string(runAwayEngineTotalWeight));
+show_debug_message("- BREAK -");
+show_debug_message("And for heal: ");
+show_debug_message("for " + string(self.id) + " these are the following weights:");
+show_debug_message(string(cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight) + " = cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight");
+show_debug_message(string(archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight) + " = archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight");
+show_debug_message(string(currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight) + " = currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight");
+show_debug_message(string(targetCurrentHPPercentForHealAllyEngineTotalWeight) + " = targetCurrentHPPercentForHealAllyEngineTotalWeight");
+show_debug_message(string(totalEnemiesInBattleForHealAllyEngineTotalWeight) + " = totalEnemiesInBattleForHealAllyEngineTotalWeight");
+show_debug_message(string(selfCurrentHPPercentForHealAllyEngineTotalWeight) + " = selfCurrentHPPercentForHealAllyEngineTotalWeight");
+show_debug_message("Total Heal Ally Engine Weight AFTER Multiplier = " + string(healAllyEngineTotalWeight));
 show_debug_message("- BREAK -");
 show_debug_message("- BREAK -");
 show_debug_message("");
 */
+
 #region if instance_exists(self) { // closing brackets
 }
 #endregion
