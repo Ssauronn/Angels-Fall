@@ -856,7 +856,12 @@ if instance_exists(obj_player) {
 						instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight = ((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHealAllyEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHealAllyEngineStartWeight);
 					}
 					instance_to_reference_.selfCurrentHPPercentForHealAllyEngineTotalWeight = (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.selfCurrentHPPercentForHealAllyEngineStartWeight * 2);
-					instance_to_reference_.healAllyEngineTotalWeight = (instance_to_reference_.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight + instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForHealAllyEngineTotalWeight) * instance_to_reference_.healAllyEngineWeightMultiplier;
+					if instance_to_reference_.healAllyEngineTimer <= 0 {
+						instance_to_reference_.healAllyEngineTotalWeight = (instance_to_reference_.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight + instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForHealAllyEngineTotalWeight) * instance_to_reference_.healAllyEngineWeightMultiplier;
+					}
+					else {
+						instance_to_reference_.healAllyEngineTotalWeight = 0;
+					}
 				}
 				#endregion
 			//}

@@ -5,21 +5,12 @@ if instance_exists(currentTargetToFocus) {
 		var owner_, target_;
 		owner_ = self;
 		target_= currentTargetToFocus;
+		
 		// Set direction using linear interpolation (lerp function) to guess where the player will be at the moment of firing the projectile - equation boiled down is lerp(bullet.x, bullet.x + player currentSpeed, distance between bullet and player / bulletSpeed (this gives us how many frames it will take to reach the player)
 		var point_direction_ = point_direction(x, y, lerp(target_.x, target_.x + lengthdir_x(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyProjectileHitboxSpeed)), lerp(target_.y, target_.y + lengthdir_y(target_.currentSpeed, target_.currentDirection), (point_distance(x, y, target_.x, target_.y) / enemyProjectileHitboxSpeed)));
 		// Create the bullet hitbox itself
-		if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {
-			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
-		}
-		else if (point_direction_ <= 135) && (point_direction_ > 45) {
-			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
-		}
-		else if (point_direction_ <= 235) && (point_direction_ > 135) {
-			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
-		}
-		else if (point_direction_ <= 315) && (point_direction_ > 235) {
-			enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
-		}
+		enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
+		
 		// Set bullet hitbox variables
 		enemyHitbox.sprite_index = spr_enemy_bullet_hitbox;
 		enemyHitbox.mask_index = spr_enemy_bullet_hitbox;

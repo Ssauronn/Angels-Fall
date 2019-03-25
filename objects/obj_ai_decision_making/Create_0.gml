@@ -95,11 +95,11 @@ tl;dr - if the object is a healer, a secondary target variable is set, and a Hea
 currentTargetToHeal.
 */
 cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineStartWeight = 0.25;
-archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight = 0.25;
-currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight = 0.2;
+archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight = 0.15;
+currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight = 0.35;
 targetCurrentHPPercentForHealAllyEngineStartWeight = 0.05;
-idealAmountOfTotalEnemiesInBattleForHealAllyEngine = 3;
-totalEnemiesInBattleForHealAllyEngineStartWeight = 0.2;
+idealAmountOfTotalEnemiesInBattleForHealAllyEngine = 5;
+totalEnemiesInBattleForHealAllyEngineStartWeight = 0.15;
 selfCurrentHPPercentForHealAllyEngineStartWeight = 0.05;
 #endregion
 

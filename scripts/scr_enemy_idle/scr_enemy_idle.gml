@@ -50,8 +50,22 @@ if instance_exists(self) {
 				// Checking to make sure there is no combat currently - if there is, do not just passively
 				// follow player
 				if !ds_exists(objectIDsInBattle, ds_type_list) {
-					// If the player is at max HP, or the object isn't a healer, then just follow the player
-					if (playerCurrentHP >= playerMaxHP) || (objectArchetype != "Healer") {
+					// Determine if any allies need healing
+					var an_ally_needs_healing_ = false;
+					if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+						var i;
+						for (i = 0; i <= ds_list_size(objectIDsFollowingPlayer) - 1; i++) {
+							var instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, i);
+							if (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) != 1 {
+								an_ally_needs_healing_ = true;
+							}
+						}
+						if (playerCurrentHP / playerMaxHP) != 1 {
+							an_ally_needs_healing_ = true;
+						}
+					}
+					// If all allies are at max HP, or the object isn't a healer, then just follow the player
+					if (objectArchetype != "Healer") || ((objectArchetype == "Healer") && (!an_ally_needs_healing_)) {
 						chosenEngine = "";
 						decisionMadeForTargetAndAction = false;
 						alreadyTriedToChase = false;
@@ -78,27 +92,14 @@ if instance_exists(self) {
 					This will allow for minions that cannot follow player to not continue to take up processing power, and
 					minions that are left too far behind player to not continue to take up processing power as well.
 					*/
-					// Else if the player is missing health and the object is a healer, then heal the player
-					else {
+					// Else if the player or allies is missing health and the object is a healer, then heal the player
+					else if (objectArchetype == "Healer") && (an_ally_needs_healing_) {
 						// Set the state the enemy is going to, set the chosen engine, make sure a decision is made, 
-						// and then heal the player
-						enemyState = enemystates.healAlly;
-						enemyStateSprite = enemystates.healAlly;
+						// and then heal the heal target
+						scr_healer_ai_out_of_combat_targeting();
 						chosenEngine = "Heal Ally";
-						currentTargetToHeal = obj_player;
 						decisionMadeForTargetAndAction = true;
-						if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-							enemyDirectionFacing = enemydirection.right;
-						}
-						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-							enemyDirectionFacing = enemydirection.up;
-						}
-						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-							enemyDirectionFacing = enemydirection.left;
-						}
-						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-							enemyDirectionFacing = enemydirection.down;
-						}
+						alreadyTriedToChase = false;
 					}
 				}
 			}
@@ -117,13 +118,16 @@ else {
 }
 #endregion
 
+/*
 // NEEDS TO BE REMOVED
 if !(keyboard_check(ord("F"))) {
-	chosenEngine = "Light Ranged"
+	chosenEngine = "Light Melee"
 }
 else {
+	scr_healer_ai_out_of_combat_targeting();
 	chosenEngine = "Heal Ally";
 }
+*/
 
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
@@ -467,6 +471,7 @@ if chosenEngine != "" {
 						alreadyTriedToChase = false;
 						enemyTimeUntilNextManaAbilityUsableTimer = 0;
 						enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+						healAllyEngineTimer = healAllyEngineTimerBaseTime;
 					}
 				}
 				#endregion

@@ -51,7 +51,7 @@ if owner_is_player_ {
 			// See collision with obj_enemy event in obj_player_melee_hitbox for explanation as to why I multiply
 			// enemiesDealtDamage by the percent I multiply damage by
 			enemiesDealtDamage += 1 + (1 * obj_skill_tree.primeBonusDamagePercentAsDecimal);
-			other_owner_.enemyCurrentHP -= owner_.playerHitboxValue * playerTotalBonusDamage;
+			other_owner_.enemyCurrentHP -= playerHitboxValue * playerTotalBonusDamage;
 			lastEnemyHitByPlayer = other_owner_;
 			// Track the player's attack pattern's (melee or ranged) based on whether the attack was melee or ranged
 			if !(obj_ai_decision_making.playerAttackPatternWeight - (obj_ai_decision_making.attackPatternStartWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack) < 0.000) {
@@ -62,7 +62,7 @@ if owner_is_player_ {
 	else if playerHitboxHeal {
 		if other_owner_is_minion_ {
 			playerHitboxCollisionFound = true;
-			other_owner_.enemyCurrentHP += owner_.playerHitboxValue * playerTotalBonusDamage;
+			other_owner_.enemyCurrentHP += playerHitboxValue * playerTotalBonusDamage;
 			if !(obj_ai_decision_making.playerAttackPatternWeight - (obj_ai_decision_making.attackPatternStartWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack) < 0.000) {
 				obj_ai_decision_making.playerAttackPatternWeight -= (obj_ai_decision_making.attackPatternStartWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack);
 			}

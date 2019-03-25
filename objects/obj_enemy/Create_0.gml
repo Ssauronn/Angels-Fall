@@ -139,6 +139,8 @@ currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight = 0.2;
 targetCurrentHPPercentForHealAllyEngineTotalWeight = 0.05;
 totalEnemiesInBattleForHealAllyEngineTotalWeight = 0.2;
 selfCurrentHPPercentForHealAllyEngineTotalWeight = 0.05;
+healAllyEngineTimerBaseTime = room_speed * 3;
+healAllyEngineTimer = 0;
 #endregion
 #endregion
 
