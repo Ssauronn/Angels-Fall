@@ -577,293 +577,295 @@ if instance_exists(obj_player) {
 		//for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 			//if instance_exists(ds_list_find_value(objectIDsInBattle, i)) {
 				//var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
-				var instance_to_reference_ = self;
-				#region Heavy Melee Engine
-				if instance_exists(instance_to_reference_.currentTargetToFocus) {
-					instance_to_reference_.selfCurrentHPPercentForHeavyMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForHeavyMeleeEngineStartWeight * 2))
-					instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight * 2) - (instance_to_reference_.targetCurrentPercentageOfStaminaAndMana * obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight);
-					if instance_to_reference_.targetOfTargetCurrentHP != -1 {
-						instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight = (instance_to_reference_.targetOfTargetCurrentHP * (obj_ai_decision_making.targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight * 2));
-					}
-					else {
-						instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight = obj_ai_decision_making.targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight;
-					}
-					instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForHeavyMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])));
-					instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight = (instance_to_reference_.percentageOfDamageToTargetTotalHPHeavyMeleeAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineStartWeight * 2))
-					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
-						instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight = (((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyMeleeEngineStartWeight));
-					}
-					else if instance_to_reference_.combatFriendlyStatus == "Minion" {
-						instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight = (((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyMeleeEngineStartWeight));
-					}
-					// Set the total weight
-					instance_to_reference_.heavyMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight) * instance_to_reference_.heavyMeleeEngineWeightMultiplier;
-				}
-				#endregion
-				#region Light Melee Engine
-				if instance_exists(instance_to_reference_.currentTargetToFocus) {
-					instance_to_reference_.selfCurrentHPPercentForLightMeleeEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForLightMeleeEngineStartWeight * 2) - (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForLightMeleeEngineStartWeight * 2))
-					instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight = (instance_to_reference_.targetCurrentPercentageOfStaminaAndMana * obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineStartWeight);
-					if instance_to_reference_.targetOfTargetCurrentHP != -1 {
-						instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight = (obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight * 2) - (instance_to_reference_.targetOfTargetCurrentHP * (obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight * 2));
-					}
-					else {
-						instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight = obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight;
-					}
-					instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForLightMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])));
-					instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight = (instance_to_reference_.percentageOfDamageToTargetCurrentHPLightMeleeAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetCurrentHPForLightMeleeEngineStartWeight * 2))
-					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
-						if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) {
-							instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightMeleeEngineStartWeight);
-						}
-						else {
-							instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = 0;
-						}
-					}
-					else if instance_to_reference_.combatFriendlyStatus == "Minion" {
-						if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) {
-							instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightMeleeEngineStartWeight);
-						}
-						else {
-							instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = 0;
-						}
-					}
-					// Set the total weight
-					instance_to_reference_.lightMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForLightMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight) * instance_to_reference_.lightMeleeEngineWeightMultiplier;
-				}
-				#endregion
-				#region Heavy Ranged Engine
-				if instance_exists(instance_to_reference_.currentTargetToFocus) {
-					var temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
-					if temporary_instance_to_reference_ != obj_player.id {
-						instance_to_reference_.targetCurrentHPPercentForHeavyRangedEngineTotalWeight = (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
-						// START OF DETERMINING targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight -----
-						if instance_exists(temporary_instance_to_reference_.currentTargetToFocus) {
-							var target_of_target_ = temporary_instance_to_reference_.currentTargetToFocus;
-							if target_of_target_ != obj_player.id {
-								switch (target_of_target_.objectArchetype) {
-									case "Healer": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 2.00;
-										break;
-									case "Tank": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 1.33;
-										break;
-									case "Melee DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 0.66;
-										break;
-									case "Ranged DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 0.00;
-										break;
-								}
-							}
-							else if target_of_target_ == obj_player.id {
-								instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = (obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * ((1 / obj_ai_decision_making.attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight))
-							}
-						}
-						else {
-							instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight;
-						}
-						// END -----
-					}
-					else if temporary_instance_to_reference_ == obj_player.id {
-						instance_to_reference_.targetCurrentHPPercentForHeavyRangedEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
-					}
-					instance_to_reference_.selfCurrentHPPercentForHeavyRangedEngineTotalWeight = instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
-					instance_to_reference_.objectProximityToTargetForHeavyRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForHeavyRangedEngineStartWeight * 2);
-					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
-						if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) {
-							instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyRangedEngineStartWeight);
-						}
-						else {
-							instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = 0;
-						}
-					}
-					else if instance_to_reference_.combatFriendlyStatus == "Minion" {
-						if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) {
-							instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyRangedEngineStartWeight);
-						}
-						else {
-							instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = 0;
-						}
-					}
-					instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight = instance_to_reference_.percentageOfDamageToTargetTotalHPHeavyRangedAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetTotalHPForHeavyRangedEngineStartWeight * 2);
-					instance_to_reference_.heavyRangedEngineTotalWeight = (instance_to_reference_.targetCurrentHPPercentForHeavyRangedEngineTotalWeight + instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForHeavyRangedEngineTotalWeight + instance_to_reference_.objectProximityToTargetForHeavyRangedEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight) * instance_to_reference_.heavyRangedEngineWeightMultiplier;
-				}
-				#endregion
-				#region Light Ranged Engine
-				if instance_exists(instance_to_reference_.currentTargetToFocus) {
-					var temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
-					if temporary_instance_to_reference_ != obj_player.id {
-						instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - ((temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForLightRangedEngineStartWeight * 2));
-						// START OF DETERMINING targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight -----
-						if instance_exists(temporary_instance_to_reference_.currentTargetToFocus) {
-							var target_of_target_ = temporary_instance_to_reference_.currentTargetToFocus;
-							if target_of_target_ != obj_player.id {
-								switch (target_of_target_.objectArchetype) {
-									case "Healer": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 0.00;
-										break;
-									case "Tank": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 0.66;
-										break;
-									case "Melee DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 1.33;
-										break;
-									case "Ranged DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 2.0;
-										break;
-								}
-							}
-							else if target_of_target_ == obj_player.id {
-								instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = (obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * ((1 / obj_ai_decision_making.attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight))
-							}
-						}
-						else {
-							instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight;
-						}
-						// END -----
-					}
-					else if temporary_instance_to_reference_ == obj_player.id {
-						instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - ((playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForLightRangedEngineStartWeight * 2));
-					}
-					instance_to_reference_.selfCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForLightRangedEngineStartWeight * 2));
-					instance_to_reference_.objectProximityToTargetForLightRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForLightRangedEngineStartWeight * 2);
-					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
-						instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight = ((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightRangedEngineStartWeight);
-					}
-					else if instance_to_reference_.combatFriendlyStatus == "Minion" {
-						instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight = ((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightRangedEngineStartWeight);
-					}
-					instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight = instance_to_reference_.percentageOfDamageToTargetCurrentHPLightRangedAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetCurrentHPForLightRangedEngineStartWeight * 2);
-					instance_to_reference_.lightRangedEngineTotalWeight = (instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight + instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForLightRangedEngineTotalWeight + instance_to_reference_.objectProximityToTargetForLightRangedEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight) * instance_to_reference_.lightRangedEngineWeightMultiplier;
-				}
-				#endregion
-				#region Run Away Engine
-				if instance_exists(instance_to_reference_.currentTargetToFocus) {
-					instance_to_reference_.selfCurrentHPPercentForRunAwayEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.selfCurrentHPPercentForRunAwayEngineStartWeight * 2));
-					var temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
-					if temporary_instance_to_reference_ != obj_player.id {
-						instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight = (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForRunAwayEngineStartWeight * 2);
-						switch (temporary_instance_to_reference_.objectArchetype) {
-							case "Healer": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 0.00;
-								break;
-							case "Tank": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 2.00;
-								break;
-							case "Melee DPS": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 2.00;
-								break;
-							case "Ranged DPS": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 0.66;;
-								break;
-						}
-					}
-					else if temporary_instance_to_reference_ == obj_player.id {
-						instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForRunAwayEngineStartWeight * 2);
-						instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * ((1 / attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight)
-					}
-					instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight = ((obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2)))
-					if instance_to_reference_.combatFriendlyStatus = "Enemy" {
-						if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
-							instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
-						}
-						else {
-							instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = 0;
-						}
-					}
-					else if instance_to_reference_.combatFriendlyStatus = "Minion" {
-						if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
-							instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
-						}
-						else {
-							instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = 0;
-						}
-					}
-					instance_to_reference_.runAwayEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForRunAwayEngineTotalWeight + instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight + instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight + instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight) * instance_to_reference_.runAwayEngineWeightMultiplier;
-				}
-				#endregion
-				#region FOR HEALERS ONLY - Heal Ally
-				if instance_to_reference_.objectArchetype == "Healer" {
-					var temporary_instance_to_reference_current_hp_, temporary_instance_to_reference_max_hp_, temporary_instance_to_reference_is_lowest_hp_;
-					temporary_instance_to_reference_current_hp_ = 0;
-					temporary_instance_to_reference_max_hp_ = 0;
-					temporary_instance_to_reference_is_lowest_hp_ = noone;
-					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
-						for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-							temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-							if instance_exists(temporary_instance_to_reference_) {
-								if temporary_instance_to_reference_.combatFriendlyStatus == "Enemy" {
-									temporary_instance_to_reference_current_hp_ += temporary_instance_to_reference_.enemyCurrentHP;
-									temporary_instance_to_reference_max_hp_ += temporary_instance_to_reference_.enemyMaxHP;
-									if temporary_instance_to_reference_is_lowest_hp_ == noone {
-										temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
-									}
-									else if instance_exists(temporary_instance_to_reference_is_lowest_hp_) {
-										if (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) < (temporary_instance_to_reference_is_lowest_hp_.enemyCurrentHP / temporary_instance_to_reference_is_lowest_hp_.enemyMaxHP) {
-											temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
-										}
-									}
-								}
-							}
-						}
-					}
-					else if instance_to_reference_.combatFriendlyStatus == "Minion" {
-						temporary_instance_to_reference_current_hp_ += playerCurrentHP;
-						temporary_instance_to_reference_max_hp_ += playerMaxHP;
-						temporary_instance_to_reference_is_lowest_hp_ = obj_player.id;
-						for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-							temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-							if instance_exists(temporary_instance_to_reference_) {
-								if temporary_instance_to_reference_.combatFriendlyStatus == "Minion" {
-									temporary_instance_to_reference_current_hp_ += temporary_instance_to_reference_.enemyCurrentHP;
-									temporary_instance_to_reference_max_hp_ += temporary_instance_to_reference_.enemyMaxHP;
-									if temporary_instance_to_reference_is_lowest_hp_ == obj_player.id {
-										if (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) < (playerCurrentHP / playerMaxHP) {
-											temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
-										}
-									}
-									else if instance_exists(temporary_instance_to_reference_is_lowest_hp_) {
-										if (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) < (temporary_instance_to_reference_is_lowest_hp_.enemyCurrentHP / temporary_instance_to_reference_is_lowest_hp_.enemyMaxHP) {
-											temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
-										}
-									}
-								}
-							}
-						}
-					}
-					instance_to_reference_.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight = (obj_ai_decision_making.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineStartWeight * 2) - ((temporary_instance_to_reference_current_hp_ / temporary_instance_to_reference_max_hp_) * (obj_ai_decision_making.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineStartWeight * 2));
-					if temporary_instance_to_reference_is_lowest_hp_ != obj_player.id {
-						if instance_exists(temporary_instance_to_reference_is_lowest_hp_) {
-							switch (temporary_instance_to_reference_is_lowest_hp_.objectArchetype) {
-								case "Healer": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 2.0;
-									break;
-								case "Tank": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 1.5;
-									break;
-								case "Melee DPS": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 0.5;
-									break;
-								case "Ranged DPS": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 1.0;
-									break;
-							}
-							instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight = (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2) - ((temporary_instance_to_reference_is_lowest_hp_.enemyCurrentHP / temporary_instance_to_reference_is_lowest_hp_.enemyMaxHP) * (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2));
-						}
-					}
-					else {
-						instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 0.75;
-						instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight = (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2) - ((playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2));
-					}
+				if instance_exists(self) {
+					var instance_to_reference_ = self;
+					#region Heavy Melee Engine
 					if instance_exists(instance_to_reference_.currentTargetToFocus) {
-						temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
-						if temporary_instance_to_reference_ != obj_player.id {
-							instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight = (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHealAllyEngineStartWeight * 2);
+						instance_to_reference_.selfCurrentHPPercentForHeavyMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForHeavyMeleeEngineStartWeight * 2))
+						instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight * 2) - (instance_to_reference_.targetCurrentPercentageOfStaminaAndMana * obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight);
+						if instance_to_reference_.targetOfTargetCurrentHP != -1 {
+							instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight = (instance_to_reference_.targetOfTargetCurrentHP * (obj_ai_decision_making.targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight * 2));
 						}
 						else {
-							instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHealAllyEngineStartWeight * 2);
+							instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight = obj_ai_decision_making.targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight;
+						}
+						instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForHeavyMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])));
+						instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight = (instance_to_reference_.percentageOfDamageToTargetTotalHPHeavyMeleeAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineStartWeight * 2))
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight = (((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyMeleeEngineStartWeight));
+						}
+						else if instance_to_reference_.combatFriendlyStatus == "Minion" {
+							instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight = (((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyMeleeEngineStartWeight));
+						}
+						// Set the total weight
+						instance_to_reference_.heavyMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight) * instance_to_reference_.heavyMeleeEngineWeightMultiplier;
+					}
+					#endregion
+					#region Light Melee Engine
+					if instance_exists(instance_to_reference_.currentTargetToFocus) {
+						instance_to_reference_.selfCurrentHPPercentForLightMeleeEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForLightMeleeEngineStartWeight * 2) - (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForLightMeleeEngineStartWeight * 2))
+						instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight = (instance_to_reference_.targetCurrentPercentageOfStaminaAndMana * obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineStartWeight);
+						if instance_to_reference_.targetOfTargetCurrentHP != -1 {
+							instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight = (obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight * 2) - (instance_to_reference_.targetOfTargetCurrentHP * (obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight * 2));
+						}
+						else {
+							instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight = obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight;
+						}
+						instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight = (obj_ai_decision_making.objectProximityToTargetForLightMeleeEngineStartWeight * 2) * (1 - (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])));
+						instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight = (instance_to_reference_.percentageOfDamageToTargetCurrentHPLightMeleeAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetCurrentHPForLightMeleeEngineStartWeight * 2))
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) {
+								instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightMeleeEngineStartWeight);
+							}
+							else {
+								instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = 0;
+							}
+						}
+						else if instance_to_reference_.combatFriendlyStatus == "Minion" {
+							if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) {
+								instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightMeleeEngineStartWeight);
+							}
+							else {
+								instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight = 0;
+							}
+						}
+						// Set the total weight
+						instance_to_reference_.lightMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForLightMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight) * instance_to_reference_.lightMeleeEngineWeightMultiplier;
+					}
+					#endregion
+					#region Heavy Ranged Engine
+					if instance_exists(instance_to_reference_.currentTargetToFocus) {
+						var temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
+						if temporary_instance_to_reference_ != obj_player.id {
+							instance_to_reference_.targetCurrentHPPercentForHeavyRangedEngineTotalWeight = (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
+							// START OF DETERMINING targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight -----
+							if instance_exists(temporary_instance_to_reference_.currentTargetToFocus) {
+								var target_of_target_ = temporary_instance_to_reference_.currentTargetToFocus;
+								if target_of_target_ != obj_player.id {
+									switch (target_of_target_.objectArchetype) {
+										case "Healer": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 2.00;
+											break;
+										case "Tank": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 1.33;
+											break;
+										case "Melee DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 0.66;
+											break;
+										case "Ranged DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * 0.00;
+											break;
+									}
+								}
+								else if target_of_target_ == obj_player.id {
+									instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = (obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight * ((1 / obj_ai_decision_making.attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight))
+								}
+							}
+							else {
+								instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight;
+							}
+							// END -----
+						}
+						else if temporary_instance_to_reference_ == obj_player.id {
+							instance_to_reference_.targetCurrentHPPercentForHeavyRangedEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
+						}
+						instance_to_reference_.selfCurrentHPPercentForHeavyRangedEngineTotalWeight = instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForHeavyRangedEngineStartWeight * 2);
+						instance_to_reference_.objectProximityToTargetForHeavyRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForHeavyRangedEngineStartWeight * 2);
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) {
+								instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyRangedEngineStartWeight);
+							}
+							else {
+								instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = 0;
+							}
+						}
+						else if instance_to_reference_.combatFriendlyStatus == "Minion" {
+							if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) {
+								instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyRangedEngineStartWeight);
+							}
+							else {
+								instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight = 0;
+							}
+						}
+						instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight = instance_to_reference_.percentageOfDamageToTargetTotalHPHeavyRangedAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetTotalHPForHeavyRangedEngineStartWeight * 2);
+						instance_to_reference_.heavyRangedEngineTotalWeight = (instance_to_reference_.targetCurrentHPPercentForHeavyRangedEngineTotalWeight + instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForHeavyRangedEngineTotalWeight + instance_to_reference_.objectProximityToTargetForHeavyRangedEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHeavyRangedEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight) * instance_to_reference_.heavyRangedEngineWeightMultiplier;
+					}
+					#endregion
+					#region Light Ranged Engine
+					if instance_exists(instance_to_reference_.currentTargetToFocus) {
+						var temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
+						if temporary_instance_to_reference_ != obj_player.id {
+							instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - ((temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForLightRangedEngineStartWeight * 2));
+							// START OF DETERMINING targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight -----
+							if instance_exists(temporary_instance_to_reference_.currentTargetToFocus) {
+								var target_of_target_ = temporary_instance_to_reference_.currentTargetToFocus;
+								if target_of_target_ != obj_player.id {
+									switch (target_of_target_.objectArchetype) {
+										case "Healer": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 0.00;
+											break;
+										case "Tank": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 0.66;
+											break;
+										case "Melee DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 1.33;
+											break;
+										case "Ranged DPS": instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * 2.0;
+											break;
+									}
+								}
+								else if target_of_target_ == obj_player.id {
+									instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = (obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight * ((1 / obj_ai_decision_making.attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight))
+								}
+							}
+							else {
+								instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight = obj_ai_decision_making.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight;
+							}
+							// END -----
+						}
+						else if temporary_instance_to_reference_ == obj_player.id {
+							instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.targetCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - ((playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForLightRangedEngineStartWeight * 2));
+						}
+						instance_to_reference_.selfCurrentHPPercentForLightRangedEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForHeavyRangedEngineStartWeight * 2) - (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForLightRangedEngineStartWeight * 2));
+						instance_to_reference_.objectProximityToTargetForLightRangedEngineTotalWeight = (instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForLightRangedEngineStartWeight * 2);
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight = ((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightRangedEngineStartWeight);
+						}
+						else if instance_to_reference_.combatFriendlyStatus == "Minion" {
+							instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight = ((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForLightRangedEngine) * (obj_ai_decision_making.totalEnemiesInBattleForLightRangedEngineStartWeight);
+						}
+						instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight = instance_to_reference_.percentageOfDamageToTargetCurrentHPLightRangedAttackWillDeal * (obj_ai_decision_making.percentageOfDamageToTargetCurrentHPForLightRangedEngineStartWeight * 2);
+						instance_to_reference_.lightRangedEngineTotalWeight = (instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight + instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForLightRangedEngineTotalWeight + instance_to_reference_.objectProximityToTargetForLightRangedEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight) * instance_to_reference_.lightRangedEngineWeightMultiplier;
+					}
+					#endregion
+					#region Run Away Engine
+					if instance_exists(instance_to_reference_.currentTargetToFocus) {
+						instance_to_reference_.selfCurrentHPPercentForRunAwayEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.selfCurrentHPPercentForRunAwayEngineStartWeight * 2));
+						var temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
+						if temporary_instance_to_reference_ != obj_player.id {
+							instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight = (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForRunAwayEngineStartWeight * 2);
+							switch (temporary_instance_to_reference_.objectArchetype) {
+								case "Healer": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 0.00;
+									break;
+								case "Tank": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 2.00;
+									break;
+								case "Melee DPS": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 2.00;
+									break;
+								case "Ranged DPS": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 0.66;;
+									break;
+							}
+						}
+						else if temporary_instance_to_reference_ == obj_player.id {
+							instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForRunAwayEngineStartWeight * 2);
+							instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * ((1 / attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight)
+						}
+						instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight = ((obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2)))
+						if instance_to_reference_.combatFriendlyStatus = "Enemy" {
+							if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
+								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
+							}
+							else {
+								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = 0;
+							}
+						}
+						else if instance_to_reference_.combatFriendlyStatus = "Minion" {
+							if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
+								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
+							}
+							else {
+								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = 0;
+							}
+						}
+						instance_to_reference_.runAwayEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForRunAwayEngineTotalWeight + instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight + instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight + instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight) * instance_to_reference_.runAwayEngineWeightMultiplier;
+					}
+					#endregion
+					#region FOR HEALERS ONLY - Heal Ally
+					if instance_to_reference_.objectArchetype == "Healer" {
+						var temporary_instance_to_reference_current_hp_, temporary_instance_to_reference_max_hp_, temporary_instance_to_reference_is_lowest_hp_;
+						temporary_instance_to_reference_current_hp_ = 0;
+						temporary_instance_to_reference_max_hp_ = 0;
+						temporary_instance_to_reference_is_lowest_hp_ = noone;
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
+								temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+								if instance_exists(temporary_instance_to_reference_) {
+									if temporary_instance_to_reference_.combatFriendlyStatus == "Enemy" {
+										temporary_instance_to_reference_current_hp_ += temporary_instance_to_reference_.enemyCurrentHP;
+										temporary_instance_to_reference_max_hp_ += temporary_instance_to_reference_.enemyMaxHP;
+										if temporary_instance_to_reference_is_lowest_hp_ == noone {
+											temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
+										}
+										else if instance_exists(temporary_instance_to_reference_is_lowest_hp_) {
+											if (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) < (temporary_instance_to_reference_is_lowest_hp_.enemyCurrentHP / temporary_instance_to_reference_is_lowest_hp_.enemyMaxHP) {
+												temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
+											}
+										}
+									}
+								}
+							}
+						}
+						else if instance_to_reference_.combatFriendlyStatus == "Minion" {
+							temporary_instance_to_reference_current_hp_ += playerCurrentHP;
+							temporary_instance_to_reference_max_hp_ += playerMaxHP;
+							temporary_instance_to_reference_is_lowest_hp_ = obj_player.id;
+							for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
+								temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+								if instance_exists(temporary_instance_to_reference_) {
+									if temporary_instance_to_reference_.combatFriendlyStatus == "Minion" {
+										temporary_instance_to_reference_current_hp_ += temporary_instance_to_reference_.enemyCurrentHP;
+										temporary_instance_to_reference_max_hp_ += temporary_instance_to_reference_.enemyMaxHP;
+										if temporary_instance_to_reference_is_lowest_hp_ == obj_player.id {
+											if (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) < (playerCurrentHP / playerMaxHP) {
+												temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
+											}
+										}
+										else if instance_exists(temporary_instance_to_reference_is_lowest_hp_) {
+											if (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) < (temporary_instance_to_reference_is_lowest_hp_.enemyCurrentHP / temporary_instance_to_reference_is_lowest_hp_.enemyMaxHP) {
+												temporary_instance_to_reference_is_lowest_hp_ = temporary_instance_to_reference_;
+											}
+										}
+									}
+								}
+							}
+						}
+						instance_to_reference_.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight = (obj_ai_decision_making.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineStartWeight * 2) - ((temporary_instance_to_reference_current_hp_ / temporary_instance_to_reference_max_hp_) * (obj_ai_decision_making.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineStartWeight * 2));
+						if temporary_instance_to_reference_is_lowest_hp_ != obj_player.id {
+							if instance_exists(temporary_instance_to_reference_is_lowest_hp_) {
+								switch (temporary_instance_to_reference_is_lowest_hp_.objectArchetype) {
+									case "Healer": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 2.0;
+										break;
+									case "Tank": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 1.5;
+										break;
+									case "Melee DPS": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 0.5;
+										break;
+									case "Ranged DPS": instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 1.0;
+										break;
+								}
+								instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight = (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2) - ((temporary_instance_to_reference_is_lowest_hp_.enemyCurrentHP / temporary_instance_to_reference_is_lowest_hp_.enemyMaxHP) * (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2));
+							}
+						}
+						else {
+							instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight = obj_ai_decision_making.archetypeOfCurrentLowestHPAllyForHealAllyEngineStartWeight * 0.75;
+							instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight = (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2) - ((playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.currentHPPercentOfLowestHPAllyForHealAllyEngineStartWeight * 2));
+						}
+						if instance_exists(instance_to_reference_.currentTargetToFocus) {
+							temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
+							if temporary_instance_to_reference_ != obj_player.id {
+								instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight = (temporary_instance_to_reference_.enemyCurrentHP / temporary_instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHealAllyEngineStartWeight * 2);
+							}
+							else {
+								instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForHealAllyEngineStartWeight * 2);
+							}
+						}
+						if instance_to_reference_ == "Enemy" {
+							instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight = ((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHealAllyEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHealAllyEngineStartWeight);
+						}
+						else if instance_to_reference_ == "Minion" {
+							instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight = ((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHealAllyEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHealAllyEngineStartWeight);
+						}
+						instance_to_reference_.selfCurrentHPPercentForHealAllyEngineTotalWeight = (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.selfCurrentHPPercentForHealAllyEngineStartWeight * 2);
+						if instance_to_reference_.healAllyEngineTimer <= 0 {
+							instance_to_reference_.healAllyEngineTotalWeight = (instance_to_reference_.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight + instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForHealAllyEngineTotalWeight) * instance_to_reference_.healAllyEngineWeightMultiplier;
+						}
+						else {
+							instance_to_reference_.healAllyEngineTotalWeight = 0;
 						}
 					}
-					if instance_to_reference_ == "Enemy" {
-						instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight = ((1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHealAllyEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHealAllyEngineStartWeight);
-					}
-					else if instance_to_reference_ == "Minion" {
-						instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight = ((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHealAllyEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHealAllyEngineStartWeight);
-					}
-					instance_to_reference_.selfCurrentHPPercentForHealAllyEngineTotalWeight = (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.selfCurrentHPPercentForHealAllyEngineStartWeight * 2);
-					if instance_to_reference_.healAllyEngineTimer <= 0 {
-						instance_to_reference_.healAllyEngineTotalWeight = (instance_to_reference_.cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight + instance_to_reference_.archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight + instance_to_reference_.targetCurrentHPPercentForHealAllyEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHealAllyEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForHealAllyEngineTotalWeight) * instance_to_reference_.healAllyEngineWeightMultiplier;
-					}
-					else {
-						instance_to_reference_.healAllyEngineTotalWeight = 0;
-					}
+					#endregion
 				}
-				#endregion
 			//}
 		//}
 	}

@@ -118,17 +118,39 @@ else {
 }
 #endregion
 
-/*
-// NEEDS TO BE REMOVED
-if !(keyboard_check(ord("F"))) {
-	chosenEngine = "Light Melee"
+// Resetting variables to make a new decision so that the AI doesn't get caught in a loop
+if ((!instance_exists(currentTargetToFocus)) || (currentTargetToFocus == noone)) && ((chosenEngine == "Heavy Melee") || (chosenEngine == "Light Melee") || (chosenEngine == "Heavy Ranged") || (chosenEngine == "Light Ranged" )) {
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
-else {
-	scr_healer_ai_out_of_combat_targeting();
-	chosenEngine = "Heal Ally";
+if ((!instance_exists(currentTargetToHeal)) || (currentTargetToHeal == noone)) && (objectArchetype == "Healer") && (chosenEngine == "Heal Ally") {
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
-*/
+if (chosenEngine == "") && (ds_exists(objectIDsInBattle, ds_type_list)) {
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+}
 
+/// Actually sending the AI to the correct states depending on the decision made and chosenEngine
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {
@@ -150,6 +172,8 @@ if chosenEngine != "" {
 					else if alreadyTriedToChase {
 						chosenEngine = "Light Ranged";
 						decisionMadeForTargetAndAction = true;
+						alreadyTriedToChase = false;
+						alreadyTriedToChaseTimer = 0;
 					}
 				}
 				// Else if the obj_enemy doesn't have enough stamina to execute attack
@@ -201,6 +225,8 @@ if chosenEngine != "" {
 					else if alreadyTriedToChase {
 						chosenEngine = "Light Ranged";
 						decisionMadeForTargetAndAction = true;
+						alreadyTriedToChase = false;
+						alreadyTriedToChaseTimer = 0;
 					}
 				}
 				// Else if the obj_enemy doesn't have enough stamina to execute attack
@@ -252,6 +278,8 @@ if chosenEngine != "" {
 					else if alreadyTriedToChase {
 						chosenEngine = "Light Ranged";
 						decisionMadeForTargetAndAction = true;
+						alreadyTriedToChase = false;
+						alreadyTriedToChaseTimer = 0;
 					}
 				}
 				// Else if the obj_enemy doesn't have enough mana to execute attack
@@ -439,6 +467,8 @@ if chosenEngine != "" {
 						else if alreadyTriedToChase {
 							chosenEngine = "Light Ranged";
 							decisionMadeForTargetAndAction = true;
+							alreadyTriedToChase = false;
+							alreadyTriedToChaseTimer = 0;
 						}
 					}
 					// Else if the obj_enemy doesn't have enough mana to execute heal

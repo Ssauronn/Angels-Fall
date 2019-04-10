@@ -477,11 +477,10 @@ if instance_exists(self) {
 		enemyGroundHurtbox.y = y + 13;
 	}
 }
-show_debug_message(string(id) + "'s decision made? " + string(decisionMadeForTargetAndAction));
+
+
 show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));
-
-
-/*
+show_debug_message(string(id) + "'s state is: " + string(enemyState));
 show_debug_message("For " + string(self.id) + " these are the following weights for heavy melee attack:");
 show_debug_message(string(selfCurrentHPPercentForHeavyMeleeEngineTotalWeight) + " = selfCurrentHPPercentForHeavyMeleeEngineTotalWeight");
 show_debug_message(string(targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight");
@@ -540,9 +539,10 @@ show_debug_message(string(totalEnemiesInBattleForHealAllyEngineTotalWeight) + " 
 show_debug_message(string(selfCurrentHPPercentForHealAllyEngineTotalWeight) + " = selfCurrentHPPercentForHealAllyEngineTotalWeight");
 show_debug_message("Total Heal Ally Engine Weight AFTER Multiplier = " + string(healAllyEngineTotalWeight));
 show_debug_message("- BREAK -");
+show_debug_message("And " + string(self) + "'s target is: " + string(currentTargetToFocus));
 show_debug_message("- BREAK -");
 show_debug_message("");
-*/
+
 
 #region if instance_exists(self) { // closing brackets
 }
