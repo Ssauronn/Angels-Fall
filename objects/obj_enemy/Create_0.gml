@@ -40,10 +40,6 @@ weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt = 0;
 // Tether ranges - normally standard
 tetherXRange = camera_get_view_width(view_camera[0]) * 2;
 tetherYRange = camera_get_view_height(view_camera[0]) * 2;
-
-// Variable to determine if enemy was, or currently is, in combat
-enemyInCombat = false;
-enemyWasInCombat = false;
 #endregion
 
 
