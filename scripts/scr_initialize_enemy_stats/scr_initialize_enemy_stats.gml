@@ -43,8 +43,8 @@ switch (enemy_name_) {
 		// Enemies' Attack Ranges
 		enemyLightMeleeAttackRange = 32 * 2;
 		enemyHeavyMeleeAttackRange = 32 * 2;
-		enemyLightRangedAttackRange = 32 * 4;
-		enemyHeavyRangedAttackRange = 32 * 4;
+		enemyLightRangedAttackRange = 32 * 8;
+		enemyHeavyRangedAttackRange = 32 * 8;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -195,12 +195,9 @@ switch (enemy_name_) {
 		// Enemies' Attack Ranges
 		enemyLightMeleeAttackRange = 32 * 2;
 		enemyHeavyMeleeAttackRange = 32 * 2;
-		enemyLightRangedAttackRange = 32 * 4;
-		enemyHeavyRangedAttackRange = 32 * 4;
+		enemyLightRangedAttackRange = 32 * 8;
+		enemyHeavyRangedAttackRange = 32 * 8;
 		enemyHealAllyRange = 32 * 4;
-		
-		// Enemies' Attack AoE Radius's
-		enemyHealAreaOfEffectRadius = 100;
 		#endregion
 		
 		// Enemy Movement Variables

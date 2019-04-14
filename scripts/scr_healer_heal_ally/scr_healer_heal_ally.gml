@@ -5,7 +5,7 @@ if instance_exists(currentTargetToHeal) {
 		hitboxCreated = true;
 		
 		// Set local variables
-		var owner_, target_, i, instance_to_reference_, instance_to_reference_ground_hurtbox_, player_ground_hurtbox_;
+		var owner_, target_, player_ground_hurtbox_;
 		owner_ = self;
 		target_ = currentTargetToHeal;
 		player_ground_hurtbox_ = obj_player.playerGroundHurtbox;

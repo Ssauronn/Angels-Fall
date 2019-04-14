@@ -4,10 +4,6 @@ if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 6) {
 		hitboxCreated = true;
 		var owner_ = id;
-		var player_x_ = obj_player.x;
-		var player_y_ = obj_player.y;
-		var mouse_x_ = mouse_x;
-		var mouse_y_ = mouse_y;
 		switch (playerDirectionFacing) {
 			case playerdirection.right:
 				playerHitbox = instance_create_depth(x + lengthdir_x(32, playerHitboxDirection), y + lengthdir_y(32, playerHitboxDirection), -999, obj_hitbox);
