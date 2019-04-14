@@ -1,6 +1,6 @@
 #region Create The Projectile
 if instance_exists(currentTargetToFocus) {
-	if (!hitboxCreated) && (enemyImageIndex > 5) {
+	if (!hitboxCreated) && (enemyImageIndex > 10) {
 		hitboxCreated = true;
 		var owner_, target_;
 		owner_ = self;
