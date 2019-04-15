@@ -33,6 +33,7 @@ if instance_exists(currentTargetToHeal) {
 		enemyHitbox.enemyHitboxValue = enemyHealValue;
 		enemyHitbox.enemyHitboxCollisionFound = false;
 		enemyHitbox.enemyHitboxLifetime = 1;
+		enemyHitbox.enemyHitboxCollidedWithWall = false;
 		
 		// Store bullet ID's in a ds_list for later use (to move and manipulate)
 		if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {

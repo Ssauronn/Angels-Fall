@@ -21,13 +21,29 @@ if !is_undefined(owner) {
 				// Check to see if any bullet hitboxes exist
 				if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {
 					// Check to see if the first hitbox exists
-					if (instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, 0))) && (!ds_list_empty(obj_combat_controller.enemyHitboxList)){
+					if (!ds_list_empty(obj_combat_controller.enemyHitboxList)) {
 						// Check to see if there are more than 1 hitboxes active
 						if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
 							// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 							for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
 								if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
 									row_to_delete_ = i;
+								}
+							}
+							// Apply the slow to the enemy in case the attack was parried instead
+							if obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy {
+								with ds_list_find_value(obj_combat_controller.enemyHitboxList, row_to_delete_) {
+									if !enemyHitboxCollidedWithWall {
+										with owner {
+											obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
+											enemyGameSpeed = 0;
+											slowEnemyTimeWithParryActive = true;
+											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
+											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
+											// Essentially, I keep track of the buff's timer on the most recently applied enemy by setting it in a centralized object (obj_skill_tree).
+											obj_skill_tree.slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
+										}
+									}
 								}
 							}
 							// Redundant check, prevents bugs
@@ -38,6 +54,22 @@ if !is_undefined(owner) {
 						}
 						// If there's only one hitbox active, erase the hitbox ds_list
 						else {
+							// Apply the slow to the enemy in case the attack was parried instead
+							if obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy {
+								with ds_list_find_value(obj_combat_controller.enemyHitboxList, row_to_delete_) {
+									if !enemyHitboxCollidedWithWall {
+										with owner {
+											obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
+											enemyGameSpeed = 0;
+											slowEnemyTimeWithParryActive = true;
+											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
+											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
+											// Essentially, I keep track of the buff's timer on the most recently applied enemy by setting it in a centralized object (obj_skill_tree).
+											obj_skill_tree.slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
+										}
+									}
+								}
+							}
 							for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
 								if !instance_exists(ds_list_find_value(obj_combat_controller.enemyHitboxList, i)) {
 									ds_list_delete(obj_combat_controller.enemyHitboxList, i);
@@ -130,7 +162,9 @@ if !is_undefined(owner) {
 	}
 	// If the instance firing the bullet doesn't exist, automatically delete and destroy all bullets fired by that instance
 	else {
-		if owner.object_index == obj_enemy {
+		// Here we're checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
+		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
+		if variable_instance_exists(self, "enemyHitboxValue") {
 			// Actually destroy the bullet object
 			var i, row_to_delete_;
 			row_to_delete_ = -1;
@@ -181,7 +215,9 @@ if !is_undefined(owner) {
 			}
 			instance_destroy(self);
 		}
-		else if owner.object_index == obj_player {
+		// Here we're checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
+		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
+		else if variable_instance_exists(self, "playerHitboxValue") {
 			// Actually destroy the bullet object
 			var i, row_to_delete_;
 			row_to_delete_ = -1;

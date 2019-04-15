@@ -16,11 +16,13 @@ else if owner.object_index == obj_enemy {
 if owner_is_player_ {
 	if playerHitboxType == "Projectile" {
 		playerHitboxCollisionFound = true;
+		playerHitboxCollidedWithWall = true;
 	}
 }
 else if owner_is_enemy_ {
 	if enemyHitboxType == "Projectile" {
 		enemyHitboxCollisionFound = true;
+		enemyHitboxCollidedWithWall = true;
 	}
 }
 

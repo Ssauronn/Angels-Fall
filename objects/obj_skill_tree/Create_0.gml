@@ -34,7 +34,6 @@ successfulParryInvulnerabilityTimerStartTime = 0.5 * room_speed;
 
 
 #region Tier 5 Spells and Abilities
-
 #region Standard Bullet (Mana)
 // Create first tier 5 ability here
 #endregion
