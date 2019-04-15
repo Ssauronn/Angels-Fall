@@ -711,14 +711,6 @@
             }
         },
         {
-            "Key": "7565694a-a4b9-4d62-ad32-ecf85725f5a5",
-            "Value": {
-                "id": "be408ead-48fa-482c-9495-7ff92deeb903",
-                "resourcePath": "objects\\obj_player_melee_hitbox\\obj_player_melee_hitbox.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "7573461a-232f-4c58-a418-8aeb5510c936",
             "Value": {
                 "id": "76975f61-30e2-4573-b800-59376c3e69f4",

@@ -50,7 +50,7 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 			healAllyEngineWeightMultiplier = 0.00;
 			break;
 		case "Melee DPS": enemyAttackPatternWeight = attackPatternStartWeight * (7 / 4);
-			targetOfTargetFocusIsDifferentArchetypesForTargetingPurposesStartWeightMultiplier = 0.9;
+			targetOfTargetFocusIsDifferentArchetypesForTargetingPurposesStartWeightObjectMultiplier = 0.9;
 			heavyMeleeEngineWeightMultiplier = 1.2;
 			lightMeleeEngineWeightMultiplier = 1.3;
 			heavyRangedEngineWeightMultiplier = 0.7;
@@ -543,6 +543,7 @@ show_debug_message("And " + string(self) + "'s target is: " + string(currentTarg
 show_debug_message("- BREAK -");
 show_debug_message("");
 */
+
 
 #region if instance_exists(self) { // closing brackets
 }

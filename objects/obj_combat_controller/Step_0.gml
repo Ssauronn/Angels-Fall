@@ -96,11 +96,14 @@ if ds_exists(enemyHitboxList, ds_type_list) {
 
 #region Count Down and Eliminate Various Debuffs for Enemies
 // ---COUNT DOWN (DE)BUFFS---
-if instance_exists(obj_enemy) {
-	with obj_enemy {
-		if variable_instance_exists(self, "slowEnemyTimeWithParryTimer") {
-			if slowEnemyTimeWithParryTimer > 0 {
-				slowEnemyTimeWithParryTimer -= 1;
+if ds_exists(objectIDsInBattle, ds_type_list) {
+	var i;
+	for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+		with ds_list_find_value(objectIDsInBattle, i) {
+			if variable_instance_exists(self, "slowEnemyTimeWithParryTimer") {
+				if slowEnemyTimeWithParryTimer > 0 {
+					slowEnemyTimeWithParryTimer -= 1;
+				}
 			}
 		}
 	}
