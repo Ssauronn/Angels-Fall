@@ -80,7 +80,9 @@ else if owner_is_enemy_ {
 		else if other_owner_is_player_ {
 			enemyHitboxCollisionFound = true;
 			if (!obj_skill_tree.parryWindowActive) && (!obj_skill_tree.successfulParryInvulnerabilityActive) {
-				playerCurrentHP -= enemyHitboxValue * (owner_.enemyTotalBonusDamage - playerTotalBonusResistance);
+				if obj_player.invincibile == false {
+					playerCurrentHP -= enemyHitboxValue * (owner_.enemyTotalBonusDamage - playerTotalBonusResistance);
+				}
 			}
 			// If the player is parrying upon contact, execute all parry actions and effects
 			else {

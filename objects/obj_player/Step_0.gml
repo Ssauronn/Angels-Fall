@@ -1,7 +1,12 @@
 /// @description Player Step Event
 // Set composite speed of player object, with the game speed of the
-// player and game speed of the user interface averaged out.       
-playerTotalSpeed = (playerGameSpeed + userInterfaceGameSpeed) / 2;
+// player and game speed of the user interface averaged out.
+if !obj_combat_controller.levelPaused && !obj_combat_controller.gamePaused {
+	playerTotalSpeed = (playerGameSpeed + userInterfaceGameSpeed) / 2;
+}
+else {
+	playerTotalSpeed = 0;
+}
 
 // Set the max speed the player object can move at, depending on playerTotalSpeed
 maxSpeed = baseMaxSpeed * playerTotalSpeed;
@@ -10,9 +15,9 @@ frictionAmount = baseFrictionAmount * playerTotalSpeed;
 dashSpeed = baseDashSpeed * playerTotalSpeed;
 
 // Used to regenerate resources
-playerCurrentHP += playerHPRegeneration;
-playerCurrentStamina += playerStaminaRegeneration;
-playerCurrentMana += playerManaRegeneration;
+playerCurrentHP += playerHPRegeneration * playerTotalSpeed;
+playerCurrentStamina += playerStaminaRegeneration * playerTotalSpeed;
+playerCurrentMana += playerManaRegeneration * playerTotalSpeed;
 // Used to control the resources of the player, make sure nothing goes above the max amounts
 playerMaxHP = playerMaxAnimecroHP + playerMaxPermanentHP + playerMaxFluidHP;
 if playerCurrentHP > playerMaxHP {
@@ -127,7 +132,9 @@ image_index = playerImageIndex;
 
 // Dashing timer
 if dashTimer >= 0 {
-	dashTimer -= 1 * (1 / playerTotalSpeed);
+	if playerTotalSpeed != 0 {
+		dashTimer -= 1 * (1 / playerTotalSpeed);
+	}
 }
 
 if instance_exists(self) {

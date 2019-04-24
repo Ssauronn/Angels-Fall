@@ -418,7 +418,7 @@ scr_change_states(enemyName);
 // Increase speed to max if the enemy needs to chase an object
 if (enemyState == enemystates.moveWithinAttackRange) || (enemyState == enemystates.passivelyFollowPlayer) {
 	if currentSpeed < maxSpeed {
-		currentSpeed += acceleration;
+		currentSpeed += acceleration * enemyTotalSpeed;
 	}
 	else {
 		currentSpeed = maxSpeed;
@@ -449,9 +449,12 @@ if enemyAnimationImageIndex >= sprite_get_number(enemyAnimationSprite) {
 	enemyAnimationImageIndex = -1;
 	enemyAnimationSprite = noone;
 }
-enemyImageIndexSpeed = 0.3 * enemyTotalSpeed;
+enemyImageIndexSpeed = enemyImageIndexBaseSpeed * enemyTotalSpeed;
 enemyImageIndex += enemyImageIndexSpeed;
 enemyAnimationImageIndex += enemyImageIndexSpeed;
+
+
+
 // This line below is only used for debugging/prototyping/testing purposes.
 // In the future, this line will be removed, and a series of lines of code in the draw event 
 // (not draw gui) as seen immediately below will be used to draw the enemy with their armor on, using 

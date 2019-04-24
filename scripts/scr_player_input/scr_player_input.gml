@@ -1,10 +1,6 @@
 ///@description PlayerInputScript
 // get movement inputs
 key_nokey = ((!keyboard_check(ord("W"))) && (!keyboard_check(ord("A"))) && (!keyboard_check(ord("S"))) && (!keyboard_check(ord("D"))));
-key_upright = (keyboard_check(ord("W"))) && (keyboard_check(ord("D")));
-key_downright = (keyboard_check(ord("S"))) && (keyboard_check(ord("D")));
-key_downleft = (keyboard_check(ord("S"))) && (keyboard_check(ord("A")));
-key_upleft = (keyboard_check(ord("W"))) && (keyboard_check(ord("A")));
 key_up = (keyboard_check(ord("W")));
 key_right = (keyboard_check(ord("D")));
 key_down = (keyboard_check(ord("S")));

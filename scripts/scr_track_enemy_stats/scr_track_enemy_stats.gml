@@ -1,8 +1,16 @@
 ///@description Change and Manage Stats
+// Total Speed for Enemy
+if !obj_combat_controller.levelPaused && !obj_combat_controller.gamePaused {
+	enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
+}
+else {
+	enemyTotalSpeed = 0;
+}
+
 // Base Stat Regenerations
-enemyCurrentHP += enemyHPRegeneration;
-enemyCurrentStamina += enemyStaminaRegeneration;
-enemyCurrentMana += enemyManaRegeneration;
+enemyCurrentHP += enemyHPRegeneration * enemyTotalSpeed;
+enemyCurrentStamina += enemyStaminaRegeneration * enemyTotalSpeed;
+enemyCurrentMana += enemyManaRegeneration * enemyTotalSpeed;
 
 // Make sure current stat values do not exceed max stat values
 if enemyCurrentHP > enemyMaxHP {
@@ -21,7 +29,6 @@ enemyTotalBonusResistance = 0; // + whatever bonus resistances the enemy has
 
 
 // Set Speed variables for enemies
-enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
 maxSpeed = baseMaxSpeed * enemyTotalSpeed;
 acceleration = baseAcceleration * enemyTotalSpeed;
 frictionAmount = baseFrictionAmount * enemyTotalSpeed;

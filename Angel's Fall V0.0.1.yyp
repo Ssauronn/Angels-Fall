@@ -466,7 +466,7 @@
             "Key": "4b3bfd73-0ced-466e-ae58-c3232e76fd75",
             "Value": {
                 "id": "cf7d120d-57d5-485d-a52e-8c6a5ab0be92",
-                "resourcePath": "rooms\\camera_display_manager\\camera_display_manager.yy",
+                "resourcePath": "rooms\\initialization_room\\initialization_room.yy",
                 "resourceType": "GMRoom"
             }
         },

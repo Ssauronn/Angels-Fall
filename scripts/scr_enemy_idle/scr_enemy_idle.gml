@@ -4,7 +4,7 @@ if instance_exists(self) {
 	// If the enemy has not yet made an action decision, make that decision based on the game
 	// variables set right at the moment this is called
 	if !decisionMadeForTargetAndAction {
-		var instance_to_reference_, self_in_combat_, temporary_instance_to_reference_, enemy_found_, i;
+		var instance_to_reference_, self_in_combat_, enemy_found_, i;
 		enemy_found_ = false;
 		self_in_combat_ = false;
 		// If there are obj_enemy objects on screen, whether friendly or enemy

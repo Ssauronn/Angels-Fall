@@ -110,7 +110,8 @@ switch (enemy_name_) {
 		enemyStateSprite = enemystates.idle;
 		enemyDirectionFacing = enemydirection.down;
 		enemyImageIndex = 0.00;
-		enemyImageIndexSpeed = 0.3 * enemyTotalSpeed;
+		enemyImageIndexBaseSpeed = 0.3;
+		enemyImageIndexSpeed = enemyImageIndexBaseSpeed * enemyTotalSpeed;
 		enemyAnimationImageIndex = 0.00;
 		enemyAnimationSprite = noone;
 		enemyAnimationX = 0;
@@ -266,7 +267,8 @@ switch (enemy_name_) {
 		enemyStateSprite = enemystates.idle;
 		enemyDirectionFacing = enemydirection.down;
 		enemyImageIndex = 0.00;
-		enemyImageIndexSpeed = 0.3 * enemyTotalSpeed;
+		enemyImageIndexBaseSpeed = 0.3;
+		enemyImageIndexSpeed = enemyImageIndexBaseSpeed * enemyTotalSpeed;
 		enemyAnimationImageIndex = 0.00;
 		enemyAnimationSprite = noone;
 		enemyAnimationX = 0;
