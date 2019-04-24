@@ -1,7 +1,7 @@
 /// @description Create Skill Tree Variables
 #region Prime Abilities
 // Variable used to set which Prime ability will be used ("Q" ability)
-primeAbilityChosen = "Bonus Damage Toggled";
+primeAbilityChosen = "Slow Time Toggled";
 
 // Variables used for a specific prime ability, both a toggled and timed slow time ability
 slowTimeActive = false;

@@ -4,9 +4,10 @@
 if primeAbilityChosen == "Slow Time Toggled" {
 	if (obj_player.key_prime_ability) {
 		slowTimeActive = !slowTimeActive;
+		obj_combat_controller.levelPaused = !obj_combat_controller.levelPaused;
 	}
 	if slowTimeActive {
-		playerCurrentHP -= 50 / room_speed;
+		playerCurrentHP -= (50 / room_speed) * playerTotalSpeed;
 		userInterfaceGameSpeed = 0.25;
 		playerGameSpeed = 1.75;
 		if instance_exists(obj_enemy) {
@@ -34,7 +35,7 @@ else if primeAbilityChosen == "Slow Time Timed" {
 		slowTimeActiveTimer = slowTimeActiveTimerStartTime;
 	}
 	if slowTimeActive {
-		playerCurrentHP -= 100 / room_speed;
+		playerCurrentHP -= (100 / room_speed) * playerTotalSpeed;
 		userInterfaceGameSpeed = 0.25;
 		playerGameSpeed = 1.75;
 		if instance_exists(obj_enemy) {
@@ -57,7 +58,7 @@ else if primeAbilityChosen == "Bonus Damage Toggled" {
 	if primeDamageActive {
 		primeBonusDamagePercentAsDecimal = 1;
 		obj_player.playerAnimationSprite = spr_prime_damage_buff;
-		playerCurrentHP -= 50 / room_speed;
+		playerCurrentHP -= (50 / room_speed) * playerTotalSpeed;
 	}
 	else {
 		primeBonusDamagePercentAsDecimal = 0;

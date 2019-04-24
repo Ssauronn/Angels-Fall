@@ -9,8 +9,8 @@ if instance_exists(obj_player) {
 		}
 		#region Targeting Engine for Each Object In Combat
 		// Set the target for each object to focus
-		var i, j, k, iteration_, instance_to_reference_, self_is_in_combat_, temporary_instance_to_reference_, number_of_enemy_targets_, number_of_minion_targets_, weight_priority_iteration_number_, weight_at_which_this_target_would_be_focused_at_;
-		var number_of_enemy_heal_targets_, number_of_enemies_next_to_enemy_heal_target_, number_of_minion_heal_targets_, number_of_enemies_next_to_minion_heal_target_, number_of_allies_next_to_enemy_heal_target_, number_of_allies_next_to_minion_heal_target_, weight_at_which_this_heal_target_would_be_focused_at_;
+		var i, j, k, iteration_, instance_to_reference_, self_is_in_combat_, temporary_instance_to_reference_, number_of_enemy_targets_, number_of_minion_targets_, weight_at_which_this_target_would_be_focused_at_;
+		var number_of_enemies_next_to_enemy_heal_target_, number_of_enemies_next_to_minion_heal_target_, number_of_allies_next_to_enemy_heal_target_, number_of_allies_next_to_minion_heal_target_, weight_at_which_this_heal_target_would_be_focused_at_;
 		globalvar enemy_target_grid_, minion_target_grid_, enemy_heal_target_grid_, minion_heal_target_grid_;
 		enemy_target_grid_ = -1;
 		minion_target_grid_ = -1;
