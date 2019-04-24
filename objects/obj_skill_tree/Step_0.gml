@@ -4,7 +4,6 @@
 if primeAbilityChosen == "Slow Time Toggled" {
 	if (obj_player.key_prime_ability) {
 		slowTimeActive = !slowTimeActive;
-		obj_combat_controller.levelPaused = !obj_combat_controller.levelPaused;
 	}
 	if slowTimeActive {
 		playerCurrentHP -= (50 / room_speed) * playerTotalSpeed;
