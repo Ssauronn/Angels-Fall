@@ -1,3 +1,16 @@
+// Move around if needed
+obtain_direction();
+if (key_right && key_left && !key_down && !key_up) || (!key_right && !key_left && key_up && key_down) {
+	apply_friction_to_movement_entity();
+}
+else if !key_nokey {
+	add_movement(maxSpeed, acceleration, point_direction(0, 0, xinput, yinput));
+}
+else {
+	apply_friction_to_movement_entity();
+}
+move_movement_entity(false);
+
 // Create the playerHitbox after frame 2
 if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 2) {
@@ -94,9 +107,16 @@ if instance_exists(obj_player) {
 
 	// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
 	if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue == "") {
-		playerState = playerstates.idle;
-		playerStateSprite = playerstates.idle;
-		hitboxCreated = false;
+		if currentSpeed == 0 {
+			playerState = playerstates.idle;
+			playerStateSprite = playerstates.idle;
+			hitboxCreated = false;
+		}
+		else {
+			playerState = playerstates.run;
+			playerStateSprite = playerstates.run;
+			hitboxCreated = false;
+		}
 	}
 	else if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue != "") {
 		prepare_to_execute_attacks();

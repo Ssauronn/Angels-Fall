@@ -29,10 +29,10 @@ switch (enemy_name_) {
 		enemyTotalBonusResistance = 0;
 
 		// Enemies' Attack Damages and Resistances
-		enemyLightMeleeAttackDamage = 100;
-		enemyHeavyMeleeAttackDamage = 200;
-		enemyLightRangedAttackDamage = 100;
-		enemyHeavyRangedAttackDamage = 200;
+		enemyLightMeleeAttackDamage = 50;
+		enemyHeavyMeleeAttackDamage = 100;
+		enemyLightRangedAttackDamage = 50;
+		enemyHeavyRangedAttackDamage = 100;
 
 		// Enemies' Attack Resrouces Costs
 		enemyLightMeleeAttackStamCost = enemyMaxStamina * 0.6;
@@ -180,10 +180,10 @@ switch (enemy_name_) {
 		enemyTotalBonusResistance = 0;
 
 		// Enemies' Attack Damages and Resistances
-		enemyLightMeleeAttackDamage = 100;
-		enemyHeavyMeleeAttackDamage = 200;
-		enemyLightRangedAttackDamage = 100;
-		enemyHeavyRangedAttackDamage = 200;
+		enemyLightMeleeAttackDamage = 50;
+		enemyHeavyMeleeAttackDamage = 100;
+		enemyLightRangedAttackDamage = 50;
+		enemyHeavyRangedAttackDamage = 100;
 		enemyHealValue = 300;
 
 		// Enemies Attacks' Resrouces Costs

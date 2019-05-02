@@ -24,5 +24,10 @@ if variable_instance_exists(self, "slowEnemyTimeWithParryActive") {
 		draw_rectangle_color(x - 16, y - 16, x + 16, y + 16, c_purple, c_purple, c_purple, c_purple, false)
 	}
 }
-
+if combatFriendlyStatus == "Minion" {
+	draw_text_ext_transformed_color(x - 20, y - 40, "Minion", 10, 32, 1, 1, 0, c_blue, c_blue, c_blue, c_blue, 1);
+}
+else if combatFriendlyStatus == "Enemy" {
+	draw_text_ext_transformed_color(x - 20, y - 40, "Enemy", 10, 32, 1, 1, 0, c_red, c_red, c_red, c_red, 1);
+}
 
