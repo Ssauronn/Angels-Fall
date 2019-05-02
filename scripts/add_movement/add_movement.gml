@@ -50,7 +50,7 @@ if self.object_index == obj_player {
 	#endregion
 }
 #endregion
-#region
+#region Adding to: Enemy Movement (obselete, staying in for legacy code purposes)
 // If the object calling this script is an enemy or boss
 if self.object_index != obj_player {
 	// If the object calling this script is not explicitely trying to heal a target

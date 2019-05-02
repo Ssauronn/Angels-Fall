@@ -36,7 +36,7 @@ frictionAmount = baseFrictionAmount * enemyTotalSpeed;
 
 // Destroy self if HP drops below 0
 if enemyCurrentHP <= 0 {
-	animecroPool += 150;
+	animecroPool += 300;
 	instance_destroy(self);
 }
 

@@ -14,7 +14,7 @@ if comboCounterTimer > 0 {
 	draw_set_halign(fa_top);
 }
 if (obj_skill_tree.slowTimeActive) && (obj_skill_tree.slowTimeActiveTimer > 0) {
-	draw_ring_healthbar(display_get_gui_width() - 32, 64, 32, 4, 100, (obj_skill_tree.slowTimeActiveTimer / obj_skill_tree.slowTimeActiveTimerStartTime) * 100, 90, 360, -1, c_blue);
+	draw_ring_healthbar(display_get_gui_width() - 40, 64, 32, 4, 100, (obj_skill_tree.slowTimeActiveTimer / obj_skill_tree.slowTimeActiveTimerStartTime) * 100, 90, 360, -1, c_blue);
 }
 
 

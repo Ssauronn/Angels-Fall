@@ -1,52 +1,50 @@
 if instance_exists(obj_player) {
 	obtain_direction();
-	if (key_attack_lmb == "") && (key_attack_rmb == "") {
-		if key_dash {
-			if playerCurrentStamina >= dashStaminaCost {
-				playerCurrentStamina -= dashStaminaCost;
-				playerState = playerstates.dash;
-				playerStateSprite = playerstates.dash;
-				currentSpeed = 0;
-				dashTimer = dashTime;
-				xDashPosition = mouse_x;
-				yDashPosition = mouse_y;
-				dashDir = point_direction(obj_player.x, obj_player.y, xDashPosition, yDashPosition)
-				if dashDir > 315 && dashDir <= 360 {
-					playerDirectionFacing = playerdirection.right;
-				}
-				else if dashDir > 0 && dashDir <= 45  {
-					playerDirectionFacing = playerdirection.right;
-				}
-				else if dashDir > 45 && dashDir <= 135 {
-					playerDirectionFacing = playerdirection.up;
-				}
-				else if dashDir > 135 && dashDir <= 225 {
-					playerDirectionFacing = playerdirection.left;
-				}
-				else if dashDir > 225 && dashDir <= 315 {
-					playerDirectionFacing = playerdirection.down;
-				}
+	if key_dash {
+		if playerCurrentStamina >= dashStaminaCost {
+			playerCurrentStamina -= dashStaminaCost;
+			playerState = playerstates.dash;
+			playerStateSprite = playerstates.dash;
+			currentSpeed = 0;
+			dashTimer = dashTime;
+			xDashPosition = mouse_x;
+			yDashPosition = mouse_y;
+			dashDir = point_direction(obj_player.x, obj_player.y, xDashPosition, yDashPosition)
+			if dashDir > 315 && dashDir <= 360 {
+				playerDirectionFacing = playerdirection.right;
 			}
-		}
-		else {
-			if (key_right && key_left && !key_down && !key_up) || (!key_right && !key_left && key_up && key_down) {
-				apply_friction_to_movement_entity();
+			else if dashDir > 0 && dashDir <= 45  {
+				playerDirectionFacing = playerdirection.right;
 			}
-			else if !key_nokey {
-				add_movement(maxSpeed, acceleration, point_direction(0, 0, xinput, yinput));
+			else if dashDir > 45 && dashDir <= 135 {
+				playerDirectionFacing = playerdirection.up;
 			}
-			else {
-				apply_friction_to_movement_entity();
+			else if dashDir > 135 && dashDir <= 225 {
+				playerDirectionFacing = playerdirection.left;
 			}
-			if (currentSpeed == 0) {
-				playerState = playerstates.idle;
-				playerStateSprite = playerstates.idle;
+			else if dashDir > 225 && dashDir <= 315 {
+				playerDirectionFacing = playerdirection.down;
 			}
-			move_movement_entity(false);
 		}
 	}
+	else {
+		if (key_right && key_left && !key_down && !key_up) || (!key_right && !key_left && key_up && key_down) {
+			apply_friction_to_movement_entity();
+		}
+		else if !key_nokey {
+			add_movement(maxSpeed, acceleration, point_direction(0, 0, xinput, yinput));
+		}
+		else {
+			apply_friction_to_movement_entity();
+		}
+		if (currentSpeed == 0) {
+			playerState = playerstates.idle;
+			playerStateSprite = playerstates.idle;
+		}
+		move_movement_entity(false);
+	}
 
-	if (key_attack_lmb != "") {
+	if (key_attack_lmb != "") && (!key_dash) {
 		if playerCurrentStamina >= meleeStaminaCost {
 			if (key_attack_lmb == "right") {
 				lastAttackButtonPressed = "Attack Right 1";
