@@ -22,9 +22,6 @@ switch (enemy_name_) {
 				break;
 			case enemystates.heavyRangedAttack: scr_mage_heavy_ranged();
 				break;
-			case enemystates.healAlly: enemyState = enemystates.lightRangedAttack;
-				enemyStateSprite = enemystates.lightRangedAttack;
-				break;
 		}
 		break;
 	case "Healer":
@@ -44,6 +41,24 @@ switch (enemy_name_) {
 			case enemystates.heavyRangedAttack: scr_healer_heavy_ranged();
 				break;
 			case enemystates.healAlly: scr_healer_heal_ally();
+				break;
+		}
+		break;
+	case "Tank":
+		switch (enemyState) {
+			case enemystates.idle: scr_enemy_idle();
+				break;
+			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
+				break;
+			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
+				break;
+			case enemystates.lightMeleeAttack: scr_tank_light_melee();
+				break;
+			case enemystates.heavyMeleeAttack: scr_tank_heavy_melee();
+				break;
+			case enemystates.lightRangedAttack: scr_tank_light_ranged();
+				break;
+			case enemystates.heavyRangedAttack: scr_tank_heavy_ranged();
 				break;
 		}
 		break;

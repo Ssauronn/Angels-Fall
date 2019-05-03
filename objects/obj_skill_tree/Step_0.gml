@@ -1,5 +1,41 @@
 /// @description Edit Variables
-// ---PRIME ABILITIES---
+
+#region ---PRIME ABILITIES---
+// If the player does not have the health to use the prime ability in the first place, the ability
+// should not activate/should deactivate.
+// If playerCurrentHP is less than the largest amount of HP that would be lost by any ability at once,
+// stop the ability before it reduces player to below 0 HP
+if playerCurrentHP <= ((50 / room_speed) * playerTotalSpeed * 2) {
+	// Set the prime ability button permanently to false
+	if obj_player.key_prime_ability {
+		obj_player.key_prime_ability = false;
+	}
+	// Deactivate all prime abilities
+	if slowTimeActive {
+		slowTimeActive = false;
+		slowTimeActiveTimer = -1;
+		userInterfaceGameSpeed = 1;
+		playerGameSpeed = 1;
+		if instance_exists(obj_enemy) {
+			obj_enemy.enemyGameSpeed = 1;
+		}
+	}
+	if slowTimeActiveTimer > 0 {
+		slowTimeActive = false;
+		slowTimeActiveTimer = -1;
+		userInterfaceGameSpeed = 1;
+		playerGameSpeed = 1;
+		if instance_exists(obj_enemy) {
+			obj_enemy.enemyGameSpeed = 1;
+		}
+	}
+	if primeDamageActive {
+		primeDamageActive = false;
+		primeBonusDamagePercentAsDecimal = 0;
+		obj_player.playerAnimationSprite = noone;
+	}
+}
+
 // Slow time if the player so chooses, toggled on and off at will, at the cost of health
 if primeAbilityChosen == "Slow Time Toggled" {
 	if (obj_player.key_prime_ability) {
@@ -23,6 +59,8 @@ if primeAbilityChosen == "Slow Time Toggled" {
 }
 // Slow time if the player so chooses, for a specific amount of time, at the cost of health
 else if primeAbilityChosen == "Slow Time Timed" {
+	// Reduce slowTimeActiveTimer by one each frame, and if the timer reaches 0 or below 0, deactivate
+	// the prime ability.
 	if slowTimeActiveTimer >= 0 {
 		slowTimeActiveTimer -= 1;
 	}
@@ -64,9 +102,10 @@ else if primeAbilityChosen == "Bonus Damage Toggled" {
 		obj_player.playerAnimationSprite = noone;
 	}
 }
+#endregion
 
 
-// ---PARRY EFFECTS---
+#region ---PARRY EFFECTS---
 if parryEffectChosen == "Slow Time Effect" {
 	if parryWindowTimer >= 0 {
 		parryWindowTimer--;
@@ -93,5 +132,6 @@ if parryEffectChosen == "Slow Time Effect" {
 		}
 	}
 }
+#endregion
 
 

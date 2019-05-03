@@ -8,9 +8,15 @@ else {
 }
 
 // Base Stat Regenerations
-enemyCurrentHP += enemyHPRegeneration * enemyTotalSpeed;
-enemyCurrentStamina += enemyStaminaRegeneration * enemyTotalSpeed;
-enemyCurrentMana += enemyManaRegeneration * enemyTotalSpeed;
+if enemyHPRegeneration != 0 {
+	enemyCurrentHP += enemyHPRegeneration * enemyTotalSpeed;
+}
+if enemyStaminaRegeneration != 0 {
+	enemyCurrentStamina += enemyStaminaRegeneration * enemyTotalSpeed;
+}
+if enemyManaRegeneration != 0 {
+	enemyCurrentMana += enemyManaRegeneration * enemyTotalSpeed;
+}
 
 // Make sure current stat values do not exceed max stat values
 if enemyCurrentHP > enemyMaxHP {
