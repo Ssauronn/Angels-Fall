@@ -481,7 +481,7 @@ if instance_exists(self) {
 	}
 }
 
-/*
+if objectArchetype == "Tank" {
 show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));
 show_debug_message(string(id) + "'s state is: " + string(enemyState));
 show_debug_message("For " + string(self.id) + " these are the following weights for heavy melee attack:");
@@ -545,7 +545,7 @@ show_debug_message("- BREAK -");
 show_debug_message("And " + string(self) + "'s target is: " + string(currentTargetToFocus));
 show_debug_message("- BREAK -");
 show_debug_message("");
-*/
+}
 
 
 #region if instance_exists(self) { // closing brackets

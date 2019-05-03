@@ -197,8 +197,8 @@ if chosenEngine != "" {
 				else {
 					// execute heavy melee attack script
 					enemyCurrentStamina -= enemyHeavyMeleeAttackStamCost;
-					enemyState = enemystates.lightMeleeAttack;
-					enemyStateSprite = enemystates.lightMeleeAttack;
+					enemyState = enemystates.heavyMeleeAttack;
+					enemyStateSprite = enemystates.heavyMeleeAttack;
 					chosenEngine = "";
 					decisionMadeForTargetAndAction = false;
 					enemyImageIndex = 0;
