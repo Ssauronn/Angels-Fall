@@ -36,44 +36,44 @@ potentialHealTargetsAdjacentEnemiesStartWeight = 0.275;
 #endregion
 
 #region Heavy Melee Engine
-selfCurrentHPPercentForHeavyMeleeEngineStartWeight = 0.2;
+selfCurrentHPPercentForHeavyMeleeEngineStartWeight = 0.15;
 targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight = 0.05;
 targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight = 0.15;
 objectProximityToTargetForHeavyMeleeEngineStartWeight = 0.3;
-percentageOfDamageToTargetTotalHPForHeavyMeleeEngineStartWeight = 0.15;
+percentageOfDamageToTargetTotalHPForHeavyMeleeEngineStartWeight = 0.2;
 // This one line below is the variable to set the ideal amount of allies in battle for each object, not including itself
 idealAmountOfTotalEnemiesInBattleForHeavyMeleeEngine = 5;
 totalEnemiesInBattleForHeavyMeleeEngineStartWeight = 0.15;
 #endregion
 #region Light Melee Engine
-selfCurrentHPPercentForLightMeleeEngineStartWeight = 0.2;
+selfCurrentHPPercentForLightMeleeEngineStartWeight = 0.15;
 targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineStartWeight = 0.05;
 targetOfTargetCurrentHPForLightMeleeEngineStartWeight = 0.15;
 objectProximityToTargetForLightMeleeEngineStartWeight = 0.3;
-percentageOfDamageToTargetCurrentHPForLightMeleeEngineStartWeight = 0.15;
+percentageOfDamageToTargetCurrentHPForLightMeleeEngineStartWeight = 0.2;
 // This one line below is the variable to set the ideal amount of allies in battle for each object, not including itself
 idealAmountOfTotalEnemiesInBattleForLightMeleeEngine = 5;
 totalEnemiesInBattleForLightMeleeEngineStartWeight = 0.15;
 #endregion
 #region Heavy Ranged Engine
-targetCurrentHPPercentForHeavyRangedEngineStartWeight = 0.1;
-targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight = 0.2;
+targetCurrentHPPercentForHeavyRangedEngineStartWeight = 0.15;
+targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineStartWeight = 0.1;
 selfCurrentHPPercentForHeavyRangedEngineStartWeight = 0.15;
 objectProximityToTargetForHeavyRangedEngineStartWeight = 0.3;
 // This one line below is the variable to set the ideal amount of allies in battle for each object, not including itself
 idealAmountOfTotalEnemiesInBattleForHeavyRangedEngine = 5;
 totalEnemiesInBattleForHeavyRangedEngineStartWeight = 0.05;
-percentageOfDamageToTargetTotalHPForHeavyRangedEngineStartWeight = 0.2;
+percentageOfDamageToTargetTotalHPForHeavyRangedEngineStartWeight = 0.25;
 #endregion
 #region Light Ranged Engine
-targetCurrentHPPercentForLightRangedEngineStartWeight = 0.1;
-targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight = 0.2;
+targetCurrentHPPercentForLightRangedEngineStartWeight = 0.15;
+targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineStartWeight = 0.1;
 selfCurrentHPPercentForLightRangedEngineStartWeight = 0.15;
 objectProximityToTargetForLightRangedEngineStartWeight = 0.3;
 // This one line below is the variable to set the ideal amount of allies in battle for each object, not including itself
 idealAmountOfTotalEnemiesInBattleForLightRangedEngine = 5;
 totalEnemiesInBattleForLightRangedEngineStartWeight = 0.05;
-percentageOfDamageToTargetCurrentHPForLightRangedEngineStartWeight = 0.2;
+percentageOfDamageToTargetCurrentHPForLightRangedEngineStartWeight = 0.25;
 #endregion
 #region Run Away
 selfCurrentHPPercentForRunAwayEngineStartWeight = 0.1;

@@ -23,8 +23,8 @@ playerMaxHP = playerMaxAnimecroHP + playerMaxPermanentHP + playerMaxFluidHP;
 if playerCurrentHP > playerMaxHP {
 	playerCurrentHP = playerMaxHP;
 }
-if playerCurrentHP < 0 {
-	playerCurrentHP = -1;
+if playerCurrentHP <= 0 {
+	playerCurrentHP = 0;
 }
 if playerCurrentAnimecroHP > playerMaxAnimecroHP {
 	playerCurrentAnimecroHP = playerMaxAnimecroHP;

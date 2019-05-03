@@ -164,7 +164,7 @@ if chosenEngine != "" {
 					if !alreadyTriedToChase { 
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
-						alreadyTriedToChaseTimer = room_speed * 5;
+						alreadyTriedToChaseTimer = room_speed * 3;
 						enemyImageIndex = 0;
 					}
 					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
@@ -217,7 +217,7 @@ if chosenEngine != "" {
 					if !alreadyTriedToChase { 
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
-						alreadyTriedToChaseTimer = room_speed * 5;
+						alreadyTriedToChaseTimer = room_speed * 3;
 						enemyImageIndex = 0;
 					}
 					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
@@ -270,7 +270,7 @@ if chosenEngine != "" {
 					if !alreadyTriedToChase { 
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
-						alreadyTriedToChaseTimer = room_speed * 5;
+						alreadyTriedToChaseTimer = room_speed * 3;
 						enemyImageIndex = 0;
 					}
 					// If the enemy has already tried to chase the target, then set the chosen engine to ranged
@@ -328,7 +328,7 @@ if chosenEngine != "" {
 					if !alreadyTriedToChase { 
 						enemyState = enemystates.moveWithinAttackRange;
 						enemyStateSprite = enemystates.moveWithinAttackRange;
-						alreadyTriedToChaseTimer = room_speed * 5;
+						alreadyTriedToChaseTimer = room_speed * 3;
 						enemyImageIndex = 0;
 					}
 					// If obj_enemy cannot execute light ranged attack
@@ -460,7 +460,7 @@ if chosenEngine != "" {
 						if !alreadyTriedToChase { 
 							enemyState = enemystates.moveWithinAttackRange;
 							enemyStateSprite = enemystates.moveWithinAttackRange;
-							alreadyTriedToChaseTimer = room_speed * 5;
+							alreadyTriedToChaseTimer = room_speed * 3;
 						}
 						// If the enemy has already tried to chase the target, then set the chosen engine to ranged
 						// and don't try to continue to chase the target.

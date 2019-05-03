@@ -312,10 +312,18 @@ if instance_exists(obj_player) {
 			percentageOfDamageToTargetTotalHPLightRangedAttackWillDeal = enemyLightRangedAttackDamage / currentTargetToFocus.enemyMaxHP;
 		}
 		else {
-			percentageOfDamageToTargetCurrentHPHeavyMeleeAttackWillDeal = enemyHeavyMeleeAttackDamage / playerCurrentHP;
-			percentageOfDamageToTargetCurrentHPLightMeleeAttackWillDeal = enemyLightMeleeAttackDamage / playerCurrentHP;
-			percentageOfDamageToTargetCurrentHPHeavyRangedAttackWillDeal = enemyHeavyRangedAttackDamage / playerCurrentHP;
-			percentageOfDamageToTargetCurrentHPLightRangedAttackWillDeal = enemyLightRangedAttackDamage / playerCurrentHP;
+			if playerCurrentHP != 0 {
+				percentageOfDamageToTargetCurrentHPHeavyMeleeAttackWillDeal = enemyHeavyMeleeAttackDamage / playerCurrentHP;
+				percentageOfDamageToTargetCurrentHPLightMeleeAttackWillDeal = enemyLightMeleeAttackDamage / playerCurrentHP;
+				percentageOfDamageToTargetCurrentHPHeavyRangedAttackWillDeal = enemyHeavyRangedAttackDamage / playerCurrentHP;
+				percentageOfDamageToTargetCurrentHPLightRangedAttackWillDeal = enemyLightRangedAttackDamage / playerCurrentHP;
+			}
+			else {
+				percentageOfDamageToTargetCurrentHPHeavyMeleeAttackWillDeal = 2;
+				percentageOfDamageToTargetCurrentHPLightMeleeAttackWillDeal = 2;
+				percentageOfDamageToTargetCurrentHPHeavyRangedAttackWillDeal = 2;
+				percentageOfDamageToTargetCurrentHPLightRangedAttackWillDeal = 2;
+			}
 			// Total HP - See create event for details
 			percentageOfDamageToTargetTotalHPHeavyMeleeAttackWillDeal = enemyHeavyMeleeAttackDamage / playerMaxHP;
 			percentageOfDamageToTargetTotalHPLightMeleeAttackWillDeal = enemyLightMeleeAttackDamage / playerMaxHP;
@@ -406,7 +414,7 @@ if alreadyHitTimer >= 0 {
 	alreadyHitTimer -= 1 * enemyTotalSpeed;
 }
 if alreadyTriedToChaseTimer > 0 {
-	alreadyTriedToChase -= 1 * enemyTotalSpeed;
+	alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed;
 }
 
 // Script used to set the direction the object will face every frame
@@ -481,70 +489,70 @@ if instance_exists(self) {
 	}
 }
 
-if objectArchetype == "Tank" {
-show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));
-show_debug_message(string(id) + "'s state is: " + string(enemyState));
-show_debug_message("For " + string(self.id) + " these are the following weights for heavy melee attack:");
-show_debug_message(string(selfCurrentHPPercentForHeavyMeleeEngineTotalWeight) + " = selfCurrentHPPercentForHeavyMeleeEngineTotalWeight");
-show_debug_message(string(targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight");
-show_debug_message(string(targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight) + " = targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight");
-show_debug_message(string(objectProximityToTargetForHeavyMeleeEngineTotalWeight) + " = objectProximityToTargetForHeavyMeleeEngineTotalWeight");
-show_debug_message(string(percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight) + " = percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight");
-show_debug_message(string(totalEnemiesInBattleForHeavyMeleeEngineTotalWeight) + " = totalEnemiesInBattleForHeavyMeleeEngineTotalWeight");
-show_debug_message("Total Heavy Melee Engine Weight AFTER Multiplier = " + string(heavyMeleeEngineTotalWeight));
-show_debug_message("- BREAK -");
-show_debug_message("And for light melee attack: ")
-show_debug_message("For " + string(self.id) + " these are the following weights:" );
-show_debug_message(string(selfCurrentHPPercentForLightMeleeEngineTotalWeight) + " = selfCurrentHPPercentForLightMeleeEngineTotalWeight");
-show_debug_message(string(targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight");
-show_debug_message(string(targetOfTargetCurrentHPForLightMeleeEngineTotalWeight) + " = targetOfTargetCurrentHPForLightMeleeEngineTotalWeight");
-show_debug_message(string(objectProximityToTargetForLightMeleeEngineTotalWeight) + " = objectProximityToTargetForLightMeleeEngineTotalWeight");
-show_debug_message(string(percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight) + " = percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight");
-show_debug_message(string(totalEnemiesInBattleForLightMeleeEngineTotalWeight) + " = totalEnemiesInBattleForLightMeleeEngineTotalWeight");
-show_debug_message("Total Light Melee Engine Weight AFTER Multiplier = " + string(lightMeleeEngineTotalWeight));
-show_debug_message("- BREAK -");
-show_debug_message("And for heavy ranged attack: ");
-show_debug_message("For " + string(self.id) + " these are the following weights:");
-show_debug_message(string(targetCurrentHPPercentForHeavyRangedEngineTotalWeight) + " = targetCurrentHPPercentForHeavyRangedEngineTotalWeight");
-show_debug_message(string(targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight) + " = targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight");
-show_debug_message(string(selfCurrentHPPercentForHeavyRangedEngineTotalWeight) + " = selfCurrentHPPercentForHeavyRangedEngineTotalWeight");
-show_debug_message(string(objectProximityToTargetForHeavyRangedEngineTotalWeight) + " = objectProximityToTargetForHeavyRangedEngineTotalWeight");
-show_debug_message(string(totalEnemiesInBattleForHeavyRangedEngineTotalWeight) + " = totalEnemiesInBattleForHeavyRangedEngineTotalWeight");
-show_debug_message(string(percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight) + " = percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight");
-show_debug_message("Total Heavy Ranged Engine Weight AFTER Multiplier = " + string(heavyRangedEngineTotalWeight));
-show_debug_message("- BREAK -");
-show_debug_message("And for light ranged attack: ");
-show_debug_message("For " + string(self.id) + " these are the following weights:");
-show_debug_message(string(targetCurrentHPPercentForLightRangedEngineTotalWeight) + " = targetCurrentHPPercentForLightRangedEngineTotalWeight");
-show_debug_message(string(targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight) + " = targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight");
-show_debug_message(string(selfCurrentHPPercentForLightRangedEngineTotalWeight) + " = selfCurrentHPPercentForLightRangedEngineTotalWeight");
-show_debug_message(string(objectProximityToTargetForLightRangedEngineTotalWeight) + " = objectProximityToTargetForLightRangedEngineTotalWeight");
-show_debug_message(string(totalEnemiesInBattleForLightRangedEngineTotalWeight) + " = totalEnemiesInBattleForLightRangedEngineTotalWeight");
-show_debug_message(string(percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight) + " = percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight");
-show_debug_message("Total Light Ranged Engine Weight AFTER Multiplier = " + string(lightRangedEngineTotalWeight));
-show_debug_message("- BREAK -");
-show_debug_message("And for run away: ");
-show_debug_message("For " + string(self.id) + " these are the following weights:");
-show_debug_message(string(selfCurrentHPPercentForRunAwayEngineTotalWeight) + " = selfCurrentHPPercentForRunAwayEngineTotalWeight");
-show_debug_message(string(objectProximityToTargetForRunAwayEngineTotalWeight) + " = objectProximityToTargetForRunAwayEngineTotalWeight");
-show_debug_message(string(targetCurrentHPPercentForRunAwayEngineTotalWeight) + " = targetCurrentHPPercentForRunAwayEngineTotalWeight");
-show_debug_message(string(targetIsDifferentArchetypesForRunAwayEngineTotalWeight) + " = targetIsDifferentArchetypesForRunAwayEngineTotalWeight");
-show_debug_message(string(totalEnemiesInBattleForRunAwayEngineTotalWeight) + " = totalEnemiesInBattleForRunAwayEngineTotalWeight");
-show_debug_message("Total Run Away Engine Weight AFTER Multiplier = " + string(runAwayEngineTotalWeight));
-show_debug_message("- BREAK -");
-show_debug_message("And for heal: ");
-show_debug_message("for " + string(self.id) + " these are the following weights:");
-show_debug_message(string(cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight) + " = cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight");
-show_debug_message(string(archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight) + " = archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight");
-show_debug_message(string(currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight) + " = currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight");
-show_debug_message(string(targetCurrentHPPercentForHealAllyEngineTotalWeight) + " = targetCurrentHPPercentForHealAllyEngineTotalWeight");
-show_debug_message(string(totalEnemiesInBattleForHealAllyEngineTotalWeight) + " = totalEnemiesInBattleForHealAllyEngineTotalWeight");
-show_debug_message(string(selfCurrentHPPercentForHealAllyEngineTotalWeight) + " = selfCurrentHPPercentForHealAllyEngineTotalWeight");
-show_debug_message("Total Heal Ally Engine Weight AFTER Multiplier = " + string(healAllyEngineTotalWeight));
-show_debug_message("- BREAK -");
-show_debug_message("And " + string(self) + "'s target is: " + string(currentTargetToFocus));
-show_debug_message("- BREAK -");
-show_debug_message("");
+if objectArchetype == "" {
+	show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));
+	show_debug_message(string(id) + "'s state is: " + string(enemyState));
+	show_debug_message("For " + string(self.id) + " these are the following weights for heavy melee attack:");
+	show_debug_message(string(selfCurrentHPPercentForHeavyMeleeEngineTotalWeight) + " = selfCurrentHPPercentForHeavyMeleeEngineTotalWeight");
+	show_debug_message(string(targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight");
+	show_debug_message(string(targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight) + " = targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight");
+	show_debug_message(string(objectProximityToTargetForHeavyMeleeEngineTotalWeight) + " = objectProximityToTargetForHeavyMeleeEngineTotalWeight");
+	show_debug_message(string(percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight) + " = percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight");
+	show_debug_message(string(totalEnemiesInBattleForHeavyMeleeEngineTotalWeight) + " = totalEnemiesInBattleForHeavyMeleeEngineTotalWeight");
+	show_debug_message("Total Heavy Melee Engine Weight AFTER Multiplier = " + string(heavyMeleeEngineTotalWeight));
+	show_debug_message("- BREAK -");
+	show_debug_message("And for light melee attack: ")
+	show_debug_message("For " + string(self.id) + " these are the following weights:" );
+	show_debug_message(string(selfCurrentHPPercentForLightMeleeEngineTotalWeight) + " = selfCurrentHPPercentForLightMeleeEngineTotalWeight");
+	show_debug_message(string(targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight");
+	show_debug_message(string(targetOfTargetCurrentHPForLightMeleeEngineTotalWeight) + " = targetOfTargetCurrentHPForLightMeleeEngineTotalWeight");
+	show_debug_message(string(objectProximityToTargetForLightMeleeEngineTotalWeight) + " = objectProximityToTargetForLightMeleeEngineTotalWeight");
+	show_debug_message(string(percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight) + " = percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight");
+	show_debug_message(string(totalEnemiesInBattleForLightMeleeEngineTotalWeight) + " = totalEnemiesInBattleForLightMeleeEngineTotalWeight");
+	show_debug_message("Total Light Melee Engine Weight AFTER Multiplier = " + string(lightMeleeEngineTotalWeight));
+	show_debug_message("- BREAK -");
+	show_debug_message("And for heavy ranged attack: ");
+	show_debug_message("For " + string(self.id) + " these are the following weights:");
+	show_debug_message(string(targetCurrentHPPercentForHeavyRangedEngineTotalWeight) + " = targetCurrentHPPercentForHeavyRangedEngineTotalWeight");
+	show_debug_message(string(targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight) + " = targetOfTargetFocusIsDifferentArchetypesForHeavyRangedEngineTotalWeight");
+	show_debug_message(string(selfCurrentHPPercentForHeavyRangedEngineTotalWeight) + " = selfCurrentHPPercentForHeavyRangedEngineTotalWeight");
+	show_debug_message(string(objectProximityToTargetForHeavyRangedEngineTotalWeight) + " = objectProximityToTargetForHeavyRangedEngineTotalWeight");
+	show_debug_message(string(totalEnemiesInBattleForHeavyRangedEngineTotalWeight) + " = totalEnemiesInBattleForHeavyRangedEngineTotalWeight");
+	show_debug_message(string(percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight) + " = percentageOfDamageToTargetTotalHPForHeavyRangedEngineTotalWeight");
+	show_debug_message("Total Heavy Ranged Engine Weight AFTER Multiplier = " + string(heavyRangedEngineTotalWeight));
+	show_debug_message("- BREAK -");
+	show_debug_message("And for light ranged attack: ");
+	show_debug_message("For " + string(self.id) + " these are the following weights:");
+	show_debug_message(string(targetCurrentHPPercentForLightRangedEngineTotalWeight) + " = targetCurrentHPPercentForLightRangedEngineTotalWeight");
+	show_debug_message(string(targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight) + " = targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight");
+	show_debug_message(string(selfCurrentHPPercentForLightRangedEngineTotalWeight) + " = selfCurrentHPPercentForLightRangedEngineTotalWeight");
+	show_debug_message(string(objectProximityToTargetForLightRangedEngineTotalWeight) + " = objectProximityToTargetForLightRangedEngineTotalWeight");
+	show_debug_message(string(totalEnemiesInBattleForLightRangedEngineTotalWeight) + " = totalEnemiesInBattleForLightRangedEngineTotalWeight");
+	show_debug_message(string(percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight) + " = percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight");
+	show_debug_message("Total Light Ranged Engine Weight AFTER Multiplier = " + string(lightRangedEngineTotalWeight));
+	show_debug_message("- BREAK -");
+	show_debug_message("And for run away: ");
+	show_debug_message("For " + string(self.id) + " these are the following weights:");
+	show_debug_message(string(selfCurrentHPPercentForRunAwayEngineTotalWeight) + " = selfCurrentHPPercentForRunAwayEngineTotalWeight");
+	show_debug_message(string(objectProximityToTargetForRunAwayEngineTotalWeight) + " = objectProximityToTargetForRunAwayEngineTotalWeight");
+	show_debug_message(string(targetCurrentHPPercentForRunAwayEngineTotalWeight) + " = targetCurrentHPPercentForRunAwayEngineTotalWeight");
+	show_debug_message(string(targetIsDifferentArchetypesForRunAwayEngineTotalWeight) + " = targetIsDifferentArchetypesForRunAwayEngineTotalWeight");
+	show_debug_message(string(totalEnemiesInBattleForRunAwayEngineTotalWeight) + " = totalEnemiesInBattleForRunAwayEngineTotalWeight");
+	show_debug_message("Total Run Away Engine Weight AFTER Multiplier = " + string(runAwayEngineTotalWeight));
+	show_debug_message("- BREAK -");
+	show_debug_message("And for heal: ");
+	show_debug_message("for " + string(self.id) + " these are the following weights:");
+	show_debug_message(string(cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight) + " = cumulativeCurrentHPPercentOfAllRemainingAlliesForHealAllyEngineTotalWeight");
+	show_debug_message(string(archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight) + " = archetypeOfCurrentLowestHPAllyForHealAllyEngineTotalWeight");
+	show_debug_message(string(currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight) + " = currentHPPercentOfLowestHPAllyForHealAllyEngineTotalWeight");
+	show_debug_message(string(targetCurrentHPPercentForHealAllyEngineTotalWeight) + " = targetCurrentHPPercentForHealAllyEngineTotalWeight");
+	show_debug_message(string(totalEnemiesInBattleForHealAllyEngineTotalWeight) + " = totalEnemiesInBattleForHealAllyEngineTotalWeight");
+	show_debug_message(string(selfCurrentHPPercentForHealAllyEngineTotalWeight) + " = selfCurrentHPPercentForHealAllyEngineTotalWeight");
+	show_debug_message("Total Heal Ally Engine Weight AFTER Multiplier = " + string(healAllyEngineTotalWeight));
+	show_debug_message("- BREAK -");
+	show_debug_message("And " + string(self) + "'s target is: " + string(currentTargetToFocus));
+	show_debug_message("- BREAK -");
+	show_debug_message("");
 }
 
 
