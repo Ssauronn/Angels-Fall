@@ -138,7 +138,7 @@
             "Key": "08cb37e9-603b-4367-bafb-819c7b2f7b86",
             "Value": {
                 "id": "71122f27-8b74-44ce-8938-305e23aea39f",
-                "resourcePath": "scripts\\scr_melee_dps_light_melee\\scr_melee_dps_light_melee.yy",
+                "resourcePath": "scripts\\scr_fighter_light_melee\\scr_fighter_light_melee.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -375,6 +375,14 @@
             }
         },
         {
+            "Key": "32c96bee-1e63-4774-bd73-c05970df5fa8",
+            "Value": {
+                "id": "35f86117-f580-4586-a730-dcdcb9e4fc80",
+                "resourcePath": "sprites\\spr_enemy_fighter_idle\\spr_enemy_fighter_idle.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "32f220cf-e0a5-4e87-b133-51411d40fa74",
             "Value": {
                 "id": "15f8977b-9556-4652-ace4-318bb6ee034b",
@@ -458,7 +466,7 @@
             "Key": "3fcc16de-fcba-4a17-a0af-6a14653ac8f4",
             "Value": {
                 "id": "39cc9408-71ff-4def-8bd2-8b7f3ed5df95",
-                "resourcePath": "scripts\\scr_melee_dps_heavy_melee\\scr_melee_dps_heavy_melee.yy",
+                "resourcePath": "scripts\\scr_fighter_heavy_melee\\scr_fighter_heavy_melee.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -591,6 +599,22 @@
             }
         },
         {
+            "Key": "51617e9d-8b8f-41d0-9ef7-194a2d659c8e",
+            "Value": {
+                "id": "b38f40fa-f0d3-4dad-99de-7e2d06224e57",
+                "resourcePath": "views\\51617e9d-8b8f-41d0-9ef7-194a2d659c8e.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "52c29719-1690-4401-bc83-e082cc82a2d9",
+            "Value": {
+                "id": "efcfe2d0-ce30-4b1b-836a-20cad9d2b661",
+                "resourcePath": "sprites\\spr_enemy_fighter_heavy_melee\\spr_enemy_fighter_heavy_melee.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "57ac679d-cf69-4642-902e-72ba48b75dc5",
             "Value": {
                 "id": "a0967cbd-4ca1-41ca-91ff-5accf4a1dab7",
@@ -700,6 +724,14 @@
                 "id": "f8027240-34e4-4689-b2c1-bf25f614f8b5",
                 "resourcePath": "views\\6a125783-e227-4267-aa2b-7c31300e396d.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "6acf0c5c-b2f8-4007-ae80-7c7783a68e58",
+            "Value": {
+                "id": "4bf3d4f1-8cdc-41b5-a3f0-5b1dcff793d6",
+                "resourcePath": "sprites\\spr_enemy_fighter_light_melee\\spr_enemy_fighter_light_melee.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -855,10 +887,18 @@
             }
         },
         {
+            "Key": "805b570a-c276-4720-ba88-3c5186c48eab",
+            "Value": {
+                "id": "b34d632a-9f5e-41a9-a6c2-ab9e6a883027",
+                "resourcePath": "sprites\\spr_enemy_fighter_heavy_ranged\\spr_enemy_fighter_heavy_ranged.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "82304a18-02a6-422e-96e4-7f6f3bc335f4",
             "Value": {
                 "id": "fd05027c-d623-494b-8054-295c83ee2781",
-                "resourcePath": "scripts\\scr_melee_dps_light_ranged\\scr_melee_dps_light_ranged.yy",
+                "resourcePath": "scripts\\scr_fighter_light_ranged\\scr_fighter_light_ranged.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1175,6 +1215,14 @@
             }
         },
         {
+            "Key": "b86612a1-4272-400e-869a-1946a5ecc8ae",
+            "Value": {
+                "id": "13b3dd61-bcc9-48ba-9630-121a5f44e303",
+                "resourcePath": "sprites\\spr_enemy_fighter_run\\spr_enemy_fighter_run.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "b8d8dfdf-e37d-4bf6-b1e5-dc736e7f87c6",
             "Value": {
                 "id": "79d38fa7-2a43-4270-9209-5300191b8f0a",
@@ -1210,7 +1258,7 @@
             "Key": "bf85d7fa-b546-4fc6-babc-f8eb0c7e53c1",
             "Value": {
                 "id": "b7910ab2-6205-4933-808b-fcd5f89eceb3",
-                "resourcePath": "scripts\\scr_melee_dps_heavy_ranged\\scr_melee_dps_heavy_ranged.yy",
+                "resourcePath": "scripts\\scr_fighter_heavy_ranged\\scr_fighter_heavy_ranged.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1372,6 +1420,14 @@
                 "id": "2b9fe698-acb0-41e1-99cc-11b76696dba5",
                 "resourcePath": "scripts\\scr_tank_light_melee\\scr_tank_light_melee.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
+            "Value": {
+                "id": "3cc1d172-56f9-433e-8d91-ef3ee091d523",
+                "resourcePath": "sprites\\spr_enemy_fighter_light_ranged\\spr_enemy_fighter_light_ranged.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

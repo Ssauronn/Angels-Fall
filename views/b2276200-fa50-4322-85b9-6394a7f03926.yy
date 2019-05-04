@@ -10,7 +10,7 @@
         "bf85d7fa-b546-4fc6-babc-f8eb0c7e53c1"
     ],
     "filterType": "GMScript",
-    "folderName": "grp_melee_dps_attacks",
+    "folderName": "grp_fighter_attacks",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

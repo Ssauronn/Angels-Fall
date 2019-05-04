@@ -62,6 +62,24 @@ switch (enemy_name_) {
 				break;
 		}
 		break;
+	case "Fighter":
+		switch (enemyState) {
+			case enemystates.idle: scr_enemy_idle();
+				break;
+			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
+				break;
+			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
+				break;
+			case enemystates.lightMeleeAttack: scr_fighter_light_melee();
+				break;
+			case enemystates.heavyMeleeAttack: scr_fighter_heavy_melee();
+				break;
+			case enemystates.lightRangedAttack: scr_fighter_light_ranged();
+				break;
+			case enemystates.heavyRangedAttack: scr_fighter_heavy_ranged();
+				break;
+		}
+		break;
 }
 
 
