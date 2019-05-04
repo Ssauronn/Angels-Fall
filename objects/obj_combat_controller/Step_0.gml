@@ -1,12 +1,17 @@
 /// @description Edit Variables
 // Set the combo counter for the player to tick up once, and then reset the combo counter
-if enemiesDealtDamage > 0 {
+if enemyHitByPlayer {
 	comboCounterTimer = comboCounterTimerStartTime;
+	enemyHitByPlayer = false;
 }
+// If the combo timer runs out, or the player collects on the combo early, then reset variables, add to the player's
+// Max HP, and add to the player's current HP
 if (comboCounterTimer < 0) || (obj_player.key_animecro_collect) {
+	// Reset combo variables
 	comboCounter = 0;
 	comboCounterTimer = -1;
-	// This line below isn't needed, but it allows for instant updating of the health bar instead of a 1 frame delay
+	comboDamageDealt = 0;
+	// This one line below isn't needed, but it allows for instant updating of the health bar instead of a 1 frame delay
 	playerMaxHP += animecroPool * animecroMultiplier;
 	playerMaxAnimecroHP += animecroPool * animecroMultiplier;
 	playerCurrentAnimecroHP += animecroPool * animecroMultiplier;
@@ -17,8 +22,10 @@ if (comboCounterTimer < 0) || (obj_player.key_animecro_collect) {
 if comboCounterTimer >= 0 {
 	comboCounterTimer -= 1;
 }
-comboCounter += enemiesDealtDamage
-enemiesDealtDamage = 0;
+if comboDamageDealt > 100 {
+	comboDamageDealt -= 100;
+	comboCounter ++;
+}
 
 // Set Animecro Multiplier based on how many enemies have been hit consecutively
 if comboCounter > 4 && comboCounter <= 10 {

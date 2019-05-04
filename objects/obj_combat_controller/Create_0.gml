@@ -1,12 +1,13 @@
 /// @description Create Combat Controlling Variables
-globalvar camera, userInterfaceGameSpeed, enemiesDealtDamage, animecroPool, animecroMultiplier, playerTotalBonusDamage, playerTotalBonusResistance;
+globalvar camera, userInterfaceGameSpeed, enemyHitByPlayer, comboDamageDealt, animecroPool, animecroMultiplier, playerTotalBonusDamage, playerTotalBonusResistance;
 // Variable used to control how fast the game progresses. If less than 1, all processes run slower, including but not limited to timers, animation speeds, movement speeds, etc.
 levelPaused = false;
 gamePaused = false;
 userInterfaceGameSpeed = 1.000;
 
 // Variables used to control the pool of Animecro gained by kills, and the multiplier associated with that
-enemiesDealtDamage = 0;
+enemyHitByPlayer = false;
+comboDamageDealt = 0;
 animecroPool = 0;
 animecroMultiplier = 1;
 

@@ -49,8 +49,9 @@ if owner_is_player_ {
 		if other_owner_is_enemy {
 			playerHitboxCollisionFound = true;
 			// See collision with obj_enemy event in obj_player_melee_hitbox for explanation as to why I multiply
-			// enemiesDealtDamage by the percent I multiply damage by
-			enemiesDealtDamage += 1 + (1 * obj_skill_tree.primeBonusDamagePercentAsDecimal);
+			// comboDamageDealt by the percent I multiply damage by
+			enemyHitByPlayer = true;
+			comboDamageDealt += playerHitboxValue * playerTotalBonusDamage;
 			other_owner_.enemyCurrentHP -= playerHitboxValue * playerTotalBonusDamage;
 			lastEnemyHitByPlayer = other_owner_;
 			// Track the player's attack pattern's (melee or ranged) based on whether the attack was melee or ranged
