@@ -24,7 +24,7 @@ if comboCounterTimer >= 0 {
 }
 if comboDamageDealt > 100 {
 	comboDamageDealt -= 100;
-	comboCounter ++;
+	comboCounter++;
 }
 
 // Set Animecro Multiplier based on how many enemies have been hit consecutively
