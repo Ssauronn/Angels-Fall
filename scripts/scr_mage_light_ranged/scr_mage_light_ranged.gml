@@ -24,6 +24,7 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.enemyHitboxCollisionFound = false;
 		enemyHitbox.enemyHitboxLifetime = room_speed * 5;
 		enemyHitbox.enemyHitboxCollidedWithWall = false;
+		enemyHitbox.enemyHitboxPersistAfterCollision = false;
 		
 		// Store bullet ID's in a ds_list for later use (to move and manipulate)
 		if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {

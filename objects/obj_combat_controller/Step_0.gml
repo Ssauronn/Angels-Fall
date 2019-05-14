@@ -79,7 +79,7 @@ if ds_exists(enemyHitboxList, ds_type_list) {
 	for (i = 0; i <= ds_list_size(enemyHitboxList) - 1; i++) {
 		if instance_exists(ds_list_find_value(enemyHitboxList, i)) {
 			with ds_list_find_value(enemyHitboxList, i) {
-				if enemyHitboxType = "Projectile" {
+				if enemyHitboxType == "Projectile" {
 					// Move the hitbox as long as the parent object still exists
 					if instance_exists(owner) {
 						x += lengthdir_x(enemyProjectileHitboxSpeed, enemyProjectileHitboxDirection) * owner.enemyTotalSpeed;

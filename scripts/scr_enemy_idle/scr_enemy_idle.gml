@@ -150,11 +150,14 @@ if (chosenEngine == "") && (ds_exists(objectIDsInBattle, ds_type_list)) {
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
 
+
 /// Actually sending the AI to the correct states depending on the decision made and chosenEngine
 // If the obj_enemy has chosen an engine to execute
 if chosenEngine != "" {
 	if currentTargetToFocus != noone {
 		if instance_exists(currentTargetToFocus) {
+			// Set point direction right before sending to attack scripts
+			pointDirection = point_direction(x, y, currentTargetToFocus.x, currentTargetToFocus.y);
 			#region Heavy Melee
 			// If the chosen engine is a Heavy Melee attack
 			if chosenEngine == "Heavy Melee" {
@@ -452,6 +455,8 @@ if chosenEngine != "" {
 	if objectArchetype == "Healer" {
 		if currentTargetToHeal != noone {
 			if instance_exists(currentTargetToHeal) {
+				// Set point direction right before sending to attack scripts
+				pointDirection = point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y);
 				#region Heal Ally
 				if chosenEngine == "Heal Ally" {
 					// If the obj_enemy is not within enemyHealAllyRange

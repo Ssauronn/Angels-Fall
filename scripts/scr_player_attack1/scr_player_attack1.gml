@@ -46,6 +46,7 @@ if instance_exists(obj_player) {
 		playerHitbox.playerHitboxCollisionFound = false;
 		playerHitbox.playerHitboxLifetime = 1;
 		playerHitbox.playerHitboxCollidedWithWall = false;
+		playerHitbox.playerHitboxPersistAfterCollision = false;
 		
 		if ds_exists(obj_combat_controller.playerHitboxList, ds_type_list) {
 			ds_list_set(obj_combat_controller.playerHitboxList, ds_list_size(obj_combat_controller.playerHitboxList), playerHitbox);
