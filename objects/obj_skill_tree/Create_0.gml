@@ -33,9 +33,21 @@ successfulParryInvulnerabilityTimerStartTime = 0.5 * room_speed;
 #endregion
 
 
-#region Tier 5 Spells and Abilities
-#region Standard Bullet (Mana)
-// Create first tier 5 ability here
+#region Blood Magic
+#region Tier 1 Abilities
+// Set to 1, because subtracting 1 from the original value of enemyGameSpeed (1) will give us 0, 
+// and taking the average of this and the userInterfaceGameSpeed will reduce enemy total speed 
+// down to 0.5
+crawlOfTormentPower = 1;
+crawlOfTormentTimer = -1;
+crawlOfTormentTimerStartTime = room_speed * 4;
+// Set to true at beginning of ability, when timer reaches 0 this is set to false again and the
+// number 1 is added to this to revert the effects of crawlOfTorment
+crawlOfTormentReverted = false;
+#endregion
+
+#region Tier 2 Abilities
+
 #endregion
 #endregion
 

@@ -11,7 +11,7 @@ if instance_exists(self) {
 		if ds_exists(objectIDsInBattle, ds_type_list) {
 			for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
-				// If the object info we're accessing to compare against this own object is not itself
+				// If the object info I'm accessing to compare against this own object is not itself
 				if instance_to_reference_ != self {
 					// If the object's combat status is a minion
 					if self.combatFriendlyStatus == "Minion" {
@@ -45,7 +45,7 @@ if instance_exists(self) {
 		// If the object calling this script has no enemy target to evaluate then it must be a minion
 		// with no "Enemy" object on screen, and it should be following the player.
 		else {
-			// Redundant check making sure we only set an object to follow player if its a minion
+			// Redundant check making sure I only set an object to follow player if its a minion
 			if combatFriendlyStatus == "Minion" {
 				// Checking to make sure there is no combat currently - if there is, do not just passively
 				// follow player
@@ -321,8 +321,8 @@ if chosenEngine != "" {
 			#region Light Ranged
 			else if chosenEngine == "Light Ranged" {
 				/*
-				IF ANY OTHER ENGINE IS UNABLE TO BE EXECUTED WE NEED ENEMY TO RUN EITHER TOWARDS OR AWAY FROM TARGET; 
-				THIS IS BECAUSE WE SEND ALL FAILED ATTACKS FOR STAMINA AND MANA ABILITIES TO THIS STATE AND IF THOSE 
+				IF ANY OTHER ENGINE IS UNABLE TO BE EXECUTED I NEED ENEMY TO RUN EITHER TOWARDS OR AWAY FROM TARGET; 
+				THIS IS BECAUSE I SEND ALL FAILED ATTACKS FOR STAMINA AND MANA ABILITIES TO THIS STATE AND IF THOSE 
 				FAIL, THAT MEANS THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
 				*/
 				// If enemy is not within light ranged attack range
@@ -517,7 +517,7 @@ if chosenEngine != "" {
 
 
 /*
-After we send the object to a new state, the following variables need to be reset:
+After I send the object to a new state, the following variables need to be reset:
 
 chosenEngine
 decisionMadeForTargetAndAction

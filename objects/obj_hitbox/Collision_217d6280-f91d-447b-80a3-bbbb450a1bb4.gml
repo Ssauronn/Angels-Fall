@@ -67,14 +67,14 @@ if owner_is_player_ {
 						}
 					}
 					// If the target hasn't been hit yet, store the object ID inside this array and set it up to be damaged.
-					// We set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
+					// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
 					if !target_already_hit_ {
 						playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 0] = other_owner_;
 						playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 1] = 0;
 					}
 				}
 				// Else if the array doesn't already exist, create and store the information needed inside the array.
-				// We set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
+				// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
 				else {
 					playerHitboxTargetArray[0, 0] = other_owner_;
 					playerHitboxTargetArray[0, 1] = 0;
@@ -86,7 +86,7 @@ if owner_is_player_ {
 					// If the tic timer for the object being collided with is at or less than 0, apply damage/healing and
 					// reset the tic timer.
 					if playerHitboxTargetArray[i, 1] <= 0 {
-						scr_apply_damage_and_healing();
+						apply_damage_and_healing(owner_, other_owner_, playerHitboxDamageTypeIsBasicMelee);
 						playerHitboxTargetArray[i, 1] = playerHitboxTicTimer;
 					}
 				}

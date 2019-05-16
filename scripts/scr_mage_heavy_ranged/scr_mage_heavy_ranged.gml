@@ -17,6 +17,7 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.image_angle = point_direction(owner_.x, owner_.y, target_.x, target_.y);
 		enemyHitbox.owner = owner_;
 		enemyHitbox.enemyHitboxType = "Projectile";
+		enemyHitbox.enemyDamageTypeIsBasicMelee = false;
 		enemyHitbox.enemyHitboxHeal = false;
 		enemyHitbox.enemyProjectileHitboxDirection = point_direction_;
 		enemyHitbox.enemyProjectileHitboxSpeed = enemyProjectileHitboxSpeed;

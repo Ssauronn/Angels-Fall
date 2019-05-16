@@ -5,7 +5,7 @@
 // should not activate/should deactivate.
 // If playerCurrentHP is less than the largest amount of HP that would be lost by any ability at once,
 // stop the ability before it reduces player to below 0 HP
-if playerCurrentHP <= ((50 / room_speed) * playerTotalSpeed * 2) {
+if playerCurrentHP <= ((50 / room_speed) * playerTotalSpeed) * 2 {
 	// Set the prime ability button permanently to false
 	if obj_player.key_prime_ability {
 		obj_player.key_prime_ability = false;
@@ -17,7 +17,7 @@ if playerCurrentHP <= ((50 / room_speed) * playerTotalSpeed * 2) {
 		userInterfaceGameSpeed = 1;
 		playerGameSpeed = 1;
 		if instance_exists(obj_enemy) {
-			obj_enemy.enemyGameSpeed = 1;
+			obj_enemy.enemyGameSpeed += 0.75;
 		}
 	}
 	if slowTimeActiveTimer > 0 {
@@ -26,7 +26,7 @@ if playerCurrentHP <= ((50 / room_speed) * playerTotalSpeed * 2) {
 		userInterfaceGameSpeed = 1;
 		playerGameSpeed = 1;
 		if instance_exists(obj_enemy) {
-			obj_enemy.enemyGameSpeed = 1;
+			obj_enemy.enemyGameSpeed += 0.75;
 		}
 	}
 	if primeDamageActive {
@@ -40,21 +40,19 @@ if playerCurrentHP <= ((50 / room_speed) * playerTotalSpeed * 2) {
 if primeAbilityChosen == "Slow Time Toggled" {
 	if (obj_player.key_prime_ability) {
 		slowTimeActive = !slowTimeActive;
+		if slowTimeActive {
+			if instance_exists(obj_enemy) {
+				obj_enemy.enemyGameSpeed -= 0.75;
+			}
+		}
+		else if !slowTimeActive {
+			if instance_exists(obj_enemy) {
+				obj_enemy.enemyGameSpeed =+ 0.75;
+			}
+		}
 	}
 	if slowTimeActive {
 		playerCurrentHP -= ((playerMaxHP * 0.1) / room_speed) * playerTotalSpeed;
-		userInterfaceGameSpeed = 0.25;
-		playerGameSpeed = 1.75;
-		if instance_exists(obj_enemy) {
-			obj_enemy.enemyGameSpeed = 0.25;
-		}
-	}
-	else if (!slowTimeActive) && (slowEnemyTimeWithParryTimer == -1) {
-		userInterfaceGameSpeed = 1;
-		playerGameSpeed = 1;
-		if instance_exists(obj_enemy) {
-			obj_enemy.enemyGameSpeed = 1;
-		}
 	}
 }
 // Slow time if the player so chooses, for a specific amount of time, at the cost of health
@@ -63,28 +61,24 @@ else if primeAbilityChosen == "Slow Time Timed" {
 	// the prime ability.
 	if slowTimeActiveTimer >= 0 {
 		slowTimeActiveTimer -= 1;
+		if slowTimeActiveTimer <= 0 {
+			if instance_exists(obj_enemy) {
+				obj_enemy.enemyGameSpeed += 0.75;
+			}
+		}
 	}
-	else {
+	else if slowTimeActiveTimer < 0 {
 		slowTimeActive = false;
 	}
 	if (obj_player.key_prime_ability) {
 		slowTimeActive = true;
 		slowTimeActiveTimer = slowTimeActiveTimerStartTime;
+		if instance_exists(obj_enemy) {
+			obj_enemy.enemyGameSpeed -= 0.75;
+		}
 	}
 	if slowTimeActive {
 		playerCurrentHP -= ((playerMaxHP * 0.15) / room_speed) * playerTotalSpeed;
-		userInterfaceGameSpeed = 0.25;
-		playerGameSpeed = 1.75;
-		if instance_exists(obj_enemy) {
-			obj_enemy.enemyGameSpeed = 0.25;
-		}
-	}
-	else if (!slowTimeActive) && (slowEnemyTimeWithParryTimer == -1) {
-		userInterfaceGameSpeed = 1;
-		playerGameSpeed = 1;
-		if instance_exists(obj_enemy) {
-			obj_enemy.enemyGameSpeed = 1;
-		}
 	}
 }
 // Deal extra damage if the player so chooses, toggled on and off at will, at the cost of health
@@ -93,7 +87,7 @@ else if primeAbilityChosen == "Bonus Damage Toggled" {
 		primeDamageActive = !primeDamageActive;
 	}
 	if primeDamageActive {
-		primeBonusDamagePercentAsDecimal = 1;
+		primeBonusDamagePercentAsDecimal = 2;
 		obj_player.playerAnimationSprite = spr_prime_damage_buff;
 		obj_player.playerAnimationX = obj_player.x;
 		obj_player.playerAnimationY = obj_player.y;
@@ -108,6 +102,8 @@ else if primeAbilityChosen == "Bonus Damage Toggled" {
 
 
 #region ---PARRY EFFECTS---
+// Parry actual effect is applied upon collision with a hitbox on the player while parryWindowActive
+// is true
 if parryEffectChosen == "Slow Time Effect" {
 	if parryWindowTimer >= 0 {
 		parryWindowTimer--;

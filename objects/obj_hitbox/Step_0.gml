@@ -86,7 +86,7 @@ if !is_undefined(owner) {
 									if !enemyHitboxCollidedWithWall {
 										with owner {
 											obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
-											enemyGameSpeed = 0;
+											enemyGameSpeed -= 1;
 											slowEnemyTimeWithParryActive = true;
 											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
 											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
@@ -110,7 +110,7 @@ if !is_undefined(owner) {
 									if !enemyHitboxCollidedWithWall {
 										with owner {
 											obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
-											enemyGameSpeed = 0;
+											enemyGameSpeed -= 1;
 											slowEnemyTimeWithParryActive = true;
 											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
 											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
@@ -212,7 +212,7 @@ if !is_undefined(owner) {
 	}
 	// If the instance firing the bullet doesn't exist, automatically delete and destroy all bullets fired by that instance
 	else {
-		// Here we're checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
+		// Here I'm checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
 		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
 		if variable_instance_exists(self, "enemyHitboxValue") {
 			// Actually destroy the bullet object
@@ -265,7 +265,7 @@ if !is_undefined(owner) {
 			}
 			instance_destroy(self);
 		}
-		// Here we're checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
+		// Here I'm checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
 		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
 		else if variable_instance_exists(self, "playerHitboxValue") {
 			// Actually destroy the bullet object
@@ -320,7 +320,7 @@ if !is_undefined(owner) {
 		}
 	}
 }
-// This is deleting the bullet in case the owner is undefined. Since the player will never be undefined, we don't have to check
+// This is deleting the bullet in case the owner is undefined. Since the player will never be undefined, I don't have to check
 // whether the owner is the player or enemy.
 else {
 	// Actually destroy the bullet object

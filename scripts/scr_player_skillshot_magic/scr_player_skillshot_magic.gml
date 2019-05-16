@@ -38,6 +38,7 @@ if instance_exists(obj_player) {
 		playerHitbox.playerProjectileHitboxSpeed = playerProjectileHitboxSpeed;
 		playerHitbox.playerHitboxDirection = playerHitboxDirection;
 		playerHitbox.playerHitboxType = "Projectile";
+		playerHitbox.playerHitboxDamageTypeIsBasicMelee = false;
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerBulletAttackValue;
 		playerHitbox.playerHitboxCollisionFound = false;

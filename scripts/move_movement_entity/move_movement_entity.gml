@@ -15,8 +15,8 @@ if object_index == obj_player {
 	var x_speed_ = lengthdir_x(currentSpeed, currentDirection);
 	var y_speed_ = lengthdir_y(currentSpeed, currentDirection);
 
-	// This checks to see if movement is being applied. If not, then we need to exit the script
-	// so we don't waste processing power. This currentSpeed is edited in add_movement script before
+	// This checks to see if movement is being applied. If not, then I need to exit the script
+	// so I don't waste processing power. This currentSpeed is edited in add_movement script before
 	// this script is executed, so it'll always correctly determine whether to exit or not.
 	if currentSpeed <= 0 {
 		exit;

@@ -1,5 +1,5 @@
 /// @description Create Combat Controlling Variables
-globalvar camera, userInterfaceGameSpeed, enemyHitByPlayer, comboDamageDealt, animecroPool, animecroMultiplier, playerTotalBonusDamage, playerTotalBonusResistance;
+globalvar camera, userInterfaceGameSpeed, enemyHitByPlayer, comboDamageDealt, animecroPool, animecroMultiplier, playerTotalBonusDamage, playerTotalBonusBasicMeleeDamage, playerTotalBonusResistance;
 // Variable used to control how fast the game progresses. If less than 1, all processes run slower, including but not limited to timers, animation speeds, movement speeds, etc.
 levelPaused = false;
 gamePaused = false;
@@ -22,7 +22,9 @@ comboCounterTimerStartTime = 4 * room_speed;
 
 // Variables used to control the incoming and outgoing damage of both the player and other enemies
 // Player
-playerTotalBonusDamage = 1 + obj_skill_tree.primeBonusDamagePercentAsDecimal; // + whatever other modifiers I can change player damage with. Damage debuffs should be applied as negative numbers.
-playerTotalBonusResistance = 0; // + whatever resistances the player has
+playerTotalBonusDamage = 1 * obj_skill_tree.primeBonusDamagePercentAsDecimal; // * whatever other modifiers I can change player damage with, numbers greater than 1.
+playerTotalBonusBasicMeleeDamage = playerTotalBonusDamage; // * whatever other modifiers I can change the player basic melee damage with, numbers greater than 1.
+playerTotalBonusResistance = 1; // * whatever other modifiers I can change the player resistance with, numbers greater than 0 and less than 1.
+
 
 

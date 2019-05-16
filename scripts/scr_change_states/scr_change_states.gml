@@ -1,7 +1,7 @@
 ///@argument0 EnemyName
 /*
-We run this state machine switch statement every frame in the Step event. We do this in a script
-so that we can dynamically call the correct scripts each frame depending on what the enemy is.
+I run this state machine switch statement every frame in the Step event. I do this in a script
+so that I can dynamically call the correct scripts each frame depending on what the enemy is.
 Impossible to do otherwise (cannot store scripts in variables, already tried).
 */
 var enemy_name_ = argument0;

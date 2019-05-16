@@ -41,6 +41,7 @@ if instance_exists(obj_player) {
 		}
 		playerHitbox.owner = owner_;
 		playerHitbox.playerHitboxType = "Melee";
+		playerHitbox.playerHitboxDamageTypeIsBasicMelee = true;
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerMeleeAttackOneValue;
 		playerHitbox.playerHitboxCollisionFound = false;

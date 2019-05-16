@@ -29,6 +29,7 @@ if instance_exists(currentTargetToHeal) {
 		enemyHitbox.mask_index =spr_aoe_heal;
 		enemyHitbox.owner = owner_;
 		enemyHitbox.enemyHitboxType = "Target AoE";
+		enemyHitbox.enemyDamageTypeIsBasicMelee = false;
 		enemyHitbox.enemyHitboxHeal = true;
 		enemyHitbox.enemyHitboxValue = enemyHealValue;
 		enemyHitbox.enemyHitboxCollisionFound = false;

@@ -31,7 +31,7 @@ switch (chosenEngine) {
 		break;
 }
 // If the instance exists, set local variable target_ equal to the instance's target. Otherwise, if its
-// target doesn't exist, reset variables, as we obviously don't want to chase a non-existant thing.
+// target doesn't exist, reset variables, as I obviously don't want to chase a non-existant thing.
 if instance_exists(target_) {
 	// These variables are created before the path itself is created
 	if target_.object_index == obj_player {
@@ -115,7 +115,7 @@ if chosenEngine != "Heal Ally" {
 				}
 			}
 		}
-		// Else if we are within the correct range, revert to idle
+		// Else if I are within the correct range, revert to idle
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
 			// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
@@ -198,7 +198,7 @@ if chosenEngine == "Heal Ally" {
 				}
 			}
 		}
-		// Else if we are within correct range, revert to idle
+		// Else if I are within correct range, revert to idle
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
 			// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
@@ -235,7 +235,7 @@ if chosenEngine == "Heal Ally" {
 
 
 // If the timer for alreadyTriedToChase (alreadyTriedToChaseTimer) hits 0, that means that the enemy
-// has already tried to chase for the max amount of time, and we need to move onto a different attack.
+// has already tried to chase for the max amount of time, and I need to move onto a different attack.
 if alreadyTriedToChaseTimer <= 0 {
 	// Reset path variables
 	pathPos = 1;

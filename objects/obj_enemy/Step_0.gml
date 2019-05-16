@@ -10,6 +10,13 @@ if !enemyStatsAndSpritesInitialized {
 
 // Set the total composite speed for each individual enemy
 enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
+// This limits enemyTotalSpeed to being reduced down to 0 or negative numbers. This doesn't effect status effects
+// that add to or decrease from either enemyGameSpeed or userInterfaceGameSpeed, so status effects can still function
+// normally, adding and subtracting from enemyGameSpeed as needed, and once the totals add up to more than 0.1 the 
+// lines below will stop working and enemyTotalSpeed will function like normal.
+if enemyTotalSpeed <= 0.1 {
+	enemyTotalSpeed = 0.1;
+}
 
 // Set the max movement speed for each individual enemy
 maxSpeed = baseMaxSpeed * enemyTotalSpeed;
@@ -76,7 +83,7 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 			*/
 			decisionMadeForTargetAndAction = false;
 			// Set every instance that is or will about to be idling to make a new decision. If the instance is currently
-			// chasing a target though, don't reset that decision, as we want the instance to finish out it's chain of actions.
+			// chasing a target though, don't reset that decision, as I want the instance to finish out it's chain of actions.
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
 				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
@@ -120,7 +127,7 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 	else {
 		/*
 		As long as the enemy in the player's view is an enemy, start up the combat list (objectIDsInBattle)
-		---We don't do this for minions because if JUST a minion is in view, that doesn't mean the player is
+		---I don't do this for minions because if JUST a minion is in view, that doesn't mean the player is
 		in combat, it just means the player has minions following.
 		*/
 		if combatFriendlyStatus == "Enemy" {
@@ -153,7 +160,7 @@ if (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.
 				*/
 				decisionMadeForTargetAndAction = false;
 				// Set every instance that is or will about to be idling to make a new decision. If the instance is currently
-				// chasing a target though, don't reset that decision, as we want the instance to finish out it's chain of actions.
+				// chasing a target though, don't reset that decision, as I want the instance to finish out it's chain of actions.
 				for (j = 0; j <= ds_list_size(objectIDsFollowingPlayer) - 1; j++) {
 					instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, j);
 					if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
@@ -187,7 +194,7 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if (ds_list_find_index(objectIDsInBattle, self) != -1) {
 			// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
-			// isn't currently chasing its target (if it is, we want it to finish out it's series of actions first)
+			// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first)
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
 				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
@@ -436,7 +443,7 @@ if (enemyState == enemystates.moveWithinAttackRange) || (enemyState == enemystat
 else if currentSpeed != 0 {
 	currentSpeed = 0;
 	/*
-	The lines below can only be used if we continue to move the object in scr_move_within_attack_range or 
+	The lines below can only be used if I continue to move the object in scr_move_within_attack_range or 
 	scr_determine_direction_facing AFTER within range, until currentSpeed is 0. Currently, enemies stop immediately,
 	which should look better over time.
 	*/
