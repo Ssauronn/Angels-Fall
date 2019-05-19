@@ -21,8 +21,8 @@ idealWidth = round(idealWidth);
 /* idealHeight = round(idealWidth / aspectRatio); */
 
 
-// Here we use the bitwise operator AND to round the aspect ratio up one pixel if the current
-// aspect ratio is an odd number. We do this because odd numbers never scale well
+// Here I use the bitwise operator AND to round the aspect ratio up one pixel if the current
+// aspect ratio is an odd number. I do this because odd numbers never scale well
 /*
 if idealHeight & 1 {
 	idealHeight += 1;
@@ -40,7 +40,7 @@ camera_set_view_size(camera, idealWidth, idealHeight);
 
 // Set the viewports and camera up for each individual room I have
 var i;
-// We don't set i to 0 because the room this object starts in is room 0
+// I don't set i to 0 because the room this object starts in is room 0
 for (i = 1; i <= room_last; i++) {
 	if room_exists(i) {
 		room_set_view_enabled(i, true);

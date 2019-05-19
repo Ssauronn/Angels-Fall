@@ -1,4 +1,54 @@
-/// @description Destroy Self if Outside Owner Range
+/// @description Destroy Self if Outside Owner Range, Count Down Timers
+if owner.object_index == obj_player {
+	if is_array(playerHitboxTargetArray) {
+		// If the array's first value is noone, that means no collided objects exist, so delete the array
+		if (playerHitboxTargetArray[0, 0] == noone) {
+			playerHitboxTargetArray = noone;
+		}
+		else {
+			var i;
+			for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
+				// If the currently referenced row containing an object ID now contains the ID of an object that doesn't
+				// exist, then delete that information and move all information down.
+				if !instance_exists(playerHitboxTargetArray[i, 0]) {
+					var j;
+					for (j = i; j <= array_height_2d(playerHitboxTargetArray) - 1; j++) {
+						// If the row currently referenced is not the last line in the row and the row below is not yet deleted,
+						// then delete the information by shifting everything below the currently referenced row up by 1
+						if ((j + 1) != array_height_2d(playerHitboxTargetArray)) && (playerHitboxTargetArray[j + 1, 0] != noone) {
+							playerHitboxTargetArray[j + 1, 0] = playerHitboxTargetArray[j, 0];
+							playerHitboxTargetArray[j + 1, 1] = playerHitboxTargetArray[j, 1];
+						}
+						// Else if the row currently referenced is the last line in the row, or the row below is already deleted,
+						// then set the currently referenced line to noone, since that information will have already been shifted
+						// up by 1 row.
+						else if ((j + 1) == array_height_2d(playerHitboxTargetArray)) || (playerHitboxTargetArray[j + 1, 0] == noone) {
+							playerHitboxTargetArray[j, 0] = noone;
+							playerHitboxTargetArray[j, 1] = -1;
+						}
+					}
+				}
+				// Else minus the second value (the countdown) in this grid by one (damage is applied in collision event)
+				else {
+					if playerHitboxTargetArray[i, 1] >= 0 {
+						playerHitboxTargetArray[i, 1] -= 1;
+					}
+				}
+			}
+		}
+	}
+}
+else if owner.object_index == obj_enemy {
+	if is_array(enemyHitboxTargetArray) {
+		var i;
+		for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
+			
+		}
+	}
+}
+
+
+
 // Check to see if the owner even is defined
 if !is_undefined(owner) {
 	// Check to see if the owner exists
@@ -36,7 +86,7 @@ if !is_undefined(owner) {
 									if !enemyHitboxCollidedWithWall {
 										with owner {
 											obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
-											enemyGameSpeed = 0;
+											enemyGameSpeed -= 1;
 											slowEnemyTimeWithParryActive = true;
 											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
 											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
@@ -60,7 +110,7 @@ if !is_undefined(owner) {
 									if !enemyHitboxCollidedWithWall {
 										with owner {
 											obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;
-											enemyGameSpeed = 0;
+											enemyGameSpeed -= 1;
 											slowEnemyTimeWithParryActive = true;
 											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
 											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
@@ -162,7 +212,7 @@ if !is_undefined(owner) {
 	}
 	// If the instance firing the bullet doesn't exist, automatically delete and destroy all bullets fired by that instance
 	else {
-		// Here we're checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
+		// Here I'm checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
 		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
 		if variable_instance_exists(self, "enemyHitboxValue") {
 			// Actually destroy the bullet object
@@ -215,7 +265,7 @@ if !is_undefined(owner) {
 			}
 			instance_destroy(self);
 		}
-		// Here we're checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
+		// Here I'm checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
 		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
 		else if variable_instance_exists(self, "playerHitboxValue") {
 			// Actually destroy the bullet object
@@ -270,7 +320,7 @@ if !is_undefined(owner) {
 		}
 	}
 }
-// This is deleting the bullet in case the owner is undefined. Since the player will never be undefined, we don't have to check
+// This is deleting the bullet in case the owner is undefined. Since the player will never be undefined, I don't have to check
 // whether the owner is the player or enemy.
 else {
 	// Actually destroy the bullet object

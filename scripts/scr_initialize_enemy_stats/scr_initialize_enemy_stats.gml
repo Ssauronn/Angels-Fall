@@ -137,7 +137,7 @@ switch (enemy_name_) {
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*
-		In the step event for each enemy object, we set the hurtbox x and y coordinates,
+		In the step event for each enemy object, I set the hurtbox x and y coordinates,
 		sprite_index, and image_index to equal that of its owner. 
 		*/
 		enemyHurtbox = instance_create_depth(x, y, -999, obj_hurtbox);
@@ -294,7 +294,7 @@ switch (enemy_name_) {
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*
-		In the step event for each enemy object, we set the hurtbox and ground hurtbox 
+		In the step event for each enemy object, I set the hurtbox and ground hurtbox 
 		x and y coordinates, sprite_index, and image_index to equal that of its owner. 
 		*/
 		enemyHurtbox = instance_create_depth(x, y, -999, obj_hurtbox);
@@ -446,7 +446,7 @@ switch (enemy_name_) {
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*
-		In the step event for each enemy object, we set the hurtbox x and y coordinates,
+		In the step event for each enemy object, I set the hurtbox x and y coordinates,
 		sprite_index, and image_index to equal that of its owner. 
 		*/
 		enemyHurtbox = instance_create_depth(x, y, -999, obj_hurtbox);
@@ -598,7 +598,7 @@ switch (enemy_name_) {
 		
 		// Enemy Hurtbox Creation and Variable Setting
 		/*
-		In the step event for each enemy object, we set the hurtbox x and y coordinates,
+		In the step event for each enemy object, I set the hurtbox x and y coordinates,
 		sprite_index, and image_index to equal that of its owner. 
 		*/
 		enemyHurtbox = instance_create_depth(x, y, -999, obj_hurtbox);

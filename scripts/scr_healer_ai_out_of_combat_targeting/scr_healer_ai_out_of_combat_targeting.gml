@@ -3,7 +3,7 @@
 if !ds_exists(objectIDsInBattle, ds_type_list) {
 	// Check to make sure there are objects following the player
 	if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
-		// Set up local variables we'll be manipulating
+		// Set up local variables I'll be manipulating
 		var i, instance_to_reference_, object_to_target_, potential_targets_hp_percentage_;
 		object_to_target_ = noone;
 		// Set default target hp percentage to the player hp percentage

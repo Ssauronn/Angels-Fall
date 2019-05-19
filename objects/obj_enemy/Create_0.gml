@@ -161,6 +161,8 @@ enum enemydirection {
 	down
 }
 
+pointDirection = 0;
+
 enemyState = enemystates.idle;
 
 

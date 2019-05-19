@@ -38,11 +38,15 @@ if instance_exists(obj_player) {
 		playerHitbox.playerProjectileHitboxSpeed = playerProjectileHitboxSpeed;
 		playerHitbox.playerHitboxDirection = playerHitboxDirection;
 		playerHitbox.playerHitboxType = "Projectile";
+		playerHitbox.playerHitboxDamageTypeIsBasicMelee = false;
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerBulletAttackValue;
 		playerHitbox.playerHitboxCollisionFound = false;
 		playerHitbox.playerHitboxLifetime = room_speed * 5;
 		playerHitbox.playerHitboxCollidedWithWall = false;
+		playerHitbox.playerHitboxPersistAfterCollision = false;
+		playerHitbox.playerHitboxTicTimer = playerHitbox.playerHitboxLifetime;
+		playerHitbox.playerHitboxTargetArray = noone;
 		
 		if ds_exists(obj_combat_controller.playerHitboxList, ds_type_list) {
 			ds_list_set(obj_combat_controller.playerHitboxList, ds_list_size(obj_combat_controller.playerHitboxList), playerHitbox);

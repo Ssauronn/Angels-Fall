@@ -50,10 +50,10 @@ if instance_exists(obj_player) {
 									// Seventh column is the potential heal target's weight to focus based on adjacent allies
 									// Eighth column is the potential heal target's weight to focus based on adjacent enemies
 									/*
-									For the height of this grid, we add one to the ds_list_size (instead of subtracting one to match exactly the height of the list objectIDsInBattle)
-									because of the way we use the local variable iteration_ right afterwards. We set the first slot in this grid to player info, which takes a space
-									not counted by objectIDsInBattle. And then, before adding any info from objectIDsInBattle, we add one to iteration_ originally set to 0, which takes
-									yet another slot. Because we take 2 slots to get to the space where we write the first bit of info from objectIDsInBattle, we add 2 to
+									For the height of this grid, I add one to the ds_list_size (instead of subtracting one to match exactly the height of the list objectIDsInBattle)
+									because of the way I use the local variable iteration_ right afterwards. I set the first slot in this grid to player info, which takes a space
+									not counted by objectIDsInBattle. And then, before adding any info from objectIDsInBattle, I add one to iteration_ originally set to 0, which takes
+									yet another slot. Because I take 2 slots to get to the space where I write the first bit of info from objectIDsInBattle, I add 2 to
 									ds_list_size(objectIDsInBattle) - 1, which brings us to ds_list_size(objectIDsInBattle) + 1.
 									*/
 									enemy_heal_target_grid_ = ds_grid_create(8, (ds_list_size(objectIDsInBattle) + 1));
@@ -316,10 +316,10 @@ if instance_exists(obj_player) {
 									// Seventh column is the potential heal target's weight to focus based on adjacent allies
 									// Eighth column is the potential heal target's weight to focus based on adjacent enemies
 									/*
-									For the height of this grid, we add one to the ds_list_size (instead of subtracting one to match exactly the height of the list objectIDsInBattle)
-									because of the way we use the local variable iteration_ right afterwards. We set the first slot in this grid to player info, which takes a space
-									not counted by objectIDsInBattle. And then, before adding any info from objectIDsInBattle, we add one to iteration_ originally set to 0, which takes
-									yet another slot. Because we take 2 slots to get to the space where we write the first bit of info from objectIDsInBattle, we add 2 to
+									For the height of this grid, I add one to the ds_list_size (instead of subtracting one to match exactly the height of the list objectIDsInBattle)
+									because of the way I use the local variable iteration_ right afterwards. I set the first slot in this grid to player info, which takes a space
+									not counted by objectIDsInBattle. And then, before adding any info from objectIDsInBattle, I add one to iteration_ originally set to 0, which takes
+									yet another slot. Because I take 2 slots to get to the space where I write the first bit of info from objectIDsInBattle, I add 2 to
 									ds_list_size(objectIDsInBattle) - 1, which brings us to ds_list_size(objectIDsInBattle) + 1.
 									*/
 									minion_heal_target_grid_ = ds_grid_create(9, (ds_list_size(objectIDsInBattle) + 1));

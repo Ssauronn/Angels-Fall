@@ -29,11 +29,15 @@ if instance_exists(currentTargetToHeal) {
 		enemyHitbox.mask_index =spr_aoe_heal;
 		enemyHitbox.owner = owner_;
 		enemyHitbox.enemyHitboxType = "Target AoE";
+		enemyHitbox.enemyDamageTypeIsBasicMelee = false;
 		enemyHitbox.enemyHitboxHeal = true;
 		enemyHitbox.enemyHitboxValue = enemyHealValue;
 		enemyHitbox.enemyHitboxCollisionFound = false;
 		enemyHitbox.enemyHitboxLifetime = 1;
 		enemyHitbox.enemyHitboxCollidedWithWall = false;
+		enemyHitbox.enemyHitboxPersistAfterCollision = false;
+		enemyHitbox.enemyHitboxTicTimer = enemyHitbox.enemyHitboxLifetime;
+		enemyHitbox.enemyHitboxTargetArray = noone;
 		
 		// Store bullet ID's in a ds_list for later use (to move and manipulate)
 		if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {

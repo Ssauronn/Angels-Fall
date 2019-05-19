@@ -17,6 +17,7 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.image_angle = point_direction(owner_.x, owner_.y, target_.x, target_.y);
 		enemyHitbox.owner = owner_;
 		enemyHitbox.enemyHitboxType = "Projectile";
+		enemyHitbox.enemyDamageTypeIsBasicMelee = false;
 		enemyHitbox.enemyHitboxHeal = false;
 		enemyHitbox.enemyProjectileHitboxDirection = point_direction_;
 		enemyHitbox.enemyProjectileHitboxSpeed = enemyProjectileHitboxSpeed;
@@ -24,6 +25,9 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.enemyHitboxCollisionFound = false;
 		enemyHitbox.enemyHitboxLifetime = room_speed * 5;
 		enemyHitbox.enemyHitboxCollidedWithWall = false;
+		enemyHitbox.enemyHitboxPersistAfterCollision = false;
+		enemyHitbox.enemyHitboxTicTimer = enemyHitbox.enemyHitboxLifetime;
+		enemyHitbox.enemyHitboxTargetArray = noone;
 		
 		// Store bullet ID's in a ds_list for later use (to move and manipulate)
 		if ds_exists(obj_combat_controller.enemyHitboxList, ds_type_list) {

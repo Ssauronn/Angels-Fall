@@ -24,7 +24,7 @@ if comboCounterTimer >= 0 {
 }
 if comboDamageDealt > 100 {
 	comboDamageDealt -= 100;
-	comboCounter ++;
+	comboCounter++;
 }
 
 // Set Animecro Multiplier based on how many enemies have been hit consecutively
@@ -43,8 +43,9 @@ else if comboCounter > 60 {
 
 // Variables used to control the incoming and outgoing damage of both the player and other enemies
 // Player
-playerTotalBonusDamage = 1 + obj_skill_tree.primeBonusDamagePercentAsDecimal; // + whatever other modifiers I can change player damage with. Damage debuffs should be applied as negative numbers.
-playerTotalBonusResistance = 0; // + whatever resistances the player has
+playerTotalBonusDamage = 1 * obj_skill_tree.primeBonusDamagePercentAsDecimal; // * whatever other modifiers I can change player damage with, numbers greater than 1.
+playerTotalBonusBasicMeleeDamage = playerTotalBonusDamage; // * whatever other modifiers I can change basic melee damage with, numbers greater than 1.
+playerTotalBonusResistance = 1; // * whatever other modifiers I can change the player resistance with, numbers greater than 0 and less than 1.
 
 
 #region Move Hitbox Objects
@@ -79,7 +80,7 @@ if ds_exists(enemyHitboxList, ds_type_list) {
 	for (i = 0; i <= ds_list_size(enemyHitboxList) - 1; i++) {
 		if instance_exists(ds_list_find_value(enemyHitboxList, i)) {
 			with ds_list_find_value(enemyHitboxList, i) {
-				if enemyHitboxType = "Projectile" {
+				if enemyHitboxType == "Projectile" {
 					// Move the hitbox as long as the parent object still exists
 					if instance_exists(owner) {
 						x += lengthdir_x(enemyProjectileHitboxSpeed, enemyProjectileHitboxDirection) * owner.enemyTotalSpeed;
@@ -125,7 +126,7 @@ if instance_exists(obj_enemy) {
 			}
 			else {
 				slowEnemyTimeWithParryActive = false;
-				enemyGameSpeed = 1;
+				enemyGameSpeed += 1;
 			}
 		}
 	}
