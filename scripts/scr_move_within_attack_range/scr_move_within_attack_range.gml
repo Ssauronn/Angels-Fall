@@ -249,4 +249,25 @@ if alreadyTriedToChaseTimer <= 0 {
 	enemyStateSprite = enemystates.idle;
 }
 
+// If the object is stunned, immediately send this object to the stun script
+if stunActive {
+	enemyState = enemystates.stunned;
+	enemyStateSprite = enemystates.stunned;
+	enemyImageIndex = 0;
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+	// Path variables resetting and destroying the path to prevent memory leak
+	pathPos = 1;
+	pathCreated = false;
+	if path_exists(myPath) {
+		path_delete(myPath);
+	}
+}
+
 

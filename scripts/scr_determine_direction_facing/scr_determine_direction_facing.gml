@@ -1,8 +1,7 @@
 ///@description Set enemyDirectionFacing correctly each frame this is called
 
-// If the state the enemy is in is NOT to passively follow the player, or if the enemy has not created the hitbox for its attack yet
-//if (enemyState != enemystates.passivelyFollowPlayer) && (enemyState != enemystates.heavyMeleeAttack) && (enemyState != enemystates.lightMeleeAttack) && (enemyState != enemystates.heavyRangedAttack) && (enemyState != enemystates.lightRangedAttack) {
-if (enemyState != enemystates.passivelyFollowPlayer) || ((enemyState == enemystates.heavyMeleeAttack) && (hitboxCreated == false)) || ((enemyState == enemystates.lightMeleeAttack) && (hitboxCreated == false)) || ((enemyState == enemystates.heavyRangedAttack) && (hitboxCreated == false)) || ((enemyState == enemystates.lightRangedAttack) && (hitboxCreated == false)) {
+// If the state the enemy is in is NOT to passively follow the player, and the enemy is not stunned or currently attacking, then set the direction facing
+if (!stunActive) && (!hitstunActive) && (enemyState != enemystates.passivelyFollowPlayer) && (enemyState != enemystates.heavyMeleeAttack) && (enemyState != enemystates.lightMeleeAttack) && (enemyState != enemystates.heavyRangedAttack) && (enemyState != enemystates.lightRangedAttack) {
 	// If the enemy has already chosen an attack state to be in
 	if chosenEngine != "" {
 		// As long as the state to choose to be in is not healing, set direction facing based on the 

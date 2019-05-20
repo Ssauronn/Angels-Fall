@@ -18,8 +18,6 @@ if enemyTotalSpeed <= 0.1 {
 	enemyTotalSpeed = 0.1;
 }
 
-// Set the max movement speed for each individual enemy
-maxSpeed = baseMaxSpeed * enemyTotalSpeed;
 
 tetherXRange = camera_get_view_width(view_camera[0]) * 2;
 tetherYRange = camera_get_view_height(view_camera[0]) * 2;
@@ -404,6 +402,56 @@ if instance_exists(obj_player) {
 }
 #endregion
 
+#region Stun and Hitstun Values
+// Setting the stun values
+/*
+If stun timer is greater than 0, then the stun is active, which forces the state to be sent to stun state
+
+We never actually set enemyState = enemystates.stunned except for in other scripts, because depending on the action
+being taken, we'll need to reset/destroy certain variables
+*/
+if stunTimer > 0 {
+	stunActive = true;
+}
+else {
+	stunActive = false;
+}
+// If the stun timer is greater than 0, then count the timer down
+if stunTimer > 0 {
+	stunTimer--;
+}
+// If the stun is not active, set the multiplier to 1. Otherwise, set it to 0 which sets movement speed and resource regen to 0.
+if !stunActive {
+	stunMultiplier = 1;
+}
+else {
+	stunMultiplier = 0;
+}
+
+// Setting the hitstun values, different than stun
+// Set hitstun to be active or not
+if hitstunTimer > 0 {
+	hitstunActive = true;
+}
+else {
+	hitstunActive = false;
+}
+// If the hitstun timer is greater than 0, then count the timer down
+if hitstunTimer > 0 {
+	hitstunTimer--;
+}
+// If the hitstun is not active, set it to default at 1. Otherwise, set it to 0 which sets movement speed, resource regen,
+// and image speed to 0 for the duration.
+if !hitstunActive {
+	hitstunMultiplier = 1;
+}
+else {
+	hitstunMultiplier = 0;
+}
+#endregion
+
+
+
 // Timer for spacing out heals, so healers can't spam heals
 if healAllyEngineTimer > 0 {
 	healAllyEngineTimer -= 1 * enemyTotalSpeed;
@@ -413,13 +461,7 @@ if healAllyEngineTimer > 0 {
 scr_track_enemy_stats();
 
 
-// Make sure being hit multiple times by the same hitbox is not possible
-if !instance_exists(alreadyHit) {
-	alreadyHit = -1;
-}
-if alreadyHitTimer >= 0 {
-	alreadyHitTimer -= 1 * enemyTotalSpeed;
-}
+
 if alreadyTriedToChaseTimer > 0 {
 	alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed;
 }
@@ -442,13 +484,6 @@ if (enemyState == enemystates.moveWithinAttackRange) || (enemyState == enemystat
 // Else if the enemy doesn't ened to chase an object, reduce its speed
 else if currentSpeed != 0 {
 	currentSpeed = 0;
-	/*
-	The lines below can only be used if I continue to move the object in scr_move_within_attack_range or 
-	scr_determine_direction_facing AFTER within range, until currentSpeed is 0. Currently, enemies stop immediately,
-	which should look better over time.
-	*/
-	// Reduces current speed so that if the currentSpeed is at maxSpeed, it'll take 0.25 seconds to slow to 0
-	// currentSpeed -= (maxSpeed / (room_speed)) * 4;
 }
 // Make sure enemy speed can't exceed maxSpeed
 if (currentSpeed > maxSpeed) || (currentSpeed < 0) {
@@ -465,7 +500,7 @@ if enemyAnimationImageIndex >= sprite_get_number(enemyAnimationSprite) {
 	enemyAnimationSprite = noone;
 }
 enemyImageIndexSpeed = enemyImageIndexBaseSpeed * enemyTotalSpeed;
-enemyImageIndex += enemyImageIndexSpeed;
+enemyImageIndex += enemyImageIndexSpeed * hitstunMultiplier;
 enemyAnimationImageIndex += enemyImageIndexSpeed;
 
 

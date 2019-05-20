@@ -9,13 +9,13 @@ else {
 
 // Base Stat Regenerations
 if enemyHPRegeneration != 0 {
-	enemyCurrentHP += enemyHPRegeneration * enemyTotalSpeed;
+	enemyCurrentHP += (enemyHPRegeneration * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier;
 }
 if enemyStaminaRegeneration != 0 {
-	enemyCurrentStamina += enemyStaminaRegeneration * enemyTotalSpeed;
+	enemyCurrentStamina += (enemyStaminaRegeneration * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier;
 }
 if enemyManaRegeneration != 0 {
-	enemyCurrentMana += enemyManaRegeneration * enemyTotalSpeed;
+	enemyCurrentMana += (enemyManaRegeneration * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier;
 }
 
 // Make sure current stat values do not exceed max stat values
@@ -30,14 +30,14 @@ if enemyCurrentMana > enemyMaxMana {
 }
 
 // Enemies' Bonus Damage and Resistance - 
-enemyTotalBonusDamage = 1; // + whatever bonus damages the enemy has
-enemyTotalBonusResistance = 0; // + whatever bonus resistances the enemy has
+enemyTotalBonusDamage = 1; // * whatever bonus damages the enemy has
+enemyTotalBonusResistance = 1; // * whatever bonus resistances the enemy has
 
 
 // Set Speed variables for enemies
-maxSpeed = baseMaxSpeed * enemyTotalSpeed;
-acceleration = baseAcceleration * enemyTotalSpeed;
-frictionAmount = baseFrictionAmount * enemyTotalSpeed;
+maxSpeed = (baseMaxSpeed * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier;
+acceleration = (baseAcceleration * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier;
+frictionAmount = (baseFrictionAmount * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier;
 
 
 // Destroy self if HP drops below 0

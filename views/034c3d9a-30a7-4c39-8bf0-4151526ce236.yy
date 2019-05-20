@@ -9,7 +9,8 @@
         "b5e290ad-0f3a-48b5-9e2c-49adabc650f3",
         "c394ce92-5bc3-44e1-80fb-85d93692aa8a",
         "406b935f-d20e-4f2c-a853-d1cecb1c9ce5",
-        "08c922b0-b9b1-4c60-961f-a62c0953099a"
+        "08c922b0-b9b1-4c60-961f-a62c0953099a",
+        "46cb30cf-c6b7-433f-bd23-672f9de461d9"
     ],
     "filterType": "GMSprite",
     "folderName": "grp_mage",

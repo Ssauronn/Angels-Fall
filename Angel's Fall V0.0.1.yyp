@@ -407,6 +407,14 @@
             }
         },
         {
+            "Key": "37333b3e-6e48-4b89-99e5-25a6b578de8f",
+            "Value": {
+                "id": "66db0595-4608-4fdb-a0c9-5ee10eba5874",
+                "resourcePath": "scripts\\scr_stunned\\scr_stunned.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3a0d0a5e-92d6-46d9-bd37-ada2f8254a6f",
             "Value": {
                 "id": "49a773b3-1d4d-4255-a91e-173b0e1ff2d5",
@@ -516,6 +524,14 @@
                 "id": "8747fd60-448a-4a1e-a74f-60542d1523a4",
                 "resourcePath": "scripts\\move_movement_entity\\move_movement_entity.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "46cb30cf-c6b7-433f-bd23-672f9de461d9",
+            "Value": {
+                "id": "3eae302e-941f-4834-9565-9ec863c8926c",
+                "resourcePath": "sprites\\spr_enemy_mage_stunned\\spr_enemy_mage_stunned.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -983,6 +999,14 @@
             }
         },
         {
+            "Key": "8e886691-aef4-4cbd-8c6f-8b5880b9b2c8",
+            "Value": {
+                "id": "ece0b0a0-71bf-42c9-81cb-e08c979a4421",
+                "resourcePath": "sprites\\spr_enemy_fighter_stunned\\spr_enemy_fighter_stunned.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "8f3003fc-39a9-4b2c-abf5-a806dda2d2e2",
             "Value": {
                 "id": "f6007762-b022-4323-ad6b-5ab1ec4a415d",
@@ -1407,6 +1431,22 @@
             }
         },
         {
+            "Key": "d3427092-4ec2-4fd6-b5d7-f793939344e6",
+            "Value": {
+                "id": "cd5885b3-1954-49ea-8361-2a8e68921e2b",
+                "resourcePath": "sprites\\spr_enemy_tank_stunned\\spr_enemy_tank_stunned.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "d38ee5aa-e520-418e-a90e-5587c52a82ee",
+            "Value": {
+                "id": "1c365481-c59d-4050-a56d-3957fcb645fa",
+                "resourcePath": "sprites\\spr_enemy_healer_stunned\\spr_enemy_healer_stunned.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "d7126f67-acf3-4480-acc9-cb1dfda26e75",
             "Value": {
                 "id": "d42c0b9a-fd20-42ff-8cde-069f17427cf8",
@@ -1672,6 +1712,7 @@
         "a3280395-dabd-44f7-8bda-319593ffdb4d",
         "79579f9e-c59f-4b55-8106-e1276cfafca6",
         "cf41e500-c1e9-45a4-a33c-69ac7aa02695",
+        "37333b3e-6e48-4b89-99e5-25a6b578de8f",
         "3d094b82-0ff8-435f-956c-a3365019e3f3",
         "ebed4767-13fc-4154-8589-efd76de46c30",
         "b24f1e48-14a8-431c-950b-14ab6e762333",

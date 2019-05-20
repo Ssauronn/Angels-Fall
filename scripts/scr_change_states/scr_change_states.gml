@@ -12,6 +12,8 @@ switch (enemy_name_) {
 				break;
 			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
 				break;
+			case enemystates.stunned: scr_stunned();
+				break;
 			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
 				break;
 			case enemystates.lightMeleeAttack: scr_mage_light_melee();
@@ -29,6 +31,8 @@ switch (enemy_name_) {
 			case enemystates.idle: scr_enemy_idle();
 				break;
 			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
+				break;
+			case enemystates.stunned: scr_stunned();
 				break;
 			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
 				break;
@@ -50,6 +54,8 @@ switch (enemy_name_) {
 				break;
 			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
 				break;
+			case enemystates.stunned: scr_stunned();
+				break;
 			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
 				break;
 			case enemystates.lightMeleeAttack: scr_tank_light_melee();
@@ -67,6 +73,8 @@ switch (enemy_name_) {
 			case enemystates.idle: scr_enemy_idle();
 				break;
 			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
+				break;
+			case enemystates.stunned: scr_stunned();
 				break;
 			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
 				break;
