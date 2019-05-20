@@ -57,4 +57,20 @@ if instance_exists(self) {
 	}
 }
 
+// If the object is stunned, immediately send this object to the stun script
+if stunActive {
+	hitboxCreated = false;
+	enemyState = enemystates.stunned;
+	enemyStateSprite = enemystates.stunned;
+	enemyImageIndex = 0;
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+}
+
 

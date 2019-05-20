@@ -140,6 +140,29 @@ healAllyEngineTimer = 0;
 #endregion
 #endregion
 
+#region Stun and Hitstun Values
+// Setting the stun values
+/*
+If stun timer is greater than 0, then the stun is active, which forces the state to be sent to stun state
+
+We never actually set enemyState = enemystates.stunned except for in other scripts, because depending on the action
+being taken, we'll need to reset/destroy certain variables
+*/
+stunActive = false;
+stunTimer = -1;
+// I use this variable to multiply against movement speed, and resource regeneration, to lock
+// the enemy in place while stunned. I also stop direction from being set while in the stun 
+stunMultiplier = 1;
+
+// Setting the hitstun values, different than stun
+hitstunActive = false;
+hitstunTimer = -1;
+// I use this to multiply against movement speed, resource regeneration, and image speed. The hitstun will
+// last for a max of just a few seconds, leaving an illusion of a hard hit for the player
+hitstunMultiplier = 1;
+#endregion
+
+
 enemyStatsAndSpritesInitialized = false;
 enemyName = "";
 
@@ -147,6 +170,7 @@ enemyName = "";
 enum enemystates {
 	idle,
 	passivelyFollowPlayer,
+	stunned,
 	moveWithinAttackRange,
 	lightMeleeAttack,
 	heavyMeleeAttack,

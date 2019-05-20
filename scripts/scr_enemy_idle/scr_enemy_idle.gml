@@ -116,6 +116,29 @@ else {
 	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
+if stunActive {
+	enemyState = enemystates.stunned;
+	enemyStateSprite = enemystates.stunned;
+	enemyImageIndex = 0;
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+}
+if hitstunActive {
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+}
 #endregion
 
 // Resetting variables to make a new decision so that the AI doesn't get caught in a loop

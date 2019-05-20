@@ -26,7 +26,7 @@ switch (enemy_name_) {
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 0;
+		enemyTotalBonusResistance = 1;
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 50;
@@ -85,6 +85,10 @@ switch (enemy_name_) {
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_mage_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_mage_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_mage_run;
+		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_mage_stunned;
+		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_mage_stunned;
+		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_mage_stunned;
+		enemySprite[enemystates.stunned, enemydirection.down] = spr_enemy_mage_stunned;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.right] = spr_enemy_mage_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.up] = spr_enemy_mage_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.left] = spr_enemy_mage_run;
@@ -119,8 +123,6 @@ switch (enemy_name_) {
 		#endregion
 		#region Hitbox and Hurtbox Variables
 		// Enemy Hitbox variables
-		alreadyHit = -1;
-		alreadyHitTimer = -1;
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
@@ -177,7 +179,7 @@ switch (enemy_name_) {
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 0;
+		enemyTotalBonusResistance = 1;
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 50;
@@ -238,6 +240,10 @@ switch (enemy_name_) {
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_healer_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_healer_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_healer_run;
+		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_healer_stunned;
+		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_healer_stunned;
+		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_healer_stunned;
+		enemySprite[enemystates.stunned, enemydirection.down] = spr_enemy_healer_stunned;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.right] = spr_enemy_healer_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.up] = spr_enemy_healer_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.left] = spr_enemy_healer_run;
@@ -276,8 +282,6 @@ switch (enemy_name_) {
 		#endregion
 		#region Hitbox and Hurtbox Variables
 		// Enemy Hitbox variables
-		alreadyHit = -1;
-		alreadyHitTimer = -1;
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
@@ -335,7 +339,7 @@ switch (enemy_name_) {
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 0;
+		enemyTotalBonusResistance = 1;
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 100;
@@ -394,6 +398,10 @@ switch (enemy_name_) {
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_tank_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_tank_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_tank_run;
+		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_tank_stunned;
+		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_tank_stunned;
+		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_tank_stunned;
+		enemySprite[enemystates.stunned, enemydirection.down] = spr_enemy_tank_stunned;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.right] = spr_enemy_tank_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.up] = spr_enemy_tank_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.left] = spr_enemy_tank_run;
@@ -428,8 +436,6 @@ switch (enemy_name_) {
 		#endregion
 		#region Hitbox and Hurtbox Variables
 		// Enemy Hitbox variables
-		alreadyHit = -1;
-		alreadyHitTimer = -1;
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
@@ -487,7 +493,7 @@ switch (enemy_name_) {
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 0;
+		enemyTotalBonusResistance = 1;
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 100;
@@ -546,6 +552,10 @@ switch (enemy_name_) {
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_fighter_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_fighter_run;
 		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_fighter_run;
+		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_fighter_stunned;
+		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_fighter_stunned;
+		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_fighter_stunned;
+		enemySprite[enemystates.stunned, enemydirection.down] = spr_enemy_fighter_stunned;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.right] = spr_enemy_fighter_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.up] = spr_enemy_fighter_run;
 		enemySprite[enemystates.moveWithinAttackRange, enemydirection.left] = spr_enemy_fighter_run;
@@ -580,8 +590,6 @@ switch (enemy_name_) {
 		#endregion
 		#region Hitbox and Hurtbox Variables
 		// Enemy Hitbox variables
-		alreadyHit = -1;
-		alreadyHitTimer = -1;
 		hitboxCreated = false;
 
 		// Enemy Hitbox variables cont.
