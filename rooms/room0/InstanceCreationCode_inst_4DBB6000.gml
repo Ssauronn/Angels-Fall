@@ -1,5 +1,5 @@
 enemyName = "Fighter";
-combatFriendlyStatus = "Enemy";
+combatFriendlyStatus = "Minion";
 objectArchetype = "Melee DPS";
 
 

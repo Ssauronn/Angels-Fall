@@ -75,6 +75,9 @@ switch (enemy_name_) {
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 		
+		// Tethering to player range
+		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_mage_idle;
@@ -230,6 +233,9 @@ switch (enemy_name_) {
 		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
+		
+		// Tethering to player range
+		tetherToPlayerOutOfCombatRange = 32 * 3.5;
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_healer_idle;
@@ -388,6 +394,9 @@ switch (enemy_name_) {
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 		
+		// Tethering to player range
+		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_tank_idle;
@@ -541,6 +550,9 @@ switch (enemy_name_) {
 		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
+		
+		// Tethering to player range
+		tetherToPlayerOutOfCombatRange = 32 * 3.5;
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables

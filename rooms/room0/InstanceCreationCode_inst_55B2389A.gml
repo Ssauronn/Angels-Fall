@@ -1,5 +1,5 @@
 enemyName = "Tank";
-combatFriendlyStatus = "Enemy";
+combatFriendlyStatus = "Minion";
 objectArchetype = "Tank";
 
 

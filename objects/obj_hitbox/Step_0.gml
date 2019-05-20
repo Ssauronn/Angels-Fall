@@ -89,7 +89,7 @@ if !is_undefined(owner) {
 											enemyGameSpeed -= 1;
 											slowEnemyTimeWithParryActive = true;
 											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
-											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
+											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I'm not resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
 											// Essentially, I keep track of the buff's timer on the most recently applied enemy by setting it in a centralized object (obj_skill_tree).
 											obj_skill_tree.slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
 										}
@@ -113,7 +113,7 @@ if !is_undefined(owner) {
 											enemyGameSpeed -= 1;
 											slowEnemyTimeWithParryActive = true;
 											slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
-											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I aren't resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
+											// The below line is not necessary to run the slow time effect on obj_enemy's, but it is necessary to make sure I'm not resetting the obj_enemy enemyGameSpeed variable if the Prime ability slow time is not active.
 											// Essentially, I keep track of the buff's timer on the most recently applied enemy by setting it in a centralized object (obj_skill_tree).
 											obj_skill_tree.slowEnemyTimeWithParryTimer = obj_skill_tree.slowEnemyTimeWithParryTimerStartTime;
 										}
