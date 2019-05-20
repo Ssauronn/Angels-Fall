@@ -70,17 +70,7 @@ groundHurtboxY = enemyGroundHurtbox.y;
 #region If the object isn't trying to get in range of a friendly object to heal an ally
 if chosenEngine != "Heal Ally" {
 	if instance_exists(currentTargetToFocus) {
-		/*
-		CODE BELOW NEEDS TO BE EDITED TO WORK INSTEAD WITH move_movement_entity (needs to be adapted) SCRIPT 
-		USING add_movement SCRIPT (already adapted)
-		*/
 		if point_distance(groundHurtboxX, groundHurtboxY, target_.x, target_.y) > distance_ {
-			/*
-			call add_movement, after doing so evaluate point_distance to pathEndGoal, if point distance
-			plus currentSpeed is still greater than distance_ then do nothing, otherwise destroy myPath
-			to prevent a memory leak, set it equal to undefined again, and set pathCreated = false;
-			*/
-			
 			if !pathCreated {
 				pathCreated = true;
 				myPath = path_add();
@@ -115,7 +105,7 @@ if chosenEngine != "Heal Ally" {
 				}
 			}
 		}
-		// Else if I are within the correct range, revert to idle
+		// Else if I'm within the correct range, revert to idle
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
 			// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
@@ -153,17 +143,7 @@ if chosenEngine != "Heal Ally" {
 #region If the object is trying to get in range of a friendly object to heal an ally
 if chosenEngine == "Heal Ally" {
 	if instance_exists(currentTargetToHeal) {
-		/*
-		CODE BELOW NEEDS TO BE EDITED TO WORK INSTEAD WITH move_movement_entity (needs to be adapted) SCRIPT 
-		USING add_movement SCRIPT (already adapted)
-		*/	
 		if point_distance(groundHurtboxX, groundHurtboxY, target_.x, target_.y) > distance_ {
-			/*
-			call add_movement, after doing so evaluate point_distance to pathEndGoal, if point distance
-			plus currentSpeed is still greater than distance_ then do nothing, otherwise destroy myPath
-			to prevent a memory leak, set it equal to undefined again, and set pathCreated = false;
-			*/
-			
 			if !pathCreated {
 				pathCreated = true;
 				myPath = path_add();
@@ -198,7 +178,7 @@ if chosenEngine == "Heal Ally" {
 				}
 			}
 		}
-		// Else if I are within correct range, revert to idle
+		// Else if I'm within correct range, revert to idle
 		else {
 			// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
 			// reset the timer for chasing, as well as setting alreadyTriedToChase to true.

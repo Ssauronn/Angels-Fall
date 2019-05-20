@@ -66,22 +66,24 @@ if instance_exists(self) {
 					}
 					// If all allies are at max HP, or the object isn't a healer, then just follow the player
 					if (objectArchetype != "Healer") || ((objectArchetype == "Healer") && (!an_ally_needs_healing_)) {
-						chosenEngine = "";
-						decisionMadeForTargetAndAction = false;
-						alreadyTriedToChase = false;
-						enemyState = enemystates.passivelyFollowPlayer;
-						enemyStateSprite = enemystates.passivelyFollowPlayer;
-						if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-							enemyDirectionFacing = enemydirection.right;
-						}
-						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-							enemyDirectionFacing = enemydirection.up;
-						}
-						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-							enemyDirectionFacing = enemydirection.left;
-						}
-						else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-							enemyDirectionFacing = enemydirection.down;
+						if point_distance(enemyGroundHurtbox.x, enemyGroundHurtbox.y, obj_player.x, obj_player.y) > tetherToPlayerOutOfCombatRange {
+							chosenEngine = "";
+							decisionMadeForTargetAndAction = false;
+							alreadyTriedToChase = false;
+							enemyState = enemystates.passivelyFollowPlayer;
+							enemyStateSprite = enemystates.passivelyFollowPlayer;
+							if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+								enemyDirectionFacing = enemydirection.right;
+							}
+							else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+								enemyDirectionFacing = enemydirection.up;
+							}
+							else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+								enemyDirectionFacing = enemydirection.left;
+							}
+							else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+								enemyDirectionFacing = enemydirection.down;
+							}
 						}
 					}
 					/*
