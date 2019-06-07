@@ -16,6 +16,8 @@ if (comboCounterTimer < 0) || (obj_player.key_animecro_collect) {
 	playerMaxAnimecroHP += animecroPool * animecroMultiplier;
 	playerCurrentAnimecroHP += animecroPool * animecroMultiplier;
 	playerCurrentHP += animecroPool * animecroMultiplier;
+	playerCurrentBloodMagic += bloodMagicPool * animecroMultiplier;
+	bloodMagicPool = 0;
 	animecroPool = 0;
 	animecroMultiplier = 1;
 }
@@ -42,10 +44,10 @@ else if comboCounter > 60 {
 }
 
 // Variables used to control the incoming and outgoing damage of both the player and other enemies
-// Player
-playerTotalBonusDamage = 1 * obj_skill_tree.primeBonusDamagePercentAsDecimal; // * whatever other modifiers I can change player damage with, numbers greater than 1.
-playerTotalBonusBasicMeleeDamage = playerTotalBonusDamage; // * whatever other modifiers I can change basic melee damage with, numbers greater than 1.
-playerTotalBonusResistance = 1; // * whatever other modifiers I can change the player resistance with, numbers greater than 0 and less than 1.
+// Player Bonus Damage, Bonus Basic Melee Damage, and Bonus Resistance
+playerTotalBonusDamage = 1 * obj_skill_tree.allIsGivenMultiplier * obj_skill_tree.forTheGreaterGoodDamageMultiplier; // * whatever other modifiers I can change player damage with, numbers greater than 1.
+playerTotalBonusBasicMeleeDamage = playerTotalBonusDamage; // * whatever other modifiers I can change the player basic melee damage with, numbers greater than 1.
+playerTotalBonusResistance = 1 * obj_skill_tree.lifeTaxBonusDamageResistanceMultiplier; // * whatever other modifiers I can change the player resistance with, numbers greater than 0 and less than 1.
 
 
 #region Move Hitbox Objects

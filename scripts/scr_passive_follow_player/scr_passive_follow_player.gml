@@ -14,8 +14,12 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 	// Path variables resetting and destroying the path to prevent memory leak
 	pathPos = 1;
 	pathCreated = false;
-	if path_exists(myPath) {
-		path_delete(myPath);
+	if variable_instance_exists(self, "myPath") {
+		if !is_undefined(myPath) {
+			if path_exists(myPath) {
+				path_delete(myPath);
+			}
+		}
 	}
 }
 else {

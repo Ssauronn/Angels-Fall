@@ -4,6 +4,9 @@ var enemy_name_ = argument0;
 switch (enemy_name_) {
 	case "Mage":
 		#region Mage
+		// Powerful Being?
+		powerfulBeing = false;
+		
 		// Speed variable for specific enemies
 		enemyGameSpeed = 1;
 		enemyTotalSpeed = 1;
@@ -25,8 +28,8 @@ switch (enemy_name_) {
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance
-		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 1;
+		enemyTotalBonusDamage = 1; // * any other damage bonuses
+		enemyTotalBonusResistance = 1; // * any other resistance bonuses
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 50;
@@ -45,6 +48,14 @@ switch (enemy_name_) {
 		enemyHeavyMeleeAttackRange = 32 * 2;
 		enemyLightRangedAttackRange = 32 * 8;
 		enemyHeavyRangedAttackRange = 32 * 8;
+		
+		// Enemy Total Damage Dealt with attack after multipliers and resistances
+		enemyTotalDamageDealt = 0;
+		// Enemy Total Damage Taken from Attack after multipliers and resistances
+		// This is used to calculate a variety of things. First its set to the hitbox value in the
+		// collision event in obj_hitbox. Then all resistance and damage multipliers are applied to it,
+		// changing its value, before its finally applied after all values are determined.
+		enemyTotalDamageTaken = 0;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -77,6 +88,173 @@ switch (enemy_name_) {
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
+		#region Stun and Hitstun Values
+		// Setting the stun values
+		/*
+		If stun timer is greater than 0, then the stun is active, which forces the state to be sent to stun state
+
+		We never actually set enemyState = enemystates.stunned except for in other scripts, because depending on the action
+		being taken, we'll need to reset/destroy certain variables
+		*/
+		stunActive = false;
+		stunTimer = -1;
+		// I use this variable to multiply against movement speed, and resource regeneration, to lock
+		// the enemy in place while stunned. I also stop direction from being set while in the stun 
+		stunMultiplier = 1;
+
+		// Setting the hitstun values, different than stun
+		hitstunActive = false;
+		hitstunTimer = -1;
+		// I use this to multiply against movement speed, resource regeneration, and image speed. The hitstun will
+		// last for a max of just a few seconds, leaving an illusion of a hard hit for the player
+		hitstunMultiplier = 1;
+		#endregion
+		
+		#region Player Prime Ability Values
+		// Overwhelming Chains
+		overwhelmingChainsActiveOnSelf = false;
+		overwhelmingChainsDamageMultiplier = 1;
+		overwhelmingChainsBaseDamageMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageMultiplier;
+		overwhelmingChainsDamageResistanceMultiplier = 1;
+		overwhelmingChainsBaseDamageResistanceMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageResistanceMultiplier;
+		
+		// Forces of Life
+		forcesOfLifeActive = false;
+		forcesOfLifeBaseDamageMultiplier = obj_skill_tree.forcesOfLifeBaseDamageMultiplier;
+		forcesOfLifeDamageMultiplier = -1;
+		
+		// Solidify
+		solidifyEnemyMovementSpeedMultiplier = 1;
+		solidifyEnemyImageSpeedMultiplier = 1;
+		solidifyEnemyStaminaRegenerationMultiplier = 1;
+		solidifyEnemyManaRegenerationMultiplier = 1;
+		#endregion
+		#region Poison Values
+		poisoned = false;
+		
+		
+		// Sickly Proposition
+		sicklyPropositionActive = false;
+		// The damage of the ability on hit
+		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
+		// The multiplier that can be applied if the target is poisoned
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
+		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		// The damage of the dot itself
+		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
+		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;
+		sicklyPropositionTicTimer = -1;
+		sicklyPropositionTicTimerStartTime = obj_skill_tree.sicklyPropositionTicTimerStartTime;
+		sicklyPropositionTimer = -1;
+		sicklyPropositionTimerStartTime = obj_skill_tree.sicklyPropositionTimerStartTime;
+		
+		
+		// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
+		finalPartingActive = false;
+		finalPartingDamage = obj_skill_tree.finalPartingDamage;
+		finalPartingNextTarget = noone;
+		finalPartingCanBeRefreshed = obj_skill_tree.finalPartingCanBeRefreshed;
+		finalPartingTicTimer = -1;
+		finalPartingTicTimerStartTime = obj_skill_tree.finalPartingTicTimerStartTime;
+		finalPartingTimer = -1;
+		finalPartingTimerStartTime = obj_skill_tree.finalPartingTimerStartTime;
+		
+		// Dinner Is Served
+		dinnerIsServedActive = false;
+		dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
+		dinnerIsServedEnemyManaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
+		dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;
+		dinnerIsServedEnemyMovementSpeedMultiplier = 1;
+		dinnerIsServedStartingDamage = obj_skill_tree.dinnerIsServedStartingDamage;
+		dinnerIsServedRampMultiplier = obj_skill_tree.dinnerIsServedRampMultiplier;
+		dinnerIsServedCanBeRefreshed = obj_skill_tree.dinnerIsServedCanBeRefreshed;
+		dinnerIsServedTicTimer = -1;
+		dinnerIsServedTicTimerStartTime = obj_skill_tree.dinnerIsServedTicTimerStartTime;
+		dinnerIsServedTimer = -1;
+		dinnerIsServedTimerStartTime = obj_skill_tree.dinnerIsServedTimerStartTime;
+		
+		// Exploit Weakness
+		exploitWeaknessActive = false;
+		exploitWeaknessTimer = -1;
+		exploitWeaknessTimerStartTime = obj_skill_tree.exploitWeaknessTimerStartTime;
+		exploitWeaknessTicTimer = -1;
+		exploitWeaknessTicTimerStartTime = obj_skill_tree.exploitWeaknessTicTimerStartTime;
+		exploitWeaknessDoTDamage = obj_skill_tree.exploitWeaknessDoTDamage;
+		exploitWeaknessCanBeRefreshed = obj_skill_tree.exploitWeaknessCanBeRefreshed;
+		// If exploitWeaknessActive is true, we add enemyTotalDamageTaken to this, add this value to
+		// exploitWeaknessDamage, refresh exploitWeaknessDamage, and continue on. For balance purposes,
+		// exploitWeaknessDamage does not proc this effect.
+		exploitWeaknessPercentOfDamageToAdd = obj_skill_tree.exploitWeaknessPercentOfDamageToAdd;
+		exploitWeaknessDamageToAdd = 0;
+		#endregion
+		#region Debuff Values
+		// True Caelesti Wings
+		trueCaelestiWingsActive = false;
+		trueCaelestiWingsBaseDebuffDamageMultiplier = obj_skill_tree.trueCaelestiWingsBaseDebuffDamageMultiplier;
+		trueCaelestiWingsDebuffDamageMultiplier = 1;
+		trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee = obj_skill_tree.trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee;
+		trueCaelestiWingsDebuffNumberOfDamageMultipliersAdded = 0;
+		trueCaelestiWingsDebuffTimer = -1;
+		trueCaelestiWingsDebuffTimerStartTime = obj_skill_tree.trueCaelestiWingsDebuffTimerStartTime;
+		
+		// Wrath of the Repentant
+		wrathOfTheRepentantActive = false;
+		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
+		wrathOfTheRepentantMovementSpeedMultiplier = 1;
+		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimer = -1;
+		
+		// Angelic Barrage
+		angelicBarrageActive = false;
+		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
+		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
+		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
+		
+		// Holy Defense
+		holyDefenseActive = false;
+		holyDefenseDoTDamage = obj_skill_tree.holyDefenseDoTDamage;
+		holyDefenseCanBeRefreshed = obj_skill_tree.holyDefenseCanBeRefreshed;
+		holyDefenseTicTimer = -1;
+		holyDefenseTicTimerStartTime = obj_skill_tree.holyDefenseTicTimerStartTime;
+		holyDefenseTimer = -1;
+		holyDefenseTimerStartTime = obj_skill_tree.holyDefenseTimerStartTime;
+		
+		
+		// Bindings of the Caelesti
+		bindingsOfTheCaelestiActive = false;
+		bindingsOfTheCaelestiDamage = obj_skill_tree.bindingsOfTheCaelestiDamage;
+		bindingsOfTheCaelestiCanBeRefreshed = obj_skill_tree.bindingsOfTheCaelestiCanBeRefreshed;
+		bindingsOfTheCaelestiEnemyMovementSpeedMultiplier = 1;
+		bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier = obj_skill_tree.bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier;
+		bindingsOfTheCaelestiTicTimer = -1;
+		bindingsOfTheCaelestiTicTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTicTimerStartTime;
+		bindingsOfTheCaelestiTimer = -1;
+		bindingsOfTheCaelestiTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTimerStartTime;
+		
+		
+		// Soul Tether
+		soulTetherActive = false;
+		soulTetherCanBeRefreshed = obj_skill_tree.soulTetherCanBeRefreshed;
+		soulTetherTimer = -1;
+		soulTetherTimerStartTime = obj_skill_tree.soulTetherTimerStartTime;
+		
+		
+		// Hidden Dagger
+		hiddenDaggerActive = false;
+		hiddenDaggerDamageMultiplierActive = false;
+		hiddenDaggerCanBeRefreshed = obj_skill_tree.hiddenDaggerCanBeRefreshed;
+		hiddenDaggerDamageMultiplier = 1;
+		hiddenDaggerBaseDamageMultiplier = obj_skill_tree.hiddenDaggerBaseDamageMultiplier;
+		hiddenDaggerDamageMultiplierTimer = -1;
+		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
+		hiddenDaggerTicTimer = -1;
+		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		#endregion
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
@@ -161,6 +339,9 @@ switch (enemy_name_) {
 		break;
 	case "Healer": 
 		#region Healer
+		// Powerful Being?
+		powerfulBeing = false;
+		
 		// Speed variable for specific enemies
 		enemyGameSpeed = 1;
 		enemyTotalSpeed = 1;
@@ -181,8 +362,8 @@ switch (enemy_name_) {
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance
-		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 1;
+		enemyTotalBonusDamage = 1; // * any other damage bonuses
+		enemyTotalBonusResistance = 1; // * any other resistance bonuses
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 50;
@@ -204,6 +385,14 @@ switch (enemy_name_) {
 		enemyLightRangedAttackRange = 32 * 8;
 		enemyHeavyRangedAttackRange = 32 * 8;
 		enemyHealAllyRange = 32 * 4;
+		
+		// Enemy Total Damage Dealt with attack after multipliers and resistances
+		enemyTotalDamageDealt = 0;
+		// Enemy Total Damage Taken from Attack after multipliers and resistances
+		// This is used to calculate a variety of things. First its set to the hitbox value in the
+		// collision event in obj_hitbox. Then all resistance and damage multipliers are applied to it,
+		// changing its value, before its finally applied after all values are determined.
+		enemyTotalDamageTaken = 0;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -236,6 +425,168 @@ switch (enemy_name_) {
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
+		#region Stun and Hitstun Values
+		// Setting the stun values
+		/*
+		If stun timer is greater than 0, then the stun is active, which forces the state to be sent to stun state
+
+		We never actually set enemyState = enemystates.stunned except for in other scripts, because depending on the action
+		being taken, we'll need to reset/destroy certain variables
+		*/
+		stunActive = false;
+		stunTimer = -1;
+		// I use this variable to multiply against movement speed, and resource regeneration, to lock
+		// the enemy in place while stunned. I also stop direction from being set while in the stun 
+		stunMultiplier = 1;
+
+		// Setting the hitstun values, different than stun
+		hitstunActive = false;
+		hitstunTimer = -1;
+		// I use this to multiply against movement speed, resource regeneration, and image speed. The hitstun will
+		// last for a max of just a few seconds, leaving an illusion of a hard hit for the player
+		hitstunMultiplier = 1;
+		#endregion
+		
+		#region Player Prime Ability Values
+		// Overwhelming Chains
+		overwhelmingChainsActiveOnSelf = false;
+		overwhelmingChainsDamageMultiplier = 1;
+		overwhelmingChainsBaseDamageMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageMultiplier;
+		overwhelmingChainsDamageResistanceMultiplier = 1;
+		overwhelmingChainsBaseDamageResistanceMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageResistanceMultiplier;
+		
+		// Forces of Life
+		forcesOfLifeActive = false;
+		forcesOfLifeBaseDamageMultiplier = obj_skill_tree.forcesOfLifeBaseDamageMultiplier;
+		forcesOfLifeDamageMultiplier = -1;
+		#endregion
+		#region Poison Values
+		poisoned = false;
+		
+		
+		// Sickly Proposition
+		sicklyPropositionActive = false;
+		// The damage of the ability on hit
+		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
+		// The multiplier that can be applied if the target is poisoned
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
+		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		// The damage of the dot itself
+		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
+		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;
+		sicklyPropositionTicTimer = -1;
+		sicklyPropositionTicTimerStartTime = obj_skill_tree.sicklyPropositionTicTimerStartTime;
+		sicklyPropositionTimer = -1;
+		sicklyPropositionTimerStartTime = obj_skill_tree.sicklyPropositionTimerStartTime;
+		
+		
+		// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
+		finalPartingActive = false;
+		finalPartingDamage = obj_skill_tree.finalPartingDamage;
+		finalPartingNextTarget = noone;
+		finalPartingCanBeRefreshed = obj_skill_tree.finalPartingCanBeRefreshed;
+		finalPartingTicTimer = -1;
+		finalPartingTicTimerStartTime = obj_skill_tree.finalPartingTicTimerStartTime;
+		finalPartingTimer = -1;
+		finalPartingTimerStartTime = obj_skill_tree.finalPartingTimerStartTime;
+		
+		// Dinner Is Served
+		dinnerIsServedActive = false;
+		dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
+		dinnerIsServedEnemyManaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
+		dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;
+		dinnerIsServedEnemyMovementSpeedMultiplier = 1;
+		dinnerIsServedStartingDamage = obj_skill_tree.dinnerIsServedStartingDamage;
+		dinnerIsServedRampMultiplier = obj_skill_tree.dinnerIsServedRampMultiplier;
+		dinnerIsServedCanBeRefreshed = obj_skill_tree.dinnerIsServedCanBeRefreshed;
+		dinnerIsServedTicTimer = -1;
+		dinnerIsServedTicTimerStartTime = obj_skill_tree.dinnerIsServedTicTimerStartTime;
+		dinnerIsServedTimer = -1;
+		dinnerIsServedTimerStartTime = obj_skill_tree.dinnerIsServedTimerStartTime;
+		
+		// Exploit Weakness
+		exploitWeaknessActive = false;
+		exploitWeaknessTimer = -1;
+		exploitWeaknessTimerStartTime = obj_skill_tree.exploitWeaknessTimerStartTime;
+		exploitWeaknessTicTimer = -1;
+		exploitWeaknessTicTimerStartTime = obj_skill_tree.exploitWeaknessTicTimerStartTime;
+		exploitWeaknessDoTDamage = obj_skill_tree.exploitWeaknessDoTDamage;
+		exploitWeaknessCanBeRefreshed = obj_skill_tree.exploitWeaknessCanBeRefreshed;
+		// If exploitWeaknessActive is true, we add enemyTotalDamageTaken to this, add this value to
+		// exploitWeaknessDamage, refresh exploitWeaknessDamage, and continue on. For balance purposes,
+		// exploitWeaknessDamage does not proc this effect.
+		exploitWeaknessPercentOfDamageToAdd = obj_skill_tree.exploitWeaknessPercentOfDamageToAdd;
+		exploitWeaknessDamageToAdd = 0;
+		#endregion
+		#region Debuff Values
+		// True Caelesti Wings
+		trueCaelestiWingsActive = false;
+		trueCaelestiWingsBaseDebuffDamageMultiplier = obj_skill_tree.trueCaelestiWingsBaseDebuffDamageMultiplier;
+		trueCaelestiWingsDebuffDamageMultiplier = 1;
+		trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee = obj_skill_tree.trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee;
+		trueCaelestiWingsDebuffNumberOfDamageMultipliersAdded = 0;
+		trueCaelestiWingsDebuffTimer = -1;
+		trueCaelestiWingsDebuffTimerStartTime = obj_skill_tree.trueCaelestiWingsDebuffTimerStartTime;
+		
+		// Wrath of the Repentant
+		wrathOfTheRepentantActive = false;
+		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
+		wrathOfTheRepentantMovementSpeedMultiplier = 1;
+		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimer = -1;
+		
+		// Angelic Barrage
+		angelicBarrageActive = false;
+		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
+		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
+		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
+		
+		// Holy Defense
+		holyDefenseActive = false;
+		holyDefenseDoTDamage = obj_skill_tree.holyDefenseDoTDamage;
+		holyDefenseCanBeRefreshed = obj_skill_tree.holyDefenseCanBeRefreshed;
+		holyDefenseTicTimer = -1;
+		holyDefenseTicTimerStartTime = obj_skill_tree.holyDefenseTicTimerStartTime;
+		holyDefenseTimer = -1;
+		holyDefenseTimerStartTime = obj_skill_tree.holyDefenseTimerStartTime;
+		
+		
+		// Bindings of the Caelesti
+		bindingsOfTheCaelestiActive = false;
+		bindingsOfTheCaelestiDamage = obj_skill_tree.bindingsOfTheCaelestiDamage;
+		bindingsOfTheCaelestiCanBeRefreshed = obj_skill_tree.bindingsOfTheCaelestiCanBeRefreshed;
+		bindingsOfTheCaelestiEnemyMovementSpeedMultiplier = 1;
+		bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier = obj_skill_tree.bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier;
+		bindingsOfTheCaelestiTicTimer = -1;
+		bindingsOfTheCaelestiTicTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTicTimerStartTime;
+		bindingsOfTheCaelestiTimer = -1;
+		bindingsOfTheCaelestiTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTimerStartTime;
+		
+		
+		// Soul Tether
+		soulTetherActive = false;
+		soulTetherCanBeRefreshed = obj_skill_tree.soulTetherCanBeRefreshed;
+		soulTetherTimer = -1;
+		soulTetherTimerStartTime = obj_skill_tree.soulTetherTimerStartTime;
+		
+		
+		// Hidden Dagger
+		hiddenDaggerActive = false;
+		hiddenDaggerDamageMultiplierActive = false;
+		hiddenDaggerCanBeRefreshed = obj_skill_tree.hiddenDaggerCanBeRefreshed;
+		hiddenDaggerDamageMultiplier = 1;
+		hiddenDaggerBaseDamageMultiplier = obj_skill_tree.hiddenDaggerBaseDamageMultiplier;
+		hiddenDaggerDamageMultiplierTimer = -1;
+		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
+		hiddenDaggerTicTimer = -1;
+		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		#endregion
+		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_healer_idle;
@@ -323,6 +674,9 @@ switch (enemy_name_) {
 		break;
 	case "Tank":
 		#region Tank
+		// Powerful Being?
+		powerfulBeing = false;
+		
 		// Speed variable for specific enemies
 		enemyGameSpeed = 1;
 		enemyTotalSpeed = 1;
@@ -344,8 +698,8 @@ switch (enemy_name_) {
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance
-		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 1;
+		enemyTotalBonusDamage = 1; // * any other damage bonuses
+		enemyTotalBonusResistance = 1; // * any other resistance bonuses
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 100;
@@ -364,6 +718,14 @@ switch (enemy_name_) {
 		enemyHeavyMeleeAttackRange = 32 * 2;
 		enemyLightRangedAttackRange = 32 * 8;
 		enemyHeavyRangedAttackRange = 32 * 8;
+		
+		// Enemy Total Damage Dealt with attack after multipliers and resistances
+		enemyTotalDamageDealt = 0;
+		// Enemy Total Damage Taken from Attack after multipliers and resistances
+		// This is used to calculate a variety of things. First its set to the hitbox value in the
+		// collision event in obj_hitbox. Then all resistance and damage multipliers are applied to it,
+		// changing its value, before its finally applied after all values are determined.
+		enemyTotalDamageTaken = 0;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -396,6 +758,167 @@ switch (enemy_name_) {
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
+		#region Stun and Hitstun Values
+		// Setting the stun values
+		/*
+		If stun timer is greater than 0, then the stun is active, which forces the state to be sent to stun state
+
+		We never actually set enemyState = enemystates.stunned except for in other scripts, because depending on the action
+		being taken, we'll need to reset/destroy certain variables
+		*/
+		stunActive = false;
+		stunTimer = -1;
+		// I use this variable to multiply against movement speed, and resource regeneration, to lock
+		// the enemy in place while stunned. I also stop direction from being set while in the stun 
+		stunMultiplier = 1;
+
+		// Setting the hitstun values, different than stun
+		hitstunActive = false;
+		hitstunTimer = -1;
+		// I use this to multiply against movement speed, resource regeneration, and image speed. The hitstun will
+		// last for a max of just a few seconds, leaving an illusion of a hard hit for the player
+		hitstunMultiplier = 1;
+		#endregion
+		
+		#region Player Prime Ability Values
+		// Overwhelming Chains
+		overwhelmingChainsActiveOnSelf = false;
+		overwhelmingChainsDamageMultiplier = 1;
+		overwhelmingChainsBaseDamageMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageMultiplier;
+		overwhelmingChainsDamageResistanceMultiplier = 1;
+		overwhelmingChainsBaseDamageResistanceMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageResistanceMultiplier;
+		
+		// Forces of Life
+		forcesOfLifeActive = false;
+		forcesOfLifeBaseDamageMultiplier = obj_skill_tree.forcesOfLifeBaseDamageMultiplier;
+		forcesOfLifeDamageMultiplier = -1;
+		#endregion
+		#region Poison Values
+		poisoned = false;
+		
+		
+		// Sickly Proposition
+		sicklyPropositionActive = false;
+		// The damage of the ability on hit
+		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
+		// The multiplier that can be applied if the target is poisoned
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
+		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		// The damage of the dot itself
+		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
+		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;
+		sicklyPropositionTicTimer = -1;
+		sicklyPropositionTicTimerStartTime = obj_skill_tree.sicklyPropositionTicTimerStartTime;
+		sicklyPropositionTimer = -1;
+		sicklyPropositionTimerStartTime = obj_skill_tree.sicklyPropositionTimerStartTime;
+		
+		
+		// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
+		finalPartingActive = false;
+		finalPartingDamage = obj_skill_tree.finalPartingDamage;
+		finalPartingNextTarget = noone;
+		finalPartingCanBeRefreshed = obj_skill_tree.finalPartingCanBeRefreshed;
+		finalPartingTicTimer = -1;
+		finalPartingTicTimerStartTime = obj_skill_tree.finalPartingTicTimerStartTime;
+		finalPartingTimer = -1;
+		finalPartingTimerStartTime = obj_skill_tree.finalPartingTimerStartTime;
+		
+		// Dinner Is Served
+		dinnerIsServedActive = false;
+		dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
+		dinnerIsServedEnemyManaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
+		dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;
+		dinnerIsServedEnemyMovementSpeedMultiplier = 1;
+		dinnerIsServedStartingDamage = obj_skill_tree.dinnerIsServedStartingDamage;
+		dinnerIsServedRampMultiplier = obj_skill_tree.dinnerIsServedRampMultiplier;
+		dinnerIsServedCanBeRefreshed = obj_skill_tree.dinnerIsServedCanBeRefreshed;
+		dinnerIsServedTicTimer = -1;
+		dinnerIsServedTicTimerStartTime = obj_skill_tree.dinnerIsServedTicTimerStartTime;
+		dinnerIsServedTimer = -1;
+		dinnerIsServedTimerStartTime = obj_skill_tree.dinnerIsServedTimerStartTime;
+		
+		// Exploit Weakness
+		exploitWeaknessActive = false;
+		exploitWeaknessTimer = -1;
+		exploitWeaknessTimerStartTime = obj_skill_tree.exploitWeaknessTimerStartTime;
+		exploitWeaknessTicTimer = -1;
+		exploitWeaknessTicTimerStartTime = obj_skill_tree.exploitWeaknessTicTimerStartTime;
+		exploitWeaknessDoTDamage = obj_skill_tree.exploitWeaknessDoTDamage;
+		exploitWeaknessCanBeRefreshed = obj_skill_tree.exploitWeaknessCanBeRefreshed;
+		// If exploitWeaknessActive is true, we add enemyTotalDamageTaken to this, add this value to
+		// exploitWeaknessDamage, refresh exploitWeaknessDamage, and continue on. For balance purposes,
+		// exploitWeaknessDamage does not proc this effect.
+		exploitWeaknessPercentOfDamageToAdd = obj_skill_tree.exploitWeaknessPercentOfDamageToAdd;
+		exploitWeaknessDamageToAdd = 0;
+		#endregion
+		#region Debuff Values
+		// True Caelesti Wings
+		trueCaelestiWingsActive = false;
+		trueCaelestiWingsBaseDebuffDamageMultiplier = obj_skill_tree.trueCaelestiWingsBaseDebuffDamageMultiplier;
+		trueCaelestiWingsDebuffDamageMultiplier = 1;
+		trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee = obj_skill_tree.trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee;
+		trueCaelestiWingsDebuffNumberOfDamageMultipliersAdded = 0;
+		trueCaelestiWingsDebuffTimer = -1;
+		trueCaelestiWingsDebuffTimerStartTime = obj_skill_tree.trueCaelestiWingsDebuffTimerStartTime;
+		
+		// Wrath of the Repentant
+		wrathOfTheRepentantActive = false;
+		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
+		wrathOfTheRepentantMovementSpeedMultiplier = 1;
+		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimer = -1;
+		
+		// Angelic Barrage
+		angelicBarrageActive = false;
+		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
+		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
+		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
+		
+		// Holy Defense
+		holyDefenseActive = false;
+		holyDefenseDoTDamage = obj_skill_tree.holyDefenseDoTDamage;
+		holyDefenseCanBeRefreshed = obj_skill_tree.holyDefenseCanBeRefreshed;
+		holyDefenseTicTimer = -1;
+		holyDefenseTicTimerStartTime = obj_skill_tree.holyDefenseTicTimerStartTime;
+		holyDefenseTimer = -1;
+		holyDefenseTimerStartTime = obj_skill_tree.holyDefenseTimerStartTime;
+		
+		
+		// Bindings of the Caelesti
+		bindingsOfTheCaelestiActive = false;
+		bindingsOfTheCaelestiDamage = obj_skill_tree.bindingsOfTheCaelestiDamage;
+		bindingsOfTheCaelestiCanBeRefreshed = obj_skill_tree.bindingsOfTheCaelestiCanBeRefreshed;
+		bindingsOfTheCaelestiEnemyMovementSpeedMultiplier = 1;
+		bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier = obj_skill_tree.bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier;
+		bindingsOfTheCaelestiTicTimer = -1;
+		bindingsOfTheCaelestiTicTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTicTimerStartTime;
+		bindingsOfTheCaelestiTimer = -1;
+		bindingsOfTheCaelestiTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTimerStartTime;
+		
+		
+		// Soul Tether
+		soulTetherActive = false;
+		soulTetherCanBeRefreshed = obj_skill_tree.soulTetherCanBeRefreshed;
+		soulTetherTimer = -1;
+		soulTetherTimerStartTime = obj_skill_tree.soulTetherTimerStartTime;
+		
+		
+		// Hidden Dagger
+		hiddenDaggerActive = false;
+		hiddenDaggerDamageMultiplierActive = false;
+		hiddenDaggerCanBeRefreshed = obj_skill_tree.hiddenDaggerCanBeRefreshed;
+		hiddenDaggerDamageMultiplier = 1;
+		hiddenDaggerBaseDamageMultiplier = obj_skill_tree.hiddenDaggerBaseDamageMultiplier;
+		hiddenDaggerDamageMultiplierTimer = -1;
+		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
+		hiddenDaggerTicTimer = -1;
+		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		#endregion
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
@@ -480,6 +1003,9 @@ switch (enemy_name_) {
 		break;
 	case "Fighter":
 		#region Fighter
+		// Powerful Being?
+		powerfulBeing = false;
+		
 		// Speed variable for specific enemies
 		enemyGameSpeed = 1;
 		enemyTotalSpeed = 1;
@@ -501,8 +1027,8 @@ switch (enemy_name_) {
 		enemyCurrentMana = enemyMaxMana;
 
 		// Enemies' Bonus Damage and Resistance
-		enemyTotalBonusDamage = 1; // + whatever resitances the player has
-		enemyTotalBonusResistance = 1;
+		enemyTotalBonusDamage = 1; // * any other damage bonuses
+		enemyTotalBonusResistance = 1; // * any other resistance bonuses
 
 		// Enemies' Attack Damages and Resistances
 		enemyLightMeleeAttackDamage = 100;
@@ -521,6 +1047,14 @@ switch (enemy_name_) {
 		enemyHeavyMeleeAttackRange = 32 * 2;
 		enemyLightRangedAttackRange = 32 * 8;
 		enemyHeavyRangedAttackRange = 32 * 8;
+		
+		// Enemy Total Damage Dealt with attack after multipliers and resistances
+		enemyTotalDamageDealt = 0;
+		// Enemy Total Damage Taken from Attack after multipliers and resistances
+		// This is used to calculate a variety of things. First its set to the hitbox value in the
+		// collision event in obj_hitbox. Then all resistance and damage multipliers are applied to it,
+		// changing its value, before its finally applied after all values are determined.
+		enemyTotalDamageTaken = 0;
 		#endregion
 		
 		// Enemy Movement Variables
@@ -553,6 +1087,167 @@ switch (enemy_name_) {
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
+		#region Stun and Hitstun Values
+		// Setting the stun values
+		/*
+		If stun timer is greater than 0, then the stun is active, which forces the state to be sent to stun state
+
+		We never actually set enemyState = enemystates.stunned except for in other scripts, because depending on the action
+		being taken, we'll need to reset/destroy certain variables
+		*/
+		stunActive = false;
+		stunTimer = -1;
+		// I use this variable to multiply against movement speed, and resource regeneration, to lock
+		// the enemy in place while stunned. I also stop direction from being set while in the stun 
+		stunMultiplier = 1;
+
+		// Setting the hitstun values, different than stun
+		hitstunActive = false;
+		hitstunTimer = -1;
+		// I use this to multiply against movement speed, resource regeneration, and image speed. The hitstun will
+		// last for a max of just a few seconds, leaving an illusion of a hard hit for the player
+		hitstunMultiplier = 1;
+		#endregion
+		
+		#region Player Prime Ability Values
+		// Overwhelming Chains
+		overwhelmingChainsActiveOnSelf = false;
+		overwhelmingChainsDamageMultiplier = 1;
+		overwhelmingChainsBaseDamageMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageMultiplier;
+		overwhelmingChainsDamageResistanceMultiplier = 1;
+		overwhelmingChainsBaseDamageResistanceMultiplier = obj_skill_tree.overwhelmingChainsBaseDamageResistanceMultiplier;
+		
+		// Forces of Life
+		forcesOfLifeActive = false;
+		forcesOfLifeBaseDamageMultiplier = obj_skill_tree.forcesOfLifeBaseDamageMultiplier;
+		forcesOfLifeDamageMultiplier = -1;
+		#endregion
+		#region Poison Values
+		poisoned = false;
+		
+		
+		// Sickly Proposition
+		sicklyPropositionActive = false;
+		// The damage of the ability on hit
+		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
+		// The multiplier that can be applied if the target is poisoned
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
+		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		// The damage of the dot itself
+		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
+		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;
+		sicklyPropositionTicTimer = -1;
+		sicklyPropositionTicTimerStartTime = obj_skill_tree.sicklyPropositionTicTimerStartTime;
+		sicklyPropositionTimer = -1;
+		sicklyPropositionTimerStartTime = obj_skill_tree.sicklyPropositionTimerStartTime;
+		
+		
+		// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
+		finalPartingActive = false;
+		finalPartingDamage = obj_skill_tree.finalPartingDamage;
+		finalPartingNextTarget = noone;
+		finalPartingCanBeRefreshed = obj_skill_tree.finalPartingCanBeRefreshed;
+		finalPartingTicTimer = -1;
+		finalPartingTicTimerStartTime = obj_skill_tree.finalPartingTicTimerStartTime;
+		finalPartingTimer = -1;
+		finalPartingTimerStartTime = obj_skill_tree.finalPartingTimerStartTime;
+		
+		// Dinner Is Served
+		dinnerIsServedActive = false;
+		dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
+		dinnerIsServedEnemyManaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
+		dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
+		dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;
+		dinnerIsServedEnemyMovementSpeedMultiplier = 1;
+		dinnerIsServedStartingDamage = obj_skill_tree.dinnerIsServedStartingDamage;
+		dinnerIsServedRampMultiplier = obj_skill_tree.dinnerIsServedRampMultiplier;
+		dinnerIsServedCanBeRefreshed = obj_skill_tree.dinnerIsServedCanBeRefreshed;
+		dinnerIsServedTicTimer = -1;
+		dinnerIsServedTicTimerStartTime = obj_skill_tree.dinnerIsServedTicTimerStartTime;
+		dinnerIsServedTimer = -1;
+		dinnerIsServedTimerStartTime = obj_skill_tree.dinnerIsServedTimerStartTime;
+		
+		// Exploit Weakness
+		exploitWeaknessActive = false;
+		exploitWeaknessTimer = -1;
+		exploitWeaknessTimerStartTime = obj_skill_tree.exploitWeaknessTimerStartTime;
+		exploitWeaknessTicTimer = -1;
+		exploitWeaknessTicTimerStartTime = obj_skill_tree.exploitWeaknessTicTimerStartTime;
+		exploitWeaknessDoTDamage = obj_skill_tree.exploitWeaknessDoTDamage;
+		exploitWeaknessCanBeRefreshed = obj_skill_tree.exploitWeaknessCanBeRefreshed;
+		// If exploitWeaknessActive is true, we add enemyTotalDamageTaken to this, add this value to
+		// exploitWeaknessDamage, refresh exploitWeaknessDamage, and continue on. For balance purposes,
+		// exploitWeaknessDamage does not proc this effect.
+		exploitWeaknessPercentOfDamageToAdd = obj_skill_tree.exploitWeaknessPercentOfDamageToAdd;
+		exploitWeaknessDamageToAdd = 0;
+		#endregion
+		#region Debuff Values
+		// True Caelesti Wings
+		trueCaelestiWingsActive = false;
+		trueCaelestiWingsBaseDebuffDamageMultiplier = obj_skill_tree.trueCaelestiWingsBaseDebuffDamageMultiplier;
+		trueCaelestiWingsDebuffDamageMultiplier = 1;
+		trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee = obj_skill_tree.trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee;
+		trueCaelestiWingsDebuffNumberOfDamageMultipliersAdded = 0;
+		trueCaelestiWingsDebuffTimer = -1;
+		trueCaelestiWingsDebuffTimerStartTime = obj_skill_tree.trueCaelestiWingsDebuffTimerStartTime;
+		
+		// Wrath of the Repentant
+		wrathOfTheRepentantActive = false;
+		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
+		wrathOfTheRepentantMovementSpeedMultiplier = 1;
+		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimer = -1;
+		
+		// Angelic Barrage
+		angelicBarrageActive = false;
+		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
+		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
+		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
+		
+		// Holy Defense
+		holyDefenseActive = false;
+		holyDefenseDoTDamage = obj_skill_tree.holyDefenseDoTDamage;
+		holyDefenseCanBeRefreshed = obj_skill_tree.holyDefenseCanBeRefreshed;
+		holyDefenseTicTimer = -1;
+		holyDefenseTicTimerStartTime = obj_skill_tree.holyDefenseTicTimerStartTime;
+		holyDefenseTimer = -1;
+		holyDefenseTimerStartTime = obj_skill_tree.holyDefenseTimerStartTime;
+		
+		
+		// Bindings of the Caelesti
+		bindingsOfTheCaelestiActive = false;
+		bindingsOfTheCaelestiDamage = obj_skill_tree.bindingsOfTheCaelestiDamage;
+		bindingsOfTheCaelestiCanBeRefreshed = obj_skill_tree.bindingsOfTheCaelestiCanBeRefreshed;
+		bindingsOfTheCaelestiEnemyMovementSpeedMultiplier = 1;
+		bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier = obj_skill_tree.bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier;
+		bindingsOfTheCaelestiTicTimer = -1;
+		bindingsOfTheCaelestiTicTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTicTimerStartTime;
+		bindingsOfTheCaelestiTimer = -1;
+		bindingsOfTheCaelestiTimerStartTime = obj_skill_tree.bindingsOfTheCaelestiTimerStartTime;
+		
+		
+		// Soul Tether
+		soulTetherActive = false;
+		soulTetherCanBeRefreshed = obj_skill_tree.soulTetherCanBeRefreshed;
+		soulTetherTimer = -1;
+		soulTetherTimerStartTime = obj_skill_tree.soulTetherTimerStartTime;
+		
+		
+		// Hidden Dagger
+		hiddenDaggerActive = false;
+		hiddenDaggerDamageMultiplierActive = false;
+		hiddenDaggerCanBeRefreshed = obj_skill_tree.hiddenDaggerCanBeRefreshed;
+		hiddenDaggerDamageMultiplier = 1;
+		hiddenDaggerBaseDamageMultiplier = obj_skill_tree.hiddenDaggerBaseDamageMultiplier;
+		hiddenDaggerDamageMultiplierTimer = -1;
+		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
+		hiddenDaggerTicTimer = -1;
+		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		#endregion
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables

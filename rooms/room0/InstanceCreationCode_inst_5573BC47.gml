@@ -1,5 +1,5 @@
 enemyName = "Healer";
-combatFriendlyStatus = "Minion";
+combatFriendlyStatus = "Enemy";
 objectArchetype = "Healer";
 
 

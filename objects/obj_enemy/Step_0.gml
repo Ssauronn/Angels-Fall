@@ -8,16 +8,6 @@ if !enemyStatsAndSpritesInitialized {
 	enemyStatsAndSpritesInitialized = true;
 }
 
-// Set the total composite speed for each individual enemy
-enemyTotalSpeed = (enemyGameSpeed + userInterfaceGameSpeed) / 2;
-// This limits enemyTotalSpeed to being reduced down to 0 or negative numbers. This doesn't effect status effects
-// that add to or decrease from either enemyGameSpeed or userInterfaceGameSpeed, so status effects can still function
-// normally, adding and subtracting from enemyGameSpeed as needed, and once the totals add up to more than 0.1 the 
-// lines below will stop working and enemyTotalSpeed will function like normal.
-if enemyTotalSpeed <= 0.1 {
-	enemyTotalSpeed = 0.1;
-}
-
 
 tetherXRange = camera_get_view_width(view_camera[0]) * 2;
 tetherYRange = camera_get_view_height(view_camera[0]) * 2;
@@ -199,6 +189,8 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 					instance_to_reference_.decisionMadeForTargetAndAction = false;
 				}
 			}
+			// Since this block is executed only if the object is already found inside objectIDsInBattle, if only 1 object
+			// is left in battle, that has to be this object and also incidentally an enemy, and so therefore destroy the list.
 			if ds_list_size(objectIDsInBattle) == 1 {
 				ds_list_destroy(objectIDsInBattle);
 				objectIDsInBattle = -1;
@@ -402,134 +394,12 @@ if instance_exists(obj_player) {
 }
 #endregion
 
-#region Stun and Hitstun Values
-// Setting the stun values
-/*
-If stun timer is greater than 0, then the stun is active, which forces the state to be sent to stun state
 
-We never actually set enemyState = enemystates.stunned except for in other scripts, because depending on the action
-being taken, we'll need to reset/destroy certain variables
-*/
-if stunTimer > 0 {
-	stunActive = true;
-}
-else {
-	stunActive = false;
-}
-// If the stun timer is greater than 0, then count the timer down
-if stunTimer > 0 {
-	stunTimer--;
-}
-// If the stun is not active, set the multiplier to 1. Otherwise, set it to 0 which sets movement speed and resource regen to 0.
-if !stunActive {
-	stunMultiplier = 1;
-}
-else {
-	stunMultiplier = 0;
-}
-
-// Setting the hitstun values, different than stun
-// Set hitstun to be active or not
-if hitstunTimer > 0 {
-	hitstunActive = true;
-}
-else {
-	hitstunActive = false;
-}
-// If the hitstun timer is greater than 0, then count the timer down
-if hitstunTimer > 0 {
-	hitstunTimer--;
-}
-// If the hitstun is not active, set it to default at 1. Otherwise, set it to 0 which sets movement speed, resource regen,
-// and image speed to 0 for the duration.
-if !hitstunActive {
-	hitstunMultiplier = 1;
-}
-else {
-	hitstunMultiplier = 0;
-}
-#endregion
-
-
-
-// Timer for spacing out heals, so healers can't spam heals
-if healAllyEngineTimer > 0 {
-	healAllyEngineTimer -= 1 * enemyTotalSpeed;
-}
-
+// Change and track all buffs, debuffs, poisons, and stuns for the enemy
+scr_track_enemy_buffs_and_debuffs();
 // Change and track all HP, Stamina, and Mana stats for the enemy
 scr_track_enemy_stats();
 
-
-
-if alreadyTriedToChaseTimer > 0 {
-	alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed;
-}
-
-// Script used to set the direction the object will face every frame
-scr_determine_direction_facing();
-
-// Switch statement for State Machine - Called through script
-scr_change_states(enemyName);
-
-// Increase speed to max if the enemy needs to chase an object
-if (enemyState == enemystates.moveWithinAttackRange) || (enemyState == enemystates.passivelyFollowPlayer) {
-	if currentSpeed < maxSpeed {
-		currentSpeed += acceleration * enemyTotalSpeed;
-	}
-	else {
-		currentSpeed = maxSpeed;
-	}
-}
-// Else if the enemy doesn't ened to chase an object, reduce its speed
-else if currentSpeed != 0 {
-	currentSpeed = 0;
-}
-// Make sure enemy speed can't exceed maxSpeed
-if (currentSpeed > maxSpeed) || (currentSpeed < 0) {
-	currentSpeed = maxSpeed;
-}
-
-
-// Set the image index
-if enemyImageIndex >= sprite_get_number(enemySprite[enemyStateSprite, enemyDirectionFacing]) {
-	enemyImageIndex = -1;
-}
-if enemyAnimationImageIndex >= sprite_get_number(enemyAnimationSprite) {
-	enemyAnimationImageIndex = -1;
-	enemyAnimationSprite = noone;
-}
-enemyImageIndexSpeed = enemyImageIndexBaseSpeed * enemyTotalSpeed;
-enemyImageIndex += enemyImageIndexSpeed * hitstunMultiplier;
-enemyAnimationImageIndex += enemyImageIndexSpeed;
-
-
-
-// This line below is only used for debugging/prototyping/testing purposes.
-// In the future, this line will be removed, and a series of lines of code in the draw event 
-// (not draw gui) as seen immediately below will be used to draw the enemy with their armor on, using 
-// enemyImageIndex to set sprite_index for each drawn item.
-//
-// draw_sprite_ext(enemyHeadSprite[enemyStateSprite, enemyDirectionFacing], enemyImageIndex, x, y, 1, 1, 0, c_white, 1);
-//
-// The line above is an example of using a sprite table for each different armor type to draw the armor
-// that the player has equipped.
-image_index = enemyImageIndex;
-
-
-// Hurtbox and Ground Hurtbox Sprite Setting and Location Setting - must be done after obj_enemy
-// sprites and locations have changed so that the hurtboxes don't lag a frame behind the obj_enemy
-if instance_exists(self) {
-	if instance_exists(enemyHurtbox) {
-		enemyHurtbox.x = x;
-		enemyHurtbox.y = y;
-		enemyHurtbox.sprite_index = enemySprite[enemyStateSprite, enemyDirectionFacing];
-	}
-	if instance_exists(enemyGroundHurtbox) {
-		enemyGroundHurtbox.x = x;
-		enemyGroundHurtbox.y = y + 13;
-	}
-}
 
 if objectArchetype == "" {
 	show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));

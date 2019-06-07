@@ -35,4 +35,11 @@ if (argument_count > 6) {
 collisionFound = -1;
 turnRate = 1.500 / 60.000;
 
+// Last movement key pressed
+longestMoveKeyPress = -1;
+rightMovementKeyTimer = 0;
+upMovementKeyTimer = 0;
+leftMovementKeyTimer = 0;
+downMovementKeyTimer = 0;
+
 
