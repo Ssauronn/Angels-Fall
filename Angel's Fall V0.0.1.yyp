@@ -231,6 +231,14 @@
             }
         },
         {
+            "Key": "1c1b7c61-e452-4156-b690-53097275246d",
+            "Value": {
+                "id": "64aa14ee-fce7-4130-93c2-97651adf3996",
+                "resourcePath": "scripts\\scr_track_player_stats\\scr_track_player_stats.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1c9adf63-9ea5-4ee7-a3fd-38294859478d",
             "Value": {
                 "id": "ef2d46ba-3060-4e0b-9a39-0d710b0b8ffc",
@@ -348,6 +356,14 @@
                 "id": "dee48dde-19b1-4079-940e-336f1b63cc9a",
                 "resourcePath": "sprites\\spr_player_skillshot_magic_down\\spr_player_skillshot_magic_down.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "2ed0218a-cee0-4265-b3cc-e5eba01a3434",
+            "Value": {
+                "id": "3cd48c4e-eb6e-497f-b207-8dbb05f6ad73",
+                "resourcePath": "scripts\\scr_track_enemy_buffs_and_debuffs\\scr_track_enemy_buffs_and_debuffs.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -715,6 +731,14 @@
             "Value": {
                 "id": "3c984395-6956-486c-a15a-cb0f0b45fbf8",
                 "resourcePath": "views\\60cfebae-8e67-4806-96d2-3353d3ac5dcd.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "616e0860-7ade-425c-8f62-78729ce7bf5d",
+            "Value": {
+                "id": "e305f25e-e411-42bc-aebc-098079174adf",
+                "resourcePath": "views\\616e0860-7ade-425c-8f62-78729ce7bf5d.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -1431,6 +1455,14 @@
             }
         },
         {
+            "Key": "d195f4b5-d97f-4c79-ac07-c1ea4aa6b2e8",
+            "Value": {
+                "id": "1babb278-e79b-4628-8690-d831ea1124af",
+                "resourcePath": "scripts\\scr_initialize_player_stats\\scr_initialize_player_stats.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d3427092-4ec2-4fd6-b5d7-f793939344e6",
             "Value": {
                 "id": "cd5885b3-1954-49ea-8361-2a8e68921e2b",
@@ -1693,12 +1725,24 @@
                 "resourcePath": "views\\ff63d8bc-56da-40a8-b933-5417289337d8.yy",
                 "resourceType": "GMFolder"
             }
+        },
+        {
+            "Key": "ffff5d96-94ae-4367-be03-dff5ef139452",
+            "Value": {
+                "id": "6c616e11-f699-4423-b3ac-25aa84164ce7",
+                "resourcePath": "scripts\\scr_track_player_buffs_and_debuffs\\scr_track_player_buffs_and_debuffs.yy",
+                "resourceType": "GMScript"
+            }
         }
     ],
     "script_order": [
         "86739193-7487-4575-852a-9b161b887976",
+        "d195f4b5-d97f-4c79-ac07-c1ea4aa6b2e8",
+        "1c1b7c61-e452-4156-b690-53097275246d",
+        "ffff5d96-94ae-4367-be03-dff5ef139452",
         "98b0742f-f509-4575-8f6d-ca86584326ce",
         "2f025f61-5d31-4cee-af6e-c61b006b9d56",
+        "2ed0218a-cee0-4265-b3cc-e5eba01a3434",
         "07c1614d-ad7a-467b-b49c-9c066ebbeea4",
         "2bcbb92d-d033-4513-b07d-cc3d50e451a4",
         "ac122cb6-7187-41ef-aa86-5591fccc14f4",

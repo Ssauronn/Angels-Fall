@@ -30,7 +30,6 @@ if instance_exists(currentTargetToFocus) {
 		// Set bullet hitbox variables
 		enemyHitbox.owner = owner_;
 		enemyHitbox.enemyHitboxType = "Melee";
-		enemyHitbox.enemyDamageTypeIsBasicMelee = true;
 		enemyHitbox.enemyHitboxHeal = false;
 		enemyHitbox.enemyHitboxValue = enemyLightMeleeAttackDamage;
 		enemyHitbox.enemyHitboxCollisionFound = false;
@@ -38,6 +37,7 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.enemyHitboxCollidedWithWall = false;
 		enemyHitbox.enemyHitboxPersistAfterCollision = false;
 		enemyHitbox.enemyHitboxTicTimer = enemyHitbox.enemyHitboxLifetime;
+		enemyHitbox.enemyHitboxCanBeTransferredThroughSoulTether = true;
 		enemyHitbox.enemyHitboxTargetArray = noone;
 		
 		// Store bullet ID's in a ds_list for later use (to move and manipulate)

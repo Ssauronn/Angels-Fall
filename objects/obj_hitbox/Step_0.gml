@@ -1,48 +1,50 @@
 /// @description Destroy Self if Outside Owner Range, Count Down Timers
-if owner.object_index == obj_player {
-	if is_array(playerHitboxTargetArray) {
-		// If the array's first value is noone, that means no collided objects exist, so delete the array
-		if (playerHitboxTargetArray[0, 0] == noone) {
-			playerHitboxTargetArray = noone;
-		}
-		else {
-			var i;
-			for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
-				// If the currently referenced row containing an object ID now contains the ID of an object that doesn't
-				// exist, then delete that information and move all information down.
-				if !instance_exists(playerHitboxTargetArray[i, 0]) {
-					var j;
-					for (j = i; j <= array_height_2d(playerHitboxTargetArray) - 1; j++) {
-						// If the row currently referenced is not the last line in the row and the row below is not yet deleted,
-						// then delete the information by shifting everything below the currently referenced row up by 1
-						if ((j + 1) != array_height_2d(playerHitboxTargetArray)) && (playerHitboxTargetArray[j + 1, 0] != noone) {
-							playerHitboxTargetArray[j + 1, 0] = playerHitboxTargetArray[j, 0];
-							playerHitboxTargetArray[j + 1, 1] = playerHitboxTargetArray[j, 1];
-						}
-						// Else if the row currently referenced is the last line in the row, or the row below is already deleted,
-						// then set the currently referenced line to noone, since that information will have already been shifted
-						// up by 1 row.
-						else if ((j + 1) == array_height_2d(playerHitboxTargetArray)) || (playerHitboxTargetArray[j + 1, 0] == noone) {
-							playerHitboxTargetArray[j, 0] = noone;
-							playerHitboxTargetArray[j, 1] = -1;
+if instance_exists(owner) {
+	if owner.object_index == obj_player {
+		if is_array(playerHitboxTargetArray) {
+			// If the array's first value is noone, that means no collided objects exist, so delete the array
+			if (playerHitboxTargetArray[0, 0] == noone) {
+				playerHitboxTargetArray = noone;
+			}
+			else {
+				var i;
+				for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
+					// If the currently referenced row containing an object ID now contains the ID of an object that doesn't
+					// exist, then delete that information and move all information down.
+					if !instance_exists(playerHitboxTargetArray[i, 0]) {
+						var j;
+						for (j = i; j <= array_height_2d(playerHitboxTargetArray) - 1; j++) {
+							// If the row currently referenced is not the last line in the row and the row below is not yet deleted,
+							// then delete the information by shifting everything below the currently referenced row up by 1
+							if ((j + 1) != array_height_2d(playerHitboxTargetArray)) && (playerHitboxTargetArray[j + 1, 0] != noone) {
+								playerHitboxTargetArray[j + 1, 0] = playerHitboxTargetArray[j, 0];
+								playerHitboxTargetArray[j + 1, 1] = playerHitboxTargetArray[j, 1];
+							}
+							// Else if the row currently referenced is the last line in the row, or the row below is already deleted,
+							// then set the currently referenced line to noone, since that information will have already been shifted
+							// up by 1 row.
+							else if ((j + 1) == array_height_2d(playerHitboxTargetArray)) || (playerHitboxTargetArray[j + 1, 0] == noone) {
+								playerHitboxTargetArray[j, 0] = noone;
+								playerHitboxTargetArray[j, 1] = -1;
+							}
 						}
 					}
-				}
-				// Else minus the second value (the countdown) in this grid by one (damage is applied in collision event)
-				else {
-					if playerHitboxTargetArray[i, 1] >= 0 {
-						playerHitboxTargetArray[i, 1] -= 1;
+					// Else minus the second value (the countdown) in this grid by one (damage is applied in collision event)
+					else {
+						if playerHitboxTargetArray[i, 1] >= 0 {
+							playerHitboxTargetArray[i, 1] -= 1;
+						}
 					}
 				}
 			}
 		}
 	}
-}
-else if owner.object_index == obj_enemy {
-	if is_array(enemyHitboxTargetArray) {
-		var i;
-		for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
+	else if owner.object_index == obj_enemy {
+		if is_array(enemyHitboxTargetArray) {
+			var i;
+			for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
 			
+			}
 		}
 	}
 }

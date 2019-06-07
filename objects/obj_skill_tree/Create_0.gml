@@ -1,17 +1,6 @@
 /// @description Create Skill Tree Variables
-#region Prime Abilities
 // Variable used to set which Prime ability will be used ("Q" ability)
-primeAbilityChosen = "Bonus Damage Toggled";
-
-// Variables used for a specific prime ability, both a toggled and timed slow time ability
-slowTimeActive = false;
-slowTimeActiveTimer = -1;
-slowTimeActiveTimerStartTime = 3 * room_speed;
-
-// Variables used for a specific prime ability, a toggled bonus damage ability
-primeDamageActive = false;
-primeBonusDamagePercentAsDecimal = 0;
-#endregion
+primeAbilityChosen = "Crawl of Torment";
 
 
 #region Parry Ability and Effects
@@ -36,7 +25,7 @@ successfulParryInvulnerabilityTimerStartTime = 0.5 * room_speed;
 #region Blood Magic
 #region Tier 1 Abilities
 /// Crawl of Torment
-crawlOfTormentHPCost = 0.4; // Cost is given as a multiplier of how much HP will be sacrificed
+crawlOfTormentBloodMagicCost = 4; // Cost is given as a multiplier of how much HP will be sacrificed
 crawlOfTormentActive = false;
 // Set to 1, because subtracting 1 from the original value of enemyGameSpeed (1) will give us 0, 
 // and taking the average of this and the userInterfaceGameSpeed will reduce enemy total speed 
@@ -44,9 +33,9 @@ crawlOfTormentActive = false;
 crawlOfTormentPower = 1;
 crawlOfTormentTimer = -1;
 crawlOfTormentTimerStartTime = room_speed * 4;
-// Set to true at beginning of ability, when timer reaches 0 this is set to false again and the
+// Set to false at beginning of ability, when timer reaches 0 this is set to true again and the
 // number 1 is added to this to revert the effects of crawlOfTorment
-crawlOfTormentReverted = false;
+crawlOfTormentReverted = true;
 
 /// Dilge Furend
 dilgeFurendHPCost = 0;
@@ -54,62 +43,69 @@ dilgeFurendHPCost = 0;
 
 #region Tier 2 Abilities
 /// Overwhelming Chains
-overWhelmingChainsHPCost = 0.3; // Cost is given as a multiplier of how much HP will be sacrificed
+overWhelmingChainsBloodMagicCost = 3; // Cost is given as a multiplier of how much HP will be sacrificed
 overwhelmingChainsActive = false;
 overwhelmingChainsRange = 32 * 4.5;
 overwhelmingChainsEffectedTarget = noone;
-overwhelmingChainsDamageMultiplier = 1.5;
-overwhelmingChainsDamageResistanceMultiplier = 1.5;
+overwhelmingChainsBaseDamageMultiplier = 1.5;
+overwhelmingChainsDamageMultiplier = 1;
+overwhelmingChainsBaseDamageResistanceMultiplier = 0.5;
+overwhelmingChainsDamageResistanceMultiplier = 1;
 
 /// All is Given
 allIsGivenActive = false;
 allIsGivenMultiplier = 1;
+allIsGivenBloodMagicCost = 4;
 allIsGivenTimer = -1;
-allIsGivenTimerStartTime = room_speed * 5;
+allIsGivenTimerStartTime = room_speed * 10;
 #endregion
 
 #region Tier 3 Abilities
 /// Forces of Life
-forcesOfLifeHPCostPerSecond = 0.08 / room_speed;
+forcesOfLifeBloodMagicCostPerFrame = 1 / room_speed;
 forcesOfLifeActive = false;
-forcesOfLifeMultiplier = 1;
+forcesOfLifeBaseDamageMultiplier = 2;
+forcesOfLifeDamageMultiplier = 1;
 
 /// Blood Pact
-bloodPactHPCost = 0.4; // Cost is given as a multiplier of how much HP will be sacrificed
-bloodPactStaminaReturn = 0.5; // Return is given as a multiplier of percent of max stam restored
-bloodPactManaReturn = 0.5; // Return is given as a multiplier of percent of max stam restored
+bloodPactBloodMagicCost = 3.5; // Cost is given as a multiplier of how much HP will be sacrificed
+bloodPactStaminaReturn = 0.35; // Return is given as a multiplier of percent of max stam restored
+bloodPactManaReturn = 0.35; // Return is given as a multiplier of percent of max stam restored
 
 /// Life Tax
-lifeTaxHPCost = 0.2;
+lifeTaxBloodMagicCost = 4;
+lifeTaxDamageToOtherObjectsMultiplier = 0.15;
 lifeTaxActive = false;
 lifeTaxRange = 32 * 4.5;
 // Set to 1 instead of 0 because player is automatically effected, meaning it last at least for as
 // long as the base timer amount each cast.
 lifeTaxNumberOfObjectsEffected = 1;
+lifeTaxBaseBonusDamageResistanceMultiplier = 0.5;
+lifeTaxBonusDamageResistanceMultiplier = 1;
 lifeTaxTimer = -1;
 lifeTaxTimerStartTime = room_speed * 3;
 
 /// Blood for Blood
 // This cost is the only ability that has a permanent HP cost. This ability is for those who have
 // too much HP to use and want to spend it somewhere.
-bloodForBloodHPPermanentCost = 0.5;
-bloodForBloodHPSacrificed = 0;
-bloodForBloodDamageMultiplier = 2;
+bloodForBloodBloodMagicCost = 5;
+bloodForBloodDamage = 350;
 bloodForBloodTarget = noone;
 #endregion
 
 #region Tier 4 Abilities
 /// For the Greater Good
-forTheGreaterGoodHPCost = 0.3; // Cost is given as a multiplier of how much HP will be sacrificed
+forTheGreaterGoodBloodMagicCost = 3; // Cost is given as a multiplier of how much HP will be sacrificed
 forTheGreaterGoodActive = false;
-forTheGreaterGoodDamageMultiplier = 2;
+forTheGreaterGoodBaseDamageMultiplier = 2;
+forTheGreaterGoodDamageMultiplier = 1;
 forTheGreaterGoodAttacksEffected = 0;
 forTheGreaterGoodMaxAttacksToEffect = 3;
 forTheGreaterGoodTimer = -1;
 forTheGreaterGoodTimerStartTime = room_speed * 10;
 
 /// Solidify
-solidifyHPCost = 0.1; // Cost is given as a multiplier of how much HP will be sacrificed
+solidifyBloodMagicCost = 0.1; // Cost is given as a multiplier of how much HP will be sacrificed
 solidifyActive = false;
 solidifyRange = 32 * 4.5;
 solidifyTarget = noone;
@@ -210,6 +206,7 @@ soulTetherStaminaCost = 0;
 soulTetherManaRegen = 0;
 soulTetherStaminaRegen = 0.2;
 soulTetherActive = false;
+soulTetherCanBeRefreshed = true;
 soulTetherRange = 32 * 8;
 soulTetherTargetArray = noone;
 soulTetherTimer = -1;
@@ -223,26 +220,30 @@ dinnerIsServedStaminaRegen = 0.2;
 dinnerIsServedActive = false;
 dinnerIsServedStartingDamage = 15;
 dinnerIsServedRampMultiplier = 1.1;
+dinnerIsServedCanBeRefreshed = true;
 dinnerIsServedTicTimer = -1;
 dinnerIsServedTicTimerStartTime = room_speed * 0.5;
-// The next two multipliers are used against the enemy(s) stamina and mana regen stats, to debuff
-// them
+// The next three multipliers are used against the enemy(s) stamina and mana regen stats, and 
+// movement speed stats, to debuff them
 dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = 0.5;
 dinnerIsServedBaseEnemyManaRegenerationMultiplier = 0.5;
+dinnerIsServedBaseEnemyMovementSpeedMultiplier = 0.5;
 dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
 dinnerIsServedEnemyManaRegenerationMultiplier = 1;
+dinnerIsServedEnemyMovementSpeedMultiplier = 1;
 dinnerIsServedRange = 32 * 5.5;
 dinnerIsServedTargetArray = noone;
 dinnerIsServedTimer = -1;
 dinnerIsServedTimerStartTime = (room_speed * 5) + 1;
 
-/// Final Parting
+/// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
 finalPartingManaCost = 0;
 finalPartingStaminaCost = 0.3;
 finalPartingManaRegen = 0.2;
 finalPartingStaminaRegen = 0;
 finalPartingActive = false;
 finalPartingDamage = 25;
+finalPartingCanBeRefreshed = true;
 finalPartingSpeed = (32 * 4) / room_speed;
 finalPartingTicTimer = -1;
 finalPartingTicTimerStartTime = room_speed * 0.5;
@@ -282,6 +283,8 @@ sicklyPropositionManaCost = 0;
 sicklyPropositionStaminaCost = 0;
 sicklyPropositionManaRegen = 0.3;
 sicklyPropositionStaminaRegen = 0;
+sicklyPropositionActive = false;
+sicklyPropositionCanBeRefreshed = true;
 sicklyPropositionDamage = 100;
 sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = 1.5;
 sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
@@ -289,8 +292,8 @@ sicklyPropositionDoTDamage = 10;
 sicklyPropositionSpeed = (32 * 4) / room_speed;
 sicklyPropositionTicTimer = -1;
 sicklyPropositionTicTimerStartTime = room_speed * 0.5;
-sicklyPropositionDoTTimer = -1;
-sicklyPropositionDoTTimerStartTime = (room_speed * 5) + 1;
+sicklyPropositionTimer = -1;
+sicklyPropositionTimerStartTime = (room_speed * 5) + 1;
 #endregion
 #endregion
 
@@ -327,7 +330,7 @@ glintingBladeAoEDamage = 50;
 glintingBladeAoERange = 32 * 2.5;
 glintingBladeSpeed = (32 * 4) / room_speed;
 glintingBladeTimer = -1;
-glintingBladeTimerStartTime = room_speed * 10;
+glintingBladeTimerStartTime = room_speed * 15;
 
 /// Hellish Landscape
 hellishLandscapeManaCost = 0.6;
@@ -346,9 +349,11 @@ hiddenDaggerStaminaCost = 0.3;
 hiddenDaggerManaRegen = 0.2;
 hiddenDaggerStaminaRegen = 0;
 hiddenDaggerDamage = 100;
-hiddenDaggerTicTimer = -1;
+hiddenDaggerCanBeRefreshed = false;
 hiddenDaggerTicTimerStartTime = room_speed * 2;
 hiddenDaggerStunDuration = room_speed * 2;
+hiddenDaggerBaseDamageMultiplier = 2;
+hiddenDaggerDamageMultiplierTimerStartTime = hiddenDaggerStunDuration;
 
 /// All Out Attack
 allOutAttackManaCost = 0;
@@ -361,17 +366,20 @@ allOutAttackMeleeRangeDamageMultiplier = 1;
 allOutAttackRange = 32 * 1.5;
 allOutAttackManaBonusOnKill = 0.2;
 allOutAttackStaminaBonusOnKill = 0.2;
-allOutAttackTimer = -1;
 allOutAttackTimerStartTime = room_speed * 10;
 
 /// Exploit Weakness
+// ***Exploit weakness does not proc itself.***
 exploitWeaknessManaCost = 0.3;
 exploitWeaknessStaminaCost = 0;
 exploitWeaknessManaRegen = 0;
 exploitWeaknessStaminaRegen = 0.2;
-exploitWeaknessDamage = 75;
-exploitWeaknessTicTimer = -1;
-exploitWeaknessTicTimerStartTime = room_speed * 6;
+exploitWeaknessDamage = 50;
+exploitWeaknessDoTDamage = 0;
+exploitWeaknessPercentOfDamageToAdd = 0.25;
+exploitWeaknessCanBeRefreshed = true;
+exploitWeaknessTicTimerStartTime = room_speed * 0.5;
+exploitWeaknessTimerStartTime = room_speed * 6;
 
 /// Purifying Rage
 purifyingRageManaCost = 0.3;
@@ -379,6 +387,7 @@ purifyingRageStaminaCost = 0;
 purifyingRageManaRegen = 0;
 purifyingRageStaminaRegen = 0.2;
 purifyingRageActive = false;
+purifyingRageBaseDamageMultiplierForPoisons = 1;
 purifyingRageDamageMultiplierForPoisons = 1;
 #endregion
 
@@ -416,9 +425,16 @@ trueCaelestiWingsStaminaRegen = 0;
 trueCaelestiWingsActive = false;
 trueCaelestiWingsBaseDamageMultiplier = 1.5;
 trueCaelestiWingsDamageMultiplier = 1;
-// Each basic melee attack adds to the trueCaelestiWingsDamageMultiplier by the following amount.
-trueCaelestiDamageMultiplierAddedPerBasicMelee = 0.1;
+trueCaelestiWingsBaseDebuffDamageMultiplier = 1;
+trueCaelestiWingsDebuffDamageMultiplier = 1;
+// Each basic melee attack adds to the trueCaelestiWingsDebuffDamageMultiplier by the following amount,
+// multiplied by the next variable which is added to by one with every hit against the enemy while this
+// ability is active.
+trueCaelestiWingsDebuffDamageMultiplierAddedPerBasicMelee = 0.2;
+trueCaelestiWingsDebuffNumberOfDamageMultipliersAdded = 0;
 trueCaelestiWingsDeadlyDamageValue = 0;
+trueCaelestiWingsDebuffTimer = -1;
+trueCaelestiWingsDebuffTimerStartTime = room_speed * 7.5;
 trueCaelestiWingsTimer = -1;
 trueCaelestiWingsTimerStartTime = room_speed * 15;
 #endregion
@@ -430,10 +446,13 @@ bindingsOfTheCaelestiStaminaCost = 0;
 bindingsOfTheCaelestiManaRegen = 0;
 bindingsOfTheCaelestiStaminaRegen = 0.1;
 bindingsOfTheCaelestiActive = false;
+bindingsOfTheCaelestiDamage = 15;
+bindingsOfTheCaelestiCanBeRefreshed = true;
+bindingsOfTheCaelestiBaseEnemyMovementSpeedMultiplier = 0;
+bindingsOfTheCaelestiEnemyMovementSpeedMultiplier = 1;
 bindingsOfTheCaelestiRange = 32 * 3.5;
 bindingsOfTheCaelestiTimer = -1;
 bindingsOfTheCaelestiTimerStartTime = room_speed * 4;
-bindingsOfTheCaelestiDamage = 15;
 bindingsOfTheCaelestiTargetArray = noone;
 bindingsOfTheCaelestiTicTimer = -1;
 bindingsOfTheCaelestiTicTimerStartTime = room_speed * 0.5;
@@ -461,9 +480,13 @@ holyDefenseManaRegen = 0.2;
 holyDefenseStaminaRegen = 0;
 holyDefenseActive = false;
 holyDefenseDamage = 75;
+holyDefenseDoTDamage = 20;
+holyDefenseCanBeRefreshed = true;
 holyDefenseRange = 32 * 2.5;
+holyDefenseTicTimer = -1;
+holyDefenseTicTimerStartTime = room_speed * 1;
 holyDefenseTimer = -1;
-holyDefenseTimerStartTime = room_speed * 12;
+holyDefenseTimerStartTime = (room_speed * 3) + 1;
 
 /// Wrath of the Repentant
 wrathOfTheRepentantManaCost = 0.3;
@@ -474,7 +497,10 @@ wrathOfTheRepentantActive = false;
 wrathOfTheRepentantBaseBasicMeleeDamageBonus = 1.5;
 wrathOfTheRepentantBasicMeleeDamageBonus = 1;
 // Multiplier to be used against enemy movement speed, to slow them down
-wrathOfTheRepentantSlowMultiplier = 0.5;
+wrathOfTheRepentantBaseMovementSpeedMultiplier = 0.5;
+wrathOfTheRepentantMovementSpeedMultiplier = 1;
+wrathOfTheRepentantDebuffTimer = -1;
+wrathOfTheRepentantBaseDebuffTimer = room_speed * 5;
 wrathOfTheRepentantTimer = -1;
 wrathOfTheRepentantTimerStartTime = room_speed * 10;
 
@@ -492,7 +518,7 @@ theOnePowerRotationDistanceFromPlayer = 32 * 1.5;
 theOnePowerRotationSpeed = ((90 / 360) * (2 * pi * theOnePowerRotationDistanceFromPlayer)) / (room_speed * 1);
 theOnePowerDamage = 50;
 theOnePowerTicTimer = -1;
-theOnePowerTicTimerStartTime = room_speed * 1;
+theOnePowerTicTimerStartTime = room_speed * 1.5;
 theOnePowerTimer = -1;
 theOnePowerTimerStartTime = room_speed * 30;
 
@@ -514,11 +540,19 @@ angelicBarrageManaCost = 0;
 angelicBarrageStaminaCost = 0;
 angelicBarrageManaRegen = 0.3;
 angelicBarrageStaminaRegen = 0;
+// Simply set as active for as long as object is in the target array. Otherwise, set as false.
+// Then, just apply the damage if this is active and the tic timer is at or less than 0, and apply
+// the damage buff if this is active, period.
+angelicBarrageActive = false;
 angelicBarrageDamage = 33.3334;
 angelicBarrageTicTimer = -1;
 angelicBarrageTicTimerStartTime = room_speed * 1;
 angelicBarrageAoEDiameter = 32 * 3.5;
 angelicBarrageTargetArray = noone;
+// Multiplier used against the resistance of enemies effected. If Angelic Barrage is active, their
+// resistance will drop (or go up) to 1.5. It goes up to 1.5 instead of down to say, 0.5, because
+// increasing the multiplier of resistances also increases the damage the enemy will take, because I
+// multiply the resistance multiplier against the damage.
 angelicBarrageBaseDamageMultiplier = 1.5;
 angelicBarrageDamageMultiplier = 1;
 angelicBarrageTimer = -1;
