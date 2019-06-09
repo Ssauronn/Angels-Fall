@@ -26,6 +26,10 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
+		
+		// Timer limiting time between attacks
+		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
+		enemyTimeUntilNextAttackUsableTimer = -1;
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // * any other damage bonuses
@@ -129,6 +133,7 @@ switch (enemy_name_) {
 		solidifyEnemyImageSpeedMultiplier = 1;
 		solidifyEnemyStaminaRegenerationMultiplier = 1;
 		solidifyEnemyManaRegenerationMultiplier = 1;
+		solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
 		poisoned = false;
@@ -360,6 +365,10 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
+		
+		// Timer limiting time between attacks
+		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
+		enemyTimeUntilNextAttackUsableTimer = -1;
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // * any other damage bonuses
@@ -460,6 +469,13 @@ switch (enemy_name_) {
 		forcesOfLifeActive = false;
 		forcesOfLifeBaseDamageMultiplier = obj_skill_tree.forcesOfLifeBaseDamageMultiplier;
 		forcesOfLifeDamageMultiplier = -1;
+		
+		// Solidify
+		solidifyEnemyMovementSpeedMultiplier = 1;
+		solidifyEnemyImageSpeedMultiplier = 1;
+		solidifyEnemyStaminaRegenerationMultiplier = 1;
+		solidifyEnemyManaRegenerationMultiplier = 1;
+		solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
 		poisoned = false;
@@ -696,6 +712,10 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
+		
+		// Timer limiting time between attacks
+		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
+		enemyTimeUntilNextAttackUsableTimer = -1;
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // * any other damage bonuses
@@ -793,6 +813,13 @@ switch (enemy_name_) {
 		forcesOfLifeActive = false;
 		forcesOfLifeBaseDamageMultiplier = obj_skill_tree.forcesOfLifeBaseDamageMultiplier;
 		forcesOfLifeDamageMultiplier = -1;
+		
+		// Solidify
+		solidifyEnemyMovementSpeedMultiplier = 1;
+		solidifyEnemyImageSpeedMultiplier = 1;
+		solidifyEnemyStaminaRegenerationMultiplier = 1;
+		solidifyEnemyManaRegenerationMultiplier = 1;
+		solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
 		poisoned = false;
@@ -1025,6 +1052,10 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
+		
+		// Timer limiting time between attacks
+		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
+		enemyTimeUntilNextAttackUsableTimer = -1;
 
 		// Enemies' Bonus Damage and Resistance
 		enemyTotalBonusDamage = 1; // * any other damage bonuses
@@ -1122,6 +1153,13 @@ switch (enemy_name_) {
 		forcesOfLifeActive = false;
 		forcesOfLifeBaseDamageMultiplier = obj_skill_tree.forcesOfLifeBaseDamageMultiplier;
 		forcesOfLifeDamageMultiplier = -1;
+		
+		// Solidify
+		solidifyEnemyMovementSpeedMultiplier = 1;
+		solidifyEnemyImageSpeedMultiplier = 1;
+		solidifyEnemyStaminaRegenerationMultiplier = 1;
+		solidifyEnemyManaRegenerationMultiplier = 1;
+		solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
 		poisoned = false;

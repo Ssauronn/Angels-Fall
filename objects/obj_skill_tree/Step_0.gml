@@ -766,6 +766,7 @@ if primeAbilityChosen == "Solidify" {
 						solidifyTarget.solidifyEnemyMovementSpeedMultiplier = 1;
 						solidifyTarget.solidifyEnemyStaminaRegenerationMultiplier = 1;
 						solidifyTarget.solidifyEnemyManaRegenerationMultiplier = 1;
+						solidifyTarget.solidifyEnemyChaseTimerSpeedMultiplier = 1;
 					}
 					playerCurrentBloodMagic -= solidifyBloodMagicCost;
 					solidifyTarget = closest_instance_to_target_;
@@ -775,6 +776,7 @@ if primeAbilityChosen == "Solidify" {
 					solidifyTarget.solidifyEnemyMovementSpeedMultiplier = 0;
 					solidifyTarget.solidifyEnemyStaminaRegenerationMultiplier = 0;
 					solidifyTarget.solidifyEnemyManaRegenerationMultiplier = 0;
+					solidifyTarget.solidifyEnemyChaseTimerSpeedMultiplier = 0;
 				}
 			}
 		}
@@ -790,6 +792,7 @@ if solidifyActive {
 		solidifyTarget.solidifyEnemyMovementSpeedMultiplier = 1;
 		solidifyTarget.solidifyEnemyStaminaRegenerationMultiplier = 1;
 		solidifyTarget.solidifyEnemyManaRegenerationMultiplier = 1;
+		solidifyTarget.solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		solidifyTarget = noone;
 	}
 	else if solidifyTimer >= 0 {

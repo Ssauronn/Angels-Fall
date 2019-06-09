@@ -1,6 +1,6 @@
 /// @description Create Skill Tree Variables
 // Variable used to set which Prime ability will be used ("Q" ability)
-primeAbilityChosen = "Crawl of Torment";
+primeAbilityChosen = "Solidify";
 
 
 #region Parry Ability and Effects
@@ -25,7 +25,7 @@ successfulParryInvulnerabilityTimerStartTime = 0.5 * room_speed;
 #region Blood Magic
 #region Tier 1 Abilities
 /// Crawl of Torment
-crawlOfTormentBloodMagicCost = 4; // Cost is given as a multiplier of how much HP will be sacrificed
+crawlOfTormentBloodMagicCost = 4; // Cost is given as a number of how much Blood Magic resources will be taken (out of 10)
 crawlOfTormentActive = false;
 // Set to 1, because subtracting 1 from the original value of enemyGameSpeed (1) will give us 0, 
 // and taking the average of this and the userInterfaceGameSpeed will reduce enemy total speed 
@@ -43,7 +43,7 @@ dilgeFurendHPCost = 0;
 
 #region Tier 2 Abilities
 /// Overwhelming Chains
-overWhelmingChainsBloodMagicCost = 3; // Cost is given as a multiplier of how much HP will be sacrificed
+overWhelmingChainsBloodMagicCost = 3; // Cost is given as a number of how much Blood Magic resources will be taken (out of 10)
 overwhelmingChainsActive = false;
 overwhelmingChainsRange = 32 * 4.5;
 overwhelmingChainsEffectedTarget = noone;
@@ -68,7 +68,7 @@ forcesOfLifeBaseDamageMultiplier = 2;
 forcesOfLifeDamageMultiplier = 1;
 
 /// Blood Pact
-bloodPactBloodMagicCost = 3.5; // Cost is given as a multiplier of how much HP will be sacrificed
+bloodPactBloodMagicCost = 3.5; // Cost is given as a number of how much Blood Magic resources will be taken (out of 10)
 bloodPactStaminaReturn = 0.35; // Return is given as a multiplier of percent of max stam restored
 bloodPactManaReturn = 0.35; // Return is given as a multiplier of percent of max stam restored
 
@@ -95,7 +95,7 @@ bloodForBloodTarget = noone;
 
 #region Tier 4 Abilities
 /// For the Greater Good
-forTheGreaterGoodBloodMagicCost = 3; // Cost is given as a multiplier of how much HP will be sacrificed
+forTheGreaterGoodBloodMagicCost = 3; // Cost is given as a number of how much Blood Magic resources will be taken (out of 10)
 forTheGreaterGoodActive = false;
 forTheGreaterGoodBaseDamageMultiplier = 2;
 forTheGreaterGoodDamageMultiplier = 1;
@@ -105,7 +105,7 @@ forTheGreaterGoodTimer = -1;
 forTheGreaterGoodTimerStartTime = room_speed * 10;
 
 /// Solidify
-solidifyBloodMagicCost = 0.1; // Cost is given as a multiplier of how much HP will be sacrificed
+solidifyBloodMagicCost = 1; // Cost is given as a number of how much Blood Magic resources will be taken (out of 10)
 solidifyActive = false;
 solidifyRange = 32 * 4.5;
 solidifyTarget = noone;
