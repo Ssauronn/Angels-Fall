@@ -184,17 +184,23 @@ if healAllyEngineTimer > 0 {
 }
 
 if alreadyTriedToChaseTimer > 0 {
-	alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed;
+	alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed * solidifyEnemyChaseTimerSpeedMultiplier;
 }
 
-// Timer for mana and stamina abilities, so that enemy doesn't spam an ability one after another until it 
-// runs out of resources.
+// Timer for mana and stamina abilities, so that the enemy doesn't endlessly wait for resource
+// regeneration. Prevents stalling if player debuffs enemy regeneration.
 if enemyTimeUntilNextStaminaAbilityUsableTimer > 0 {
 	enemyTimeUntilNextStaminaAbilityUsableTimer -= 1;
 }
 
 if enemyTimeUntilNextManaAbilityUsableTimer > 0 {
 	enemyTimeUntilNextManaAbilityUsableTimer -= 1;
+}
+
+// Timer for limiting time between attacks. Prevents enemy spamming attack until it runs out of resources,
+// and also helps enemies not overwhelm player all at once with attacks, if they're located in a group.
+if enemyTimeUntilNextAttackUsableTimer >= 0 {
+	enemyTimeUntilNextAttackUsableTimer -= 1;
 }
 #endregion
 

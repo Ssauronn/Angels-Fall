@@ -223,17 +223,23 @@ if chosenEngine != "" {
 				// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 				// has enough stamina to execute attack) then execute heavy melee attack
 				else {
-					// execute heavy melee attack script
-					enemyCurrentStamina -= enemyHeavyMeleeAttackStamCost;
-					enemyState = enemystates.heavyMeleeAttack;
-					enemyStateSprite = enemystates.heavyMeleeAttack;
-					chosenEngine = "";
-					decisionMadeForTargetAndAction = false;
-					enemyImageIndex = 0;
-					alreadyTriedToChaseTimer = 0;
-					alreadyTriedToChase = false;
-					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-					enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+					// If the enemy has waited long enough to use another attack, then execute the attack.
+					// I don't have an else statement connected to this timer because this timer will always count
+					// down in 2.5 real world seconds or less, so the enemy will never really be waiting too long.
+					if enemyTimeUntilNextAttackUsableTimer < 0 {
+						// execute heavy melee attack script
+						enemyCurrentStamina -= enemyHeavyMeleeAttackStamCost;
+						enemyState = enemystates.heavyMeleeAttack;
+						enemyStateSprite = enemystates.heavyMeleeAttack;
+						chosenEngine = "";
+						decisionMadeForTargetAndAction = false;
+						enemyImageIndex = 0;
+						enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
+						alreadyTriedToChaseTimer = 0;
+						alreadyTriedToChase = false;
+						enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+					}
 				} 
 			}
 			#endregion
@@ -276,17 +282,23 @@ if chosenEngine != "" {
 				// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 				// has enough stamina to execute attack) then execute light melee attack
 				else {
-					// execute light melee attack script
-					enemyCurrentStamina -= enemyLightMeleeAttackStamCost;
-					enemyState = enemystates.lightMeleeAttack;
-					enemyStateSprite = enemystates.lightMeleeAttack;
-					chosenEngine = "";
-					decisionMadeForTargetAndAction = false;
-					enemyImageIndex = 0;
-					alreadyTriedToChaseTimer = 0;
-					alreadyTriedToChase = false;
-					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-					enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+					// If the enemy has waited long enough to use another attack, then execute the attack.
+					// I don't have an else statement connected to this timer because this timer will always count
+					// down in 2.5 real world seconds or less, so the enemy will never really be waiting too long.
+					if enemyTimeUntilNextAttackUsableTimer < 0 {
+						// execute light melee attack script
+						enemyCurrentStamina -= enemyLightMeleeAttackStamCost;
+						enemyState = enemystates.lightMeleeAttack;
+						enemyStateSprite = enemystates.lightMeleeAttack;
+						chosenEngine = "";
+						decisionMadeForTargetAndAction = false;
+						enemyImageIndex = 0;
+						enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
+						alreadyTriedToChaseTimer = 0;
+						alreadyTriedToChase = false;
+						enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+					}
 				}
 			}
 			#endregion
@@ -329,17 +341,23 @@ if chosenEngine != "" {
 				// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 				// has enough mana to execute attack) then execute heavy ranged attack
 				else {
-					// execute heavy ranged attack script
-					enemyCurrentMana -= enemyHeavyRangedAttackManaCost;
-					enemyState = enemystates.heavyRangedAttack;
-					enemyStateSprite = enemystates.heavyRangedAttack;
-					chosenEngine = "";
-					decisionMadeForTargetAndAction = false;
-					enemyImageIndex = 0;
-					alreadyTriedToChaseTimer = 0;
-					alreadyTriedToChase = false;
-					enemyTimeUntilNextManaAbilityUsableTimer = 0;
-					enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+					// If the enemy has waited long enough to use another attack, then execute the attack.
+					// I don't have an else statement connected to this timer because this timer will always count
+					// down in 2.5 real world seconds or less, so the enemy will never really be waiting too long.
+					if enemyTimeUntilNextAttackUsableTimer < 0 {
+						// execute heavy ranged attack script
+						enemyCurrentMana -= enemyHeavyRangedAttackManaCost;
+						enemyState = enemystates.heavyRangedAttack;
+						enemyStateSprite = enemystates.heavyRangedAttack;
+						chosenEngine = "";
+						decisionMadeForTargetAndAction = false;
+						enemyImageIndex = 0;
+						enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
+						alreadyTriedToChaseTimer = 0;
+						alreadyTriedToChase = false;
+						enemyTimeUntilNextManaAbilityUsableTimer = 0;
+						enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+					}
 				}
 			}
 			#endregion
@@ -461,17 +479,23 @@ if chosenEngine != "" {
 				// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 				// has enough mana to execute attack) then execute light ranged attack
 				else {
-					// execute light ranged attack script
-					enemyCurrentMana -= enemyLightRangedAttackManaCost;
-					enemyState = enemystates.lightRangedAttack;
-					enemyStateSprite = enemystates.lightRangedAttack;
-					chosenEngine = "";
-					decisionMadeForTargetAndAction = false;
-					enemyImageIndex = 0;
-					alreadyTriedToChaseTimer = 0;
-					alreadyTriedToChase = false;
-					enemyTimeUntilNextManaAbilityUsableTimer = 0;
-					enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+					// If the enemy has waited long enough to use another attack, then execute the attack.
+					// I don't have an else statement connected to this timer because this timer will always count
+					// down in 2.5 real world seconds or less, so the enemy will never really be waiting too long.
+					if enemyTimeUntilNextAttackUsableTimer < 0 {
+						// execute light ranged attack script
+						enemyCurrentMana -= enemyLightRangedAttackManaCost;
+						enemyState = enemystates.lightRangedAttack;
+						enemyStateSprite = enemystates.lightRangedAttack;
+						chosenEngine = "";
+						decisionMadeForTargetAndAction = false;
+						enemyImageIndex = 0;
+						enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
+						alreadyTriedToChaseTimer = 0;
+						alreadyTriedToChase = false;
+						enemyTimeUntilNextManaAbilityUsableTimer = 0;
+						enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+					}
 				}
 			}
 			#endregion
