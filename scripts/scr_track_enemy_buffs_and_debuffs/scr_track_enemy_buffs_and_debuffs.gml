@@ -124,6 +124,27 @@ if hiddenDaggerDamageMultiplierActive {
 else {
 	hiddenDaggerDamageMultiplier = 1;
 }
+
+// Glinting Blade
+if glintingBladeTimer >= 0 {
+	glintingBladeActive = true;
+}
+if glintingBladeActive {
+	if glintingBladeTimer < 0 {
+		glintingBladeActive = false;
+		obj_skill_tree.glintingBladeActive = false;
+		obj_skill_tree.glintingBladeAttachedToEnemy = noone;
+		obj_skill_tree.glintingBladeXPos = 0;
+		obj_skill_tree.glintingBladeYPos = 0;
+	}
+	else if glintingBladeTimer >= 0 {
+		glintingBladeTimer--;
+		obj_skill_tree.glintingBladeActive = true;
+		obj_skill_tree.glintingBladeAttachedToEnemy = self;
+		obj_skill_tree.glintingBladeXPos = x;
+		obj_skill_tree.glintingBladeYPos = y;
+	}
+}
 #endregion
 
 #region Poisons

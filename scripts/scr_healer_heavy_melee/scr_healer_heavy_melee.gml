@@ -29,7 +29,9 @@ if instance_exists(currentTargetToFocus) {
 		
 		// Set bullet hitbox variables
 		enemyHitbox.owner = owner_;
-		enemyHitbox.enemyHitboxType = "Melee";
+		enemyHitbox.enemyHitboxAttackType = "Melee";
+		enemyHitbox.enemyHitboxDamageType = "Basic Melee";
+		enemyHitbox.enemyHitboxAbilityOrigin = "Melee Attack";
 		enemyHitbox.enemyHitboxHeal = false;
 		enemyHitbox.enemyHitboxValue = enemyHeavyMeleeAttackDamage;
 		enemyHitbox.enemyHitboxCollisionFound = false;

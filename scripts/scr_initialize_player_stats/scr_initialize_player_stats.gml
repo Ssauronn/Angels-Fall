@@ -107,7 +107,7 @@ lastAttackButtonPressed = "";
 
 // Player Hitbox Variables
 playerHitbox = noone;
-playerHitboxType = "";
+playerHitboxAttackType = "";
 playerHitboxValue = 0;
 playerHitboxHeal = false;
 playerHitboxDirection = 0;
