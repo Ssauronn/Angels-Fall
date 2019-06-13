@@ -259,6 +259,10 @@ switch (enemy_name_) {
 		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
 		hiddenDaggerTicTimer = -1;
 		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		
+		// Glinting Blade
+		glintingBladeTimer = -1;
+		glintingBladeActive = false;
 		#endregion
 		
 
@@ -314,7 +318,7 @@ switch (enemy_name_) {
 		// Enemy Hitbox variables cont.
 		enemyHitbox = noone;
 		// Possible hitbox types are: "Projectile", "Target", "Target AoE", "Melee"
-		enemyHitboxType = "";
+		enemyHitboxAttackType = "";
 		// If this is set to true, that's a switch telling the collisions to heal the correct targets
 		// instead of dealing damage to enemies
 		enemyHitboxHeal = false;
@@ -601,6 +605,10 @@ switch (enemy_name_) {
 		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
 		hiddenDaggerTicTimer = -1;
 		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		
+		// Glinting Blade
+		glintingBladeTimer = -1;
+		glintingBladeActive = false;
 		#endregion
 		
 
@@ -660,7 +668,7 @@ switch (enemy_name_) {
 		// Enemy Hitbox variables cont.
 		enemyHitbox = noone;
 		// Possible hitbox types are: "Projectile", "Target", "Target AoE", "Melee"
-		enemyHitboxType = "";
+		enemyHitboxAttackType = "";
 		// If this is set to true, that's a switch telling the collisions to heal the correct targets
 		// instead of dealing damage to enemies
 		enemyHitboxHeal = false;
@@ -945,6 +953,10 @@ switch (enemy_name_) {
 		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
 		hiddenDaggerTicTimer = -1;
 		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		
+		// Glinting Blade
+		glintingBladeTimer = -1;
+		glintingBladeActive = false;
 		#endregion
 		
 
@@ -1000,7 +1012,7 @@ switch (enemy_name_) {
 		// Enemy Hitbox variables cont.
 		enemyHitbox = noone;
 		// Possible hitbox types are: "Projectile", "Target", "Target AoE", "Melee"
-		enemyHitboxType = "";
+		enemyHitboxAttackType = "";
 		// If this is set to true, that's a switch telling the collisions to heal the correct targets
 		// instead of dealing damage to enemies
 		enemyHitboxHeal = false;
@@ -1285,6 +1297,10 @@ switch (enemy_name_) {
 		hiddenDaggerDamageMultiplierTimerStartTime = obj_skill_tree.hiddenDaggerDamageMultiplierTimerStartTime;
 		hiddenDaggerTicTimer = -1;
 		hiddenDaggerTicTimerStartTime = obj_skill_tree.hiddenDaggerTicTimerStartTime;
+		
+		// Glinting Blade
+		glintingBladeTimer = -1;
+		glintingBladeActive = false;
 		#endregion
 		
 
@@ -1340,7 +1356,7 @@ switch (enemy_name_) {
 		// Enemy Hitbox variables cont.
 		enemyHitbox = noone;
 		// Possible hitbox types are: "Projectile", "Target", "Target AoE", "Melee"
-		enemyHitboxType = "";
+		enemyHitboxAttackType = "";
 		// If this is set to true, that's a switch telling the collisions to heal the correct targets
 		// instead of dealing damage to enemies
 		enemyHitboxHeal = false;

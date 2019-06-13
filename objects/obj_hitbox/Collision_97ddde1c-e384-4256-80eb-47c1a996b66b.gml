@@ -14,13 +14,13 @@ else if owner.object_index == obj_enemy {
 
 // Destroy the hitbox if it collides with a wall AND its a projectile
 if owner_is_player_ {
-	if playerHitboxType == "Projectile" {
+	if playerHitboxAttackType == "Projectile" {
 		playerHitboxCollisionFound = true;
 		playerHitboxCollidedWithWall = true;
 	}
 }
 else if owner_is_enemy_ {
-	if enemyHitboxType == "Projectile" {
+	if enemyHitboxAttackType == "Projectile" {
 		enemyHitboxCollisionFound = true;
 		enemyHitboxCollidedWithWall = true;
 	}

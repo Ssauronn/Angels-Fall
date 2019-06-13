@@ -324,11 +324,17 @@ glintingBladeTargetXPos = 0;
 glintingBladeTargetYPos = 0;
 glintingBladeXPos = 0;
 glintingBladeYPos = 0;
-glintingBladeAttachedToEnemy = false;
+// If the hitbox never hits a target, then this next variable takes effect. This signals to destroy
+// the hitbox and sets the above 2 variables equal to the new position of the glinting blade object
+// that the player can teleport to.
+glintingBladeArrivedAtTargetPos = false;
+// If this next variable is attached to an enemy, instead set this to equal the enemy's ID
+glintingBladeAttachedToEnemy = noone;
 glintingBladeAttachedDamage = 100;
 glintingBladeAoEDamage = 50;
 glintingBladeAoERange = 32 * 2.5;
 glintingBladeSpeed = (32 * 4) / room_speed;
+glintingBladeDirection = 0;
 glintingBladeTimer = -1;
 glintingBladeTimerStartTime = room_speed * 15;
 
@@ -366,6 +372,7 @@ allOutAttackMeleeRangeDamageMultiplier = 1;
 allOutAttackRange = 32 * 1.5;
 allOutAttackManaBonusOnKill = 0.2;
 allOutAttackStaminaBonusOnKill = 0.2;
+allOutAttackTimer = -1;
 allOutAttackTimerStartTime = room_speed * 10;
 
 /// Exploit Weakness
@@ -389,6 +396,8 @@ purifyingRageStaminaRegen = 0.2;
 purifyingRageActive = false;
 purifyingRageBaseDamageMultiplierForPoisons = 1;
 purifyingRageDamageMultiplierForPoisons = 1;
+purifyingRageTimer = -1;
+purifyingRageTimerStartTime = room_speed * 6;
 #endregion
 
 #region Tier 4
@@ -398,12 +407,11 @@ rushdownStaminaCost = 0;
 rushdownManaRegen = 0;
 rushdownStaminaRegen = 0.3;
 rushdownDashDamage = 50;
+rushdownDashDamageMultiplierActive = false;
 rushdownRange = 32 * 4.5;
-rushdownMeleeDamage = 100;
+rushdownMeleeDamage = rushdownDashDamage * 2;
 rushdownDashBaseDamageMultiplier = 1.5;
 rushdownDashDamageMultiplier = 1;
-rushdownMeleeBaseDamageMultiplier = 2;
-rushdownMeleeDamageMultiplier = 1;
 
 /// Diabolus Blast
 diabolusBlastManaCost = 0;
@@ -479,7 +487,8 @@ holyDefenseStaminaCost = 0.3;
 holyDefenseManaRegen = 0.2;
 holyDefenseStaminaRegen = 0;
 holyDefenseActive = false;
-holyDefenseDamage = 75;
+holyDefenseBaseDamage = 75;
+holyDefenseDamage = 0;
 holyDefenseDoTDamage = 20;
 holyDefenseCanBeRefreshed = true;
 holyDefenseRange = 32 * 2.5;
@@ -511,11 +520,16 @@ theOnePowerManaRegen = 0;
 theOnePowerStaminaRegen = 0.2;
 theOnePowerActive = false;
 theOnePowerRange = 32 * 4.5;
+theOnePowerRotationAngle = 0;
+theOnePowerRotationTimeForAFullCircle = room_speed * 2.75;
 theOnePowerRotationDistanceFromPlayer = 32 * 1.5;
 // This is the function to determine the length of an arc of a circle. Essentially, the orb will
 // travel 90 degrees around the player in 1 second of game time. Meaning it'll take the orb 4
 // seconds to complete one full rotation.
-theOnePowerRotationSpeed = ((90 / 360) * (2 * pi * theOnePowerRotationDistanceFromPlayer)) / (room_speed * 1);
+theOnePowerRotationSpeed = ((90 / 360) * (2 * pi * theOnePowerRotationDistanceFromPlayer)) / theOnePowerRotationTimeForAFullCircle;
+theOnePowerOriginXPos = 0;
+theOnePowerOriginYPos = 0;
+theOnePowerProjectileSpeed = (32 * 4) / room_speed;
 theOnePowerDamage = 50;
 theOnePowerTicTimer = -1;
 theOnePowerTicTimerStartTime = room_speed * 1.5;
@@ -566,8 +580,10 @@ whirlwindStaminaRegen = 0.3;
 whirlwindActive = false;
 whirlwindDamage = 50;
 whirlwindFirstPhaseActive = noone;
+whirlwindArrivedAtTargetPos = false;
 whirlwindSecondPhaseActive = noone;
 whirlwindSpeed = 32 * 4 / room_speed;
+whirlwindDirection = 0;
 whirlwindRange = 32 * 4;
 whirlwindTargetXPos = 0;
 whirlwindTargetYPos = 0;

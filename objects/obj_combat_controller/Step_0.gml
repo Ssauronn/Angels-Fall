@@ -45,9 +45,9 @@ else if comboCounter > 60 {
 
 // Variables used to control the incoming and outgoing damage of both the player and other enemies
 // Player Bonus Damage, Bonus Basic Melee Damage, and Bonus Resistance
-playerTotalBonusDamage = 1 * obj_skill_tree.allIsGivenMultiplier * obj_skill_tree.forTheGreaterGoodDamageMultiplier; // * whatever other modifiers I can change player damage with, numbers greater than 1.
-playerTotalBonusBasicMeleeDamage = playerTotalBonusDamage; // * whatever other modifiers I can change the player basic melee damage with, numbers greater than 1.
-playerTotalBonusResistance = 1 * obj_skill_tree.lifeTaxBonusDamageResistanceMultiplier; // * whatever other modifiers I can change the player resistance with, numbers greater than 0 and less than 1.
+playerTotalBonusDamage = 1 * obj_skill_tree.allIsGivenMultiplier * obj_skill_tree.forTheGreaterGoodDamageMultiplier * obj_skill_tree.trueCaelestiWingsDamageMultiplier * obj_skill_tree.rushdownDashDamageMultiplier; // * whatever other modifiers I can change player damage with, numbers greater than 1.
+playerTotalBonusBasicMeleeDamage = playerTotalBonusDamage * obj_skill_tree.wrathOfTheRepentantBasicMeleeDamageBonus * obj_skill_tree.lightningSpearBasicMeleeDamageMultiplier; // * whatever other modifiers I can change the player basic melee damage with, numbers greater than 1.
+playerTotalBonusResistance = 1 * obj_skill_tree.lifeTaxBonusDamageResistanceMultiplier * obj_skill_tree.armorOfTheCaelestiResistanceMultiplier; // * whatever other modifiers I can change the player resistance with, numbers greater than 0 and less than 1.
 
 
 #region Move Hitbox Objects
@@ -57,17 +57,60 @@ if ds_exists(playerHitboxList, ds_type_list) {
 	for (i = 0; i <= ds_list_size(playerHitboxList) - 1; i++) {
 		if instance_exists(ds_list_find_value(playerHitboxList, i)) {
 			with ds_list_find_value(playerHitboxList, i) {
-				if playerHitboxType = "Projectile" {
+				if playerHitboxAttackType = "Projectile" {
 					// Move the hitbox as long as the parent object still exists
 					if instance_exists(owner) {
-						x += lengthdir_x(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
-						y += lengthdir_y(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
+						if (playerHitboxAbilityOrigin != "Glinting Blade") && (playerHitboxAbilityOrigin != "Whirlwind") {
+							x += lengthdir_x(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
+							y += lengthdir_y(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
+						}
+						else if playerHitboxAbilityOrigin == "Glinting Blade" {
+							var distance_to_target_ = point_distance(x, y, obj_skill_tree.glintingBladeTargetXPos, obj_skill_tree.glintingBladeTargetYPos);
+							if distance_to_target_ > obj_skill_tree.glintingBladeSpeed {
+								x += lengthdir_x(obj_skill_tree.glintingBladeSpeed, obj_skill_tree.glintingBladeDirection) * playerTotalSpeed;
+								y += lengthdir_y(obj_skill_tree.glintingBladeSpeed, obj_skill_tree.glintingBladeDirection) * playerTotalSpeed;
+							}
+							else if distance_to_target_ <= obj_skill_tree.glintingBladeSpeed {
+								glintingBladeArrivedAtTargetPos = true;
+								x = obj_skill_tree.glintingBladeTargetXPos;
+								y = obj_skill_tree.glintingBladeTargetYPos;
+								obj_skill_tree.glintingBladeXPos = x;
+								obj_skill_tree.glintingBladeYPos = y;
+							}
+						}
+						else if playerHitboxAbilityOrigin == "Whirlwind" {
+							var distance_to_target_ = point_distance(x, y, obj_skill_tree.whirlwindTargetXPos, obj_skill_tree.whirlwindTargetYPos);
+							if distance_to_target_ > obj_skill_tree.whirlwindSpeed {
+								x += lengthdir_x(obj_skill_tree.whirlwindSpeed, obj_skill_tree.whirlwindDirection) * playerTotalSpeed;
+								y += lengthdir_y(obj_skill_tree.whirlwindSpeed, obj_skill_tree.whirlwindDirection) * playerTotalSpeed;
+							}
+							else if distance_to_target_ <= obj_skill_tree.whirlwindSpeed {
+								whirlwindArrivedAtTargetPos = true;
+								x = obj_skill_tree.whirlwindTargetXPos;
+								y = obj_skill_tree.whirlwindTargetYPos;
+							}
+						}
 					}
 					else if !instance_exists(owner) {
 						with obj_combat_controller {
+							// If the owner of the hitbox current referenced doesn't exist, destroy the hitbox
+							// and erase the DS List
 							if ds_exists(playerHitboxList, ds_type_list) {
 								instance_destroy(ds_list_find_value(playerHitboxList, i));
 								ds_list_delete(playerHitboxList, i);
+							}
+							// And if, after the hitbox was destroyed and erased from the DS List, there are no 
+							// longer any existing hitboxes, then destroy the DS List as well
+							var j, a_hitbox_still_exists_;
+							a_hitbox_still_exists_ = false;
+							for (j = 0; j <= ds_list_size(playerHitboxList) - 1; j++) {
+								var instance_to_reference_ = ds_list_find_value(playerHitboxList, j);
+								if instance_exists(instance_to_reference_) {
+									a_hitbox_still_exists_ = true;
+								}
+							}
+							if !a_hitbox_still_exists_ {
+								ds_list_destroy(playerHitboxList);
 							}
 						}
 					}
@@ -82,7 +125,7 @@ if ds_exists(enemyHitboxList, ds_type_list) {
 	for (i = 0; i <= ds_list_size(enemyHitboxList) - 1; i++) {
 		if instance_exists(ds_list_find_value(enemyHitboxList, i)) {
 			with ds_list_find_value(enemyHitboxList, i) {
-				if enemyHitboxType == "Projectile" {
+				if enemyHitboxAttackType == "Projectile" {
 					// Move the hitbox as long as the parent object still exists
 					if instance_exists(owner) {
 						x += lengthdir_x(enemyProjectileHitboxSpeed, enemyProjectileHitboxDirection) * owner.enemyTotalSpeed;
@@ -91,9 +134,24 @@ if ds_exists(enemyHitboxList, ds_type_list) {
 					// Destroy any hitboxes that still exist 
 					else if !instance_exists(owner) {
 						with obj_combat_controller {
+							// If the owner of the hitbox current referenced doesn't exist, destroy the hitbox
+							// and erase the DS List
 							if ds_exists(enemyHitboxList, ds_type_list) {
 								instance_destroy(ds_list_find_value(enemyHitboxList, i));
 								ds_list_delete(enemyHitboxList, i);
+							}
+							// And if, after the hitbox was destroyed and erased from the DS List, there are no 
+							// longer any existing hitboxes, then destroy the DS List as well
+							var j, a_hitbox_still_exists_;
+							a_hitbox_still_exists_ = false;
+							for (j = 0; j <= ds_list_size(enemyHitboxList) - 1; j++) {
+								var instance_to_reference_ = ds_list_find_value(enemyHitboxList, j);
+								if instance_exists(instance_to_reference_) {
+									a_hitbox_still_exists_ = true;
+								}
+							}
+							if !a_hitbox_still_exists_ {
+								ds_list_destroy(enemyHitboxList);
 							}
 						}
 					}

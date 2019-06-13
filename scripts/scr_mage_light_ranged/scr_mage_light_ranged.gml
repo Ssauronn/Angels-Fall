@@ -16,7 +16,9 @@ if instance_exists(currentTargetToFocus) {
 		enemyHitbox.mask_index = spr_enemy_bullet_hitbox;
 		enemyHitbox.image_angle = point_direction(owner_.x, owner_.y, target_.x, target_.y);
 		enemyHitbox.owner = owner_;
-		enemyHitbox.enemyHitboxType = "Projectile";
+		enemyHitbox.enemyHitboxAttackType = "Projectile";
+		enemyHitbox.enemyHitboxDamageType = "Ability";
+		enemyHitbox.enemyHitboxAbilityOrigin = "Skillshot Magic";
 		enemyHitbox.enemyHitboxHeal = false;
 		enemyHitbox.enemyProjectileHitboxDirection = point_direction_;
 		enemyHitbox.enemyProjectileHitboxSpeed = enemyProjectileHitboxSpeed;

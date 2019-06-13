@@ -37,7 +37,9 @@ if instance_exists(obj_player) {
 		playerHitbox.owner = owner_;
 		playerHitbox.playerProjectileHitboxSpeed = playerProjectileHitboxSpeed;
 		playerHitbox.playerHitboxDirection = playerHitboxDirection;
-		playerHitbox.playerHitboxType = "Projectile";
+		playerHitbox.playerHitboxAttackType = "Projectile";
+		playerHitbox.playerHitboxDamageType = "Ability";
+		playerHitbox.playerHitboxAbilityOrigin = "Skillshot Magic";
 		playerHitbox.playerHitboxDamageTypeIsBasicMelee = false;
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerBulletAttackValue;

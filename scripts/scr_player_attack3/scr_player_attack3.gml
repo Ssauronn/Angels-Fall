@@ -39,7 +39,9 @@ if instance_exists(obj_player) {
 				break;
 		}
 		playerHitbox.owner = owner_;
-		playerHitbox.playerHitboxType = "Melee";
+		playerHitbox.playerHitboxAttackType = "Melee";
+		playerHitbox.playerHitboxDamageType = "Basic Melee";
+		playerHitbox.playerHitboxAbilityOrigin = "Melee Attack";
 		playerHitbox.playerHitboxDamageTypeIsBasicMelee = true;
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerMeleeAttackThreeValue;
