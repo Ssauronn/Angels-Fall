@@ -729,6 +729,11 @@ if forTheGreaterGoodTimer >= 0 {
 	forTheGreaterGoodActive = true;
 }
 if forTheGreaterGoodActive {
+	if forTheGreaterGoodAttacksEffected >= forTheGreaterGoodMaxAttacksToEffect {
+		forTheGreaterGoodActive = false;
+		forTheGreaterGoodDamageMultiplier = 1;
+		forTheGreaterGoodAttacksEffected = 0;
+	}
 	if forTheGreaterGoodTimer < 0 {
 		forTheGreaterGoodActive = false;
 		forTheGreaterGoodDamageMultiplier = 1;

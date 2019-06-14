@@ -247,6 +247,14 @@
             }
         },
         {
+            "Key": "1d70259f-29e9-4faa-ab72-7e30db958082",
+            "Value": {
+                "id": "ab7da9b3-7fc4-4c9a-8051-b31aee175f40",
+                "resourcePath": "sprites\\spr_single_hit\\spr_single_hit.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "20d46ef1-8baa-43a0-8d8b-c6f49440ccc7",
             "Value": {
                 "id": "3c3465a1-653a-4805-8f31-3df8305d7dd2",
@@ -1755,13 +1763,13 @@
         "032e7f80-1faa-44df-8555-2d9eabd55ec9",
         "a3280395-dabd-44f7-8bda-319593ffdb4d",
         "79579f9e-c59f-4b55-8106-e1276cfafca6",
-        "cf41e500-c1e9-45a4-a33c-69ac7aa02695",
-        "37333b3e-6e48-4b89-99e5-25a6b578de8f",
         "3d094b82-0ff8-435f-956c-a3365019e3f3",
         "ebed4767-13fc-4154-8589-efd76de46c30",
         "b24f1e48-14a8-431c-950b-14ab6e762333",
         "bf987c3b-3b6d-43b2-a80a-7ce2a1e07742",
         "71f67c6e-e097-4287-9a1a-93867e2e1d73",
+        "cf41e500-c1e9-45a4-a33c-69ac7aa02695",
+        "37333b3e-6e48-4b89-99e5-25a6b578de8f",
         "8c545737-5732-4234-8155-40fe5bda92a5",
         "836fce16-d2fe-4824-9759-5a98a9b57a1b",
         "f589efc0-e9c7-4ce1-ac73-086377476634",

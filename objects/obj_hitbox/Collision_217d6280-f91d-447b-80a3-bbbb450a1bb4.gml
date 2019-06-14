@@ -84,13 +84,16 @@ if owner_is_player_ {
 				var i;
 				for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
 					// If the tic timer for the object being collided with is at or less than 0, apply damage/healing and
-					// reset the tic timer.
+					// reset the tic timer. For reference, the tic timer in this situation (a hitbox that persists after
+					// collision) is not in reference to DoT damage. The tic timer in this situation is in reference to
+					// the time between when a hitbox persisting after collision will deal damage.
 					if playerHitboxTargetArray[i, 1] <= 0 {
-						apply_damage_and_healing(owner_, other_owner_, playerHitboxDamageTypeIsBasicMelee);
+						apply_damage_and_healing(owner_, other_owner_);
 						playerHitboxTargetArray[i, 1] = playerHitboxTicTimer;
 					}
 				}
 			}
+			apply_damage_and_healing(owner_, other_owner_)
 			/*
 			playerHitboxCollisionFound = true;
 			// See collision with obj_enemy event in obj_player_melee_hitbox for explanation as to why I multiply

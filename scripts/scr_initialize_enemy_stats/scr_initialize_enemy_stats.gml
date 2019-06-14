@@ -209,16 +209,13 @@ switch (enemy_name_) {
 		wrathOfTheRepentantActive = false;
 		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
 		wrathOfTheRepentantMovementSpeedMultiplier = 1;
-		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimerStartTime = obj_skill_tree.wrathOfTheRepentantDebuffTimerStartTime;
 		wrathOfTheRepentantDebuffTimer = -1;
 		
 		// Angelic Barrage
 		angelicBarrageActive = false;
-		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
-		angelicBarrageTicTimer = -1;
-		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;
@@ -555,16 +552,13 @@ switch (enemy_name_) {
 		wrathOfTheRepentantActive = false;
 		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
 		wrathOfTheRepentantMovementSpeedMultiplier = 1;
-		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimerStartTime = obj_skill_tree.wrathOfTheRepentantDebuffTimerStartTime;
 		wrathOfTheRepentantDebuffTimer = -1;
 		
 		// Angelic Barrage
 		angelicBarrageActive = false;
-		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
-		angelicBarrageTicTimer = -1;
-		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;
@@ -903,16 +897,13 @@ switch (enemy_name_) {
 		wrathOfTheRepentantActive = false;
 		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
 		wrathOfTheRepentantMovementSpeedMultiplier = 1;
-		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimerStartTime = obj_skill_tree.wrathOfTheRepentantDebuffTimerStartTime;
 		wrathOfTheRepentantDebuffTimer = -1;
 		
 		// Angelic Barrage
 		angelicBarrageActive = false;
-		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
-		angelicBarrageTicTimer = -1;
-		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;
@@ -1247,16 +1238,13 @@ switch (enemy_name_) {
 		wrathOfTheRepentantActive = false;
 		wrathOfTheRepentantBaseMovementSpeedMultiplier = obj_skill_tree.wrathOfTheRepentantBaseMovementSpeedMultiplier;
 		wrathOfTheRepentantMovementSpeedMultiplier = 1;
-		wrathOfTheRepentantBaseDebuffTimer = obj_skill_tree.wrathOfTheRepentantBaseDebuffTimer;
+		wrathOfTheRepentantDebuffTimerStartTime = obj_skill_tree.wrathOfTheRepentantDebuffTimerStartTime;
 		wrathOfTheRepentantDebuffTimer = -1;
 		
 		// Angelic Barrage
 		angelicBarrageActive = false;
-		angelicBarrageDamage = obj_skill_tree.angelicBarrageDamage;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
-		angelicBarrageTicTimer = -1;
-		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;

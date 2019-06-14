@@ -60,11 +60,9 @@ with obj_skill_tree {
 	if allOutAttackActive {
 		if allOutAttackTimer < 0 {
 			allOutAttackActive = false;
-			allOutAttackMeleeRangeDamageMultiplier = 1;
 		}
 		else if allOutAttackTimer >= 0 {
 			allOutAttackTimer--;
-			allOutAttackMeleeRangeDamageMultiplier = allOutAttackBaseMeleeRangeDamageMultiplier;
 		}
 	}
 	#endregion
