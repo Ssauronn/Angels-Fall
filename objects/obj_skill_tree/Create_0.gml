@@ -368,10 +368,9 @@ allOutAttackManaRegen = 0.2;
 allOutAttackStaminaRegen = 0;
 allOutAttackActive = false;
 allOutAttackBaseMeleeRangeDamageMultiplier = 2;
-allOutAttackMeleeRangeDamageMultiplier = 1;
 allOutAttackRange = 32 * 1.5;
-allOutAttackManaBonusOnKill = 0.2;
-allOutAttackStaminaBonusOnKill = 0.2;
+allOutAttackManaBonusOnKill = 0.4;
+allOutAttackStaminaBonusOnKill = 0.4;
 allOutAttackTimer = -1;
 allOutAttackTimerStartTime = room_speed * 10;
 
@@ -509,7 +508,7 @@ wrathOfTheRepentantBasicMeleeDamageBonus = 1;
 wrathOfTheRepentantBaseMovementSpeedMultiplier = 0.5;
 wrathOfTheRepentantMovementSpeedMultiplier = 1;
 wrathOfTheRepentantDebuffTimer = -1;
-wrathOfTheRepentantBaseDebuffTimer = room_speed * 5;
+wrathOfTheRepentantDebuffTimerStartTime = room_speed * 5;
 wrathOfTheRepentantTimer = -1;
 wrathOfTheRepentantTimerStartTime = room_speed * 10;
 

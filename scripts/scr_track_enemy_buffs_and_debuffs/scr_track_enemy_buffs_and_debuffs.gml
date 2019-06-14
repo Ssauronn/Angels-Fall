@@ -50,17 +50,13 @@ else {
 // This is set as true in the collision event with the hitbox; otherwise its set as false
 if angelicBarrageActive {
 	angelicBarrageDamageMultiplier = angelicBarrageBaseDamageMultiplier;
-	if angelicBarrageTicTimer <= 0 {
-		angelicBarrageTicTimer = angelicBarrageTicTimerStartTime;
-		// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
-	}
 }
 else {
 	angelicBarrageDamageMultiplier = 1;
 }
-if angelicBarrageTicTimer > 0 {
-	angelicBarrageTicTimer--;
-}
+// Set it as false after the above code blocks run. This way angelicBarrage is never active
+// unless an active collision is happening, which is what I want.
+angelicBarrageActive = false;
 
 // Holy Defense
 if holyDefenseTimer >= 0 {
@@ -143,6 +139,19 @@ if glintingBladeActive {
 		obj_skill_tree.glintingBladeAttachedToEnemy = self;
 		obj_skill_tree.glintingBladeXPos = x;
 		obj_skill_tree.glintingBladeYPos = y;
+	}
+}
+
+// Soul Tether
+if soulTetherTimer >= 0 {
+	soulTetherActive = true;
+}
+if soulTetherActive {
+	if soulTetherTimer < 0 {
+		soulTetherActive = false;
+	}
+	else if soulTetherTimer >= 0 {
+		soulTetherTimer--;
 	}
 }
 #endregion
@@ -235,6 +244,10 @@ if exploitWeaknessTimer >= 0 {
 	exploitWeaknessActive = true;
 }
 if exploitWeaknessActive {
+	if exploitWeaknessDamageToAdd > 0 {
+		exploitWeaknessDoTDamage += exploitWeaknessDamageToAdd;
+		exploitWeaknessDamageToAdd = 0;
+	}
 	if exploitWeaknessTimer < 0 {
 		exploitWeaknessActive = false;
 	}
