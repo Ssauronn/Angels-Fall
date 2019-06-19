@@ -27,6 +27,9 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 		
+		// Animecro Reward to player for Killing Enemy
+		animecroRewardUponDeath = 150;
+		
 		// Timer limiting time between attacks
 		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
 		enemyTimeUntilNextAttackUsableTimer = -1;
@@ -144,8 +147,7 @@ switch (enemy_name_) {
 		// The damage of the ability on hit
 		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
 		// The multiplier that can be applied if the target is poisoned
-		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
-		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionDamageMultiplierVsPoisonedTarget;
 		// The damage of the dot itself
 		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
 		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;
@@ -367,6 +369,9 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 		
+		// Animecro Reward to player for Killing Enemy
+		animecroRewardUponDeath = 100;
+		
 		// Timer limiting time between attacks
 		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
 		enemyTimeUntilNextAttackUsableTimer = -1;
@@ -487,8 +492,7 @@ switch (enemy_name_) {
 		// The damage of the ability on hit
 		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
 		// The multiplier that can be applied if the target is poisoned
-		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
-		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionDamageMultiplierVsPoisonedTarget;
 		// The damage of the dot itself
 		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
 		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;
@@ -715,6 +719,9 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 		
+		// Animecro Reward to player for Killing Enemy
+		animecroRewardUponDeath = 300;
+		
 		// Timer limiting time between attacks
 		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
 		enemyTimeUntilNextAttackUsableTimer = -1;
@@ -832,8 +839,7 @@ switch (enemy_name_) {
 		// The damage of the ability on hit
 		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
 		// The multiplier that can be applied if the target is poisoned
-		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
-		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionDamageMultiplierVsPoisonedTarget;
 		// The damage of the dot itself
 		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
 		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;
@@ -1056,6 +1062,9 @@ switch (enemy_name_) {
 		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		enemyCurrentMana = enemyMaxMana;
 		
+		// Animecro Reward to player for Killing Enemy
+		animecroRewardUponDeath = 200;
+		
 		// Timer limiting time between attacks
 		enemyTimeUntilNextAttackUsableTimerStartTime = room_speed * (2 + random_range(0, 0.5));
 		enemyTimeUntilNextAttackUsableTimer = -1;
@@ -1173,8 +1182,7 @@ switch (enemy_name_) {
 		// The damage of the ability on hit
 		sicklyPropositionDamage = obj_skill_tree.sicklyPropositionDamage;
 		// The multiplier that can be applied if the target is poisoned
-		sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
-		sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionBaseDamageMultiplierVsPoisonedTarget;
+		sicklyPropositionDamageMultiplierVsPoisonedTarget = obj_skill_tree.sicklyPropositionDamageMultiplierVsPoisonedTarget;
 		// The damage of the dot itself
 		sicklyPropositionDoTDamage = obj_skill_tree.sicklyPropositionDoTDamage;
 		sicklyPropositionCanBeRefreshed = obj_skill_tree.sicklyPropositionCanBeRefreshed;

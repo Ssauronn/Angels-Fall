@@ -154,8 +154,9 @@ deathIncarnateTicTimer = -1;
 deathIncarnateTicTimerStartTime = room_speed * 0.5;
 deathIncarnateSecondPhaseActive = false;
 deathIncarnateSecondPhaseTargetArray = noone;
-deathIncarnateSecondPhaseDamage = 400;
+deathIncarnateSecondPhaseStartDamage = 400;
 deathIncarnateSecondPhaseSubsequentDamageMultiplier = 0.8;
+deathIncarnateSecondPhaseCurrentDamage = 400;
 deathIncarnateSecondPhaseMovementSpeed = (32 * 8) / room_speed;
 deathIncarnateTimer = -1;
 deathIncarnateTimerStartTime = room_speed * 8;
@@ -274,8 +275,7 @@ takenForPainRange = 32 * 4.5;
 takenForPainSpeed = (32 * 4) / room_speed;
 takenForPainNumberOfSpikes = 6;
 takenForPainDamagePerSpike = 75;
-takenForPainBaseDamageMultiplierVsPoisonedTargets = 1.5;
-takenForPainDamageMultiplierVsPoisonedTargets = 1;
+takenForPainDamageMultiplierVsPoisonedTargets = 1.5;
 takenForPainTargetArray = noone;
 
 /// Sickly Proposition
@@ -286,8 +286,7 @@ sicklyPropositionStaminaRegen = 0;
 sicklyPropositionActive = false;
 sicklyPropositionCanBeRefreshed = true;
 sicklyPropositionDamage = 100;
-sicklyPropositionBaseDamageMultiplierVsPoisonedTarget = 1.5;
-sicklyPropositionDamageMultiplierVsPoisonedTarget = 1;
+sicklyPropositionDamageMultiplierVsPoisonedTarget = 1.5;
 sicklyPropositionDoTDamage = 10;
 sicklyPropositionSpeed = (32 * 4) / room_speed;
 sicklyPropositionTicTimer = -1;
@@ -345,7 +344,7 @@ hellishLandscapeManaRegen = 0;
 hellishLandscapeStaminaRegen = 0.1;
 hellishLandscapeDamage = 150;
 hellishLandscapeAoEDiameter = 32 * 5;
-hellishLandscapeStunDuration = room_speed * 4;
+hellishLandscapeStunDuration = room_speed * 3;
 #endregion
 
 #region Tier 3
@@ -417,8 +416,9 @@ diabolusBlastManaCost = 0;
 diabolusBlastStaminaCost = 0;
 diabolusBlastManaRegen = 0.3;
 diabolusBlastStaminaRegen = 0;
-diabolusBlastMeleeRangeDamage = 150;
-diabolusBlastDistanceRangeDamage = 100;
+diabolusBlastBaseDamage = 50;
+diabolusBlastMaxRange = 32 * 4;
+diabolusBlastMaxExtraDamage = 100;
 #endregion
 #endregion
 
