@@ -41,7 +41,7 @@ if enemyCurrentMana > enemyMaxMana {
 #region Enemy Total Bonus Damages and Resistances
 // Enemies' Bonus Damage and Resistance - 
 enemyTotalBonusDamage = 1 * overwhelmingChainsDamageMultiplier; // * whatever bonus damages the enemy has
-enemyTotalBonusResistance = 1 * angelicBarrageDamageMultiplier * trueCaelestiWingsDebuffDamageMultiplier * hiddenDaggerDamageMultiplier * overwhelmingChainsDamageResistanceMultiplier; // * whatever bonus resistances the enemy has
+enemyTotalBonusResistance = 1 * angelicBarrageDamageMultiplier * trueCaelestiWingsDebuffDamageMultiplier * overwhelmingChainsDamageResistanceMultiplier; // * whatever bonus resistances the enemy has
 #endregion
 
 
@@ -158,8 +158,12 @@ if enemyCurrentHP <= 0 {
 			target_to_infect_.finalPartingTimer = finalPartingTimer;
 		}
 	}
+	if obj_skill_tree.allOutAttackActive {
+		playerCurrentStamina += obj_skill_tree.allOutAttackStaminaBonusOnKill * playerMaxStamina;
+		playerCurrentMana += obj_skill_tree.allOutAttackManaBonusOnKill * playerMaxMana;
+	}
 	if combatFriendlyStatus == "Enemy" {
-		animecroPool += 100;
+		animecroPool += animecroRewardUponDeath;
 		bloodMagicPool += 1;
 	}
 	/*

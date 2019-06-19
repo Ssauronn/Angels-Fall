@@ -25,6 +25,17 @@ with obj_skill_tree {
 			trueCaelestiWingsDamageMultiplier = trueCaelestiWingsBaseDamageMultiplier;
 		}
 	}
+	
+	#region Death Incarnate
+	if !deathIncarnateFirstPhaseActive && !deathIncarnateSecondPhaseActive {
+		deathIncarnateSecondPhaseCurrentDamage = deathIncarnateSecondPhaseStartDamage;
+	}
+	// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+	// Just put this here to find it later. I need to reset deathIncarnateSecondPhaseCurrentDamage to
+	// equal deathIncarnateSecondPhaseStartDamage if the second phase is currently active and the player
+	// sends out a new death incarnate, immediately setting to firstphaseactive without both ever being 
+	// not active on either phase and resetting the current damage in the line above.
+	#endregion
 	#endregion
 	#endregion
 	
@@ -47,6 +58,29 @@ with obj_skill_tree {
 		else if armorOfTheCaelestiTimer >= 0 {
 			armorOfTheCaelestiTimer--;
 			armorOfTheCaelestiResistanceMultiplier = armorOfTheCaelestiBaseResistanceMultiplier;
+		}
+	}
+	#endregion
+	
+	#region Glinting Blade
+	if glintingBladeTimer >= 0 {
+		if glintingBladeAttachedToEnemy == noone {
+			glintingBladeActive = true;
+		}
+	}
+	if glintingBladeActive {
+		if glintingBladeAttachedToEnemy == noone {
+			if glintingBladeTimer < 0 {
+				glintingBladeActive = false;
+				glintingBladeArrivedAtTargetPos = false;
+				glintingBladeTargetXPos = 0;
+				glintingBladeTargetYPos = 0;
+				glintingBladeXPos = 0;
+				glintingBladeYPos = 0;
+			}
+			else if glintingBladeTimer >= 0 {
+				glintingBladeTimer--;
+			}
 		}
 	}
 	#endregion

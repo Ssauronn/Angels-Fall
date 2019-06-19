@@ -55,7 +55,8 @@ else {
 	angelicBarrageDamageMultiplier = 1;
 }
 // Set it as false after the above code blocks run. This way angelicBarrage is never active
-// unless an active collision is happening, which is what I want.
+// unless an active collision is happening, which is what I want. This way the multiplier is 
+// also always active until 
 angelicBarrageActive = false;
 
 // Holy Defense

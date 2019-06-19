@@ -107,6 +107,12 @@ if owner_is_player_ {
 				obj_ai_decision_making.playerAttackPatternWeight -= (obj_ai_decision_making.attackPatternStartWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack);
 			}
 			*/
+			// Set the angelicBarrageActive in the enemy that the hitbox is colliding with, thereby turning the multiplier
+			// on. And since the multiplier is turned off every step unless it is actively colliding with the hitbox,
+			// this line of code will keep the multiplier active for only as long as the enemy is colliding with this hitbox.
+			if playerHitboxAbilityOrigin == "Angelic Barrage" {
+				other_owner_.angelicBarrageActive = true;
+			}
 		}
 	}
 	else if playerHitboxHeal {

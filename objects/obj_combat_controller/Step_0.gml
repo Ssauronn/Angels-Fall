@@ -71,11 +71,15 @@ if ds_exists(playerHitboxList, ds_type_list) {
 								y += lengthdir_y(obj_skill_tree.glintingBladeSpeed, obj_skill_tree.glintingBladeDirection) * playerTotalSpeed;
 							}
 							else if distance_to_target_ <= obj_skill_tree.glintingBladeSpeed {
-								glintingBladeArrivedAtTargetPos = true;
+								obj_skill_tree.glintingBladeActive = true;
+								obj_skill_tree.glintingBladeArrivedAtTargetPos = true;
+								obj_skill_tree.glintingBladeAttachedToEnemy = noone;
+								playerHitboxCollisionFound = true;
 								x = obj_skill_tree.glintingBladeTargetXPos;
 								y = obj_skill_tree.glintingBladeTargetYPos;
 								obj_skill_tree.glintingBladeXPos = x;
 								obj_skill_tree.glintingBladeYPos = y;
+								obj_skill_tree.glintingBladeTimer = obj_skill_tree.glintingBladeTimerStartTime;
 							}
 						}
 						else if playerHitboxAbilityOrigin == "Whirlwind" {
@@ -85,7 +89,8 @@ if ds_exists(playerHitboxList, ds_type_list) {
 								y += lengthdir_y(obj_skill_tree.whirlwindSpeed, obj_skill_tree.whirlwindDirection) * playerTotalSpeed;
 							}
 							else if distance_to_target_ <= obj_skill_tree.whirlwindSpeed {
-								whirlwindArrivedAtTargetPos = true;
+								obj_skill_tree.whirlwindArrivedAtTargetPos = true;
+								playerHitboxCollisionFound = true;
 								x = obj_skill_tree.whirlwindTargetXPos;
 								y = obj_skill_tree.whirlwindTargetYPos;
 							}
