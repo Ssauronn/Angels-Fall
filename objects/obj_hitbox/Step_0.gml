@@ -190,7 +190,7 @@ if !is_undefined(owner) {
 				playerHitboxLifetime--;
 			}
 			// If the bullet has found a collision or is outside of double the camera's size, destroy the bullet
-			if playerHitboxCollisionFound || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, camera_get_view_x(view_camera[0]) - camera_get_view_width(view_camera[0]), camera_get_view_y(view_camera[0]) - camera_get_view_height(view_camera[0]), camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera) * 2), camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) * 2))) {
+			if (playerHitboxCollisionFound) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, camera_get_view_x(view_camera[0]) - camera_get_view_width(view_camera[0]), camera_get_view_y(view_camera[0]) - camera_get_view_height(view_camera[0]), camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera) * 2), camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) * 2))) {
 				// Actually destroy the bullet object
 				var i, row_to_delete_;
 				row_to_delete_ = -1;
