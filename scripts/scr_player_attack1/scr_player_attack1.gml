@@ -42,7 +42,7 @@ if instance_exists(obj_player) {
 		playerHitbox.owner = owner_;
 		playerHitbox.playerHitboxAttackType = "Melee";
 		playerHitbox.playerHitboxDamageType = "Basic Melee";
-		playerHitbox.playerHitboxAbilityOrigin = "Melee Attack";
+		playerHitbox.playerHitboxAbilityOrigin = "Hidden Dagger";
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerMeleeAttackOneValue;
 		playerHitbox.playerHitboxCollisionFound = false;
