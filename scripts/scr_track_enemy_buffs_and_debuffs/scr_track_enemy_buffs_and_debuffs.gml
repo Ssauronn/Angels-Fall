@@ -71,7 +71,7 @@ if holyDefenseActive {
 		holyDefenseTimer--;
 		if holyDefenseTicTimer <= 0 {
 			holyDefenseTicTimer = holyDefenseTicTimerStartTime;
-			// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+			create_dot_tic_hitbox(self, holyDefenseDoTDamage, true);
 		}
 		else {
 			holyDefenseTicTimer--;
@@ -93,7 +93,7 @@ if bindingsOfTheCaelestiActive {
 		bindingsOfTheCaelestiTimer--;
 		if bindingsOfTheCaelestiTicTimer <= 0 {
 			bindingsOfTheCaelestiTicTimer = bindingsOfTheCaelestiTicTimerStartTime;
-			// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+			create_dot_tic_hitbox(self, bindingsOfTheCaelestiDamage, true);
 		}
 		else {
 			bindingsOfTheCaelestiTicTimer--;
@@ -162,7 +162,7 @@ if soulTetherActive {
 if sicklyPropositionTimer >= 0 {
 	sicklyPropositionActive = true;
 }
-if sicklyPropositionActive = true {
+if sicklyPropositionActive {
 	if sicklyPropositionTimer < 0 {
 		sicklyPropositionActive = false;
 	}
@@ -171,7 +171,7 @@ if sicklyPropositionActive = true {
 		sicklyPropositionTimer--;
 		if sicklyPropositionTicTimer <= 0 {
 			sicklyPropositionTicTimer = sicklyPropositionTicTimerStartTime;
-			// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+			create_dot_tic_hitbox(self, sicklyPropositionDoTDamage, true);
 		}
 		else {
 			sicklyPropositionTicTimer--;
@@ -192,7 +192,7 @@ if finalPartingActive {
 		finalPartingTimer--;
 		if finalPartingTicTimer <= 0 {
 			finalPartingTicTimer = finalPartingTicTimerStartTime;
-			// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+			create_dot_tic_hitbox(self, finalPartingDamage, true);
 		}
 		else {
 			finalPartingTicTimer--;
@@ -225,7 +225,7 @@ if dinnerIsServedActive {
 		if dinnerIsServedTicTimer <= 0 {
 			dinnerIsServedTicTimer = dinnerIsServedTicTimerStartTime;
 			dinnerIsServedStartingDamage = dinnerIsServedStartingDamage * dinnerIsServedRampMultiplier;
-			// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+			create_dot_tic_hitbox(self, dinnerIsServedStartingDamage, true);
 		}
 		else {
 			dinnerIsServedTicTimer--;
@@ -251,13 +251,15 @@ if exploitWeaknessActive {
 	}
 	if exploitWeaknessTimer < 0 {
 		exploitWeaknessActive = false;
+		exploitWeaknessDoTDamage = 0;
+		exploitWeaknessDamageToAdd = 0;
 	}
 	else if exploitWeaknessTimer >= 0 {
 		poisoned = true;
 		exploitWeaknessTimer--;
 		if exploitWeaknessTicTimer <= 0 {
 			exploitWeaknessTicTimer = exploitWeaknessTicTimerStartTime;
-			// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+			create_dot_tic_hitbox(self, exploitWeaknessDoTDamage, true);
 		}
 		else {
 			exploitWeaknessTicTimer--;

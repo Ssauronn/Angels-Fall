@@ -1391,6 +1391,14 @@
             }
         },
         {
+            "Key": "c903ef42-186c-476f-aa55-69c02b880f0c",
+            "Value": {
+                "id": "e88ecc8f-eb19-4afe-a947-eddccd68f8af",
+                "resourcePath": "scripts\\create_dot_tic_hitbox\\create_dot_tic_hitbox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c99bd6e8-4da4-4b92-a424-f90b0c525cc5",
             "Value": {
                 "id": "cf91856e-efab-46c3-b82e-a2a6ae569162",
@@ -1798,7 +1806,8 @@
         "122262ec-b2c2-4aa5-84d4-29773088be06",
         "5c8e3964-a770-47a3-b96b-7513c6aa7cd7",
         "0afe9e54-0cd8-4513-b949-893ed4b3cae9",
-        "06c78b3a-a566-4cc3-99c4-256c76bed58e"
+        "06c78b3a-a566-4cc3-99c4-256c76bed58e",
+        "c903ef42-186c-476f-aa55-69c02b880f0c"
     ],
     "tutorial": ""
 }

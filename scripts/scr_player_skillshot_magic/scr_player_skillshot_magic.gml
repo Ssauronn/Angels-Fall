@@ -16,7 +16,7 @@ move_movement_entity(false);
 if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 6) {
 		hitboxCreated = true;
-		var owner_ = id;
+		var owner_ = self;
 		switch (playerDirectionFacing) {
 			case playerdirection.right:
 				playerHitbox = instance_create_depth(x + lengthdir_x(32, playerHitboxDirection), y + lengthdir_y(32, playerHitboxDirection), -999, obj_hitbox);

@@ -116,14 +116,14 @@ hitboxCreated = false;
 comboTrue = "";
 
 // Basic attack damage values
-playerMeleeAttackOneValue = 100;
+playerMeleeAttackOneValue = 50;
 playerMeleeAttackTwoValue = playerMeleeAttackOneValue;
 playerMeleeAttackThreeValue = playerMeleeAttackOneValue;
 playerMeleeAttackFourValue = playerMeleeAttackOneValue * 1.25;
 playerMeleeAttackFiveValue = playerMeleeAttackOneValue * 1.5;
 
 // Spell attack damage values
-playerBulletAttackValue = 200;
+playerBulletAttackValue = 100;
 
 // Player Total Damage Dealt, Player Total Damage Taken
 /*

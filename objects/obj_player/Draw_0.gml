@@ -10,11 +10,8 @@ if playerAnimationSprite != noone {
 	draw_sprite(playerAnimationSprite, playerAnimationImageIndex, playerAnimationX, playerAnimationY);
 }
 
-var circle_x_ = x + lengthdir_x(48, n);
-var circle_y_ = y + lengthdir_y(48, n);
-n += 360 / (room_speed * 2.8);
-if n >= 360 {
-	n -= 360
+if obj_skill_tree.theOnePowerActive {
+	draw_circle_color(obj_skill_tree.theOnePowerOriginXPos, obj_skill_tree.theOnePowerOriginYPos, 16, c_red, c_red, true);
 }
-draw_circle_color(circle_x_, circle_y_, 16, c_red, c_red, true);
+
 
