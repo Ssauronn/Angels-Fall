@@ -621,7 +621,7 @@ if forcesOfLifeActive {
 #endregion
 
 #region Blood Pact
-if primeAbilityChosen = "Blood Pact" {
+if primeAbilityChosen == "Blood Pact" {
 	if obj_player.key_prime_ability {
 		if playerCurrentBloodMagic >= bloodPactBloodMagicCost {
 			playerCurrentBloodMagic -= bloodPactBloodMagicCost;
@@ -681,7 +681,7 @@ if lifeTaxActive {
 #endregion
 
 #region Blood for Blood
-if primeAbilityChosen = "Blood for Blood" {
+if primeAbilityChosen == "Blood for Blood" {
 	if obj_player.key_prime_ability {
 		if playerCurrentBloodMagic >= bloodForBloodBloodMagicCost {
 			if ds_exists(objectIDsInBattle, ds_type_list) {

@@ -14,7 +14,7 @@ move_movement_entity(false);
 // Create the playerHitbox after frame 2
 if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 2) {
-		var owner_ = id;
+		var owner_ = self;
 		hitboxCreated = true;
 		switch (playerDirectionFacing) {
 			case playerdirection.right:

@@ -139,7 +139,8 @@ if !is_undefined(owner) {
 						else {
 							// Apply the slow to the enemy in case the attack was parried instead
 							if obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy {
-								with ds_list_find_value(obj_combat_controller.enemyHitboxList, row_to_delete_) {
+								var instance_to_reference_ = ds_list_find_value(obj_combat_controller.enemyHitboxList, row_to_delete_);
+								with instance_to_reference_ {
 									if !enemyHitboxCollidedWithWall {
 										with owner {
 											obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = false;

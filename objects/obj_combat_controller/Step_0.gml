@@ -1,5 +1,5 @@
 /// @description Edit Variables
-// Set the combo counter for the player to tick up once, and then reset the combo counter
+// Set the combo counter for the player to tic up once, and then reset the combo counter
 if enemyHitByPlayer {
 	comboCounterTimer = comboCounterTimerStartTime;
 	enemyHitByPlayer = false;
@@ -57,7 +57,7 @@ if ds_exists(playerHitboxList, ds_type_list) {
 	for (i = 0; i <= ds_list_size(playerHitboxList) - 1; i++) {
 		if instance_exists(ds_list_find_value(playerHitboxList, i)) {
 			with ds_list_find_value(playerHitboxList, i) {
-				if playerHitboxAttackType = "Projectile" {
+				if playerHitboxAttackType == "Projectile" {
 					// Move the hitbox as long as the parent object still exists
 					if instance_exists(owner) {
 						if (playerHitboxAbilityOrigin != "Glinting Blade") && (playerHitboxAbilityOrigin != "Whirlwind") {

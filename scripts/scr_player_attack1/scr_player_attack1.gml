@@ -16,7 +16,7 @@ move_movement_entity(false);
 if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 2) {
 		hitboxCreated = true;
-		var owner_ = id;
+		var owner_ = self;
 		switch (playerDirectionFacing) {
 			case playerdirection.right:
 				playerHitbox = instance_create_depth(x + 32, y, -999, obj_hitbox);
@@ -42,7 +42,7 @@ if instance_exists(obj_player) {
 		playerHitbox.owner = owner_;
 		playerHitbox.playerHitboxAttackType = "Melee";
 		playerHitbox.playerHitboxDamageType = "Basic Melee";
-		playerHitbox.playerHitboxAbilityOrigin = "Hidden Dagger";
+		playerHitbox.playerHitboxAbilityOrigin = "Exploit Weakness";
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerMeleeAttackOneValue;
 		playerHitbox.playerHitboxCollisionFound = false;

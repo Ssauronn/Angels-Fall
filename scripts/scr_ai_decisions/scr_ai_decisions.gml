@@ -753,7 +753,7 @@ if instance_exists(obj_player) {
 							instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * ((1 / attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight)
 						}
 						instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight = ((obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2)))
-						if instance_to_reference_.combatFriendlyStatus = "Enemy" {
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
 							if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
 								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
 							}
@@ -761,7 +761,7 @@ if instance_exists(obj_player) {
 								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = 0;
 							}
 						}
-						else if instance_to_reference_.combatFriendlyStatus = "Minion" {
+						else if instance_to_reference_.combatFriendlyStatus == "Minion" {
 							if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
 								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
 							}

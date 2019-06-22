@@ -3,7 +3,7 @@ with obj_skill_tree {
 	#region Buffs
 	#region Tier 1 Abilities
 	#region True Caelesti Wings
-	if trueCaelestiWingsTimer >= 0 { 
+	if trueCaelestiWingsTimer >= 0 {
 		trueCaelestiWingsActive = true;
 	}
 	if trueCaelestiWingsActive {
@@ -49,7 +49,6 @@ with obj_skill_tree {
 			armorOfTheCaelestiActive = false;
 			armorOfTheCaelestiTimer = -1;
 			armorOfTheCaelestiRemainingHPBeforeExplosion = 0;
-			// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
 		}
 		if armorOfTheCaelestiTimer < 0 {
 			armorOfTheCaelestiActive = false;
@@ -124,11 +123,13 @@ with obj_skill_tree {
 	if holyDefenseActive {
 		if holyDefenseTimer < 0 {
 			holyDefenseActive = false;
-			holyDefenseDamage = 0;
+			holyDefenseStruckDamage = 0;
+			holyDefenseParryDamage = 0;
 		}
 		else if holyDefenseTimer >= 0 {
 			holyDefenseTimer--;
-			holyDefenseDamage = holyDefenseBaseDamage;
+			holyDefenseStruckDamage = holyDefenseBaseDamage * 0.5;
+			holyDefenseParryDamage = holyDefenseBaseDamage * 1;
 		}
 	}
 	#endregion
@@ -165,11 +166,71 @@ with obj_skill_tree {
 				theOnePowerRotationAngle -= 360;
 			}
 			if theOnePowerTicTimer < 0 {
-				// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
+				theOnePowerTicTimer = theOnePowerTicTimerStartTime;
 				// Here, create a projectile with an origin point at theOnePowerOriginXPos and
 				// theOnePowerOriginYPos, and with a direction towards the nearest enemy, as long as
 				// the nearest enemy is within theOnePowerRange, and a speed of
 				// theOnePowerPorjectileSpeed.
+				with obj_player {
+					#region Create Whole Hitbox
+					var target_;
+					target_ = noone;
+					if ds_exists(objectIDsInBattle, ds_type_list) {
+						var i;
+						for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+							var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+							if !instance_exists(target_) {
+								target_ = instance_to_reference_;
+							}
+							else if (point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y)) < (point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y)) {
+								target_ = instance_to_reference_
+							}
+						}
+						if instance_exists(target_) {
+							playerHitbox = instance_create_depth(obj_skill_tree.theOnePowerOriginXPos, obj_skill_tree.theOnePowerOriginYPos, -999, obj_hitbox);
+							playerHitbox.sprite_index = spr_player_bullet_hitbox;
+							playerHitbox.mask_index = spr_player_bullet_hitbox;
+							playerHitbox.owner = self;
+							playerHitbox.playerProjectileHitboxSpeed = obj_skill_tree.theOnePowerProjectileSpeed;
+							playerHitbox.playerHitboxDirection = point_direction(obj_skill_tree.theOnePowerOriginXPos, obj_skill_tree.theOnePowerOriginYPos, target_.x, target_.y);
+							playerHitbox.image_angle = playerHitbox.playerHitboxDirection;
+							playerHitbox.visible = true;
+							playerHitbox.playerHitboxAttackType = "Projectile";
+							playerHitbox.playerHitboxDamageType = "Ability";
+							playerHitbox.playerHitboxAbilityOrigin = "The One Power";
+							playerHitbox.playerHitboxHeal = false;
+							playerHitbox.playerHitboxValue = obj_skill_tree.theOnePowerDamage;
+							playerHitbox.playerHitboxCollisionFound = false;
+							playerHitbox.playerHitboxLifetime = 300;
+							playerHitbox.playerHitboxCollidedWithWall = false;
+							playerHitbox.playerHitboxPersistAfterCollision = false;
+							// The next variable is the timer that determines when an object will apply damage again to
+							// an object its colliding with repeatedly. This only takes effect if the hitbox's
+							// PersistAfterCollision variable (set above) is set to true. Otherwise, the hitbox will be
+							// destroyed upon colliding with the first object it can and no chance will be given for the
+							// hitbox to deal damage repeatedly to the object.
+							playerHitbox.playerHitboxTicTimer = 1;
+							playerHitbox.playerHitboxCanBeTransferredThroughSoulTether = true;
+							// This is the variable which will be an array of all objects the hitbox has collided with
+							// during its lifetime, counting down the previously set playerHitboxTicTimer for each object
+							// it has collided with in the first place
+							playerHitbox.playerHitboxTargetArray = noone;
+							// If the hitbox has a specific target to hit, this variable will be set to that ID, meaning
+							// that unless that hitbox collides with the exact object its meant for, it won't interact
+							// with that object. If the hitbox has no specific target, this is set to noone.
+							playerHitbox.playerHitboxSpecificTarget = noone;
+							
+							if ds_exists(obj_combat_controller.playerHitboxList, ds_type_list) {
+								ds_list_set(obj_combat_controller.playerHitboxList, ds_list_size(obj_combat_controller.playerHitboxList), playerHitbox);
+							}
+							else {
+								obj_combat_controller.playerHitboxList = ds_list_create();
+								ds_list_set(obj_combat_controller.playerHitboxList, 0, playerHitbox);
+							}
+						}
+					}
+					#endregion
+				}
 			}
 			else if theOnePowerTicTimer >= 0 {
 				theOnePowerTicTimer--;
