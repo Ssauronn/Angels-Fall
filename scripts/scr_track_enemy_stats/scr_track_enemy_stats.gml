@@ -166,16 +166,16 @@ if enemyCurrentHP <= 0 {
 		animecroPool += animecroRewardUponDeath;
 		bloodMagicPool += 1;
 	}
-	/*
-	CREATE THE DEAD BODY, WHICH CAN BE MANIPULATED BY ABILITIES WITH THE PLAYER, AND WHICH CAN BE USED TO SAVE
-	THE DEATH LOCATIONS OF OBJECTS TO SHOW A DEAD BODY WHERE THEY ONCE WERE LATER, EVEN IF THE PLAYER EXITS
-	AND THEN RELOADS LATER
 	
+	// Create the daed body right before the enemy dies
 	var dead_body_ = instance_create_depth(x, y, depth, obj_dead_body);
-	dead_body_.enemyName = enemyName;
-	dead_body_.combatFriendlyStatus = combatFriendlyStatus;
 	dead_body_.objectArchetype = objectArchetype;
-	*/
+	dead_body_.enemyName = enemyName;
+	dead_body_.deadBodySprite = deadBodySprite;
+	dead_body_.deadBodyResurrectionSprite = deadBodyResurrectionSprite;
+	dead_body_.deadBodyImageIndex = 0;
+	
+	// Destroy self after all things pertaining to the obj_enemy have been taken care of
 	instance_destroy(self);
 }
 #endregion
