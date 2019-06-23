@@ -266,6 +266,11 @@ switch (enemy_name_) {
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
+		// Sprites for the dead body
+		deadBodySprite = spr_dead_body;
+		deadBodyResurrectionSprite = spr_dead_body;
+		
+		// Sprites for the enemy object itself
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_mage_idle;
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_mage_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_mage_idle;
@@ -611,6 +616,11 @@ switch (enemy_name_) {
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
+		// Sprites for the dead body
+		deadBodySprite = spr_dead_body;
+		deadBodyResurrectionSprite = spr_dead_body;
+		
+		// Sprites for the enemy object itself
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_healer_idle;
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_healer_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_healer_idle;
@@ -958,6 +968,11 @@ switch (enemy_name_) {
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
+		// Sprites for the dead body
+		deadBodySprite = spr_dead_body;
+		deadBodyResurrectionSprite = spr_dead_body;
+		
+		// Sprites for the enemy object itself
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_tank_idle;
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_tank_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_tank_idle;
@@ -1301,6 +1316,11 @@ switch (enemy_name_) {
 		
 
 		#region Enemy Sprite Table and Sprite Setting Variables
+		// Sprites for the dead body
+		deadBodySprite = spr_dead_body;
+		deadBodyResurrectionSprite = spr_dead_body;
+		
+		// Sprites for the enemy object itself
 		enemySprite[enemystates.idle, enemydirection.right] = spr_enemy_fighter_idle;
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_fighter_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_fighter_idle;

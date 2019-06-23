@@ -42,7 +42,7 @@ if instance_exists(obj_player) {
 		playerHitbox.owner = owner_;
 		playerHitbox.playerHitboxAttackType = "Melee";
 		playerHitbox.playerHitboxDamageType = "Basic Melee";
-		playerHitbox.playerHitboxAbilityOrigin = "Exploit Weakness";
+		playerHitbox.playerHitboxAbilityOrigin = "Melee Attack";
 		playerHitbox.playerHitboxHeal = false;
 		playerHitbox.playerHitboxValue = playerMeleeAttackOneValue;
 		playerHitbox.playerHitboxCollisionFound = false;
