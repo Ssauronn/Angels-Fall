@@ -98,6 +98,66 @@ switch (playerState) {
 		break;
 	case playerstates.attack5: scr_player_attack5();
 		break;
+	#region Diabolus Abilities
+	case playerstates.wrathofthediaboli: scr_player_wrath_of_the_diaboli();
+		break;
+	case playerstates.glintingblade: scr_player_glinting_blade();
+		break;
+	case playerstates.hellishlandscape: scr_player_hellish_landscape();
+		break;
+	case playerstates.hiddendagger: scr_player_hidden_dagger();
+		break;
+	case playerstates.alloutattack: scr_player_all_out_attack();
+		break;
+	case playerstates.exploitweakness: scr_player_exploit_weakness();
+		break;
+	case playerstates.purifyingrage: scr_player_purifying_rage();
+		break;
+	case playerstates.rushdown: scr_player_rushdown();
+		break;
+	case playerstates.diabolusblast: scr_player_diabolus_blast();
+		break;
+	#endregion
+	#region Caelesti Abilities
+	case playerstates.truecaelestiwings: scr_player_true_caelesti_wings();
+		break;
+	case playerstates.bindingsofthecaelesti: scr_player_bindings_of_the_caelesti();
+		break;
+	case playerstates.armorofthecaelesti: scr_player_armor_of_the_caelesti();
+		break;
+	case playerstates.holydefense: scr_player_holy_defense();
+		break;
+	case playerstates.wrathoftherepentant: scr_player_wrath_of_the_repentant();
+		break;
+	case playerstates.theonepower: scr_player_the_one_power();
+		break;
+	case playerstates.lightningspear: scr_player_lightning_spear();
+		break;
+	case playerstates.angelicbarrage: scr_player_angelic_barrage();
+		break;
+	case playerstates.whirlwind: scr_player_whirlwind();
+		break;
+	#endregion
+	#region Necromancy Abilities
+	case playerstates.deathincarnate: scr_player_death_incarnate();
+		break;
+	case playerstates.ritualofimperfection: scr_player_ritual_of_imperfection();
+		break;
+	case playerstates.ritualofdeath: scr_player_ritual_of_death();
+		break;
+	case playerstates.soultether: scr_player_soul_tether();
+		break;
+	case playerstates.dinnerisserved: scr_player_dinner_is_served();
+		break;
+	case playerstates.finalparting: scr_player_final_parting();
+		break;
+	case playerstates.riskoflife: scr_player_risk_of_life();
+		break;
+	case playerstates.takenforpain: scr_player_taken_for_pain();
+		break;
+	case playerstates.sicklyproposition: scr_player_sickly_proposition();
+		break;
+	#endregion
 	case playerstates.skillshotmagic: scr_player_skillshot_magic();
 		break;
 }

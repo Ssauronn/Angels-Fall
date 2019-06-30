@@ -31,11 +31,34 @@ enum playerstates {
 	attack3,
 	attack4,
 	attack5,
-	skillshotmagic,
-	mousetargetaoemagic,
-	selftargetaoemagic,
-	selftargetmagic,
-	autotargetmagic
+	wrathofthediaboli,
+	glintingblade,
+	hellishlandscape,
+	hiddendagger,
+	alloutattack,
+	exploitweakness,
+	purifyingrage,
+	rushdown,
+	diabolusblast,
+	truecaelestiwings,
+	bindingsofthecaelesti,
+	armorofthecaelesti,
+	holydefense,
+	wrathoftherepentant,
+	theonepower,
+	lightningspear,
+	angelicbarrage,
+	whirlwind,
+	deathincarnate,
+	ritualofimperfection,
+	ritualofdeath,
+	soultether,
+	dinnerisserved,
+	finalparting,
+	riskoflife,
+	takenforpain,
+	sicklyproposition,
+	skillshotmagic
 }
 enum playerdirection {
 	right,
@@ -87,6 +110,122 @@ playerSprite[playerstates.attack5, playerdirection.right] = spr_player_attack_ri
 playerSprite[playerstates.attack5, playerdirection.up] = spr_player_attack_up_5;
 playerSprite[playerstates.attack5, playerdirection.left] = spr_player_attack_left_5;
 playerSprite[playerstates.attack5, playerdirection.down] = spr_player_attack_down_5;
+#region Abilities
+#region Diabolus Abilities
+playerSprite[playerstates.wrathofthediaboli, playerdirection.right] = spr_ability_attack_right;
+playerSprite[playerstates.wrathofthediaboli, playerdirection.up] = spr_ability_attack_up;
+playerSprite[playerstates.wrathofthediaboli, playerdirection.left] = spr_ability_attack_left;
+playerSprite[playerstates.wrathofthediaboli, playerdirection.down] = spr_ability_attack_down;
+playerSprite[playerstates.hellishlandscape, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.hellishlandscape, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.hellishlandscape, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.hellishlandscape, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.glintingblade, playerdirection.right] = spr_fling_staff_right;
+playerSprite[playerstates.glintingblade, playerdirection.up] = spr_fling_staff_up;
+playerSprite[playerstates.glintingblade, playerdirection.left] = spr_fling_staff_left;
+playerSprite[playerstates.glintingblade, playerdirection.down] = spr_fling_staff_down;
+playerSprite[playerstates.hiddendagger, playerdirection.right] = spr_ability_attack_right;
+playerSprite[playerstates.hiddendagger, playerdirection.up] = spr_ability_attack_up;
+playerSprite[playerstates.hiddendagger, playerdirection.left] = spr_ability_attack_left;
+playerSprite[playerstates.hiddendagger, playerdirection.down] = spr_ability_attack_down;
+playerSprite[playerstates.alloutattack, playerdirection.right] = spr_ready_up_right;
+playerSprite[playerstates.alloutattack, playerdirection.up] = spr_ready_up_up;
+playerSprite[playerstates.alloutattack, playerdirection.left] = spr_ready_up_left;
+playerSprite[playerstates.alloutattack, playerdirection.down] = spr_ready_up_down;
+playerSprite[playerstates.exploitweakness, playerdirection.right] = spr_ability_attack_right;
+playerSprite[playerstates.exploitweakness, playerdirection.up] = spr_ability_attack_up;
+playerSprite[playerstates.exploitweakness, playerdirection.left] = spr_ability_attack_left;
+playerSprite[playerstates.exploitweakness, playerdirection.down] = spr_ability_attack_down;
+playerSprite[playerstates.purifyingrage, playerdirection.right] = spr_ready_up_right;
+playerSprite[playerstates.purifyingrage, playerdirection.up] = spr_ready_up_up;
+playerSprite[playerstates.purifyingrage, playerdirection.left] = spr_ready_up_left;
+playerSprite[playerstates.purifyingrage, playerdirection.down] = spr_ready_up_down;
+playerSprite[playerstates.rushdown, playerdirection.right] = spr_ability_attack_right;
+playerSprite[playerstates.rushdown, playerdirection.up] = spr_ability_attack_up;
+playerSprite[playerstates.rushdown, playerdirection.left] = spr_ability_attack_left;
+playerSprite[playerstates.rushdown, playerdirection.down] = spr_ability_attack_down;
+playerSprite[playerstates.diabolusblast, playerdirection.right] = spr_ground_slam_staff_right;
+playerSprite[playerstates.diabolusblast, playerdirection.up] = spr_ground_slam_staff_up;
+playerSprite[playerstates.diabolusblast, playerdirection.left] = spr_ground_slam_staff_left;
+playerSprite[playerstates.diabolusblast, playerdirection.down] = spr_ground_slam_staff_down;
+#endregion
+#region Caelesti Abilities
+playerSprite[playerstates.truecaelestiwings, playerdirection.right] = spr_ready_up_right;
+playerSprite[playerstates.truecaelestiwings, playerdirection.up] = spr_ready_up_up;
+playerSprite[playerstates.truecaelestiwings, playerdirection.left] = spr_ready_up_left;
+playerSprite[playerstates.truecaelestiwings, playerdirection.down] = spr_ready_up_down;
+playerSprite[playerstates.bindingsofthecaelesti, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.bindingsofthecaelesti, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.bindingsofthecaelesti, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.bindingsofthecaelesti, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.armorofthecaelesti, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.armorofthecaelesti, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.armorofthecaelesti, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.armorofthecaelesti, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.holydefense, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.holydefense, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.holydefense, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.holydefense, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.wrathoftherepentant, playerdirection.right] = spr_ready_up_right;
+playerSprite[playerstates.wrathoftherepentant, playerdirection.up] = spr_ready_up_up;
+playerSprite[playerstates.wrathoftherepentant, playerdirection.left] = spr_ready_up_left;
+playerSprite[playerstates.wrathoftherepentant, playerdirection.down] = spr_ready_up_down;
+playerSprite[playerstates.theonepower, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.theonepower, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.theonepower, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.theonepower, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.lightningspear, playerdirection.right] = spr_fling_staff_right;
+playerSprite[playerstates.lightningspear, playerdirection.up] = spr_fling_staff_up;
+playerSprite[playerstates.lightningspear, playerdirection.left] = spr_fling_staff_left;
+playerSprite[playerstates.lightningspear, playerdirection.down] = spr_fling_staff_down;
+playerSprite[playerstates.angelicbarrage, playerdirection.right] = spr_ground_slam_staff_right;
+playerSprite[playerstates.angelicbarrage, playerdirection.up] = spr_ground_slam_staff_up;
+playerSprite[playerstates.angelicbarrage, playerdirection.left] = spr_ground_slam_staff_left;
+playerSprite[playerstates.angelicbarrage, playerdirection.down] = spr_ground_slam_staff_down;
+playerSprite[playerstates.whirlwind, playerdirection.right] = spr_fling_staff_right;
+playerSprite[playerstates.whirlwind, playerdirection.up] = spr_fling_staff_up;
+playerSprite[playerstates.whirlwind, playerdirection.left] = spr_fling_staff_left;
+playerSprite[playerstates.whirlwind, playerdirection.down] = spr_fling_staff_down;
+#endregion
+#region Necromancy Abilities
+playerSprite[playerstates.deathincarnate, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.deathincarnate, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.deathincarnate, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.deathincarnate, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.ritualofimperfection, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.ritualofimperfection, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.ritualofimperfection, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.ritualofimperfection, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.ritualofdeath, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.ritualofdeath, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.ritualofdeath, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.ritualofdeath, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.soultether, playerdirection.right] = spr_ready_up_right;
+playerSprite[playerstates.soultether, playerdirection.up] = spr_ready_up_up;
+playerSprite[playerstates.soultether, playerdirection.left] = spr_ready_up_left;
+playerSprite[playerstates.soultether, playerdirection.down] = spr_ready_up_down;
+playerSprite[playerstates.dinnerisserved, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.dinnerisserved, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.dinnerisserved, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.dinnerisserved, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.finalparting, playerdirection.right] = spr_fling_staff_right;
+playerSprite[playerstates.finalparting, playerdirection.up] = spr_fling_staff_up;
+playerSprite[playerstates.finalparting, playerdirection.left] = spr_fling_staff_left;
+playerSprite[playerstates.finalparting, playerdirection.down] = spr_fling_staff_down;
+playerSprite[playerstates.riskoflife, playerdirection.right] = spr_fling_staff_right;
+playerSprite[playerstates.riskoflife, playerdirection.up] = spr_fling_staff_up;
+playerSprite[playerstates.riskoflife, playerdirection.left] = spr_fling_staff_left;
+playerSprite[playerstates.riskoflife, playerdirection.down] = spr_fling_staff_down;
+playerSprite[playerstates.takenforpain, playerdirection.right] = spr_power_up_right;
+playerSprite[playerstates.takenforpain, playerdirection.up] = spr_power_up_up;
+playerSprite[playerstates.takenforpain, playerdirection.left] = spr_power_up_left;
+playerSprite[playerstates.takenforpain, playerdirection.down] = spr_power_up_down;
+playerSprite[playerstates.sicklyproposition, playerdirection.right] = spr_fling_staff_right;
+playerSprite[playerstates.sicklyproposition, playerdirection.up] = spr_fling_staff_up;
+playerSprite[playerstates.sicklyproposition, playerdirection.left] = spr_fling_staff_left;
+playerSprite[playerstates.sicklyproposition, playerdirection.down] = spr_fling_staff_down;
+#endregion
+#endregion
 playerSprite[playerstates.skillshotmagic, playerdirection.right] = spr_player_skillshot_magic_right;
 playerSprite[playerstates.skillshotmagic, playerdirection.up] = spr_player_skillshot_magic_up;
 playerSprite[playerstates.skillshotmagic, playerdirection.left] = spr_player_skillshot_magic_left;
@@ -114,6 +253,8 @@ playerHitboxDirection = 0;
 playerProjectileHitboxSpeed = maxSpeed * 1.1;
 hitboxCreated = false;
 comboTrue = "";
+comboPlayerDirectionFacing = -1;
+comboAbilityButton = -1;
 
 // Basic attack damage values
 playerMeleeAttackOneValue = 50;

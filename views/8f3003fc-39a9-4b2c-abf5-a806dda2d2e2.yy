@@ -14,9 +14,14 @@
         "bea2f9f9-98df-4fee-8626-3937a9ba4f38",
         "ccf3fefd-7cc2-49a6-92a1-24f560aa8c34",
         "78ab8403-aa88-49ff-b4a3-d713287e4701",
-        "0a39f8f0-8cb7-4b0e-a40d-3391d645dfb0",
+        "cdc9a456-68ad-4f8d-925c-cd98914ce5b8",
         "d9a65963-952c-4d2e-8b1f-490afe710ba5",
-        "e6d55a31-719d-485f-8eab-fb3edc4f0480"
+        "e6d55a31-719d-485f-8eab-fb3edc4f0480",
+        "ce4ea2c7-d9d9-4427-bb5c-745bdcf6cc63",
+        "52346423-e54a-43c7-8630-a2a382e7c600",
+        "0db76d87-343a-4136-b2ca-a95aac3efe59",
+        "c4f32579-fefb-46b8-8016-1b2d3cf71b9a",
+        "f927d114-a872-4a39-b3d2-1ac960dc2be6"
     ],
     "filterType": "GMSprite",
     "folderName": "grp_player",
