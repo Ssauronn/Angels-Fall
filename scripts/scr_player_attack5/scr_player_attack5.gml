@@ -78,19 +78,19 @@ if instance_exists(obj_player) {
 		if playerCurrentStamina >= meleeStaminaCost {
 			if (key_attack_lmb == "right") {
 				comboTrue = "Attack Right 1";
-				playerDirectionFacing = playerdirection.right;
+				comboPlayerDirectionFacing = playerdirection.right;
 			}
 			else if (key_attack_lmb == "up") {
 				comboTrue = "Attack Up 1";
-				playerDirectionFacing = playerdirection.up;
+				comboPlayerDirectionFacing = playerdirection.up;
 			}
 			else if (key_attack_lmb == "left") {
 				comboTrue = "Attack Left 1";
-				playerDirectionFacing = playerdirection.left;
+				comboPlayerDirectionFacing = playerdirection.left;
 			}
 			else if (key_attack_lmb == "down") {
 				comboTrue = "Attack Down 1";
-				playerDirectionFacing = playerdirection.down;
+				comboPlayerDirectionFacing = playerdirection.down;
 			}
 		}
 	}
@@ -100,19 +100,19 @@ if instance_exists(obj_player) {
 		if playerCurrentMana >= magicManaCost {
 			if (key_attack_rmb == "right") {
 				comboTrue = "Skillshot Magic Right";
-				playerDirectionFacing = playerdirection.right;
+				comboPlayerDirectionFacing = playerdirection.right;
 			}
 			else if (key_attack_rmb == "up") {
 				comboTrue = "Skillshot Magic Up";
-				playerDirectionFacing = playerdirection.up;
+				comboPlayerDirectionFacing = playerdirection.up;
 			}
 			else if (key_attack_rmb == "left") {
 				comboTrue = "Skillshot Magic Left";
-				playerDirectionFacing = playerdirection.left;
+				comboPlayerDirectionFacing = playerdirection.left;
 			}
 			else if (key_attack_rmb == "down") {
 				comboTrue = "Skillshot Magic Down";
-				playerDirectionFacing = playerdirection.down;
+				comboPlayerDirectionFacing = playerdirection.down;
 			}
 			var player_x_ = obj_player.x;
 			var player_y_ = obj_player.y;
@@ -137,7 +137,7 @@ if instance_exists(obj_player) {
 		}
 	}
 	else if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue != "") {
-		prepare_to_execute_attacks();
+		lastAttackButtonPressed = comboTrue;
 		hitboxCreated = false;
 	}
 }

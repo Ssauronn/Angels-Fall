@@ -11,7 +11,6 @@ else {
 }
 move_movement_entity(false);
 
-
 // Create the playerHitbox after frame 2	
 if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 2) {
@@ -85,19 +84,19 @@ if instance_exists(obj_player) {
 		if playerCurrentStamina >= meleeStaminaCost {
 			if (key_attack_lmb == "right") {
 				comboTrue = "Attack Right 2";
-				playerDirectionFacing = playerdirection.right;
+				comboPlayerDirectionFacing = playerdirection.right;
 			}
 			else if (key_attack_lmb == "up") {
 				comboTrue = "Attack Up 2";
-				playerDirectionFacing = playerdirection.up;
+				comboPlayerDirectionFacing = playerdirection.up;
 			}
 			else if (key_attack_lmb == "left") {
 				comboTrue = "Attack Left 2";
-				playerDirectionFacing = playerdirection.left;
+				comboPlayerDirectionFacing = playerdirection.left;
 			}
 			else if (key_attack_lmb == "down") {
 				comboTrue = "Attack Down 2";
-				playerDirectionFacing = playerdirection.down;
+				comboPlayerDirectionFacing = playerdirection.down;
 			}
 		}
 	}
@@ -107,25 +106,57 @@ if instance_exists(obj_player) {
 		if playerCurrentMana >= magicManaCost {
 			if (key_attack_rmb == "right") {
 				comboTrue = "Skillshot Magic Right";
-				playerDirectionFacing = playerdirection.right;
+				comboPlayerDirectionFacing = playerdirection.right;
 			}
 			else if (key_attack_rmb == "up") {
 				comboTrue = "Skillshot Magic Up";
-				playerDirectionFacing = playerdirection.up;
+				comboPlayerDirectionFacing = playerdirection.up;
 			}
 			else if (key_attack_rmb == "left") {
 				comboTrue = "Skillshot Magic Left";
-				playerDirectionFacing = playerdirection.left;
+				comboPlayerDirectionFacing = playerdirection.left;
 			}
 			else if (key_attack_rmb == "down") {
 				comboTrue = "Skillshot Magic Down";
-				playerDirectionFacing = playerdirection.down;
+				comboPlayerDirectionFacing = playerdirection.down;
 			}
 			var player_x_ = obj_player.x;
 			var player_y_ = obj_player.y;
 			var mouse_x_ = mouse_x;
 			var mouse_y_ = mouse_y;
 			playerHitboxDirection = point_direction(player_x_, player_y_, mouse_x_, mouse_y_);
+		}
+	}
+	#endregion
+	#region If Ability Button is Pressed
+	if key_bar_ability_one || key_bar_ability_two || key_bar_ability_three || key_bar_ability_four {
+		if key_bar_ability_one {
+			comboAbilityButton = 1;
+		}
+		else if key_bar_ability_two {
+			comboAbilityButton = 2;
+		}
+		else if key_bar_ability_three {
+			comboAbilityButton = 3;
+		}
+		else if key_bar_ability_four {
+			comboAbilityButton = 4;
+		}
+		var point_direction_ = point_direction(x, y, mouse_x, mouse_y);
+		if point_direction_ >= 45 && point_direction_ < 135 {
+			comboPlayerDirectionFacing = playerdirection.up;
+		}
+		else if point_direction_ >= 315 && point_direction_ < 360 {
+			comboPlayerDirectionFacing = playerdirection.right;
+		}
+		else if point_direction_ >= 0 && point_direction_ < 45 {
+			comboPlayerDirectionFacing = playerdirection.right;
+		}
+		else if point_direction_ >= 225 && point_direction_ < 315 {
+			comboPlayerDirectionFacing = playerdirection.down;
+		}
+		else if point_direction_ >= 135 && point_direction_ < 225 {
+			comboPlayerDirectionFacing = playerdirection.left;
 		}
 	}
 	#endregion
@@ -145,7 +176,8 @@ if instance_exists(obj_player) {
 	}
 	// Else send to another attack playerState
 	else if (comboTrue != "") && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
-		prepare_to_execute_attacks();
+		send_player_to_ability_state(true);
+		lastAttackButtonPressed = comboTrue;
 		hitboxCreated = false;
 	}
 }

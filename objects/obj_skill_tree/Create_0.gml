@@ -1,6 +1,10 @@
 /// @description Create Skill Tree Variables
 // Variable used to set which Prime ability will be used ("Q" ability)
 primeAbilityChosen = "Solidify";
+keyBarAbilityOneChosen = "";
+keyBarAbilityTwoChosen = "";
+keyBarAbilityThreeChosen = "";
+keyBarAbilityFourChosen = "";
 
 
 #region Parry Ability and Effects

@@ -34,6 +34,27 @@ if instance_exists(obj_player) {
 		playerState = playerstates.run;
 	}
 	#endregion
+	#region If Ability Button is Pressed
+	if key_bar_ability_one || key_bar_ability_two || key_bar_ability_three || key_bar_ability_four {
+		var point_direction_ = point_direction(x, y, mouse_x, mouse_y);
+		if point_direction_ >= 45 && point_direction_ < 135 {
+			playerDirectionFacing = playerdirection.up;
+		}
+		else if point_direction_ >= 315 && point_direction_ < 360 {
+			playerDirectionFacing = playerdirection.right;
+		}
+		else if point_direction_ >= 0 && point_direction_ < 45 {
+			playerDirectionFacing = playerdirection.right;
+		}
+		else if point_direction_ >= 225 && point_direction_ < 315 {
+			playerDirectionFacing = playerdirection.down;
+		}
+		else if point_direction_ >= 135 && point_direction_ < 225 {
+			playerDirectionFacing = playerdirection.left;
+		}
+		send_player_to_ability_state(false);
+	}
+	#endregion
 	#region If Attack Button is Pressed
 	if (key_attack_lmb != "") {
 		if playerCurrentStamina >= meleeStaminaCost {
