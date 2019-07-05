@@ -122,6 +122,38 @@ if instance_exists(obj_player) {
 		}
 	}
 	#endregion
+	#region If Ability Button is Pressed
+	if key_bar_ability_one || key_bar_ability_two || key_bar_ability_three || key_bar_ability_four {
+		if key_bar_ability_one {
+			comboAbilityButton = 1;
+		}
+		else if key_bar_ability_two {
+			comboAbilityButton = 2;
+		}
+		else if key_bar_ability_three {
+			comboAbilityButton = 3;
+		}
+		else if key_bar_ability_four {
+			comboAbilityButton = 4;
+		}
+		var point_direction_ = point_direction(x, y, mouse_x, mouse_y);
+		if point_direction_ >= 45 && point_direction_ < 135 {
+			comboPlayerDirectionFacing = playerdirection.up;
+		}
+		else if point_direction_ >= 315 && point_direction_ < 360 {
+			comboPlayerDirectionFacing = playerdirection.right;
+		}
+		else if point_direction_ >= 0 && point_direction_ < 45 {
+			comboPlayerDirectionFacing = playerdirection.right;
+		}
+		else if point_direction_ >= 225 && point_direction_ < 315 {
+			comboPlayerDirectionFacing = playerdirection.down;
+		}
+		else if point_direction_ >= 135 && point_direction_ < 225 {
+			comboPlayerDirectionFacing = playerdirection.left;
+		}
+	}
+	#endregion
 
 	// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
 	if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue == "") {
@@ -137,6 +169,7 @@ if instance_exists(obj_player) {
 		}
 	}
 	else if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue != "") {
+		send_player_to_ability_state(true);
 		lastAttackButtonPressed = comboTrue;
 		hitboxCreated = false;
 	}
