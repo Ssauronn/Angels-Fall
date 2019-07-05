@@ -12,10 +12,62 @@ key_prime_ability = (keyboard_check_pressed(ord("Q")));
 key_animecro_collect = (keyboard_check_pressed(ord("E")));
 
 // get ability inputs
-key_bar_ability_one = keyboard_check_pressed(ord("1"));
-key_bar_ability_two = keyboard_check_pressed(ord("2"));
-key_bar_ability_three = keyboard_check_pressed(ord("3"));
-key_bar_ability_four = keyboard_check_pressed(ord("4"));
+// choose the ability to equip
+key_bar_equip_ability_one = keyboard_check_pressed(ord("1"));
+key_bar_equip_ability_two = keyboard_check_pressed(ord("2"));
+key_bar_equip_ability_three = keyboard_check_pressed(ord("3"));
+key_bar_equip_ability_four = keyboard_check_pressed(ord("4"));
+if key_bar_equip_ability_one {
+	with obj_skill_tree {
+		keyBarAbilityOneEquipped = true;
+		keyBarAbilityTwoEquipped = false;
+		keyBarAbilityThreeEquipped = false;
+		keyBarAbilityFourEquipped = false;
+	}
+}
+else if key_bar_equip_ability_two {
+	with obj_skill_tree {
+		keyBarAbilityOneEquipped = false;
+		keyBarAbilityTwoEquipped = true;
+		keyBarAbilityThreeEquipped = false;
+		keyBarAbilityFourEquipped = false;
+	}
+}
+else if key_bar_equip_ability_three {
+	with obj_skill_tree {
+		keyBarAbilityOneEquipped = false;
+		keyBarAbilityTwoEquipped = false;
+		keyBarAbilityThreeEquipped = true;
+		keyBarAbilityFourEquipped = false;
+	}
+}
+else if key_bar_equip_ability_four {
+	with obj_skill_tree {
+		keyBarAbilityOneEquipped = false;
+		keyBarAbilityTwoEquipped = false;
+		keyBarAbilityThreeEquipped = false;
+		keyBarAbilityFourEquipped = true;
+	}
+}
+// cast the equipped ability
+key_bar_ability_one = false;
+key_bar_ability_two = false;
+key_bar_ability_three = false;
+key_bar_ability_four = false;
+if mouse_check_button(mb_right) {
+	if obj_skill_tree.keyBarAbilityOneEquipped {
+		key_bar_ability_one = true;
+	}
+	else if obj_skill_tree.keyBarAbilityTwoEquipped {
+		key_bar_ability_two = true;
+	}
+	else if obj_skill_tree.keyBarAbilityThreeEquipped {
+		key_bar_ability_three = true;
+	}
+	else if obj_skill_tree.keyBarAbilityFourEquipped {
+		key_bar_ability_four = true;
+	}
+}
 
 
 // get parry input

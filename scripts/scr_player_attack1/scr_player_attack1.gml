@@ -101,33 +101,6 @@ if instance_exists(obj_player) {
 		}
 	}
 	#endregion
-	#region If Magic Button is Pressed
-	if (key_attack_rmb != "") {
-		if playerCurrentMana >= magicManaCost {
-			if (key_attack_rmb == "right") {
-				comboTrue = "Skillshot Magic Right";
-				comboPlayerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_rmb == "up") {
-				comboTrue = "Skillshot Magic Up";
-				comboPlayerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_rmb == "left") {
-				comboTrue = "Skillshot Magic Left";
-				comboPlayerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_rmb == "down") {
-				comboTrue = "Skillshot Magic Down";
-				comboPlayerDirectionFacing = playerdirection.down;
-			}
-			var player_x_ = obj_player.x;
-			var player_y_ = obj_player.y;
-			var mouse_x_ = mouse_x;
-			var mouse_y_ = mouse_y;
-			playerHitboxDirection = point_direction(player_x_, player_y_, mouse_x_, mouse_y_);
-		}
-	}
-	#endregion
 	#region If Ability Button is Pressed
 	if key_bar_ability_one || key_bar_ability_two || key_bar_ability_three || key_bar_ability_four {
 		if key_bar_ability_one {

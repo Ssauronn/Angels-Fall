@@ -158,8 +158,6 @@ switch (playerState) {
 	case playerstates.sicklyproposition: scr_player_sickly_proposition();
 		break;
 	#endregion
-	case playerstates.skillshotmagic: scr_player_skillshot_magic();
-		break;
 }
 
 if (playerState == playerstates.run) && (currentSpeed != 0) {

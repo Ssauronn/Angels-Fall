@@ -57,8 +57,7 @@ enum playerstates {
 	finalparting,
 	riskoflife,
 	takenforpain,
-	sicklyproposition,
-	skillshotmagic
+	sicklyproposition
 }
 enum playerdirection {
 	right,
@@ -226,10 +225,6 @@ playerSprite[playerstates.sicklyproposition, playerdirection.left] = spr_fling_s
 playerSprite[playerstates.sicklyproposition, playerdirection.down] = spr_fling_staff_down;
 #endregion
 #endregion
-playerSprite[playerstates.skillshotmagic, playerdirection.right] = spr_player_skillshot_magic_right;
-playerSprite[playerstates.skillshotmagic, playerdirection.up] = spr_player_skillshot_magic_up;
-playerSprite[playerstates.skillshotmagic, playerdirection.left] = spr_player_skillshot_magic_left;
-playerSprite[playerstates.skillshotmagic, playerdirection.down] = spr_player_skillshot_magic_down;
 #endregion
 
 playerDirectionFacing = playerdirection.right; // Variable used in each playerState to control the first variable of the array playerSprite
