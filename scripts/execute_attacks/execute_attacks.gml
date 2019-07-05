@@ -593,28 +593,6 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.sicklyPropositionManaRegen;
 		break;
 	#endregion
-		
-		
-	case "Skillshot Magic Right":
-	case "Skillshot Magic Up":
-	case "Skillshot Magic Left":
-	case "Skillshot Magic Down":
-		if comboTrue != "" {
-			comboTrue = "";
-			playerDirectionFacing = comboPlayerDirectionFacing;
-			comboPlayerDirectionFacing = -1;
-			playerImageIndex = 5;
-		}
-		else {
-			playerImageIndex = 0;
-		}
-		//set_movement_variables(0, playerDirectionFacing, maxSpeed);
-		playerState = playerstates.skillshotmagic;
-		playerStateSprite = playerstates.skillshotmagic;
-		lastAttackButtonPressed = "";
-		playerCurrentStamina += magicStaminaRegen;
-		playerCurrentMana -= magicManaCost;
-		break;
 }
 
 

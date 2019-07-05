@@ -77,33 +77,6 @@ if instance_exists(obj_player) {
 		}
 	}
 	#endregion
-	#region If Magic Button is Pressed
-	if (key_attack_rmb != "") {
-		if playerCurrentMana >= magicManaCost {
-			if (key_attack_rmb == "right") {
-				lastAttackButtonPressed = "Skillshot Magic Right";
-				playerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_rmb == "up") {
-				lastAttackButtonPressed = "Skillshot Magic Up";
-				playerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_rmb == "left") {
-				lastAttackButtonPressed = "Skillshot Magic Left";
-				playerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_rmb == "down") {
-				lastAttackButtonPressed = "Skillshot Magic Down";
-				playerDirectionFacing = playerdirection.down;
-			}
-			var player_x_ = obj_player.x;
-			var player_y_ = obj_player.y;
-			var mouse_x_ = mouse_x;
-			var mouse_y_ = mouse_y;
-			playerHitboxDirection = point_direction(player_x_, player_y_, mouse_x_, mouse_y_);
-		}
-	}
-	#endregion
 	#region If Parry Key is Pressed
 	if key_parry {
 		obj_skill_tree.parryWindowActive = true;

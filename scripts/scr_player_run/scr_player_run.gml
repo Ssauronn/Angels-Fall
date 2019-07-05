@@ -65,34 +65,7 @@ if instance_exists(obj_player) {
 			execute_attacks();
 		}
 	}
-	#region If Magic Button is Pressed
-	if (key_attack_rmb != "") {
-		if playerCurrentMana >= magicManaCost {
-			if (key_attack_rmb == "right") {
-				lastAttackButtonPressed = "Skillshot Magic Right";
-				playerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_rmb == "up") {
-				lastAttackButtonPressed = "Skillshot Magic Up";
-				playerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_rmb == "left") {
-				lastAttackButtonPressed = "Skillshot Magic Left";
-				playerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_rmb == "down") {
-				lastAttackButtonPressed = "Skillshot Magic Down";
-				playerDirectionFacing = playerdirection.down;
-			}
-			var player_x_ = obj_player.x;
-			var player_y_ = obj_player.y;
-			var mouse_x_ = mouse_x;
-			var mouse_y_ = mouse_y;
-			playerHitboxDirection = point_direction(player_x_, player_y_, mouse_x_, mouse_y_);
-			execute_attacks();
-		}
-	}
-	#endregion
+
 	#region If Ability Button is Pressed
 	if key_bar_ability_one || key_bar_ability_two || key_bar_ability_three || key_bar_ability_four {
 		var point_direction_ = point_direction(x, y, mouse_x, mouse_y);

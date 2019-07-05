@@ -2,9 +2,13 @@
 // Variable used to set which Prime ability will be used ("Q" ability)
 primeAbilityChosen = "Solidify";
 keyBarAbilityOneChosen = "";
+keyBarAbilityOneEquipped = true;
 keyBarAbilityTwoChosen = "";
+keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "";
+keyBarAbilityThreeEquipped = false;
 keyBarAbilityFourChosen = "";
+keyBarAbilityFourEquipped = false;
 
 
 #region Parry Ability and Effects
