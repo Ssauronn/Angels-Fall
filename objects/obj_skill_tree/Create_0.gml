@@ -1,7 +1,7 @@
 /// @description Create Skill Tree Variables
 // Variable used to set which Prime ability will be used ("Q" ability)
 primeAbilityChosen = "Solidify";
-keyBarAbilityOneChosen = "";
+keyBarAbilityOneChosen = "Wrath of the Diaboli";
 keyBarAbilityOneEquipped = true;
 keyBarAbilityTwoChosen = "";
 keyBarAbilityTwoEquipped = false;
@@ -314,11 +314,14 @@ wrathOfTheDiaboliStaminaRegen = 0;
 wrathOfTheDiaboliActive = false;
 wrathOfTheDiaboliRange = 32 * 5.5;
 wrathOfTheDiaboliDamage = 250;
+wrathOfTheDiaboliCurrentTargetCount = 0;
 wrathOfTheDiaboliMaxTargetCount = 5;
 wrathOfTheDiaboliTargetsHit = 0;
 wrathOfTheDiaboliTargetArray = noone;
 wrathOfTheDiaboliStartXPos = 0;
 wrathOfTheDiaboliStartYPos = 0;
+wrathOfTheDiaboliStartDirection = 0;
+wrathOfTheDiaboliTeleportedToNextTarget = false;
 #endregion
 
 #region Tier 2

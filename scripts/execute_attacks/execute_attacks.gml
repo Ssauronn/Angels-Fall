@@ -104,7 +104,7 @@ switch (lastAttackButtonPressed) {
 	
 	#region Diabolus Abilities
 	case "Wrath of the Diaboli":
-		if variable_global_exists(objectIDsInBattle) {
+		if variable_global_exists("objectIDsInBattle") {
 			if ds_exists(objectIDsInBattle, ds_type_list) {
 				if comboTrue != "" {
 					comboTrue = "";
@@ -115,6 +115,7 @@ switch (lastAttackButtonPressed) {
 				else {
 					playerImageIndex = 0;
 				}
+				invincibile = true;
 				obj_skill_tree.wrathOfTheDiaboliActive = true;
 				playerState = playerstates.wrathofthediaboli;
 				playerStateSprite = playerstates.wrathofthediaboli;
@@ -123,8 +124,11 @@ switch (lastAttackButtonPressed) {
 				playerCurrentStamina += obj_skill_tree.wrathOfTheDiaboliStaminaRegen;
 				playerCurrentMana -= obj_skill_tree.wrathOfTheDiaboliManaCost;
 				playerCurrentMana += obj_skill_tree.wrathOfTheDiaboliManaRegen;
+				obj_skill_tree.wrathOfTheDiaboliTargetsHit = 0;
 				obj_skill_tree.wrathOfTheDiaboliStartXPos = x;
 				obj_skill_tree.wrathOfTheDiaboliStartYPos = y;
+				obj_skill_tree.wrathOfTheDiaboliStartDirection = playerDirectionFacing;
+				obj_skill_tree.wrathOfTheDiaboliTeleportedToNextTarget = false;
 				// Determine targets for wrath of the diaboli
 				var i;
 				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
@@ -139,6 +143,7 @@ switch (lastAttackButtonPressed) {
 							if target_count_ < obj_skill_tree.wrathOfTheDiaboliMaxTargetCount {
 								obj_skill_tree.wrathOfTheDiaboliTargetArray[target_count_] = instance_to_reference_;
 								target_count_++;
+								obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount = target_count_;
 							}
 						}
 					}

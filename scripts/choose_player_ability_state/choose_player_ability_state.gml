@@ -469,7 +469,7 @@ switch equipped_ability_ {
 		}
 		break;
 	case "Soul Tether":
-		if variable_global_exists(objectIDsInBattle) {
+		if variable_global_exists("objectIDsInBattle") {
 			if ds_exists(objectIDsInBattle, ds_type_list) {
 				if combo_ {
 					if (playerCurrentStamina >= obj_skill_tree.soulTetherStaminaCost) && (playerCurrentMana >= obj_skill_tree.soulTetherManaCost) {
