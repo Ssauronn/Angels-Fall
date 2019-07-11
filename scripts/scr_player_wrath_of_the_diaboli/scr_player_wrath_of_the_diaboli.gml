@@ -108,6 +108,7 @@ if instance_exists(obj_player) {
 	// Else if the player hasn't yet finished attacking all targets, then move to the next target and attack
 	else if ((obj_skill_tree.wrathOfTheDiaboliTargetsHit + 1) < obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount) && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
 		// Reset script, count up on targetsHit, reset necessary variables, and reset imageIndex
+		obj_skill_tree.wrathOfTheDiaboliTeleportedToNextTarget = false;
 		obj_skill_tree.wrathOfTheDiaboliTargetsHit++;
 		hitboxCreated = false;
 		playerImageIndex = 0;

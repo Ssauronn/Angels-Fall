@@ -12,6 +12,7 @@ if comboCounterTimer > 0 {
 	draw_text_ext_transformed(32, 64, string(animecroMultiplier) + "x", 0, 400, 1, 1, 0);
 	draw_set_halign(fa_left);
 	draw_set_halign(fa_top);
+	draw_set_alpha(1);
 }
 if obj_skill_tree.crawlOfTormentActive {
 	draw_ring_healthbar(display_get_gui_width() - 40, 64, 32, 4, 100, (obj_skill_tree.crawlOfTormentTimer / obj_skill_tree.crawlOfTormentTimerStartTime) * 100, 90, 360, -1, c_blue);

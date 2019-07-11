@@ -418,7 +418,7 @@ switch equipped_ability_ {
 		break;
 	case "Ritual of Imperfection":
 		if combo_ {
-			if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonSaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost) {
+			if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost) {
 				comboTrue = "Ritual of Imperfection";
 			}
 			else {
@@ -428,7 +428,7 @@ switch equipped_ability_ {
 			}
 		}
 		else {
-			if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonSaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost) {
+			if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost) {
 				lastAttackButtonPressed = "Ritual of Imperfection";
 				execute_attacks();
 			}
