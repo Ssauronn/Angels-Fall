@@ -104,22 +104,60 @@ switch (lastAttackButtonPressed) {
 	
 	#region Diabolus Abilities
 	case "Wrath of the Diaboli":
-		if comboTrue != "" {
-			comboTrue = "";
-			playerDirectionFacing = comboPlayerDirectionFacing;
-			comboPlayerDirectionFacing = -1;
-			playerImageIndex = 0;
+		if variable_global_exists("objectIDsInBattle") {
+			if ds_exists(objectIDsInBattle, ds_type_list) {
+				obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount = 0;
+				// Determine whether there are targets for wrath of the diaboli, and set those targets
+				var i, target_exists_;
+				target_exists_ = false;
+				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+					var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+					// As long as the potential target exists
+					if instance_exists(instance_to_reference_) {
+						// If the potential target is an enemy
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							// And if the potential target is close enough
+							if point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y) <= obj_skill_tree.wrathOfTheDiaboliRange {
+								target_exists_ = true;
+								// And if the player hasn't exceeded the max amount of targets for Wrath
+								// of the Diaboli
+								if obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount < obj_skill_tree.wrathOfTheDiaboliMaxTargetCount {
+									obj_skill_tree.wrathOfTheDiaboliTargetArray[obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount] = instance_to_reference_;
+									obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount++;
+									obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount = obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount;
+								}
+							}
+						}
+					}
+				}
+				// If a target is found to attack with this ability
+				if target_exists_ {
+					if comboTrue != "" {
+						comboTrue = "";
+						playerDirectionFacing = comboPlayerDirectionFacing;
+						comboPlayerDirectionFacing = -1;
+						playerImageIndex = 0;
+					}
+					else {
+						playerImageIndex = 0;
+					}
+					invincibile = true;
+					obj_skill_tree.wrathOfTheDiaboliActive = true;
+					playerState = playerstates.wrathofthediaboli;
+					playerStateSprite = playerstates.wrathofthediaboli;
+					lastAttackButtonPressed = "";
+					playerCurrentStamina -= obj_skill_tree.wrathOfTheDiaboliStaminaCost;
+					playerCurrentStamina += obj_skill_tree.wrathOfTheDiaboliStaminaRegen;
+					playerCurrentMana -= obj_skill_tree.wrathOfTheDiaboliManaCost;
+					playerCurrentMana += obj_skill_tree.wrathOfTheDiaboliManaRegen;
+					obj_skill_tree.wrathOfTheDiaboliTargetsHit = 0;
+					obj_skill_tree.wrathOfTheDiaboliStartXPos = x;
+					obj_skill_tree.wrathOfTheDiaboliStartYPos = y;
+					obj_skill_tree.wrathOfTheDiaboliStartDirection = playerDirectionFacing;
+					obj_skill_tree.wrathOfTheDiaboliTeleportedToNextTarget = false;
+				}
+			}
 		}
-		else {
-			playerImageIndex = 0;
-		}
-		playerState = playerstates.wrathofthediaboli;
-		playerStateSprite = playerstates.wrathofthediaboli;
-		lastAttackButtonPressed = "";
-		playerCurrentStamina -= obj_skill_tree.wrathOfTheDiaboliStaminaCost;
-		playerCurrentStamina += obj_skill_tree.wrathOfTheDiaboliStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.wrathOfTheDiaboliManaCost;
-		playerCurrentMana += obj_skill_tree.wrathOfTheDiaboliManaRegen;
 		break;
 	case "Glinting Blade":
 		if comboTrue != "" {
