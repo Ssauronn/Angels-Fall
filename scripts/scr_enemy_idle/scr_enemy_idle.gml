@@ -1,4 +1,11 @@
 // If the enemy is in idle state, it should not be moving
+#region Determine whether to take an action
+// This if statement stops the enemy from taking any action if the player is performing an action
+// that needs all enemies to stop movement. Note, because this is only in idle state, it only stops
+// enemies that have not yet made a decision or are waiting for timers or resources. It does not stop
+// enemies that are currently in an attacking animation or chasing script.
+if !obj_skill_tree.wrathOfTheDiaboliActive {
+#endregion
 #region Make Action Decision
 if instance_exists(self) {
 	// If the enemy has not yet made an action decision, make that decision based on the game
@@ -564,6 +571,9 @@ if chosenEngine != "" {
 	}
 }
 
+#region Determine whether to move or take an action
+}
+#endregion
 
 /*
 After I send the object to a new state, the following variables need to be reset:

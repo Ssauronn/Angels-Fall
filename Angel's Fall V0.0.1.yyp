@@ -247,6 +247,14 @@
             }
         },
         {
+            "Key": "15540ead-a7d6-4c18-a35e-3acdb6a9c595",
+            "Value": {
+                "id": "335e1051-cc6f-49b5-b4c8-a460caeeeafd",
+                "resourcePath": "sprites\\spr_aoe_damage\\spr_aoe_damage.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "15c383b9-f04b-40c1-b210-7942b383a3d6",
             "Value": {
                 "id": "dc1b3d26-b25f-4ac3-a20c-de9b7597f33c",

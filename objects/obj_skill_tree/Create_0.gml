@@ -3,11 +3,11 @@
 primeAbilityChosen = "Solidify";
 keyBarAbilityOneChosen = "Wrath of the Diaboli";
 keyBarAbilityOneEquipped = true;
-keyBarAbilityTwoChosen = "";
+keyBarAbilityTwoChosen = "Hellish Landscape";
 keyBarAbilityTwoEquipped = false;
-keyBarAbilityThreeChosen = "";
+keyBarAbilityThreeChosen = "All Out Attack";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "";
+keyBarAbilityFourChosen = "Rushdown";
 keyBarAbilityFourEquipped = false;
 
 
@@ -416,8 +416,9 @@ hellishLandscapeStaminaCost = 0;
 hellishLandscapeManaRegen = 0;
 hellishLandscapeStaminaRegen = 0.1;
 hellishLandscapeDamage = 150;
-hellishLandscapeAoEDiameter = 32 * 5;
 hellishLandscapeStunDuration = room_speed * 3;
+hellishLandscapeTargetX = 0;
+hellishLandscapeTargetY = 0;
 #endregion
 
 #region Tier 3

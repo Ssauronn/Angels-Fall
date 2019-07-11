@@ -194,6 +194,24 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.hellishLandscapeStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.hellishLandscapeManaCost;
 		playerCurrentMana += obj_skill_tree.hellishLandscapeManaRegen;
+		obj_skill_tree.hellishLandscapeTargetX = mouse_x;
+		obj_skill_tree.hellishLandscapeTargetY = mouse_y;
+		var dir_ = point_direction(x, y, mouse_x, mouse_y);
+	    if dir_ >= 45 && dir_ < 135 {
+			playerDirectionFacing = playerdirection.up;
+		}
+	    else if dir_ >= 315 && dir_ < 360 {
+			playerDirectionFacing = playerdirection.right;
+		}
+	    else if dir_ >= 0 && dir_ < 45 {
+			playerDirectionFacing = playerdirection.right;
+		}
+	    else if dir_ >= 225 && dir_ < 315 {
+			playerDirectionFacing = playerdirection.down;
+		}
+	    else if dir_ >= 135 && dir_ < 225 {
+			playerDirectionFacing = playerdirection.left;
+		}
 		break;
 	case "Hidden Dagger":
 		if comboTrue != "" {
