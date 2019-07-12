@@ -195,7 +195,10 @@ if owner_is_player_ {
 				else {
 					with obj_skill_tree {
 						if rushdownDashDamageMultiplierActive {
-							rushdownDashDamageMultiplierActive = false;
+							// Include exceptions for hitboxes that shouldn't cancel the damage bonus
+							if (self_.playerHitboxAttackType != "DoT Tic") && (obj_player.playerState != playerstates.wrathofthediaboli) {
+								rushdownDashDamageMultiplierActive = false;
+							}
 						}
 						if forTheGreaterGoodActive {
 							forTheGreaterGoodAttacksEffected++;

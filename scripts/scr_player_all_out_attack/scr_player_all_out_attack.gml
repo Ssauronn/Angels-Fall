@@ -17,7 +17,6 @@ if instance_exists(obj_player) {
 		obj_skill_tree.allOutAttackActive = true;
 		obj_skill_tree.allOutAttackTimer = obj_skill_tree.allOutAttackTimerStartTime;
 	}
-
 	// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
 	if playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1) {
 		if currentSpeed == 0 {

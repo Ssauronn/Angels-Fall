@@ -501,9 +501,14 @@ rushdownStaminaRegen = 0.3;
 rushdownDashDamage = 50;
 rushdownDashDamageMultiplierActive = false;
 rushdownRange = 32 * 4.5;
+rushdownTarget = noone;
 rushdownMeleeDamage = rushdownDashDamage * 2;
 rushdownDashBaseDamageMultiplier = 1.5;
 rushdownDashDamageMultiplier = 1;
+rushdownMeleeRange = 32 * 1.5;
+rushdownDashed = false;
+rushdownDashTimer = -1;
+rushdownDashTimerStartTime = room_speed * 1;
 
 /// Diabolus Blast
 diabolusBlastManaCostMultiplier = 0;

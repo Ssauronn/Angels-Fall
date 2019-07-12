@@ -6,7 +6,7 @@ if !obj_skill_tree.wrathOfTheDiaboliTeleportedToNextTarget {
 	// Stun the enemy
 	target_to_reference_.stunActive = true;
 	// Set the timer equal to the exact amount of frames the attack will be active for
-	target_to_reference_.stunTimer = playerImageIndexSpeed * (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]));
+	target_to_reference_.stunTimer = 100//playerImageIndexSpeed * (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]));
 	// Set player variables
 	playerDirectionFacing = target_to_reference_.enemyDirectionFacing;
 	switch (target_to_reference_.enemyDirectionFacing) {
@@ -99,11 +99,17 @@ if instance_exists(obj_player) {
 		playerState = playerstates.idle;
 		playerStateSprite = playerstates.idle;
 		hitboxCreated = false;
+		playerImageIndex = 0;
 		obj_skill_tree.wrathOfTheDiaboliActive = false;
 		obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount = 0;
 		obj_skill_tree.wrathOfTheDiaboliTargetArray = noone;
 		obj_skill_tree.wrathOfTheDiaboliTargetsHit = 0;
 		obj_skill_tree.wrathOfTheDiaboliTeleportedToNextTarget = false;
+		// Since Rushdown damage bonus should be active for all hits, deactivate the Rushdown damage
+		// bonus only once the entire attack script has finished.
+		if obj_skill_tree.rushdownDashDamageMultiplierActive {
+			obj_skill_tree.rushdownDashDamageMultiplierActive = false;
+		}
 	}
 	// Else if the player hasn't yet finished attacking all targets, then move to the next target and attack
 	else if ((obj_skill_tree.wrathOfTheDiaboliTargetsHit + 1) < obj_skill_tree.wrathOfTheDiaboliCurrentTargetCount) && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
