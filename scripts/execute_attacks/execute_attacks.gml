@@ -194,6 +194,24 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.hellishLandscapeStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.hellishLandscapeManaCost;
 		playerCurrentMana += obj_skill_tree.hellishLandscapeManaRegen;
+		obj_skill_tree.hellishLandscapeTargetX = mouse_x;
+		obj_skill_tree.hellishLandscapeTargetY = mouse_y;
+		var dir_ = point_direction(x, y, mouse_x, mouse_y);
+	    if dir_ >= 45 && dir_ < 135 {
+			playerDirectionFacing = playerdirection.up;
+		}
+	    else if dir_ >= 315 && dir_ < 360 {
+			playerDirectionFacing = playerdirection.right;
+		}
+	    else if dir_ >= 0 && dir_ < 45 {
+			playerDirectionFacing = playerdirection.right;
+		}
+	    else if dir_ >= 225 && dir_ < 315 {
+			playerDirectionFacing = playerdirection.down;
+		}
+	    else if dir_ >= 135 && dir_ < 225 {
+			playerDirectionFacing = playerdirection.left;
+		}
 		break;
 	case "Hidden Dagger":
 		if comboTrue != "" {
@@ -268,22 +286,79 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.purifyingRageManaRegen;
 		break;
 	case "Rushdown":
+		// Determine whether there are targets for rushdown, and set that target
+		var i;
+		if variable_global_exists("objectIDsInBattle") {
+			if ds_exists(objectIDsInBattle, ds_type_list) {
+				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+					var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+					// As long as the potential target exists
+					if instance_exists(instance_to_reference_) {
+						// If the potential target is an enemy
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							// And if the potential target is close enough
+							if point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y) <= obj_skill_tree.rushdownRange {
+								// And if the potential target is closer than any other potential target,
+								// then set the new potential target as the current target
+								var current_target_ = obj_skill_tree.rushdownTarget;
+								if instance_exists(current_target_) {
+									if point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y) < point_distance(x, y, current_target_.x, current_target_.y) {
+										obj_skill_tree.rushdownTarget = instance_to_reference_;
+										current_target_ = instance_to_reference_;
+									}
+								}
+								// Else if a target for rushdown doesn't even exist yet, set the target
+								// automatically to the first enemy detected within range.
+								else {
+									obj_skill_tree.rushdownTarget = instance_to_reference_;
+									current_target_ = instance_to_reference_;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if instance_exists(obj_skill_tree.rushdownTarget) {
+			var instance_to_reference_ = obj_skill_tree.rushdownTarget;
+			if point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y) > obj_skill_tree.rushdownMeleeRange {
+				obj_skill_tree.rushdownDashed = true;
+				obj_skill_tree.rushdownDashTimer = obj_skill_tree.rushdownDashTimerStartTime;
+			}
+			// Set player direction facing based on the direction the current rushdown target is in
+			var dir_ = point_direction(x, y, instance_to_reference_.x, instance_to_reference_.y);
+		    if dir_ >= 45 && dir_ < 135 {
+				playerDirectionFacing = playerdirection.up;
+			}
+		    else if dir_ >= 315 && dir_ < 360 {
+				playerDirectionFacing = playerdirection.right;
+			}
+		    else if dir_ >= 0 && dir_ < 45 {
+				playerDirectionFacing = playerdirection.right;
+			}
+		    else if dir_ >= 225 && dir_ < 315 {
+				playerDirectionFacing = playerdirection.down;
+			}
+		    else if dir_ >= 135 && dir_ < 225 {
+				playerDirectionFacing = playerdirection.left;
+			}
 			if comboTrue != "" {
-			comboTrue = "";
-			playerDirectionFacing = comboPlayerDirectionFacing;
-			comboPlayerDirectionFacing = -1;
-			playerImageIndex = 0;
+				comboTrue = "";
+				playerDirectionFacing = comboPlayerDirectionFacing;
+				comboPlayerDirectionFacing = -1;
+				playerImageIndex = 0;
+			}
+			else {
+				playerImageIndex = 0;
+			}
+			playerState = playerstates.rushdown;
+			playerStateSprite = playerstates.rushdown;
+			lastAttackButtonPressed = "";
+			playerCurrentStamina -= obj_skill_tree.rushdownStaminaCost;
+			playerCurrentStamina += obj_skill_tree.rushdownStaminaRegen;
+			playerCurrentMana -= obj_skill_tree.rushdownManaCost;
+			playerCurrentMana += obj_skill_tree.rushdownManaRegen;
 		}
-		else {
-			playerImageIndex = 0;
-		}
-		playerState = playerstates.rushdown;
-		playerStateSprite = playerstates.rushdown;
-		lastAttackButtonPressed = "";
-		playerCurrentStamina -= obj_skill_tree.rushdownStaminaCost;
-		playerCurrentStamina += obj_skill_tree.rushdownStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.rushdownManaCost;
-		playerCurrentMana += obj_skill_tree.rushdownManaRegen;
 		break;
 	case "Diabolus Blast":
 		if comboTrue != "" {

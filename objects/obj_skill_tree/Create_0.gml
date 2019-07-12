@@ -3,11 +3,11 @@
 primeAbilityChosen = "Solidify";
 keyBarAbilityOneChosen = "Wrath of the Diaboli";
 keyBarAbilityOneEquipped = true;
-keyBarAbilityTwoChosen = "";
+keyBarAbilityTwoChosen = "Hellish Landscape";
 keyBarAbilityTwoEquipped = false;
-keyBarAbilityThreeChosen = "";
+keyBarAbilityThreeChosen = "All Out Attack";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "";
+keyBarAbilityFourChosen = "Rushdown";
 keyBarAbilityFourEquipped = false;
 
 
@@ -416,8 +416,9 @@ hellishLandscapeStaminaCost = 0;
 hellishLandscapeManaRegen = 0;
 hellishLandscapeStaminaRegen = 0.1;
 hellishLandscapeDamage = 150;
-hellishLandscapeAoEDiameter = 32 * 5;
 hellishLandscapeStunDuration = room_speed * 3;
+hellishLandscapeTargetX = 0;
+hellishLandscapeTargetY = 0;
 #endregion
 
 #region Tier 3
@@ -500,9 +501,14 @@ rushdownStaminaRegen = 0.3;
 rushdownDashDamage = 50;
 rushdownDashDamageMultiplierActive = false;
 rushdownRange = 32 * 4.5;
+rushdownTarget = noone;
 rushdownMeleeDamage = rushdownDashDamage * 2;
 rushdownDashBaseDamageMultiplier = 1.5;
 rushdownDashDamageMultiplier = 1;
+rushdownMeleeRange = 32 * 1.5;
+rushdownDashed = false;
+rushdownDashTimer = -1;
+rushdownDashTimerStartTime = room_speed * 1;
 
 /// Diabolus Blast
 diabolusBlastManaCostMultiplier = 0;

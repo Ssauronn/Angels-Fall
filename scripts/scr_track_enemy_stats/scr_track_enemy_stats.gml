@@ -182,29 +182,32 @@ if enemyCurrentHP <= 0 {
 
 
 #region Count Down Timers for use Specifically in Decision Making
-// Timer for spacing out heals, so healers can't spam heals
-if healAllyEngineTimer > 0 {
-	healAllyEngineTimer -= 1 * enemyTotalSpeed;
-}
+// As long as the enemies shouldn't "freeze" (cheating for the player here, to make things look smoother)
+if !obj_skill_tree.wrathOfTheDiaboliActive {
+	// Timer for spacing out heals, so healers can't spam heals
+	if healAllyEngineTimer > 0 {
+		healAllyEngineTimer -= 1 * enemyTotalSpeed;
+	}
 
-if alreadyTriedToChaseTimer > 0 {
-	alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed * solidifyEnemyChaseTimerSpeedMultiplier;
-}
+	if alreadyTriedToChaseTimer > 0 {
+		alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed * solidifyEnemyChaseTimerSpeedMultiplier;
+	}
 
-// Timer for mana and stamina abilities, so that the enemy doesn't endlessly wait for resource
-// regeneration. Prevents stalling if player debuffs enemy regeneration.
-if enemyTimeUntilNextStaminaAbilityUsableTimer > 0 {
-	enemyTimeUntilNextStaminaAbilityUsableTimer -= 1;
-}
+	// Timer for mana and stamina abilities, so that the enemy doesn't endlessly wait for resource
+	// regeneration. Prevents stalling if player debuffs enemy regeneration.
+	if enemyTimeUntilNextStaminaAbilityUsableTimer > 0 {
+		enemyTimeUntilNextStaminaAbilityUsableTimer -= 1;
+	}
 
-if enemyTimeUntilNextManaAbilityUsableTimer > 0 {
-	enemyTimeUntilNextManaAbilityUsableTimer -= 1;
-}
+	if enemyTimeUntilNextManaAbilityUsableTimer > 0 {
+		enemyTimeUntilNextManaAbilityUsableTimer -= 1;
+	}
 
-// Timer for limiting time between attacks. Prevents enemy spamming attack until it runs out of resources,
-// and also helps enemies not overwhelm player all at once with attacks, if they're located in a group.
-if enemyTimeUntilNextAttackUsableTimer >= 0 {
-	enemyTimeUntilNextAttackUsableTimer -= 1;
+	// Timer for limiting time between attacks. Prevents enemy spamming attack until it runs out of resources,
+	// and also helps enemies not overwhelm player all at once with attacks, if they're located in a group.
+	if enemyTimeUntilNextAttackUsableTimer >= 0 {
+		enemyTimeUntilNextAttackUsableTimer -= 1;
+	}
 }
 #endregion
 

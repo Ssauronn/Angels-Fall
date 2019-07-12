@@ -33,8 +33,8 @@ playerMaxBloodMagic = 10;
 playerCurrentBloodMagic = playerMaxBloodMagic;
 // Costs on resources for using various attacks
 // Melee costs and regen
-meleeStaminaCost = 100;
-meleeManaRegen = 75;
+meleeStaminaCost = 0;
+meleeManaRegen = 0;
 // Magic costs and regen
 magicStaminaRegen = 600;
 magicManaCost = 800;
