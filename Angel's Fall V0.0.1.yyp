@@ -1567,6 +1567,14 @@
             }
         },
         {
+            "Key": "b8c02cc6-e4de-4019-8c69-b75b20fb880d",
+            "Value": {
+                "id": "cc417e89-4f9d-4272-a77d-5dda1b7ea836",
+                "resourcePath": "sprites\\spr_glinting_blade_projectile\\spr_glinting_blade_projectile.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "b8d8dfdf-e37d-4bf6-b1e5-dc736e7f87c6",
             "Value": {
                 "id": "79d38fa7-2a43-4270-9209-5300191b8f0a",

@@ -1,13 +1,13 @@
 /// @description Create Skill Tree Variables
 // Variable used to set which Prime ability will be used ("Q" ability)
 primeAbilityChosen = "Solidify";
-keyBarAbilityOneChosen = "Wrath of the Diaboli";
+keyBarAbilityOneChosen = "Glinting Blade";
 keyBarAbilityOneEquipped = true;
-keyBarAbilityTwoChosen = "Hellish Landscape";
+keyBarAbilityTwoChosen = "Hidden Dagger";
 keyBarAbilityTwoEquipped = false;
-keyBarAbilityThreeChosen = "All Out Attack";
+keyBarAbilityThreeChosen = "Exploit Weakness";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Rushdown";
+keyBarAbilityFourChosen = "Diabolus Blast";
 keyBarAbilityFourEquipped = false;
 
 

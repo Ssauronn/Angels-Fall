@@ -62,6 +62,9 @@ with obj_skill_tree {
 	#endregion
 	
 	#region Glinting Blade
+	// I only track the timer for Glinting Blade if the ability is not attached to an enemy, because
+	// otherwise, I track the timer inside the scr_track_enemy_buffs_and_debuffs script for that
+	// specific enemy.
 	if glintingBladeTimer >= 0 {
 		if glintingBladeAttachedToEnemy == noone {
 			glintingBladeActive = true;
@@ -76,6 +79,7 @@ with obj_skill_tree {
 				glintingBladeTargetYPos = 0;
 				glintingBladeXPos = 0;
 				glintingBladeYPos = 0;
+				glintingBladeAttachedToEnemy = noone;
 			}
 			else if glintingBladeTimer >= 0 {
 				glintingBladeTimer--;
@@ -192,8 +196,8 @@ with obj_skill_tree {
 							playerHitbox.mask_index = spr_player_bullet_hitbox;
 							playerHitbox.owner = self;
 							playerHitbox.playerProjectileHitboxSpeed = obj_skill_tree.theOnePowerProjectileSpeed;
-							playerHitbox.playerHitboxDirection = point_direction(obj_skill_tree.theOnePowerOriginXPos, obj_skill_tree.theOnePowerOriginYPos, target_.x, target_.y);
-							playerHitbox.image_angle = playerHitbox.playerHitboxDirection;
+							playerHitbox.playerProjectileHitboxDirection = point_direction(obj_skill_tree.theOnePowerOriginXPos, obj_skill_tree.theOnePowerOriginYPos, target_.x, target_.y);
+							playerHitbox.image_angle = playerHitbox.playerProjectileHitboxDirection;
 							playerHitbox.visible = true;
 							playerHitbox.playerHitboxAttackType = "Projectile";
 							playerHitbox.playerHitboxDamageType = "Ability";

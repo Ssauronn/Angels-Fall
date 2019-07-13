@@ -176,6 +176,10 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.glintingBladeStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.glintingBladeManaCost;
 		playerCurrentMana += obj_skill_tree.glintingBladeManaRegen;
+		obj_skill_tree.glintingBladeArrivedAtTargetPos = false;
+		obj_skill_tree.glintingBladeAttachedToEnemy = noone;
+		obj_skill_tree.glintingBladeTargetXPos = mouse_x;
+		obj_skill_tree.glintingBladeTargetYPos = mouse_y;
 		break;
 	case "Hellish Landscape":
 		if comboTrue != "" {
