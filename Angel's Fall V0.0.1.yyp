@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "00cf991f-e280-405b-ac85-b56d9147b3c4",
+            "Value": {
+                "id": "fe7d6621-016a-41ec-b74a-bffb27525e16",
+                "resourcePath": "scripts\\scr_player_glinting_blade_single\\scr_player_glinting_blade_single.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "01031304-9863-421a-8bd4-7481de161a78",
             "Value": {
                 "id": "a9ed8513-00c3-4da5-8229-988cd7f1dbcf",
@@ -1060,6 +1068,14 @@
                 "id": "5579db31-165c-4b2a-af70-29de4552603f",
                 "resourcePath": "sprites\\spr_enemy_healer_heal_ally\\spr_enemy_healer_heal_ally.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "77c60c7d-0dac-45d6-8cec-1804e600a686",
+            "Value": {
+                "id": "ade4b290-5df7-4c30-b0d4-097a12ba817a",
+                "resourcePath": "scripts\\scr_player_glinting_blade_aoe\\scr_player_glinting_blade_aoe.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2259,6 +2275,8 @@
         "602da417-15a6-4b36-8652-caf4c746e444",
         "c47c6c79-b1f1-4e9f-8a41-2ab533b86e4b",
         "f0cba083-4878-4894-8a4d-c343242df1d4",
+        "00cf991f-e280-405b-ac85-b56d9147b3c4",
+        "77c60c7d-0dac-45d6-8cec-1804e600a686",
         "c6985fd9-02a6-4c07-9fc3-44823621e628",
         "f1b4e9d6-c65f-49e4-a0fa-021dc27854a8",
         "0f82db21-18b2-432d-ad47-6a81a4278c8b",

@@ -4,16 +4,47 @@ if playerImageIndex <= 5 {
 	if obj_skill_tree.glintingBladeActive {
 		// If Glinting Blade is attached to an enemy, then teleport to that enemy and apply damages
 		if instance_exists(obj_skill_tree.glintingBladeAttachedToEnemy) {
-			var target_ = obj_skill_tree.glintingBladeAttachedToEnemy;
-			playerImageIndex = 0;
 			// Send player to new alternate attack state to teleport to the target and apply damage to 
 			// that one enemy, deactivate all glinting blade variables, deactivate all Glinting Blade
 			// variables on the target enemy, then send player back to idle state.
+			// I apply damages to the one enemy and send player back to the idle state in the next script.
+			var target_ = obj_skill_tree.glintingBladeAttachedToEnemy;
+			playerImageIndex = 0;
+			playerState = playerstates.glintingbladesingle;
+			playerStateSprite = playerstates.glintingbladesingle;
+			// This works because of the way enums work - I'm really just setting the direction equal
+			// to the value the enum is equal to, and since both playerDirectionFacing and
+			// enemyDirectionFacing have identical valued enums, even though they're named differently
+			// they're still set the same way.
+			playerDirectionFacing = target_.enemyDirectionFacing;
+			switch (target_.enemyDirectionFacing) {
+				case enemydirection.right:
+					x = target_.x - (32 * 1.5);
+					y = target_.y;
+					break;
+				case enemydirection.up:
+					x = target_.x;
+					y = target_.y + (32 * 1.5);
+					break;
+				case enemydirection.left:
+					x = target_.x + (32 * 1.5);
+					y = target_.y;
+					break;
+				case enemydirection.down:
+					x = target_.x;
+					y = target_.y - (32 * 1.5);
+					break;
+			}
+			// I add just 3 onto the enemy timer so that the timer doesn't run out the exact moment
+			// the player is supposed to deal damage, and reset variables so that the script throws
+			// an error. Essentially lets the debuff last for 3 more frames, which is needed because 
+			// there's a hitbox that's created 3 frames after these lines are run.
+			target_.glintingBladeTimer += 3;
 		}
 		// Else if Glinting Blade is not attached to an enemy, then teleport to Glinting Blade's location
 		// and deal AoE damage to anything around
 		else {
-			//playerImageIndex = 0;
+			playerImageIndex = 0;
 			// Send player to new alternate state to teleport to the target and apply AoE damage to
 			// anything around, deactivate all glinting blade variables, then send player back to idle
 			// state.
