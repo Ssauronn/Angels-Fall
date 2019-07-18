@@ -1,7 +1,28 @@
 // If Glinting Blade is active before hitbox can be created, that means glinting blade was already
 // active, and I need to handle it as such.
 if playerImageIndex <= 5 {
+	// Check to see if Glinting Blade is active either on the ground, or active on an enemy.
+	var j;
+	var glinting_blade_active_ = false;
+	// If its active on the ground, we don't have to check for activity on an enemy.
 	if obj_skill_tree.glintingBladeActive {
+		glinting_blade_active_ = true;
+	}
+	// Otherwise, if its not active on the ground, we do need to check for activity on an enemy
+	// in battle.
+	else {
+		if ds_exists(objectIDsInBattle, ds_type_list) {
+			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
+				var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+				if instance_to_reference_.glintingBladeActive {
+					glinting_blade_active_ = true;
+				}
+			}
+		}
+	}
+	// If Glinting Blade is active either on the ground, OR on an enemy, then send the player to the 
+	// correct attack script and finish out the Glinting Blade debuff/buff.
+	if glinting_blade_active_ {
 		// If Glinting Blade is attached to an enemy, then teleport to that enemy and apply damages
 		if instance_exists(obj_skill_tree.glintingBladeAttachedToEnemy) {
 			// Send player to new alternate attack state to teleport to the target and apply damage to 
@@ -44,10 +65,35 @@ if playerImageIndex <= 5 {
 		// Else if Glinting Blade is not attached to an enemy, then teleport to Glinting Blade's location
 		// and deal AoE damage to anything around
 		else {
-			playerImageIndex = 0;
 			// Send player to new alternate state to teleport to the target and apply AoE damage to
 			// anything around, deactivate all glinting blade variables, then send player back to idle
 			// state.
+			playerImageIndex = 0;
+			var target_location_x_ = obj_skill_tree.glintingBladeTargetXPos;
+			var target_location_y_ = obj_skill_tree.glintingBladeTargetYPos;
+			playerState = playerstates.glintingbladeaoe;
+			playerStateSprite = playerstates.glintingbladeaoe;
+			var point_direction_ = point_direction(x, y, target_location_x_, target_location_y_);
+			if point_direction_ >= 45 && point_direction_ < 135 {
+				playerDirectionFacing = playerdirection.up;
+			}
+		    else if point_direction_ >= 315 && point_direction_ < 360 {
+				playerDirectionFacing = playerdirection.right;
+			}
+		    else if point_direction_ >= 0 && point_direction_ < 45 {
+				playerDirectionFacing = playerdirection.right;
+			}
+		    else if point_direction_ >= 225 && point_direction_ < 315 {
+				playerDirectionFacing = playerdirection.down;
+			}
+		    else if point_direction_ >= 135 && point_direction_ < 225 {
+				playerDirectionFacing = playerdirection.left;
+			}
+			// I add just 3 onto the enemy timer so that the timer doesn't run out the exact moment
+			// the player is supposed to deal damage, and reset variables so that the script throws
+			// an error. Essentially lets the debuff last for 3 more frames, which is needed because 
+			// there's a hitbox that's created 3 frames after these lines are run.
+			obj_skill_tree.glintingBladeTimer += 3;
 		}
 	}
 }
