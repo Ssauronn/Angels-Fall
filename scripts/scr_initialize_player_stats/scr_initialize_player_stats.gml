@@ -33,6 +33,8 @@ enum playerstates {
 	attack5,
 	wrathofthediaboli,
 	glintingblade,
+	glintingbladesingle,
+	glintingbladeaoe,
 	hellishlandscape,
 	hiddendagger,
 	alloutattack,
@@ -123,6 +125,14 @@ playerSprite[playerstates.glintingblade, playerdirection.right] = spr_fling_staf
 playerSprite[playerstates.glintingblade, playerdirection.up] = spr_fling_staff_up;
 playerSprite[playerstates.glintingblade, playerdirection.left] = spr_fling_staff_left;
 playerSprite[playerstates.glintingblade, playerdirection.down] = spr_fling_staff_down;
+playerSprite[playerstates.glintingbladesingle, playerdirection.right] = spr_ability_attack_right;
+playerSprite[playerstates.glintingbladesingle, playerdirection.up] = spr_ability_attack_up;
+playerSprite[playerstates.glintingbladesingle, playerdirection.left] = spr_ability_attack_left;
+playerSprite[playerstates.glintingbladesingle, playerdirection.down] = spr_ability_attack_down;
+playerSprite[playerstates.glintingbladeaoe, playerdirection.right] = spr_ground_slam_staff_right;
+playerSprite[playerstates.glintingbladeaoe, playerdirection.up] = spr_ground_slam_staff_up;
+playerSprite[playerstates.glintingbladeaoe, playerdirection.left] = spr_ground_slam_staff_left;
+playerSprite[playerstates.glintingbladeaoe, playerdirection.down] = spr_ground_slam_staff_down;
 playerSprite[playerstates.hiddendagger, playerdirection.right] = spr_ability_attack_right;
 playerSprite[playerstates.hiddendagger, playerdirection.up] = spr_ability_attack_up;
 playerSprite[playerstates.hiddendagger, playerdirection.left] = spr_ability_attack_left;
@@ -244,7 +254,7 @@ playerHitbox = noone;
 playerHitboxAttackType = "";
 playerHitboxValue = 0;
 playerHitboxHeal = false;
-playerHitboxDirection = 0;
+playerProjectileHitboxDirection = 0;
 playerProjectileHitboxSpeed = maxSpeed * 1.1;
 hitboxCreated = false;
 comboTrue = "";

@@ -134,11 +134,13 @@ if instance_exists(obj_player) {
 			playerState = playerstates.idle;
 			playerStateSprite = playerstates.idle;
 			hitboxCreated = false;
+			playerImageIndex = 0;
 		}
 		else {
 			playerState = playerstates.run;
 			playerStateSprite = playerstates.run;
 			hitboxCreated = false;
+			playerImageIndex = 0;
 		}
 	}
 	else if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue != "") {

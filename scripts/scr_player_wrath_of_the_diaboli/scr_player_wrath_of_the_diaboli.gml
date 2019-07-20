@@ -8,6 +8,9 @@ if !obj_skill_tree.wrathOfTheDiaboliTeleportedToNextTarget {
 	// Set the timer equal to the exact amount of frames the attack will be active for
 	target_to_reference_.stunTimer = 100//playerImageIndexSpeed * (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]));
 	// Set player variables
+	// I can set playerDirectionFacing to enemyDirectionFacing because in the background code,
+	// the enum value for each direction is the same for either, and since I'm actually just
+	// setting the direction facing equal to an enum value, it works just fine.
 	playerDirectionFacing = target_to_reference_.enemyDirectionFacing;
 	switch (target_to_reference_.enemyDirectionFacing) {
 		case enemydirection.right: 

@@ -61,24 +61,28 @@ if ds_exists(playerHitboxList, ds_type_list) {
 					// Move the hitbox as long as the parent object still exists
 					if instance_exists(owner) {
 						if (playerHitboxAbilityOrigin != "Glinting Blade") && (playerHitboxAbilityOrigin != "Whirlwind") {
-							x += lengthdir_x(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
-							y += lengthdir_y(playerProjectileHitboxSpeed, playerHitboxDirection) * playerTotalSpeed;
+							x += lengthdir_x(playerProjectileHitboxSpeed, playerProjectileHitboxDirection) * playerTotalSpeed;
+							y += lengthdir_y(playerProjectileHitboxSpeed, playerProjectileHitboxDirection) * playerTotalSpeed;
 						}
 						else if playerHitboxAbilityOrigin == "Glinting Blade" {
 							var distance_to_target_ = point_distance(x, y, obj_skill_tree.glintingBladeTargetXPos, obj_skill_tree.glintingBladeTargetYPos);
 							if distance_to_target_ > obj_skill_tree.glintingBladeSpeed {
 								x += lengthdir_x(obj_skill_tree.glintingBladeSpeed, obj_skill_tree.glintingBladeDirection) * playerTotalSpeed;
 								y += lengthdir_y(obj_skill_tree.glintingBladeSpeed, obj_skill_tree.glintingBladeDirection) * playerTotalSpeed;
+								obj_skill_tree.glintingBladeXPos = x;
+								obj_skill_tree.glintingBladeYPos = y;
 							}
 							else if distance_to_target_ <= obj_skill_tree.glintingBladeSpeed {
 								obj_skill_tree.glintingBladeActive = true;
 								obj_skill_tree.glintingBladeArrivedAtTargetPos = true;
 								obj_skill_tree.glintingBladeAttachedToEnemy = noone;
+								// Destroy the player hitbox if its a projectile from Glinting Blade and it has reached
+								// its target on the ground without running into an enemy.
 								playerHitboxCollisionFound = true;
 								x = obj_skill_tree.glintingBladeTargetXPos;
 								y = obj_skill_tree.glintingBladeTargetYPos;
-								obj_skill_tree.glintingBladeXPos = x;
-								obj_skill_tree.glintingBladeYPos = y;
+								obj_skill_tree.glintingBladeXPos = obj_skill_tree.glintingBladeTargetXPos;
+								obj_skill_tree.glintingBladeYPos = obj_skill_tree.glintingBladeTargetYPos;
 								obj_skill_tree.glintingBladeTimer = obj_skill_tree.glintingBladeTimerStartTime;
 							}
 						}

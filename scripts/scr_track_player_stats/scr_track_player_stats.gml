@@ -103,6 +103,10 @@ switch (playerState) {
 		break;
 	case playerstates.glintingblade: scr_player_glinting_blade();
 		break;
+	case playerstates.glintingbladesingle: scr_player_glinting_blade_single();
+		break;
+	case playerstates.glintingbladeaoe: scr_player_glinting_blade_aoe();
+		break;
 	case playerstates.hellishlandscape: scr_player_hellish_landscape();
 		break;
 	case playerstates.hiddendagger: scr_player_hidden_dagger();
