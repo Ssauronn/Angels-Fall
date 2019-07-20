@@ -89,6 +89,8 @@ if playerImageIndex <= 5 {
 		    else if point_direction_ >= 135 && point_direction_ < 225 {
 				playerDirectionFacing = playerdirection.left;
 			}
+			x = target_location_x_;
+			y = target_location_y_;
 			// I add just 3 onto the enemy timer so that the timer doesn't run out the exact moment
 			// the player is supposed to deal damage, and reset variables so that the script throws
 			// an error. Essentially lets the debuff last for 3 more frames, which is needed because 
@@ -96,10 +98,19 @@ if playerImageIndex <= 5 {
 			obj_skill_tree.glintingBladeTimer += 3;
 		}
 	}
+	else if (playerCurrentStamina < obj_skill_tree.glintingBladeStaminaCost) || (playerCurrentMana < obj_skill_tree.glintingBladeManaCost) {
+		playerState = playerstates.idle;
+		playerStateSprite = playerstates.idle;
+		hitboxCreated = false;
+	}
 }
 // if Glinting Blade isn't active before hitbox can be created, that means Glinting Blade can be created
 // as a projectile.
 if (!hitboxCreated) && (playerImageIndex > 5) {
+	playerCurrentStamina -= obj_skill_tree.glintingBladeStaminaCost;
+	playerCurrentStamina += obj_skill_tree.glintingBladeStaminaRegen;
+	playerCurrentMana -= obj_skill_tree.glintingBladeManaCost;
+	playerCurrentMana += obj_skill_tree.glintingBladeManaRegen;
 	hitboxCreated = true;
 	// Set the direction the player will face, and the direction the hitbox will face as well.
 	// Then create the hitbox.

@@ -240,6 +240,29 @@ if !is_undefined(owner) {
 						}
 					}
 				}
+				// Destroy self, and set any variables that need to be set
+				if playerHitboxAbilityOrigin == "Glinting Blade" {
+					if playerHitboxCollidedWithWall {
+						// Get the direction the hitbox was moving in and invert it so that I can move the X and Y location of
+						// Glinting Blade over so that the player isn't clipped into the wall.
+						var dir_ = playerProjectileHitboxDirection;
+						if dir_ < 180 {
+							dir_ += 180;
+						}
+						else {
+							dir_ -= 180;
+						}
+						var length_x_ = lengthdir_x(16, dir_);
+						var length_y_ = lengthdir_y(16, dir_);
+						obj_skill_tree.glintingBladeActive = true;
+						obj_skill_tree.glintingBladeTimer = obj_skill_tree.glintingBladeTimerStartTime;
+						obj_skill_tree.glintingBladeTargetXPos = obj_skill_tree.glintingBladeXPos + length_x_;
+						obj_skill_tree.glintingBladeXPos = obj_skill_tree.glintingBladeTargetXPos;
+						obj_skill_tree.glintingBladeTargetYPos = obj_skill_tree.glintingBladeYPos + length_y_;
+						obj_skill_tree.glintingBladeYPos = obj_skill_tree.glintingBladeTargetYPos;
+						obj_skill_tree.glintingBladeAttachedToEnemy = noone;
+					}
+				}
 				instance_destroy(self);
 			}
 		}

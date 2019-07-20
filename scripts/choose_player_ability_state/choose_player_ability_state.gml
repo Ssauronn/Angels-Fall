@@ -4,7 +4,12 @@
 ///@argument1 ComboingFromAbility?
 
 var equipped_ability_ = argument0;
-var combo_ = argument1;
+if argument1 {
+	var combo_ = true;
+}
+else {
+	var combo_ = false;
+}
 
 switch equipped_ability_ {
 	#region Diabolus Abilities
@@ -36,24 +41,38 @@ switch equipped_ability_ {
 		}
 		break;
 	case "Glinting Blade":
-		if combo_ {
-			if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) && (playerCurrentMana >= obj_skill_tree.glintingBladeManaCost) {
-				comboTrue = "Glinting Blade";
+		if !obj_skill_tree.glintingBladeActive {
+			if combo_ {
+				if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) && (playerCurrentMana >= obj_skill_tree.glintingBladeManaCost) {
+					comboTrue = "Glinting Blade";
+				}
+				else {
+					comboTrue = "";
+					comboPlayerDirectionFacing = -1;
+					lastAttackButtonPressed = "";
+				}
 			}
 			else {
-				comboTrue = "";
-				comboPlayerDirectionFacing = -1;
-				lastAttackButtonPressed = "";
+				if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) && (playerCurrentMana >= obj_skill_tree.glintingBladeManaCost) {
+					lastAttackButtonPressed = "Glinting Blade";
+					execute_attacks();
+				}
+				else {
+					lastAttackButtonPressed = "";
+				}
 			}
 		}
 		else {
-			if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) && (playerCurrentMana >= obj_skill_tree.glintingBladeManaCost) {
+			// I don't check for stamina values here because the player can recall without using
+			// resources
+			if combo_ {
+				comboTrue = "Glinting Blade";
+			}
+			else {
 				lastAttackButtonPressed = "Glinting Blade";
 				execute_attacks();
 			}
-			else {
-				lastAttackButtonPressed = "";
-			}
+			break;
 		}
 		break;
 	case "Hellish Landscape":

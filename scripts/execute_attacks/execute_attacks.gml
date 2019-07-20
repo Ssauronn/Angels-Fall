@@ -169,22 +169,24 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		/*---I don't reduce and add to player resources here, because that's done in the attack script
+		only if Glinting Blade wasn't already active---*/
 		playerState = playerstates.glintingblade;
 		playerStateSprite = playerstates.glintingblade;
 		lastAttackButtonPressed = "";
-		playerCurrentStamina -= obj_skill_tree.glintingBladeStaminaCost;
-		playerCurrentStamina += obj_skill_tree.glintingBladeStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.glintingBladeManaCost;
-		playerCurrentMana += obj_skill_tree.glintingBladeManaRegen;
+		currentSpeed = 0;
 		// If Glinting Blade is not currently flying through the air, and is not already active
 		// elsewhere either attached on the ground or on an enemy, then create the hitbox.
 		if (!obj_skill_tree.glintingBladeActive) && (!instance_exists(obj_skill_tree.glintingBladeAttachedToEnemy)) {
 			if ds_exists(obj_combat_controller.playerHitboxList, ds_type_list) {
 				var k, hitbox_to_reference_, hitbox_exists_;
+				hitbox_exists_ = false;
 				for (k = 0; k <= ds_list_size(obj_combat_controller.playerHitboxList) - 1; k++) {
-					hitbox_to_reference_ = ds_list_find_value(playerHitboxList, k);
-					if hitbox_to_reference_.playerHitboxAbilityOrigin == "Glinting Blade" {
-						hitbox_exists_ = true;
+					hitbox_to_reference_ = ds_list_find_value(obj_combat_controller.playerHitboxList, k);
+					if instance_exists(hitbox_to_reference_) {
+						if hitbox_to_reference_.playerHitboxAbilityOrigin == "Glinting Blade" {
+							hitbox_exists_ = true;
+						}
 					}
 				}
 				if !hitbox_exists_ {
