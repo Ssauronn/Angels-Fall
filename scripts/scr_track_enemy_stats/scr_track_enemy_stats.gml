@@ -107,8 +107,10 @@ frictionAmount = ((baseFrictionAmount * enemyTotalSpeed) * stunMultiplier * hits
 // object
 if enemyCurrentHP <= 0 {
 	if variable_instance_exists(self, "myPath") {
-		if path_exists(myPath) {
-			path_delete(myPath);
+		if !is_undefined(myPath) {
+			if path_exists(myPath) {
+				path_delete(myPath);
+			}
 		}
 	}
 	if overwhelmingChainsActiveOnSelf {
@@ -165,6 +167,17 @@ if enemyCurrentHP <= 0 {
 	if combatFriendlyStatus == "Enemy" {
 		animecroPool += animecroRewardUponDeath;
 		bloodMagicPool += 1;
+	}
+	// If Glinting Blade is active on the enemy, deactivate it. I don't want the Blade dropping in case
+	// teleporting to that enemy then teleports the player into the body of an enemy.
+	if glintingBladeActive {
+		glintingBladeActive = false;
+		glintingBladeTimer = -1;
+		obj_skill_tree.glintingBladeActive = false;
+		obj_skill_tree.glintingBladeTimer = -1;
+		obj_skill_tree.glintingBladeAttachedToEnemy = noone;
+		obj_skill_tree.glintingBladeXPos = 0;
+		obj_skill_tree.glintingBladeYPos = 0;
 	}
 	
 	// Create the daed body right before the enemy dies

@@ -111,10 +111,19 @@ subtracting currentSpeed by the value being added to it every frame will keep th
 current speed for as long as they hold down the movement button. Increasing the multiple above 1
 will decrease object currentSpeed while above max_speed_, and decreasing the multiple below 1
 will increase object currentSpeed while above max_speed_.
+However, if I always subtract acceleration from the current speed, the player object looks jumpy while
+moving around. To fix this, I first check to see if there's a movement key held down, and if so, as long
+as no other movement key is held that would cancel the movement of the first, then I auto-set the current
+speed to the max possible speed.
 */
 if self.object_index == obj_player {
 	if currentSpeed > max_speed_ {
-		if playerRecentlyDashed {
+		if !key_nokey {
+			if (key_right && !key_left) || (key_up && !key_down) || (key_left && !key_right) || (key_down && !key_up) {
+				currentSpeed = max_speed_;
+			}
+		}
+		else if (playerRecentlyDashed) {
 			currentSpeed -= acceleration_ * 1.1;
 		}
 		else {

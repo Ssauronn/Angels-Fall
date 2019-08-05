@@ -51,10 +51,10 @@ switch (enemy_name_) {
 		enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.9;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 32 * 2;
-		enemyHeavyMeleeAttackRange = 32 * 2;
-		enemyLightRangedAttackRange = 32 * 8;
-		enemyHeavyRangedAttackRange = 32 * 8;
+		enemyLightMeleeAttackRange = 32 * 1.5;
+		enemyHeavyMeleeAttackRange = 32 * 1.5;
+		enemyLightRangedAttackRange = 32 * 6;
+		enemyHeavyRangedAttackRange = 32 * 6;
 		
 		// Enemy Total Damage Dealt with attack after multipliers and resistances
 		enemyTotalDamageDealt = 0;
@@ -400,10 +400,10 @@ switch (enemy_name_) {
 		enemyHealManaCost = enemyMaxMana * 0.9;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 32 * 2;
-		enemyHeavyMeleeAttackRange = 32 * 2;
-		enemyLightRangedAttackRange = 32 * 8;
-		enemyHeavyRangedAttackRange = 32 * 8;
+		enemyLightMeleeAttackRange = 32 * 1.5;
+		enemyHeavyMeleeAttackRange = 32 * 1.5;
+		enemyLightRangedAttackRange = 32 * 6;
+		enemyHeavyRangedAttackRange = 32 * 6;
 		enemyHealAllyRange = 32 * 4;
 		
 		// Enemy Total Damage Dealt with attack after multipliers and resistances
@@ -753,10 +753,10 @@ switch (enemy_name_) {
 		enemyHeavyRangedAttackManaCost = enemyMaxMana * 1.0;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 32 * 2;
-		enemyHeavyMeleeAttackRange = 32 * 2;
-		enemyLightRangedAttackRange = 32 * 8;
-		enemyHeavyRangedAttackRange = 32 * 8;
+		enemyLightMeleeAttackRange = 32 * 1.5;
+		enemyHeavyMeleeAttackRange = 32 * 1.5;
+		enemyLightRangedAttackRange = 32 * 6;
+		enemyHeavyRangedAttackRange = 32 * 6;
 		
 		// Enemy Total Damage Dealt with attack after multipliers and resistances
 		enemyTotalDamageDealt = 0;
@@ -1101,10 +1101,10 @@ switch (enemy_name_) {
 		enemyHeavyRangedAttackManaCost = enemyMaxMana * 1.0;
 		
 		// Enemies' Attack Ranges
-		enemyLightMeleeAttackRange = 32 * 2;
-		enemyHeavyMeleeAttackRange = 32 * 2;
-		enemyLightRangedAttackRange = 32 * 8;
-		enemyHeavyRangedAttackRange = 32 * 8;
+		enemyLightMeleeAttackRange = 32 * 1.5;
+		enemyHeavyMeleeAttackRange = 32 * 1.5;
+		enemyLightRangedAttackRange = 32 * 6;
+		enemyHeavyRangedAttackRange = 32 * 6;
 		
 		// Enemy Total Damage Dealt with attack after multipliers and resistances
 		enemyTotalDamageDealt = 0;

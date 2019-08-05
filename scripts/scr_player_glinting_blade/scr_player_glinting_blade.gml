@@ -40,20 +40,48 @@ if playerImageIndex <= 5 {
 			playerDirectionFacing = target_.enemyDirectionFacing;
 			switch (target_.enemyDirectionFacing) {
 				case enemydirection.right:
-					x = target_.x - (32 * 1.5);
-					y = target_.y;
+					with playerGroundHurtbox {
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x - (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+					}
+					if playerDirectionFacing > 3 {
+						playerDirectionFacing -= 4;
+					}
+					if playerDirectionFacing < 0 {
+						playerDirectionFacing += 4;
+					}
 					break;
 				case enemydirection.up:
-					x = target_.x;
-					y = target_.y + (32 * 1.5);
+					with playerGroundHurtbox {
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y + (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+					}
+					if playerDirectionFacing > 3 {
+						playerDirectionFacing -= 4;
+					}
+					if playerDirectionFacing < 0 {
+						playerDirectionFacing += 4;
+					}
 					break;
 				case enemydirection.left:
-					x = target_.x + (32 * 1.5);
-					y = target_.y;
+					with playerGroundHurtbox {
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x + (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+					}
+					if playerDirectionFacing > 3 {
+						playerDirectionFacing -= 4;
+					}
+					if playerDirectionFacing < 0 {
+						playerDirectionFacing += 4;
+					}
 					break;
 				case enemydirection.down:
-					x = target_.x;
-					y = target_.y - (32 * 1.5);
+					with playerGroundHurtbox {
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y - (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+					}
+					if playerDirectionFacing > 3 {
+						playerDirectionFacing -= 4;
+					}
+					if playerDirectionFacing < 0 {
+						playerDirectionFacing += 4;
+					}
 					break;
 			}
 			// I add just 3 onto the enemy timer so that the timer doesn't run out the exact moment
@@ -61,6 +89,10 @@ if playerImageIndex <= 5 {
 			// an error. Essentially lets the debuff last for 3 more frames, which is needed because 
 			// there's a hitbox that's created 3 frames after these lines are run.
 			target_.glintingBladeTimer += 3;
+			// Stun the target as the player attacks, so that the target cannot rotate
+			// to immediately react with an attack
+			target_.stunActive = true;
+			target_.stunTimer = room_speed * 1;
 		}
 		// Else if Glinting Blade is not attached to an enemy, then teleport to Glinting Blade's location
 		// and deal AoE damage to anything around

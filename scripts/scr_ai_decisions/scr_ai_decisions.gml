@@ -60,7 +60,7 @@ if instance_exists(obj_player) {
 									enemy_heal_target_grid_ = ds_grid_create(8, (ds_list_size(objectIDsInBattle) + 1));
 								}
 								if ds_exists(enemy_heal_target_grid_, ds_type_grid) {
-									iteration_ = 0;
+									iteration_ = -1;
 									temporary_instance_to_reference_ = obj_player.id;
 									ds_grid_set(enemy_heal_target_grid_, 0, iteration_, "Player");
 									ds_grid_set(enemy_heal_target_grid_, 1, iteration_, obj_player.id);
@@ -112,7 +112,7 @@ if instance_exists(obj_player) {
 											if j != iteration_ {
 												// If the object in question is close enough to be considered adjacent to potential heal target
 												if point_distance(temporary_instance_to_reference_.x, temporary_instance_to_reference_.y, ds_grid_get(enemy_heal_target_grid_, 4, j), ds_grid_get(enemy_heal_target_grid_, 5, j)) <= obj_ai_decision_making.potentialTargetsMaximumDistanceToBeConsideredAdjacentToSpecificPotentialHealTarget {
-													if temporary_instance_to_reference_ != obj_player.id {
+													if temporary_instance_to_reference_.id != obj_player.id {
 														// If the potential heal target is an enemy (meaning its a valid potential heal target):
 														if temporary_instance_to_reference_.combatFriendlyStatus == "Enemy" {
 															// If the target adjacent to heal target is an enemy (meaning its an ally of potential heal target):
@@ -251,7 +251,7 @@ if instance_exists(obj_player) {
 									temporary_instance_to_reference_ = ds_grid_get(enemy_target_grid_, 0, k);
 									if instance_exists(temporary_instance_to_reference_) {
 										var target_of_target_ = noone;
-										if temporary_instance_to_reference_ != obj_player.id {
+										if temporary_instance_to_reference_.id != obj_player.id {
 											target_of_target_ = temporary_instance_to_reference_.currentTargetToFocus;
 										}
 										else {

@@ -507,10 +507,10 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 		if objectArchetype == "Healer" {
 			if currentTargetToHeal != noone {
 				if instance_exists(currentTargetToHeal) {
-					// Set point direction right before sending to attack scripts
-					pointDirection = point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y);
 					#region Heal Ally
 					if chosenEngine == "Heal Ally" {
+						// Set point direction right before sending to attack scripts
+						pointDirection = point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y);
 						// If the obj_enemy is not within enemyHealAllyRange
 						if point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) > enemyHealAllyRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
@@ -529,7 +529,7 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 							}
 						}
 						// Else if the obj_enemy doesn't have enough mana to execute heal
-						else if enemyHealManaCost > enemyCurrentMana {
+						else if 450 > enemyCurrentMana { //enemyHealManaCost > enemyCurrentMana {
 							// Evaluate current mana and mana regen vs heal ally cost, set timer based on
 							// exact amount of frames + 1 needed to get to the mana cost.
 							if !enemyTimeUntilNextManaAbilityUsableTimerSet {
@@ -547,18 +547,21 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 						// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
 						// has enough mana to execute heal) then execute heal
 						else {
-							// execute heal ally script
-							enemyCurrentMana -= enemyHealManaCost;
-							enemyState = enemystates.healAlly;
-							enemyStateSprite = enemystates.healAlly;
-							chosenEngine = "";
-							decisionMadeForTargetAndAction = false;
-							enemyImageIndex = 0;
-							alreadyTriedToChaseTimer = 0;
-							alreadyTriedToChase = false;
-							enemyTimeUntilNextManaAbilityUsableTimer = 0;
-							enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-							healAllyEngineTimer = healAllyEngineTimerBaseTime;
+							if enemyTimeUntilNextAttackUsableTimer < 0 {
+								// execute heal ally script
+								enemyCurrentMana -= enemyHealManaCost;
+								enemyState = enemystates.healAlly;
+								enemyStateSprite = enemystates.healAlly;
+								chosenEngine = "";
+								decisionMadeForTargetAndAction = false;
+								enemyImageIndex = 0;
+								enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
+								alreadyTriedToChaseTimer = 0;
+								alreadyTriedToChase = false;
+								enemyTimeUntilNextManaAbilityUsableTimer = 0;
+								enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+								healAllyEngineTimer = healAllyEngineTimerBaseTime;
+							}
 						}
 					}
 					#endregion

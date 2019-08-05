@@ -92,11 +92,11 @@ if stunActive {
 	chosenEngine = "";
 	decisionMadeForTargetAndAction = false;
 	alreadyTriedToChase = false;
-	alreadyTriedToChaseTimer = 0;
+	alreadyTriedToChaseTimer = -1;
 	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
-	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = -1;
 	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimer = -1;
 }
 
 

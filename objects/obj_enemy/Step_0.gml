@@ -19,12 +19,12 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 	switch (objectArchetype) {
 		case "Healer": enemyAttackPatternWeight = attackPatternStartWeight * (1 / 4);
 			targetOfTargetFocusIsDifferentArchetypesForTargetingPurposesStartWeightObjectMultiplier = 1.0;
-			heavyMeleeEngineWeightMultiplier = 0.7;
-			lightMeleeEngineWeightMultiplier = 0.7;
+			heavyMeleeEngineWeightMultiplier = 0.75;
+			lightMeleeEngineWeightMultiplier = 0.75;
 			heavyRangedEngineWeightMultiplier = 0.9;
 			lightRangedEngineWeightMultiplier = 1.0;
 			runAwayEngineWeightMultiplier = 0.6;
-			healAllyEngineWeightMultiplier = 1.3;
+			healAllyEngineWeightMultiplier = 1.2;
 			break;
 		case "Tank": enemyAttackPatternWeight = attackPatternStartWeight * (3 / 2);
 			targetOfTargetFocusIsDifferentArchetypesForTargetingPurposesStartWeightObjectMultiplier = 1.3;
@@ -401,7 +401,7 @@ scr_track_enemy_buffs_and_debuffs();
 scr_track_enemy_stats();
 
 
-if objectArchetype == "" {
+if objectArchetype == "Healer" {
 	show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));
 	show_debug_message(string(id) + "'s state is: " + string(enemyState));
 	show_debug_message("For " + string(self.id) + " these are the following weights for heavy melee attack:");

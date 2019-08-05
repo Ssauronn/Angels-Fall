@@ -10,7 +10,7 @@ avoid instances where the enemy is set just inside the max range for an attack, 
 moves 1 pixel away and the entire attack wiffs
 */
 melee_distance_multiplier_ = 0.75;
-ranged_distance_multiplier_ = 0.5;
+ranged_distance_multiplier_ = 0.75;
 heal_distance_multiplier_ = 0.5;
 
 switch (chosenEngine) {

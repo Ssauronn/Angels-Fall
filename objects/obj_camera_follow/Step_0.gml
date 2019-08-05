@@ -7,5 +7,6 @@ if followObject != noone {
 
 x += (moveXTo - x) / cameraFollowSpeed;
 y += (moveYTo - y) / cameraFollowSpeed;
+*/
 
 

@@ -21,5 +21,6 @@ moveXTo = x;
 moveYTo = y;
 
 cameraFollowSpeed = 10;
+*/
 
 
