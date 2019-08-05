@@ -196,8 +196,10 @@ if instance_exists(obj_enemy) {
 				slowEnemyTimeWithParryActive = true;
 			}
 			else {
-				slowEnemyTimeWithParryActive = false;
-				enemyGameSpeed += 1;
+				if slowEnemyTimeWithParryActive {
+					slowEnemyTimeWithParryActive = false;
+					enemyGameSpeed += 1;
+				}
 			}
 		}
 	}
