@@ -60,11 +60,15 @@ else if point_direction_to_target_ > 135 && point_direction_to_target_ <= 225 {
 else if point_direction_to_target_ > 225 && point_direction_to_target_ <= 315 {
 	original_target_quadrant_ = 3;
 }
+var collision_found_;
 for (i = 0; i < 360; i++) {
-	var collision_found_ = false;
+	collision_found_ = false;
 	var k;
 	for (k = 0; k <= ds_list_size(collision_objects_) - 1; k++) {
 		if place_meeting(current_target_x_, current_target_y_, ds_list_find_value(collision_objects_, k)) {
+			collision_found_ = true;
+		}
+		if collision_line(x, y, current_target_x_, current_target_y_, obj_wall, true, true) {
 			collision_found_ = true;
 		}
 	}

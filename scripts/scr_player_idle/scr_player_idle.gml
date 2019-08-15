@@ -84,6 +84,7 @@ if instance_exists(obj_player) {
 		playerState = playerstates.parryready;
 		playerStateSprite = playerstates.parryready;
 		playerImageIndex = 0;
+		currentSpeed = 0;
 	}
 	#endregion
 }

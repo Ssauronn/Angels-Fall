@@ -75,6 +75,9 @@ switch (enemy_name_) {
 		currentSpeed = 0;
 		currentDirection = 0;
 		collisionFound = -1;
+		xPointToMoveTo = -1;
+		yPointToMoveTo = -1;
+		pointToMoveToTimer = -1;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -425,6 +428,9 @@ switch (enemy_name_) {
 		currentSpeed = 0;
 		currentDirection = 0;
 		collisionFound = -1;
+		xPointToMoveTo = -1;
+		yPointToMoveTo = -1;
+		pointToMoveToTimer = -1;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -777,6 +783,9 @@ switch (enemy_name_) {
 		currentSpeed = 0;
 		currentDirection = 0;
 		collisionFound = -1;
+		xPointToMoveTo = -1;
+		yPointToMoveTo = -1;
+		pointToMoveToTimer = -1;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -1125,6 +1134,9 @@ switch (enemy_name_) {
 		currentSpeed = 0;
 		currentDirection = 0;
 		collisionFound = -1;
+		xPointToMoveTo = -1;
+		yPointToMoveTo = -1;
+		pointToMoveToTimer = -1;
 		
 		// Path variables
 		// Path the enemy will follow
