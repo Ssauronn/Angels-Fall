@@ -179,6 +179,7 @@ switch equipped_ability_ {
 				lastAttackButtonPressed = "";
 			}
 		}
+		break;
 	case "Rushdown":
 		if combo_ {
 			if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) && (playerCurrentMana >= obj_skill_tree.rushdownManaCost) {

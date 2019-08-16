@@ -7,7 +7,7 @@ keyBarAbilityTwoChosen = "Hidden Dagger";
 keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "Exploit Weakness";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Diabolus Blast";
+keyBarAbilityFourChosen = "Purifying Rage";
 keyBarAbilityFourEquipped = false;
 
 

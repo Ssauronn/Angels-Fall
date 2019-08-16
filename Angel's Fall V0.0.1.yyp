@@ -407,6 +407,14 @@
             }
         },
         {
+            "Key": "2bd2be53-6c16-405f-ae03-0332acbc046a",
+            "Value": {
+                "id": "290df19e-8f55-4ccf-9494-829611c23117",
+                "resourcePath": "sprites\\spr_diabolus_blast_hitbox\\spr_diabolus_blast_hitbox.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "2cf098b8-9b09-469a-a213-8d208f392c86",
             "Value": {
                 "id": "ee1ff28b-9302-4c19-aada-7b073b7e45f0",
@@ -2004,6 +2012,14 @@
                 "id": "02b389f6-356b-4c06-b584-921e78c50fd1",
                 "resourcePath": "sprites\\spr_prime_damage_buff\\spr_prime_damage_buff.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "e6e2ee59-5a48-4e9d-aef9-480639237897",
+            "Value": {
+                "id": "85082707-7f66-4176-a04e-1227649280aa",
+                "resourcePath": "views\\e6e2ee59-5a48-4e9d-aef9-480639237897.yy",
+                "resourceType": "GMFolder"
             }
         },
         {

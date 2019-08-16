@@ -139,7 +139,7 @@ else {
 	playerState = playerstates.idle;
 	playerStateSprite = playerstates.idle;
 	hitboxCreated = false;
-	obj_skill_tree.rushdownDashDamageMultiplierActive = true;
+	obj_skill_tree.rushdownDashDamageMultiplierActive = false;
 	obj_skill_tree.rushdownDashed = false;
 	obj_skill_tree.rushdownDashTimer = -1;
 }
