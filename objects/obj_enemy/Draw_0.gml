@@ -31,3 +31,4 @@ else if combatFriendlyStatus == "Enemy" {
 	draw_text_ext_transformed_color(x - 20, y - 40, "Enemy", 10, 32, 1, 1, 0, c_red, c_red, c_red, c_red, 1);
 }
 
+

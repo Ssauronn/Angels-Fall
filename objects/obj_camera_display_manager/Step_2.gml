@@ -1,6 +1,8 @@
 /// @description Set Camera Variables
 camera_set_view_size(view_camera[0], viewW, viewH);
 
+// Set up camera variables before setting the position. Instead of setting to the camera target directly, I
+// set to the move_to_ position because that will give me the desired rubber band effect for the camera.
 var round_x_ = viewW / surface_get_width(application_surface);
 var current_x_ = camera_get_view_x(view_camera[0]);
 var current_y_ = camera_get_view_y(view_camera[0]);

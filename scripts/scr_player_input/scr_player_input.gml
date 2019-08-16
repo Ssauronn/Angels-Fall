@@ -1,4 +1,6 @@
 ///@description PlayerInputScript
+key_escape = keyboard_check_released(vk_escape);
+
 // get movement inputs
 key_nokey = ((!keyboard_check(ord("W"))) && (!keyboard_check(ord("A"))) && (!keyboard_check(ord("S"))) && (!keyboard_check(ord("D"))));
 key_up = (keyboard_check(ord("W")));
