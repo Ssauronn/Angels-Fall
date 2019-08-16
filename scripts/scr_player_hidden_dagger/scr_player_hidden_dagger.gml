@@ -40,10 +40,10 @@ if instance_exists(obj_player) {
 		}
 		playerHitbox.owner = owner_;
 		playerHitbox.playerHitboxAttackType = "Melee";
-		playerHitbox.playerHitboxDamageType = "Basic Melee";
+		playerHitbox.playerHitboxDamageType = "Ability";
 		playerHitbox.playerHitboxAbilityOrigin = "Hidden Dagger";
 		playerHitbox.playerHitboxHeal = false;
-		playerHitbox.playerHitboxValue = 0;
+		playerHitbox.playerHitboxValue = obj_skill_tree.hiddenDaggerDamage;
 		playerHitbox.playerHitboxCollisionFound = false;
 		playerHitbox.playerHitboxLifetime = 1;
 		playerHitbox.playerHitboxCollidedWithWall = false;
