@@ -95,4 +95,22 @@ if stunActive {
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
 
+if forceReturnToIdleState {
+	forceReturnToIdleState = false;
+	currentTargetToFocus = noone;
+	currentTargetToHeal = noone;
+	hitboxCreated = false;
+	enemyState = enemystates.idle;
+	enemyStateSprite = enemystates.idle;
+	enemyImageIndex = 0;
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+}
+
 

@@ -3,11 +3,11 @@
 primeAbilityChosen = "Solidify";
 keyBarAbilityOneChosen = "Glinting Blade";
 keyBarAbilityOneEquipped = true;
-keyBarAbilityTwoChosen = "Hidden Dagger";
+keyBarAbilityTwoChosen = "Exploit Weakness";
 keyBarAbilityTwoEquipped = false;
-keyBarAbilityThreeChosen = "Exploit Weakness";
+keyBarAbilityThreeChosen = "All Out Attack";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Purifying Rage";
+keyBarAbilityFourChosen = "Bindings of the Caelesti";
 keyBarAbilityFourEquipped = false;
 
 
