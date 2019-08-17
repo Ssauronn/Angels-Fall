@@ -132,4 +132,28 @@ if stunActive {
 	}
 }
 
+if forceReturnToIdleState {
+	forceReturnToIdleState = false;
+	currentTargetToFocus = noone;
+	currentTargetToHeal = noone;
+	// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
+	// reset the timer for chasing, as well as setting alreadyTriedToChase to true.
+	enemyState = enemystates.idle;
+	enemyStateSprite = enemystates.idle;
+	chosenEngine = "";
+	decisionMadeForTargetAndAction = false;
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+	// Path variables resetting and destroying the path to prevent memory leak
+	pathPos = 1;
+	pathCreated = false;
+	if path_exists(myPath) {
+		path_delete(myPath);
+	}
+}
+
 

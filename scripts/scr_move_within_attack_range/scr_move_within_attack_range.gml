@@ -286,6 +286,23 @@ if chosenEngine == "Heal Ally" {
 }
 #endregion
 
+if (!instance_exists(currentTargetToFocus)) && (x == xPointToMoveTo) && (y == yPointToMoveTo) {
+	// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
+	// reset the timer for chasing.
+	pathPos = 1;
+	pathCreated = false;
+	if path_exists(myPath) {
+		path_delete(myPath);
+	}
+	// Reset the state variables
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyState = enemystates.idle;
+	enemyStateSprite = enemystates.idle;
+	xPointToMoveTo = -1;
+	yPointToMoveTo = -1;
+	exit;
+}
 
 // If the timer is at or above 0, then reduce the value of the timer by 1. Then, if
 // after reducing that value, the timer is below 0, that means the timer has run out and
@@ -363,12 +380,35 @@ if stunActive {
 	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
+	xPointToMoveTo = -1;
+	yPointToMoveTo = -1;
 	// Path variables resetting and destroying the path to prevent memory leak
 	pathPos = 1;
 	pathCreated = false;
 	if path_exists(myPath) {
 		path_delete(myPath);
 	}
+}
+
+if forceReturnToIdleState {
+	forceReturnToIdleState = false;
+	currentTargetToFocus = noone;
+	currentTargetToHeal = noone;
+	// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
+	// reset the timer for chasing.
+	pathPos = 1;
+	pathCreated = false;
+	if path_exists(myPath) {
+		path_delete(myPath);
+	}
+	// Reset the state variables
+	alreadyTriedToChase = false;
+	alreadyTriedToChaseTimer = 0;
+	enemyState = enemystates.idle;
+	enemyStateSprite = enemystates.idle;
+	xPointToMoveTo = -1;
+	yPointToMoveTo = -1;
+	exit;
 }
 
 
