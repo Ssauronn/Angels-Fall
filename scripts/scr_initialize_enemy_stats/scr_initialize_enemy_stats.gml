@@ -221,6 +221,8 @@ switch (enemy_name_) {
 		angelicBarrageActive = false;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;
@@ -574,6 +576,8 @@ switch (enemy_name_) {
 		angelicBarrageActive = false;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;
@@ -929,6 +933,8 @@ switch (enemy_name_) {
 		angelicBarrageActive = false;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;
@@ -1280,6 +1286,8 @@ switch (enemy_name_) {
 		angelicBarrageActive = false;
 		angelicBarrageBaseDamageMultiplier = obj_skill_tree.angelicBarrageBaseDamageMultiplier;
 		angelicBarrageDamageMultiplier = 1;
+		angelicBarrageTicTimer = -1;
+		angelicBarrageTicTimerStartTime = obj_skill_tree.angelicBarrageTicTimerStartTime;
 		
 		// Holy Defense
 		holyDefenseActive = false;

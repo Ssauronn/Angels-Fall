@@ -11,7 +11,8 @@
         "32f220cf-e0a5-4e87-b133-51411d40fa74",
         "15540ead-a7d6-4c18-a35e-3acdb6a9c595",
         "b8c02cc6-e4de-4019-8c69-b75b20fb880d",
-        "1d70259f-29e9-4faa-ab72-7e30db958082"
+        "1d70259f-29e9-4faa-ab72-7e30db958082",
+        "11776d3d-1e32-47fe-8c5d-c65584bf4bc4"
     ],
     "filterType": "GMSprite",
     "folderName": "grp_hitboxes",

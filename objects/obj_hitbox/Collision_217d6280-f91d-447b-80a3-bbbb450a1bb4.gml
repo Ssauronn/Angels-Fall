@@ -52,41 +52,47 @@ if owner_ != 0 {
 		// who have collided with the object inside an array (managed in the Step event) and start a countdown for 
 		// the time between tics. Apply damage as well if necessary.
 		if playerHitboxPersistAfterCollision {
-			// If the array already exists, store the information needed inside the array, if it hasn't already been
-			// stored.
-			if is_array(playerHitboxTargetArray) {
-				// Check to see if the target has been hit, and if so, do nothing.
-				var i, target_already_hit_;
-				target_already_hit_ = false;
-				for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
-					if playerHitboxTargetArray[i, 0] == other_owner_ {
-						target_already_hit_ = true;
+			// As long as the hitbox colliding with the hurtbox isn't owned by the same object and is
+			// meant to deal damage, then determine potential targets and count down the tic timers
+			if !(!playerHitboxHeal && owner_is_self_) {
+				// If the array already exists, store the information needed inside the array, if it 
+				// hasn't already been stored.
+				if is_array(playerHitboxTargetArray) {
+					// Check to see if the target has been hit, and if so, do nothing.
+					var i, target_already_hit_;
+					target_already_hit_ = false;
+					for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
+						var instance_to_reference_ = playerHitboxTargetArray[i, 0];
+						if instance_to_reference_.id == other_owner_ {
+							target_already_hit_ = true;
+						}
+					}
+					// If the target hasn't been hit yet, store the object ID inside this array and set it up to be damaged.
+					// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
+					if !target_already_hit_ {
+						playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 0] = other_owner_;
+						playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 1] = 0;
 					}
 				}
-				// If the target hasn't been hit yet, store the object ID inside this array and set it up to be damaged.
+				// Else if the array doesn't already exist, create and store the information needed inside the array.
 				// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
-				if !target_already_hit_ {
-					playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 0] = other_owner_;
-					playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 1] = 0;
+				else {
+					playerHitboxTargetArray[0, 0] = other_owner_;
+					playerHitboxTargetArray[0, 1] = 0;
 				}
-			}
-			// Else if the array doesn't already exist, create and store the information needed inside the array.
-			// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
-			else {
-				playerHitboxTargetArray[0, 0] = other_owner_;
-				playerHitboxTargetArray[0, 1] = 0;
-			}
-			// Loop through the array that now exists and check to see if any objects need to be damaged. If so, damage
-			// them, then reset the tic timer.
-			var i;
-			for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
-				// If the tic timer for the object being collided with is at or less than 0, apply damage/healing and
-				// reset the tic timer. For reference, the tic timer in this situation (a hitbox that persists after
-				// collision) is not in reference to DoT damage. The tic timer in this situation is in reference to
-				// the time between when a hitbox persisting after collision will deal damage.
-				if playerHitboxTargetArray[i, 1] <= 0 {
-					apply_damage_and_healing(owner_, other_owner_);
-					playerHitboxTargetArray[i, 1] = playerHitboxTicTimer;
+				// Loop through the array that now exists and check to see if any objects need to be damaged. If so, damage
+				// them, then reset the tic timer.
+				var i;
+				var array_height_ = array_height_2d(playerHitboxTargetArray);
+				for (i = 0; i <= array_height_ - 1; i++) {
+					// If the tic timer for the object being collided with is at or less than 0, apply damage/healing and
+					// reset the tic timer. For reference, the tic timer in this situation (a hitbox that persists after
+					// collision) is not in reference to DoT damage. The tic timer in this situation is in reference to
+					// the time between when a hitbox persisting after collision will deal damage.
+					if playerHitboxTargetArray[i, 1] <= 0 {
+						apply_damage_and_healing(owner_, other_owner_);
+						playerHitboxTargetArray[i, 1] = playerHitboxTicTimer;
+					}
 				}
 			}
 		}
@@ -107,41 +113,45 @@ if owner_ != 0 {
 		// who have collided with the object inside an array (managed in the Step event) and start a countdown for 
 		// the time between tics. Apply damage as well if necessary.
 		if enemyHitboxPersistAfterCollision {
-			// If the array already exists, store the information needed inside the array, if it hasn't already been
-			// stored.
-			if is_array(enemyHitboxTargetArray) {
-				// Check to see if the target has been hit, and if so, do nothing.
-				var i, target_already_hit_;
-				target_already_hit_ = false;
-				for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
-					if enemyHitboxTargetArray[i, 0] == other_owner_ {
-						target_already_hit_ = true;
+			// As long as the hitbox colliding with the hurtbox isn't meant to damage others and isn't
+			// owned by the same object, then determine all potential targets and count down tic timers
+			if !(!enemyHitboxHeal && owner_is_self_) {
+				// If the array already exists, store the information needed inside the array, if it 
+				// hasn't already been stored.
+				if is_array(enemyHitboxTargetArray) {
+					// Check to see if the target has been hit, and if so, do nothing.
+					var i, target_already_hit_;
+					target_already_hit_ = false;
+					for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
+						if enemyHitboxTargetArray[i, 0] == other_owner_ {
+							target_already_hit_ = true;
+						}
+					}
+					// If the target hasn't been hit yet, store the object ID inside this array and set it up to be damaged.
+					// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
+					if !target_already_hit_ {
+						enemyHitboxTargetArray[array_height_2d(enemyHitboxTargetArray), 0] = other_owner_;
+						enemyHitboxTargetArray[array_height_2d(enemyHitboxTargetArray), 1] = 0;
 					}
 				}
-				// If the target hasn't been hit yet, store the object ID inside this array and set it up to be damaged.
+				// Else if the array doesn't already exist, create and store the information needed inside the array.
 				// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
-				if !target_already_hit_ {
-					enemyHitboxTargetArray[array_height_2d(enemyHitboxTargetArray), 0] = other_owner_;
-					enemyHitboxTargetArray[array_height_2d(enemyHitboxTargetArray), 1] = 0;
+				else {
+					enemyHitboxTargetArray[0, 0] = other_owner_;
+					enemyHitboxTargetArray[0, 1] = 0;
 				}
-			}
-			// Else if the array doesn't already exist, create and store the information needed inside the array.
-			// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
-			else {
-				enemyHitboxTargetArray[0, 0] = other_owner_;
-				enemyHitboxTargetArray[0, 1] = 0;
-			}
-			// Loop through the array that now exists and check to see if any objects need to be damaged. If so, damage
-			// them, then reset the tic timer.
-			var i;
-			for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
-				// If the tic timer for the object being collided with is at or less than 0, apply damage/healing and
-				// reset the tic timer. For reference, the tic timer in this situation (a hitbox that persists after
-				// collision) is not in reference to DoT damage. The tic timer in this situation is in reference to
-				// the time between when a hitbox persisting after collision will deal damage.
-				if enemyHitboxTargetArray[i, 1] <= 0 {
-					apply_damage_and_healing(owner_, other_owner_);
-					enemyHitboxTargetArray[i, 1] = enemyHitboxTicTimer;
+				// Loop through the array that now exists and check to see if any objects need to be damaged. If so, damage
+				// them, then reset the tic timer.
+				var i;
+				for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
+					// If the tic timer for the object being collided with is at or less than 0, apply damage/healing and
+					// reset the tic timer. For reference, the tic timer in this situation (a hitbox that persists after
+					// collision) is not in reference to DoT damage. The tic timer in this situation is in reference to
+					// the time between when a hitbox persisting after collision will deal damage.
+					if enemyHitboxTargetArray[i, 1] <= 0 {
+						apply_damage_and_healing(owner_, other_owner_);
+						enemyHitboxTargetArray[i, 1] = enemyHitboxTicTimer;
+					}
 				}
 			}
 		}

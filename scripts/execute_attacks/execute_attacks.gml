@@ -536,6 +536,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.lightningSpearStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.lightningSpearManaCost;
 		playerCurrentMana += obj_skill_tree.lightningSpearManaRegen;
+		obj_skill_tree.lightningSpearTargetXPos = mouse_x;
+		obj_skill_tree.lightningSpearTargetYPos = mouse_y;
 		break;
 	case "Angelic Barrage":
 		if comboTrue != "" {
@@ -554,6 +556,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.angelicBarrageStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.angelicBarrageManaCost;
 		playerCurrentMana += obj_skill_tree.angelicBarrageManaRegen;
+		obj_skill_tree.angelicBarrageTargetXPos = mouse_x;
+		obj_skill_tree.angelicBarrageTargetYPos = mouse_y;
 		break;
 	case "Whirlwind":
 		if comboTrue != "" {
@@ -572,6 +576,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.whirlwindStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.whirlwindManaCost;
 		playerCurrentMana += obj_skill_tree.whirlwindManaRegen;
+		obj_skill_tree.whirlwindTargetXPos = mouse_x;
+		obj_skill_tree.whirlwindTargetYPos = mouse_y;
 		break;
 	#endregion
 	#region Necromancy Abilities

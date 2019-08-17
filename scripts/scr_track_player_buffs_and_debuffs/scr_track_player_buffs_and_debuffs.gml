@@ -14,9 +14,11 @@ with obj_skill_tree {
 				var i;
 				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 					var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
-					instance_to_reference_.trueCaelestiWingsDebuffTimer = -1;
-					instance_to_reference_.trueCaelestiWingsDebuffDamageMultiplier = 1;
-					instance_to_reference_.trueCaelestiWingsDebuffNumberOfDamageMultipliersAdded = 0;
+					if instance_exists(instance_to_reference_) {
+						instance_to_reference_.trueCaelestiWingsDebuffTimer = -1;
+						instance_to_reference_.trueCaelestiWingsDebuffDamageMultiplier = 1;
+						instance_to_reference_.trueCaelestiWingsDebuffNumberOfDamageMultipliersAdded = 0;
+					}
 				}
 			}
 		}
@@ -49,6 +51,21 @@ with obj_skill_tree {
 			armorOfTheCaelestiActive = false;
 			armorOfTheCaelestiTimer = -1;
 			armorOfTheCaelestiRemainingHPBeforeExplosion = 0;
+			if variable_global_exists("objectIDsInBattle") {
+				if ds_exists(objectIDsInBattle, ds_type_list) {
+					var i;
+					for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+						var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+						if instance_exists(instance_to_reference_) {
+							if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+								if point_distance(obj_player.x, obj_player.y, instance_to_reference_.x, instance_to_reference_.y) <= armorOfTheCaelestiExplosionRange {
+									create_dot_tic_hitbox(instance_to_reference_.id, armorOfTheCaelestiExplosionDamage, true);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		if armorOfTheCaelestiTimer < 0 {
 			armorOfTheCaelestiActive = false;

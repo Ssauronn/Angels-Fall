@@ -231,6 +231,14 @@
             }
         },
         {
+            "Key": "11776d3d-1e32-47fe-8c5d-c65584bf4bc4",
+            "Value": {
+                "id": "7e23cb76-e17d-47b4-bc17-8f7990f02496",
+                "resourcePath": "sprites\\spr_whirlwind_hitbox\\spr_whirlwind_hitbox.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "12348e03-c08a-49e2-8e22-948338e3e570",
             "Value": {
                 "id": "91cc2c8f-f5aa-46c9-8103-bdfb86b2d1b5",
