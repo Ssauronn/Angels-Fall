@@ -7,7 +7,7 @@ keyBarAbilityTwoChosen = "Exploit Weakness";
 keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "All Out Attack";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Bindings of the Caelesti";
+keyBarAbilityFourChosen = "Whirlwind";
 keyBarAbilityFourEquipped = false;
 
 
@@ -674,6 +674,8 @@ lightningSpearManaRegen = 0.2;
 lightningSpearStaminaRegen = 0;
 lightningSpearDamage = 150;
 lightningSpearSpeed = 32 * 4 / room_speed;
+lightningSpearTargetXPos = -1;
+lightningSpearTargetYPos = -1;
 lightningSpearBasicMeleeDamageMultiplierActive = false;
 lightningSpearBaseBasicMeleeDamageMultiplier = 2;
 lightningSpearBasicMeleeDamageMultiplier = 1;
@@ -694,6 +696,8 @@ angelicBarrageStaminaRegen = 0;
 // the damage buff if this is active, period.
 angelicBarrageActive = false;
 angelicBarrageDamage = 33.3334;
+angelicBarrageTargetXPos = -1;
+angelicBarrageTargetYPos = -1;
 angelicBarrageTicTimer = -1;
 angelicBarrageTicTimerStartTime = room_speed * 1;
 angelicBarrageAoEDiameter = 32 * 3.5;
@@ -704,7 +708,6 @@ angelicBarrageTargetArray = noone;
 // multiply the resistance multiplier against the damage.
 angelicBarrageBaseDamageMultiplier = 1.5;
 angelicBarrageDamageMultiplier = 1;
-angelicBarrageTimer = -1;
 angelicBarrageTimerStartTime = room_speed * 4;
 
 /// Whirlwind
@@ -721,7 +724,7 @@ whirlwindDamage = 50;
 whirlwindFirstPhaseActive = noone;
 whirlwindArrivedAtTargetPos = false;
 whirlwindSecondPhaseActive = noone;
-whirlwindSpeed = 32 * 4 / room_speed;
+whirlwindSpeed = 32 * 8 / room_speed;
 whirlwindDirection = 0;
 whirlwindRange = 32 * 4;
 whirlwindTargetXPos = 0;

@@ -11,7 +11,7 @@ else {
 }
 move_movement_entity(false);
 
-// Create the playerHitbox after frame 2	
+// Create the playerHitbox after frame 2
 if instance_exists(obj_player) {
 	if (!hitboxCreated) && (playerImageIndex > 2) {
 		hitboxCreated = true;
@@ -43,7 +43,7 @@ if instance_exists(obj_player) {
 				break;
 		}
 		playerHitbox.owner = owner_;
-		playerHitbox.playerHitboxAttackType = "Melee";
+		playerHitbox.playerHitboxAttackType = "AoE Damage";
 		playerHitbox.playerHitboxDamageType = "Ability";
 		playerHitbox.playerHitboxAbilityOrigin = "Diabolus Blast";
 		playerHitbox.playerHitboxHeal = false;

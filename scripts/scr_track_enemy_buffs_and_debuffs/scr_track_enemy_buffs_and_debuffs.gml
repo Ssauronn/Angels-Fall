@@ -48,8 +48,15 @@ else {
 
 // Angelic Barrage
 // This is set as true in the collision event with the hitbox; otherwise its set as false
+if angelicBarrageTicTimer >= 0 {
+	angelicBarrageTicTimer--;
+}
 if angelicBarrageActive {
 	angelicBarrageDamageMultiplier = angelicBarrageBaseDamageMultiplier;
+	if angelicBarrageTicTimer < 0 {
+		angelicBarrageTicTimer = angelicBarrageTicTimerStartTime;
+		create_dot_tic_hitbox(self, obj_skill_tree.angelicBarrageDamage, true);
+	}
 }
 else {
 	angelicBarrageDamageMultiplier = 1;

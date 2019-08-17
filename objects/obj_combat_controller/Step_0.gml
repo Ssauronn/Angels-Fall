@@ -66,13 +66,13 @@ if ds_exists(playerHitboxList, ds_type_list) {
 						}
 						else if playerHitboxAbilityOrigin == "Glinting Blade" {
 							var distance_to_target_ = point_distance(x, y, obj_skill_tree.glintingBladeTargetXPos, obj_skill_tree.glintingBladeTargetYPos);
-							if distance_to_target_ > obj_skill_tree.glintingBladeSpeed {
+							if distance_to_target_ > (obj_skill_tree.glintingBladeSpeed * playerTotalSpeed) {
 								x += lengthdir_x(obj_skill_tree.glintingBladeSpeed, obj_skill_tree.glintingBladeDirection) * playerTotalSpeed;
 								y += lengthdir_y(obj_skill_tree.glintingBladeSpeed, obj_skill_tree.glintingBladeDirection) * playerTotalSpeed;
 								obj_skill_tree.glintingBladeXPos = x;
 								obj_skill_tree.glintingBladeYPos = y;
 							}
-							else if distance_to_target_ <= obj_skill_tree.glintingBladeSpeed {
+							else if distance_to_target_ <= (obj_skill_tree.glintingBladeSpeed * playerTotalSpeed) {
 								obj_skill_tree.glintingBladeActive = true;
 								obj_skill_tree.glintingBladeArrivedAtTargetPos = true;
 								obj_skill_tree.glintingBladeAttachedToEnemy = noone;
@@ -88,15 +88,74 @@ if ds_exists(playerHitboxList, ds_type_list) {
 						}
 						else if playerHitboxAbilityOrigin == "Whirlwind" {
 							var distance_to_target_ = point_distance(x, y, obj_skill_tree.whirlwindTargetXPos, obj_skill_tree.whirlwindTargetYPos);
-							if distance_to_target_ > obj_skill_tree.whirlwindSpeed {
+							if distance_to_target_ > (obj_skill_tree.whirlwindSpeed * playerTotalSpeed) {
+								obj_skill_tree.whirlwindArrivedAtTargetPos = false;
 								x += lengthdir_x(obj_skill_tree.whirlwindSpeed, obj_skill_tree.whirlwindDirection) * playerTotalSpeed;
 								y += lengthdir_y(obj_skill_tree.whirlwindSpeed, obj_skill_tree.whirlwindDirection) * playerTotalSpeed;
 							}
-							else if distance_to_target_ <= obj_skill_tree.whirlwindSpeed {
-								obj_skill_tree.whirlwindArrivedAtTargetPos = true;
-								playerHitboxCollisionFound = true;
-								x = obj_skill_tree.whirlwindTargetXPos;
-								y = obj_skill_tree.whirlwindTargetYPos;
+							else if distance_to_target_ <= (obj_skill_tree.whirlwindSpeed * playerTotalSpeed) {
+								if obj_skill_tree.whirlwindFirstPhaseActive {
+									if instance_exists(obj_player) {
+										obj_skill_tree.whirlwindArrivedAtTargetPos = true;
+										playerHitboxCollisionFound = true;
+										// Create new whirlwind hitbox
+										obj_skill_tree.whirlwindFirstPhaseActive = false;
+										obj_skill_tree.whirlwindSecondPhaseActive = true;
+										with obj_player {
+											playerHitbox = instance_create_depth(obj_skill_tree.whirlwindTargetXPos, obj_skill_tree.whirlwindTargetYPos, -999, obj_hitbox);
+											var player_hitbox_ = playerHitbox.id;
+										}
+										obj_skill_tree.whirlwindTargetXPos = obj_player.x;
+										obj_skill_tree.whirlwindTargetYPos = obj_player.y;
+										obj_skill_tree.whirlwindDirection = point_direction(x, y, obj_skill_tree.whirlwindTargetXPos, obj_skill_tree.whirlwindTargetYPos);
+										player_hitbox_.sprite_index = spr_whirlwind_hitbox;
+										player_hitbox_.mask_index = spr_whirlwind_hitbox;
+										player_hitbox_.owner = obj_player.id;
+										player_hitbox_.playerProjectileHitboxSpeed = obj_skill_tree.whirlwindSpeed;
+										player_hitbox_.playerProjectileHitboxDirection = obj_skill_tree.whirlwindDirection;
+										player_hitbox_.image_angle = player_hitbox_.playerProjectileHitboxDirection;
+										player_hitbox_.visible = true;
+										player_hitbox_.playerHitboxAttackType = "Projectile";
+										player_hitbox_.playerHitboxDamageType = "Basic Melee";
+										player_hitbox_.playerHitboxAbilityOrigin = "Whirlwind";
+										player_hitbox_.playerHitboxHeal = false;
+										player_hitbox_.playerHitboxValue = obj_skill_tree.whirlwindDamage;
+										player_hitbox_.playerHitboxCollisionFound = false;
+										player_hitbox_.playerHitboxLifetime = 300;
+										player_hitbox_.playerHitboxCollidedWithWall = false;
+										player_hitbox_.playerHitboxPersistAfterCollision = true;
+										// The next variable is the timer that determines when an object will apply damage again to
+										// an object its colliding with repeatedly. This only takes effect if the hitbox's
+										// PersistAfterCollision variable (set above) is set to true. Otherwise, the hitbox will be
+										// destroyed upon colliding with the first object it can and no chance will be given for the
+										// hitbox to deal damage repeatedly to the object.
+										player_hitbox_.playerHitboxTicTimer = player_hitbox_.playerHitboxLifetime + 1;
+										player_hitbox_.playerHitboxCanBeTransferredThroughSoulTether = true;
+										// This is the variable which will be an array of all objects the hitbox has collided with
+										// during its lifetime, counting down the previously set playerHitboxTicTimer for each object
+										// it has collided with in the first place
+										player_hitbox_.playerHitboxTargetArray = noone;
+										// If the hitbox has a specific target to hit, this variable will be set to that ID, meaning
+										// that unless that hitbox collides with the exact object its meant for, it won't interact
+										// with that object. If the hitbox has no specific target, this is set to noone.
+										player_hitbox_.playerHitboxSpecificTarget = noone;
+
+										if ds_exists(obj_combat_controller.playerHitboxList, ds_type_list) {
+											ds_list_set(obj_combat_controller.playerHitboxList, ds_list_size(obj_combat_controller.playerHitboxList), player_hitbox_);
+										}
+										else {
+											obj_combat_controller.playerHitboxList = ds_list_create();
+											ds_list_set(obj_combat_controller.playerHitboxList, 0, player_hitbox_);
+										}
+									}
+								}
+								else if obj_skill_tree.whirlwindSecondPhaseActive {
+									obj_skill_tree.whirlwindActive = false;
+									obj_skill_tree.whirlwindArrivedAtTargetPos = true;
+									playerHitboxCollisionFound = true;
+									obj_skill_tree.whirlwindFirstPhaseActive = false;
+									obj_skill_tree.whirlwindSecondPhaseActive = false;
+								}
 							}
 						}
 					}
