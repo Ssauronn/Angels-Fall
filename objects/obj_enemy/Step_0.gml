@@ -190,7 +190,7 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 			// is left in battle, that has to be this object and also incidentally an enemy, and so therefore destroy the list.
 			if ds_list_size(objectIDsInBattle) == 1 {
 				ds_list_destroy(objectIDsInBattle);
-				objectIDsInBattle = -1;
+				objectIDsInBattle = noone;
 				friendlyHealersInBattle = 0;
 				friendlyTanksInBattle = 0;
 				friendlyMeleeDPSInBattle = 0;
@@ -242,7 +242,7 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 			}
 			if ds_list_size(objectIDsFollowingPlayer) == 1 {
 				ds_list_destroy(objectIDsFollowingPlayer);
-				objectIDsFollowingPlayer = -1;
+				objectIDsFollowingPlayer = noone;
 			}
 			else {
 				ds_list_delete(objectIDsFollowingPlayer, ds_list_find_index(objectIDsFollowingPlayer, self));
@@ -256,7 +256,7 @@ if variable_global_exists("objectIDsInBattle") {
 	if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= 0 {
 		if ds_exists(objectIDsInBattle, ds_type_list) {
 			ds_list_destroy(objectIDsInBattle);
-			objectIDsInBattle = -1;
+			objectIDsInBattle = noone;
 			friendlyHealersInBattle = 0;
 			friendlyTanksInBattle = 0;
 			friendlyMeleeDPSInBattle = 0;
@@ -274,7 +274,7 @@ if variable_global_exists("objectIDsFollowingPlayer") {
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
 			ds_list_destroy(objectIDsFollowingPlayer);
-			objectIDsFollowingPlayer = -1;
+			objectIDsFollowingPlayer = noone;
 		}
 	}
 }

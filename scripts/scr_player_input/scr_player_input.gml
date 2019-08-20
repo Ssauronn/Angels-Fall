@@ -1,4 +1,7 @@
 ///@description PlayerInputScript
+key_restart = false;
+
+
 key_escape = keyboard_check_released(vk_escape);
 
 // get movement inputs

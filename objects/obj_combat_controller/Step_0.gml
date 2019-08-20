@@ -179,7 +179,7 @@ if ds_exists(playerHitboxList, ds_type_list) {
 							}
 							if !a_hitbox_still_exists_ {
 								ds_list_destroy(playerHitboxList);
-								playerHitboxList = -1;
+								playerHitboxList = noone;
 							}
 						}
 					}
@@ -221,7 +221,7 @@ if ds_exists(enemyHitboxList, ds_type_list) {
 							}
 							if !a_hitbox_still_exists_ {
 								ds_list_destroy(enemyHitboxList);
-								enemyHitboxList = -1;
+								enemyHitboxList = noone;
 							}
 						}
 					}

@@ -169,7 +169,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 										// is left in battle, that has to be this object and also incidentally an enemy, and so therefore destroy the list.
 										if ds_list_size(objectIDsInBattle) == 1 {
 											ds_list_destroy(objectIDsInBattle);
-											objectIDsInBattle = -1;
+											objectIDsInBattle = noone;
 											friendlyHealersInBattle = 0;
 											friendlyTanksInBattle = 0;
 											friendlyMeleeDPSInBattle = 0;
@@ -204,7 +204,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 								if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= 0 {
 									if ds_exists(objectIDsInBattle, ds_type_list) {
 										ds_list_destroy(objectIDsInBattle);
-										objectIDsInBattle = -1;
+										objectIDsInBattle = noone;
 										friendlyHealersInBattle = 0;
 										friendlyTanksInBattle = 0;
 										friendlyMeleeDPSInBattle = 0;
@@ -332,7 +332,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 										// is left in battle, that has to be this object and also incidentally an enemy, and so therefore destroy the list.
 										if ds_list_size(objectIDsInBattle) == 1 {
 											ds_list_destroy(objectIDsInBattle);
-											objectIDsInBattle = -1;
+											objectIDsInBattle = noone;
 											friendlyHealersInBattle = 0;
 											friendlyTanksInBattle = 0;
 											friendlyMeleeDPSInBattle = 0;
@@ -367,7 +367,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 								if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= 0 {
 									if ds_exists(objectIDsInBattle, ds_type_list) {
 										ds_list_destroy(objectIDsInBattle);
-										objectIDsInBattle = -1;
+										objectIDsInBattle = noone;
 										friendlyHealersInBattle = 0;
 										friendlyTanksInBattle = 0;
 										friendlyMeleeDPSInBattle = 0;
@@ -510,7 +510,7 @@ if primeAbilityChosen == "All is Given" {
 						}
 					}
 					ds_list_destroy(objectIDsFollowingPlayer);
-					objectIDsFollowingPlayer = -1;
+					objectIDsFollowingPlayer = noone;
 				}
 				if instance_to_sacrifice_found_ {
 					allIsGivenActive = true;
