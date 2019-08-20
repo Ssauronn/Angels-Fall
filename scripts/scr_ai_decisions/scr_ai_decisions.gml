@@ -5,7 +5,7 @@ if instance_exists(obj_player) {
 		// Destroy the objectIDsInBattle list if there are no objects in battle
 		if ds_list_size(objectIDsInBattle) < 1 {
 			ds_list_destroy(objectIDsInBattle)
-			objectIDsInBattle = -1;
+			objectIDsInBattle = noone;
 			exit;
 		}
 		#region Targeting Engine for Each Object In Combat

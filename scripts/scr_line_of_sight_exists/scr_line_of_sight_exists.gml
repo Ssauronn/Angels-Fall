@@ -39,13 +39,14 @@ else {
 }
 
 
+var collision_objects_ = noone;
 if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false, true) {
 	// If there's collision objects listed, set up the collision object list and get ready to check
 	// for alternate safe locations to teleport to.
 	if argument_count > 1 {
 		var j;
 		for (j = 0; j < (argument_count - 1); j++) {
-			var collision_objects_ = ds_list_create();
+			collision_objects_ = ds_list_create();
 			ds_list_add(collision_objects_, argument[j + 1]);
 		}
 	}
@@ -86,6 +87,7 @@ if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false,
 					path_delete(path_);
 					if ds_exists(collision_objects_, ds_type_list) {
 						ds_list_destroy(collision_objects_);
+						collision_objects_ = noone;
 					}
 					return false;
 				}
@@ -107,6 +109,12 @@ if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false,
 }
 else {
 	return true;
+}
+
+// Clean up the ds_list_, just in case
+if ds_exists(collision_objects_, ds_type_list) {
+	ds_list_destroy(collision_objects_);
+	collision_objects_ = noone;
 }
 
 

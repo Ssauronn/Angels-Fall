@@ -1991,6 +1991,14 @@
             }
         },
         {
+            "Key": "e38b9dee-e40a-4c08-ae35-7c6fbc506af2",
+            "Value": {
+                "id": "09294993-43a0-407a-9b99-36edb4125e06",
+                "resourcePath": "objects\\obj_game_manager\\obj_game_manager.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "e3fa57ac-08de-4ff9-a199-69c3ec88d204",
             "Value": {
                 "id": "f165001e-f474-4d00-afc1-ab4dd678472e",

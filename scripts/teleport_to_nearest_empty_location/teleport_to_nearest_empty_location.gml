@@ -23,6 +23,7 @@ var circle_x_ = argument[2];
 var circle_y_ = argument[3];
 // If there's collision objects listed, set up the collision object list and get ready to check
 // for alternate safe locations to teleport to.
+var collision_objects_ = noone;
 if argument_count > 4 {
 	var radius_of_target_circle_ = point_distance(target_x_, target_y_, circle_x_, circle_y_);
 	var current_target_x_ = target_x_;
@@ -31,7 +32,7 @@ if argument_count > 4 {
 	var point_direction_to_current_target_ = point_direction(circle_x_, circle_y_, current_target_x_, current_target_y_);
 	var j;
 	for (j = 0; j < (argument_count - 4); j++) {
-		var collision_objects_ = ds_list_create();
+		collision_objects_ = ds_list_create();
 		ds_list_add(collision_objects_, argument[j + 4]);
 	}
 }
@@ -84,6 +85,7 @@ for (i = 0; i < 360; i++) {
 		// Destroy the list before I do anything else to avoid a memory leak
 		if ds_exists(collision_objects_, ds_type_list) {
 			ds_list_destroy(collision_objects_);
+			collision_objects_ = noone;
 		}
 		// This is built specifically for my game. If the object I'm teleporting is a ground hurtbox, then
 		// I should teleport the owner instead. Otherwise, I should just teleport the object itself.
@@ -120,6 +122,9 @@ for (i = 0; i < 360; i++) {
 		return (current_target_quadrant_ - original_target_quadrant_);
 		break;
 	}
+}
+if ds_exists(collision_objects_, ds_type_list) {
+	ds_list_destroy(collision_objects_);
 }
 
 

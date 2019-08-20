@@ -32,6 +32,7 @@ if playerCurrentHP > playerMaxHP {
 }
 if playerCurrentHP <= 0 {
 	playerCurrentHP = 0;
+	key_restart = true;
 }
 if playerCurrentAnimecroHP > playerMaxAnimecroHP {
 	playerCurrentAnimecroHP = playerMaxAnimecroHP;
