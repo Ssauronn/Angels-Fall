@@ -190,6 +190,8 @@ if enemyCurrentHP <= 0 {
 	
 	// Destroy self after all things pertaining to the obj_enemy have been taken care of
 	instance_destroy(self);
+	// Exit the script afterwards so that no single line of code after this runs
+	exit;
 }
 #endregion
 
