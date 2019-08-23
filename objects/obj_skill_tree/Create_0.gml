@@ -11,6 +11,7 @@ keyBarAbilityFourChosen = "The One Power";
 keyBarAbilityFourEquipped = false;
 
 
+/// Setup all abilities
 #region Parry Ability and Effects
 // ---PARRY ABILITY---
 // Variable used to set which Parry ability will be used ("F" ability)
