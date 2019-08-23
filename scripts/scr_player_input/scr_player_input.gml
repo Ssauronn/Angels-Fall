@@ -74,6 +74,14 @@ if mouse_check_button_pressed(mb_right) {
 	}
 }
 
+// Measure duration of right mouse button held down
+if mouse_check_button(mb_right) {
+	key_attack_rmb_time_held_down++;
+}
+else {
+	key_attack_rmb_time_held_down = 0;
+}
+
 
 // get parry input
 key_parry = (keyboard_check_pressed(ord("F")));
