@@ -18,5 +18,8 @@ if playerAnimationSprite != noone {
 if obj_skill_tree.theOnePowerActive {
 	draw_circle_color(obj_skill_tree.theOnePowerOriginXPos, obj_skill_tree.theOnePowerOriginYPos, 16, c_red, c_red, true);
 }
+if obj_skill_tree.glintingBladeActive {
+	draw_circle_color(obj_skill_tree.glintingBladeXPos, obj_skill_tree.glintingBladeYPos, 3, c_red, c_blue, true);
+}
 
 

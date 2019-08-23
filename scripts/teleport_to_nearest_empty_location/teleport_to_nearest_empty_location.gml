@@ -31,8 +31,8 @@ if argument_count > 4 {
 	var point_direction_to_target_ = point_direction(circle_x_, circle_y_, target_x_, target_y_);
 	var point_direction_to_current_target_ = point_direction(circle_x_, circle_y_, current_target_x_, current_target_y_);
 	var j;
+	collision_objects_ = ds_list_create();
 	for (j = 0; j < (argument_count - 4); j++) {
-		collision_objects_ = ds_list_create();
 		ds_list_add(collision_objects_, argument[j + 4]);
 	}
 }
@@ -66,7 +66,8 @@ for (i = 0; i < 360; i++) {
 	collision_found_ = false;
 	var k;
 	for (k = 0; k <= ds_list_size(collision_objects_) - 1; k++) {
-		if place_meeting(current_target_x_, current_target_y_, ds_list_find_value(collision_objects_, k)) {
+		var object_colliding_with_ = ds_list_find_value(collision_objects_, k);
+		if place_meeting(current_target_x_, current_target_y_, object_colliding_with_) {
 			collision_found_ = true;
 		}
 		if collision_line(x, y, current_target_x_, current_target_y_, obj_wall, true, true) {
@@ -80,6 +81,7 @@ for (i = 0; i < 360; i++) {
 		}
 		current_target_x_ = circle_x_ + lengthdir_x(radius_of_target_circle_, point_direction_to_current_target_);
 		current_target_y_ = circle_y_ + lengthdir_y(radius_of_target_circle_, point_direction_to_current_target_);
+		collision_found_ = false;
 	}
 	else {
 		// Destroy the list before I do anything else to avoid a memory leak
