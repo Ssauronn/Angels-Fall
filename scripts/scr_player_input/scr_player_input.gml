@@ -59,7 +59,7 @@ key_bar_ability_one = false;
 key_bar_ability_two = false;
 key_bar_ability_three = false;
 key_bar_ability_four = false;
-if mouse_check_button(mb_right) {
+if mouse_check_button_pressed(mb_right) {
 	if obj_skill_tree.keyBarAbilityOneEquipped {
 		key_bar_ability_one = true;
 	}
