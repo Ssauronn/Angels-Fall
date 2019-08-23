@@ -14,8 +14,8 @@ if (comboCounterTimer < 0) || (obj_player.key_animecro_collect) {
 	// This one line below isn't needed, but it allows for instant updating of the health bar instead of a 1 frame delay
 	playerMaxHP += animecroPool * animecroMultiplier;
 	playerMaxAnimecroHP += animecroPool * animecroMultiplier;
-	playerCurrentAnimecroHP += animecroPool * animecroMultiplier;
-	playerCurrentHP += animecroPool * animecroMultiplier;
+	playerCurrentAnimecroHP += animecroPool * animecroMultiplier * 2;
+	playerCurrentHP += animecroPool * animecroMultiplier * 2;
 	playerCurrentBloodMagic += bloodMagicPool * animecroMultiplier;
 	bloodMagicPool = 0;
 	animecroPool = 0;
