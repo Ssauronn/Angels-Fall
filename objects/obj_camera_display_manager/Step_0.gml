@@ -1,6 +1,5 @@
 /// @description Handle Changing Camera Variables
-scr_player_input();
-if key_zoom {
+if obj_player.key_zoom {
 	zoom++;
 	
 	if zoom > maxZoom {

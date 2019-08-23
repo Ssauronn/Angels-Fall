@@ -59,7 +59,7 @@ key_bar_ability_one = false;
 key_bar_ability_two = false;
 key_bar_ability_three = false;
 key_bar_ability_four = false;
-if mouse_check_button(mb_right) {
+if mouse_check_button_pressed(mb_right) {
 	if obj_skill_tree.keyBarAbilityOneEquipped {
 		key_bar_ability_one = true;
 	}
@@ -72,6 +72,14 @@ if mouse_check_button(mb_right) {
 	else if obj_skill_tree.keyBarAbilityFourEquipped {
 		key_bar_ability_four = true;
 	}
+}
+
+// Measure duration of right mouse button held down
+if mouse_check_button(mb_right) {
+	key_attack_rmb_time_held_down++;
+}
+else {
+	key_attack_rmb_time_held_down = 0;
 }
 
 
