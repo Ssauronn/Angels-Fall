@@ -398,7 +398,7 @@ scr_track_enemy_buffs_and_debuffs();
 scr_track_enemy_stats();
 
 
-if objectArchetype == "Healer" {
+if objectArchetype == "" {
 	show_debug_message(string(id) + "'s chosen engine is: " + string(chosenEngine));
 	show_debug_message(string(id) + "'s state is: " + string(enemyState));
 	show_debug_message("For " + string(self.id) + " these are the following weights for heavy melee attack:");
