@@ -214,7 +214,7 @@ if ds_exists(playerHitboxList, ds_type_list) {
 											var current_target_ = obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget;
 											// If the target doesn't even exist, set a target that's within line of sight
 											if !instance_exists(current_target_) {
-												/////////////////////////////////////////
+												//////////////////////////////////////////
 												// Set target
 											}
 											// Else if hitbox has reached target location, deal damage, and then move onto the next
