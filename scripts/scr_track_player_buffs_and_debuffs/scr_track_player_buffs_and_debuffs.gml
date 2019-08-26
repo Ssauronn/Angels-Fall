@@ -32,11 +32,6 @@ with obj_skill_tree {
 	if !deathIncarnateFirstPhaseActive && !deathIncarnateSecondPhaseActive {
 		deathIncarnateSecondPhaseCurrentDamage = deathIncarnateSecondPhaseStartDamage;
 	}
-	// APPLY DAMAGE / CREATE HITBOX / APPLY BUFF / APPLY DEBUFF
-	// Just put this here to find it later. I need to reset deathIncarnateSecondPhaseCurrentDamage to
-	// equal deathIncarnateSecondPhaseStartDamage if the second phase is currently active and the player
-	// sends out a new death incarnate, immediately setting to firstphaseactive without both ever being 
-	// not active on either phase and resetting the current damage in the line above.
 	#endregion
 	#endregion
 	#endregion

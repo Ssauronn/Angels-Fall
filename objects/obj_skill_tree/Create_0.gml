@@ -162,17 +162,20 @@ deathIncarnateManaRegen = 0;
 deathIncarnateStaminaRegen = 0;
 deathIncarnateFirstPhaseActive = false;
 deathIncarnateFirstPhaseDamage = 15;
+deathIncarnateFirstPhaseWalkDirection = 0;
+deathIncarnateFirstPhaseTargetXPos = -1;
+deathIncarnateFirstPhaseTargetYPos = -1;
 deathIncarnateFirstPhaseMovementSpeed = 16 / room_speed;
-deathIncarnateTicTimer = -1;
-deathIncarnateTicTimerStartTime = room_speed * 0.5;
 deathIncarnateSecondPhaseActive = false;
-deathIncarnateSecondPhaseTargetArray = noone;
+deathIncarnateSecondPhaseTargetList = noone;
+deathIncarnateSecondPhaseCurrentTarget = noone;
 deathIncarnateSecondPhaseStartDamage = 400;
 deathIncarnateSecondPhaseSubsequentDamageMultiplier = 0.8;
 deathIncarnateSecondPhaseCurrentDamage = 400;
 deathIncarnateSecondPhaseMovementSpeed = (32 * 8) / room_speed;
-deathIncarnateTimer = -1;
-deathIncarnateTimerStartTime = room_speed * 8;
+deathIncarnateSecondPhaseReachedTarget = false;
+deathIncarnateImageIndex = 0;
+deathIncarnateFirstPhaseReachedTarget = false;
 #endregion
 
 #region Tier 2

@@ -503,6 +503,14 @@
             }
         },
         {
+            "Key": "321dd82f-589f-4348-b5ab-d7cc7fe5ea15",
+            "Value": {
+                "id": "b488e102-c4ea-427c-bf10-c7c7bfb0aae5",
+                "resourcePath": "sprites\\spr_death_incarnate_standing_down\\spr_death_incarnate_standing_down.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "32c96bee-1e63-4774-bd73-c05970df5fa8",
             "Value": {
                 "id": "35f86117-f580-4586-a730-dcdcb9e4fc80",
@@ -559,6 +567,14 @@
             }
         },
         {
+            "Key": "3a2eebd2-dead-4ced-8160-168e9bac2d58",
+            "Value": {
+                "id": "0dd7630a-d9b9-4067-b571-2345691b7ce3",
+                "resourcePath": "views\\3a2eebd2-dead-4ced-8160-168e9bac2d58.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "3a58c3d5-d503-4a2c-8629-0d744fa5e564",
             "Value": {
                 "id": "cb44a978-02bf-419e-ad1a-d2870be83d4a",
@@ -588,6 +604,14 @@
                 "id": "000da5fd-4b15-4f84-afac-72e2721f7dad",
                 "resourcePath": "rooms\\room0\\room0.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "3bee0e72-198b-45d8-8bc0-feade1e9b9f1",
+            "Value": {
+                "id": "b5bc2230-66d7-46f4-8313-77e5b2c135c6",
+                "resourcePath": "views\\3bee0e72-198b-45d8-8bc0-feade1e9b9f1.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -668,6 +692,14 @@
                 "id": "fbfe1a04-2d94-4867-9e87-705895f0178d",
                 "resourcePath": "scripts\\execute_attacks\\execute_attacks.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "44cb17a3-2225-44f0-bce1-4ac47a170959",
+            "Value": {
+                "id": "3f4fcc1f-7933-48bc-8590-d72cc7ae0026",
+                "resourcePath": "sprites\\spr_death_incarnate_dashing_down\\spr_death_incarnate_dashing_down.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -763,6 +795,14 @@
             "Value": {
                 "id": "7ed7b2a3-fab8-41e5-b88c-2a75f22073a7",
                 "resourcePath": "sprites\\spr_player_parry_ready_down\\spr_player_parry_ready_down.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "4d124360-3953-489c-b292-cda716cee4f2",
+            "Value": {
+                "id": "4586376d-91a6-43e7-a504-373ca842d506",
+                "resourcePath": "sprites\\spr_death_incarnate_walking_up\\spr_death_incarnate_walking_up.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -919,6 +959,14 @@
             }
         },
         {
+            "Key": "5f5fb537-3cc7-484a-be7b-ab60d25eecb7",
+            "Value": {
+                "id": "3f8ae050-e8a6-4072-a3c9-f38eff6b9858",
+                "resourcePath": "sprites\\spr_death_incarnate_dashing_up\\spr_death_incarnate_dashing_up.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "602da417-15a6-4b36-8652-caf4c746e444",
             "Value": {
                 "id": "7b222d17-58f4-45f0-9d59-991c6f01362c",
@@ -1015,6 +1063,14 @@
             }
         },
         {
+            "Key": "6d11da08-a18d-4c44-8075-b188d114fbe4",
+            "Value": {
+                "id": "7505d374-e87f-49ca-8d91-981e32834fb2",
+                "resourcePath": "views\\6d11da08-a18d-4c44-8075-b188d114fbe4.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "6f976a8c-f08f-40b7-af22-affcc4b27b0a",
             "Value": {
                 "id": "3008d3fa-f625-4db8-970d-fda9b2e7c392",
@@ -1084,6 +1140,14 @@
                 "id": "d5141a66-8b17-4867-b752-895690a576ba",
                 "resourcePath": "sprites\\spr_enemy_mage_idle\\spr_enemy_mage_idle.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "74d6a336-614b-4a02-b806-f29cc55e8896",
+            "Value": {
+                "id": "536f0fc8-a680-4ec8-bca0-a49fc773934e",
+                "resourcePath": "views\\74d6a336-614b-4a02-b806-f29cc55e8896.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -1231,6 +1295,14 @@
             }
         },
         {
+            "Key": "856c5081-351f-4f19-b2a2-dabddd11ef01",
+            "Value": {
+                "id": "de2fa83f-6cc0-42b9-8dff-107aac2f5f11",
+                "resourcePath": "sprites\\spr_death_incarnate_walking_right\\spr_death_incarnate_walking_right.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "86739193-7487-4575-852a-9b161b887976",
             "Value": {
                 "id": "58e4da65-166e-42d0-85e7-39ccc3a38d2c",
@@ -1252,6 +1324,14 @@
                 "id": "dd52be20-3314-4763-925a-d29cc0d9bd6f",
                 "resourcePath": "sprites\\spr_player_parry_ready_up\\spr_player_parry_ready_up.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "874c5605-d553-4813-b462-34d91b6d10e5",
+            "Value": {
+                "id": "076ec6b9-af78-4ada-a7b3-1fe639a8e750",
+                "resourcePath": "views\\874c5605-d553-4813-b462-34d91b6d10e5.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -1284,6 +1364,14 @@
                 "id": "fa9f4bc7-4824-4248-86d3-87960f0d11c1",
                 "resourcePath": "scripts\\scr_healer_light_melee\\scr_healer_light_melee.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8cc80df8-0f2d-4af2-ab0e-d7ea5c0561df",
+            "Value": {
+                "id": "81d3fea9-555a-4b40-8ff4-11a96a0d7cbf",
+                "resourcePath": "sprites\\spr_death_incarnate_standing_up\\spr_death_incarnate_standing_up.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -1439,6 +1527,14 @@
             }
         },
         {
+            "Key": "9e70da64-514a-43bd-bb6f-a39a16248974",
+            "Value": {
+                "id": "9239efed-7585-4e5f-9da6-3e1db9bcb048",
+                "resourcePath": "sprites\\spr_death_incarnate_standing_right\\spr_death_incarnate_standing_right.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "9f6baf49-d428-4019-abac-e734206b2064",
             "Value": {
                 "id": "b206010d-0287-4d93-915f-85676f0ec54f",
@@ -1471,6 +1567,14 @@
             }
         },
         {
+            "Key": "a21755c2-6dd9-46d5-934f-9dc4e13a0198",
+            "Value": {
+                "id": "55f4a470-229a-4415-a27f-77c758c1d69e",
+                "resourcePath": "sprites\\spr_death_incarnate_walking_left\\spr_death_incarnate_walking_left.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "a3067635-28de-430f-ae70-02534baa93e7",
             "Value": {
                 "id": "f1bfd588-16b9-4ef9-aeaf-e6ddc7089f8f",
@@ -1484,6 +1588,14 @@
                 "id": "d73cd658-a7a2-4b7b-ada5-342498917ea3",
                 "resourcePath": "scripts\\scr_player_parry_effect\\scr_player_parry_effect.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a623d930-c173-4409-b8f2-b05f6e1126c1",
+            "Value": {
+                "id": "8a080111-ad36-4a9d-bdd1-4165c5ac4648",
+                "resourcePath": "sprites\\spr_death_incarnate_attack_down\\spr_death_incarnate_attack_down.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -1711,6 +1823,14 @@
             }
         },
         {
+            "Key": "c22f3e07-b9f4-41ec-bcff-e30740cd2cfc",
+            "Value": {
+                "id": "5c1ce8ed-9c3f-49db-b36d-106fe66c1579",
+                "resourcePath": "sprites\\spr_death_incarnate_dashing_right\\spr_death_incarnate_dashing_right.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "c2fcde57-73c2-43d1-bd58-8cbb69874123",
             "Value": {
                 "id": "2f373ba7-2ec0-4a71-b8e4-319267d4a108",
@@ -1723,6 +1843,14 @@
             "Value": {
                 "id": "9a4fb600-79fe-4e65-9ccc-6480c4578c61",
                 "resourcePath": "sprites\\spr_enemy_mage_light_ranged\\spr_enemy_mage_light_ranged.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "c4684858-8495-4988-8426-1c42b9f55c1e",
+            "Value": {
+                "id": "63f94a0f-3e59-408a-9327-1af87794619e",
+                "resourcePath": "sprites\\spr_death_incarnate_attack_left\\spr_death_incarnate_attack_left.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -1839,6 +1967,14 @@
             }
         },
         {
+            "Key": "cd367357-4d9c-4656-833e-d87dd42b0281",
+            "Value": {
+                "id": "ec6cd781-a213-4a99-87a2-fa94b87f3604",
+                "resourcePath": "sprites\\spr_death_incarnate_standing_left\\spr_death_incarnate_standing_left.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "cdc9a456-68ad-4f8d-925c-cd98914ce5b8",
             "Value": {
                 "id": "b71c6f3c-5645-417c-93bd-2989a998a333",
@@ -1924,6 +2060,14 @@
                 "id": "bd0716ea-ec8d-446f-b1b4-22fc431bc7d5",
                 "resourcePath": "scripts\\scr_player_rushdown\\scr_player_rushdown.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d638775e-0bbc-4753-b9a6-6211b9aed88f",
+            "Value": {
+                "id": "89976dda-9e4c-4704-a1b5-36252736639a",
+                "resourcePath": "sprites\\spr_death_incarnate_dashing_left\\spr_death_incarnate_dashing_left.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -2079,6 +2223,14 @@
             }
         },
         {
+            "Key": "e970af2e-ee53-4d2d-925e-03bd0d8bd15d",
+            "Value": {
+                "id": "75f4d39d-d9c6-475d-9648-c153af9a8d31",
+                "resourcePath": "sprites\\spr_death_incarnate_walking_down\\spr_death_incarnate_walking_down.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "eaef6556-197d-4245-9a0d-a35ad37ae0e8",
             "Value": {
                 "id": "d1f2f59b-f1c2-449f-ba3e-819b3a351a52",
@@ -2099,6 +2251,14 @@
             "Value": {
                 "id": "e52b5da1-6796-4a1c-a11d-27927206035a",
                 "resourcePath": "sprites\\spr_enemy_healer_heavy_ranged\\spr_enemy_healer_heavy_ranged.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "ed0ad18f-a9dc-49ec-bc1d-914453118f25",
+            "Value": {
+                "id": "722b7cd3-9eb9-4f56-add7-f29304af7acb",
+                "resourcePath": "sprites\\spr_death_incarnate_attack_right\\spr_death_incarnate_attack_right.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -2212,6 +2372,14 @@
                 "id": "0d59717d-5342-4880-b6d4-698c9ea7d1f1",
                 "resourcePath": "scripts\\scr_mage_heavy_ranged\\scr_mage_heavy_ranged.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f84e0ed0-8bc0-4b21-bb02-ddc999af8a65",
+            "Value": {
+                "id": "d9b5b5a2-2523-4cd6-89b0-5a7c14302323",
+                "resourcePath": "sprites\\spr_death_incarnate_attack_up\\spr_death_incarnate_attack_up.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

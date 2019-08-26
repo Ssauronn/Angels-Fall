@@ -158,6 +158,122 @@ if ds_exists(playerHitboxList, ds_type_list) {
 								}
 							}
 						}
+						else if playerHitboxAbilityOrigin == "Death Incarnate" {
+							// If the hitbox is currently in first phase, walk the hitbox towards it target,
+							// and if its already reached its target, then stand there waiting for either
+							// the hitbox to expire, or the player to re-cast the ability and activate phase
+							// two.
+							if obj_skill_tree.deathIncarnateFirstPhaseActive {
+								// Correctly increment the image index of the hitbox
+								if obj_skill_tree.deathIncarnateImageIndex >= image_number {
+									obj_skill_tree.deathIncarnateImageIndex = 0;
+								}
+								// 0.3 is base player image speed before playerTotalSpeed is applied to player
+								obj_skill_tree.deathIncarnateImageIndex += 0.3;
+								image_index = obj_skill_tree.deathIncarnateImageIndex;
+								// If the hitbox is out of range, move the hitbox towards the target location
+								if point_distance(x, y, obj_skill_tree.deathIncarnateFirstPhaseTargetXPos, obj_skill_tree.deathIncarnateFirstPhaseTargetYPos) >= obj_skill_tree.deathIncarnateFirstPhaseMovementSpeed {
+									obj_skill_tree.deathIncarnateFirstPhaseReachedTarget = false;
+									obj_skill_tree.deathIncarnateFirstPhaseWalkDirection = point_direction(x, y, obj_skill_tree.deathIncarnateFirstPhaseTargetXPos, obj_skill_tree.deathIncarnateFirstPhaseTargetYPos);
+									x += lengthdir_x(obj_skill_tree.deathIncarnateFirstPhaseMovementSpeed, obj_skill_tree.deathIncarnateFirstPhaseWalkDirection);
+									y += lengthdir_y(obj_skill_tree.deathIncarnateFirstPhaseMovementSpeed, obj_skill_tree.deathIncarnateFirstPhaseWalkDirection);
+								}
+								// Else the hitbox should just stand there, waiting for a player command or to
+								// expire.
+								else {
+									if !obj_skill_tree.deathIncarnateFirstPhaseReachedTarget {
+										obj_skill_tree.deathIncarnateFirstPhaseReachedTarget = true;
+										switch sprite_index {
+											case spr_death_incarnate_walking_right:
+												sprite_index = spr_death_incarnate_standing_right;
+												break;
+											case spr_death_incarnate_walking_up:
+												sprite_index = spr_death_incarnate_standing_up;
+												break;
+											case spr_death_incarnate_walking_left:
+												sprite_index = spr_death_incarnate_standing_left;
+												break;
+											case spr_death_incarnate_walking_down:
+												sprite_index = spr_death_incarnate_standing_down;
+												break;
+										}
+									}
+								}
+							}
+							// Else if the hitbox is still active but its now in second phase, dash the hitbox
+							// towards all eligible targets and destroy the hitbox when the time is right.
+							else {
+								// If any target exists, then move towards that target, then remove it from the 
+								// target list
+								if ds_exists(obj_skill_tree.deathIncarnateSecondPhaseTargetList, ds_type_list) {
+									// Just a safety check, making sure I don't remove all targets but leave
+									// the list active to create a memory leak.
+									if !ds_list_empty(obj_skill_tree.deathIncarnateSecondPhaseTargetList) {
+										if !is_undefined(obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget) {
+											// If target not set yet, set the target
+											var current_target_ = obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget;
+											// If the target doesn't even exist, set a target that's within line of sight
+											if !instance_exists(current_target_) {
+												/////////////////////////////////////////
+												// Set target
+											}
+											// Else if hitbox has reached target location, deal damage, and then move onto the next
+											// target if allowed
+											else if obj_skill_tree.deathIncarnateSecondPhaseReachedTarget {
+												// If the animation has ended, apply damage and reset target to move to the next one
+												if deathIncarnateImageIndex >= image_number {
+													///////////////////////////////////////////////
+													// Apply damage via dot, reset reachedtarget variable, and reset target.
+													// Also, destroy hitbox if not elligible to chase next target.
+												}
+											}
+											// Move towards current target as long as still within sight
+											else if !collision_line(x, y, current_target_.x, current_target_.y, obj_wall, true, true) {
+												// If not within range, dash towards target
+												var point_direction_ = point_direction(x, y, current_target_.x, current_target_.y);
+												if point_distance(x, y, current_target_.x, current_target_.y) >= (32 * 1.5) {
+													if ((point_direction_ >= 315) && (point_direction_ < 360)) || ((point_direction_ >= 0) && (point_direction_ < 45)) {
+														sprite_index = spr_death_incarnate_dashing_right;
+													}
+													else if (point_direction_ >= 45) && (point_direction_ < 135) {
+														sprite_index = spr_death_incarnate_dashing_up;
+													}
+													else if (point_direction_ >= 135) && (point_direction_ < 225) {
+														sprite_index = spr_death_incarnate_dashing_left;
+													}
+													else if (point_direction_ >= 225) && (point_direction_ < 315) {
+														sprite_index = spr_death_incarnate_dashing_down;
+													}
+													x += lengthdir_x(obj_skill_tree.deathIncarnateSecondPhaseMovementSpeed, point_direction_);
+													y += lengthdir_y(obj_skill_tree.deathIncarnateSecondPhaseMovementSpeed, point_direction_);
+												}
+												// Else if within range of attack, marked as reached target
+												else {
+													obj_skill_tree.deathIncarnateImageIndex = 0;
+													obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = true;
+												}
+											}
+											// Else if the target is set, but its not within line of sight, reset the target
+											else {
+												obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
+											}
+										}
+										else {
+											obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
+										}
+									}
+									else {
+										ds_list_destroy(obj_skill_tree.deathIncarnateSecondPhaseTargetList);
+										obj_skill_tree.deathIncarnateSecondPhaseTargetList = noone;
+										playerHitboxCollisionFound = true;
+									}
+								}
+								// Else if no more targets exist, destroy self.
+								else {
+									playerHitboxCollisionFound = true;
+								}
+							}
+						}
 					}
 					else if !instance_exists(owner) {
 						with obj_combat_controller {
