@@ -71,7 +71,14 @@ for (i = 0; i < 360; i++) {
 			collision_found_ = true;
 		}
 		if collision_line(x, y, current_target_x_, current_target_y_, obj_wall, true, true) {
-			collision_found_ = true;
+			if owner == obj_player.id {
+				if (owner.playerState != playerstates.glintingbladeaoe) && (owner.playerState != playerstates.glintingbladesingle) {
+					collision_found_ = true;
+				}
+			}
+			else {
+				collision_found_ = true;
+			}
 		}
 	}
 	if collision_found_ {

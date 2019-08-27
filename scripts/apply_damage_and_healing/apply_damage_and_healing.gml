@@ -412,18 +412,6 @@ if owner_is_player_ {
 							other_owner_.exploitWeaknessDamageToAdd = (total_damage_ * other_owner_.exploitWeaknessPercentOfDamageToAdd);
 						}
 					}
-					// After hitbox damage is applied
-					if self_.playerHitboxAbilityOrigin == "Death Incarnate" {
-						if deathIncarnateSecondPhaseActive {
-							if other_owner_.enemyCurrentHP <= 0 {
-								deathIncarnateSecondPhaseCurrentDamage *= deathIncarnateSecondPhaseSubsequentDamageMultiplier;
-							}
-							else {
-								deathIncarnateSecondPhaseActive = false;
-								deathIncarnateSecondPhaseCurrentDamage = deathIncarnateSecondPhaseStartDamage;
-							}
-						}
-					}
 				
 					// Track the player's attack pattern's (melee or ranged) based on whether the attack was melee or ranged
 					if !(obj_ai_decision_making.playerAttackPatternWeight - (obj_ai_decision_making.attackPatternStartWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack) < 0.000) {
