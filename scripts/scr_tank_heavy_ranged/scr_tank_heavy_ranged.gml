@@ -16,6 +16,19 @@ if instance_exists(currentTargetToFocus) {
 		else {
 			var point_direction_ = point_direction(x, y, target_.x, target_.y);
 		}
+		// And then, after determining this, if the target ends up trying to hide in a wall, set the new
+		// point_direction_ equal to the ground hurtbox of the target, so the enemy won't hit the wall in
+		// case the enemy is at a shallow angle, close to the wall.
+		if collision_point(target_.x, target_.y, obj_wall, true, true) {
+			var target_ground_hurtbox_;
+			if target_.object_index == obj_player {
+				target_ground_hurtbox_ = target_.playerGroundHurtbox;
+			}
+			else if target_.object_index == obj_enemy {
+				target_ground_hurtbox_ = target_.enemyGroundHurtbox;
+			}
+			point_direction_ = point_direction(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y);
+		}
 		// Create the bullet hitbox itself
 		enemyHitbox = instance_create_depth(x + lengthdir_x(32, point_direction_), y + lengthdir_y(32, point_direction_), -999, obj_hitbox);
 		
