@@ -63,15 +63,18 @@ if owner_ != 0 {
 					target_already_hit_ = false;
 					for (i = 0; i <= array_height_2d(playerHitboxTargetArray) - 1; i++) {
 						var instance_to_reference_ = playerHitboxTargetArray[i, 0];
-						if instance_to_reference_.id == other_owner_ {
-							target_already_hit_ = true;
+						if instance_exists(instance_to_reference_) {
+							if instance_to_reference_.id == other_owner_ {
+								target_already_hit_ = true;
+							}
 						}
 					}
 					// If the target hasn't been hit yet, store the object ID inside this array and set it up to be damaged.
 					// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
 					if !target_already_hit_ {
-						playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 0] = other_owner_;
-						playerHitboxTargetArray[array_height_2d(playerHitboxTargetArray), 1] = 0;
+						var array_height_ = array_height_2d(playerHitboxTargetArray);
+						playerHitboxTargetArray[array_height_, 0] = other_owner_;
+						playerHitboxTargetArray[array_height_, 1] = 0;
 					}
 				}
 				// Else if the array doesn't already exist, create and store the information needed inside the array.
@@ -123,15 +126,19 @@ if owner_ != 0 {
 					var i, target_already_hit_;
 					target_already_hit_ = false;
 					for (i = 0; i <= array_height_2d(enemyHitboxTargetArray) - 1; i++) {
-						if enemyHitboxTargetArray[i, 0] == other_owner_ {
-							target_already_hit_ = true;
+						var instance_to_reference_ = enemyHitboxTargetArray[i, 0];
+						if instance_exists(instance_to_reference_) {
+							if instance_to_reference_.id == other_owner_ {
+								target_already_hit_ = true;
+							}
 						}
 					}
 					// If the target hasn't been hit yet, store the object ID inside this array and set it up to be damaged.
 					// I set the timer to 0 so that its immediately ready for interaction with the hitbox after collision.
 					if !target_already_hit_ {
-						enemyHitboxTargetArray[array_height_2d(enemyHitboxTargetArray), 0] = other_owner_;
-						enemyHitboxTargetArray[array_height_2d(enemyHitboxTargetArray), 1] = 0;
+						var array_height_ = array_height_2d(enemyHitboxTargetArray);
+						enemyHitboxTargetArray[array_height_, 0] = other_owner_;
+						enemyHitboxTargetArray[array_height_, 1] = 0;
 					}
 				}
 				// Else if the array doesn't already exist, create and store the information needed inside the array.

@@ -221,8 +221,8 @@ if ds_exists(playerHitboxList, ds_type_list) {
 												var k, current_instance_referencing_, point_distance_to_current_instance_referenced_;
 												for (k = 0; k <= ds_list_size(obj_skill_tree.deathIncarnateSecondPhaseTargetList) - 1; k++) {
 													current_instance_referencing_ = ds_list_find_value(obj_skill_tree.deathIncarnateSecondPhaseTargetList, k);
-													point_distance_to_current_instance_referenced_ = point_distance(x, y, current_instance_referencing_.x, current_instance_referencing_.y);
 													if instance_exists(current_instance_referencing_) {
+														point_distance_to_current_instance_referenced_ = point_distance(x, y, current_instance_referencing_.x, current_instance_referencing_.y);
 														if !instance_exists(current_target_) {
 															if !collision_line(x, y, current_instance_referencing_.x, current_instance_referencing_.y, obj_wall, true, true) {
 																current_target_ = current_instance_referencing_;
@@ -300,9 +300,35 @@ if ds_exists(playerHitboxList, ds_type_list) {
 												}
 												// If, after evaluating the target list, no target exists, I don't destroy the list
 												// or the hitbox because I want to wait out the duration, in case the player can
-												// launch Death Incarnate a bit later at a valid target.
+												// launch Death Incarnate a bit later at a valid target. I instead revert it back
+												// to first phase and set the sprite to the correct sprite.
 												else {
-													// Do nothing
+													if ds_exists(obj_skill_tree.deathIncarnateSecondPhaseTargetList, ds_type_list) {
+														ds_list_destroy(obj_skill_tree.deathIncarnateSecondPhaseTargetList);
+														obj_skill_tree.deathIncarnateSecondPhaseTargetList = noone;
+													}
+													obj_skill_tree.deathIncarnateSecondPhaseActive = false;
+													obj_skill_tree.deathIncarnateFirstPhaseActive = true;
+													obj_skill_tree.deathIncarnateSecondPhaseCurrentDamage = obj_skill_tree.deathIncarnateSecondPhaseStartDamage;
+													obj_skill_tree.deathIncarnateFirstPhaseTargetXPos = x;
+													obj_skill_tree.deathIncarnateFirstPhaseTargetYPos = y;
+													obj_skill_tree.deathIncarnateFirstPhaseReachedTarget = true;
+													obj_skill_tree.deathIncarnateSecondPhaseAttackedTarget = false;
+													obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
+													obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = false;
+													deathIncarnateImageIndex = 0;
+													if (sprite_index == spr_death_incarnate_walking_right) || (sprite_index == spr_death_incarnate_dashing_right) || (sprite_index == spr_death_incarnate_attack_right) {
+														sprite_index = spr_death_incarnate_standing_right;
+													}
+													else if (sprite_index == spr_death_incarnate_walking_up) || (sprite_index == spr_death_incarnate_dashing_up) || (sprite_index == spr_death_incarnate_attack_up) {
+														sprite_index = spr_death_incarnate_standing_up;
+													}
+													else if (sprite_index == spr_death_incarnate_walking_left) || (sprite_index == spr_death_incarnate_dashing_left) || (sprite_index == spr_death_incarnate_attack_left) {
+														sprite_index = spr_death_incarnate_standing_left;
+													}
+													else if (sprite_index == spr_death_incarnate_walking_down) || (sprite_index == spr_death_incarnate_dashing_down) || (sprite_index == spr_death_incarnate_attack_down) {
+														sprite_index = spr_death_incarnate_standing_down;
+													}
 												}
 											}
 											// Else if hitbox has reached target location, deal damage, and then move onto the next
@@ -364,7 +390,6 @@ if ds_exists(playerHitboxList, ds_type_list) {
 															obj_skill_tree.deathIncarnateFirstPhaseTargetYPos = -1;
 															obj_skill_tree.deathIncarnateImageIndex = 0;
 															obj_skill_tree.deathIncarnateSecondPhaseCurrentDamage = obj_skill_tree.deathIncarnateSecondPhaseStartDamage;
-															obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = false;
 															playerHitboxCollisionFound = true;
 														}
 														// Else if there are still other targets, reset normal variables.
@@ -386,35 +411,39 @@ if ds_exists(playerHitboxList, ds_type_list) {
 											}
 											// Dash towards current target as long as still within sight
 											else if !collision_line(x, y, current_target_.x, current_target_.y, obj_wall, true, true) {
-												// If not within range, dash towards target
-												var point_direction_ = point_direction(x, y, current_target_.x, current_target_.y);
-												if point_distance(x, y, current_target_.x, current_target_.y) >= (32 * 1.5) {
-													if ((point_direction_ >= 315) && (point_direction_ < 360)) || ((point_direction_ >= 0) && (point_direction_ < 45)) {
-														sprite_index = spr_death_incarnate_dashing_right;
+												if !obj_skill_tree.deathIncarnateSecondPhaseReachedTarget {
+													// If not within range, dash towards target
+													var point_direction_ = point_direction(x, y, current_target_.x, current_target_.y);
+													if point_distance(x, y, current_target_.x, current_target_.y) >= (32 * 1.5) {
+														if ((point_direction_ >= 315) && (point_direction_ < 360)) || ((point_direction_ >= 0) && (point_direction_ < 45)) {
+															sprite_index = spr_death_incarnate_dashing_right;
+														}
+														else if (point_direction_ >= 45) && (point_direction_ < 135) {
+															sprite_index = spr_death_incarnate_dashing_up;
+														}
+														else if (point_direction_ >= 135) && (point_direction_ < 225) {
+															sprite_index = spr_death_incarnate_dashing_left;
+														}
+														else if (point_direction_ >= 225) && (point_direction_ < 315) {
+															sprite_index = spr_death_incarnate_dashing_down;
+														}
+														x += lengthdir_x(obj_skill_tree.deathIncarnateSecondPhaseMovementSpeed, point_direction_);
+														y += lengthdir_y(obj_skill_tree.deathIncarnateSecondPhaseMovementSpeed, point_direction_);
 													}
-													else if (point_direction_ >= 45) && (point_direction_ < 135) {
-														sprite_index = spr_death_incarnate_dashing_up;
+													// Else if within range of attack, marked as reached target
+													else {
+														obj_skill_tree.deathIncarnateImageIndex = 0;
+														obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = true;
 													}
-													else if (point_direction_ >= 135) && (point_direction_ < 225) {
-														sprite_index = spr_death_incarnate_dashing_left;
-													}
-													else if (point_direction_ >= 225) && (point_direction_ < 315) {
-														sprite_index = spr_death_incarnate_dashing_down;
-													}
-													x += lengthdir_x(obj_skill_tree.deathIncarnateSecondPhaseMovementSpeed, point_direction_);
-													y += lengthdir_y(obj_skill_tree.deathIncarnateSecondPhaseMovementSpeed, point_direction_);
-												}
-												// Else if within range of attack, marked as reached target
-												else {
-													obj_skill_tree.deathIncarnateImageIndex = 0;
-													obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = true;
 												}
 											}
 											// Else if the target is set, but its not within line of sight, reset the target
 											else {
-												obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
-												obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = false;
-												obj_skill_tree.deathIncarnateSecondPhaseAttackedTarget = false;
+												if !obj_skill_tree.deathIncarnateSecondPhaseReachedTarget {
+													obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
+													obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = false;
+													obj_skill_tree.deathIncarnateSecondPhaseAttackedTarget = false;
+												}
 											}
 										}
 										// Else if the current target is undefined, set it as noone so I can re-try setting

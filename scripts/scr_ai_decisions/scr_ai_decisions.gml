@@ -60,7 +60,7 @@ if instance_exists(obj_player) {
 									enemy_heal_target_grid_ = ds_grid_create(8, (ds_list_size(objectIDsInBattle) + 1));
 								}
 								if ds_exists(enemy_heal_target_grid_, ds_type_grid) {
-									iteration_ = -1;
+									iteration_ = 0;
 									temporary_instance_to_reference_ = obj_player.id;
 									ds_grid_set(enemy_heal_target_grid_, 0, iteration_, "Player");
 									ds_grid_set(enemy_heal_target_grid_, 1, iteration_, obj_player.id);
