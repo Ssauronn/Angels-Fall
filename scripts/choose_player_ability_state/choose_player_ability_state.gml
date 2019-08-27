@@ -416,23 +416,34 @@ switch equipped_ability_ {
 	#endregion
 	#region Necromancy Abilities
 	case "Death Incarnate":
-		if combo_ {
-			if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) && (playerCurrentMana >= obj_skill_tree.deathIncarnateManaCost) {
-				comboTrue = "Death Incarnate";
+		if !obj_skill_tree.deathIncarnateFirstPhaseActive {
+			if combo_ {
+				if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) && (playerCurrentMana >= obj_skill_tree.deathIncarnateManaCost) {
+					comboTrue = "Death Incarnate";
+				}
+				else {
+					comboTrue = "";
+					comboPlayerDirectionFacing = -1;
+					lastAttackButtonPressed = "";
+				}
 			}
 			else {
-				comboTrue = "";
-				comboPlayerDirectionFacing = -1;
-				lastAttackButtonPressed = "";
+				if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) && (playerCurrentMana >= obj_skill_tree.deathIncarnateManaCost) {
+					lastAttackButtonPressed = "Death Incarnate";
+					execute_attacks();
+				}
+				else {
+					lastAttackButtonPressed = "";
+				}
 			}
 		}
 		else {
-			if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) && (playerCurrentMana >= obj_skill_tree.deathIncarnateManaCost) {
-				lastAttackButtonPressed = "Death Incarnate";
-				execute_attacks();
+			if combo_ {
+				comboTrue = "Death Incarnate";
 			}
 			else {
-				lastAttackButtonPressed = "";
+				lastAttackButtonPressed = "Death Incarnate";
+				execute_attacks();
 			}
 		}
 		break;

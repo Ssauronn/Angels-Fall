@@ -7,7 +7,7 @@ keyBarAbilityTwoChosen = "Diabolus Blast";
 keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "Hidden Dagger";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "The One Power";
+keyBarAbilityFourChosen = "Death Incarnate";
 keyBarAbilityFourEquipped = false;
 
 
@@ -165,7 +165,7 @@ deathIncarnateFirstPhaseDamage = 15;
 deathIncarnateFirstPhaseWalkDirection = 0;
 deathIncarnateFirstPhaseTargetXPos = -1;
 deathIncarnateFirstPhaseTargetYPos = -1;
-deathIncarnateFirstPhaseMovementSpeed = 16 / room_speed;
+deathIncarnateFirstPhaseMovementSpeed = (32 * 4) / room_speed;
 deathIncarnateSecondPhaseActive = false;
 deathIncarnateSecondPhaseTargetList = noone;
 deathIncarnateSecondPhaseCurrentTarget = noone;
@@ -174,6 +174,8 @@ deathIncarnateSecondPhaseSubsequentDamageMultiplier = 0.8;
 deathIncarnateSecondPhaseCurrentDamage = 400;
 deathIncarnateSecondPhaseMovementSpeed = (32 * 8) / room_speed;
 deathIncarnateSecondPhaseReachedTarget = false;
+deathIncarnateSecondPhaseImageIndexToAttackOn = 4;
+deathIncarnateSecondPhaseAttackedTarget = false;
 deathIncarnateImageIndex = 0;
 deathIncarnateFirstPhaseReachedTarget = false;
 #endregion

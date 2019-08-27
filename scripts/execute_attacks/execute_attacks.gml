@@ -582,7 +582,34 @@ switch (lastAttackButtonPressed) {
 	#endregion
 	#region Necromancy Abilities
 	case "Death Incarnate":
-		if !collision_line(x, y, mouse_x, mouse_y, obj_wall, true, true) {
+		if !obj_skill_tree.deathIncarnateFirstPhaseActive {
+			if !collision_line(x, y, mouse_x, mouse_y, obj_wall, true, true) {
+				if comboTrue != "" {
+					comboTrue = "";
+					playerDirectionFacing = comboPlayerDirectionFacing;
+					comboPlayerDirectionFacing = -1;
+					playerImageIndex = 0;
+				}
+				else {
+					playerImageIndex = 0;
+				}
+				playerState = playerstates.deathincarnate;
+				playerStateSprite = playerstates.deathincarnate;
+				lastAttackButtonPressed = "";
+				playerCurrentStamina -= obj_skill_tree.deathIncarnateStaminaCost;
+				playerCurrentStamina += obj_skill_tree.deathIncarnateStaminaRegen;
+				playerCurrentMana -= obj_skill_tree.deathIncarnateManaCost;
+				playerCurrentMana += obj_skill_tree.deathIncarnateManaRegen;
+				obj_skill_tree.deathIncarnateFirstPhaseTargetXPos = mouse_x;
+				obj_skill_tree.deathIncarnateFirstPhaseTargetYPos = mouse_y;
+				obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
+				if ds_exists(obj_skill_tree.deathIncarnateSecondPhaseTargetList, ds_type_list) {
+					ds_list_destroy(obj_skill_tree.deathIncarnateSecondPhaseTargetList);
+					obj_skill_tree.deathIncarnateSecondPhaseTargetList = noone;
+				}
+			}
+		}
+		else {
 			if comboTrue != "" {
 				comboTrue = "";
 				playerDirectionFacing = comboPlayerDirectionFacing;
@@ -595,12 +622,6 @@ switch (lastAttackButtonPressed) {
 			playerState = playerstates.deathincarnate;
 			playerStateSprite = playerstates.deathincarnate;
 			lastAttackButtonPressed = "";
-			playerCurrentStamina -= obj_skill_tree.deathIncarnateStaminaCost;
-			playerCurrentStamina += obj_skill_tree.deathIncarnateStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.deathIncarnateManaCost;
-			playerCurrentMana += obj_skill_tree.deathIncarnateManaRegen;
-			obj_skill_tree.deathIncarnateFirstPhaseTargetXPos = mouse_x;
-			obj_skill_tree.deathIncarnateFirstPhaseTargetYPos = mouse_y;
 			obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
 			if ds_exists(obj_skill_tree.deathIncarnateSecondPhaseTargetList, ds_type_list) {
 				ds_list_destroy(obj_skill_tree.deathIncarnateSecondPhaseTargetList);

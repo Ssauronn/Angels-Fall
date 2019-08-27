@@ -209,27 +209,26 @@ else if !obj_skill_tree.deathIncarnateSecondPhaseActive {
 			}
 		}
 		#endregion
-
-		// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
-		if (comboTrue == "") && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
-			if currentSpeed == 0 {
-				playerState = playerstates.idle;
-				playerStateSprite = playerstates.idle;
-				hitboxCreated = false;
-			}
-			else {
-				playerState = playerstates.run;
-				playerStateSprite = playerstates.run;
-				hitboxCreated = false;
-			}
-		}
-		// Else send to another attack playerState
-		else if (comboTrue != "") && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
-			send_player_to_ability_state(true);
-			lastAttackButtonPressed = comboTrue;
-			hitboxCreated = false;
-		}
 	}
+}
+// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
+if (comboTrue == "") && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
+	if currentSpeed == 0 {
+		playerState = playerstates.idle;
+		playerStateSprite = playerstates.idle;
+		hitboxCreated = false;
+	}
+	else {
+		playerState = playerstates.run;
+		playerStateSprite = playerstates.run;
+		hitboxCreated = false;
+	}
+}
+// Else send to another attack playerState
+else if (comboTrue != "") && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
+	send_player_to_ability_state(true);
+	lastAttackButtonPressed = comboTrue;
+	hitboxCreated = false;
 }
 
 
