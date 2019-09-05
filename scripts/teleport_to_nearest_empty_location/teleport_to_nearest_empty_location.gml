@@ -70,17 +70,29 @@ for (i = 0; i < 360; i++) {
 		if place_meeting(current_target_x_, current_target_y_, object_colliding_with_) {
 			collision_found_ = true;
 		}
-		if collision_line(x, y, current_target_x_, current_target_y_, obj_wall, true, true) {
-			if owner == obj_player.id {
-				if (owner.playerState != playerstates.glintingbladeaoe) && (owner.playerState != playerstates.glintingbladesingle) {
+		if !collision_found_ {
+			if collision_line(circle_x_, circle_y_, current_target_x_, current_target_y_, obj_wall, true, true) {
+				// If the owner isn't the player and the player isn't specifically using an ability that
+				// ignores line of sight from the hitbox to the player, then mark it as a collision found.
+				// Otherwise, if the ability is supposed to ignore line of sight, then no collision should
+				// be found.
+				if variable_instance_exists(self, "owner") {
+					if owner == obj_player.id {
+						if (owner.playerState != playerstates.glintingbladeaoe) && (owner.playerState != playerstates.glintingbladesingle) && (owner.playerState != playerstates.deathincarnate) {
+							collision_found_ = true;
+						}
+					}
+					else {
+						collision_found_ = true;
+					}
+				}
+				else {
 					collision_found_ = true;
 				}
 			}
-			else {
-				collision_found_ = true;
-			}
 		}
 	}
+	// If a collision is found, iterate the point direction up by one and reset variables.
 	if collision_found_ {
 		point_direction_to_current_target_++;
 		if point_direction_to_current_target_ >= 360 {
@@ -90,6 +102,8 @@ for (i = 0; i < 360; i++) {
 		current_target_y_ = circle_y_ + lengthdir_y(radius_of_target_circle_, point_direction_to_current_target_);
 		collision_found_ = false;
 	}
+	// Else if no collision is found, destroy lists to avoid memory leak, reset variables, and teleport
+	// the object.
 	else {
 		// Destroy the list before I do anything else to avoid a memory leak
 		if ds_exists(collision_objects_, ds_type_list) {
@@ -98,21 +112,25 @@ for (i = 0; i < 360; i++) {
 		}
 		// This is built specifically for my game. If the object I'm teleporting is a ground hurtbox, then
 		// I should teleport the owner instead. Otherwise, I should just teleport the object itself.
-		if variable_instance_exists(self, "owner") {
-			if instance_exists(owner) {
-				owner.x = current_target_x_;
-				owner.y = current_target_y_ - 13;
-			}
-			else {
-				x = current_target_x_;
-				y = current_target_y_;
+		if object_index == obj_ground_hurtbox {
+			if variable_instance_exists(self, "owner") {
+				if instance_exists(owner) {
+					owner.x = current_target_x_;
+					owner.y = current_target_y_ - 13;
+				}
+				else {
+					x = current_target_x_;
+					y = current_target_y_;
+				}
 			}
 		}
 		else {
 			x = current_target_x_;
 			y = current_target_y_;
 		}
-		// Set the new current target quadrant, which will be compared against the original
+		// Set the new current target quadrant, which will be compared against the original. This is only
+		// for specifically setting the sprite direction of the object calling this script if the sprites
+		// are set up using a sprite table and enums rotating counter clockwise starting with right facing.
 		if (point_direction_to_current_target_ <= 45 && point_direction_to_current_target_ >= 0) || (point_direction_to_current_target_ > 315 && point_direction_to_current_target_ < 360) {
 			current_target_quadrant_ = 0;
 		}
@@ -127,11 +145,12 @@ for (i = 0; i < 360; i++) {
 		}
 		// Return the original target quadrant minus the current target quadrant, which will give us a 
 		// positive or negative value which can then be added to player or enemy direction to properly
-		// move the player/enemy
+		// move the player/enemy. Again, works only with the described parameters above.
 		return (current_target_quadrant_ - original_target_quadrant_);
 		break;
 	}
 }
+// Just a safety check to make sure that I'm not causing a memory leak.
 if ds_exists(collision_objects_, ds_type_list) {
 	ds_list_destroy(collision_objects_);
 }

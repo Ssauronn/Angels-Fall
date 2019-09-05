@@ -78,6 +78,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -433,6 +435,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -790,6 +794,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -1143,6 +1149,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow

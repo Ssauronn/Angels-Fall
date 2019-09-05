@@ -77,7 +77,7 @@ if (!stunActive) && (!hitstunActive) && ((enemyState != enemystates.passivelyFol
 else {										   
 	if combatFriendlyStatus == "Minion" {
 		if instance_exists(obj_player) {
-			if enemyState = enemystates.passivelyFollowPlayer {
+			if enemyState == enemystates.passivelyFollowPlayer {
 				var point_direction_ = point_direction(x, y, obj_player.x, obj_player.y);
 				currentDirection = point_direction_;
 				if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {

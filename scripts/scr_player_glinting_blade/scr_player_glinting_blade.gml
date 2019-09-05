@@ -43,46 +43,28 @@ if playerImageIndex <= 5 {
 					with playerGroundHurtbox {
 						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x - (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_ground_hurtbox);
 					}
-					if playerDirectionFacing > 3 {
-						playerDirectionFacing -= 4;
-					}
-					if playerDirectionFacing < 0 {
-						playerDirectionFacing += 4;
-					}
 					break;
 				case enemydirection.up:
 					with playerGroundHurtbox {
 						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y + (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_ground_hurtbox);
-					}
-					if playerDirectionFacing > 3 {
-						playerDirectionFacing -= 4;
-					}
-					if playerDirectionFacing < 0 {
-						playerDirectionFacing += 4;
 					}
 					break;
 				case enemydirection.left:
 					with playerGroundHurtbox {
 						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x + (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_ground_hurtbox);
 					}
-					if playerDirectionFacing > 3 {
-						playerDirectionFacing -= 4;
-					}
-					if playerDirectionFacing < 0 {
-						playerDirectionFacing += 4;
-					}
 					break;
 				case enemydirection.down:
 					with playerGroundHurtbox {
 						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y - (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_ground_hurtbox);
 					}
-					if playerDirectionFacing > 3 {
-						playerDirectionFacing -= 4;
-					}
-					if playerDirectionFacing < 0 {
-						playerDirectionFacing += 4;
-					}
 					break;
+			}
+			if playerDirectionFacing > 3 {
+				playerDirectionFacing -= 4;
+			}
+			else if playerDirectionFacing < 0 {
+				playerDirectionFacing += 4;
 			}
 			// I add just 3 onto the enemy timer so that the timer doesn't run out the exact moment
 			// the player is supposed to deal damage, and reset variables so that the script throws

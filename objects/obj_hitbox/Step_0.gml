@@ -1,4 +1,5 @@
 /// @description Destroy Self if Outside Owner Range, Count Down Timers
+// Remove target objects from the target array in case they don't exist anymore
 if instance_exists(owner) {
 	if owner.object_index == obj_player {
 		if is_array(playerHitboxTargetArray) {
@@ -81,7 +82,7 @@ if instance_exists(owner) {
 }
 
 
-
+// Destroy self if it has collided with something or if it is not within range
 // Check to see if the owner even is defined
 if !is_undefined(owner) {
 	// Check to see if the owner exists
@@ -263,8 +264,80 @@ if !is_undefined(owner) {
 						obj_skill_tree.glintingBladeYPos = obj_skill_tree.glintingBladeTargetYPos;
 						obj_skill_tree.glintingBladeAttachedToEnemy = noone;
 					}
+					// Here, I destroy the hitbox regardless of whether it collided with a wall, because
+					// the hitbox is supposed to be destroyed regardless.
+					instance_destroy(self);
 				}
-				instance_destroy(self);
+				else if playerHitboxAbilityOrigin == "Death Incarnate" {
+					if playerHitboxCollidedWithWall {
+						if obj_skill_tree.deathIncarnateSecondPhaseActive {
+							if ds_exists(obj_skill_tree.deathIncarnateSecondPhaseTargetList, ds_type_list) {
+								ds_list_destroy(obj_skill_tree.deathIncarnateSecondPhaseTargetList);
+							}
+							obj_skill_tree.deathIncarnateFirstPhaseActive = false;
+							obj_skill_tree.deathIncarnateSecondPhaseActive = false;
+							obj_skill_tree.deathIncarnateFirstPhaseReachedTarget = false;
+							obj_skill_tree.deathIncarnateFirstPhaseTargetXPos = -1;
+							obj_skill_tree.deathIncarnateFirstPhaseTargetYPos = -1;
+							obj_skill_tree.deathIncarnateSecondPhaseAttackedTarget = false;
+							obj_skill_tree.deathIncarnateSecondPhaseCurrentDamage = obj_skill_tree.deathIncarnateSecondPhaseStartDamage;
+							obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
+							instance_destroy(self);
+						}
+						else if obj_skill_tree.deathIncarnateFirstPhaseActive {
+							if sprite_index == spr_death_incarnate_walking_right {
+								sprite_index = spr_death_incarnate_standing_right;
+							}
+							else if sprite_index == spr_death_incarnate_walking_up {
+								sprite_index = spr_death_incarnate_standing_up;
+							}
+							else if sprite_index == spr_death_incarnate_walking_left {
+								sprite_index = spr_death_incarnate_standing_left;
+							}
+							else if sprite_index == spr_death_incarnate_walking_down {
+								sprite_index = spr_death_incarnate_standing_down;
+							}
+							var dir_ = obj_skill_tree.deathIncarnateFirstPhaseWalkDirection + 180;
+							if obj_skill_tree.deathIncarnateFirstPhaseWalkDirection >= 360 {
+								dir_ -= 360;
+							}
+							// This block of code iterates through empty spaces to move to using the script
+							// teleport_to_nearest_empty_location. It starts in a close circle and
+							// gradually moves its search outwards. This is to make sure an empty space
+							// is always found, but always as close to target point as possible.
+							var x_, y_, iteration_;
+							iteration_ = 1;
+							while place_meeting(x, y, obj_wall) {
+								x_ = x;
+								y_ = y;
+								var len_, dir_;
+								len_ = obj_skill_tree.deathIncarnateFirstPhaseMovementSpeed * iteration_;
+								dir_ = point_direction(x, y, obj_player.x, obj_player.y);
+								teleport_to_nearest_empty_location(x + lengthdir_x(len_, dir_), y + lengthdir_y(len_, dir_), x, y, obj_wall);
+								iteration_++;
+								if place_meeting(x, y, obj_wall) {
+									x = x_;
+									y = y_;
+								}
+							}
+							obj_skill_tree.deathIncarnateFirstPhaseTargetXPos = x;
+							obj_skill_tree.deathIncarnateFirstPhaseTargetYPos = y;
+							obj_skill_tree.deathIncarnateFirstPhaseReachedTarget = true;
+							obj_skill_tree.deathIncarnateImageIndex = 0;
+							playerHitboxCollisionFound = false;
+							playerHitboxCollidedWithWall = false;
+						}
+					}
+					// Else if the hitbox is marked as Death Incarnate and it should be destroyed, but it
+					// hasn't collided with the wall, still destroy the object.
+					else {
+						instance_destroy(self);
+					}
+				}
+				// Else if the hitbox does not originate from abilities that interact specially with walls, then destroy the hitbox
+				else {
+					instance_destroy(self);
+				}
 			}
 		}
 	}

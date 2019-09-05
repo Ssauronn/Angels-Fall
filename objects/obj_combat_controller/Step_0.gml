@@ -372,6 +372,7 @@ if ds_exists(playerHitboxList, ds_type_list) {
 														obj_skill_tree.deathIncarnateSecondPhaseCurrentDamage = obj_skill_tree.deathIncarnateSecondPhaseStartDamage;
 														obj_skill_tree.deathIncarnateSecondPhaseReachedTarget = false;
 														playerHitboxCollisionFound = true;
+														playerHitboxCollidedWithWall = false;
 													}
 													// Else, if its not time to expire, reset target and prepare to move to new target
 													else {
@@ -391,6 +392,7 @@ if ds_exists(playerHitboxList, ds_type_list) {
 															obj_skill_tree.deathIncarnateImageIndex = 0;
 															obj_skill_tree.deathIncarnateSecondPhaseCurrentDamage = obj_skill_tree.deathIncarnateSecondPhaseStartDamage;
 															playerHitboxCollisionFound = true;
+															playerHitboxCollidedWithWall = false;
 														}
 														// Else if there are still other targets, reset normal variables.
 														else {

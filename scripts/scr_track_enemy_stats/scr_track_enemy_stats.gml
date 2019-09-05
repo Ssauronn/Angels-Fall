@@ -180,6 +180,44 @@ if enemyCurrentHP <= 0 {
 		obj_skill_tree.glintingBladeYPos = 0;
 	}
 	
+	// Delete the object from relevant lists and update combat tracking variables
+	if ds_exists(objectIDsInBattle, ds_type_list) {
+		if ds_list_find_index(objectIDsInBattle, self) != -1 {
+			// Delete self from combat list
+			ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+			// Remove self from the count of various archetypes in battle
+			if combatFriendlyStatus == "Enemy" {
+				switch (objectArchetype) {
+					case "Healer": enemyHealersInBattle--;
+						break;
+					case "Tank": enemyTanksInBattle--;
+						break;
+					case "Melee DPS": enemyMeleeDPSInBattle--;
+						break;
+					case "Ranged DPS": enemyRangedDPSInBattle--;
+						break;
+				}
+			}
+			else {
+				switch (objectArchetype) {
+					case "Healer": friendlyHealersInBattle--;
+						break;
+					case "Tank": friendlyTanksInBattle--;
+						break;
+					case "Melee DPS": friendlyMeleeDPSInBattle--;
+						break;
+					case "Ranged DPS": friendlyRangedDPSInBattle--;
+						break;
+				}
+			}
+		}
+	}
+	if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+		if ds_list_find_index(objectIDsFollowingPlayer, self) != -1 {
+			ds_list_delete(objectIDsFollowingPlayer, ds_list_find_index(objectIDsFollowingPlayer, self));
+		}
+	}
+	
 	// Create the daed body right before the enemy dies
 	var dead_body_ = instance_create_depth(x, y, depth, obj_dead_body);
 	dead_body_.objectArchetype = objectArchetype;

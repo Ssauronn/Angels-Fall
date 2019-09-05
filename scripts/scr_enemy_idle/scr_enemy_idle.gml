@@ -47,65 +47,32 @@ if instance_exists(self) {
 		}
 		// If the object calling this script has no enemy target to evaluate then it must be a minion
 		// with no "Enemy" object on screen, and it should be following the player.
-		else {
+		if !ds_exists(objectIDsInBattle, ds_type_list) {
 			// Redundant check making sure I only set an object to follow player if its a minion
 			if combatFriendlyStatus == "Minion" {
-				// Checking to make sure there is no combat currently - if there is, do not just passively
-				// follow player
-				if !ds_exists(objectIDsInBattle, ds_type_list) {
-					// Determine if any allies need healing
-					var an_ally_needs_healing_ = false;
-					if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
-						var i;
-						for (i = 0; i <= ds_list_size(objectIDsFollowingPlayer) - 1; i++) {
-							var instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, i);
-							if (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) != 1 {
-								an_ally_needs_healing_ = true;
-							}
-						}
-						if (playerCurrentHP / playerMaxHP) != 1 {
+				// Determine if any allies need healing
+				var an_ally_needs_healing_ = false;
+				if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+					var i;
+					for (i = 0; i <= ds_list_size(objectIDsFollowingPlayer) - 1; i++) {
+						var instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, i);
+						if (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) != 1 {
 							an_ally_needs_healing_ = true;
 						}
 					}
-					// If all allies are at max HP, or the object isn't a healer, then just follow the player
-					if (objectArchetype != "Healer") || ((objectArchetype == "Healer") && (!an_ally_needs_healing_)) {
-						if point_distance(enemyGroundHurtbox.x, enemyGroundHurtbox.y, obj_player.x, obj_player.y) > tetherToPlayerOutOfCombatRange {
-							chosenEngine = "";
-							decisionMadeForTargetAndAction = false;
-							alreadyTriedToChase = false;
-							enemyState = enemystates.passivelyFollowPlayer;
-							enemyStateSprite = enemystates.passivelyFollowPlayer;
-							if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-								enemyDirectionFacing = enemydirection.right;
-							}
-							else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-								enemyDirectionFacing = enemydirection.up;
-							}
-							else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-								enemyDirectionFacing = enemydirection.left;
-							}
-							else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-								enemyDirectionFacing = enemydirection.down;
-							}
-						}
+					if (playerCurrentHP / playerMaxHP) != 1 {
+						an_ally_needs_healing_ = true;
 					}
-					/*
-					If the object follows player and no valid path is found, continue to search for path
-					If no path is found and object exists screen view, destroy object
-					If path is found and object exists screen view, start timer, if object enters screen again reset timer
-					If timer reaches 0 and object still has not entered view, destroy object
-					This will allow for minions that cannot follow player to not continue to take up processing power, and
-					minions that are left too far behind player to not continue to take up processing power as well.
-					*/
-					// Else if the player or allies is missing health and the object is a healer, then heal the player
-					else if (objectArchetype == "Healer") && (an_ally_needs_healing_) {
-						// Set the state the enemy is going to, set the chosen engine, make sure a decision is made, 
-						// and then heal the heal target
-						scr_healer_ai_out_of_combat_targeting();
-						chosenEngine = "Heal Ally";
-						decisionMadeForTargetAndAction = true;
-						alreadyTriedToChase = false;
-					}
+				}
+				// Else if the player or allies is missing health and the object is a healer, then heal the player
+				if (objectArchetype == "Healer") && (an_ally_needs_healing_) {
+					// Set the state the enemy is going to, set the chosen engine, make sure a decision is made, 
+					// and then heal the heal target. The actually chasing the target and healing is done in the
+					// heal script.
+					scr_healer_ai_out_of_combat_targeting();
+					chosenEngine = "Heal Ally";
+					decisionMadeForTargetAndAction = true;
+					alreadyTriedToChase = false;
 				}
 			}
 		}
@@ -121,6 +88,59 @@ else {
 	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
+
+if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBattle, ds_type_list) {
+	if combatFriendlyStatus == "Minion" {
+		// Determine if any allies need healing
+		var an_ally_needs_healing_ = false;
+		var i;
+		for (i = 0; i <= ds_list_size(objectIDsFollowingPlayer) - 1; i++) {
+			var instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, i);
+			if (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) != 1 {
+				an_ally_needs_healing_ = true;
+			}
+		}
+		if (playerCurrentHP / playerMaxHP) != 1 {
+			an_ally_needs_healing_ = true;
+		}
+		// If all allies are at max HP, and/or the object isn't a healer, then just follow the player
+		if (objectArchetype != "Healer") || ((objectArchetype == "Healer") && (!an_ally_needs_healing_)) {
+			if variable_instance_exists(self, "enemyGroundHurtbox") {
+				if instance_exists(enemyGroundHurtbox) {
+					var player_ground_hurtbox_ = obj_player.playerGroundHurtbox;
+					if scr_line_of_sight_exists(player_ground_hurtbox_.x, player_ground_hurtbox_.y, obj_wall) {
+						if point_distance(enemyGroundHurtbox.x, enemyGroundHurtbox.y, player_ground_hurtbox_.x, player_ground_hurtbox_.y) > (tetherToPlayerOutOfCombatRange) {
+							// As long as scr_line_of_sight didn't already send the enemy to the correct state,
+							// then send to the correct state.
+							if lineOfSightExists {
+								followingPlayer = true;
+								chosenEngine = "";
+								decisionMadeForTargetAndAction = false;
+								alreadyTriedToChase = false;
+								enemyState = enemystates.moveWithinAttackRange;
+								enemyStateSprite = enemystates.moveWithinAttackRange;
+								if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+									enemyDirectionFacing = enemydirection.right;
+								}
+								else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+									enemyDirectionFacing = enemydirection.up;
+								}
+								else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+									enemyDirectionFacing = enemydirection.left;
+								}
+								else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+									enemyDirectionFacing = enemydirection.down;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// Stun and hitstun
 if stunActive {
 	enemyState = enemystates.stunned;
 	enemyStateSprite = enemystates.stunned;
@@ -189,9 +209,15 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 				#region Heavy Melee
 				// If the chosen engine is a Heavy Melee attack
 				if chosenEngine == "Heavy Melee" {
-					if scr_line_of_sight_exists(currentTargetToFocus, obj_wall) {
+					if currentTargetToFocus.id == obj_player.id {
+						var target_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
+					}
+					else {
+						var target_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
+					}
+					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 						// If the obj_enemy is not within enemyHeavyMeleeAttackRange
-						if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyMeleeAttackRange {
+						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyMeleeAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -250,9 +276,15 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 				#endregion
 				#region Light Melee
 				else if chosenEngine == "Light Melee" {
-					if scr_line_of_sight_exists(currentTargetToFocus, obj_wall) {
+					if currentTargetToFocus.id == obj_player.id {
+						var target_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
+					}
+					else {
+						var target_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
+					}
+					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 						// If the obj_enemy is not within enemyLightMeleeAttackRange
-						if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyLightMeleeAttackRange {
+						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightMeleeAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -311,9 +343,15 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 				#endregion
 				#region Heavy Ranged
 				else if chosenEngine == "Heavy Ranged" {
-					if scr_line_of_sight_exists(currentTargetToFocus, obj_wall) { 
+					if currentTargetToFocus.id == obj_player.id {
+						var target_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
+					}
+					else {
+						var target_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
+					}
+					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) { 
 						// If the obj_enemy is not within enemyHeavyRangedAttackRange
-						if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyHeavyRangedAttackRange {
+						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyRangedAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -372,14 +410,20 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 				#endregion
 				#region Light Ranged
 				else if chosenEngine == "Light Ranged" {
-					if scr_line_of_sight_exists(currentTargetToFocus, obj_wall) {
+					if currentTargetToFocus.id == obj_player.id {
+						var target_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
+					}
+					else {
+						var target_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
+					}
+					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 						/*
 						IF ANY OTHER ENGINE IS UNABLE TO BE EXECUTED I NEED ENEMY TO RUN EITHER TOWARDS OR AWAY FROM TARGET; 
 						THIS IS BECAUSE I SEND ALL FAILED ATTACKS FOR STAMINA AND MANA ABILITIES TO THIS STATE AND IF THOSE 
 						FAIL, THAT MEANS THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
 						*/
 						// If enemy is not within light ranged attack range
-						if point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) > enemyLightRangedAttackRange {
+						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightRangedAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -519,11 +563,17 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 					if chosenEngine == "Heal Ally" {
 						// Set point direction right before sending to attack scripts
 						pointDirection = point_direction(x, y, currentTargetToHeal.x, currentTargetToHeal.y);
+						if currentTargetToHeal.id == obj_player.id {
+							var target_ground_hurtbox_ = currentTargetToHeal.playerGroundHurtbox;
+						}
+						else {
+							var target_ground_hurtbox_ = currentTargetToHeal.enemyGroundHurtbox;
+						}
 						// If line of sight exists, this script returns true and I can execute the script. If not,
 						// this script immediately send the enemy to a chase script to chase the player.
-						if scr_line_of_sight_exists(currentTargetToHeal, obj_wall) {
+						if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 							// If the obj_enemy is not within enemyHealAllyRange
-							if point_distance(x, y, currentTargetToHeal.x, currentTargetToHeal.y) > enemyHealAllyRange {
+							if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHealAllyRange {
 								// If the enemy hasn't already tried to chase it's target, then chase the target.
 								if !alreadyTriedToChase { 
 									enemyState = enemystates.moveWithinAttackRange;
@@ -582,15 +632,5 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 		}
 	}
 }
-
-
-/*
-After I send the object to a new state, the following variables need to be reset:
-
-chosenEngine
-decisionMadeForTargetAndAction
-alreadyTriedToChase
-
-*/
 
 
