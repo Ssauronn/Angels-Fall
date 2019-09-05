@@ -2239,14 +2239,6 @@
             }
         },
         {
-            "Key": "ebed4767-13fc-4154-8589-efd76de46c30",
-            "Value": {
-                "id": "91fa8244-faef-4671-822b-7bafa6d838e6",
-                "resourcePath": "scripts\\scr_passive_follow_player\\scr_passive_follow_player.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "ecc7b4fb-3cc4-4a44-a6f2-88645e561943",
             "Value": {
                 "id": "e52b5da1-6796-4a1c-a11d-27927206035a",
@@ -2528,7 +2520,6 @@
         "99ad9344-48cf-45ec-b588-e1a5866292fe",
         "79579f9e-c59f-4b55-8106-e1276cfafca6",
         "3d094b82-0ff8-435f-956c-a3365019e3f3",
-        "ebed4767-13fc-4154-8589-efd76de46c30",
         "b24f1e48-14a8-431c-950b-14ab6e762333",
         "bf987c3b-3b6d-43b2-a80a-7ce2a1e07742",
         "71f67c6e-e097-4287-9a1a-93867e2e1d73",

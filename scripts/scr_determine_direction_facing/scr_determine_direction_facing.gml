@@ -1,7 +1,7 @@
 ///@description Set enemyDirectionFacing correctly each frame this is called
 
 // If the state the enemy is in is NOT to passively follow the player, and the enemy is not stunned, and the enemy is in the idle state or not currently attacking, and the enemy is not currently debuffed with something to stop movement, then set the direction facing
-if (!stunActive) && (!hitstunActive) && ((enemyState != enemystates.passivelyFollowPlayer) && (enemyState != enemystates.heavyMeleeAttack) && (enemyState != enemystates.lightMeleeAttack) && (enemyState != enemystates.heavyRangedAttack) && (enemyState != enemystates.lightRangedAttack) || (enemyState = enemystates.idle)) && (obj_skill_tree.solidifyTarget != self) && (enemyTotalSpeed > 0) {
+if (!stunActive) && (!hitstunActive) && ((enemyState != enemystates.heavyMeleeAttack) && (enemyState != enemystates.lightMeleeAttack) && (enemyState != enemystates.heavyRangedAttack) && (enemyState != enemystates.lightRangedAttack) || (enemyState = enemystates.idle)) && (obj_skill_tree.solidifyTarget != self) && (enemyTotalSpeed > 0) {
 	// If the enemy has already chosen an attack state to be in
 	//if chosenEngine != "" {
 		// As long as the state to choose to be in is not healing, set direction facing based on the 
@@ -77,7 +77,9 @@ if (!stunActive) && (!hitstunActive) && ((enemyState != enemystates.passivelyFol
 else {										   
 	if combatFriendlyStatus == "Minion" {
 		if instance_exists(obj_player) {
-			if enemyState = enemystates.passivelyFollowPlayer {
+			// If there's nothing to attack, meaning the minion is following the player, set the direction
+			// equal to facing the player every frame.
+			if (!ds_exists(objectIDsInBattle, ds_type_list) && ds_exists(objectIDsFollowingPlayer, ds_type_list)) {
 				var point_direction_ = point_direction(x, y, obj_player.x, obj_player.y);
 				currentDirection = point_direction_;
 				if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {

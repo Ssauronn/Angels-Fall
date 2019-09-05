@@ -78,6 +78,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -280,10 +282,6 @@ switch (enemy_name_) {
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_mage_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_mage_idle;
 		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy_mage_idle;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.right] = spr_enemy_mage_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_mage_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_mage_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_mage_run;
 		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_mage_stunned;
 		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_mage_stunned;
 		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_mage_stunned;
@@ -433,6 +431,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -635,10 +635,6 @@ switch (enemy_name_) {
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_healer_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_healer_idle;
 		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy_healer_idle;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.right] = spr_enemy_healer_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_healer_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_healer_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_healer_run;
 		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_healer_stunned;
 		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_healer_stunned;
 		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_healer_stunned;
@@ -790,6 +786,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -992,10 +990,6 @@ switch (enemy_name_) {
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_tank_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_tank_idle;
 		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy_tank_idle;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.right] = spr_enemy_tank_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_tank_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_tank_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_tank_run;
 		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_tank_stunned;
 		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_tank_stunned;
 		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_tank_stunned;
@@ -1143,6 +1137,8 @@ switch (enemy_name_) {
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
+		followingPlayer = false;
+		lineOfSightExists = true;
 		
 		// Path variables
 		// Path the enemy will follow
@@ -1345,10 +1341,6 @@ switch (enemy_name_) {
 		enemySprite[enemystates.idle, enemydirection.up] = spr_enemy_fighter_idle;
 		enemySprite[enemystates.idle, enemydirection.left] = spr_enemy_fighter_idle;
 		enemySprite[enemystates.idle, enemydirection.down] = spr_enemy_fighter_idle;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.right] = spr_enemy_fighter_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.up] = spr_enemy_fighter_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.left] = spr_enemy_fighter_run;
-		enemySprite[enemystates.passivelyFollowPlayer, enemydirection.down] = spr_enemy_fighter_run;
 		enemySprite[enemystates.stunned, enemydirection.right] = spr_enemy_fighter_stunned;
 		enemySprite[enemystates.stunned, enemydirection.up] = spr_enemy_fighter_stunned;
 		enemySprite[enemystates.stunned, enemydirection.left] = spr_enemy_fighter_stunned;

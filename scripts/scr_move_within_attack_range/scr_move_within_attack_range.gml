@@ -30,7 +30,8 @@ switch (chosenEngine) {
 		target_ = currentTargetToHeal;
 		break;
 }
-// If the instance exists, set local variable target_ equal to the instance's target.
+var target_x_, target_y_;
+// If the target instance exists, set local variable target_ equal to this instance's target.
 if instance_exists(target_) {
 	// These variables are created before the path itself is created
 	if target_.id == obj_player.id {
@@ -39,20 +40,86 @@ if instance_exists(target_) {
 	else {
 		target_ = target_.enemyGroundHurtbox;
 	}
-	
-	var target_x_, target_y_;
 	target_x_ = target_.x;
 	target_y_ = target_.y;
-	// Commented out code is kept because its a nifty little trick to set target equal to whatever point
-	// is at tether distance directly between object and target - might be useful later
-	//if point_distance(x, y, target_.x, target_.y) <=  (distance_ * 1.2) {
-		//pathEndXGoal = target_.x + lengthdir_x(distance_, point_direction(target_.x, target_.y, groundHurtboxX, groundHurtboxY));
-		//pathEndYGoal = target_.y + lengthdir_y(distance_, point_direction(target_.x, target_.y, groundHurtboxX, groundHurtboxY));
-	//}
-	//else {
 	pathEndXGoal = target_x_;
 	pathEndYGoal = target_y_;
-	//}
+}
+// If the enemy needs to move within line of sight, determined by scr_line_of_sight_exists state,
+// then move the enemy towards the target location.
+else if !lineOfSightExists {
+	// The following section of code is inefficient, but I can't seem to find another way around it
+	// without changing the way scr_line_of_sight_exists works, and right now it works perfectly for
+	// every single other situation, so changing the whole script won't be worth it unless running
+	// scr_ai_decisions ends up taking more processing power than I originally thought. Right now, it
+	// only runs scr_ai_decisions when the AI is out of sight. And this makes it so that the AI always
+	// chooses the shortest path to its target, and it also will never get stuck trying to walk around
+	// enemies while within line of sight. Its a really good fix to a bunch of problems, but again, it
+	// runs that complicated script and so it eats processing power while its going. I'll have to test
+	// further later on.
+	scr_ai_decisions();
+	if chosenEngine != "Heal Ally" {
+		if currentTargetToFocus.id == obj_player.id {
+			target_ = currentTargetToFocus.playerGroundHurtbox;
+		}
+		else {
+			target_ = currentTargetToFocus.enemyGroundHurtbox;
+		}
+		target_x_ = target_.x;
+		target_y_ = target_.y;
+		scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
+	}
+	else {
+		if currentTargetToHeal.id == obj_player.id {
+			target_ = currentTargetToHeal.playerGroundHurtbox;
+		}
+		else {
+			target_ = currentTargetToHeal.enemyGroundHurtbox;
+		}
+		target_x_ = target_.x;
+		target_y_ = target_.y;
+		scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
+	}
+	chosenEngine = "";
+	distance_ = maxSpeed * 3;
+	pathEndXGoal = xPointToMoveTo;
+	pathEndYGoal = yPointToMoveTo;
+	target_x_ = xPointToMoveTo;
+	target_y_ = yPointToMoveTo;
+	if !collision_line(x, y, xPointToMoveTo, yPointToMoveTo, obj_wall, true, true) {
+		lineOfSightExists = true;
+		if pointToMoveToTimer < 0 {
+			pointToMoveToTimer = room_speed * 0.25;
+		}
+	}
+}
+// Else if the enemy is a minion, and it needs to move within tether range of player, move the minion
+// towards the player location.
+else if followingPlayer {
+	if !ds_exists(objectIDsInBattle, ds_type_list) {
+		distance_ = tetherToPlayerOutOfCombatRange * 0.75;
+		xPointToMoveTo = obj_player.x;
+		yPointToMoveTo = obj_player.y;
+		pathEndXGoal = xPointToMoveTo;
+		pathEndYGoal = yPointToMoveTo;
+		target_x_ = xPointToMoveTo;
+		target_y_ = yPointToMoveTo;
+	}
+	else {
+		enemyState = enemystates.idle;
+		enemyStateSprite = enemystates.idle;
+		chosenEngine = "";
+		decisionMadeForTargetAndAction = false;
+		alreadyTriedToChaseTimer = 0;
+		alreadyTriedToChase = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		lineOfSightExists = true;
+		followingPlayer = false;
+		exit;
+	}
 }
 // Else if the target doesn't exist, and there is no point to move to, then just revert back to idle
 else if (xPointToMoveTo == -1) && (yPointToMoveTo == -1) {
@@ -64,21 +131,24 @@ else if (xPointToMoveTo == -1) && (yPointToMoveTo == -1) {
 	alreadyTriedToChase = false;
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+	enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+	lineOfSightExists = true;
+	followingPlayer = false;
 	exit;
 }
+else {
+	distance_ = maxSpeed * 3;
+	target_x_ = xPointToMoveTo;
+	target_y_ = yPointToMoveTo;
+	pathEndXGoal = xPointToMoveTo;
+	pathEndYGoal = yPointToMoveTo;
+}
+
+// Finally, set ground hurtbox locations
 groundHurtboxX = enemyGroundHurtbox.x;
 groundHurtboxY = enemyGroundHurtbox.y;
 
-// If the enemy needs to move within line of sight, determined by scr_line_of_sight_exists state,
-// then move the enemy instead towards the target location.
-if (xPointToMoveTo != -1) && (yPointToMoveTo != -1) {
-	distance_ = maxSpeed * 3;
-	pathEndXGoal = xPointToMoveTo;
-	pathEndYGoal = yPointToMoveTo;
-	var target_x_, target_y_;
-	target_x_ = xPointToMoveTo;
-	target_y_ = yPointToMoveTo;
-}
 
 
 #region If the object isn't trying to get in range of a friendly object to heal an ally
@@ -113,14 +183,17 @@ if chosenEngine != "Heal Ally" {
 				if object_self_.pathPos == path_get_number(object_self_.myPath) {
 					with object_self_ {
 						if instance_exists(currentTargetToFocus) {
-							scr_line_of_sight_exists(currentTargetToFocus, obj_wall);
+							scr_line_of_sight_exists(currentTargetToFocus.x, currentTargetToFocus.y, obj_wall);
 						}
 					}
 					if point_distance(object_self_.x, object_self_.y, target_x_, target_y_) > distance_ {
 						solid = false;
-						with object_self_ {
-							mp_potential_step(pathEndXGoal, pathEndYGoal, currentSpeed, false);
-						}
+						// In this instance, I instead move the ground hurtbox first, and then move the
+						// enemy object to match the ground hurtbox location. I do this so that I can move
+						// the enemy objects more smoothly around obstacles.
+						mp_potential_step(object_self_.pathEndXGoal, object_self_.pathEndYGoal, object_self_.currentSpeed, false);
+						object_self_.x = x;
+						object_self_.y = y - 13;
 						solid = true;
 					}
 				}
@@ -128,16 +201,24 @@ if chosenEngine != "Heal Ally" {
 					if point_distance(object_self_.x, object_self_.y, object_self_.pathNextXPos, object_self_.pathNextYPos) <= (object_self_.maxSpeed * 4) { //(x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
 						with object_self_ {
 							if instance_exists(currentTargetToFocus) {
-								scr_line_of_sight_exists(currentTargetToFocus, obj_wall);
+								scr_line_of_sight_exists(currentTargetToFocus.x, currentTargetToFocus.y, obj_wall);
 							}
+						}
+					}
+					if (x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
+						if !((object_self_.pathPos + 1) > path_get_number(object_self_.myPath)) {
+							object_self_.pathPos++;
 						}
 					}
 					object_self_.pathNextXPos = path_get_point_x(object_self_.myPath, object_self_.pathPos);
 					object_self_.pathNextYPos = path_get_point_y(object_self_.myPath, object_self_.pathPos);
 					solid = false;
-					with object_self_ {
-						mp_potential_step(pathNextXPos, pathNextYPos, currentSpeed, false);
-					}
+					// In this instance, I instead move the ground hurtbox first, and then move the
+					// enemy object to match the ground hurtbox location. I do this so that I can move
+					// the enemy objects more smoothly around obstacles.
+					mp_potential_step(object_self_.pathNextXPos, object_self_.pathNextYPos, object_self_.currentSpeed, false);
+					object_self_.x = x;
+					object_self_.y = y - 13;
 					solid = true;
 				}
 			}
@@ -159,6 +240,8 @@ if chosenEngine != "Heal Ally" {
 			enemyStateSprite = enemystates.idle;
 			xPointToMoveTo = -1;
 			yPointToMoveTo = -1;
+			lineOfSightExists = true;
+			followingPlayer = false;
 			exit;
 		}
 	}
@@ -180,6 +263,8 @@ if chosenEngine != "Heal Ally" {
 		enemyStateSprite = enemystates.idle;
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
+		lineOfSightExists = true;
+		followingPlayer = false;
 		exit;
 	}
 }
@@ -215,14 +300,17 @@ if chosenEngine == "Heal Ally" {
 				if object_self_.pathPos == path_get_number(object_self_.myPath) {
 					with object_self_ {
 						if instance_exists(currentTargetToHeal) {
-							scr_line_of_sight_exists(currentTargetToHeal, obj_wall);
+							scr_line_of_sight_exists(currentTargetToHeal.x, currentTargetToHeal.y, obj_wall);
 						}
 					}
 					if point_distance(object_self_.x, object_self_.y, target_x_, target_y_) > distance_ {
 						solid = false;
-						with object_self_ {
-							mp_potential_step(pathEndXGoal, pathEndYGoal, currentSpeed, false);
-						}
+						// In this instance, I instead move the ground hurtbox first, and then move the
+						// enemy object to match the ground hurtbox location. I do this so that I can move
+						// the enemy objects more smoothly around obstacles.
+						mp_potential_step(object_self_.pathEndXGoal, object_self_.pathEndYGoal, object_self_.currentSpeed, false);
+						object_self_.x = x;
+						object_self_.y = y - 13;
 						solid = true;
 					}
 				}
@@ -230,16 +318,24 @@ if chosenEngine == "Heal Ally" {
 					if point_distance(object_self_.x, object_self_.y, object_self_.pathNextXPos, object_self_.pathNextYPos) <= (object_self_.maxSpeed * 4) { //(x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
 						with object_self_ {
 							if instance_exists(currentTargetToHeal) {
-								scr_line_of_sight_exists(currentTargetToHeal, obj_wall);
+								scr_line_of_sight_exists(currentTargetToHeal.x, currentTargetToHeal.y, obj_wall);
 							}
+						}
+					}
+					if (x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
+						if !((object_self_.pathPos + 1) > path_get_number(object_self_.myPath)) {
+							object_self_.pathPos++;
 						}
 					}
 					object_self_.pathNextXPos = path_get_point_x(object_self_.myPath, object_self_.pathPos);
 					object_self_.pathNextYPos = path_get_point_y(object_self_.myPath, object_self_.pathPos);
 					solid = false;
-					with object_self_ {
-						mp_potential_step(pathNextXPos, pathNextYPos, currentSpeed, false);
-					}
+					// In this instance, I instead move the ground hurtbox first, and then move the
+					// enemy object to match the ground hurtbox location. I do this so that I can move
+					// the enemy objects more smoothly around obstacles.
+					mp_potential_step(object_self_.pathNextXPos, object_self_.pathNextYPos, object_self_.currentSpeed, false);
+					object_self_.x = x;
+					object_self_.y = y - 13;
 					solid = true;
 				}
 			}
@@ -260,6 +356,8 @@ if chosenEngine == "Heal Ally" {
 			enemyStateSprite = enemystates.idle;
 			xPointToMoveTo = -1;
 			yPointToMoveTo = -1;
+			lineOfSightExists = true;
+			followingPlayer = false;
 			exit;
 		}
 	}
@@ -281,10 +379,13 @@ if chosenEngine == "Heal Ally" {
 		enemyStateSprite = enemystates.idle;
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
+		lineOfSightExists = true;
+		followingPlayer = false;
 		exit;
 	}
 }
 #endregion
+
 
 if (!instance_exists(currentTargetToFocus)) && (x == xPointToMoveTo) && (y == yPointToMoveTo) {
 	// Reset variables that need resetting (identified at end of scr_enemy_idle script) and 
@@ -301,6 +402,8 @@ if (!instance_exists(currentTargetToFocus)) && (x == xPointToMoveTo) && (y == yP
 	enemyStateSprite = enemystates.idle;
 	xPointToMoveTo = -1;
 	yPointToMoveTo = -1;
+	lineOfSightExists = true;
+	followingPlayer = false;
 	exit;
 }
 
@@ -327,6 +430,8 @@ if pointToMoveToTimer >= 0 {
 		enemyStateSprite = enemystates.idle;
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
+		lineOfSightExists = true;
+		followingPlayer = false;
 		exit;
 	}
 }
@@ -346,6 +451,8 @@ if point_distance(groundHurtboxX, groundHurtboxY, target_x_, target_y_) < distan
 	enemyStateSprite = enemystates.idle;
 	xPointToMoveTo = -1;
 	yPointToMoveTo = -1;
+	lineOfSightExists = true;
+	followingPlayer = false;
 	exit;
 }
 
@@ -364,6 +471,8 @@ if (alreadyTriedToChaseTimer <= 0) && ((xPointToMoveTo == -1) && (yPointToMoveTo
 	alreadyTriedToChase = true;
 	enemyState = enemystates.idle;
 	enemyStateSprite = enemystates.idle;
+	lineOfSightExists = true;
+	followingPlayer = false;
 	exit;
 }
 
@@ -382,6 +491,8 @@ if stunActive {
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	xPointToMoveTo = -1;
 	yPointToMoveTo = -1;
+	lineOfSightExists = true;
+	followingPlayer = false;
 	// Path variables resetting and destroying the path to prevent memory leak
 	pathPos = 1;
 	pathCreated = false;
@@ -390,6 +501,8 @@ if stunActive {
 	}
 }
 
+// If the enemy is being forced to return to idle, reset all variables and destroy anything that would
+// cause a memory leak.
 if forceReturnToIdleState {
 	forceReturnToIdleState = false;
 	currentTargetToFocus = noone;
@@ -408,6 +521,8 @@ if forceReturnToIdleState {
 	enemyStateSprite = enemystates.idle;
 	xPointToMoveTo = -1;
 	yPointToMoveTo = -1;
+	lineOfSightExists = true;
+	followingPlayer = false;
 	exit;
 }
 

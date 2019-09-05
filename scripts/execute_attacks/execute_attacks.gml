@@ -583,7 +583,7 @@ switch (lastAttackButtonPressed) {
 	#region Necromancy Abilities
 	case "Death Incarnate":
 		if !obj_skill_tree.deathIncarnateFirstPhaseActive {
-			if !collision_line(x, y, mouse_x, mouse_y, obj_wall, true, true) {
+			if !obj_skill_tree.deathIncarnateSecondPhaseActive {
 				if comboTrue != "" {
 					comboTrue = "";
 					playerDirectionFacing = comboPlayerDirectionFacing;

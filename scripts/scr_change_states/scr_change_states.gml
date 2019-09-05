@@ -10,8 +10,6 @@ switch (enemy_name_) {
 		switch (enemyState) {
 			case enemystates.idle: scr_enemy_idle();
 				break;
-			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
-				break;
 			case enemystates.stunned: scr_stunned();
 				break;
 			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
@@ -29,8 +27,6 @@ switch (enemy_name_) {
 	case "Healer":
 		switch (enemyState) {
 			case enemystates.idle: scr_enemy_idle();
-				break;
-			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
 				break;
 			case enemystates.stunned: scr_stunned();
 				break;
@@ -52,8 +48,6 @@ switch (enemy_name_) {
 		switch (enemyState) {
 			case enemystates.idle: scr_enemy_idle();
 				break;
-			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
-				break;
 			case enemystates.stunned: scr_stunned();
 				break;
 			case enemystates.moveWithinAttackRange: scr_move_within_attack_range();
@@ -71,8 +65,6 @@ switch (enemy_name_) {
 	case "Fighter":
 		switch (enemyState) {
 			case enemystates.idle: scr_enemy_idle();
-				break;
-			case enemystates.passivelyFollowPlayer: scr_passive_follow_player();
 				break;
 			case enemystates.stunned: scr_stunned();
 				break;

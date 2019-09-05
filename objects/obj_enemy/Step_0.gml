@@ -182,8 +182,10 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 			// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first)
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
-					instance_to_reference_.decisionMadeForTargetAndAction = false;
+				if rectangle_in_rectangle(instance_to_reference_.bbox_left, instance_to_reference_.bbox_top, instance_to_reference_.bbox_right, instance_to_reference_.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (instance_to_reference_.tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (instance_to_reference_.tetherYRange / 2)) {
+					if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+						instance_to_reference_.decisionMadeForTargetAndAction = false;
+					}
 				}
 			}
 			// Since this block is executed only if the object is already found inside objectIDsInBattle, if only 1 object
@@ -462,6 +464,9 @@ if objectArchetype == "" {
 	show_debug_message("And " + string(self) + "'s target is: " + string(currentTargetToFocus));
 	show_debug_message("- BREAK -");
 	show_debug_message("");
+}
+if combatFriendlyStatus == "Enemy" {
+	show_debug_message("ID: " + string(id) + " X: " + string(x) + " Y: " + string(y));
 }
 
 
