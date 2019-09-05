@@ -274,7 +274,7 @@ scr_change_states(enemyName);
 
 #region Move the enemy object if it needs to chase its target or the player
 // Increase speed to max if the enemy needs to chase an object
-if (enemyState == enemystates.moveWithinAttackRange) || (enemyState == enemystates.passivelyFollowPlayer) {
+if enemyState == enemystates.moveWithinAttackRange {
 	if currentSpeed < maxSpeed {
 		currentSpeed += acceleration * enemyTotalSpeed;
 	}

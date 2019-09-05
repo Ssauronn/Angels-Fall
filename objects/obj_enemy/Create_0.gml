@@ -147,7 +147,6 @@ enemyName = "";
 // State Machine Variables
 enum enemystates {
 	idle,
-	passivelyFollowPlayer,
 	stunned,
 	moveWithinAttackRange,
 	lightMeleeAttack,
