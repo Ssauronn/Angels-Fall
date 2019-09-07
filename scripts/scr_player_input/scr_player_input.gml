@@ -79,7 +79,7 @@ if mouse_check_button(mb_right) {
 	key_attack_rmb_time_held_down++;
 }
 else {
-	key_attack_rmb_time_held_down = 0;
+	key_attack_rmb_time_held_down = -1;
 }
 
 

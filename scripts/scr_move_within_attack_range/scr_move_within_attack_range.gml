@@ -30,6 +30,8 @@ switch (chosenEngine) {
 		target_ = currentTargetToHeal;
 		break;
 }
+
+
 var target_x_, target_y_;
 // If the target instance exists, set local variable target_ equal to this instance's target.
 if instance_exists(target_) {
@@ -44,6 +46,7 @@ if instance_exists(target_) {
 	target_y_ = target_.y;
 	pathEndXGoal = target_x_;
 	pathEndYGoal = target_y_;
+	pointToMoveToTimer = -1;
 }
 // If the enemy needs to move within line of sight, determined by scr_line_of_sight_exists state,
 // then move the enemy towards the target location.
@@ -58,27 +61,43 @@ else if !lineOfSightExists {
 	// runs that complicated script and so it eats processing power while its going. I'll have to test
 	// further later on.
 	scr_ai_decisions();
-	if chosenEngine != "Heal Ally" {
-		if currentTargetToFocus.id == obj_player.id {
-			target_ = currentTargetToFocus.playerGroundHurtbox;
+	if ds_exists(objectIDsInBattle, ds_type_list) {
+		if chosenEngine != "Heal Ally" {
+			if currentTargetToFocus.id == obj_player.id {
+				target_ = currentTargetToFocus.playerGroundHurtbox;
+			}
+			else {
+				target_ = currentTargetToFocus.enemyGroundHurtbox;
+			}
+			target_x_ = target_.x;
+			target_y_ = target_.y;
+			scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
 		}
 		else {
-			target_ = currentTargetToFocus.enemyGroundHurtbox;
+			if currentTargetToHeal.id == obj_player.id {
+				target_ = currentTargetToHeal.playerGroundHurtbox;
+			}
+			else {
+				target_ = currentTargetToHeal.enemyGroundHurtbox;
+			}
+			target_x_ = target_.x;
+			target_y_ = target_.y;
+			scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
 		}
-		target_x_ = target_.x;
-		target_y_ = target_.y;
-		scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
 	}
 	else {
-		if currentTargetToHeal.id == obj_player.id {
-			target_ = currentTargetToHeal.playerGroundHurtbox;
+		if (chosenEngine != "Heal Ally") || ((chosenEngine == "Heal Ally") && (!instance_exists(currentTargetToHeal))) {
+			target_x_ = obj_player.x;
+			target_y_ = obj_player.y;
+			scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
 		}
 		else {
-			target_ = currentTargetToHeal.enemyGroundHurtbox;
+			if instance_exists(currentTargetToHeal) {
+				target_x_ = currentTargetToHeal.x;
+				target_y_ = currentTargetToHeal.y;
+				scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
+			}
 		}
-		target_x_ = target_.x;
-		target_y_ = target_.y;
-		scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
 	}
 	chosenEngine = "";
 	distance_ = maxSpeed * 3;
@@ -97,9 +116,20 @@ else if !lineOfSightExists {
 // towards the player location.
 else if followingPlayer {
 	if !ds_exists(objectIDsInBattle, ds_type_list) {
-		distance_ = tetherToPlayerOutOfCombatRange * 0.75;
-		xPointToMoveTo = obj_player.x;
-		yPointToMoveTo = obj_player.y;
+		// set in scr_enemy_idle - followingPlayerTarget, followingPlayerTargetX, and
+		// followingPlayerTargetY are variables that choose a random location within
+		// a circle around the player, and move to that location. This makes for enemies
+		// that don't look stale, or follow you around in pre-determined ways.
+		if instance_exists(followingPlayerTarget) {
+			distance_ = tetherToPlayerOutOfCombatRange * 0.75;
+			xPointToMoveTo = followingPlayerTarget.x;
+			yPointToMoveTo = followingPlayerTarget.y;
+		}
+		else if (followingPlayerTargetX != -1) && (followingPlayerTargetY != -1) {
+			distance_ = maxSpeed * 3;
+			xPointToMoveTo = followingPlayerTargetX;
+			yPointToMoveTo = followingPlayerTargetY;
+		}
 		pathEndXGoal = xPointToMoveTo;
 		pathEndYGoal = yPointToMoveTo;
 		target_x_ = xPointToMoveTo;
@@ -118,7 +148,13 @@ else if followingPlayer {
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		lineOfSightExists = true;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		exit;
+	}
+	if point_distance(x, y, target_x_, target_y_) > distance_ {
+		pointToMoveToTimer = -1;
 	}
 }
 // Else if the target doesn't exist, and there is no point to move to, then just revert back to idle
@@ -135,14 +171,19 @@ else if (xPointToMoveTo == -1) && (yPointToMoveTo == -1) {
 	enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 	lineOfSightExists = true;
 	followingPlayer = false;
+	followingPlayerTarget = noone;
+	followingPlayerTargetX = -1;
+	followingPlayerTargetY = -1;
 	exit;
 }
 else {
-	distance_ = maxSpeed * 3;
+	scr_ai_decisions();
+	distance_ = maxSpeed * 5;
 	target_x_ = xPointToMoveTo;
 	target_y_ = yPointToMoveTo;
 	pathEndXGoal = xPointToMoveTo;
 	pathEndYGoal = yPointToMoveTo;
+	chosenEngine = "";
 }
 
 // Finally, set ground hurtbox locations
@@ -230,8 +271,10 @@ if chosenEngine != "Heal Ally" {
 			// Path variables being reset
 			pathPos = 1;
 			pathCreated = false;
-			if path_exists(myPath) {
-				path_delete(myPath);
+			if !is_undefined(myPath) {
+				if path_exists(myPath) {
+					path_delete(myPath);
+				}
 			}
 			// Reset the state variables, and set alreadyTriedToChase = true
 			alreadyTriedToChase = false;
@@ -242,6 +285,9 @@ if chosenEngine != "Heal Ally" {
 			yPointToMoveTo = -1;
 			lineOfSightExists = true;
 			followingPlayer = false;
+			followingPlayerTarget = noone;
+			followingPlayerTargetX = -1;
+			followingPlayerTargetY = -1;
 			exit;
 		}
 	}
@@ -253,8 +299,10 @@ if chosenEngine != "Heal Ally" {
 		// Path variables being reset
 		pathPos = 1;
 		pathCreated = false;
-		if path_exists(myPath) {
-			path_delete(myPath);
+		if !is_undefined(myPath) {
+			if path_exists(myPath) {
+				path_delete(myPath);
+			}
 		}
 		// Reset the state variables, and set alreadyTriedToChase = true
 		alreadyTriedToChase = false;
@@ -265,6 +313,9 @@ if chosenEngine != "Heal Ally" {
 		yPointToMoveTo = -1;
 		lineOfSightExists = true;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		exit;
 	}
 }
@@ -346,8 +397,10 @@ if chosenEngine == "Heal Ally" {
 			// reset the timer for chasing.
 			pathPos = 1;
 			pathCreated = false;
-			if path_exists(myPath) {
-				path_delete(myPath);
+			if !is_undefined(myPath) {
+				if path_exists(myPath) {
+					path_delete(myPath);
+				}
 			}
 			// Reset the state variables
 			alreadyTriedToChase = false;
@@ -358,6 +411,9 @@ if chosenEngine == "Heal Ally" {
 			yPointToMoveTo = -1;
 			lineOfSightExists = true;
 			followingPlayer = false;
+			followingPlayerTarget = noone;
+			followingPlayerTargetX = -1;
+			followingPlayerTargetY = -1;
 			exit;
 		}
 	}
@@ -369,8 +425,10 @@ if chosenEngine == "Heal Ally" {
 		// Path variables being reset
 		pathPos = 1;
 		pathCreated = false;
-		if path_exists(myPath) {
-			path_delete(myPath);
+		if !is_undefined(myPath) {
+			if path_exists(myPath) {
+				path_delete(myPath);
+			}
 		}
 		// Reset the state variables, and set alreadyTriedToChase = true
 		alreadyTriedToChase = false;
@@ -381,6 +439,9 @@ if chosenEngine == "Heal Ally" {
 		yPointToMoveTo = -1;
 		lineOfSightExists = true;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		exit;
 	}
 }
@@ -392,8 +453,10 @@ if (!instance_exists(currentTargetToFocus)) && (x == xPointToMoveTo) && (y == yP
 	// reset the timer for chasing.
 	pathPos = 1;
 	pathCreated = false;
-	if path_exists(myPath) {
-		path_delete(myPath);
+	if !is_undefined(myPath) {
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
 	}
 	// Reset the state variables
 	alreadyTriedToChase = false;
@@ -404,6 +467,9 @@ if (!instance_exists(currentTargetToFocus)) && (x == xPointToMoveTo) && (y == yP
 	yPointToMoveTo = -1;
 	lineOfSightExists = true;
 	followingPlayer = false;
+	followingPlayerTarget = noone;
+	followingPlayerTargetX = -1;
+	followingPlayerTargetY = -1;
 	exit;
 }
 
@@ -420,10 +486,12 @@ if pointToMoveToTimer >= 0 {
 		// Path variables being reset
 		pathPos = 1;
 		pathCreated = false;
-		if path_exists(myPath) {
-			path_delete(myPath);
+		if !is_undefined(myPath) {
+			if path_exists(myPath) {
+				path_delete(myPath);
+			}
 		}
-		// Reset the state variables, and set alreadyTriedToChase = true
+		// Reset the state variables
 		alreadyTriedToChase = false;
 		alreadyTriedToChaseTimer = 0;
 		enemyState = enemystates.idle;
@@ -432,6 +500,9 @@ if pointToMoveToTimer >= 0 {
 		yPointToMoveTo = -1;
 		lineOfSightExists = true;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		exit;
 	}
 }
@@ -441,8 +512,10 @@ if point_distance(groundHurtboxX, groundHurtboxY, target_x_, target_y_) < distan
 	// reset the timer for chasing.
 	pathPos = 1;
 	pathCreated = false;
-	if path_exists(myPath) {
-		path_delete(myPath);
+	if !is_undefined(myPath) {
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
 	}
 	// Reset the state variables
 	alreadyTriedToChase = false;
@@ -453,6 +526,9 @@ if point_distance(groundHurtboxX, groundHurtboxY, target_x_, target_y_) < distan
 	yPointToMoveTo = -1;
 	lineOfSightExists = true;
 	followingPlayer = false;
+	followingPlayerTarget = noone;
+	followingPlayerTargetX = -1;
+	followingPlayerTargetY = -1;
 	exit;
 }
 
@@ -464,8 +540,10 @@ if (alreadyTriedToChaseTimer <= 0) && ((xPointToMoveTo == -1) && (yPointToMoveTo
 	// Reset path variables
 	pathPos = 1;
 	pathCreated = false;
-	if path_exists(myPath) {
-		path_delete(myPath);
+	if !is_undefined(myPath) {
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
 	}
 	// Reset the state variables, and set alreadyTriedToChase = true
 	alreadyTriedToChase = true;
@@ -473,6 +551,9 @@ if (alreadyTriedToChaseTimer <= 0) && ((xPointToMoveTo == -1) && (yPointToMoveTo
 	enemyStateSprite = enemystates.idle;
 	lineOfSightExists = true;
 	followingPlayer = false;
+	followingPlayerTarget = noone;
+	followingPlayerTargetX = -1;
+	followingPlayerTargetY = -1;
 	exit;
 }
 
@@ -493,11 +574,16 @@ if stunActive {
 	yPointToMoveTo = -1;
 	lineOfSightExists = true;
 	followingPlayer = false;
+	followingPlayerTarget = noone;
+	followingPlayerTargetX = -1;
+	followingPlayerTargetY = -1;
 	// Path variables resetting and destroying the path to prevent memory leak
 	pathPos = 1;
 	pathCreated = false;
-	if path_exists(myPath) {
-		path_delete(myPath);
+	if !is_undefined(myPath) {
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
 	}
 }
 
@@ -511,8 +597,10 @@ if forceReturnToIdleState {
 	// reset the timer for chasing.
 	pathPos = 1;
 	pathCreated = false;
-	if path_exists(myPath) {
-		path_delete(myPath);
+	if !is_undefined(myPath) {
+		if path_exists(myPath) {
+			path_delete(myPath);
+		}
 	}
 	// Reset the state variables
 	alreadyTriedToChase = false;
@@ -523,6 +611,9 @@ if forceReturnToIdleState {
 	yPointToMoveTo = -1;
 	lineOfSightExists = true;
 	followingPlayer = false;
+	followingPlayerTarget = noone;
+	followingPlayerTargetX = -1;
+	followingPlayerTargetY = -1;
 	exit;
 }
 

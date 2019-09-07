@@ -113,6 +113,42 @@ if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBa
 							// As long as scr_line_of_sight didn't already send the enemy to the correct state,
 							// then send to the correct state.
 							if lineOfSightExists {
+								// Set the target to move to a random location within a circle around
+								// the player. This makes for enemies that, each time they move, choose
+								// a different location in relation to the player, which makes them seem
+								// more intelligent.
+								var len_, dir_, k, p, collision_found_;
+								dir_ = irandom_range(0, 359);
+								len_ = tetherToPlayerOutOfCombatRange * 0.5;
+								for (k = 0; k < 360; k++) {
+									collision_found_ = false;
+									for (p = 0; p <= array_length_1d(collisionObjects) - 1; p++) {
+										if place_meeting(obj_player.x + lengthdir_x(len_, dir_), obj_player.y + lengthdir_y(len_, dir_), collisionObjects[p]) {
+											collision_found_ = true;
+											break;
+										}
+									}
+									if !collision_found_ {
+										len_ = tetherToPlayerOutOfCombatRange * 0.4;
+										followingPlayerTargetX = obj_player.x + lengthdir_x(len_, dir_);
+										followingPlayerTargetY = obj_player.y + lengthdir_y(len_, dir_);
+										break;
+									}
+									else if collision_found_ {
+										if k < 360 {
+											dir_++;
+											if dir_ >= 360 {
+												dir_ -= 360;
+											}
+										}
+									}
+									// If there is absolutely no available location in a random position
+									// around the player to move to, then just set the player as the target to move to.
+									if (k == 359) && (collision_found_) {
+										followingPlayerTarget = obj_player.id;
+										break;
+									}
+								}
 								followingPlayer = true;
 								chosenEngine = "";
 								decisionMadeForTargetAndAction = false;

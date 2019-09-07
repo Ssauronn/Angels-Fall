@@ -79,6 +79,9 @@ switch (enemy_name_) {
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		lineOfSightExists = true;
 		
 		// Path variables
@@ -432,6 +435,9 @@ switch (enemy_name_) {
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		lineOfSightExists = true;
 		
 		// Path variables
@@ -787,6 +793,9 @@ switch (enemy_name_) {
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		lineOfSightExists = true;
 		
 		// Path variables
@@ -1138,6 +1147,9 @@ switch (enemy_name_) {
 		yPointToMoveTo = -1;
 		pointToMoveToTimer = -1;
 		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
 		lineOfSightExists = true;
 		
 		// Path variables
