@@ -1,5 +1,5 @@
 enemyName = "Mage";
-combatFriendlyStatus = "Enemy";
+combatFriendlyStatus = "Minion";
 objectArchetype = "Ranged DPS";
 
 

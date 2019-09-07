@@ -29,7 +29,17 @@ if object_index == obj_player {
 	
 		for (i = 0; i < array_length_1d(collisionObjects); i++) {
 			if (place_meeting(x + x_speed_, y, collisionObjects[i])) && (obj_player.collisionFound == -1) && (collisionObjects[1] != self) {
-				obj_player.collisionFound = i;
+				// Detect collisions, while specifically avoiding collisions with enemies
+				var other_collision_object_ = instance_place(x + x_speed_, y, collisionObjects[i]);
+				if variable_instance_exists(other_collision_object_, "owner") {
+					var other_collision_objects_owner_ = other_collision_object_.owner;
+					if other_collision_objects_owner_.combatFriendlyStatus != "Minion" {
+						obj_player.collisionFound = i;
+					}
+				}
+				else {
+					obj_player.collisionFound = i;
+				}
 			}
 		}
 		if obj_player.collisionFound != -1 {
@@ -53,7 +63,17 @@ if object_index == obj_player {
 	with (playerGroundHurtbox) {
 		for (i = 0; i < array_length_1d(collisionObjects); i++) {
 			if (place_meeting(x, y + y_speed_, collisionObjects[i])) && (obj_player.collisionFound == -1) && (collisionObjects[i] != self) {
-				obj_player.collisionFound = i;
+				// Detect collisions, while specifically avoiding collisions with enemies
+				var other_collision_object_ = instance_place(x, y + y_speed_, collisionObjects[i]);
+				if variable_instance_exists(other_collision_object_, "owner") {
+					var other_collision_objects_owner_ = other_collision_object_.owner;
+					if other_collision_objects_owner_.combatFriendlyStatus != "Minion" {
+						obj_player.collisionFound = i;
+					}
+				}
+				else {
+					obj_player.collisionFound = i;
+				}
 			}
 		}
 		if obj_player.collisionFound != -1 {

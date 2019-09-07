@@ -1,4 +1,16 @@
 /// @description Draw Player objects
+if obj_skill_tree.ritualOfImperfectionCurrentCastTime >= obj_skill_tree.ritualOfImperfectionCastTimeRequiredForThirdDemon {
+	draw_sprite_ext(spr_ritual_of_imperfection_powering_up, 0, x, y, 1, 1, 0, c_red, 1);
+}
+else if obj_skill_tree.ritualOfImperfectionCurrentCastTime >= obj_skill_tree.ritualOfImperfectionCastTimeRequiredForSecondDemon {
+	draw_sprite_ext(spr_ritual_of_imperfection_powering_up, 0, x, y, 1, 1, 0, c_orange, 1);
+}
+else if obj_skill_tree.ritualOfImperfectionCurrentCastTime >= obj_skill_tree.ritualOfImperfectionCastTimeRequiredForFirstDemon {
+	draw_sprite_ext(spr_ritual_of_imperfection_powering_up, 0, x, y, 1, 1, 0, c_yellow, 1);
+}
+else if obj_skill_tree.ritualOfImperfectionCurrentCastTime >= 0 {
+	draw_sprite_ext(spr_ritual_of_imperfection_powering_up, 0, x, y, 1, 1, 0, c_white, 1);
+}
 draw_self();
 draw_set_alpha(1);
 draw_healthbar(x - 16, y - 49, x + 16, y - 45, 1 * 100, c_black, c_black, c_black, 0, false, false);

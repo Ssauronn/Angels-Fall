@@ -1919,6 +1919,14 @@
             }
         },
         {
+            "Key": "c89b6330-b621-4089-937b-86f7d41b5393",
+            "Value": {
+                "id": "c6467daa-012b-4d67-8766-95e45f62e7a8",
+                "resourcePath": "sprites\\spr_ritual_of_imperfection_powering_up\\spr_ritual_of_imperfection_powering_up.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "c8b2e628-d717-4761-bc18-208ec0d33303",
             "Value": {
                 "id": "e5cd4d9a-ea91-427f-a08d-31c1a16070a7",
@@ -2551,7 +2559,6 @@
         "3fcc16de-fcba-4a17-a0af-6a14653ac8f4",
         "82304a18-02a6-422e-96e4-7f6f3bc335f4",
         "bf85d7fa-b546-4fc6-babc-f8eb0c7e53c1",
-        "21ddc1fa-92ef-48b6-8279-a984718984c6",
         "e8a5042e-25e5-4713-b307-20722a744f59",
         "0d9f349b-b7d7-42fb-bc17-3accf756d35d",
         "460c1219-d115-45da-b316-afe17e2b60c4",
@@ -2566,7 +2573,8 @@
         "0afe9e54-0cd8-4513-b949-893ed4b3cae9",
         "06c78b3a-a566-4cc3-99c4-256c76bed58e",
         "c903ef42-186c-476f-aa55-69c02b880f0c",
-        "3998c64b-98a7-4698-9b5a-c0d192e07585"
+        "3998c64b-98a7-4698-9b5a-c0d192e07585",
+        "21ddc1fa-92ef-48b6-8279-a984718984c6"
     ],
     "tutorial": ""
 }

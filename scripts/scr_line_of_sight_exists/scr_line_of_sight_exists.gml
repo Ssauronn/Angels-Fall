@@ -112,6 +112,7 @@ else {
 		collision_objects_ = noone;
 	}
 	lineOfSightExists = true;
+	pointToMoveToTimer = room_speed * 0.25;
 	return true;
 }
 
