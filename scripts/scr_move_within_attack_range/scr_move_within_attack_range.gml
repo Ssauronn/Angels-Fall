@@ -126,7 +126,7 @@ else if followingPlayer {
 			yPointToMoveTo = followingPlayerTarget.y;
 		}
 		else if (followingPlayerTargetX != -1) && (followingPlayerTargetY != -1) {
-			distance_ = maxSpeed * 3;
+			distance_ = maxSpeed * 5;
 			xPointToMoveTo = followingPlayerTargetX;
 			yPointToMoveTo = followingPlayerTargetY;
 		}

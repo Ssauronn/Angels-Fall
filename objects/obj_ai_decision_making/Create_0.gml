@@ -75,15 +75,6 @@ idealAmountOfTotalEnemiesInBattleForLightRangedEngine = 5;
 totalEnemiesInBattleForLightRangedEngineStartWeight = 0.05;
 percentageOfDamageToTargetCurrentHPForLightRangedEngineStartWeight = 0.25;
 #endregion
-#region Run Away
-selfCurrentHPPercentForRunAwayEngineStartWeight = 0.1;
-objectProximityToTargetForRunAwayEngineStartWeight = 0.2;
-targetCurrentHPPercentForRunAwayEngineStartWeight = 0.1;
-targetIsDifferentArchetypesForRunAwayEngineStartWeight = 0.3;
-// This one line below is the variable to set the ideal amount of allies in battle for each object, not including itself
-idealAmountOfTotalEnemiesInBattleForRunAwayEngine = 7;
-totalEnemiesInBattleForRunAwayEngineStartWeight = 0.3;
-#endregion
 #region FOR HEALERS ONLY - Heal Ally
 /*
 I essentially need to determine a heal target, and then determine a heal weight off of that, and then compare it against all the other weights

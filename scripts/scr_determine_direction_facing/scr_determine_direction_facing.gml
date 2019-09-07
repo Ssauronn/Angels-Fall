@@ -77,27 +77,25 @@ if (!stunActive) && (!hitstunActive) && ((enemyState != enemystates.heavyMeleeAt
 else {										   
 	if combatFriendlyStatus == "Minion" {
 		if instance_exists(obj_player) {
-<<<<<<< HEAD
 			if (enemyState == enemystates.moveWithinAttackRange) && (!ds_exists(objectIDsInBattle, ds_type_list)) {
-=======
-			// If there's nothing to attack, meaning the minion is following the player, set the direction
-			// equal to facing the player every frame.
-			if (!ds_exists(objectIDsInBattle, ds_type_list) && ds_exists(objectIDsFollowingPlayer, ds_type_list)) {
->>>>>>> 1d364c9e736cf65e01941493fda0b4901d280e55
-				var point_direction_ = point_direction(x, y, obj_player.x, obj_player.y);
-				currentDirection = point_direction_;
-				if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {
-					enemyDirectionFacing = enemydirection.right;
-				}								   
-				else if (point_direction_ <= 135) && (point_direction_ > 45) {
-					enemyDirectionFacing = enemydirection.up;
-				}								   
-				else if (point_direction_ <= 235) && (point_direction_ > 135) {
-					enemyDirectionFacing = enemydirection.left;
-				}								   
-				else if (point_direction_ <= 315) && (point_direction_ > 235) {
-					enemyDirectionFacing = enemydirection.down;
-				}								   
+				// If there's nothing to attack, meaning the minion is following the player, set the direction
+				// equal to facing the player every frame.
+				if (!ds_exists(objectIDsInBattle, ds_type_list) && ds_exists(objectIDsFollowingPlayer, ds_type_list)) {
+					var point_direction_ = point_direction(x, y, obj_player.x, obj_player.y);
+					currentDirection = point_direction_;
+					if ((point_direction_ <= 45) && (point_direction_ >= 0)) || ((point_direction_ > 315) && (point_direction_ < 360)) {
+						enemyDirectionFacing = enemydirection.right;
+					}								   
+					else if (point_direction_ <= 135) && (point_direction_ > 45) {
+						enemyDirectionFacing = enemydirection.up;
+					}								   
+					else if (point_direction_ <= 235) && (point_direction_ > 135) {
+						enemyDirectionFacing = enemydirection.left;
+					}								   
+					else if (point_direction_ <= 315) && (point_direction_ > 235) {
+						enemyDirectionFacing = enemydirection.down;
+					}								   
+				}
 			}
 		}
 	}

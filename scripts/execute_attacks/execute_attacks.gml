@@ -646,22 +646,22 @@ switch (lastAttackButtonPressed) {
 		// button is held (meaning how much mana the player dedicates to the summoning)
 		break;
 	case "Ritual of Death":
-		if comboTrue != "" {
-			comboTrue = "";
-			playerDirectionFacing = comboPlayerDirectionFacing;
-			comboPlayerDirectionFacing = -1;
-			playerImageIndex = 0;
+		// Determine if the player's current Mana and Stamina, after 7 more frames of regeneration,
+		// will be enough to cast the spell, and if so, cast it.
+		if ((playerCurrentMana + (playerManaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathManaCost) && ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) {
+			if comboTrue != "" {
+				comboTrue = "";
+				playerDirectionFacing = comboPlayerDirectionFacing;
+				comboPlayerDirectionFacing = -1;
+				playerImageIndex = 0;
+			}
+			else {
+				playerImageIndex = 0;
+			}
+			playerState = playerstates.ritualofdeath;
+			playerStateSprite = playerstates.ritualofdeath;
+			lastAttackButtonPressed = "";
 		}
-		else {
-			playerImageIndex = 0;
-		}
-		playerState = playerstates.ritualofdeath;
-		playerStateSprite = playerstates.ritualofdeath;
-		lastAttackButtonPressed = "";
-		playerCurrentStamina -= obj_skill_tree.ritualOfDeathStaminaCost;
-		playerCurrentStamina += obj_skill_tree.ritualOfDeathStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.ritualOfDeathManaCost;
-		playerCurrentMana += obj_skill_tree.ritualOfDeathManaRegen;
 		break;
 	case "Soul Tether":
 		if comboTrue != "" {

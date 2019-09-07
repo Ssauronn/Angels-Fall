@@ -7,7 +7,7 @@ keyBarAbilityTwoChosen = "Diabolus Blast";
 keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "Hidden Dagger";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Ritual of Imperfection";
+keyBarAbilityFourChosen = "Ritual of Death";
 keyBarAbilityFourEquipped = false;
 
 

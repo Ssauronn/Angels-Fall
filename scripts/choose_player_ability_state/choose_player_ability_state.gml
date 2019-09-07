@@ -471,14 +471,13 @@ switch equipped_ability_ {
 	case "Ritual of Death":
 		if instance_exists(obj_dead_body) {
 			var dead_body_found_ = false;
-			with obj_dead_body {
-				if point_distance(x, y, obj_player.x, obj_player.y) <= obj_skill_tree.ritualOfDeathRange {
-					dead_body_found_ = true;
-				}
+			var nearest_dead_body_ = instance_nearest(x, y, obj_dead_body);
+			if point_distance(x, y, nearest_dead_body_.x, nearest_dead_body_.y) <= obj_skill_tree.ritualOfDeathRange {
+				dead_body_found_ = true;
 			}
 			if dead_body_found_ {
 				if combo_ {
-					if (playerCurrentStamina >= obj_skill_tree.ritualOfDeathStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfDeathManaCost) {
+					if ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) && ((playerCurrentMana + (playerManaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathManaCost) {
 						comboTrue = "Ritual of Death";
 					}
 					else {
@@ -488,7 +487,7 @@ switch equipped_ability_ {
 					}
 				}
 				else {
-					if (playerCurrentStamina >= obj_skill_tree.ritualOfDeathStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfDeathManaCost) {
+					if ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) && ((playerCurrentMana + (playerManaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathManaCost) {
 						lastAttackButtonPressed = "Ritual of Death";
 						execute_attacks();
 					}

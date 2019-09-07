@@ -117,15 +117,6 @@ objectProximityToTargetForLightRangedEngineTotalWeight = 0.35;
 totalEnemiesInBattleForLightRangedEngineTotalWeight = 0.1;
 percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight = 0.15;
 #endregion
-#region RUN AWAY
-runAwayEngineWeightMultiplier = 1;
-runAwayEngineTotalWeight = runAwayEngineWeightMultiplier;
-selfCurrentHPPercentForRunAwayEngineTotalWeight = 0.1;
-objectProximityToTargetForRunAwayEngineTotalWeight = 0.2;
-targetCurrentHPPercentForRunAwayEngineTotalWeight = 0.1;
-targetIsDifferentArchetypesForRunAwayEngineTotalWeight = 0.3;
-totalEnemiesInBattleForRunAwayEngineTotalWeight = 0.3;
-#endregion
 #region FOR HEALERS ONLY - HEAL ALLY
 healAllyEngineWeightMultiplier = 1;
 healAllyEngineTotalWeight = 0;

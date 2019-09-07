@@ -138,7 +138,7 @@ if instance_exists(obj_player) {
 										if instance_exists(temporary_instance_to_reference_) {
 											weight_at_which_this_heal_target_would_be_focused_at_ = (ds_grid_get(enemy_heal_target_grid_, 2, iteration_) + ds_grid_get(enemy_heal_target_grid_, 3, iteration_) + ds_grid_get(enemy_heal_target_grid_, 6, iteration_) + ds_grid_get(enemy_heal_target_grid_, 7, iteration_));
 											if ((ds_grid_get(enemy_heal_target_grid_, 0, iteration_) == "Minion") || (ds_grid_get(enemy_heal_target_grid_, 0, iteration_) == "Player")) || (ds_grid_get(enemy_heal_target_grid_, 2, iteration_) == 0) {
-												weight_at_which_this_heal_target_would_be_focused_at_ = 0;
+												weight_at_which_this_heal_target_would_be_focused_at_ = -1;
 											}
 											if temporary_instance_to_reference_ == instance_to_reference_.currentTargetToHeal {
 												instance_to_reference_.weightAtWhichEnemyIsCurrentlyFocusingHealTargetAt = weight_at_which_this_heal_target_would_be_focused_at_;
@@ -732,47 +732,6 @@ if instance_exists(obj_player) {
 						instance_to_reference_.lightRangedEngineTotalWeight = (instance_to_reference_.targetCurrentHPPercentForLightRangedEngineTotalWeight + instance_to_reference_.targetOfTargetFocusIsDifferentArchetypesForLightRangedEngineTotalWeight + instance_to_reference_.selfCurrentHPPercentForLightRangedEngineTotalWeight + instance_to_reference_.objectProximityToTargetForLightRangedEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForLightRangedEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight) * instance_to_reference_.lightRangedEngineWeightMultiplier;
 					}
 					#endregion
-					#region Run Away Engine
-					if instance_exists(instance_to_reference_.currentTargetToFocus) {
-						instance_to_reference_.selfCurrentHPPercentForRunAwayEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.selfCurrentHPPercentForRunAwayEngineStartWeight * 2));
-						var temporary_instance_to_reference_ = instance_to_reference_.currentTargetToFocus;
-						if temporary_instance_to_reference_ != obj_player.id {
-							instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight = (instance_to_reference_.enemyCurrentHP / instance_to_reference_.enemyMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForRunAwayEngineStartWeight * 2);
-							switch (temporary_instance_to_reference_.objectArchetype) {
-								case "Healer": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 0.00;
-									break;
-								case "Tank": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 2.00;
-									break;
-								case "Melee DPS": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 2.00;
-									break;
-								case "Ranged DPS": instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * 0.66;;
-									break;
-							}
-						}
-						else if temporary_instance_to_reference_ == obj_player.id {
-							instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight = (playerCurrentHP / playerMaxHP) * (obj_ai_decision_making.targetCurrentHPPercentForRunAwayEngineStartWeight * 2);
-							instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight = obj_ai_decision_making.targetIsDifferentArchetypesForRunAwayEngineStartWeight * ((1 / attackPatternStartWeight) * obj_ai_decision_making.playerAttackPatternWeight)
-						}
-						instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight = ((obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2) - ((instance_to_reference_.objectProximityToTarget / camera_get_view_width(view_camera[0])) * (obj_ai_decision_making.objectProximityToTargetForRunAwayEngineStartWeight * 2)))
-						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
-							if (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
-								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (1 + friendlyHealersInBattle + friendlyTanksInBattle + friendlyMeleeDPSInBattle + friendlyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
-							}
-							else {
-								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = 0;
-							}
-						}
-						else if instance_to_reference_.combatFriendlyStatus == "Minion" {
-							if (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) <= (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) {
-								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = (((obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2) - (enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle)) / (obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForRunAwayEngine * 2)) * (obj_ai_decision_making.totalEnemiesInBattleForRunAwayEngineStartWeight);
-							}
-							else {
-								instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight = 0;
-							}
-						}
-						instance_to_reference_.runAwayEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForRunAwayEngineTotalWeight + instance_to_reference_.objectProximityToTargetForRunAwayEngineTotalWeight + instance_to_reference_.targetCurrentHPPercentForRunAwayEngineTotalWeight + instance_to_reference_.targetIsDifferentArchetypesForRunAwayEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForRunAwayEngineTotalWeight) * instance_to_reference_.runAwayEngineWeightMultiplier;
-					}
-					#endregion
 					#region FOR HEALERS ONLY - Heal Ally
 					if instance_to_reference_.objectArchetype == "Healer" {
 						var temporary_instance_to_reference_current_hp_, temporary_instance_to_reference_max_hp_, temporary_instance_to_reference_is_lowest_hp_;
@@ -880,39 +839,33 @@ if instance_exists(obj_player) {
 				//var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
 				var instance_to_reference_ = self;
 				if instance_to_reference_.objectArchetype != "Healer" {
-					if (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) {
+					if (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Heavy Melee";
 					}
-					else if (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) {
+					else if (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Light Melee";
 					}
-					else if (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) {
+					else if (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Heavy Ranged";
 					}
-					else if (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) {
+					else if (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Light Ranged";
-					}
-					else if (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
-						instance_to_reference_.chosenEngine = "Run Away";
 					}
 				}
 				else if instance_to_reference_.objectArchetype == "Healer" {
-					if (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
+					if (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Heavy Melee";
 					}
-					else if (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
+					else if (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.lightMeleeEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Light Melee";
 					}
-					else if (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
+					else if (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Heavy Ranged";
 					}
-					else if (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
+					else if (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Light Ranged";
 					}
-					else if (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.runAwayEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
-						instance_to_reference_.chosenEngine = "Run Away";
-					}
-					else if (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.runAwayEngineTotalWeight) {
+					else if (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.heavyMeleeEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
 						instance_to_reference_.chosenEngine = "Heal Ally";
 					}
 				}
