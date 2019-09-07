@@ -23,7 +23,6 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 			lightMeleeEngineWeightMultiplier = 0.75;
 			heavyRangedEngineWeightMultiplier = 0.9;
 			lightRangedEngineWeightMultiplier = 1.0;
-			runAwayEngineWeightMultiplier = 0.6;
 			healAllyEngineWeightMultiplier = 1.2;
 			break;
 		case "Tank": enemyAttackPatternWeight = attackPatternStartWeight * (3 / 2);
@@ -32,7 +31,6 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 			lightMeleeEngineWeightMultiplier = 1.2;
 			heavyRangedEngineWeightMultiplier = 1.1;
 			lightRangedEngineWeightMultiplier = 0.9;
-			runAwayEngineWeightMultiplier = 0.8;
 			healAllyEngineWeightMultiplier = 0.00;
 			break;
 		case "Ranged DPS": enemyAttackPatternWeight = attackPatternStartWeight * (1 / 2);
@@ -41,7 +39,6 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 			lightMeleeEngineWeightMultiplier = 0.8;
 			heavyRangedEngineWeightMultiplier = 1.2;
 			lightRangedEngineWeightMultiplier = 1.3;
-			runAwayEngineWeightMultiplier = 0.6;
 			healAllyEngineWeightMultiplier = 0.00;
 			break;
 		case "Melee DPS": enemyAttackPatternWeight = attackPatternStartWeight * (7 / 4);
@@ -50,7 +47,6 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 			lightMeleeEngineWeightMultiplier = 1.3;
 			heavyRangedEngineWeightMultiplier = 0.7;
 			lightRangedEngineWeightMultiplier = 0.8;
-			runAwayEngineWeightMultiplier = 0.6;
 			healAllyEngineWeightMultiplier = 0.00;
 			break;
 	}
@@ -179,12 +175,19 @@ if (self.enemyCurrentHP <= 0) || !(rectangle_in_rectangle(self.bbox_left, self.b
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if (ds_list_find_index(objectIDsInBattle, self) != -1) {
 			// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
-			// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first)
+			// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first). And, reset
+			// the targets for any instance that had this specific instance as its target.
 			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
 				if rectangle_in_rectangle(instance_to_reference_.bbox_left, instance_to_reference_.bbox_top, instance_to_reference_.bbox_right, instance_to_reference_.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (instance_to_reference_.tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (instance_to_reference_.tetherYRange / 2)) {
 					if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
 						instance_to_reference_.decisionMadeForTargetAndAction = false;
+					}
+					if instance_to_reference_.currentTargetToFocus == self {
+						instance_to_reference_.currentTargetToFocus = noone;
+					}
+					if instance_to_reference_.currentTargetToHeal == self {
+						instance_to_reference_.currentTargetToHeal = noone;
 					}
 				}
 			}
@@ -441,15 +444,6 @@ if objectArchetype == "" {
 	show_debug_message(string(totalEnemiesInBattleForLightRangedEngineTotalWeight) + " = totalEnemiesInBattleForLightRangedEngineTotalWeight");
 	show_debug_message(string(percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight) + " = percentageOfDamageToTargetCurrentHPForLightRangedEngineTotalWeight");
 	show_debug_message("Total Light Ranged Engine Weight AFTER Multiplier = " + string(lightRangedEngineTotalWeight));
-	show_debug_message("- BREAK -");
-	show_debug_message("And for run away: ");
-	show_debug_message("For " + string(self.id) + " these are the following weights:");
-	show_debug_message(string(selfCurrentHPPercentForRunAwayEngineTotalWeight) + " = selfCurrentHPPercentForRunAwayEngineTotalWeight");
-	show_debug_message(string(objectProximityToTargetForRunAwayEngineTotalWeight) + " = objectProximityToTargetForRunAwayEngineTotalWeight");
-	show_debug_message(string(targetCurrentHPPercentForRunAwayEngineTotalWeight) + " = targetCurrentHPPercentForRunAwayEngineTotalWeight");
-	show_debug_message(string(targetIsDifferentArchetypesForRunAwayEngineTotalWeight) + " = targetIsDifferentArchetypesForRunAwayEngineTotalWeight");
-	show_debug_message(string(totalEnemiesInBattleForRunAwayEngineTotalWeight) + " = totalEnemiesInBattleForRunAwayEngineTotalWeight");
-	show_debug_message("Total Run Away Engine Weight AFTER Multiplier = " + string(runAwayEngineTotalWeight));
 	show_debug_message("- BREAK -");
 	show_debug_message("And for heal: ");
 	show_debug_message("for " + string(self.id) + " these are the following weights:");
