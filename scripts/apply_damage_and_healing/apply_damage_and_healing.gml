@@ -119,7 +119,7 @@ if owner_is_player_ {
 													playerHitbox.owner = owner_;
 													playerHitbox.playerHitboxAttackType = self_.playerHitboxAttackType;
 													playerHitbox.playerHitboxDamageType = self_.playerHitboxDamageType;
-													playerHitbox.playerHitboxAbilityOrigin = "Soul Tether";
+													playerHitbox.playerHitboxAbilityOrigin = "DoT Tick";
 													playerHitbox.playerHitboxHeal = self_.playerHitboxHeal;
 													playerHitbox.playerHitboxValue = total_damage_;
 													playerHitbox.playerHitboxCollisionFound = false;
@@ -334,6 +334,9 @@ if owner_is_player_ {
 						}
 						else if self_.playerHitboxAbilityOrigin == "Lightning Spear" {
 							lightningSpearBasicMeleeDamageMultiplierActive = true;
+						}
+						else if self_.playerHitboxAbilityOrigin == "Soul Tether" {
+							other_owner_.soulTetherTimer = soulTetherTimerStartTime;
 						}
 						else if self_.playerHitboxAbilityOrigin == "Dinner is Served" {
 							if !purifyingRageActive {

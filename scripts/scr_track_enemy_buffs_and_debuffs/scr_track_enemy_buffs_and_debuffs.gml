@@ -155,11 +155,81 @@ if soulTetherTimer >= 0 {
 	soulTetherActive = true;
 }
 if soulTetherActive {
+	var remove_self_from_soul_tether_targets_ = false;
 	if soulTetherTimer < 0 {
 		soulTetherActive = false;
+		remove_self_from_soul_tether_targets_ = true;
+		if ds_exists(objectIDsInBattle, ds_type_list) {
+			var i, other_soul_tether_found_;
+			other_soul_tether_found_= false;
+			for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+				var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+				if instance_exists(instance_to_reference_) {
+					if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+						if instance_to_reference_.soulTetherActive {
+							other_soul_tether_found_ = true;
+						}
+					}
+				}
+			}
+			if !other_soul_tether_found_ {
+				obj_skill_tree.soulTetherTargetArray = noone;
+			}
+		}
 	}
 	else if soulTetherTimer >= 0 {
 		soulTetherTimer--;
+	}
+	if (combatFriendlyStatus == "Minion") || (remove_self_from_soul_tether_targets_) {
+		// Remove buff and self from the target array - I include this line in case the player
+		// decided to mind control the enemy while the enemy is afflicted with Soul Tether, to avoid
+		// Soul Tether debuff from affecting minions.
+		var self_ = self;
+		with obj_skill_tree {
+			if is_array(soulTetherTargetArray) {
+				var i, array_location_to_remove_;
+				array_location_to_remove_ = -1;
+				// Loop through the array, find self, deactive debuff, and mark the array location
+				// to shift everything down 1.
+				for (i = 0; i <= array_length_1d(soulTetherTargetArray) - 1; i++) {
+					var instance_to_reference_ = soulTetherTargetArray[i];
+					if instance_exists(instance_to_reference_) {
+						if instance_to_reference_ == self {
+							// Remove buff from self
+							self_.soulTetherTimer = -1;
+							self_.soulTetherActive = false;
+							array_location_to_remove_ = i;
+						}
+					}
+				}
+				// Find the location of self in the target array, remove self, and shift above targets
+				// down by 1 in the array.
+				if array_location_to_remove_ != -1 {
+					// Start the for loop at the location of the index to remove and end at the end
+					// of the array.
+					for (i = array_location_to_remove_; i <= array_length_1d(soulTetherTargetArray) - (array_location_to_remove_ + 1); i++) {
+						if i != 2 {
+							soulTetherTargetArray[i] = soulTetherTargetArray[i + 1];
+						}
+						// Else no matter what, since we're shifting the targets downwards, set this to
+						// equal noone.
+						else {
+							soulTetherTargetArray[i] = noone;
+						}
+					}
+				}
+				// Check to see if the array is empty now. If it is, remove the array.
+				var other_soul_tether_found_ = false;
+				for (i = 0; i <= array_length_1d(soulTetherTargetArray) - 1; i++) {
+					if instance_exists(soulTetherTargetArray[i]) {
+						other_soul_tether_found_ = true;
+					}
+				}
+				if !other_soul_tether_found_ {
+					soulTetherTargetArray = noone;
+				}
+			}
+		}
 	}
 }
 #endregion
