@@ -524,12 +524,16 @@ switch equipped_ability_ {
 		}
 		break;
 	case "Dinner is Served":
-		if combo_ {
-			comboTrue = "Dinner is Served";
-		}
-		else {
-			lastAttackButtonPressed = "Dinner is Served";
-			execute_attacks();
+		if variable_global_exists("objectIDsInBattle") {
+			if ds_exists(objectIDsInBattle, ds_type_list) {
+				if combo_ {
+					comboTrue = "Dinner is Served";
+				}
+				else {
+					lastAttackButtonPressed = "Dinner is Served";
+					execute_attacks();
+				}
+			}
 		}
 		break;
 	case "Final Parting":

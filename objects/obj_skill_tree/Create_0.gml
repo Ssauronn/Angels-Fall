@@ -7,7 +7,7 @@ keyBarAbilityTwoChosen = "Diabolus Blast";
 keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "Hidden Dagger";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Soul Tether";
+keyBarAbilityFourChosen = "Dinner is Served";
 keyBarAbilityFourEquipped = false;
 
 
