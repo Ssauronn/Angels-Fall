@@ -682,22 +682,41 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.soulTetherManaRegen;
 		break;
 	case "Dinner is Served":
-		if comboTrue != "" {
-			comboTrue = "";
-			playerDirectionFacing = comboPlayerDirectionFacing;
-			comboPlayerDirectionFacing = -1;
-			playerImageIndex = 0;
+		if instance_exists(obj_dead_body) {
+			var nearest_dead_body_ = instance_nearest(x, y, obj_dead_body);
+			if point_distance(x, y, nearest_dead_body_.x, nearest_dead_body_.y) <= obj_skill_tree.dinnerIsServedRange {
+				if ds_exists(objectIDsInBattle, ds_type_list) {
+					var i;
+					var target_found_ = false;
+					for (i = 0; i <= ds_list_size(objectIDsInBattle) -1; i++) {
+						var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+						if instance_exists(instance_to_reference_) {
+							if point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y) <= obj_skill_tree.dinnerIsServedRange {
+								target_found_ = true;
+							}
+						}
+					}
+					if target_found_ {
+						if comboTrue != "" {
+							comboTrue = "";
+							playerDirectionFacing = comboPlayerDirectionFacing;
+							comboPlayerDirectionFacing = -1;
+							playerImageIndex = 0;
+						}
+						else {
+							playerImageIndex = 0;
+						}
+						playerState = playerstates.dinnerisserved;
+						playerStateSprite = playerstates.dinnerisserved;
+						lastAttackButtonPressed = "";
+						playerCurrentStamina -= obj_skill_tree.dinnerIsServedStaminaCost;
+						playerCurrentStamina += obj_skill_tree.dinnerIsServedStaminaRegen;
+						playerCurrentMana -= obj_skill_tree.dinnerIsServedManaCost;
+						playerCurrentMana += obj_skill_tree.dinnerIsServedManaRegen;
+					}
+				}
+			}
 		}
-		else {
-			playerImageIndex = 0;
-		}
-		playerState = playerstates.dinnerisserved;
-		playerStateSprite = playerstates.dinnerisserved;
-		lastAttackButtonPressed = "";
-		playerCurrentStamina -= obj_skill_tree.dinnerIsServedStaminaCost;
-		playerCurrentStamina += obj_skill_tree.dinnerIsServedStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.dinnerIsServedManaCost;
-		playerCurrentMana += obj_skill_tree.dinnerIsServedManaRegen;
 		break;
 	case "Final Parting":
 		if comboTrue != "" {
