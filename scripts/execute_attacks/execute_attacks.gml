@@ -735,6 +735,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.finalPartingStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.finalPartingManaCost;
 		playerCurrentMana += obj_skill_tree.finalPartingManaRegen;
+		obj_skill_tree.finalPartingTargetXPos = mouse_x;
+		obj_skill_tree.finalPartingTargetYPos = mouse_y;
 		break;
 	case "Risk of Life":
 		if comboTrue != "" {
@@ -753,6 +755,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.riskOfLifeStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.riskOfLifeManaCost;
 		playerCurrentMana += obj_skill_tree.riskOfLifeManaRegen;
+		obj_skill_tree.riskOfLifeTargetXPos = mouse_x;
+		obj_skill_tree.riskOfLifeTargetYPos = mouse_y;
 		break;
 	case "Taken for Pain":
 		if comboTrue != "" {
