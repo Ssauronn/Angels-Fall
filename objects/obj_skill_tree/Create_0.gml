@@ -7,7 +7,7 @@ keyBarAbilityTwoChosen = "Diabolus Blast";
 keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "Hidden Dagger";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Dinner is Served";
+keyBarAbilityFourChosen = "Taken for Pain";
 keyBarAbilityFourEquipped = false;
 
 
@@ -328,6 +328,8 @@ takenForPainManaCostMultiplier = 0;
 takenForPainStaminaCostMultiplier = 0;
 takenForPainManaRegenMultiplier = 0;
 takenForPainStaminaRegenMultiplier = 0.3;
+takenForPainFirstPhaseActive = false;
+takenForPainSecondPhaseActive = false;
 takenForPainManaCost = 0;
 takenForPainStaminaCost = 0;
 takenForPainManaRegen = 0;
@@ -337,7 +339,12 @@ takenForPainSpeed = (32 * 4) / room_speed;
 takenForPainNumberOfSpikes = 6;
 takenForPainDamagePerSpike = 75;
 takenForPainDamageMultiplierVsPoisonedTargets = 1.5;
-takenForPainTargetArray = noone;
+takenForPainTargetList = noone;
+takenForPainHitboxList = noone;
+takenForPainFirstPhaseTimer = -1;
+takenForPainFirstPhaseTimerStartTime = room_speed * 1;
+takenForPainSecondPhaseTimer = -1;
+takenForPainSecondPhaseTimerStartTime = room_speed * 1;
 
 /// Sickly Proposition
 sicklyPropositionManaCostMultiplier = 0;

@@ -459,9 +459,6 @@ if objectArchetype == "" {
 	show_debug_message("- BREAK -");
 	show_debug_message("");
 }
-if combatFriendlyStatus == "Enemy" {
-	show_debug_message("ID: " + string(id) + " X: " + string(x) + " Y: " + string(y));
-}
 
 
 #region if instance_exists(self) { // closing brackets
