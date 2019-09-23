@@ -334,12 +334,11 @@ takenForPainManaCost = 0;
 takenForPainStaminaCost = 0;
 takenForPainManaRegen = 0;
 takenForPainStaminaRegen = 0.3;
-takenForPainRange = 32 * 4.5;
-takenForPainSpeed = (32 * 4) / room_speed;
-takenForPainNumberOfSpikes = 6;
-takenForPainDamagePerSpike = 75;
+takenForPainSpeed = (32 * 12) / room_speed;
+// DO NOT INCREASE THE BELOW NUMBER PAST 60
+takenForPainNumberOfSpikes = 10;
+takenForPainDamagePerSpike = 12.5;
 takenForPainDamageMultiplierVsPoisonedTargets = 1.5;
-takenForPainTargetList = noone;
 takenForPainHitboxList = noone;
 takenForPainFirstPhaseTimer = -1;
 takenForPainFirstPhaseTimerStartTime = room_speed * 1;

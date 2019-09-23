@@ -160,6 +160,7 @@ with obj_skill_tree {
 			wrathOfTheRepentantBasicMeleeDamageBonus = 1;
 		}
 		else if wrathOfTheRepentantTimer >= 0 {
+			wrathOfTheRepentantTimer--;
 			wrathOfTheRepentantBasicMeleeDamageBonus = wrathOfTheRepentantBaseBasicMeleeDamageBonus;
 		}
 	}
@@ -265,73 +266,28 @@ with obj_skill_tree {
 	#endregion
 	
 	#region Taken for Pain
-	// Rotate the hitboxes and fix their position as long as they're not moving
-	if takenForPainFirstPhaseActive || takenForPainSecondPhaseActive {
-		if ds_exists(takenForPainHitboxList, ds_type_list) {
-			var i;
-			for (i = 0; i <= ds_list_size(takenForPainHitboxList) - 1; i++) {
-				if !is_undefined(ds_list_find_value(takenForPainHitboxList, i)) {
-					var instance_to_reference_ = ds_list_find_value(takenForPainHitboxList, i);
-					if instance_exists(instance_to_reference_) {
-						if instance_to_reference_.playerProjectileHitboxSpeed == 0 {
-							// Rotate the hitboxes while they hover around the player - rotation_speed_
-							// is currently set to rotate the hitboxes 360 before launching them towards
-							// target.
-							var rotation_speed_ = 360 / takenForPainFirstPhaseTimerStartTime;
-							instance_to_reference_.playerProjectileHitboxDirection += rotation_speed_;
-							if instance_to_reference_.playerProjectileHitboxDirection  >= 360 {
-								instance_to_reference_.playerProjectileHitboxDirection -= 360;
-							}
-							instance_to_reference_.image_angle = instance_to_reference_.playerProjectileHitboxDirection;
-							
-							
-							// Keep the hitboxes in place while they hover around the player
-							var k, x_location_, y_location_;
-							// Set the location of each hitbox, spread evenly in a circle around the player.
-							// First, set the angle the object will sit at based on its location index in the
-							// takenForPainHitboxList.
-							// Then, make sure it doesn't exceed 360 degrees, and finally set the actual
-							// x_location_ and y_location_ to the x and y coordinates they should be sitting at
-							// around the player.
-							k = (takenForPainNumberOfSpikes - 1) - i;
-							x_location_ = (k * (360 / takenForPainNumberOfSpikes)) + ((floor(takenForPainNumberOfSpikes / 4) + 1) * (360 / takenForPainNumberOfSpikes));
-							y_location_ = (k * (360 / takenForPainNumberOfSpikes)) + ((floor(takenForPainNumberOfSpikes / 4) + 1) * (360 / takenForPainNumberOfSpikes));
-							if x_location_ >= 360 {
-								x_location_ -= 360;
-							}
-							if y_location_ >= 360 {
-								y_location_ -= 360;
-							}
-							x_location_ = obj_player.x + lengthdir_x(32 * 1.5, x_location_);
-							y_location_ = obj_player.y + lengthdir_y(32 * 1.5, y_location_);
-							instance_to_reference_.x = x_location_;
-							instance_to_reference_.y = y_location_;
-						}
-					}
-				}
-			}
-		}
-	}
-	
 	if takenForPainFirstPhaseTimer >= 0 {
 		takenForPainFirstPhaseActive = true;
 	}
 	if takenForPainFirstPhaseActive {
 		if takenForPainFirstPhaseTimer < 0 {
 			takenForPainFirstPhaseActive = false;
-			if ds_exists(takenForPainHitboxList, ds_type_list) {
-				ds_list_destroy(takenForPainHitboxList);
-				takenForPainHitboxList = noone;
-			}
+			takenForPainSecondPhaseActive = true;
+			takenForPainSecondPhaseTimer = takenForPainSecondPhaseTimerStartTime;
 		}
 		else if takenForPainFirstPhaseTimer >= 0 {
 			var quadrant_;
+			// Set the quadrant_ variable equal to what area number I am next creating a hitbox in.
 			for (quadrant_ = 0; quadrant_ <= (takenForPainNumberOfSpikes - 1); quadrant_++) {
 				if takenForPainFirstPhaseTimer <= (takenForPainFirstPhaseTimerStartTime / takenForPainNumberOfSpikes) * (quadrant_ + 1) {
+					// I count up from 0 and then reverse the quadrant_ value because otherwise
+					// the hitbox would be created in the first quadrant_, everytime
 					quadrant_ = abs(quadrant_ - (takenForPainNumberOfSpikes - 1))
 					break;
 				}
 			}
+			// If a hitbox from this ability doesn't even exist, or if hitboxes exist but not the correct
+			// one, then create the hitbox needed for the set quadrant_.
 			if (!ds_exists(takenForPainHitboxList, ds_type_list)) || ((is_undefined(ds_list_find_value(takenForPainHitboxList, quadrant_)))) {
 				if (quadrant_ == 0) && (!ds_exists(takenForPainHitboxList, ds_type_list)) {
 					takenForPainHitboxList = ds_list_create();
@@ -352,9 +308,10 @@ with obj_skill_tree {
 					if y_location_ < 0 {
 						y_location_ += 360;
 					}
-					x_location_ = obj_player.x + lengthdir_x(32 * 1.5, x_location_);
-					y_location_ = obj_player.y + lengthdir_y(32 * 1.5, y_location_);
+					x_location_ = obj_player.x + lengthdir_x(32 * 1.25, x_location_);
+					y_location_ = obj_player.y + lengthdir_y(32 * 1.25, y_location_);
 					with obj_player {
+						// Create the actual hitbox and assign all relevant variables
 						var owner_ = self;
 						playerHitbox = instance_create_depth(x_location_, y_location_, -999, obj_hitbox);
 						playerHitbox.sprite_index = spr_player_bullet_hitbox;
@@ -404,17 +361,140 @@ with obj_skill_tree {
 					#endregion
 				}
 			}
-			/*
-			create the hitboxes in a circular fashion around the player
-			creation is dependant on a timer
-			do this by storing the hitbox ID's in the takenForPainHitboxList, and if the ds_list size - 1
-			is equal to or less than the quadrant we're currently on, then don't create the hitbox.
-			once first phase is complete, activate second phase
-			one by one, launch hitboxes at targets rotating through all enemies that are within range
-			this will automatically spread the hitboxes as evenly as possible
-			
-			*/
+			// Count down the timer after I do everything else first
 			takenForPainFirstPhaseTimer--;
+		}
+	}
+	
+	
+	// Continue rotating projectiles and launch them towards their target when necessary
+	if takenForPainSecondPhaseTimer >= 0 {
+		takenForPainSecondPhaseActive = true;
+	}
+	if takenForPainSecondPhaseActive {
+		if takenForPainSecondPhaseTimer < 0 {
+			takenForPainSecondPhaseActive = false;
+			if ds_exists(takenForPainHitboxList, ds_type_list) {
+				ds_list_destroy(takenForPainHitboxList);
+				takenForPainHitboxList = -1;
+			}
+		}
+		else if takenForPainSecondPhaseTimer >= 0 {
+			var quadrant_;
+			// Set the quadrant_ variable equal to what area number I am next launching the hitbox
+			// from.
+			for (quadrant_ = 0; quadrant_ <= (takenForPainNumberOfSpikes - 1); quadrant_++) {
+				if takenForPainSecondPhaseTimer <= (takenForPainSecondPhaseTimerStartTime / takenForPainNumberOfSpikes) * (quadrant_ + 1) {
+					// I count up from 0 and then reverse the quadrant_ value because otherwise
+					// the hitbox would be created in the first quadrant_, everytime
+					quadrant_ = abs(quadrant_ - (takenForPainNumberOfSpikes - 1))
+					break;
+				}
+			}
+			if ds_exists(takenForPainHitboxList, ds_type_list) {
+				if instance_exists(ds_list_find_value(takenForPainHitboxList, quadrant_)) {
+					var self_hitbox_ = ds_list_find_value(takenForPainHitboxList, quadrant_);
+					var j, iteration_, target_to_fire_towards_, direction_to_fire_in_;
+					iteration_ = 0;
+					target_to_fire_towards_ = obj_player;
+					direction_to_fire_in_ = point_direction(self_hitbox_.x, self_hitbox_.y, obj_player.x, obj_player.y);
+					if ds_exists(objectIDsInBattle, ds_type_list) {
+						if quadrant_ >= (ds_list_size(objectIDsInBattle) - 1) {
+							// Count through the objectIDsInBattle list, looping through if necessary, until
+							// I get to the correct object to target.
+							for (j = 0; j <= quadrant_; j++) {
+								// First, count up iteration_ and only count up iteration_
+								if j != quadrant_ {
+									iteration_++;
+									if iteration_ > (ds_list_size(objectIDsInBattle) - 1) {
+										iteration_ = 0;
+									}
+								}
+								// Then, when iteration_ is equal to the ds_list index I need to target,
+								// set that as a target.
+								else {
+									var secondary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, iteration_);
+									if instance_exists(secondary_instance_to_reference_) {
+										target_to_fire_towards_ = secondary_instance_to_reference_;
+										direction_to_fire_in_ = point_direction(self_hitbox_.x, self_hitbox_.y, secondary_instance_to_reference_.x, secondary_instance_to_reference_.y);
+									}
+								}
+							}
+						}
+						else {
+							var secondary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, quadrant_);
+							if instance_exists(secondary_instance_to_reference_) {
+								target_to_fire_towards_ = secondary_instance_to_reference_;
+								direction_to_fire_in_ = point_direction(self_hitbox_.x, self_hitbox_.y, secondary_instance_to_reference_.x, secondary_instance_to_reference_.y);
+							}
+						}
+					}
+					self_hitbox_.playerProjectileHitboxSpeed = takenForPainSpeed;
+					self_hitbox_.playerProjectileHitboxDirection = direction_to_fire_in_;
+					self_hitbox_.image_angle = direction_to_fire_in_;
+					ds_list_set(takenForPainHitboxList, quadrant_, noone);
+				}
+				if quadrant_ == (takenForPainNumberOfSpikes - 1) {
+					if ds_exists(takenForPainHitboxList, ds_type_list) {
+						ds_list_destroy(takenForPainHitboxList);
+						takenForPainHitboxList = noone;
+					}
+				}
+				takenForPainSecondPhaseTimer--;
+			}
+			else if takenForPainSecondPhaseTimer <= 10 {
+				takenForPainFirstPhaseTimer = -1;
+				takenForPainFirstPhaseActive = false;
+				takenForPainSecondPhaseTimer = -1;
+				takenForPainSecondPhaseActive = false;
+			}
+		}
+	}
+	
+	
+	// Rotate the hitboxes and fix their position as long as they're not moving
+	if (takenForPainFirstPhaseActive) || (takenForPainSecondPhaseActive) {
+		if ds_exists(takenForPainHitboxList, ds_type_list) {
+			var i;
+			for (i = 0; i <= ds_list_size(takenForPainHitboxList) - 1; i++) {
+				if !is_undefined(ds_list_find_value(takenForPainHitboxList, i)) {
+					var instance_to_reference_ = ds_list_find_value(takenForPainHitboxList, i);
+					if instance_exists(instance_to_reference_) {
+						// Rotate the hitboxes while they hover around the player - rotation_speed_
+						// is currently set to rotate the hitboxes 360 before launching them towards
+						// target.
+						var rotation_speed_ = 360 / takenForPainFirstPhaseTimerStartTime;
+						instance_to_reference_.playerProjectileHitboxDirection += rotation_speed_;
+						if instance_to_reference_.playerProjectileHitboxDirection  >= 360 {
+							instance_to_reference_.playerProjectileHitboxDirection -= 360;
+						}
+						instance_to_reference_.image_angle = instance_to_reference_.playerProjectileHitboxDirection;
+						
+						
+						// Keep the hitboxes in place while they hover around the player
+						var k, x_location_, y_location_;
+						// Set the location of each hitbox, spread evenly in a circle around the player.
+						// First, set the angle the object will sit at based on its location index in the
+						// takenForPainHitboxList.
+						// Then, make sure it doesn't exceed 360 degrees, and finally set the actual
+						// x_location_ and y_location_ to the x and y coordinates they should be sitting at
+						// around the player.
+						k = (takenForPainNumberOfSpikes - 1) - i;
+						x_location_ = (k * (360 / takenForPainNumberOfSpikes)) + ((floor(takenForPainNumberOfSpikes / 4) + 1) * (360 / takenForPainNumberOfSpikes));
+						y_location_ = (k * (360 / takenForPainNumberOfSpikes)) + ((floor(takenForPainNumberOfSpikes / 4) + 1) * (360 / takenForPainNumberOfSpikes));
+						if x_location_ >= 360 {
+							x_location_ -= 360;
+						}
+						if y_location_ >= 360 {
+							y_location_ -= 360;
+						}
+						x_location_ = obj_player.x + lengthdir_x(32 * 1.25, x_location_);
+						y_location_ = obj_player.y + lengthdir_y(32 * 1.25, y_location_);
+						instance_to_reference_.x = x_location_;
+						instance_to_reference_.y = y_location_;
+					}
+				}
+			}
 		}
 	}
 	#endregion

@@ -759,23 +759,27 @@ switch (lastAttackButtonPressed) {
 		obj_skill_tree.riskOfLifeTargetYPos = mouse_y;
 		break;
 	case "Taken for Pain":
-		if comboTrue != "" {
-			comboTrue = "";
-			playerDirectionFacing = comboPlayerDirectionFacing;
-			comboPlayerDirectionFacing = -1;
+		if !obj_skill_tree.takenForPainFirstPhaseActive && !obj_skill_tree.takenForPainSecondPhaseActive {
+			if (playerCurrentStamina >= obj_skill_tree.takenForPainStaminaCost) && (playerCurrentMana >= obj_skill_tree.takenForPainManaCost) {
+				if comboTrue != "" {
+					comboTrue = "";
+					playerDirectionFacing = comboPlayerDirectionFacing;
+					comboPlayerDirectionFacing = -1;
 			
-			playerImageIndex = 0;
+					playerImageIndex = 0;
+				}
+				else {
+					playerImageIndex = 0;
+				}
+				playerState = playerstates.takenforpain;
+				playerStateSprite = playerstates.takenforpain;
+				lastAttackButtonPressed = "";
+				playerCurrentStamina -= obj_skill_tree.takenForPainStaminaCost;
+				playerCurrentStamina += obj_skill_tree.takenForPainStaminaRegen;
+				playerCurrentMana -= obj_skill_tree.takenForPainManaCost;
+				playerCurrentMana += obj_skill_tree.takenForPainManaRegen;
+			}
 		}
-		else {
-			playerImageIndex = 0;
-		}
-		playerState = playerstates.takenforpain;
-		playerStateSprite = playerstates.takenforpain;
-		lastAttackButtonPressed = "";
-		playerCurrentStamina -= obj_skill_tree.takenForPainStaminaCost;
-		playerCurrentStamina += obj_skill_tree.takenForPainStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.takenForPainManaCost;
-		playerCurrentMana += obj_skill_tree.takenForPainManaRegen;
 		break;
 	case "Sickly Proposition":
 		if comboTrue != "" {
