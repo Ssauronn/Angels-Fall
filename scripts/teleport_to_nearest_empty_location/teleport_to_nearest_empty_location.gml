@@ -147,7 +147,6 @@ for (i = 0; i < 360; i++) {
 		// positive or negative value which can then be added to player or enemy direction to properly
 		// move the player/enemy. Again, works only with the described parameters above.
 		return (current_target_quadrant_ - original_target_quadrant_);
-		break;
 	}
 }
 // Just a safety check to make sure that I'm not causing a memory leak.

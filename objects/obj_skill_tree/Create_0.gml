@@ -7,7 +7,7 @@ keyBarAbilityTwoChosen = "Diabolus Blast";
 keyBarAbilityTwoEquipped = false;
 keyBarAbilityThreeChosen = "Hidden Dagger";
 keyBarAbilityThreeEquipped = false;
-keyBarAbilityFourChosen = "Dinner is Served";
+keyBarAbilityFourChosen = "Taken for Pain";
 keyBarAbilityFourEquipped = false;
 
 
@@ -296,6 +296,8 @@ finalPartingActive = false;
 finalPartingDamage = 25;
 finalPartingCanBeRefreshed = true;
 finalPartingSpeed = (32 * 4) / room_speed;
+finalPartingTargetXPos = -1;
+finalPartingTargetYPos = -1;
 finalPartingTicTimer = -1;
 finalPartingTicTimerStartTime = room_speed * 0.5;
 finalPartingDoTTarget = noone;
@@ -312,7 +314,8 @@ riskOfLifeStaminaCost = 0.3;
 riskOfLifeManaRegen = 0.2;
 riskOfLifeStaminaRegen = 0;
 riskOfLifeSpeed = (32 * 4) / room_speed;
-riskOfLifeHeal = false;
+riskOfLifeTargetXPos = -1;
+riskOfLifeTargetYPos = -1;
 riskOfLifeAoERange = 32 * 3.5;
 riskOfLifeDirectHitDamage = 200;
 riskOfLifeDirectHitHeal = 250;
@@ -325,16 +328,22 @@ takenForPainManaCostMultiplier = 0;
 takenForPainStaminaCostMultiplier = 0;
 takenForPainManaRegenMultiplier = 0;
 takenForPainStaminaRegenMultiplier = 0.3;
+takenForPainFirstPhaseActive = false;
+takenForPainSecondPhaseActive = false;
 takenForPainManaCost = 0;
 takenForPainStaminaCost = 0;
 takenForPainManaRegen = 0;
 takenForPainStaminaRegen = 0.3;
-takenForPainRange = 32 * 4.5;
-takenForPainSpeed = (32 * 4) / room_speed;
-takenForPainNumberOfSpikes = 6;
-takenForPainDamagePerSpike = 75;
+takenForPainSpeed = (32 * 12) / room_speed;
+// DO NOT INCREASE THE BELOW NUMBER PAST 60
+takenForPainNumberOfSpikes = 10;
+takenForPainDamagePerSpike = 12.5;
 takenForPainDamageMultiplierVsPoisonedTargets = 1.5;
-takenForPainTargetArray = noone;
+takenForPainHitboxList = noone;
+takenForPainFirstPhaseTimer = -1;
+takenForPainFirstPhaseTimerStartTime = room_speed * 1;
+takenForPainSecondPhaseTimer = -1;
+takenForPainSecondPhaseTimerStartTime = room_speed * 1;
 
 /// Sickly Proposition
 sicklyPropositionManaCostMultiplier = 0;

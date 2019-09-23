@@ -13,6 +13,8 @@ if start > target_ {
 else if start < target_ {
 	return min(start + rate, target_);
 }
-else return target_;
+else {
+	return target_;
+}
 
 

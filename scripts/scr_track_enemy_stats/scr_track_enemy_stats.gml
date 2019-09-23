@@ -155,6 +155,7 @@ if enemyCurrentHP <= 0 {
 		// the buff isn't refreshed and just the one tic finishes out.
 		if instance_exists(target_to_infect_) {
 			finalPartingNextTarget = target_to_infect_;
+			obj_skill_tree.finalPartingDoTTarget = target_to_infect_;
 			target_to_infect_.finalPartingActive = true;
 			target_to_infect_.finalPartingTicTimer = finalPartingTicTimer;
 			target_to_infect_.finalPartingTimer = finalPartingTimer;

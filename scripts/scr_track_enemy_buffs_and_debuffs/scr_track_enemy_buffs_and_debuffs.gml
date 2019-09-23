@@ -256,7 +256,7 @@ if sicklyPropositionActive {
 	}
 }
 
-// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
+///////////// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
 if finalPartingTimer >= 0 {
 	finalPartingActive = true;
 }

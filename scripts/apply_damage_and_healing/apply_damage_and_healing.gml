@@ -71,6 +71,14 @@ else if owner_is_enemy_ {
 // I'll multiply bonus damages provided by the attacker TotalBonusDamage, and finally I'll find
 // the final value by multiplying the current value against the defender TotalBonusResistance.
 if owner_is_player_ {
+	if self_.playerHitboxAbilityOrigin == "Risk of Life" {
+		if other_owner_is_enemy {
+			playerHitboxValue = obj_skill_tree.riskOfLifeDirectHitDamage;
+		}
+		else if other_owner_is_minion_ {
+			playerHitboxValue = obj_skill_tree.riskOfLifeDirectHitHeal;
+		}
+	}
 	total_damage_ = playerHitboxValue;
 }
 else if (owner_is_enemy_) || (owner_is_minion_) {
@@ -358,10 +366,12 @@ if owner_is_player_ {
 								if other_owner_.finalPartingActive {
 									if other_owner_.finalPartingCanBeRefreshed {
 										other_owner_.finalPartingTimer = other_owner_.finalPartingTimerStartTime;
+										obj_skill_tree.finalPartingDoTTarget = other_owner_;
 									}
 								}
 								else {
 									other_owner_.finalPartingTimer = other_owner_.finalPartingTimerStartTime;
+									obj_skill_tree.finalPartingDoTTarget = other_owner_;
 								}
 							}
 							else {
@@ -594,7 +604,7 @@ if (owner_is_enemy_ && other_owner_is_minion_) || (owner_is_minion_ && other_own
 #region Player Healing Minions
 if owner_is_player_ {
 	if other_owner_is_minion_ {
-		if playerHitboxHeal {
+		if (playerHitboxHeal) || (playerHitboxAbilityOrigin == "Risk of Life") {
 			if !playerHitboxPersistAfterCollision {
 				playerHitboxCollisionFound = true;
 			}
@@ -603,6 +613,21 @@ if owner_is_player_ {
 			if !(obj_ai_decision_making.playerAttackPatternWeight - (obj_ai_decision_making.attackPatternStartWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack) < 0.000) {
 				obj_ai_decision_making.playerAttackPatternWeight -= (obj_ai_decision_making.attackPatternStartWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack);
 			} 
+			// Now that healing has been applied, deal damage to all enemies within range of the healed
+			// enemy.
+			if playerHitboxAbilityOrigin == "Risk of Life" {
+				if ds_exists(objectIDsInBattle, ds_type_list) {
+					var i;
+					for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+						var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
+							if point_distance(other_owner_.x, other_owner_.y, instance_to_reference_.x, instance_to_reference_.y) <= obj_skill_tree.riskOfLifeAoERange {
+								create_dot_tic_hitbox(instance_to_reference_, obj_skill_tree.riskOfLifeAoEDamage, true);
+							}
+						}
+					}
+				}
+			}
 			exit;
 		}
 	}
