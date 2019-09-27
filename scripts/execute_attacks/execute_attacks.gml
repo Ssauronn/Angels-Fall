@@ -782,22 +782,26 @@ switch (lastAttackButtonPressed) {
 		}
 		break;
 	case "Sickly Proposition":
-		if comboTrue != "" {
-			comboTrue = "";
-			playerDirectionFacing = comboPlayerDirectionFacing;
-			comboPlayerDirectionFacing = -1;
-			playerImageIndex = 0;
+		if (playerCurrentStamina >= obj_skill_tree.sicklyPropositionStaminaCost) && (playerCurrentMana >= obj_skill_tree.sicklyPropositionManaCost) {
+			if comboTrue != "" {
+				comboTrue = "";
+				playerDirectionFacing = comboPlayerDirectionFacing;
+				comboPlayerDirectionFacing = -1;
+				playerImageIndex = 0;
+			}
+			else {
+				playerImageIndex = 0;
+			}
+			playerState = playerstates.sicklyproposition;
+			playerStateSprite = playerstates.sicklyproposition;
+			lastAttackButtonPressed = "";
+			playerCurrentStamina -= obj_skill_tree.sicklyPropositionStaminaCost;
+			playerCurrentStamina += obj_skill_tree.sicklyPropositionStaminaRegen;
+			playerCurrentMana -= obj_skill_tree.sicklyPropositionManaCost;
+			playerCurrentMana += obj_skill_tree.sicklyPropositionManaRegen;
+			obj_skill_tree.sicklyPropositionTargetXPos = mouse_x;
+			obj_skill_tree.sicklyPropositionTargetYPos = mouse_y;
 		}
-		else {
-			playerImageIndex = 0;
-		}
-		playerState = playerstates.sicklyproposition;
-		playerStateSprite = playerstates.sicklyproposition;
-		lastAttackButtonPressed = "";
-		playerCurrentStamina -= obj_skill_tree.sicklyPropositionStaminaCost;
-		playerCurrentStamina += obj_skill_tree.sicklyPropositionStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.sicklyPropositionManaCost;
-		playerCurrentMana += obj_skill_tree.sicklyPropositionManaRegen;
 		break;
 	#endregion
 }

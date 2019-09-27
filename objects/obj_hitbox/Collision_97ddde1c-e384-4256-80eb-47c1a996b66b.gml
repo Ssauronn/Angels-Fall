@@ -15,8 +15,14 @@ else if owner.object_index == obj_enemy {
 // Destroy the hitbox if it collides with a wall AND its a projectile
 if owner_is_player_ {
 	if playerHitboxAttackType == "Projectile" {
-		playerHitboxCollisionFound = true;
-		playerHitboxCollidedWithWall = true;
+		if playerHitboxAbilityOrigin != "Taken for Pain" {
+			playerHitboxCollisionFound = true;
+			playerHitboxCollidedWithWall = true;
+		}
+		else if !obj_skill_tree.takenForPainFirstPhaseActive {
+			playerHitboxCollisionFound = true;
+			playerHitboxCollidedWithWall = true;
+		}
 	}
 }
 else if owner_is_enemy_ {
