@@ -3,6 +3,7 @@ if !obj_skill_tree.parryWindowActive && !obj_skill_tree.successfulParryInvulnera
 	playerState = playerstates.idle;
 	playerStateSprite = playerstates.idle;
 	playerImageIndex = 0;
+	playerCurrentMana -= obj_skill_tree.parryFailureManaCost;
 }
 else if obj_skill_tree.successfulParryInvulnerabilityActive {
 	playerState = playerstates.parryeffect;

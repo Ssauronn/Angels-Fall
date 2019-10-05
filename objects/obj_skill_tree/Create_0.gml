@@ -28,6 +28,7 @@ successfulParryEffectNeedsToBeAppliedToEnemy = false;
 successfulParryInvulnerabilityActive = false;
 successfulParryInvulnerabilityTimer = -1;
 successfulParryInvulnerabilityTimerStartTime = 0.5 * room_speed;
+parryFailureManaCost = 100;
 #endregion
 
 
