@@ -75,23 +75,21 @@ if instance_exists(obj_player) {
 
 	#region If Attack Button is Pressed
 	if (key_attack_lmb != "") {
-		if playerCurrentStamina >= meleeStaminaCost {
-			if (key_attack_lmb == "right") {
-				comboTrue = "Attack Right 5";
-				comboPlayerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_lmb == "up") {
-				comboTrue = "Attack Up 5";
-				comboPlayerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_lmb == "left") {
-				comboTrue = "Attack Left 5";
-				comboPlayerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_lmb == "down") {
-				comboTrue = "Attack Down 5";
-				comboPlayerDirectionFacing = playerdirection.down;
-			}
+		if (key_attack_lmb == "right") {
+			comboTrue = "Attack Right 5";
+			comboPlayerDirectionFacing = playerdirection.right;
+		}
+		else if (key_attack_lmb == "up") {
+			comboTrue = "Attack Up 5";
+			comboPlayerDirectionFacing = playerdirection.up;
+		}
+		else if (key_attack_lmb == "left") {
+			comboTrue = "Attack Left 5";
+			comboPlayerDirectionFacing = playerdirection.left;
+		}
+		else if (key_attack_lmb == "down") {
+			comboTrue = "Attack Down 5";
+			comboPlayerDirectionFacing = playerdirection.down;
 		}
 	}
 	#endregion

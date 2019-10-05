@@ -3,30 +3,27 @@ if instance_exists(obj_player) {
 	frictionAmount = baseFrictionAmount * playerTotalSpeed;
 	// Dashing script initilization
 	if key_dash {
-		if playerCurrentStamina >= dashStaminaCost {
-			playerCurrentStamina -= dashStaminaCost;
-			playerState = playerstates.dash;
-			playerStateSprite = playerstates.dash;
-			// playerStateSprite = playerstates.dash - this line needs to be added once the dash animation is obtained
-			dashTimer = dashTime;
-			xDashPosition = mouse_x;
-			yDashPosition = mouse_y;
-			dashDir = point_direction(obj_player.x, obj_player.y, xDashPosition, yDashPosition)
-			if dashDir > 315 && dashDir <= 360 {
-				playerDirectionFacing = playerdirection.right;
-			}
-			else if dashDir > 0 && dashDir <= 45  {
-				playerDirectionFacing = playerdirection.right;
-			}
-			else if dashDir > 45 && dashDir <= 135 {
-				playerDirectionFacing = playerdirection.up;
-			}
-			else if dashDir > 135 && dashDir <= 225 {
-				playerDirectionFacing = playerdirection.left;
-			}
-			else if dashDir > 225 && dashDir <= 315 {
-				playerDirectionFacing = playerdirection.down;
-			}
+		playerState = playerstates.dash;
+		playerStateSprite = playerstates.dash;
+		// playerStateSprite = playerstates.dash - this line needs to be added once the dash animation is obtained
+		dashTimer = dashTime;
+		xDashPosition = mouse_x;
+		yDashPosition = mouse_y;
+		dashDir = point_direction(obj_player.x, obj_player.y, xDashPosition, yDashPosition)
+		if dashDir > 315 && dashDir <= 360 {
+			playerDirectionFacing = playerdirection.right;
+		}
+		else if dashDir > 0 && dashDir <= 45  {
+			playerDirectionFacing = playerdirection.right;
+		}
+		else if dashDir > 45 && dashDir <= 135 {
+			playerDirectionFacing = playerdirection.up;
+		}
+		else if dashDir > 135 && dashDir <= 225 {
+			playerDirectionFacing = playerdirection.left;
+		}
+		else if dashDir > 225 && dashDir <= 315 {
+			playerDirectionFacing = playerdirection.down;
 		}
 	}
 	#region If Movement Button is Pressed
@@ -57,23 +54,21 @@ if instance_exists(obj_player) {
 	#endregion
 	#region If Attack Button is Pressed
 	if (key_attack_lmb != "") {
-		if playerCurrentStamina >= meleeStaminaCost {
-			if (key_attack_lmb == "right") {
-				lastAttackButtonPressed = "Attack Right 1";
-				playerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_lmb == "up") {
-				lastAttackButtonPressed = "Attack Up 1";
-				playerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_lmb == "left") {
-				lastAttackButtonPressed = "Attack Left 1";
-				playerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_lmb == "down") {
-				lastAttackButtonPressed = "Attack Down 1";
-				playerDirectionFacing = playerdirection.down;
-			}
+		if (key_attack_lmb == "right") {
+			lastAttackButtonPressed = "Attack Right 1";
+			playerDirectionFacing = playerdirection.right;
+		}
+		else if (key_attack_lmb == "up") {
+			lastAttackButtonPressed = "Attack Up 1";
+			playerDirectionFacing = playerdirection.up;
+		}
+		else if (key_attack_lmb == "left") {
+			lastAttackButtonPressed = "Attack Left 1";
+			playerDirectionFacing = playerdirection.left;
+		}
+		else if (key_attack_lmb == "down") {
+			lastAttackButtonPressed = "Attack Down 1";
+			playerDirectionFacing = playerdirection.down;
 		}
 	}
 	#endregion

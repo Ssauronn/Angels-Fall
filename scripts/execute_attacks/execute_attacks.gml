@@ -17,7 +17,7 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack1;
 		playerStateSprite = playerstates.attack1;
 		lastAttackButtonPressed = "";
-		playerCurrentStamina -= meleeStaminaCost;
+		playerCurrentStamina += meleeStaminaRegen;
 		playerCurrentMana += meleeManaRegen;
 		break;
 	case "Attack Right 2":
@@ -37,7 +37,7 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack2;
 		playerStateSprite = playerstates.attack2;
 		lastAttackButtonPressed = "";
-		playerCurrentStamina -= meleeStaminaCost;
+		playerCurrentStamina += meleeStaminaRegen;
 		playerCurrentMana += meleeManaRegen;
 		break;
 	case "Attack Right 3":
@@ -57,7 +57,7 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack3;
 		playerStateSprite = playerstates.attack3;
 		lastAttackButtonPressed = "";
-		playerCurrentStamina -= meleeStaminaCost;
+		playerCurrentStamina += meleeStaminaRegen;
 		playerCurrentMana += meleeManaRegen;
 		break;
 	case "Attack Right 4":
@@ -77,7 +77,7 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack4;
 		playerStateSprite = playerstates.attack4;
 		lastAttackButtonPressed = "";
-		playerCurrentStamina -= meleeStaminaCost;
+		playerCurrentStamina += meleeStaminaRegen;
 		playerCurrentMana += meleeManaRegen;
 		break;
 	case "Attack Right 5":
@@ -97,7 +97,7 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack5;
 		playerStateSprite = playerstates.attack5;
 		lastAttackButtonPressed = "";
-		playerCurrentStamina -= meleeStaminaCost;
+		playerCurrentStamina += meleeStaminaRegen;
 		playerCurrentMana += meleeManaRegen;
 		break;
 	#endregion

@@ -8,8 +8,12 @@ if dashTimer <= 0 {
 	playerState = playerstates.run;
 	playerStateSprite = playerstates.run;
 	frictionAmount = baseFrictionAmount * playerTotalSpeed;
-	playerCurrentMana += dashManaRegen;
 	playerRecentlyDashed = true;
+	invincibile = false;
+	if !dashAvoidedDamage {
+		playerCurrentStamina -= dashStaminaCost;
+	}
+	dashAvoidedDamage = false;
 }
 else {
 	// Else if the dash script is not over yet, set the speed to the correct dash speed value and move
@@ -21,6 +25,7 @@ else {
 	currentSpeed = dashSpeed * playerTotalSpeed;
 	currentDirection = dashDir;
 	frictionAmount = baseFrictionAmount * (dashSpeed / maxSpeed) * playerTotalSpeed;
+	invincibile = true;
 	move_movement_entity(false);
 }
 

@@ -88,23 +88,21 @@ if instance_exists(obj_player) {
 	// which will then send the player to the next attack script (via calling execute_attacks script
 	// every step in the obj_player Step event.
 	if (key_attack_lmb != "") {
-		if playerCurrentStamina >= meleeStaminaCost {
-			if (key_attack_lmb == "right") {
-				comboTrue = "Attack Right 1";
-				comboPlayerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_lmb == "up") {
-				comboTrue = "Attack Up 1";
-				comboPlayerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_lmb == "left") {
-				comboTrue = "Attack Left 1";
-				comboPlayerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_lmb == "down") {
-				comboTrue = "Attack Down 1";
-				comboPlayerDirectionFacing = playerdirection.down;
-			}
+		if (key_attack_lmb == "right") {
+			comboTrue = "Attack Right 1";
+			comboPlayerDirectionFacing = playerdirection.right;
+		}
+		else if (key_attack_lmb == "up") {
+			comboTrue = "Attack Up 1";
+			comboPlayerDirectionFacing = playerdirection.up;
+		}
+		else if (key_attack_lmb == "left") {
+			comboTrue = "Attack Left 1";
+			comboPlayerDirectionFacing = playerdirection.left;
+		}
+		else if (key_attack_lmb == "down") {
+			comboTrue = "Attack Down 1";
+			comboPlayerDirectionFacing = playerdirection.down;
 		}
 	}
 	#endregion

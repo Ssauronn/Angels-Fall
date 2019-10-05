@@ -520,6 +520,11 @@ if owner_is_enemy_ {
 						}
 					}
 				}
+				// Else if the player is invincible but dashing, mark the dash as having avoided
+				// an attack
+				else if obj_player.playerState = playerstates.dash {
+					obj_player.dashAvoidedDamage = true;
+				}
 			}
 			// Else if the player is currently parrying, apply parry effects
 			else {
