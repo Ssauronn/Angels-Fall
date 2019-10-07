@@ -125,6 +125,8 @@ if instance_exists(target_) {
 				ds_list_set(obj_combat_controller.playerHitboxList, 0, playerHitbox);
 			}
 		}
+		
+		
 		if playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1) {
 			playerState = playerstates.idle;
 			playerStateSprite = playerstates.idle;
