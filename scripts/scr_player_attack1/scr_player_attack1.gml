@@ -83,18 +83,22 @@ if instance_exists(obj_player) {
 	if (key_attack_lmb != "") {
 		if (key_attack_lmb == "right") {
 			comboTrue = "Attack Right 2";
+			comboTrueTimer = 10;
 			comboPlayerDirectionFacing = playerdirection.right;
 		}
 		else if (key_attack_lmb == "up") {
 			comboTrue = "Attack Up 2";
+			comboTrueTimer = 10;
 			comboPlayerDirectionFacing = playerdirection.up;
 		}
 		else if (key_attack_lmb == "left") {
 			comboTrue = "Attack Left 2";
+			comboTrueTimer = 10;
 			comboPlayerDirectionFacing = playerdirection.left;
 		}
 		else if (key_attack_lmb == "down") {
 			comboTrue = "Attack Down 2";
+			comboTrueTimer = 10;
 			comboPlayerDirectionFacing = playerdirection.down;
 		}
 	}

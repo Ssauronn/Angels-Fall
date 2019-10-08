@@ -258,6 +258,7 @@ playerProjectileHitboxDirection = 0;
 playerProjectileHitboxSpeed = maxSpeed * 1.1;
 hitboxCreated = false;
 comboTrue = "";
+comboTrueTimer = -1;
 comboPlayerDirectionFacing = -1;
 comboAbilityButton = -1;
 

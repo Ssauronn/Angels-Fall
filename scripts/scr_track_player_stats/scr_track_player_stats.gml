@@ -216,6 +216,21 @@ if dashTimer >= 0 {
 		dashTimer -= 1 * (1 / playerTotalSpeed);
 	}
 }
+
+// Combo timer - prevents buffering an attack beyond 10 frames
+if comboTrue != "" {
+	if comboTrueTimer < 0 {
+		comboTrueTimer = -1;
+		comboTrue = "";
+		lastAttackButtonPressed = "";
+	}
+	else {
+		comboTrueTimer--;
+	}
+}
+else {
+	comboTrueTimer = -1;
+}
 #endregion
 
 
