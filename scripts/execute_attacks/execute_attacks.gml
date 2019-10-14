@@ -13,10 +13,17 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		//set_movement_variables(0, playerDirectionFacing, maxSpeed);
 		playerState = playerstates.attack1;
 		playerStateSprite = playerstates.attack1;
 		lastAttackButtonPressed = "";
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Attack Right 2":
 	case "Attack Up 2":
@@ -35,6 +42,8 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack2;
 		playerStateSprite = playerstates.attack2;
 		lastAttackButtonPressed = "";
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Attack Right 3":
 	case "Attack Up 3":
@@ -53,6 +62,8 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack3;
 		playerStateSprite = playerstates.attack3;
 		lastAttackButtonPressed = "";
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Attack Right 4":
 	case "Attack Up 4":
@@ -71,6 +82,8 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack4;
 		playerStateSprite = playerstates.attack4;
 		lastAttackButtonPressed = "";
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Attack Right 5":
 	case "Attack Up 5":
@@ -89,6 +102,8 @@ switch (lastAttackButtonPressed) {
 		playerState = playerstates.attack5;
 		playerStateSprite = playerstates.attack5;
 		lastAttackButtonPressed = "";
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	#endregion
 	
@@ -131,6 +146,11 @@ switch (lastAttackButtonPressed) {
 					else {
 						playerImageIndex = 0;
 					}
+					if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+						obj_skill_tree.parrySuccessfullyCombod = false;
+						dashSuccessfullyCombod = false;
+						playerImageIndex = 2;
+					}
 					invincibile = true;
 					obj_skill_tree.wrathOfTheDiaboliActive = true;
 					playerState = playerstates.wrathofthediaboli;
@@ -145,6 +165,8 @@ switch (lastAttackButtonPressed) {
 					obj_skill_tree.wrathOfTheDiaboliStartYPos = y;
 					obj_skill_tree.wrathOfTheDiaboliStartDirection = playerDirectionFacing;
 					obj_skill_tree.wrathOfTheDiaboliTeleportedToNextTarget = false;
+					comboAbilityButton = 0;
+					comboTrueTimer = -1;
 				}
 			}
 		}
@@ -158,6 +180,11 @@ switch (lastAttackButtonPressed) {
 		}
 		else {
 			playerImageIndex = 0;
+		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
 		}
 		/*---I don't reduce and add to player resources here, because that's done in the attack script
 		only if Glinting Blade wasn't already active---*/
@@ -193,6 +220,8 @@ switch (lastAttackButtonPressed) {
 				obj_skill_tree.glintingBladeTargetYPos = mouse_y;
 			}
 		}
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Hellish Landscape":
 		if comboTrue != "" {
@@ -203,6 +232,11 @@ switch (lastAttackButtonPressed) {
 		}
 		else {
 			playerImageIndex = 0;
+		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
 		}
 		playerState = playerstates.hellishlandscape;
 		playerStateSprite = playerstates.hellishlandscape;
@@ -229,6 +263,8 @@ switch (lastAttackButtonPressed) {
 	    else if dir_ >= 135 && dir_ < 225 {
 			playerDirectionFacing = playerdirection.left;
 		}
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Hidden Dagger":
 		if comboTrue != "" {
@@ -240,6 +276,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.hiddendagger;
 		playerStateSprite = playerstates.hiddendagger;
 		lastAttackButtonPressed = "";
@@ -247,6 +288,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.hiddenDaggerStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.hiddenDaggerManaCost;
 		playerCurrentMana += obj_skill_tree.hiddenDaggerManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "All Out Attack":
 		if comboTrue != "" {
@@ -258,6 +301,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.alloutattack;
 		playerStateSprite = playerstates.alloutattack;
 		lastAttackButtonPressed = "";
@@ -265,6 +313,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.allOutAttackStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.allOutAttackManaCost;
 		playerCurrentMana += obj_skill_tree.allOutAttackManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Exploit Weakness":
 		if comboTrue != "" {
@@ -276,6 +326,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.exploitweakness;
 		playerStateSprite = playerstates.exploitweakness;
 		lastAttackButtonPressed = "";
@@ -283,6 +338,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.exploitWeaknessStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.exploitWeaknessManaCost;
 		playerCurrentMana += obj_skill_tree.exploitWeaknessManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Purifying Rage":
 		if comboTrue != "" {
@@ -294,6 +351,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.purifyingrage;
 		playerStateSprite = playerstates.purifyingrage;
 		lastAttackButtonPressed = "";
@@ -301,6 +363,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.purifyingRageStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.purifyingRageManaCost;
 		playerCurrentMana += obj_skill_tree.purifyingRageManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Rushdown":
 		// Determine whether there are targets for rushdown, and set that target
@@ -372,6 +436,11 @@ switch (lastAttackButtonPressed) {
 			else {
 				playerImageIndex = 0;
 			}
+			if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+				obj_skill_tree.parrySuccessfullyCombod = false;
+				dashSuccessfullyCombod = false;
+				playerImageIndex = 2;
+			}
 			playerState = playerstates.rushdown;
 			playerStateSprite = playerstates.rushdown;
 			lastAttackButtonPressed = "";
@@ -379,6 +448,8 @@ switch (lastAttackButtonPressed) {
 			playerCurrentStamina += obj_skill_tree.rushdownStaminaRegen;
 			playerCurrentMana -= obj_skill_tree.rushdownManaCost;
 			playerCurrentMana += obj_skill_tree.rushdownManaRegen;
+			comboAbilityButton = 0;
+			comboTrueTimer = -1;
 		}
 		break;
 	case "Diabolus Blast":
@@ -391,6 +462,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.diabolusblast;
 		playerStateSprite = playerstates.diabolusblast;
 		lastAttackButtonPressed = "";
@@ -398,6 +474,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.diabolusBlastStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.diabolusBlastManaCost;
 		playerCurrentMana += obj_skill_tree.diabolusBlastManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	#endregion
 	#region Caelesti Abilities
@@ -411,6 +489,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.truecaelestiwings;
 		playerStateSprite = playerstates.truecaelestiwings;
 		lastAttackButtonPressed = "";
@@ -418,6 +501,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.trueCaelestiWingsStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.trueCaelestiWingsManaCost;
 		playerCurrentMana += obj_skill_tree.trueCaelestiWingsManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Bindings of the Caelesti":
 		if comboTrue != "" {
@@ -429,6 +514,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.bindingsofthecaelesti;
 		playerStateSprite = playerstates.bindingsofthecaelesti;
 		lastAttackButtonPressed = "";
@@ -436,6 +526,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.bindingsOfTheCaelestiStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.bindingsOfTheCaelestiManaCost;
 		playerCurrentMana += obj_skill_tree.bindingsOfTheCaelestiManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Armor of the Caelesti":
 		if comboTrue != "" {
@@ -447,6 +539,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.armorofthecaelesti;
 		playerStateSprite = playerstates.armorofthecaelesti;
 		lastAttackButtonPressed = "";
@@ -454,6 +551,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.armorOfTheCaelestiStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.armorOfTheCaelestiManaCost;
 		playerCurrentMana += obj_skill_tree.armorOfTheCaelestiManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Holy Defense":
 		if comboTrue != "" {
@@ -465,6 +564,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.holydefense;
 		playerStateSprite = playerstates.holydefense;
 		lastAttackButtonPressed = "";
@@ -472,6 +576,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.holyDefenseStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.holyDefenseManaCost;
 		playerCurrentMana += obj_skill_tree.holyDefenseManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Wrath of the Repentant":
 		if comboTrue != "" {
@@ -483,6 +589,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.wrathoftherepentant;
 		playerStateSprite = playerstates.wrathoftherepentant;
 		lastAttackButtonPressed = "";
@@ -490,6 +601,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.wrathOfTheRepentantStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.wrathOfTheRepentantManaCost;
 		playerCurrentMana += obj_skill_tree.wrathOfTheRepentantManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "The One Power":
 		if comboTrue != "" {
@@ -501,6 +614,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.theonepower;
 		playerStateSprite = playerstates.theonepower;
 		lastAttackButtonPressed = "";
@@ -508,6 +626,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.theOnePowerStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.theOnePowerManaCost;
 		playerCurrentMana += obj_skill_tree.theOnePowerManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Lightning Spear":
 		if comboTrue != "" {
@@ -519,6 +639,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.lightningspear;
 		playerStateSprite = playerstates.lightningspear;
 		lastAttackButtonPressed = "";
@@ -528,6 +653,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.lightningSpearManaRegen;
 		obj_skill_tree.lightningSpearTargetXPos = mouse_x;
 		obj_skill_tree.lightningSpearTargetYPos = mouse_y;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Angelic Barrage":
 		if comboTrue != "" {
@@ -539,6 +666,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.angelicbarrage;
 		playerStateSprite = playerstates.angelicbarrage;
 		lastAttackButtonPressed = "";
@@ -548,6 +680,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.angelicBarrageManaRegen;
 		obj_skill_tree.angelicBarrageTargetXPos = mouse_x;
 		obj_skill_tree.angelicBarrageTargetYPos = mouse_y;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Whirlwind":
 		if comboTrue != "" {
@@ -559,6 +693,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.whirlwind;
 		playerStateSprite = playerstates.whirlwind;
 		lastAttackButtonPressed = "";
@@ -568,6 +707,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.whirlwindManaRegen;
 		obj_skill_tree.whirlwindTargetXPos = mouse_x;
 		obj_skill_tree.whirlwindTargetYPos = mouse_y;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	#endregion
 	#region Necromancy Abilities
@@ -597,6 +738,8 @@ switch (lastAttackButtonPressed) {
 					ds_list_destroy(obj_skill_tree.deathIncarnateSecondPhaseTargetList);
 					obj_skill_tree.deathIncarnateSecondPhaseTargetList = noone;
 				}
+				comboAbilityButton = 0;
+				comboTrueTimer = -1;
 			}
 		}
 		else {
@@ -609,6 +752,11 @@ switch (lastAttackButtonPressed) {
 			else {
 				playerImageIndex = 0;
 			}
+			if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+				obj_skill_tree.parrySuccessfullyCombod = false;
+				dashSuccessfullyCombod = false;
+				playerImageIndex = 2;
+			}
 			playerState = playerstates.deathincarnate;
 			playerStateSprite = playerstates.deathincarnate;
 			lastAttackButtonPressed = "";
@@ -617,6 +765,8 @@ switch (lastAttackButtonPressed) {
 				ds_list_destroy(obj_skill_tree.deathIncarnateSecondPhaseTargetList);
 				obj_skill_tree.deathIncarnateSecondPhaseTargetList = noone;
 			}
+			comboAbilityButton = 0;
+			comboTrueTimer = -1;
 		}
 		break;
 	case "Ritual of Imperfection":
@@ -629,9 +779,16 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.ritualofimperfection;
 		playerStateSprite = playerstates.ritualofimperfection;
 		lastAttackButtonPressed = "";
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		// I'll subtract the mana from the player inside the attack script based on how long the
 		// button is held (meaning how much mana the player dedicates to the summoning)
 		break;
@@ -648,9 +805,16 @@ switch (lastAttackButtonPressed) {
 			else {
 				playerImageIndex = 0;
 			}
+			if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+				obj_skill_tree.parrySuccessfullyCombod = false;
+				dashSuccessfullyCombod = false;
+				playerImageIndex = 2;
+			}
 			playerState = playerstates.ritualofdeath;
 			playerStateSprite = playerstates.ritualofdeath;
 			lastAttackButtonPressed = "";
+			comboAbilityButton = 0;
+			comboTrueTimer = -1;
 		}
 		break;
 	case "Soul Tether":
@@ -663,6 +827,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.soultether;
 		playerStateSprite = playerstates.soultether;
 		lastAttackButtonPressed = "";
@@ -670,6 +839,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentStamina += obj_skill_tree.soulTetherStaminaRegen;
 		playerCurrentMana -= obj_skill_tree.soulTetherManaCost;
 		playerCurrentMana += obj_skill_tree.soulTetherManaRegen;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Dinner is Served":
 		if instance_exists(obj_dead_body) {
@@ -696,6 +867,11 @@ switch (lastAttackButtonPressed) {
 						else {
 							playerImageIndex = 0;
 						}
+						if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+							obj_skill_tree.parrySuccessfullyCombod = false;
+							dashSuccessfullyCombod = false;
+							playerImageIndex = 2;
+						}
 						playerState = playerstates.dinnerisserved;
 						playerStateSprite = playerstates.dinnerisserved;
 						lastAttackButtonPressed = "";
@@ -703,6 +879,8 @@ switch (lastAttackButtonPressed) {
 						playerCurrentStamina += obj_skill_tree.dinnerIsServedStaminaRegen;
 						playerCurrentMana -= obj_skill_tree.dinnerIsServedManaCost;
 						playerCurrentMana += obj_skill_tree.dinnerIsServedManaRegen;
+						comboAbilityButton = 0;
+						comboTrueTimer = -1;
 					}
 				}
 			}
@@ -718,6 +896,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.finalparting;
 		playerStateSprite = playerstates.finalparting;
 		lastAttackButtonPressed = "";
@@ -727,6 +910,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.finalPartingManaRegen;
 		obj_skill_tree.finalPartingTargetXPos = mouse_x;
 		obj_skill_tree.finalPartingTargetYPos = mouse_y;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Risk of Life":
 		if comboTrue != "" {
@@ -738,6 +923,11 @@ switch (lastAttackButtonPressed) {
 		else {
 			playerImageIndex = 0;
 		}
+		if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+			obj_skill_tree.parrySuccessfullyCombod = false;
+			dashSuccessfullyCombod = false;
+			playerImageIndex = 2;
+		}
 		playerState = playerstates.riskoflife;
 		playerStateSprite = playerstates.riskoflife;
 		lastAttackButtonPressed = "";
@@ -747,6 +937,8 @@ switch (lastAttackButtonPressed) {
 		playerCurrentMana += obj_skill_tree.riskOfLifeManaRegen;
 		obj_skill_tree.riskOfLifeTargetXPos = mouse_x;
 		obj_skill_tree.riskOfLifeTargetYPos = mouse_y;
+		comboAbilityButton = 0;
+		comboTrueTimer = -1;
 		break;
 	case "Taken for Pain":
 		if !obj_skill_tree.takenForPainFirstPhaseActive && !obj_skill_tree.takenForPainSecondPhaseActive {
@@ -755,11 +947,15 @@ switch (lastAttackButtonPressed) {
 					comboTrue = "";
 					playerDirectionFacing = comboPlayerDirectionFacing;
 					comboPlayerDirectionFacing = -1;
-			
 					playerImageIndex = 0;
 				}
 				else {
 					playerImageIndex = 0;
+				}
+				if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+					obj_skill_tree.parrySuccessfullyCombod = false;
+					dashSuccessfullyCombod = false;
+					playerImageIndex = 2;
 				}
 				playerState = playerstates.takenforpain;
 				playerStateSprite = playerstates.takenforpain;
@@ -768,6 +964,8 @@ switch (lastAttackButtonPressed) {
 				playerCurrentStamina += obj_skill_tree.takenForPainStaminaRegen;
 				playerCurrentMana -= obj_skill_tree.takenForPainManaCost;
 				playerCurrentMana += obj_skill_tree.takenForPainManaRegen;
+				comboAbilityButton = 0;
+				comboTrueTimer = -1;
 			}
 		}
 		break;
@@ -782,6 +980,11 @@ switch (lastAttackButtonPressed) {
 			else {
 				playerImageIndex = 0;
 			}
+			if (obj_skill_tree.parrySuccessfullyCombod) || (dashSuccessfullyCombod) {
+				obj_skill_tree.parrySuccessfullyCombod = false;
+				dashSuccessfullyCombod = false;
+				playerImageIndex = 2;
+			}
 			playerState = playerstates.sicklyproposition;
 			playerStateSprite = playerstates.sicklyproposition;
 			lastAttackButtonPressed = "";
@@ -791,6 +994,8 @@ switch (lastAttackButtonPressed) {
 			playerCurrentMana += obj_skill_tree.sicklyPropositionManaRegen;
 			obj_skill_tree.sicklyPropositionTargetXPos = mouse_x;
 			obj_skill_tree.sicklyPropositionTargetYPos = mouse_y;
+			comboAbilityButton = 0;
+			comboTrueTimer = -1;
 		}
 		break;
 	#endregion

@@ -22,13 +22,10 @@ slowEnemyTimeWithParryActive = false;
 slowEnemyTimeWithParryTimer = -1;
 slowEnemyTimeWithParryTimerStartTime = 2 * room_speed;
 parryWindowActive = false;
-parryWindowTimer = -1;
-parryWindowTimerStartTime = 0.5 * room_speed;
 successfulParryEffectNeedsToBeAppliedToEnemy = false;
 successfulParryInvulnerabilityActive = false;
-successfulParryInvulnerabilityTimer = -1;
-successfulParryInvulnerabilityTimerStartTime = 0.5 * room_speed;
 parryFailureManaCost = 100;
+parrySuccessfullyCombod = false;
 #endregion
 
 

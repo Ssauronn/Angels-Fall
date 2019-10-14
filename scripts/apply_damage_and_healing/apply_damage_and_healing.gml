@@ -536,7 +536,6 @@ if owner_is_enemy_ {
 				}
 				if (obj_skill_tree.parryWindowActive) {
 					obj_skill_tree.successfulParryInvulnerabilityActive = true;
-					obj_skill_tree.successfulParryInvulnerabilityTimer = obj_skill_tree.successfulParryInvulnerabilityTimerStartTime;
 					obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = true;
 					if obj_skill_tree.holyDefenseActive {
 						with obj_player {
@@ -582,7 +581,6 @@ if owner_is_enemy_ {
 					}
 				}
 				obj_skill_tree.parryWindowActive = false;
-				obj_skill_tree.parryWindowTimer = -1;
 				// execute parry animation and visual effects, etc.
 			}
 			exit;

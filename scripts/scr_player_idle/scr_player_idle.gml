@@ -75,7 +75,6 @@ if instance_exists(obj_player) {
 	#region If Parry Key is Pressed
 	if key_parry {
 		obj_skill_tree.parryWindowActive = true;
-		obj_skill_tree.parryWindowTimer = obj_skill_tree.parryWindowTimerStartTime;
 		playerState = playerstates.parryready;
 		playerStateSprite = playerstates.parryready;
 		playerImageIndex = 0;
