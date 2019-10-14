@@ -19,29 +19,23 @@ if instance_exists(obj_player) {
 		switch (playerDirectionFacing) {
 			case playerdirection.right:
 				playerHitbox = instance_create_depth(x + 32, y, -999, obj_hitbox);
-				playerHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerHitbox.mask_index = spr_player_bullet_hitbox;
 				var point_direction_ = point_direction(x + 32, y, obj_skill_tree.lightningSpearTargetXPos, obj_skill_tree.lightningSpearTargetYPos);
 				break;
 			case playerdirection.up:
 				playerHitbox = instance_create_depth(x, y - 32, -999, obj_hitbox);
-				playerHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerHitbox.mask_index = spr_player_bullet_hitbox;
 				var point_direction_ = point_direction(x, y - 32, obj_skill_tree.lightningSpearTargetXPos, obj_skill_tree.lightningSpearTargetYPos);
 				break;
 			case playerdirection.left:
 				playerHitbox = instance_create_depth(x - 32, y, -999, obj_hitbox);
-				playerHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerHitbox.mask_index = spr_player_bullet_hitbox;
 				var point_direction_ = point_direction(x - 32, y, obj_skill_tree.lightningSpearTargetXPos, obj_skill_tree.lightningSpearTargetYPos);
 				break;
 			case playerdirection.down:
 				playerHitbox = instance_create_depth(x, y + 32, -999, obj_hitbox);
-				playerHitbox.sprite_index = spr_player_bullet_hitbox;
-				playerHitbox.mask_index = spr_player_bullet_hitbox;
 				var point_direction_ = point_direction(x, y + 32, obj_skill_tree.lightningSpearTargetXPos, obj_skill_tree.lightningSpearTargetYPos);
 				break;
 		}
+		playerHitbox.sprite_index = spr_player_bullet_hitbox;
+		playerHitbox.mask_index = spr_player_bullet_hitbox;
 		playerHitbox.owner = owner_;
 		playerHitbox.playerProjectileHitboxSpeed = obj_skill_tree.lightningSpearSpeed;
 		playerHitbox.playerProjectileHitboxDirection = point_direction_;
@@ -80,69 +74,9 @@ if instance_exists(obj_player) {
 			ds_list_set(obj_combat_controller.playerHitboxList, 0, playerHitbox);
 		}
 	}
-	#region If Attack Button is Pressed
-	// I don't actually set lastAttackButtonPressed, because if I did, it would immediately send 
-	// us to the next attack script. I set comboTrue to what lastAttackButtonPressed should be, and
-	// after the script is up, i.e. the attack has finished its animation, I then call
-	// prepare_to_execute_melle_attacks script to set lastAttackButtonPressed to what I need it to be,
-	// which will then send the player to the next attack script (via calling execute_attacks script
-	// every step in the obj_player Step event.
-	if (key_attack_lmb != "") {
-		if playerCurrentStamina >= meleeStaminaCost {
-			if (key_attack_lmb == "right") {
-				comboTrue = "Attack Right 1";
-				comboPlayerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_lmb == "up") {
-				comboTrue = "Attack Up 1";
-				comboPlayerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_lmb == "left") {
-				comboTrue = "Attack Left 1";
-				comboPlayerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_lmb == "down") {
-				comboTrue = "Attack Down 1";
-				comboPlayerDirectionFacing = playerdirection.down;
-			}
-		}
-	}
-	#endregion
-	#region If Ability Button is Pressed
-	if key_bar_ability_one || key_bar_ability_two || key_bar_ability_three || key_bar_ability_four {
-		if key_bar_ability_one {
-			comboAbilityButton = 1;
-		}
-		else if key_bar_ability_two {
-			comboAbilityButton = 2;
-		}
-		else if key_bar_ability_three {
-			comboAbilityButton = 3;
-		}
-		else if key_bar_ability_four {
-			comboAbilityButton = 4;
-		}
-		var point_direction_ = point_direction(x, y, mouse_x, mouse_y);
-		if point_direction_ >= 45 && point_direction_ < 135 {
-			comboPlayerDirectionFacing = playerdirection.up;
-		}
-		else if point_direction_ >= 315 && point_direction_ < 360 {
-			comboPlayerDirectionFacing = playerdirection.right;
-		}
-		else if point_direction_ >= 0 && point_direction_ < 45 {
-			comboPlayerDirectionFacing = playerdirection.right;
-		}
-		else if point_direction_ >= 225 && point_direction_ < 315 {
-			comboPlayerDirectionFacing = playerdirection.down;
-		}
-		else if point_direction_ >= 135 && point_direction_ < 225 {
-			comboPlayerDirectionFacing = playerdirection.left;
-		}
-	}
-	#endregion
 
 	// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
-	if (comboTrue == "") && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
+	if playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1) {
 		if currentSpeed == 0 {
 			playerState = playerstates.idle;
 			playerStateSprite = playerstates.idle;
@@ -153,12 +87,6 @@ if instance_exists(obj_player) {
 			playerStateSprite = playerstates.run;
 			hitboxCreated = false;
 		}
-	}
-	// Else send to another attack playerState
-	else if (comboTrue != "") && (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) {
-		send_player_to_ability_state(true);
-		lastAttackButtonPressed = comboTrue;
-		hitboxCreated = false;
 	}
 }
 

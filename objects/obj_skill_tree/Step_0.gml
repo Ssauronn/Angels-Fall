@@ -813,20 +813,6 @@ if solidifyActive {
 // Parry actual effect is applied upon collision with a hitbox on the player while parryWindowActive
 // is true
 if parryEffectChosen == "Slow Time Effect" {
-	if parryWindowTimer >= 0 {
-		parryWindowTimer--;
-		parryWindowActive = true;
-	}
-	else {
-		parryWindowActive = false;
-	}
-	if successfulParryInvulnerabilityTimer >= 0 {
-		successfulParryInvulnerabilityTimer--;
-		successfulParryInvulnerabilityActive = true;
-	}
-	else {
-		successfulParryInvulnerabilityActive = false;
-	}
 	// Usually, the below 3 lines of code would only be happening locally inside obj_enemy's. But I need to keep track of the buff because in case its applied to an enemy, I don't want the Prime ability slow time resets to take effect.
 	if slowEnemyTimeWithParryTimer >= 0 {
 		slowEnemyTimeWithParryTimer--;
@@ -834,7 +820,6 @@ if parryEffectChosen == "Slow Time Effect" {
 	if obj_player.key_parry {
 		if !parryWindowActive && !successfulParryInvulnerabilityActive {
 			parryWindowActive = true;
-			parryWindowTimer = parryWindowTimerStartTime;
 		}
 	}
 }

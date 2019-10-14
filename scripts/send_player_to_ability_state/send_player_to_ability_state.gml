@@ -19,19 +19,19 @@ if !combo_ {
 }
 else {
 	if comboAbilityButton == 1 {
-		comboAbilityButton = -1;
+		comboAbilityButton = 0;
 		choose_player_ability_state(obj_skill_tree.keyBarAbilityOneChosen, combo_);
 	}
 	else if comboAbilityButton == 2 {
-		comboAbilityButton = -1;
+		comboAbilityButton = 0;
 		choose_player_ability_state(obj_skill_tree.keyBarAbilityTwoChosen, combo_);
 	}
 	else if comboAbilityButton == 3 {
-		comboAbilityButton = -1;
+		comboAbilityButton = 0;
 		choose_player_ability_state(obj_skill_tree.keyBarAbilityThreeChosen, combo_);
 	}
 	else if comboAbilityButton == 4 {
-		comboAbilityButton = -1;
+		comboAbilityButton = 0;
 		choose_player_ability_state(obj_skill_tree.keyBarAbilityFourChosen, combo_);
 	}
 }

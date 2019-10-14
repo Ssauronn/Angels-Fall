@@ -9,6 +9,7 @@ dashTimer = 0;
 baseDashSpeed = maxSpeed * 2;
 dashSpeed = baseDashSpeed;
 dashDir = point_direction(obj_player.x, obj_player.y, xDashPosition, yDashPosition);
+dashSuccessfullyCombod = false;
 
 // Image Speed Initialization
 image_speed = 0;
@@ -258,8 +259,9 @@ playerProjectileHitboxDirection = 0;
 playerProjectileHitboxSpeed = maxSpeed * 1.1;
 hitboxCreated = false;
 comboTrue = "";
+comboTrueTimer = -1;
 comboPlayerDirectionFacing = -1;
-comboAbilityButton = -1;
+comboAbilityButton = 0;
 
 // Basic attack damage values
 playerMeleeAttackOneValue = 50;

@@ -75,38 +75,44 @@ if instance_exists(obj_player) {
 
 	#region If Attack Button is Pressed
 	if (key_attack_lmb != "") {
-		if playerCurrentStamina >= meleeStaminaCost {
-			if (key_attack_lmb == "right") {
-				comboTrue = "Attack Right 3";
-				comboPlayerDirectionFacing = playerdirection.right;
-			}
-			else if (key_attack_lmb == "up") {
-				comboTrue = "Attack Up 3";
-				comboPlayerDirectionFacing = playerdirection.up;
-			}
-			else if (key_attack_lmb == "left") {
-				comboTrue = "Attack Left 3";
-				comboPlayerDirectionFacing = playerdirection.left;
-			}
-			else if (key_attack_lmb == "down") {
-				comboTrue = "Attack Down 3";
-				comboPlayerDirectionFacing = playerdirection.down;
-			}
+		if (key_attack_lmb == "right") {
+			comboTrue = "Attack Right 3";
+			comboTrueTimer = 10;
+			comboPlayerDirectionFacing = playerdirection.right;
+		}
+		else if (key_attack_lmb == "up") {
+			comboTrue = "Attack Up 3";
+			comboTrueTimer = 10;
+			comboPlayerDirectionFacing = playerdirection.up;
+		}
+		else if (key_attack_lmb == "left") {
+			comboTrue = "Attack Left 3";
+			comboTrueTimer = 10;
+			comboPlayerDirectionFacing = playerdirection.left;
+		}
+		else if (key_attack_lmb == "down") {
+			comboTrue = "Attack Down 3";
+			comboTrueTimer = 10;
+			comboPlayerDirectionFacing = playerdirection.down;
 		}
 	}
 	#endregion
 	#region If Ability Button is Pressed
 	if key_bar_ability_one || key_bar_ability_two || key_bar_ability_three || key_bar_ability_four {
 		if key_bar_ability_one {
+			comboTrueTimer = 10;
 			comboAbilityButton = 1;
 		}
 		else if key_bar_ability_two {
+			comboTrueTimer = 10;
 			comboAbilityButton = 2;
 		}
 		else if key_bar_ability_three {
+			comboTrueTimer = 10;
 			comboAbilityButton = 3;
 		}
 		else if key_bar_ability_four {
+			comboTrueTimer = 10;
 			comboAbilityButton = 4;
 		}
 		var point_direction_ = point_direction(x, y, mouse_x, mouse_y);
@@ -129,24 +135,27 @@ if instance_exists(obj_player) {
 	#endregion
 
 	// Return to idle playerState if no attack button is pressed while in the attack playerState to combo further
-	if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue == "") {
-		if currentSpeed == 0 {
-			playerState = playerstates.idle;
-			playerStateSprite = playerstates.idle;
-			hitboxCreated = false;
-			playerImageIndex = 0;
+	if playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1) {
+		if (comboTrue == "") && (comboAbilityButton = 0) {
+			if currentSpeed == 0 {
+				playerState = playerstates.idle;
+				playerStateSprite = playerstates.idle;
+				hitboxCreated = false;
+				playerImageIndex = 0;
+			}
+			else {
+				playerState = playerstates.run;
+				playerStateSprite = playerstates.run;
+				hitboxCreated = false;
+				playerImageIndex = 0;
+			}
 		}
+		// Else send to another attack playerState
 		else {
-			playerState = playerstates.run;
-			playerStateSprite = playerstates.run;
+			send_player_to_ability_state(true);
+			lastAttackButtonPressed = comboTrue;
 			hitboxCreated = false;
-			playerImageIndex = 0;
 		}
-	}
-	else if (playerImageIndex >= (sprite_get_number(playerSprite[playerStateSprite, playerDirectionFacing]) - 1)) && (comboTrue != "") {
-		send_player_to_ability_state(true);
-		lastAttackButtonPressed = comboTrue;
-		hitboxCreated = false;
 	}
 }
 

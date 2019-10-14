@@ -23,26 +23,23 @@ playerHPRegeneration = 0 / room_speed;
 // Variables used to control stamina resources for player
 playerMaxStamina = 1000;
 playerCurrentStamina = playerMaxStamina;
-playerStaminaRegeneration = 50 / room_speed;
+playerStaminaRegeneration = 12 / room_speed;
 // Variables used to control mana resources for player
 playerMaxMana = 1000;
 playerCurrentMana = playerMaxMana;
-playerManaRegeneration = 50 / room_speed;
+playerManaRegeneration = 12 / room_speed;
 // Variables used to control blood magic resources for player
 playerMaxBloodMagic = 10;
 playerCurrentBloodMagic = playerMaxBloodMagic;
 // Costs on resources for using various attacks
 // Melee costs and regen
-meleeStaminaCost = 0;
-meleeManaRegen = 0;
-// Magic costs and regen
-magicStaminaRegen = 600;
-magicManaCost = 800;
+meleeStaminaRegen = 25;
+meleeManaRegen = 25;
 // Dash costs and regen
-dashStaminaCost = 150;
-dashManaRegen = 75;
+dashStaminaCost = 100;
+dashAvoidedDamage = false;
 #endregion
-n = 0;
+
 // Movement Variables and Scripts (Setting up groundwork for movement engine)
 scr_player_input();
 var max_speed_ = 4.000;

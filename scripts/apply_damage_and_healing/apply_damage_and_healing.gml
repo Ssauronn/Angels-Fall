@@ -182,6 +182,9 @@ if owner_is_player_ {
 					comboDamageDealt += total_damage_;
 					other_owner_.enemyCurrentHP -= total_damage_;
 					lastEnemyHitByPlayer = other_owner_;
+					// Add stamina and mana to player current resources if the attack has connected
+					playerCurrentStamina += obj_player.meleeStaminaRegen;
+					playerCurrentMana += obj_player.meleeManaRegen;
 					// Exploit Weakness needs to add .25 of total damage after resistances to poisons if active
 					if ((other_owner_.exploitWeaknessActive) || (self_.playerHitboxAbilityOrigin == "Exploit Weakness")) && (self_.playerHitboxAbilityOrigin != "DoT Tic") {
 						if !obj_skill_tree.purifyingRageActive {
@@ -520,6 +523,11 @@ if owner_is_enemy_ {
 						}
 					}
 				}
+				// Else if the player is invincible but dashing, mark the dash as having avoided
+				// an attack
+				else if obj_player.playerState = playerstates.dash {
+					obj_player.dashAvoidedDamage = true;
+				}
 			}
 			// Else if the player is currently parrying, apply parry effects
 			else {
@@ -528,7 +536,6 @@ if owner_is_enemy_ {
 				}
 				if (obj_skill_tree.parryWindowActive) {
 					obj_skill_tree.successfulParryInvulnerabilityActive = true;
-					obj_skill_tree.successfulParryInvulnerabilityTimer = obj_skill_tree.successfulParryInvulnerabilityTimerStartTime;
 					obj_skill_tree.successfulParryEffectNeedsToBeAppliedToEnemy = true;
 					if obj_skill_tree.holyDefenseActive {
 						with obj_player {
@@ -574,7 +581,6 @@ if owner_is_enemy_ {
 					}
 				}
 				obj_skill_tree.parryWindowActive = false;
-				obj_skill_tree.parryWindowTimer = -1;
 				// execute parry animation and visual effects, etc.
 			}
 			exit;
