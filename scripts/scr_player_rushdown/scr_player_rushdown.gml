@@ -144,6 +144,8 @@ else {
 	obj_skill_tree.rushdownDashDamageMultiplierActive = false;
 	obj_skill_tree.rushdownDashed = false;
 	obj_skill_tree.rushdownDashTimer = -1;
+	comboTrue = "";
+	lastAttackButtonPressed = "";
 }
 
 

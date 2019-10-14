@@ -14,31 +14,43 @@ else {
 switch equipped_ability_ {
 	#region Diabolus Abilities
 	case "Wrath of the Diaboli": 
-		if combo_ {
-			if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheDiaboliManaCost) {
-				comboTrue = "Wrath of the Diaboli";
-				comboTrueTimer = 10;
-				// I don't directly set lastAttackButtonPressed to comboTrue here because the only
-				// time this block will be executed is if there actually is a combo, and if there
-				// actually is a combo, I call send_player_to_ability_state script, which calls this
-				// script, in every attack script right before setting lastAttackButtonPressed to
-				// comboTrue. Essentially, I don't set lastAttackButtonPressed to comboTrue here because
-				// it immediately gets set to comboTrue once this script finishes.
+		if variable_global_exists("objectIDsInBattle") {
+			if ds_exists(objectIDsInBattle, ds_type_list) {
+				if combo_ {
+					if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheDiaboliManaCost) {
+						comboTrue = "Wrath of the Diaboli";
+						comboTrueTimer = 10;
+						// I don't directly set lastAttackButtonPressed to comboTrue here because the only
+						// time this block will be executed is if there actually is a combo, and if there
+						// actually is a combo, I call send_player_to_ability_state script, which calls this
+						// script, in every attack script right before setting lastAttackButtonPressed to
+						// comboTrue. Essentially, I don't set lastAttackButtonPressed to comboTrue here because
+						// it immediately gets set to comboTrue once this script finishes.
+					}
+					else {
+						comboTrue = "";
+						comboPlayerDirectionFacing = -1;
+						lastAttackButtonPressed = "";
+					}
+				}
+				else {
+					if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheDiaboliManaCost) {
+						lastAttackButtonPressed = "Wrath of the Diaboli";
+						execute_attacks();
+					}
+					else {
+						lastAttackButtonPressed = "";
+					}
+				}
 			}
 			else {
 				comboTrue = "";
-				comboPlayerDirectionFacing = -1;
 				lastAttackButtonPressed = "";
 			}
 		}
 		else {
-			if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheDiaboliManaCost) {
-				lastAttackButtonPressed = "Wrath of the Diaboli";
-				execute_attacks();
-			}
-			else {
-				lastAttackButtonPressed = "";
-			}
+			comboTrue = "";
+			lastAttackButtonPressed = "";
 		}
 		break;
 	case "Glinting Blade":
@@ -189,25 +201,37 @@ switch equipped_ability_ {
 		}
 		break;
 	case "Rushdown":
-		if combo_ {
-			if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) && (playerCurrentMana >= obj_skill_tree.rushdownManaCost) {
-				comboTrue = "Rushdown";
-				comboTrueTimer = 10;
+		if variable_global_exists("objectIDsInBattle") {
+			if ds_exists(objectIDsInBattle, ds_type_list) {
+				if combo_ {
+					if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) && (playerCurrentMana >= obj_skill_tree.rushdownManaCost) {
+						comboTrue = "Rushdown";
+						comboTrueTimer = 10;
+					}
+					else {
+						comboTrue = "";
+						comboPlayerDirectionFacing = -1;
+						lastAttackButtonPressed = "";
+					}
+				}
+				else {
+					if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) && (playerCurrentMana >= obj_skill_tree.rushdownManaCost) {
+						lastAttackButtonPressed = "Rushdown";
+						execute_attacks();
+					}
+					else {
+						lastAttackButtonPressed = "";
+					}
+				}
 			}
 			else {
 				comboTrue = "";
-				comboPlayerDirectionFacing = -1;
 				lastAttackButtonPressed = "";
 			}
 		}
 		else {
-			if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) && (playerCurrentMana >= obj_skill_tree.rushdownManaCost) {
-				lastAttackButtonPressed = "Rushdown";
-				execute_attacks();
-			}
-			else {
-				lastAttackButtonPressed = "";
-			}
+			comboTrue = "";
+			lastAttackButtonPressed = "";
 		}
 		break;
 	case "Diabolus Blast":
@@ -257,25 +281,37 @@ switch equipped_ability_ {
 		}
 		break;
 	case "Bindings of the Caelesti":
-		if combo_ {
-			if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.bindingsOfTheCaelestiManaCost) {
-				comboTrue = "Bindings of the Caelesti";
-				comboTrueTimer = 10;
+		if variable_global_exists("objectIDsInBattle") {
+			if ds_exists(objectIDsInBattle, ds_type_list) {
+				if combo_ {
+					if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.bindingsOfTheCaelestiManaCost) {
+						comboTrue = "Bindings of the Caelesti";
+						comboTrueTimer = 10;
+					}
+					else {
+						comboTrue = "";
+						comboPlayerDirectionFacing = -1;
+						lastAttackButtonPressed = "";
+					}
+				}
+				else {
+					if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.bindingsOfTheCaelestiManaCost) {
+						lastAttackButtonPressed = "Bindings of the Caelesti";
+						execute_attacks();
+					}
+					else {
+						lastAttackButtonPressed = "";
+					}
+				}
 			}
 			else {
 				comboTrue = "";
-				comboPlayerDirectionFacing = -1;
 				lastAttackButtonPressed = "";
 			}
 		}
 		else {
-			if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.bindingsOfTheCaelestiManaCost) {
-				lastAttackButtonPressed = "Bindings of the Caelesti";
-				execute_attacks();
-			}
-			else {
-				lastAttackButtonPressed = "";
-			}
+			comboTrue = "";
+			lastAttackButtonPressed = "";
 		}
 		break;
 	case "Armor of the Caelesti":
