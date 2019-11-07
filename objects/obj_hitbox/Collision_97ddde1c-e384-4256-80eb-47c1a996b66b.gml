@@ -1,5 +1,4 @@
 /// @description Destroy object if collision found with wall
-
 var owner_is_player_, owner_is_enemy_;
 owner_is_player_ = false;
 owner_is_enemy_ = false;
@@ -12,7 +11,8 @@ else if owner.object_index == obj_enemy {
 	owner_is_enemy_ = true;
 }
 
-// Destroy the hitbox if it collides with a wall AND its a projectile
+// Destroy the hitbox if it collides with a wall AND its a projectile or something that should
+// be destroyed upon collision
 if owner_is_player_ {
 	if playerHitboxAttackType == "Projectile" {
 		if playerHitboxAbilityOrigin != "Taken for Pain" {
