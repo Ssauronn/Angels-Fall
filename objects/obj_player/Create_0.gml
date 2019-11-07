@@ -51,7 +51,7 @@ var current_direction_ = point_direction(0, 0, 0, 0); // set to 0, 0, 0, 0
 var friction_ = max_speed_ * 2.700;
 var bounce_percent_ = 0.666;
 var collision_object_ = obj_wall;
-initialize_movement_entity(max_speed_, current_speed_, player_acceleration_, current_direction_, friction_, bounce_percent_, collision_object_, obj_ground_hurtbox);
+initialize_movement_entity(max_speed_, current_speed_, player_acceleration_, current_direction_, friction_, bounce_percent_, collision_object_, obj_ground_hurtbox, obj_interact);
 
 scr_initialize_player_stats();
 
