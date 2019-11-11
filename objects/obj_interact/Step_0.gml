@@ -1,4 +1,40 @@
 /// @description Detect if within range and execute code
+// Make sure if the interactable is solid, a wall has been created for the interactable
+if interactableSolid {
+	if !instance_exists(interactableWall) {
+		interactableWall = instance_create_depth(x, y, -999, obj_wall);
+		interactableWall.sprite_index = sprite_index;
+		interactableWall.visible = false;
+		mp_grid_add_instances(roomMovementGrid, interactableWall, false);
+	}
+	// If the interactable is solid, update the wall location in case the interactable ever changes location
+	// Set on a one second timer. If the interactable moves, a timer starts for 1 second that deactivates itself
+	// after completiong and destroys, and creates, a new wall at the new interactable location while updating the
+	// roomMovementGrid
+	if (interactableXLocation != x) || (interactableYLocation != y) {
+		if interactableWallUpdateTimer <= 0 {
+			interactableWallUpdateTimer = interactableWallUpdateTimerStartTime;
+		}
+		if interactableWallUpdateTimer > 0 {
+			interactableWallUpdateTimer--;
+		}
+		if interactableWallUpdateTimer <= 0 {
+			interactableXLocation = x;
+			interactableYLocation = y;
+			if instance_exists(interactableWall) {
+				instance_destroy(interactableWall);
+			}
+			interactableWall = instance_create_depth(x, y, -999, obj_wall);
+			interactableWall.sprite_index = sprite_index;
+			interactableWall.visible = false;
+			mp_grid_destroy(roomMovementGrid);
+			roomMovementGrid = noone;
+			roomMovementGrid = mp_grid_create(0, 0, room_width / 16, room_height / 16, 16, 16);
+			mp_grid_add_instances(roomMovementGrid, obj_wall, false);
+		}
+	}
+}
+
 // First run animations for interactables, if any are needed
 scr_interactables_animations_control();
 
