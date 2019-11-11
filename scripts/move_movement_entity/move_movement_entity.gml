@@ -7,7 +7,10 @@ if object_index == obj_player {
 	// current speed.
 	for (i = 0; i < array_length_1d(collisionObjects); i++) {
 		if (place_meeting(playerGroundHurtbox.x + lengthdir_x(currentSpeed, currentDirection), playerGroundHurtbox.y + lengthdir_y(currentSpeed, currentDirection), collisionObjects[i]) && (!bounce_) && (collisionObjects[i] != self)) {
-			currentSpeed = approach_number(currentSpeed, 0, (frictionAmount / 2));
+			var other_ = instance_place(playerGroundHurtbox.x + lengthdir_x(currentSpeed, currentDirection), playerGroundHurtbox.y + lengthdir_y(currentSpeed, currentDirection), collisionObjects[i]);
+			if (other_.object_index != obj_interact) || (other_.interactableSolid) {
+				currentSpeed = approach_number(currentSpeed, 0, (frictionAmount / 2));
+			}
 		}
 	}
 
@@ -26,19 +29,21 @@ if object_index == obj_player {
 		var i = 0;
 		// Determine if there's a collision with any collision object in the x direction within the next
 		// frame, mark it as such.
-	
 		for (i = 0; i < array_length_1d(collisionObjects); i++) {
 			if (place_meeting(x + x_speed_, y, collisionObjects[i])) && (obj_player.collisionFound == -1) && (collisionObjects[1] != self) {
-				// Detect collisions, while specifically avoiding collisions with enemies
-				var other_collision_object_ = instance_place(x + x_speed_, y, collisionObjects[i]);
-				if variable_instance_exists(other_collision_object_, "owner") {
-					var other_collision_objects_owner_ = other_collision_object_.owner;
-					if other_collision_objects_owner_.combatFriendlyStatus != "Minion" {
+				var other_ = instance_place(x + x_speed_, y, collisionObjects[i]);
+				if (other_.object_index != obj_interact) || (other_.interactableSolid) {
+					// Detect collisions, while specifically avoiding collisions with enemies
+					var other_collision_object_ = instance_place(x + x_speed_, y, collisionObjects[i]);
+					if variable_instance_exists(other_collision_object_, "owner") {
+						var other_collision_objects_owner_ = other_collision_object_.owner;
+						if other_collision_objects_owner_.combatFriendlyStatus != "Minion" {
+							obj_player.collisionFound = i;
+						}
+					}
+					else {
 						obj_player.collisionFound = i;
 					}
-				}
-				else {
-					obj_player.collisionFound = i;
 				}
 			}
 		}
@@ -63,16 +68,19 @@ if object_index == obj_player {
 	with (playerGroundHurtbox) {
 		for (i = 0; i < array_length_1d(collisionObjects); i++) {
 			if (place_meeting(x, y + y_speed_, collisionObjects[i])) && (obj_player.collisionFound == -1) && (collisionObjects[i] != self) {
-				// Detect collisions, while specifically avoiding collisions with enemies
-				var other_collision_object_ = instance_place(x, y + y_speed_, collisionObjects[i]);
-				if variable_instance_exists(other_collision_object_, "owner") {
-					var other_collision_objects_owner_ = other_collision_object_.owner;
-					if other_collision_objects_owner_.combatFriendlyStatus != "Minion" {
+				var other_ = instance_place(x, y + y_speed_, collisionObjects[i]);
+				if (other_.object_index != obj_interact) || (other_.interactableSolid) {
+					// Detect collisions, while specifically avoiding collisions with enemies
+					var other_collision_object_ = instance_place(x, y + y_speed_, collisionObjects[i]);
+					if variable_instance_exists(other_collision_object_, "owner") {
+						var other_collision_objects_owner_ = other_collision_object_.owner;
+						if other_collision_objects_owner_.combatFriendlyStatus != "Minion" {
+							obj_player.collisionFound = i;
+						}
+					}
+					else {
 						obj_player.collisionFound = i;
 					}
-				}
-				else {
-					obj_player.collisionFound = i;
 				}
 			}
 		}
@@ -81,7 +89,7 @@ if object_index == obj_player {
 				y += sign(y_speed_);
 				obj_player.y += sign(y_speed_);
 			}
-
+			
 			if bounce_ {
 				y_speed_ = -(y_speed_) * bouncePercent;
 			}
