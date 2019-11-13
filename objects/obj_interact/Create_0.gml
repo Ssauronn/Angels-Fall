@@ -27,4 +27,3 @@ interactableDialogueTimer = -1;
 interactableDialogueTimerStartTime = room_speed * 2;
 
 
-
