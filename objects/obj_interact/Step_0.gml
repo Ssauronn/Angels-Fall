@@ -35,8 +35,8 @@ if interactableSolid {
 	}
 }
 
-// First run animations for interactables, if any are needed
-scr_interactables_animations_control();
+// First run animations and logic for interactables, if any are needed
+scr_interactables_managing();
 
 // Determine first whether the interactable item is within range of the player's floor location
 if instance_exists(obj_player) {
@@ -60,10 +60,23 @@ if instance_exists(obj_player) {
 			}
 		}
 		if self_is_closest_ {
+			// If the interactable either doesn't open anything, or opens a menu
 			if obj_player.key_interact {
-				interactableActive = !interactableActive;
 				if interactableOpensMenu {
 					menuOpen = !menuOpen;
+					interactableMenuActive = !interactableMenuActive;
+				}
+				else if !interactableOpensMenu && !interactableOpensDialogue {
+					interactableBasicActive = !interactableBasicActive;
+				}
+			}
+			// Else if the interactable opens dialogue boxes
+			else if obj_player.key_dialogue_choice_one {
+				if interactableOpensDialogue {
+					if !dialogueOpen {
+						dialogueOpen = true;
+						interactableDialogueTimer = interactableDialogueTimerStartTime;
+					}
 				}
 			}
 		}
@@ -71,8 +84,8 @@ if instance_exists(obj_player) {
 }
 
 // Actually run the scripts that control the interactables
-if interactableActive {
-	if interactableOpensMenu {
+if (interactableBasicActive) || (interactableMenuActive) || (interactableDialogueActive) {
+	if (interactableOpensMenu) || (interactableOpensDialogue) {
 		scr_interactables_with_menu();
 	}
 	else {
