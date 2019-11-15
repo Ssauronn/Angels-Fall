@@ -138,7 +138,7 @@
             "Key": "075f5161-a633-471b-b819-9f766ea38dd0",
             "Value": {
                 "id": "10274ca8-9932-4eb1-9f25-8a7d85fe0456",
-                "resourcePath": "scripts\\scr_interactables_animations_control\\scr_interactables_animations_control.yy",
+                "resourcePath": "scripts\\scr_interactables_managing\\scr_interactables_managing.yy",
                 "resourceType": "GMScript"
             }
         },

@@ -1,5 +1,6 @@
 /// @description Create menu variables
-globalvar menuOpen;
+globalvar menuOpen, dialogueOpen;
 menuOpen = false;
+dialogueOpen = false;
 
 

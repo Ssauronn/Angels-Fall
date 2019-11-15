@@ -8,6 +8,12 @@ key_escape = keyboard_check_released(vk_escape);
 key_interact = keyboard_check_pressed(ord("R"));
 
 
+key_dialogue_choice_one = keyboard_check_pressed(ord("X"));
+key_dialogue_choice_two = keyboard_check_pressed(ord("C"));
+key_dialogue_choice_three = keyboard_check_pressed(ord("V"));
+key_dialogue_choice_four = keyboard_check_pressed(ord("B"));
+
+
 if !menuOpen {
 	// get movement inputs
 	key_nokey = ((!keyboard_check(ord("W"))) && (!keyboard_check(ord("A"))) && (!keyboard_check(ord("S"))) && (!keyboard_check(ord("D"))));

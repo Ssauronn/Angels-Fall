@@ -35,8 +35,8 @@ if interactableSolid {
 	}
 }
 
-// First run animations for interactables, if any are needed
-scr_interactables_animations_control();
+// First run animations and logic for interactables, if any are needed
+scr_interactables_managing();
 
 // Determine first whether the interactable item is within range of the player's floor location
 if instance_exists(obj_player) {
@@ -50,20 +50,52 @@ if instance_exists(obj_player) {
 
 	// If the player is in fact in range, execute interactable script in case the interact button is pressed
 	if interactableWithinRange {
-		var self_is_closest_ = true;
+		var self_is_closest_basic_ = true;
+		var self_is_closest_dialogue_ = true;
+		var self_is_closest_menu_ = true;
 		var self_ = self;
 		with obj_interact {
 			// Make sure this specific object is the closest to player. If it isn't, then make sure only the
 			// closest interactable object runs the interactable code
 			if (self_ != self) && (point_distance(self_.x, self_.y, player_.x, player_.y) > point_distance(self.x, self.y, player_.x, player_.y)) {
-				self_is_closest_ = false;
+				if self_.interactableOpensDialogue {
+					if self.interactableOpensDialogue {
+						self_is_closest_dialogue_ = false;
+					}
+				}
+				if self_.interactableOpensMenu {
+					if self.interactableOpensMenu {
+						self_is_closest_menu_ = false;
+					}
+				}
+				if (!self_.interactableOpensDialogue) && (!self_.interactableOpensMenu) {
+					self_is_closest_dialogue_ = false;
+					self_is_closest_menu_ = false;
+					if (!self.interactableOpensDialogue) && (!self.interactableOpensMenu) {
+						self_is_closest_basic_ = false;
+					}
+				}
 			}
 		}
-		if self_is_closest_ {
-			if obj_player.key_interact {
-				interactableActive = !interactableActive;
-				if interactableOpensMenu {
-					menuOpen = !menuOpen;
+		// If the interactable either doesn't open anything, or opens a menu
+		if obj_player.key_interact {
+			// In case there are multiple interactables within range that are basic and open menus,
+			// first prioritize basic interactables before interacting with menus.
+			if (!interactableOpensMenu) && (!interactableOpensDialogue) && (self_is_closest_basic_) {
+				interactableBasicActive = true;
+			}
+			else if (interactableOpensMenu) && (self_is_closest_menu_) {
+				menuOpen = !menuOpen;
+				interactableMenuActive = !interactableMenuActive;
+			}
+		}
+		// Else if the interactable opens dialogue boxes
+		else if obj_player.key_dialogue_choice_one {
+			// Dialogue is seperated because dialogue relies on an entirely seperate button.
+			if (interactableOpensDialogue) && (self_is_closest_dialogue_) {
+				if !dialogueOpen {
+					dialogueOpen = true;
+					interactableDialogueTimer = interactableDialogueTimerStartTime;
 				}
 			}
 		}
@@ -71,8 +103,8 @@ if instance_exists(obj_player) {
 }
 
 // Actually run the scripts that control the interactables
-if interactableActive {
-	if interactableOpensMenu {
+if (interactableBasicActive) || (interactableMenuActive) || (interactableDialogueActive) {
+	if (interactableOpensMenu) || (interactableOpensDialogue) {
 		scr_interactables_with_menu();
 	}
 	else {
