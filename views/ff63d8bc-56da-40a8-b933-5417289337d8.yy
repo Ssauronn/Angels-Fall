@@ -13,7 +13,9 @@
         "06c78b3a-a566-4cc3-99c4-256c76bed58e",
         "c903ef42-186c-476f-aa55-69c02b880f0c",
         "3998c64b-98a7-4698-9b5a-c0d192e07585",
-        "21ddc1fa-92ef-48b6-8279-a984718984c6"
+        "21ddc1fa-92ef-48b6-8279-a984718984c6",
+        "2d82ea1b-5523-4fe4-a7cb-b94a581e2b39",
+        "33357c95-b240-42a1-a73a-0b164625ce7e"
     ],
     "filterType": "GMScript",
     "folderName": "grp_helper_scripts",

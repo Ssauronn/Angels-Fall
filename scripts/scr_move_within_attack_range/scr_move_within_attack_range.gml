@@ -105,7 +105,7 @@ else if !lineOfSightExists {
 	pathEndYGoal = yPointToMoveTo;
 	target_x_ = xPointToMoveTo;
 	target_y_ = yPointToMoveTo;
-	if !collision_line(x, y, xPointToMoveTo, yPointToMoveTo, obj_wall, true, true) {
+	if !collision_line(enemyGroundHurtbox.x, enemyGroundHurtbox.y, xPointToMoveTo, yPointToMoveTo, obj_wall, true, true) {
 		lineOfSightExists = true;
 		if pointToMoveToTimer < 0 {
 			pointToMoveToTimer = room_speed * 0.25;
@@ -200,7 +200,7 @@ if chosenEngine != "Heal Ally" {
 		// is found prematurely, then exit the script because the enemy has accomplished the goal even 
 		// though the enemy hasn't yet reached its target.
 		if (instance_exists(currentTargetToFocus)) && ((xPointToMoveTo != -1) && (yPointToMoveTo != -1)) {
-			if !collision_line(x, y, target_x_, target_y_, obj_wall, true, true) {
+			if !collision_line(groundHurtboxX, groundHurtboxY, target_x_, target_y_, obj_wall, true, true) {
 				// I set a small timer, so that the enemy continues along its chosen path slightly longer
 				// before stopping to attack. This is so that the enemy can move far enough to be within
 				// line of sight and out of the way of any walls that may just barely clip the enemy
@@ -208,6 +208,7 @@ if chosenEngine != "Heal Ally" {
 				// If the default timer value was at -1, then set the new timer
 				if pointToMoveToTimer < 0 {
 					pointToMoveToTimer = room_speed * 0.25;
+					// Destroy path so that a new one is created, just in case? Unsure, continue to test
 				}
 			}
 		}
@@ -220,14 +221,21 @@ if chosenEngine != "Heal Ally" {
 				mp_grid_add_instances(roomMovementGrid, obj_wall, false);
 			}
 			with enemyGroundHurtbox {
-				mp_grid_path(roomMovementGrid, object_self_.myPath, object_self_.x, object_self_.y, object_self_.pathEndXGoal, object_self_.pathEndYGoal, true);
+				mp_grid_path(roomMovementGrid, object_self_.myPath, object_self_.groundHurtboxX, object_self_.groundHurtboxY, object_self_.pathEndXGoal, object_self_.pathEndYGoal, true);
 				if object_self_.pathPos == path_get_number(object_self_.myPath) {
 					with object_self_ {
 						if instance_exists(currentTargetToFocus) {
-							scr_line_of_sight_exists(currentTargetToFocus.x, currentTargetToFocus.y, obj_wall);
+							var current_target_to_focus_ground_hurtbox_;
+							if currentTargetToFocus.object_index == obj_player.object_index {
+								current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
+							}
+							else {
+								current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
+							}
+							scr_line_of_sight_exists(current_target_to_focus_ground_hurtbox_.x, current_target_to_focus_ground_hurtbox_.y, obj_wall);
 						}
 					}
-					if point_distance(object_self_.x, object_self_.y, target_x_, target_y_) > distance_ {
+					if point_distance(object_self_.groundHurtboxX, object_self_.groundHurtboxY, target_x_, target_y_) > distance_ {
 						solid = false;
 						// In this instance, I instead move the ground hurtbox first, and then move the
 						// enemy object to match the ground hurtbox location. I do this so that I can move
@@ -239,10 +247,17 @@ if chosenEngine != "Heal Ally" {
 					}
 				}
 				else {
-					if point_distance(object_self_.x, object_self_.y, object_self_.pathNextXPos, object_self_.pathNextYPos) <= (object_self_.maxSpeed * 4) { //(x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
+					if point_distance(object_self_.groundHurtboxX, object_self_.groundHurtboxY, object_self_.pathNextXPos, object_self_.pathNextYPos) <= (object_self_.maxSpeed * 4) { //(x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
 						with object_self_ {
 							if instance_exists(currentTargetToFocus) {
-								scr_line_of_sight_exists(currentTargetToFocus.x, currentTargetToFocus.y, obj_wall);
+								var current_target_to_focus_ground_hurtbox_;
+								if currentTargetToFocus.object_index == obj_player.object_index {
+									current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
+								}
+								else {
+									current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
+								}
+								scr_line_of_sight_exists(current_target_to_focus_ground_hurtbox_.x, current_target_to_focus_ground_hurtbox_.y, obj_wall);
 							}
 						}
 					}
@@ -327,7 +342,7 @@ if chosenEngine == "Heal Ally" {
 		// is found prematurely, then exit the script because the enemy has accomplished the goal even 
 		// though the enemy hasn't yet reached its target.
 		if (instance_exists(currentTargetToHeal)) && ((xPointToMoveTo != -1) && (yPointToMoveTo != -1)) {
-			if !collision_line(x, y, target_x_, target_y_, obj_wall, true, true) {
+			if !collision_line(enemyGroundHurtbox.x, enemyGroundHurtbox.y, target_x_, target_y_, obj_wall, true, true) {
 				// I set a small timer, so that the enemy continues along its chosen path slightly longer
 				// before stopping to attack. This is so that the enemy can move far enough to be within
 				// line of sight and out of the way of any walls that may just barely clip the enemy
@@ -351,7 +366,14 @@ if chosenEngine == "Heal Ally" {
 				if object_self_.pathPos == path_get_number(object_self_.myPath) {
 					with object_self_ {
 						if instance_exists(currentTargetToHeal) {
-							scr_line_of_sight_exists(currentTargetToHeal.x, currentTargetToHeal.y, obj_wall);
+							var current_target_to_heal_ground_hurtbox_;
+							if currentTargetToHeal.object_index == obj_player.object_index {
+								current_target_to_heal_ground_hurtbox_ = currentTargetToHeal.playerGroundHurtbox;
+							}
+							else {
+								current_target_to_heal_ground_hurtbox_ = currentTargetToHeal.enemyGroundHurtbox;
+							}
+							scr_line_of_sight_exists(current_target_to_heal_ground_hurtbox_.x, current_target_to_heal_ground_hurtbox_.y, obj_wall);
 						}
 					}
 					if point_distance(object_self_.x, object_self_.y, target_x_, target_y_) > distance_ {
@@ -369,7 +391,14 @@ if chosenEngine == "Heal Ally" {
 					if point_distance(object_self_.x, object_self_.y, object_self_.pathNextXPos, object_self_.pathNextYPos) <= (object_self_.maxSpeed * 4) { //(x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
 						with object_self_ {
 							if instance_exists(currentTargetToHeal) {
-								scr_line_of_sight_exists(currentTargetToHeal.x, currentTargetToHeal.y, obj_wall);
+								var current_target_to_heal_ground_hurtbox_;
+								if currentTargetToHeal.object_index == obj_player.object_index {
+									current_target_to_heal_ground_hurtbox_ = currentTargetToHeal.playerGroundHurtbox;
+								}
+								else {
+									current_target_to_heal_ground_hurtbox_ = currentTargetToHeal.enemyGroundHurtbox;
+								}
+								scr_line_of_sight_exists(current_target_to_heal_ground_hurtbox_.x, current_target_to_heal_ground_hurtbox_.y, obj_wall);
 							}
 						}
 					}

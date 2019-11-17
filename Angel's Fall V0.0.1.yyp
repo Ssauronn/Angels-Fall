@@ -471,6 +471,14 @@
             }
         },
         {
+            "Key": "2d82ea1b-5523-4fe4-a7cb-b94a581e2b39",
+            "Value": {
+                "id": "8fd69aa7-09dc-40b2-b9ce-1a347315b52c",
+                "resourcePath": "scripts\\scr_path_exists_to_player_or_minions\\scr_path_exists_to_player_or_minions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2e05b39e-ac67-433e-ac0d-ba65264810da",
             "Value": {
                 "id": "bc18ee9c-2969-429a-9ef3-e23c1aa761c6",
@@ -548,6 +556,14 @@
                 "id": "15f8977b-9556-4652-ace4-318bb6ee034b",
                 "resourcePath": "sprites\\spr_aoe_heal\\spr_aoe_heal.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "33357c95-b240-42a1-a73a-0b164625ce7e",
+            "Value": {
+                "id": "c3de8f01-c959-4904-9895-1e5e9d0eb06f",
+                "resourcePath": "scripts\\scr_line_of_sight_exists_to_player_or_minions\\scr_line_of_sight_exists_to_player_or_minions.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2686,6 +2702,8 @@
         "c903ef42-186c-476f-aa55-69c02b880f0c",
         "3998c64b-98a7-4698-9b5a-c0d192e07585",
         "21ddc1fa-92ef-48b6-8279-a984718984c6",
+        "2d82ea1b-5523-4fe4-a7cb-b94a581e2b39",
+        "33357c95-b240-42a1-a73a-0b164625ce7e",
         "36860504-d5ce-4d85-b5d0-33ee434ea554",
         "75f6c853-c34c-46b6-92bb-c6826095e349",
         "075f5161-a633-471b-b819-9f766ea38dd0"

@@ -234,6 +234,7 @@ if (chosenEngine == "") && (ds_exists(objectIDsInBattle, ds_type_list)) {
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
 
+var self_ground_hurtbox_ = enemyGroundHurtbox;
 if !obj_skill_tree.wrathOfTheDiaboliActive {
 	/// Actually sending the AI to the correct states depending on the decision made and chosenEngine
 	// If the obj_enemy has chosen an engine to execute
@@ -253,7 +254,7 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 					}
 					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 						// If the obj_enemy is not within enemyHeavyMeleeAttackRange
-						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyMeleeAttackRange {
+						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyMeleeAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -320,7 +321,7 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 					}
 					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 						// If the obj_enemy is not within enemyLightMeleeAttackRange
-						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightMeleeAttackRange {
+						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightMeleeAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -387,7 +388,7 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 					}
 					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) { 
 						// If the obj_enemy is not within enemyHeavyRangedAttackRange
-						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyRangedAttackRange {
+						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyRangedAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -459,7 +460,7 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 						FAIL, THAT MEANS THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
 						*/
 						// If enemy is not within light ranged attack range
-						if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightRangedAttackRange {
+						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightRangedAttackRange {
 							// If the enemy hasn't already tried to chase it's target, then chase the target.
 							if !alreadyTriedToChase { 
 								enemyState = enemystates.moveWithinAttackRange;
@@ -528,7 +529,7 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 								// is executed, resetting decision making process.
 						
 								// If obj_enemy is within range, change the chosenEngine = "Heavy Ranged"
-								if (point_distance(x, y, currentTargetToFocus.x, currentTargetToFocus.y) <= enemyHeavyRangedAttackRange) {
+								if (point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, currentTargetToFocus.x, currentTargetToFocus.y) <= enemyHeavyRangedAttackRange) {
 									chosenEngine = "Heavy Ranged";
 								}
 								// Else if obj_enemy is a healer and the heal target doesn't have max HP, change chosenEngine =
@@ -609,7 +610,7 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 						// this script immediately send the enemy to a chase script to chase the player.
 						if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 							// If the obj_enemy is not within enemyHealAllyRange
-							if point_distance(x, y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHealAllyRange {
+							if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHealAllyRange {
 								// If the enemy hasn't already tried to chase it's target, then chase the target.
 								if !alreadyTriedToChase { 
 									enemyState = enemystates.moveWithinAttackRange;
