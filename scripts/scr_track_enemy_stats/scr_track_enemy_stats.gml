@@ -291,6 +291,33 @@ else if currentSpeed != 0 {
 if (currentSpeed > maxSpeed) || (currentSpeed < 0) {
 	currentSpeed = maxSpeed;
 }
+
+/* Teleport the obj_enemy minion to the player after the teleport timer ends if the minion either:
+- Is out of combat range
+- Has no valid path to travel back to player with once out of combat
+- Has hit 0 HP
+
+This timer is set in obj_enemy step code.
+*/
+if teleportMinionToPlayerTimer >= 0 {
+	teleportMinionToPlayerTimer--;
+	if teleportMinionToPlayerTimer < 0 {
+		// Choose a random location in four different 90 degree angles around the player to start
+		// searching for an empty location to teleport to, and then teleport object to that location.
+		var player_ground_hurtbox_ = obj_player.playerGroundHurtbox;
+		var x_displacement_ = (32 * 1.5) * choose(1, 0, -1);
+		var y_displacement_ = 32 * 1.5;
+		if x_displacement_ == 0 {
+			y_displacement_ *= choose(1, -1);
+		}
+		else {
+			y_displacement_ *= choose(1, 0, -1);
+		}
+		// Taking the variables set above, add them to the player coordinates to get a random location
+		// around the player to target and teleport to that target.
+		teleport_to_nearest_empty_location(player_ground_hurtbox_.x + x_displacement_, player_ground_hurtbox_.y + y_displacement_, player_ground_hurtbox_.x, player_ground_hurtbox_.y, obj_ground_hurtbox, obj_wall);
+	}
+}
 #endregion
 
 

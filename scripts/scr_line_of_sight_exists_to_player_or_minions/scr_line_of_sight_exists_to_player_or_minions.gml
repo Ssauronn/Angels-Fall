@@ -19,7 +19,7 @@ if combatFriendlyStatus == "Enemy" {
 	if !collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false, true) {
 		valid_line_of_sight_exists_ = true;
 	}
-
+	
 	// If a line of sight exists for any minion, then mark it as a valid line of sight exists.
 	with obj_enemy {
 		var target_ = self;

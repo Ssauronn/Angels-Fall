@@ -169,88 +169,104 @@ if (scr_path_exists_to_player_or_minions(obj_wall)) && (scr_line_of_sight_exists
 }
 
 
-// If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
-if (!scr_path_exists_to_player_or_minions(obj_wall)) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
-forceReturnToIdleState = true;
-	if ds_exists(objectIDsInBattle, ds_type_list) {
-		if (ds_list_find_index(objectIDsInBattle, self) != -1) {
-			// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
-			// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first). And, reset
-			// the targets for any instance that had this specific instance as its target.
-			for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
-				if rectangle_in_rectangle(instance_to_reference_.bbox_left, instance_to_reference_.bbox_top, instance_to_reference_.bbox_right, instance_to_reference_.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (instance_to_reference_.tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (instance_to_reference_.tetherYRange / 2)) {
-					if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
-						instance_to_reference_.decisionMadeForTargetAndAction = false;
-					}
-					if instance_to_reference_.currentTargetToFocus == self {
-						instance_to_reference_.currentTargetToFocus = noone;
-					}
-					if instance_to_reference_.currentTargetToHeal == self {
-						instance_to_reference_.currentTargetToHeal = noone;
+// Don't start checking whether anything is out of range or dead or no path exists to a valid target
+// until the player is within the range of the camera. Otherwise, the camera isn't on the player. This
+// is only here because otherwise, for the first few frames, the camera (which starts at 0, 0) shoots
+// towards the player at the beginning of the level and while that happens, everything is considered out
+// of bounds.
+if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2), camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2), camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2), camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) {
+	// If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
+	if (!scr_path_exists_to_player_or_minions(obj_wall)) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
+		// Force the object immediately into idle state if too far out of range, or no path exists to a target
+		forceReturnToIdleState = true;
+		// If the minion either doesn't have an existing path to the player once out of combat, or hits 0
+		// HP, or is out of combat range, then get ready to teleport it to the player. This is tracked inside
+		// scr_track_enemy_stats.
+		if combatFriendlyStatus == "Minion" {
+			if teleportMinionToPlayerTimer < 0 {
+				teleportMinionToPlayerTimer = teleportMinionToPlayerTimerStartTime;
+			}
+		}
+		if ds_exists(objectIDsInBattle, ds_type_list) {
+			if (ds_list_find_index(objectIDsInBattle, self) != -1) {
+				// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
+				// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first). And, reset
+				// the targets for any instance that had this specific instance as its target.
+				for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
+					instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+					if rectangle_in_rectangle(instance_to_reference_.bbox_left, instance_to_reference_.bbox_top, instance_to_reference_.bbox_right, instance_to_reference_.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (instance_to_reference_.tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (instance_to_reference_.tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (instance_to_reference_.tetherYRange / 2)) {
+						if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+							instance_to_reference_.decisionMadeForTargetAndAction = false;
+						}
+						if instance_to_reference_.currentTargetToFocus == self {
+							instance_to_reference_.currentTargetToFocus = noone;
+						}
+						if instance_to_reference_.currentTargetToHeal == self {
+							instance_to_reference_.currentTargetToHeal = noone;
+						}
 					}
 				}
-			}
-			// Since this block is executed only if the object is already found inside objectIDsInBattle, if only 1 object
-			// is left in battle, that has to be this object and also incidentally an enemy, and so therefore destroy the list.
-			if ds_list_size(objectIDsInBattle) == 1 {
-				ds_list_destroy(objectIDsInBattle);
-				objectIDsInBattle = noone;
-				friendlyHealersInBattle = 0;
-				friendlyTanksInBattle = 0;
-				friendlyMeleeDPSInBattle = 0;
-				friendlyRangedDPSInBattle = 0;
-				enemyHealersInBattle = 0;
-				enemyTanksInBattle = 0;
-				enemyMeleeDPSInBattle = 0;
-				enemyRangedDPSInBattle = 0;
-			}
-			else {
-				ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
-			}
-			if combatFriendlyStatus == "Enemy" {
-				switch (objectArchetype) {
-					case "Healer": enemyHealersInBattle -= 1;
-						currentTargetToHeal = noone;
-						break;
-					case "Tank": enemyTanksInBattle -= 1;
-						break;
-					case "Melee DPS": enemyMeleeDPSInBattle -= 1;
-						break;
-					case "Ranged DPS": enemyRangedDPSInBattle -= 1;
-						break;
+				// Since this block is executed only if the object is already found inside objectIDsInBattle, if only 1 object
+				// is left in battle, that has to be this object and also incidentally an enemy, and so therefore destroy the list.
+				if ds_list_size(objectIDsInBattle) == 1 {
+					ds_list_destroy(objectIDsInBattle);
+					objectIDsInBattle = noone;
+					friendlyHealersInBattle = 0;
+					friendlyTanksInBattle = 0;
+					friendlyMeleeDPSInBattle = 0;
+					friendlyRangedDPSInBattle = 0;
+					enemyHealersInBattle = 0;
+					enemyTanksInBattle = 0;
+					enemyMeleeDPSInBattle = 0;
+					enemyRangedDPSInBattle = 0;
 				}
-			}
-			else if combatFriendlyStatus == "Minion" {
-				switch (objectArchetype) {
-					case "Healer": friendlyHealersInBattle -= 1;
-						currentTargetToHeal = noone;
-						break;
-					case "Tank": friendlyTanksInBattle -= 1;
-						break;
-					case "Melee DPS": friendlyMeleeDPSInBattle -= 1;
-						break;
-					case "Ranged DPS": friendlyRangedDPSInBattle -= 1;
-						break;
+				else {
+					ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+				}
+				if combatFriendlyStatus == "Enemy" {
+					switch (objectArchetype) {
+						case "Healer": enemyHealersInBattle -= 1;
+							currentTargetToHeal = noone;
+							break;
+						case "Tank": enemyTanksInBattle -= 1;
+							break;
+						case "Melee DPS": enemyMeleeDPSInBattle -= 1;
+							break;
+						case "Ranged DPS": enemyRangedDPSInBattle -= 1;
+							break;
+					}
+				}
+				else if combatFriendlyStatus == "Minion" {
+					switch (objectArchetype) {
+						case "Healer": friendlyHealersInBattle -= 1;
+							currentTargetToHeal = noone;
+							break;
+						case "Tank": friendlyTanksInBattle -= 1;
+							break;
+						case "Melee DPS": friendlyMeleeDPSInBattle -= 1;
+							break;
+						case "Ranged DPS": friendlyRangedDPSInBattle -= 1;
+							break;
+					}
 				}
 			}
 		}
-	}
-	else if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
-		if ds_list_find_index(objectIDsFollowingPlayer, self) != -1 {
-			// Set every instance that wasn't destroyed/left the tether area to make a new decision
-			for (j = 0; j <= ds_list_size(objectIDsFollowingPlayer) - 1; j++) {
-				instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, j);
-				if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
-					instance_to_reference_.decisionMadeForTargetAndAction = false;
+		else if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+			if ds_list_find_index(objectIDsFollowingPlayer, self) != -1 {
+				// Set every instance that wasn't destroyed/left the tether area to make a new decision
+				for (j = 0; j <= ds_list_size(objectIDsFollowingPlayer) - 1; j++) {
+					instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, j);
+					if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
+						instance_to_reference_.decisionMadeForTargetAndAction = false;
+					}
 				}
-			}
-			if ds_list_size(objectIDsFollowingPlayer) == 1 {
-				ds_list_destroy(objectIDsFollowingPlayer);
-				objectIDsFollowingPlayer = noone;
-			}
-			else {
-				ds_list_delete(objectIDsFollowingPlayer, ds_list_find_index(objectIDsFollowingPlayer, self));
+				if ds_list_size(objectIDsFollowingPlayer) == 1 {
+					ds_list_destroy(objectIDsFollowingPlayer);
+					objectIDsFollowingPlayer = noone;
+				}
+				else {
+					ds_list_delete(objectIDsFollowingPlayer, ds_list_find_index(objectIDsFollowingPlayer, self));
+				}
 			}
 		}
 	}
