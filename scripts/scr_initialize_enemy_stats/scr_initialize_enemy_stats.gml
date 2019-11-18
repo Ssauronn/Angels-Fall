@@ -104,6 +104,10 @@ switch (enemy_name_) {
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
 		
+		// Teleporting to player if out of screen for long enough
+		teleportMinionToPlayerTimer = -1;
+		teleportMinionToPlayerTimerStartTime = room_speed * 3;
+		
 		#region Stun and Hitstun Values
 		// Setting the stun values
 		/*
@@ -459,6 +463,10 @@ switch (enemy_name_) {
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
+		// Teleporting to player if out of screen for long enough
+		teleportMinionToPlayerTimer = -1;
+		teleportMinionToPlayerTimerStartTime = room_speed * 3;
 		
 		#region Stun and Hitstun Values
 		// Setting the stun values
@@ -818,6 +826,10 @@ switch (enemy_name_) {
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
 		
+		// Teleporting to player if out of screen for long enough
+		teleportMinionToPlayerTimer = -1;
+		teleportMinionToPlayerTimerStartTime = room_speed * 3;
+		
 		#region Stun and Hitstun Values
 		// Setting the stun values
 		/*
@@ -1171,6 +1183,10 @@ switch (enemy_name_) {
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
+		
+		// Teleporting to player if out of screen for long enough
+		teleportMinionToPlayerTimer = -1;
+		teleportMinionToPlayerTimerStartTime = room_speed * 3;
 		
 		#region Stun and Hitstun Values
 		// Setting the stun values
