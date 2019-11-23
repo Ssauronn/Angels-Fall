@@ -190,7 +190,7 @@ if segments_ > 0 {
 					segment_bottom_y_ = y_ + height_;
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_top_y_ < (y_ + height_ - thickness_)) && (segment_bottom_y_ > y_ + thickness_) {
+				if (segment_top_y_ < (y_ + height_ - thickness_)) && (segment_bottom_y_ >= y_ + thickness_) {
 					draw_primitive_begin(pr_trianglestrip);
 					draw_vertex(segment_left_x_, segment_top_y_);
 					draw_vertex(segment_left_x_, segment_bottom_y_);
@@ -201,45 +201,97 @@ if segments_ > 0 {
 				break;
 			// The top side, a horizontal set of rectangle segments. Starting at the top left moving
 			// right.
-			/*case 1: 
+			case 1: 
 				segment_left_x_ = x_ + ((iteration_ / segment_count_for_horizontals_) * width_);
 				segment_top_y_ = y_;
 				segment_right_x_ = x_ + (((iteration_ + 1) / segment_count_for_horizontals_) * width_);
-				segment_bottom_y_ = y_ + thickness_;
-				draw_primitive_begin(pr_trianglestrip);
-				draw_vertex(segment_left_x_, segment_top_y_);
-				draw_vertex(segment_left_x_, segment_bottom_y_);
-				draw_vertex(segment_right_x_, segment_top_y_);
-				draw_vertex(segment_right_x_, segment_bottom_y_);
-				draw_primitive_end();
-				break;*/
+				segment_bottom_y_ = (y_ + thickness_);
+				// Stop boxes from being drawn out of bounds by editting the size if needed.
+				if segment_left_x_ < (x_ + thickness_) {
+					segment_left_x_ = (x_ + thickness_);
+				}
+				if segment_right_x_ > (x_ + width_ - thickness_) {
+					segment_right_x_ = (x_ + width_ - thickness_);
+				}
+				// Stop awkward boxes from being drawn if they don't match correct dimensions.
+				if (segment_left_x_ > (x_ + thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+					segment_left_x_ = (x_ + thickness_);
+				}
+				if (segment_right_x_ < (x_ + width_ - thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+					segment_right_x_ = (x_ + width_ - thickness_);
+				}
+				// As long as the boxes are within bounds, draw the boxes.
+				if (segment_left_x_ < (x_ + width_ - thickness_)) && (segment_right_x_ >= (x_ + thickness_)) {
+					draw_primitive_begin(pr_trianglestrip);
+					draw_vertex(segment_left_x_, segment_top_y_);
+					draw_vertex(segment_left_x_, segment_bottom_y_);
+					draw_vertex(segment_right_x_, segment_top_y_);
+					draw_vertex(segment_right_x_, segment_bottom_y_);
+					draw_primitive_end();
+				}
+				break;
 			// The left side, a vertical set of rectangle segments. Starting at the bottom moving up.
 			case 2: 
+				// Assign starting variables
 				segment_left_x_ = x_;
 				segment_top_y_ = y_ + (((segment_count_for_verticals_ - iteration_) / segment_count_for_verticals_) * height_);
 				segment_right_x_ = x_ + thickness_;
 				segment_bottom_y_ = y_ + ((((segment_count_for_verticals_ - iteration_) + 1) / segment_count_for_verticals_) * height_);
-				draw_primitive_begin(pr_trianglestrip);
-				draw_vertex(segment_left_x_, segment_top_y_);
-				draw_vertex(segment_left_x_, segment_bottom_y_);
-				draw_vertex(segment_right_x_, segment_top_y_);
-				draw_vertex(segment_right_x_, segment_bottom_y_);
-				draw_primitive_end();
+				// Stop boxes from being drawn out of bounds by editting the size if needed.
+				if segment_top_y_ < y_ {
+					segment_top_y_ = y_;
+				}
+				if segment_bottom_y_ > (y_ + height_) {
+					segment_bottom_y_ = (y_ + height_);
+				}
+				// Stop awkward boxes from being drawn if they don't match correct dimensions.
+				if (segment_top_y_ > y_) && ((iteration_ == 0) || (iteration_ == segment_count_for_verticals_)) {
+					segment_top_y_ = y_;
+				}
+				if (segment_bottom_y_ < (y_ + height_)) && ((iteration_ == 0) || (iteration_ == segment_count_for_verticals_)) {
+					segment_bottom_y_ = y_ + height_;
+				}
+				// As long as the boxes are within bounds, draw the boxes.
+				if (segment_top_y_ <= (y_ + height_ - thickness_)) && (segment_bottom_y_ > y_ + thickness_) {
+					draw_primitive_begin(pr_trianglestrip);
+					draw_vertex(segment_left_x_, segment_top_y_);
+					draw_vertex(segment_left_x_, segment_bottom_y_);
+					draw_vertex(segment_right_x_, segment_top_y_);
+					draw_vertex(segment_right_x_, segment_bottom_y_);
+					draw_primitive_end();
+				}
 				break;
 			// The bottom side, a horizontal set of rectangle segments. Starting at the bottom right moving
 			// left.
-			/*case 3: 
+			case 3: 
 				segment_left_x_ = x_ + (((segment_count_for_horizontals_ - iteration_) / segment_count_for_horizontals_) * width_);
 				segment_top_y_ = y_ + height_ - thickness_;
 				segment_right_x_ = x_ + ((((segment_count_for_horizontals_ - iteration_) + 1) / segment_count_for_horizontals_) * width_);
 				segment_bottom_y_ = y_ + height_;
-				draw_primitive_begin(pr_trianglestrip);
-				draw_vertex(segment_left_x_, segment_top_y_);
-				draw_vertex(segment_left_x_, segment_bottom_y_);
-				draw_vertex(segment_right_x_, segment_top_y_);
-				draw_vertex(segment_right_x_, segment_bottom_y_);
-				draw_primitive_end();
-				break;*/
+				// Stop boxes from being drawn out of bounds by editting the size if needed.
+				if segment_left_x_ < (x_ + thickness_) {
+					segment_left_x_ = (x_ + thickness_);
+				}
+				if segment_right_x_ > (x_ + width_ - thickness_) {
+					segment_right_x_ = (x_ + width_ - thickness_);
+				}
+				// Stop awkward boxes from being drawn if they don't match correct dimensions.
+				if (segment_left_x_ > (x_ + thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+					segment_left_x_ = (x_ + thickness_);
+				}
+				if (segment_right_x_ < (x_ + width_ - thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+					segment_right_x_ = (x_ + width_ - thickness_);
+				}
+				// As long as the boxes are within bounds, draw the boxes.
+				if (segment_left_x_ <= (x_ + width_ - thickness_)) && (segment_right_x_ > (x_ + thickness_)) {
+					draw_primitive_begin(pr_trianglestrip);
+					draw_vertex(segment_left_x_, segment_top_y_);
+					draw_vertex(segment_left_x_, segment_bottom_y_);
+					draw_vertex(segment_right_x_, segment_top_y_);
+					draw_vertex(segment_right_x_, segment_bottom_y_);
+					draw_primitive_end();
+				}
+				break;
 		}
 	}
 }
