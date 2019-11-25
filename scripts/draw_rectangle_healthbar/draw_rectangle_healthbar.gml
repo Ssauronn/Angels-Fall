@@ -12,7 +12,7 @@
 //draw_rectangle_healthbar(x, y, radius, thickness, maxSegments, segments, startAngle, totalAngle, direction, color);
 
 var x_, y_, height_, width_, thickness_, max_segments_, segments_, start_angle_, direction_, color_;
-var segment_count_for_verticals_, segment_count_for_horizontals_, segment_width_for_verticals_, segment_height_for_verticals_, segment_width_for_horizontals_, segment_height_for_horizontals_;
+var segment_count_for_verticals_, segment_count_for_horizontals_;
 
 x_ = argument0;
 y_ = argument1;
@@ -48,11 +48,6 @@ if segment_count_for_horizontals_ <= 0 {
 	segment_count_for_horizontals_ = 1;
 }
 
-// The dimensions of all the rectangles on each side.
-segment_height_for_horizontals_ = thickness_;
-segment_width_for_horizontals_ = floor(width_ / segment_count_for_horizontals_);
-segment_height_for_verticals_ = floor(height_ / segment_count_for_verticals_);
-segment_width_for_verticals_ = thickness_;
 
 // The amount of segments on vertical lines that would overlap with segments on vertical lines
 // if I didn't exclude them.
@@ -67,6 +62,36 @@ for (k = 0; k <= segment_count_for_horizontals_; k++) {
 			amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_--;
 		}
 		break;
+	}
+}
+// Just like amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ variable,
+// the script may need to completely exclude certain vertical segments. This determines
+// what segments to ignore.
+var amount_of_segments_to_ignore_on_top_of_vertical_lines_, amount_of_segments_to_ignore_on_bottom_of_vertical_lines_;
+amount_of_segments_to_ignore_on_top_of_vertical_lines_ = 0;
+amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ = 0;
+var j, segment_top_y_, segment_bottom_y_;
+for (j = 0; j <= segment_count_for_verticals_; j++) {
+	segment_top_y_ = y_ + ((j / segment_count_for_verticals_) * height_);
+	segment_bottom_y_ = y_ + (((j + 1) / segment_count_for_verticals_) * height_);
+	if segment_top_y_ > (y_ + height_ - thickness_) {
+		/* I only assign amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ if its currently set to 0, because
+		that means it hasn't yet been assigned to a different value. This means I only set it once,
+		and I only set it once because if I keep counting up further and re-setting it, the correct
+		value will just get passed over.
+		
+		Note: When I reference the "bottom" of a line, I'm referencing when iteration_ reaches max value.
+		In other words, the "bottom" of side 0 is at the bottom, but the "bottom" of side 2 is at the top.
+		Bottom has to do with iteration_, not physical placement.
+		*/
+		if amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ == 0 {
+			// I add 1 to the count, because by the time the above code is activated, its already too late
+			// and the segments has passed out of bounds.
+			amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ = segment_count_for_verticals_ - j + 1;
+		}
+	}
+	if segment_bottom_y_ < (y_ + thickness_) {
+		amount_of_segments_to_ignore_on_top_of_vertical_lines_ = j + 1;
 	}
 }
 
@@ -121,45 +146,49 @@ if segments_ > 0 {
 		}
 		// Make sure the iteration_ doesn't exceed the amount of segments on one side and if it does,
 		// rotate the variables that control where to draw the next rectangle. The way the sides and 
-		// iteration_ works: iteration_ counts up to move the rectangles drawn down on vertical sides,
-		// and counts up to move the rectangles drawn right on horizontal sides.
+		// iteration_ works: iteration_ counts up to move the rectangles right on the top, counts up
+		// to move the rectangles down on the right, counts up to move the rectangles left on the bottom,
+		// and counts up to move the rectangles up on the left.
+		
+		// START SETTING ALL OF THE VARIABLES BELOW CORRECTLY USING ALL NEW VARIABLES.
+		
 		if starting_side_ == 0 {
-			if iteration_ >= segment_count_for_verticals_ {
-				iteration_ = 0;
+			if iteration_ > (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_) {
+				iteration_ = amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
 				starting_side_ = 3;
 			}
-			else if iteration_ <= 0 {
+			else if iteration_ < (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_) {
 				iteration_ = segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
 				starting_side_ = 1;
 			}
 		}
 		else if starting_side_ == 1 {
-			if iteration_ >= (segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-				iteration_ = 0;
+			if iteration_ > (segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
+				iteration_ = (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_);
 				starting_side_ = 0;
 			}
-			else if iteration_ <= 0 {
-				iteration_ = segment_count_for_verticals_;
+			else if iteration_ < amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ {
+				iteration_ = (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_);
 				starting_side_ = 2;
 			}
 		}
 		else if starting_side_ == 2 {
-			if iteration_ >= segment_count_for_verticals_ {
+			if iteration_ > (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_) {
 				iteration_ = amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
 				starting_side_ = 1;
 			}
-			else if iteration_ <= 0 {
+			else if iteration_ < (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_) {
 				iteration_ = segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
 				starting_side_ = 3;
 			}
 		}
 		else if starting_side_ == 3 {
-			if iteration_ >= (segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-				iteration_ = 0;
+			if iteration_ > (segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
+				iteration_ = (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_);
 				starting_side_ = 2;
 			}
-			else if iteration_ <= 0 {
-				iteration_ = segment_count_for_verticals_;
+			else if iteration_ < amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ {
+				iteration_ = (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_);
 				starting_side_ = 0;
 			}
 		}
@@ -183,14 +212,14 @@ if segments_ > 0 {
 					segment_bottom_y_ = y_ + height_;
 				}
 				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_top_y_ > y_) && ((iteration_ == 0) || (iteration_ == segment_count_for_verticals_)) {
+				if (segment_top_y_ > y_) && (iteration_ == (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_)) {
 					segment_top_y_ = y_;
 				}
-				if (segment_bottom_y_ < (y_ + height_)) && ((iteration_ == 0) || (iteration_ == segment_count_for_verticals_)) {
+				if (segment_bottom_y_ < (y_ + height_)) && (iteration_ == (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_)) {
 					segment_bottom_y_ = y_ + height_;
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_top_y_ < (y_ + height_ - thickness_)) && (segment_bottom_y_ >= y_ + thickness_) {
+				if (segment_top_y_ < (y_ + height_)) && (segment_bottom_y_ > y_) {
 					draw_primitive_begin(pr_trianglestrip);
 					draw_vertex(segment_left_x_, segment_top_y_);
 					draw_vertex(segment_left_x_, segment_bottom_y_);
@@ -245,14 +274,14 @@ if segments_ > 0 {
 					segment_bottom_y_ = (y_ + height_);
 				}
 				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_top_y_ > y_) && ((iteration_ == 0) || (iteration_ == segment_count_for_verticals_)) {
+				if (segment_top_y_ >= y_) && (iteration_ == (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_)) {
 					segment_top_y_ = y_;
 				}
-				if (segment_bottom_y_ < (y_ + height_)) && ((iteration_ == 0) || (iteration_ == segment_count_for_verticals_)) {
+				if (segment_bottom_y_ <= (y_ + height_)) && (iteration_ == (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_)) {
 					segment_bottom_y_ = y_ + height_;
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_top_y_ <= (y_ + height_ - thickness_)) && (segment_bottom_y_ > y_ + thickness_) {
+				if (segment_top_y_ < (y_ + height_)) && (segment_bottom_y_ > y_) {
 					draw_primitive_begin(pr_trianglestrip);
 					draw_vertex(segment_left_x_, segment_top_y_);
 					draw_vertex(segment_left_x_, segment_bottom_y_);
