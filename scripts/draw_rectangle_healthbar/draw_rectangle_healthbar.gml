@@ -133,9 +133,11 @@ for (i = 90; i > 0; i -= segment_angles_;) {
 	iteration_++;
 }
 
+
 // Actually draw the rectangle healthbar as long as one should be drawn
+var starting_for_i_ = iteration_;
 if segments_ > 0 {
-	for (i = 0; i <= segments_; i++) {
+	for (i = starting_for_i_; i <= segments_; i++) {
 		// Determine whether to move counterclockwise or clockwise, respectively, based on the 
 		// direction_ given.
 		switch direction_ {
@@ -243,14 +245,14 @@ if segments_ > 0 {
 					segment_right_x_ = (x_ + width_ - thickness_);
 				}
 				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_left_x_ > (x_ + thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+				if (segment_left_x_ > (x_ + thickness_)) && (iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
 					segment_left_x_ = (x_ + thickness_);
 				}
-				if (segment_right_x_ < (x_ + width_ - thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+				if (segment_right_x_ < (x_ + width_ - thickness_)) && (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
 					segment_right_x_ = (x_ + width_ - thickness_);
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_left_x_ < (x_ + width_ - thickness_)) && (segment_right_x_ >= (x_ + thickness_)) {
+				if (segment_left_x_ < (x_ + width_)) && (segment_right_x_ >= x_) {
 					draw_primitive_begin(pr_trianglestrip);
 					draw_vertex(segment_left_x_, segment_top_y_);
 					draw_vertex(segment_left_x_, segment_bottom_y_);
@@ -305,10 +307,10 @@ if segments_ > 0 {
 					segment_right_x_ = (x_ + width_ - thickness_);
 				}
 				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_left_x_ > (x_ + thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+				if (segment_left_x_ > (x_ + thickness_)) && (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
 					segment_left_x_ = (x_ + thickness_);
 				}
-				if (segment_right_x_ < (x_ + width_ - thickness_)) && ((iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) || (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_)) {
+				if (segment_right_x_ < (x_ + width_ - thickness_)) && (iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
 					segment_right_x_ = (x_ + width_ - thickness_);
 				}
 				// As long as the boxes are within bounds, draw the boxes.
