@@ -180,14 +180,17 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 		// Force the object immediately into idle state if too far out of range, or no path exists to a target
 		forceReturnToIdleState = true;
 		// If the minion either doesn't have an existing path to the player once out of combat, or hits 0
-		// HP, or is out of combat range, then get ready to teleport it to the player. This is tracked inside
-		// scr_track_enemy_stats.
+		// HP, or is out of combat range, then get ready to teleport it to the player. This is tracked
+		// inside scr_track_enemy_stats.
 		if combatFriendlyStatus == "Minion" {
 			if teleportMinionToPlayerTimer < 0 {
 				teleportMinionToPlayerTimer = teleportMinionToPlayerTimerStartTime;
 			}
 		}
+		// If the player is in combat
 		if ds_exists(objectIDsInBattle, ds_type_list) {
+			// If the instance is in combat and inside the combat list, then remove it from the combat
+			// list.
 			if (ds_list_find_index(objectIDsInBattle, self) != -1) {
 				// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
 				// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first). And, reset
@@ -251,7 +254,10 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 				}
 			}
 		}
+		// Else if no combat exists but there are already active minions following the player
 		else if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
+			// If this instance is a minion that was following the player, and its still in the list
+			// of minions following the player, remove it from that list.
 			if ds_list_find_index(objectIDsFollowingPlayer, self) != -1 {
 				// Set every instance that wasn't destroyed/left the tether area to make a new decision
 				for (j = 0; j <= ds_list_size(objectIDsFollowingPlayer) - 1; j++) {

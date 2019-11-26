@@ -1375,6 +1375,14 @@
             }
         },
         {
+            "Key": "857db59f-80a0-4e0d-92cd-97240e6f2d0d",
+            "Value": {
+                "id": "f393d55a-66ef-4db5-acdb-c6dd2c47281b",
+                "resourcePath": "scripts\\draw_rectangle_healthbar\\draw_rectangle_healthbar.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "86739193-7487-4575-852a-9b161b887976",
             "Value": {
                 "id": "58e4da65-166e-42d0-85e7-39ccc3a38d2c",
@@ -2697,6 +2705,7 @@
         "72b2abef-186d-45cf-905d-1bd7d08596bc",
         "9618cf1f-b489-4bd4-bb67-1a4cc28baf0d",
         "5c8e3964-a770-47a3-b96b-7513c6aa7cd7",
+        "857db59f-80a0-4e0d-92cd-97240e6f2d0d",
         "0afe9e54-0cd8-4513-b949-893ed4b3cae9",
         "06c78b3a-a566-4cc3-99c4-256c76bed58e",
         "c903ef42-186c-476f-aa55-69c02b880f0c",
