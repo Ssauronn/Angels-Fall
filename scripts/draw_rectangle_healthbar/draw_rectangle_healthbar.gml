@@ -10,7 +10,16 @@
 ///@argument9 color
 
 //draw_rectangle_healthbar(x, y, radius, thickness, maxSegments, segments, startAngle, totalAngle, direction, color);
+/*
+This script draws a rectangle perimeter, with as many or as little segments as you'd like. The more
+segments you have, the more segments will appear on each side, although you won't notice that until
+segments doesn't match maxSegments. The script will remove each segment, at whatever speed you give it
+(entirely depending on how fast you count segments down), starting at whatever angle you give it (0 is
+on the right, counting up counterclockwise). It'll also remove the segments in the direction you instruct
+it to remove in.
+*/
 
+// Set up variables I'll use for most of the script.
 var x_, y_, height_, width_, thickness_, max_segments_, segments_, start_angle_, direction_, color_;
 var segment_count_for_verticals_, segment_count_for_horizontals_;
 
@@ -50,7 +59,9 @@ if segment_count_for_horizontals_ <= 0 {
 
 
 // The amount of segments on vertical lines that would overlap with segments on vertical lines
-// if I didn't exclude them.
+// if I didn't exclude them. Think of it like this - if I drew a full line of rectangles on all sides,
+// you would have some overlap on the corners, and counting your segments down would cause a hangup on
+// the corners. This avoids that problem.
 var amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
 var k;
 for (k = 0; k <= segment_count_for_horizontals_; k++) {
@@ -66,7 +77,9 @@ for (k = 0; k <= segment_count_for_horizontals_; k++) {
 }
 // Just like amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ variable,
 // the script may need to completely exclude certain vertical segments. This determines
-// what segments to ignore.
+// what segments to ignore. This only happens because with varying amount of segments,
+// and the way my code works, sometimes segments might try to appear when they shouldn't,
+// and this variable prevents that.
 var amount_of_segments_to_ignore_on_top_of_vertical_lines_, amount_of_segments_to_ignore_on_bottom_of_vertical_lines_;
 amount_of_segments_to_ignore_on_top_of_vertical_lines_ = 0;
 amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ = 0;
@@ -75,9 +88,9 @@ for (j = 0; j <= segment_count_for_verticals_; j++) {
 	segment_top_y_ = y_ + ((j / segment_count_for_verticals_) * height_);
 	segment_bottom_y_ = y_ + (((j + 1) / segment_count_for_verticals_) * height_);
 	if segment_top_y_ > (y_ + height_ - thickness_) {
-		/* I only assign amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ if its currently set to 0, because
-		that means it hasn't yet been assigned to a different value. This means I only set it once,
-		and I only set it once because if I keep counting up further and re-setting it, the correct
+		/* I only assign amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ if its currently set to 
+		0, because that means it hasn't yet been assigned to a different value. This means I only set it 
+		once, and I only set it once because if I keep counting up further and re-setting it, the correct
 		value will just get passed over.
 		
 		Note: When I reference the "bottom" of a line, I'm referencing when iteration_ reaches max value.
@@ -130,6 +143,9 @@ for (i = 90; i > 0; i -= segment_angles_;) {
 	if temp_angle_ > i {
 		break;
 	}
+	// I count iteration_ only after I verify that I haven't passed the slot where the beginning rectangle
+	// should appear, because if I put this before, I might start the rectangle on the slot/segment after
+	// the correct one.
 	iteration_++;
 }
 
