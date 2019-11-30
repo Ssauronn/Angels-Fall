@@ -117,23 +117,90 @@ if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBa
 								// the player. This makes for enemies that, each time they move, choose
 								// a different location in relation to the player, which makes them seem
 								// more intelligent.
-								var len_, dir_, k, p, collision_found_;
+								var len_, dir_, k, p, collision_found_, target_x_, target_y_;
 								dir_ = irandom_range(0, 359);
 								len_ = tetherToPlayerOutOfCombatRange * 0.5;
 								for (k = 0; k < 360; k++) {
+									target_x_ = player_ground_hurtbox_.x + lengthdir_x(len_, dir_);
+									target_y_ = player_ground_hurtbox_.y + lengthdir_y(len_, dir_);
 									collision_found_ = false;
+									// Check to see if the current target location to test is colliding with
+									// any collision objects, and if so, mark it immediately as such.
 									for (p = 0; p <= array_length_1d(collisionObjects) - 1; p++) {
-										if place_meeting(obj_player.x + lengthdir_x(len_, dir_), obj_player.y + lengthdir_y(len_, dir_), collisionObjects[p]) {
+										if place_meeting(target_x_, target_y_, collisionObjects[p]) {
 											collision_found_ = true;
 											break;
 										}
 									}
+									// If there were no detected collisions directly on the current target location
+									// to test, now test for valid line of sight or an existing path to target.
 									if !collision_found_ {
-										len_ = tetherToPlayerOutOfCombatRange * 0.4;
-										followingPlayerTargetX = obj_player.x + lengthdir_x(len_, dir_);
-										followingPlayerTargetY = obj_player.y + lengthdir_y(len_, dir_);
-										break;
+										#region Check for a valid line of sight or path to the target location
+										// Set up variables
+										var self_ = self;
+										var current_x_ = self_.enemyGroundHurtbox;
+										current_x_ = current_x_.x;
+										var current_y_ = self_.enemyGroundHurtbox;
+										current_y_ = current_y_.y;
+										var path_ = noone;
+										// If there isn't a direct line of sight, check for a path. Otherwise, a path obviously exists.
+										if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false, true) {
+											// Create the path that will be used to test for a path to a target later on
+											path_ = path_add();
+											path_set_kind(path_, 1);
+											path_set_precision(path_, 1);
+										
+											// If a path exists, return true after wiping necessary variables
+											var path_exists_ = false;
+											if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, target_x_, target_y_, true) {
+												path_exists_ = true;
+											}
+											// Wipe variables
+											if path_exists(path_) {
+												path_delete(path_);
+											}
+											// If a path exists, then assign variables. Otherwise, if no path exists, then reset
+											// collision_found_ so that I can continue to search, and assign a default target
+											// to move to if necessary.
+											if path_exists_ {
+												len_ = tetherToPlayerOutOfCombatRange * 0.4;
+												followingPlayerTargetX = target_x_;
+												followingPlayerTargetY = target_y_;
+												break;
+											}
+											else {
+												collision_found_ = true;
+											}
+										}
+										// If there is line of sight, assign variables because obviously a path exists.
+										else {
+											len_ = tetherToPlayerOutOfCombatRange * 0.4;
+											followingPlayerTargetX = target_x_;
+											followingPlayerTargetY = target_y_;
+											break;
+										}
+										#endregion
+										// Finally, after checking for line of sights and existing paths, if the target location
+										// is still valid, mark it as such and stop searching for new target locations.
+										if !collision_found_ {
+											len_ = tetherToPlayerOutOfCombatRange * 0.4;
+											followingPlayerTargetX = target_x_;
+											followingPlayerTargetY = target_y_;
+											break;
+										}
+										// If a path and line of sight did not exist to target location, then restart the search
+										// at the next potential target point.
+										else if collision_found_ {
+											if k < 360 {
+												dir_++;
+												if dir_ >= 360 {
+													dir_ -= 360;
+												}
+											}
+										}
 									}
+									// If a path and line of sight did not exist to target location, then restart the search
+									// at the next potential target point.
 									else if collision_found_ {
 										if k < 360 {
 											dir_++;
@@ -145,7 +212,7 @@ if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBa
 									// If there is absolutely no available location in a random position
 									// around the player to move to, then just set the player as the target to move to.
 									if (k == 359) && (collision_found_) {
-										followingPlayerTarget = obj_player.id;
+										followingPlayerTarget = obj_player.playerGroundHurtbox;
 										break;
 									}
 								}

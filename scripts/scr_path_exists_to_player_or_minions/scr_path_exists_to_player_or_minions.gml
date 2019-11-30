@@ -1,5 +1,4 @@
 ///@description Check for a valid movement path to the player or minions
-///@argument0 CollisionObject(s)
 
 // If the object is an enemy, check for an existing path to player or minion. If its a minion, as 
 // long as there is no current combat happening then check for an existing path only to player.
@@ -14,31 +13,17 @@ if (combatFriendlyStatus == "Enemy") || (combatFriendlyStatus == "Minion" && !ds
 	var player_ground_hurtbox_ = obj_player.playerGroundHurtbox;
 	var target_x_ = player_ground_hurtbox_.x;
 	var target_y_ = player_ground_hurtbox_.y;
-
-
+	
+	
 	var path_ = noone;
-	var collision_objects_ = noone;
 	#region Checking for player path, for both the minions and enemies.
 	// If there isn't a direct line of sight, check for a path. Otherwise, a path obviously exists.
 	if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false, true) {
-		// If there's collision objects listed, set up the collision object list and get ready to check
-		// for alternate safe locations to teleport to.
-		if argument_count > 0 {
-			var j;
-			for (j = 0; j < argument_count; j++) {
-				collision_objects_ = ds_list_create();
-				ds_list_add(collision_objects_, argument[j]);
-			}
-		}
 	
 		// Create the path that will be used to test for a path to a target later on
 		path_ = path_add();
 		path_set_kind(path_, 1);
 		path_set_precision(path_, 1);
-		var j;
-		for (j = 0; j <= ds_list_size(collision_objects_) - 1; j++) {
-			mp_grid_add_instances(ds_list_find_value(collision_objects_, j), obj_wall, false);
-		}
 	
 		// If a path exists, return true after wiping necessary variables
 		var path_exists_ = false;
@@ -48,10 +33,6 @@ if (combatFriendlyStatus == "Enemy") || (combatFriendlyStatus == "Minion" && !ds
 		// Wipe variables
 		if path_exists(path_) {
 			path_delete(path_);
-		}
-		if ds_exists(collision_objects_, ds_type_list) {
-			ds_list_destroy(collision_objects_);
-			collision_objects_ = noone;
 		}
 		// Return true immediately if a path exists, or return whatever the output is if the object
 		// calling this script is a minion because a minion won't check for paths to other minions.
@@ -88,24 +69,10 @@ if (combatFriendlyStatus == "Enemy") || (combatFriendlyStatus == "Minion" && !ds
 						target_y_ = target_.y;
 						with self_ {
 							if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false, true) {
-								// If there's collision objects listed, set up the collision object list and get ready to check
-								// for alternate safe locations to teleport to.
-								if argument_count > 0 {
-									var j;
-									for (j = 0; j < argument_count; j++) {
-										collision_objects_ = ds_list_create();
-										ds_list_add(collision_objects_, argument[j]);
-									}
-								}
-							
 								// Create the path that will be used to test for a path to the target later
 								path_ = path_add();
 								path_set_kind(path_, 1);
 								path_set_precision(path_, 1);
-								var j;
-								for (j = 0; j <= ds_list_size(collision_objects_) - 1; j++) {
-									mp_grid_add_instances(ds_list_find_value(collision_objects_, j), obj_wall, false);
-								}
 							
 								// If a path exists, return true after wiping necessary variables
 								var path_exists_ = false;
@@ -115,10 +82,6 @@ if (combatFriendlyStatus == "Enemy") || (combatFriendlyStatus == "Minion" && !ds
 								// Wipe variables
 								if path_exists(path_) {
 									path_delete(path_);
-								}
-								if ds_exists(collision_objects_, ds_type_list) {
-									ds_list_destroy(collision_objects_);
-									collision_objects_ = noone;
 								}
 								// Return true immediately if a path exists
 								if path_exists_ {
