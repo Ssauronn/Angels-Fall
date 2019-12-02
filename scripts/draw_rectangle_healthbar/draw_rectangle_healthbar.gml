@@ -23,6 +23,7 @@ it to remove in.
 // Set up variables I'll use for most of the script.
 var x_, y_, height_, width_, thickness_, max_segments_, segments_, start_angle_, direction_, color_, alpha_;
 var segment_count_for_verticals_, segment_count_for_horizontals_;
+var original_max_segments_, original_segments_;
 
 x_ = argument0;
 y_ = argument1;
@@ -30,7 +31,9 @@ height_ = argument2;
 width_ = argument3;
 thickness_ = argument4;
 max_segments_ = argument5;
+original_max_segments_ = max_segments_;
 segments_ = argument6;
+original_segments_ = segments_;
 if max_segments_ < 4 {
 	max_segments_ = 4;
 }
@@ -40,6 +43,10 @@ if max_segments_ % 4 != 3 {
 }
 if segments_ > max_segments_ {
 	segments_ = max_segments_;
+}
+// This adds the perfect amount of segments in case the current segment count is short.
+if height_ != width_ {
+	segments_ += 2;
 }
 start_angle_ = argument7;
 while start_angle_ >= 360 {
@@ -52,62 +59,62 @@ direction_ = argument8;
 color_ = argument9;
 alpha_ = argument10;
 
-// The amount of rectangles on each side. verticals are the right and left sides, and horizontals are the
-// top and bottom sides.
-segment_count_for_verticals_ = floor(height_ * (max_segments_ / ((height_ * 2) + (width_ * 2)))) + 1;
-if segment_count_for_verticals_ == 0 {
-	segment_count_for_verticals_ = 1;
-}
-segment_count_for_horizontals_ = floor(width_ * (max_segments_ / ((height_ * 2) + (width_ * 2)))) + 1;
-if segment_count_for_horizontals_ <= 0 {
-	segment_count_for_horizontals_ = 1;
-}
-
-// Get temporary variables used to determine which rectangle to start on.
-var temp_angle_, amount_to_add_, segment_angles_, starting_side_;
-if ((start_angle_ >= 0) && (start_angle_ < 45)) || ((start_angle_ >= 315) && (start_angle_ < 360)) {
-	amount_to_add_ = 45;
-	segment_angles_ = 90 / segment_count_for_verticals_;
-	starting_side_ = 0;
-}
-else if (start_angle_ >= 45) && (start_angle_ < 135) {
-	amount_to_add_ = -45;
-	segment_angles_ = 90 / segment_count_for_horizontals_;
-	starting_side_ = 1;
-}
-else if (start_angle_ >= 135) && (start_angle_ < 225) {
-	amount_to_add_ = -135;
-	segment_angles_ = 90 / segment_count_for_verticals_;
-	starting_side_ = 2;
-}
-else if (start_angle_ >= 225) && (start_angle_ < 315) {
-	amount_to_add_ = -225;
-	segment_angles_ = 90 / segment_count_for_horizontals_;
-	starting_side_ = 3;
-}
-
-// The angle the player inputted to start out with that we'll work with. temp_angle_ is just that starting
-// angle, modified to be easier to work with.
-temp_angle_ = start_angle_ + amount_to_add_;
-var i, iteration_;
-iteration_ = 0;
-for (i = 90; i > 0; i -= segment_angles_;) {
-	// If I've passed the point where the temp_angle_ is at, I know I've found the slot the beginning
-	// rectangle should sit in, so immediately break. The variable iteration_ is the rectangle start 
-	// on the count, moving clockwise from the starting point on that specific side. 
-	if temp_angle_ > i {
-		break;
+if (original_max_segments_ > 0) && (segments_ > 0) {
+	// The amount of rectangles on each side. verticals are the right and left sides, and horizontals are the
+	// top and bottom sides.
+	segment_count_for_verticals_ = floor(height_ * (max_segments_ / ((height_ * 2) + (width_ * 2)))) + 1;
+	if segment_count_for_verticals_ == 0 {
+		segment_count_for_verticals_ = 1;
 	}
-	// I count iteration_ only after I verify that I haven't passed the slot where the beginning rectangle
-	// should appear, because if I put this before, I might start the rectangle on the slot/segment after
-	// the correct one.
-	iteration_++;
-}
+	segment_count_for_horizontals_ = floor(width_ * (max_segments_ / ((height_ * 2) + (width_ * 2)))) + 1;
+	if segment_count_for_horizontals_ <= 0 {
+		segment_count_for_horizontals_ = 1;
+	}
+
+	// Get temporary variables used to determine which rectangle to start on.
+	var temp_angle_, amount_to_add_, segment_angles_, starting_side_;
+	if ((start_angle_ >= 0) && (start_angle_ < 45)) || ((start_angle_ >= 315) && (start_angle_ < 360)) {
+		amount_to_add_ = 45;
+		segment_angles_ = 90 / segment_count_for_verticals_;
+		starting_side_ = 0;
+	}
+	else if (start_angle_ >= 45) && (start_angle_ < 135) {
+		amount_to_add_ = -45;
+		segment_angles_ = 90 / segment_count_for_horizontals_;
+		starting_side_ = 1;
+	}
+	else if (start_angle_ >= 135) && (start_angle_ < 225) {
+		amount_to_add_ = -135;
+		segment_angles_ = 90 / segment_count_for_verticals_;
+		starting_side_ = 2;
+	}
+	else if (start_angle_ >= 225) && (start_angle_ < 315) {
+		amount_to_add_ = -225;
+		segment_angles_ = 90 / segment_count_for_horizontals_;
+		starting_side_ = 3;
+	}
+
+	// The angle the player inputted to start out with that we'll work with. temp_angle_ is just that starting
+	// angle, modified to be easier to work with.
+	temp_angle_ = start_angle_ + amount_to_add_;
+	var i, iteration_;
+	iteration_ = 0;
+	for (i = 90; i > 0; i -= segment_angles_;) {
+		// If I've passed the point where the temp_angle_ is at, I know I've found the slot the beginning
+		// rectangle should sit in, so immediately break. The variable iteration_ is the rectangle start 
+		// on the count, moving clockwise from the starting point on that specific side. 
+		if temp_angle_ > i {
+			break;
+		}
+		// I count iteration_ only after I verify that I haven't passed the slot where the beginning rectangle
+		// should appear, because if I put this before, I might start the rectangle on the slot/segment after
+		// the correct one.
+		iteration_++;
+	}
 
 
-// Actually draw the rectangle healthbar as long as one should be drawn
-var starting_for_i_ = iteration_;
-if segments_ > 0 {
+	// Actually draw the rectangle healthbar as long as one should be drawn
+	var starting_for_i_ = iteration_;
 	for (i = starting_for_i_; i <= segments_ + starting_for_i_; i++) {
 		// Determine whether to move counterclockwise or clockwise, respectively, based on the 
 		// direction_ given.
@@ -122,7 +129,7 @@ if segments_ > 0 {
 		// iteration_ works: iteration_ counts up to move the rectangles right on the top, counts up
 		// to move the rectangles down on the right, counts up to move the rectangles left on the bottom,
 		// and counts up to move the rectangles up on the left.
-		
+	
 		// START SETTING ALL OF THE VARIABLES BELOW CORRECTLY USING ALL NEW VARIABLES.
 		switch starting_side_ {
 			case 0:
@@ -436,7 +443,7 @@ if segments_ > 0 {
 				if segment_right_x_ > x_ + width_ {
 					segment_right_x_ = x_ + width_;
 				}
-				
+			
 				while segment_left_x_ == x_ + width_ {
 					if direction_ == 0 {
 						iteration_++;
@@ -509,6 +516,9 @@ if segments_ > 0 {
 				break;
 		}
 	}
+}
+else {
+	exit;
 }
 
 
