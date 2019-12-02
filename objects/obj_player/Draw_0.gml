@@ -34,5 +34,7 @@ if obj_skill_tree.glintingBladeActive {
 	draw_circle_color(obj_skill_tree.glintingBladeXPos, obj_skill_tree.glintingBladeYPos, 3, c_red, c_blue, true);
 }
 
+yeet_ -= 0.5;
+draw_rectangle_healthbar(obj_player.x - 64, obj_player.y - 64, 128, 128, 4, 300, yeet_, 135, 1, c_red, 1);
 
 

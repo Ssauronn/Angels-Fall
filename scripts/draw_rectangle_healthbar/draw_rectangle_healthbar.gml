@@ -8,6 +8,7 @@
 ///@argument7 startAngle
 ///@argument8 direction
 ///@argument9 color
+///@argument10 alpha
 
 //draw_rectangle_healthbar(x, y, radius, thickness, maxSegments, segments, startAngle, totalAngle, direction, color);
 /*
@@ -20,7 +21,7 @@ it to remove in.
 */
 
 // Set up variables I'll use for most of the script.
-var x_, y_, height_, width_, thickness_, max_segments_, segments_, start_angle_, direction_, color_;
+var x_, y_, height_, width_, thickness_, max_segments_, segments_, start_angle_, direction_, color_, alpha_;
 var segment_count_for_verticals_, segment_count_for_horizontals_;
 
 x_ = argument0;
@@ -29,10 +30,14 @@ height_ = argument2;
 width_ = argument3;
 thickness_ = argument4;
 max_segments_ = argument5;
+segments_ = argument6;
 if max_segments_ < 4 {
 	max_segments_ = 4;
 }
-segments_ = argument6;
+if max_segments_ % 4 != 3 {
+	segments_ += 3 - (max_segments_ % 4);
+	max_segments_ += 3 - (max_segments_ % 4);
+}
 if segments_ > max_segments_ {
 	segments_ = max_segments_;
 }
@@ -45,67 +50,17 @@ while start_angle_ < 0 {
 }
 direction_ = argument8;
 color_ = argument9;
+alpha_ = argument10;
 
 // The amount of rectangles on each side. verticals are the right and left sides, and horizontals are the
 // top and bottom sides.
-segment_count_for_verticals_ = round(height_ * (max_segments_ / ((height_ * 2) + (width_ * 2))));
+segment_count_for_verticals_ = floor(height_ * (max_segments_ / ((height_ * 2) + (width_ * 2)))) + 1;
 if segment_count_for_verticals_ == 0 {
 	segment_count_for_verticals_ = 1;
 }
-segment_count_for_horizontals_ = round(width_ * (max_segments_ / ((height_ * 2) + (width_ * 2))));
+segment_count_for_horizontals_ = floor(width_ * (max_segments_ / ((height_ * 2) + (width_ * 2)))) + 1;
 if segment_count_for_horizontals_ <= 0 {
 	segment_count_for_horizontals_ = 1;
-}
-
-
-// The amount of segments on vertical lines that would overlap with segments on vertical lines
-// if I didn't exclude them. Think of it like this - if I drew a full line of rectangles on all sides,
-// you would have some overlap on the corners, and counting your segments down would cause a hangup on
-// the corners. This avoids that problem.
-var amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
-var k;
-for (k = 0; k <= segment_count_for_horizontals_; k++) {
-	if (k * (width_ / segment_count_for_horizontals_)) > thickness_ {
-		amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ = k;
-		// If it isn't an even number, then reduce it to an even number, so that each side has equal
-		// parts missing.
-		if amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ % 2 != 0 {
-			amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_--;
-		}
-		break;
-	}
-}
-// Just like amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ variable,
-// the script may need to completely exclude certain vertical segments. This determines
-// what segments to ignore. This only happens because with varying amount of segments,
-// and the way my code works, sometimes segments might try to appear when they shouldn't,
-// and this variable prevents that.
-var amount_of_segments_to_ignore_on_top_of_vertical_lines_, amount_of_segments_to_ignore_on_bottom_of_vertical_lines_;
-amount_of_segments_to_ignore_on_top_of_vertical_lines_ = 0;
-amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ = 0;
-var j, segment_top_y_, segment_bottom_y_;
-for (j = 0; j <= segment_count_for_verticals_; j++) {
-	segment_top_y_ = y_ + ((j / segment_count_for_verticals_) * height_);
-	segment_bottom_y_ = y_ + (((j + 1) / segment_count_for_verticals_) * height_);
-	if segment_top_y_ > (y_ + height_ - thickness_) {
-		/* I only assign amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ if its currently set to 
-		0, because that means it hasn't yet been assigned to a different value. This means I only set it 
-		once, and I only set it once because if I keep counting up further and re-setting it, the correct
-		value will just get passed over.
-		
-		Note: When I reference the "bottom" of a line, I'm referencing when iteration_ reaches max value.
-		In other words, the "bottom" of side 0 is at the bottom, but the "bottom" of side 2 is at the top.
-		Bottom has to do with iteration_, not physical placement.
-		*/
-		if amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ == 0 {
-			// I add 1 to the count, because by the time the above code is activated, its already too late
-			// and the segments has passed out of bounds.
-			amount_of_segments_to_ignore_on_bottom_of_vertical_lines_ = segment_count_for_verticals_ - j + 1;
-		}
-	}
-	if segment_bottom_y_ < (y_ + thickness_) {
-		amount_of_segments_to_ignore_on_top_of_vertical_lines_ = j + 1;
-	}
 }
 
 // Get temporary variables used to determine which rectangle to start on.
@@ -153,13 +108,13 @@ for (i = 90; i > 0; i -= segment_angles_;) {
 // Actually draw the rectangle healthbar as long as one should be drawn
 var starting_for_i_ = iteration_;
 if segments_ > 0 {
-	for (i = starting_for_i_; i <= segments_; i++) {
+	for (i = starting_for_i_; i <= segments_ + starting_for_i_; i++) {
 		// Determine whether to move counterclockwise or clockwise, respectively, based on the 
 		// direction_ given.
 		switch direction_ {
-			case 0: iteration_--;
+			case 0: iteration_++;
 				break;
-			case 1: iteration_++;
+			case 1: iteration_--;
 				break;
 		}
 		// Make sure the iteration_ doesn't exceed the amount of segments on one side and if it does,
@@ -169,51 +124,51 @@ if segments_ > 0 {
 		// and counts up to move the rectangles up on the left.
 		
 		// START SETTING ALL OF THE VARIABLES BELOW CORRECTLY USING ALL NEW VARIABLES.
-		
-		if starting_side_ == 0 {
-			if iteration_ > (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_) {
-				iteration_ = amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
-				starting_side_ = 3;
-			}
-			else if iteration_ < (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_) {
-				iteration_ = segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
-				starting_side_ = 1;
-			}
+		switch starting_side_ {
+			case 0:
+				if iteration_ > segment_count_for_verticals_ {
+					iteration_ = 0;
+					starting_side_ = 3;
+				}
+				else if iteration_ < 0 {
+					iteration_ = segment_count_for_horizontals_;
+					starting_side_ = 1;
+				}
+				break;
+			case 1:
+				if iteration_ > segment_count_for_horizontals_ {
+					iteration_ = 0;
+					starting_side_ = 0;
+				}
+				else if iteration_ < 0 {
+					iteration_ = segment_count_for_verticals_;
+					starting_side_ = 2;
+				}
+				break;
+			case 2:
+				if iteration_ > segment_count_for_verticals_ {
+					iteration_ = 0;
+					starting_side_ = 1;
+				}
+				else if iteration_ < 0 {
+					iteration_ = segment_count_for_horizontals_;
+					starting_side_ = 3;
+				}
+				break;
+			case 3:
+				if iteration_ > segment_count_for_horizontals_ {
+					iteration_ = 0;
+					starting_side_ = 2;
+				}
+				else if iteration_ < 0 {
+					iteration_ = segment_count_for_verticals_;
+					starting_side_ = 0;
+				}
+				break;
 		}
-		else if starting_side_ == 1 {
-			if iteration_ > (segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-				iteration_ = (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_);
-				starting_side_ = 0;
-			}
-			else if iteration_ < amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ {
-				iteration_ = (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_);
-				starting_side_ = 2;
-			}
-		}
-		else if starting_side_ == 2 {
-			if iteration_ > (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_) {
-				iteration_ = amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
-				starting_side_ = 1;
-			}
-			else if iteration_ < (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_) {
-				iteration_ = segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_;
-				starting_side_ = 3;
-			}
-		}
-		else if starting_side_ == 3 {
-			if iteration_ > (segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-				iteration_ = (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_);
-				starting_side_ = 2;
-			}
-			else if iteration_ < amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_ {
-				iteration_ = (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_);
-				starting_side_ = 0;
-			}
-		}
-		
 		// Finally, after rotating all the correct variables and setting the new iteration_, draw
 		// the next rectangle.
-		var segment_left_x_, segment_top_y_, segment_right_x_, segment_bottom_y_;
+		var segment_left_x_, segment_top_y_, segment_right_x_, segment_bottom_y_, previous_value_;
 		switch (starting_side_) {
 			// The right side, a vertical set of rectangle segments. Starting at the top moving down.
 			case 0: 
@@ -227,22 +182,75 @@ if segments_ > 0 {
 					segment_top_y_ = y_;
 				}
 				if segment_bottom_y_ > (y_ + height_) {
-					segment_bottom_y_ = y_ + height_;
+					segment_bottom_y_ = (y_ + height_);
 				}
-				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_top_y_ > y_) && (iteration_ == (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_)) {
-					segment_top_y_ = y_;
+				// Stop boxes that don't need to be drawn from drawing
+				while segment_bottom_y_ == y_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_verticals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_ + width_ - thickness_;
+					segment_top_y_ = y_ + ((iteration_ / segment_count_for_verticals_) * height_);
+					segment_right_x_ = x_ + width_;
+					segment_bottom_y_ = y_ + (((iteration_ + 1) / segment_count_for_verticals_) * height_);
 				}
-				if (segment_bottom_y_ < (y_ + height_)) && (iteration_ == (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_)) {
-					segment_bottom_y_ = y_ + height_;
+				while segment_top_y_ == y_ + height_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_verticals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_ + width_ - thickness_;
+					segment_top_y_ = y_ + ((iteration_ / segment_count_for_verticals_) * height_);
+					segment_right_x_ = x_ + width_;
+					segment_bottom_y_ = y_ + (((iteration_ + 1) / segment_count_for_verticals_) * height_);
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_top_y_ < (y_ + height_)) && (segment_bottom_y_ > y_) {
+				if (segment_top_y_ <= (y_ + height_)) && (segment_bottom_y_ >= y_) {
 					draw_primitive_begin(pr_trianglestrip);
-					draw_vertex(segment_left_x_, segment_top_y_);
-					draw_vertex(segment_left_x_, segment_bottom_y_);
-					draw_vertex(segment_right_x_, segment_top_y_);
-					draw_vertex(segment_right_x_, segment_bottom_y_);
+					// Set value
+					previous_value_ = segment_top_y_;
+					// Here, I set the top to the inner corner if I'm currently drawing behind the top or bottom corners.
+					if segment_top_y_ < y_ + thickness_ {
+						segment_top_y_ = y_ + thickness_;
+					}
+					else if segment_top_y_ > y_ + height_ - thickness_{
+						segment_top_y_ = y_ + height_ - thickness_;
+					}
+					// Draw the vertex in question
+					draw_vertex_color(segment_left_x_, segment_top_y_, color_, alpha_);
+					// Reset value
+					segment_top_y_ = previous_value_;
+					// Set new value
+					previous_value_ = segment_bottom_y_;
+					// Now, I set the bottom to the inner corner if I'm currently drawing behind the top or bottom corners.
+					if segment_bottom_y_ < y_ + thickness_ {
+						segment_bottom_y_ = y_ + thickness_;
+					}
+					else if segment_bottom_y_ > y_ + height_ - thickness_ {
+						segment_bottom_y_ = y_ + height_ - thickness_;
+					}
+					// Draw vertex in question
+					draw_vertex_color(segment_left_x_, segment_bottom_y_, color_, alpha_);
+					// Reset value
+					segment_bottom_y_ = previous_value_;
+					// Draw vertexes not on the inner line.
+					draw_vertex_color(segment_right_x_, segment_top_y_, color_, alpha_);
+					draw_vertex_color(segment_right_x_, segment_bottom_y_, color_, alpha_);
 					draw_primitive_end();
 				}
 				break;
@@ -254,26 +262,80 @@ if segments_ > 0 {
 				segment_right_x_ = x_ + (((iteration_ + 1) / segment_count_for_horizontals_) * width_);
 				segment_bottom_y_ = (y_ + thickness_);
 				// Stop boxes from being drawn out of bounds by editting the size if needed.
-				if segment_left_x_ < (x_ + thickness_) {
-					segment_left_x_ = (x_ + thickness_);
+				if segment_left_x_ < x_ {
+					segment_left_x_ = x_;
 				}
-				if segment_right_x_ > (x_ + width_ - thickness_) {
-					segment_right_x_ = (x_ + width_ - thickness_);
+				if segment_right_x_ > x_ + width_ {
+					segment_right_x_ = x_ + width_;
 				}
-				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_left_x_ > (x_ + thickness_)) && (iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-					segment_left_x_ = (x_ + thickness_);
+				// Stop boxes that don't need to be drawn from drawing
+				while segment_left_x_ == x_ + width_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_horizontals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_ + ((iteration_ / segment_count_for_horizontals_) * width_);
+					segment_top_y_ = y_;
+					segment_right_x_ = x_ + (((iteration_ + 1) / segment_count_for_horizontals_) * width_);
+					segment_bottom_y_ = (y_ + thickness_);
 				}
-				if (segment_right_x_ < (x_ + width_ - thickness_)) && (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-					segment_right_x_ = (x_ + width_ - thickness_);
+				while segment_right_x_ == x_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_horizontals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_ + ((iteration_ / segment_count_for_horizontals_) * width_);
+					segment_top_y_ = y_;
+					segment_right_x_ = x_ + (((iteration_ + 1) / segment_count_for_horizontals_) * width_);
+					segment_bottom_y_ = (y_ + thickness_);
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_left_x_ < (x_ + width_)) && (segment_right_x_ >= x_) {
+				if (segment_left_x_ <= x_ + width_) && (segment_right_x_ >= x_) {
 					draw_primitive_begin(pr_trianglestrip);
-					draw_vertex(segment_left_x_, segment_top_y_);
-					draw_vertex(segment_left_x_, segment_bottom_y_);
-					draw_vertex(segment_right_x_, segment_top_y_);
-					draw_vertex(segment_right_x_, segment_bottom_y_);
+					// Draw first vertex
+					draw_vertex_color(segment_left_x_, segment_top_y_, color_, alpha_);
+					// Set the value
+					previous_value_ = segment_left_x_;
+					// Set the left value to the inner corner if I'm currently drawing behind the left or right corners.
+					if segment_left_x_ < x_ + thickness_ {
+						segment_left_x_ = x_ + thickness_;
+					}
+					if segment_left_x_ > x_ + width_ - thickness_ {
+						segment_left_x_ = x_ + width_ - thickness_;
+					}
+					// Draw the vertex in question
+					draw_vertex_color(segment_left_x_, segment_bottom_y_, color_, alpha_);
+					// Reset value
+					segment_left_x_ = previous_value_;
+					// Unrelated vertex being drawn
+					draw_vertex_color(segment_right_x_, segment_top_y_, color_, alpha_);
+					// Set new value
+					previous_value_ = segment_right_x_;
+					// Set the right value to the inner corner if I'm currently drawing behind the left or right corners.
+					if segment_right_x_ < x_ + thickness_ {
+						segment_right_x_ = x_ + thickness_;
+					}
+					if segment_right_x_ > x_ + width_ - thickness_ {
+						segment_right_x_ = x_ + width_ - thickness_;
+					}
+					// Draw the vertex in question
+					draw_vertex_color(segment_right_x_, segment_bottom_y_, color_, alpha_);
+					// Reset value
+					segment_right_x_ = previous_value_;
 					draw_primitive_end();
 				}
 				break;
@@ -291,20 +353,72 @@ if segments_ > 0 {
 				if segment_bottom_y_ > (y_ + height_) {
 					segment_bottom_y_ = (y_ + height_);
 				}
-				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_top_y_ >= y_) && (iteration_ == (segment_count_for_verticals_ - amount_of_segments_to_ignore_on_bottom_of_vertical_lines_)) {
-					segment_top_y_ = y_;
+				// Stop boxes that don't need to be drawn from drawing
+				while segment_bottom_y_ == y_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_verticals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_;
+					segment_top_y_ = y_ + (((segment_count_for_verticals_ - iteration_) / segment_count_for_verticals_) * height_);
+					segment_right_x_ = x_ + thickness_;
+					segment_bottom_y_ = y_ + ((((segment_count_for_verticals_ - iteration_) + 1) / segment_count_for_verticals_) * height_);
 				}
-				if (segment_bottom_y_ <= (y_ + height_)) && (iteration_ == (0 + amount_of_segments_to_ignore_on_top_of_vertical_lines_)) {
-					segment_bottom_y_ = y_ + height_;
+				while segment_top_y_ == y_ + height_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_verticals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_;
+					segment_top_y_ = y_ + (((segment_count_for_verticals_ - iteration_) / segment_count_for_verticals_) * height_);
+					segment_right_x_ = x_ + thickness_;
+					segment_bottom_y_ = y_ + ((((segment_count_for_verticals_ - iteration_) + 1) / segment_count_for_verticals_) * height_);
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_top_y_ < (y_ + height_)) && (segment_bottom_y_ > y_) {
+				if (segment_top_y_ <= (y_ + height_)) && (segment_bottom_y_ >= y_) {
 					draw_primitive_begin(pr_trianglestrip);
-					draw_vertex(segment_left_x_, segment_top_y_);
-					draw_vertex(segment_left_x_, segment_bottom_y_);
-					draw_vertex(segment_right_x_, segment_top_y_);
-					draw_vertex(segment_right_x_, segment_bottom_y_);
+					draw_vertex_color(segment_left_x_, segment_top_y_, color_, alpha_);
+					draw_vertex_color(segment_left_x_, segment_bottom_y_, color_, alpha_);
+					// Set the value
+					previous_value_ = segment_top_y_;
+					// Set the top value to the inner corner if I'm currently drawing behind the top or bottom corners.
+					if segment_top_y_ < y_ + thickness_ {
+						segment_top_y_ = y_ + thickness_;
+					}
+					if segment_top_y_ > y_ + height_ - thickness_ {
+						segment_top_y_ = y_ + height_ - thickness_;
+					}
+					// Draw the vertex in question
+					draw_vertex_color(segment_right_x_, segment_top_y_, color_, alpha_);
+					// Reset value
+					segment_top_y_ = previous_value_;
+					// Set new value
+					previous_value_ = segment_bottom_y_;
+					// Set the bottom value to the inner corner if I'm currently drawing behind the top or bottom corners.
+					if segment_bottom_y_ < y_ + thickness_ {
+						segment_bottom_y_ = y_ + thickness_;
+					}
+					if segment_bottom_y_ > y_ + height_ - thickness_ {
+						segment_bottom_y_ = y_ + height_ - thickness_;
+					}
+					// Draw the vertex in question
+					draw_vertex_color(segment_right_x_, segment_bottom_y_, color_, alpha_);
+					// Reset value
+					segment_bottom_y_ = previous_value_;
 					draw_primitive_end();
 				}
 				break;
@@ -316,26 +430,80 @@ if segments_ > 0 {
 				segment_right_x_ = x_ + ((((segment_count_for_horizontals_ - iteration_) + 1) / segment_count_for_horizontals_) * width_);
 				segment_bottom_y_ = y_ + height_;
 				// Stop boxes from being drawn out of bounds by editting the size if needed.
-				if segment_left_x_ < (x_ + thickness_) {
-					segment_left_x_ = (x_ + thickness_);
+				if segment_left_x_ < x_ {
+					segment_left_x_ = x_;
 				}
-				if segment_right_x_ > (x_ + width_ - thickness_) {
-					segment_right_x_ = (x_ + width_ - thickness_);
+				if segment_right_x_ > x_ + width_ {
+					segment_right_x_ = x_ + width_;
 				}
-				// Stop awkward boxes from being drawn if they don't match correct dimensions.
-				if (segment_left_x_ > (x_ + thickness_)) && (iteration_ == segment_count_for_horizontals_ - amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-					segment_left_x_ = (x_ + thickness_);
+				
+				while segment_left_x_ == x_ + width_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_horizontals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_ + (((segment_count_for_horizontals_ - iteration_) / segment_count_for_horizontals_) * width_);
+					segment_top_y_ = y_ + height_ - thickness_;
+					segment_right_x_ = x_ + ((((segment_count_for_horizontals_ - iteration_) + 1) / segment_count_for_horizontals_) * width_);
+					segment_bottom_y_ = y_ + height_;
 				}
-				if (segment_right_x_ < (x_ + width_ - thickness_)) && (iteration_ == amount_of_segments_to_ignore_on_each_side_of_horizontal_lines_) {
-					segment_right_x_ = (x_ + width_ - thickness_);
+				while segment_right_x_ == x_ {
+					if direction_ == 0 {
+						iteration_++;
+					}
+					else if direction_ == 1 {
+						iteration_--;
+					}
+					// If iteration_ has passed the bounds of the line I'm drawing on, move onto drawing a new line
+					if (iteration_ > segment_count_for_horizontals_) || (iteration_ < 0) {
+						i--;
+						break;
+					}
+					segment_left_x_ = x_ + (((segment_count_for_horizontals_ - iteration_) / segment_count_for_horizontals_) * width_);
+					segment_top_y_ = y_ + height_ - thickness_;
+					segment_right_x_ = x_ + ((((segment_count_for_horizontals_ - iteration_) + 1) / segment_count_for_horizontals_) * width_);
+					segment_bottom_y_ = y_ + height_;
 				}
 				// As long as the boxes are within bounds, draw the boxes.
-				if (segment_left_x_ <= (x_ + width_ - thickness_)) && (segment_right_x_ > (x_ + thickness_)) {
+				if (segment_left_x_ <= x_ + width_) && (segment_right_x_ >= x_) {
 					draw_primitive_begin(pr_trianglestrip);
-					draw_vertex(segment_left_x_, segment_top_y_);
-					draw_vertex(segment_left_x_, segment_bottom_y_);
-					draw_vertex(segment_right_x_, segment_top_y_);
-					draw_vertex(segment_right_x_, segment_bottom_y_);
+					// Set the value
+					previous_value_ = segment_left_x_;
+					// Set the left value to the inner corner if I'm currently drawing behind the left or right corners.
+					if segment_left_x_ < x_ + thickness_ {
+						segment_left_x_ = x_ + thickness_;
+					}
+					else if segment_left_x_ > x_ + width_ - thickness_ {
+						segment_left_x_ = x_ + width_ - thickness_;
+					}
+					// Draw the vertex in question
+					draw_vertex_color(segment_left_x_, segment_top_y_, color_, alpha_);
+					// Reset value
+					segment_left_x_ = previous_value_;
+					// Draw unrelated vertex
+					draw_vertex_color(segment_left_x_, segment_bottom_y_, color_, alpha_);
+					// Set the new value
+					previous_value_ = segment_right_x_;
+					// Set the right value to the inner corner if I'm currently drawing behind the left or right corners.
+					if segment_right_x_ < x_ + thickness_ {
+						segment_right_x_ = x_ + thickness_;
+					}
+					else if segment_right_x_ > x_ + width_ - thickness_ {
+						segment_right_x_ = x_ + width_ - thickness_;
+					}
+					// Draw the vertex in question
+					draw_vertex_color(segment_right_x_, segment_top_y_, color_, alpha_);
+					// Reset value
+					segment_right_x_ = previous_value_;
+					// Draw unrelated Vertex
+					draw_vertex_color(segment_right_x_, segment_bottom_y_, color_, alpha_);
 					draw_primitive_end();
 				}
 				break;

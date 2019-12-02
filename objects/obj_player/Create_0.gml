@@ -3,7 +3,7 @@
 // Set all global player variables
 globalvar playerGameSpeed, playerTotalSpeed, playerMaxHP, playerMaxPermanentHP, playerCurrentPermanentHP, playerMaxAnimecroHP, playerCurrentAnimecroHP, playerMaxFluidHP, playerCurrentFluidHP, playerCurrentHP, playerHPRegeneration, playerMaxStamina, playerCurrentStamina, playerStaminaRegeneration, playerMaxMana, playerCurrentMana, playerManaRegeneration, playerMaxBloodMagic, playerCurrentBloodMagic;
 
-
+yeet_ = 310;
 // Variables used to control the universal speed of the player
 // The variable used to control the player specifically
 playerGameSpeed = 1.000;
