@@ -25,6 +25,7 @@ if interactableSolid {
 				instance_destroy(interactableWall);
 			}
 			interactableWall = instance_create_depth(x, y, -999, obj_wall);
+			interactableWall.image_angle = image_angle;
 			interactableWall.sprite_index = sprite_index;
 			interactableWall.visible = false;
 			mp_grid_destroy(roomMovementGrid);
@@ -89,7 +90,8 @@ if instance_exists(obj_player) {
 				interactableMenuActive = !interactableMenuActive;
 			}
 		}
-		// Else if the interactable opens dialogue boxes
+		// Else if the interactable opens dialogue boxes - key_dialogue_choice_one is also the button used
+		// to initially open optional dialogue options.
 		else if obj_player.key_dialogue_choice_one {
 			// Dialogue is seperated because dialogue relies on an entirely seperate button.
 			if (interactableOpensDialogue) && (self_is_closest_dialogue_) {
