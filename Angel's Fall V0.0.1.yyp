@@ -186,7 +186,7 @@
             "Key": "0bb6aea3-7aa2-46bc-81f9-b30097d23ed4",
             "Value": {
                 "id": "7c01a2ec-cb70-46c8-b800-332d082623d0",
-                "resourcePath": "sprites\\test_player\\test_player.yy",
+                "resourcePath": "sprites\\spr_wall\\spr_wall.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -1463,6 +1463,14 @@
             }
         },
         {
+            "Key": "8df73e5b-99bf-469c-b27e-5451225f951e",
+            "Value": {
+                "id": "652c12a6-f4c5-4f1e-b336-ce27178a616a",
+                "resourcePath": "sprites\\spr_chasm\\spr_chasm.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "8e12f3f3-de36-40cd-9c30-b55317f1801a",
             "Value": {
                 "id": "0fda0882-c0dc-4503-90ca-6e71322da988",
@@ -2556,6 +2564,14 @@
                 "id": "2856cb92-e4ae-4c64-bfcb-cc28c161b918",
                 "resourcePath": "sprites\\spr_enemy_healer_heavy_melee\\spr_enemy_healer_heavy_melee.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "f9e6032e-c9fd-47e7-bcfa-d82190a2c214",
+            "Value": {
+                "id": "c7dc8a3c-cfd0-4f52-b05d-49fde7713545",
+                "resourcePath": "objects\\obj_chasm\\obj_chasm.yy",
+                "resourceType": "GMObject"
             }
         },
         {

@@ -208,46 +208,23 @@ if chosenEngine != "Heal Ally" {
 				// If the default timer value was at -1, then set the new timer
 				if pointToMoveToTimer < 0 {
 					pointToMoveToTimer = room_speed * 0.25;
-					// Destroy path so that a new one is created, just in case? Unsure, continue to test
 				}
 			}
 		}
 		if point_distance(groundHurtboxX, groundHurtboxY, target_x_, target_y_) > distance_ {
-			if !pathCreated {
-				pathCreated = true;
-				myPath = path_add();
-				path_set_kind(myPath, 1);
-				path_set_precision(myPath, 8);
-				mp_grid_add_instances(roomMovementGrid, obj_wall, false);
-			}
-			with enemyGroundHurtbox {
-				mp_grid_path(roomMovementGrid, object_self_.myPath, object_self_.groundHurtboxX, object_self_.groundHurtboxY, object_self_.pathEndXGoal, object_self_.pathEndYGoal, true);
-				if object_self_.pathPos == path_get_number(object_self_.myPath) {
-					with object_self_ {
-						if instance_exists(currentTargetToFocus) {
-							var current_target_to_focus_ground_hurtbox_;
-							if currentTargetToFocus.object_index == obj_player.object_index {
-								current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
-							}
-							else {
-								current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
-							}
-							scr_line_of_sight_exists(current_target_to_focus_ground_hurtbox_.x, current_target_to_focus_ground_hurtbox_.y, obj_wall);
-						}
-					}
-					if point_distance(object_self_.groundHurtboxX, object_self_.groundHurtboxY, target_x_, target_y_) > distance_ {
-						solid = false;
-						// In this instance, I instead move the ground hurtbox first, and then move the
-						// enemy object to match the ground hurtbox location. I do this so that I can move
-						// the enemy objects more smoothly around obstacles.
-						mp_potential_step(object_self_.pathEndXGoal, object_self_.pathEndYGoal, object_self_.currentSpeed, false);
-						object_self_.x = x;
-						object_self_.y = y - 13;
-						solid = true;
-					}
+			// As long as the object isn't a minion out of combat trying to move to the player, move
+			// the object. Otherwise, check for a path.
+			if (ds_exists(objectIDsInBattle, ds_type_list)) || ((!ds_exists(objectIDsInBattle, ds_type_list)) && (scr_path_exists_to_player_or_minions())) {
+				if !pathCreated {
+					pathCreated = true;
+					myPath = path_add();
+					path_set_kind(myPath, 1);
+					path_set_precision(myPath, 8);
+					mp_grid_add_instances(roomMovementGrid, obj_wall, false);
 				}
-				else {
-					if point_distance(object_self_.groundHurtboxX, object_self_.groundHurtboxY, object_self_.pathNextXPos, object_self_.pathNextYPos) <= (object_self_.maxSpeed * 4) { //(x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
+				with enemyGroundHurtbox {
+					mp_grid_path(roomMovementGrid, object_self_.myPath, object_self_.groundHurtboxX, object_self_.groundHurtboxY, object_self_.pathEndXGoal, object_self_.pathEndYGoal, true);
+					if object_self_.pathPos == path_get_number(object_self_.myPath) {
 						with object_self_ {
 							if instance_exists(currentTargetToFocus) {
 								var current_target_to_focus_ground_hurtbox_;
@@ -260,22 +237,48 @@ if chosenEngine != "Heal Ally" {
 								scr_line_of_sight_exists(current_target_to_focus_ground_hurtbox_.x, current_target_to_focus_ground_hurtbox_.y, obj_wall);
 							}
 						}
-					}
-					if (x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
-						if !((object_self_.pathPos + 1) > path_get_number(object_self_.myPath)) {
-							object_self_.pathPos++;
+						if point_distance(object_self_.groundHurtboxX, object_self_.groundHurtboxY, target_x_, target_y_) > distance_ {
+							solid = false;
+							// In this instance, I instead move the ground hurtbox first, and then move the
+							// enemy object to match the ground hurtbox location. I do this so that I can move
+							// the enemy objects more smoothly around obstacles.
+							mp_potential_step(object_self_.pathEndXGoal, object_self_.pathEndYGoal, object_self_.currentSpeed, false);
+							object_self_.x = x;
+							object_self_.y = y - 13;
+							solid = true;
 						}
 					}
-					object_self_.pathNextXPos = path_get_point_x(object_self_.myPath, object_self_.pathPos);
-					object_self_.pathNextYPos = path_get_point_y(object_self_.myPath, object_self_.pathPos);
-					solid = false;
-					// In this instance, I instead move the ground hurtbox first, and then move the
-					// enemy object to match the ground hurtbox location. I do this so that I can move
-					// the enemy objects more smoothly around obstacles.
-					mp_potential_step(object_self_.pathNextXPos, object_self_.pathNextYPos, object_self_.currentSpeed, false);
-					object_self_.x = x;
-					object_self_.y = y - 13;
-					solid = true;
+					else {
+						if point_distance(object_self_.groundHurtboxX, object_self_.groundHurtboxY, object_self_.pathNextXPos, object_self_.pathNextYPos) <= (object_self_.maxSpeed * 4) { //(x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
+							with object_self_ {
+								if instance_exists(currentTargetToFocus) {
+									var current_target_to_focus_ground_hurtbox_;
+									if currentTargetToFocus.object_index == obj_player.object_index {
+										current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.playerGroundHurtbox;
+									}
+									else {
+										current_target_to_focus_ground_hurtbox_ = currentTargetToFocus.enemyGroundHurtbox;
+									}
+									scr_line_of_sight_exists(current_target_to_focus_ground_hurtbox_.x, current_target_to_focus_ground_hurtbox_.y, obj_wall);
+								}
+							}
+						}
+						if (x == object_self_.pathNextXPos) && (y == object_self_.pathNextYPos) {
+							if !((object_self_.pathPos + 1) > path_get_number(object_self_.myPath)) {
+								object_self_.pathPos++;
+							}
+						}
+						object_self_.pathNextXPos = path_get_point_x(object_self_.myPath, object_self_.pathPos);
+						object_self_.pathNextYPos = path_get_point_y(object_self_.myPath, object_self_.pathPos);
+						solid = false;
+						// In this instance, I instead move the ground hurtbox first, and then move the
+						// enemy object to match the ground hurtbox location. I do this so that I can move
+						// the enemy objects more smoothly around obstacles.
+						mp_potential_step(object_self_.pathNextXPos, object_self_.pathNextYPos, object_self_.currentSpeed, false);
+						object_self_.x = x;
+						object_self_.y = y - 13;
+						solid = true;
+					}
 				}
 			}
 		}

@@ -315,7 +315,7 @@ if teleportMinionToPlayerTimer >= 0 {
 		}
 		// Taking the variables set above, add them to the player coordinates to get a random location
 		// around the player to target and teleport to that target.
-		teleport_to_nearest_empty_location(player_ground_hurtbox_.x + x_displacement_, player_ground_hurtbox_.y + y_displacement_, player_ground_hurtbox_.x, player_ground_hurtbox_.y, obj_ground_hurtbox, obj_wall);
+		teleport_to_nearest_empty_location(player_ground_hurtbox_.x + x_displacement_, player_ground_hurtbox_.y + y_displacement_, player_ground_hurtbox_.x, player_ground_hurtbox_.y, obj_ground_hurtbox, obj_wall, obj_chasm);
 	}
 }
 #endregion
