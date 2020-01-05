@@ -1,4 +1,4 @@
-if point_distance(x, y, obj_player.x, obj_player.y) < 64 {
+if point_distance(x, y, obj_player.x, obj_player.y) < 32 {
 	instance_destroy(self);
 	mp_grid_destroy(roomMovementGrid);
 	roomMovementGrid = noone;
