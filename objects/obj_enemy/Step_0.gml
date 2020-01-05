@@ -54,7 +54,8 @@ if attackPatternStartWeight != obj_ai_decision_making.attackPatternStartWeight {
 
 var instance_to_reference_, j;
 // Detect whether enemies are within player's field of view
-if scr_path_exists_to_player_or_minions() && scr_line_of_sight_exists_to_player_or_minions() && (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
+var path_exists_ = scr_path_exists_to_player_or_minions();
+if (path_exists_ || path_exists_ == noone) && scr_line_of_sight_exists_to_player_or_minions() && (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	// If there are already other enemies within player's field of view
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
@@ -176,7 +177,8 @@ if scr_path_exists_to_player_or_minions() && scr_line_of_sight_exists_to_player_
 // of bounds.
 if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[0]), camera_get_view_y(view_camera[0]), camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0])), camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]))) {
 	// If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
-	if (!scr_path_exists_to_player_or_minions()) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
+	var path_exists_ = scr_path_exists_to_player_or_minions();
+	if (!path_exists_ && path_exists_ != noone) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 		// Force the object immediately into idle state if too far out of range, or no path exists to a target
 		forceReturnToIdleState = true;
 		// If the minion either doesn't have an existing path to the player once out of combat, or hits 0

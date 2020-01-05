@@ -214,7 +214,7 @@ if chosenEngine != "Heal Ally" {
 		if point_distance(groundHurtboxX, groundHurtboxY, target_x_, target_y_) > distance_ {
 			// As long as the object isn't a minion out of combat trying to move to the player, move
 			// the object. Otherwise, check for a path.
-			if (ds_exists(objectIDsInBattle, ds_type_list)) || ((!ds_exists(objectIDsInBattle, ds_type_list)) && (scr_path_exists_to_player_or_minions())) {
+			if ds_exists(objectIDsInBattle, ds_type_list) || ((!ds_exists(objectIDsInBattle, ds_type_list)) && (scr_path_exists_to_player_or_minions())) {
 				if !pathCreated {
 					pathCreated = true;
 					myPath = path_add();

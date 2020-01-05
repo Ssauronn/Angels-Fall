@@ -5,6 +5,7 @@
 ///@argument2 CollisionObject(s)
 
 /// SET UP VARIABLES
+var return_value_ = false;
 var self_ = self;
 var current_x_ = self_.enemyGroundHurtbox;
 current_x_ = current_x_.x;
@@ -43,88 +44,68 @@ if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false,
 					}
 				}
 				if !collision_found_ {
-					if enemyState != enemystates.moveWithinAttackRange {
-						enemyImageIndex = 0;
-						alreadyTriedToChase = false;
-						alreadyTriedToChaseTimer = 0;
-						chosenEngine = "";
-						decisionMadeForTargetAndAction = false;
-						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
-						enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-						enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-						enemyTimeUntilNextManaAbilityUsableTimer = 0;
+					if scr_path_exists_to_player_or_minions() {
+						if enemyState != enemystates.moveWithinAttackRange {
+							enemyImageIndex = 0;
+							alreadyTriedToChase = false;
+							alreadyTriedToChaseTimer = 0;
+							chosenEngine = "";
+							decisionMadeForTargetAndAction = false;
+							enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+							enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+							enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+							enemyTimeUntilNextManaAbilityUsableTimer = 0;
+						}
+						enemyState = enemystates.moveWithinAttackRange;
+						enemyStateSprite = enemystates.moveWithinAttackRange;
+						xPointToMoveTo = path_get_point_x(path_, path_get_number(path_) - 1);
+						yPointToMoveTo = path_get_point_y(path_, path_get_number(path_) - 1);
+						lineOfSightExists = false;
+						return_value_ = false;
+						break;
 					}
-					enemyState = enemystates.moveWithinAttackRange;
-					enemyStateSprite = enemystates.moveWithinAttackRange;
-					xPointToMoveTo = path_get_point_x(path_, path_get_number(path_) - 1);
-					yPointToMoveTo = path_get_point_y(path_, path_get_number(path_) - 1);
-					lineOfSightExists = false;
-					// Destroy the list and path before I do anything else to avoid a memory leak
-					if path_exists(path_) {
-						path_delete(path_);
+					else {
+						return_value_ = false;
+						break;
 					}
-					if ds_exists(collision_objects_, ds_type_list) {
-						ds_list_destroy(collision_objects_);
-						collision_objects_ = noone;
-					}
-					return false;
 				}
 				if i == (path_get_number(path_) - 1) {
-					if path_exists(path_) {
-						path_delete(path_);
-					}
-					if ds_exists(collision_objects_, ds_type_list) {
-						ds_list_destroy(collision_objects_);
-						collision_objects_ = noone;
-					}
-					return false;
+					return_value_ = false;
+					break;
 				}
 			}
 		}
 		else {
-			if path_exists(path_) {
-				path_delete(path_);
-			}
-			if ds_exists(collision_objects_, ds_type_list) {
-				ds_list_destroy(collision_objects_);
-				collision_objects_ = noone;
-			}
-			return false;
+			return_value_ = false;
 		}
 	}
 	else {
-		if path_exists(path_) {
-			path_delete(path_);
-		}
-		if ds_exists(collision_objects_, ds_type_list) {
-			ds_list_destroy(collision_objects_);
-			collision_objects_ = noone;
-		}
-		return false;
+		return_value_ = false;
 	}
 }
 else {
-	if path_exists(path_) {
-		path_delete(path_);
-	}
-	if ds_exists(collision_objects_, ds_type_list) {
-		ds_list_destroy(collision_objects_);
-		collision_objects_ = noone;
-	}
 	lineOfSightExists = true;
 	pointToMoveToTimer = room_speed * 0.25;
-	return true;
+	return_value_ = true;
 }
 
-// Clean up the path, just in case
+// Clean up the path
 if path_exists(path_) {
 	path_delete(path_);
 }
 
-// Clean up the ds_list_, just in case
+// Clean up the ds_list_
 if ds_exists(collision_objects_, ds_type_list) {
 	ds_list_destroy(collision_objects_);
 	collision_objects_ = noone;
 }
+
+// Return whatever needs to be returned
+return return_value_;
+
+/*
+Yes, I know repeatedly setting return_value_ to false is redunandant in this script; however,
+it makes it much easier to read, and for that reason I'm keeping it in.
+*/
 
 

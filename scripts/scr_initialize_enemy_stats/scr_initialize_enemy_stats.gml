@@ -101,6 +101,10 @@ switch (enemy_name_) {
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 		
+		// Whether attacks can be used across a chasm
+		lightRangedCanBeUsedAcrossChasm = true;
+		heavyRangedCanBeUsedAcrossChasm = true;
+		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
 		
@@ -460,6 +464,10 @@ switch (enemy_name_) {
 		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
+		
+		// Whether attacks can be used across a chasm
+		lightRangedCanBeUsedAcrossChasm = true;
+		heavyRangedCanBeUsedAcrossChasm = true;
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
@@ -823,6 +831,10 @@ switch (enemy_name_) {
 		pathNextXPos = 0;
 		pathNextYPos = 0;
 		
+		// Whether attacks can be used across a chasm
+		lightRangedCanBeUsedAcrossChasm = true;
+		heavyRangedCanBeUsedAcrossChasm = true;
+		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;
 		
@@ -1180,6 +1192,10 @@ switch (enemy_name_) {
 		pathPos = 1;
 		pathNextXPos = 0;
 		pathNextYPos = 0;
+		
+		// Whether attacks can be used across a chasm
+		lightRangedCanBeUsedAcrossChasm = true;
+		heavyRangedCanBeUsedAcrossChasm = true;
 		
 		// Tethering to player range
 		tetherToPlayerOutOfCombatRange = 32 * 3.5;

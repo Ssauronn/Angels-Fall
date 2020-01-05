@@ -15,6 +15,11 @@ var current_y_ = self_.enemyGroundHurtbox;
 current_y_ = current_y_.y;
 var target_ground_hurtbox_;
 // Automatically set the target the enemy will be checking for a path to
+if !ds_exists(objectIDsInBattle, ds_type_list) && combatFriendlyStatus == "Enemy" {
+	target_ground_hurtbox_ = obj_player;
+}
+// If the target is in combat, then check for its target to focus or heal and set that
+// as the target
 if ds_exists(objectIDsInBattle, ds_type_list) {
 	if chosenEngine != "" {
 		if chosenEngine != "Heal" {
@@ -24,34 +29,30 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 			target_ground_hurtbox_ = currentTargetToHeal;
 		}
 	}
-	// Else if no action is chosen to take yet, choose an action to take,
-	// set the target, and then reset action variable(s) to their previous
-	// value(s).
+	// Else if no action is chosen to take yet, obviously a path exists
+	// because there's nowhere to move to, so just return true.
 	else {
-		var focus_, heal_;
-		focus_ = currentTargetToFocus;
-		heal_ = currentTargetToHeal;
-		scr_ai_decisions();
-		if chosenEngine != "Heal" {
-			target_ground_hurtbox_ = currentTargetToFocus;
-		}
-		else {
-			target_ground_hurtbox_ = currentTargetToHeal;
-		}
-		chosenEngine = "";
-		currentTargetToFocus = focus_;
-		currentTargetToHeal = heal_;
+		return true;
 	}
 }
 else {
 	target_ground_hurtbox_ = obj_player;
 }
-if target_ground_hurtbox_.object_index == obj_enemy {
-	target_ground_hurtbox_ = target_ground_hurtbox_.enemyGroundHurtbox;
+// Once the target is set, set the new target equal to the current target's
+// ground hurtbox. This prevents glitches due to pathfinding trying to find a
+// path to a point inside a wall or something.
+if instance_exists(target_ground_hurtbox_) {
+	if target_ground_hurtbox_.object_index == obj_enemy {
+		target_ground_hurtbox_ = target_ground_hurtbox_.enemyGroundHurtbox;
+	}
+	else {
+		target_ground_hurtbox_ = target_ground_hurtbox_.playerGroundHurtbox;
+	}
 }
 else {
-	target_ground_hurtbox_ = target_ground_hurtbox_.playerGroundHurtbox;
+	return false;
 }
+// Finally, set the variables that will be used for most of this script.
 var target_x_ = target_ground_hurtbox_.x;
 var target_y_ = target_ground_hurtbox_.y;
 
@@ -86,7 +87,7 @@ if combatFriendlyStatus == "Minion" {
 				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 					instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
 					instance_to_reference_ground_hurtbox_ = instance_to_reference_.enemyGroundHurtbox;
-					if (instance_to_reference_.combatFriendlyStatus != "Minion") && (instance_to_reference_ != target_ground_hurtbox_.owner) {
+					if (instance_to_reference_.combatFriendlyStatus == "Enemy") && (instance_to_reference_ != target_ground_hurtbox_.owner) {
 						if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, instance_to_reference_ground_hurtbox_.x, instance_to_reference_ground_hurtbox_.y, true) {
 							path_exists_ = noone;
 						}
@@ -135,16 +136,23 @@ if combatFriendlyStatus == "Enemy" {
 		// Else if no path exists, check for a path to any other minion or the player.
 		else {
 			var i, instance_to_reference_, instance_to_reference_ground_hurtbox_;
-			for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
-				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
-				instance_to_reference_ground_hurtbox_ = instance_to_reference_.enemyGroundHurtbox;
-				if instance_to_reference_.combatFriendlyStatus == "Minion" {
-					if instance_to_reference_ != target_ground_hurtbox_.owner {
-						if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, instance_to_reference_ground_hurtbox_.x, instance_to_reference_ground_hurtbox_.y, true) {
-							path_exists_ = noone;
+			// Literally every frame of the game if an enemy exists the objectIDsInBattle ds_list
+			// will exist, except on the first frame the first enemy is created.
+			if ds_exists(objectIDsInBattle, ds_type_list) {
+				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+					instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+					instance_to_reference_ground_hurtbox_ = instance_to_reference_.enemyGroundHurtbox;
+					if instance_to_reference_.combatFriendlyStatus == "Minion" {
+						if instance_to_reference_ != target_ground_hurtbox_.owner {
+							if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, instance_to_reference_ground_hurtbox_.x, instance_to_reference_ground_hurtbox_.y, true) {
+								path_exists_ = noone;
+							}
 						}
 					}
 				}
+			}
+			else {
+				path_exists_ = false;
 			}
 		}
 		// Wipe variables
