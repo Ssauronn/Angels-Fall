@@ -44,6 +44,10 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 			// First, check for a path to the player
 			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, obj_player.x, obj_player.y, true) {
 				path_exists_to_valid_target_ = true;
+				playerIsAValidTarget = true;
+			}
+			else {
+				playerIsAValidTarget = false;
 			}
 			// If, for some reason, the list of valid targets currently exists,
 			// destroy it before creating a new one.

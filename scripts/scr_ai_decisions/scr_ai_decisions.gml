@@ -19,7 +19,38 @@ if instance_exists(obj_player) {
 		// Set the target for each object to focus
 		var i, j, k, iteration_, instance_to_reference_, self_is_in_combat_, temporary_instance_to_reference_, number_of_enemy_targets_, number_of_minion_targets_, weight_at_which_this_target_would_be_focused_at_;
 		var number_of_enemies_next_to_enemy_heal_target_, number_of_enemies_next_to_minion_heal_target_, number_of_allies_next_to_enemy_heal_target_, number_of_allies_next_to_minion_heal_target_, weight_at_which_this_heal_target_would_be_focused_at_;
-		globalvar enemy_target_grid_, minion_target_grid_, enemy_heal_target_grid_, minion_heal_target_grid_;
+		if !variable_global_exists("enemy_target_grid_") {
+			globalvar enemy_target_grid_;
+			enemy_target_grid_ = -1;
+		}
+		if !variable_global_exists("minion_target_grid_") {
+			globalvar minion_target_grid_;
+			minion_target_grid_ = -1;
+		}
+		if !variable_global_exists("enemy_heal_target_grid_") {
+			globalvar enemy_heal_target_grid_;
+			enemy_heal_target_grid_ = -1;
+		}
+		if !variable_global_exists("minion_heal_target_grid_") {
+			globalvar minion_heal_target_grid_;
+			minion_heal_target_grid_ = -1;
+		}
+		if ds_exists(enemy_target_grid_, ds_type_grid) {
+			ds_grid_destroy(enemy_target_grid_);
+			enemy_target_grid_ = -1;
+		}
+		if ds_exists(minion_target_grid_, ds_type_grid) {
+			ds_grid_destroy(minion_target_grid_);
+			minion_target_grid_ = -1;
+		}
+		if ds_exists(enemy_heal_target_grid_, ds_type_grid) {
+			ds_grid_destroy(enemy_heal_target_grid_);
+			enemy_heal_target_grid_ = -1;
+		}
+		if ds_exists(minion_heal_target_grid_, ds_type_grid) {
+			ds_grid_destroy(minion_heal_target_grid_);
+			minion_heal_target_grid_ = -1;
+		}
 		enemy_target_grid_ = -1;
 		minion_target_grid_ = -1;
 		enemy_heal_target_grid_ = -1;
@@ -285,6 +316,13 @@ if instance_exists(obj_player) {
 											ds_grid_set(enemy_target_grid_, 5, k, 0);
 										}
 										weight_at_which_this_target_would_be_focused_at_ = ds_grid_get(enemy_target_grid_, 2, k) + ds_grid_get(enemy_target_grid_, 3, k) + ds_grid_get(enemy_target_grid_, 4, k) + ds_grid_get(enemy_target_grid_, 5, k);
+										// If the ds_list validObjectIDsInBattle exists, and the player isn't included in that list,
+										// then remove the player as a possible target.
+										if temporary_instance_to_reference_ == obj_player {
+											if !playerIsAValidTarget {
+												weight_at_which_this_target_would_be_focused_at_ = 0;
+											}
+										}
 										if temporary_instance_to_reference_ == instance_to_reference_.currentTargetToFocus {
 											instance_to_reference_.weightAtWhichEnemyIsCurrentlyFocusingTargetAt = weight_at_which_this_target_would_be_focused_at_;
 										}
