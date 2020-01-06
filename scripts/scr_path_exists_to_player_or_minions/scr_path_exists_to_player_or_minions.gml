@@ -29,10 +29,55 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 			target_ground_hurtbox_ = currentTargetToHeal;
 		}
 	}
-	// Else if no action is chosen to take yet, obviously a path exists
-	// because there's nowhere to move to, so just return true.
 	else {
 		return true;
+		if combatFriendlyStatus == "Minion" {
+			return true;
+		}
+		else if combatFriendlyStatus == "Enemy" {
+			// Create the path that will be used to test for a path to a target later on
+			var path_, path_exists_to_valid_target_;
+			path_exists_to_valid_target_ = false;
+			path_ = path_add();
+			path_set_kind(path_, 1);
+			path_set_precision(path_, 1);
+			// First, check for a path to the player
+			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, obj_player.x, obj_player.y, true) {
+				path_exists_to_valid_target_ = true;
+			}
+			// If, for some reason, the list of valid targets currently exists,
+			// destroy it before creating a new one.
+			if ds_exists(validObjectIDsInBattle, ds_type_list) {
+				ds_list_destroy(validObjectIDsInBattle);
+				validObjectIDsInBattle = noone;
+			}
+			// Now, check for a path to all minions
+			for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
+				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+				instance_to_reference_ground_hurtbox_ = instance_to_reference_.enemyGroundHurtbox;
+				if instance_to_reference_.combatFriendlyStatus == "Minion" {
+					if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, instance_to_reference_ground_hurtbox_.x, instance_to_reference_ground_hurtbox_.y, true) {
+						if !ds_exists(validObjectIDsInBattle, ds_type_list) {
+							validObjectIDsInBattle = ds_list_create();
+						}
+						ds_list_add(validObjectIDsInBattle, instance_to_reference_);
+						path_exists_to_valid_target_ = true;
+					}
+				}
+			}
+			// Wipe variables
+			if path_exists(path_) {
+				path_delete(path_);
+			}
+			// Return the result of whether a path to any valid target was found
+			if path_exists_to_valid_target_ {
+				return noone;
+			}
+			else {
+				return false;
+			}
+		}
+		return false;
 	}
 }
 else {
