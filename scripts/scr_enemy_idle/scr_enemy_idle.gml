@@ -151,9 +151,9 @@ if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBa
 											path_set_precision(path_, 1);
 										
 											// If a path exists, return true after wiping necessary variables
-											var path_exists_ = false;
+											var path_exists_to_player_ = false;
 											if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, target_x_, target_y_, true) {
-												path_exists_ = true;
+												path_exists_to_player_ = true;
 											}
 											// Wipe variables
 											if path_exists(path_) {
@@ -162,7 +162,7 @@ if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBa
 											// If a path exists, then assign variables. Otherwise, if no path exists, then reset
 											// collision_found_ so that I can continue to search, and assign a default target
 											// to move to if necessary.
-											if path_exists_ {
+											if path_exists_to_player_ {
 												len_ = tetherToPlayerOutOfCombatRange * 0.4;
 												followingPlayerTargetX = target_x_;
 												followingPlayerTargetY = target_y_;
@@ -213,26 +213,31 @@ if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBa
 									// around the player to move to, then just set the player as the target to move to.
 									if (k == 359) && (collision_found_) {
 										followingPlayerTarget = obj_player.playerGroundHurtbox;
+										if teleportMinionToPlayerTimer < 0 {
+											teleportMinionToPlayerTimer = teleportMinionToPlayerTimerStartTime;
+										}
 										break;
 									}
 								}
-								followingPlayer = true;
-								chosenEngine = "";
-								decisionMadeForTargetAndAction = false;
-								alreadyTriedToChase = false;
-								enemyState = enemystates.moveWithinAttackRange;
-								enemyStateSprite = enemystates.moveWithinAttackRange;
-								if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
-									enemyDirectionFacing = enemydirection.right;
-								}
-								else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
-									enemyDirectionFacing = enemydirection.up;
-								}
-								else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
-									enemyDirectionFacing = enemydirection.left;
-								}
-								else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
-									enemyDirectionFacing = enemydirection.down;
+								if !collision_found_ {
+									followingPlayer = true;
+									chosenEngine = "";
+									decisionMadeForTargetAndAction = false;
+									alreadyTriedToChase = false;
+									enemyState = enemystates.moveWithinAttackRange;
+									enemyStateSprite = enemystates.moveWithinAttackRange;
+									if ((point_direction(x, y, obj_player.x, obj_player.y) >= 0) && (point_direction(x, y, obj_player.x, obj_player.y) < 45)) || ((point_direction(x, y, obj_player.x, obj_player.y) >= 315) && (point_direction(x, y, obj_player.x, obj_player.y) <= 360)) {
+										enemyDirectionFacing = enemydirection.right;
+									}
+									else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 45) && (point_direction(x, y, obj_player.x, obj_player.y) < 135)) {
+										enemyDirectionFacing = enemydirection.up;
+									}
+									else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 135) && (point_direction(x, y, obj_player.x, obj_player.y) < 225)) {
+										enemyDirectionFacing = enemydirection.left;
+									}
+									else if ((point_direction(x, y, obj_player.x, obj_player.y) >= 225) && (point_direction(x, y, obj_player.x, obj_player.y) < 315)) {
+										enemyDirectionFacing = enemydirection.down;
+									}
 								}
 							}
 						}
@@ -322,20 +327,98 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 						// If the obj_enemy is not within enemyHeavyMeleeAttackRange
 						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyMeleeAttackRange {
-							// If the enemy hasn't already tried to chase it's target, then chase the target.
-							if !alreadyTriedToChase { 
-								enemyState = enemystates.moveWithinAttackRange;
-								enemyStateSprite = enemystates.moveWithinAttackRange;
-								alreadyTriedToChaseTimer = room_speed * 3;
-								enemyImageIndex = 0;
+							// Check for an existing path. If no path exists, then the enemy cannot melee, and
+							// should not try to chase the target. Instead, just fire a valid ranged attack
+							// at the target, should that apply to the enemy.
+							var path_exists_ = scr_path_exists_to_player_or_minions();
+							if path_exists_ {
+								// If the enemy hasn't already tried to chase it's target, then chase the target.
+								if !alreadyTriedToChase { 
+									enemyState = enemystates.moveWithinAttackRange;
+									enemyStateSprite = enemystates.moveWithinAttackRange;
+									alreadyTriedToChaseTimer = room_speed * 3;
+									enemyImageIndex = 0;
+								}
+								// If the enemy has already tried to chase the target, then set the chosen engine to ranged
+								// and don't try to continue to chase the target.
+								else if alreadyTriedToChase {
+									chosenEngine = "Light Ranged";
+									decisionMadeForTargetAndAction = true;
+									alreadyTriedToChase = false;
+									alreadyTriedToChaseTimer = 0;
+								}
 							}
-							// If the enemy has already tried to chase the target, then set the chosen engine to ranged
-							// and don't try to continue to chase the target.
-							else if alreadyTriedToChase {
-								chosenEngine = "Light Ranged";
-								decisionMadeForTargetAndAction = true;
+							// If any ranged attack from the enemy can be used over a chasm, then use it.
+							// If the heavy ranged attack is preferred at the current moment in time, then
+							// use it. Otherwise, default to light.
+							else if lightRangedCanBeUsedAcrossChasm || heavyRangedCanBeUsedAcrossChasm {
+								if lightRangedCanBeUsedAcrossChasm && heavyRangedCanBeUsedAcrossChasm {
+									if heavyRangedEngineTotalWeight >= lightRangedEngineTotalWeight {
+										chosenEngine = "Heavy Ranged";
+										decisionMadeForTargetAndAction = true;
+										alreadyTriedToChase = true;
+										alreadyTriedToChaseTimer = 0;
+									}
+								}
+								else if lightRangedCanBeUsedAcrossChasm {
+									chosenEngine = "Light Ranged";
+									decisionMadeForTargetAndAction = true;
+									alreadyTriedToChase = true;
+									alreadyTriedToChaseTimer = 0;
+								}
+								else {
+									chosenEngine = "Heavy Ranged";
+									decisionMadeForTargetAndAction = true;
+									alreadyTriedToChase = true;
+									alreadyTriedToChaseTimer = 0;
+								}
+							}
+							// Else if no other ability can be used, and I've already checked for a valid path
+							// to the target and none exists, then check if the object is a healer. If it is,
+							// and a valid heal target exists, then send it to heal that target. Otherwise, just
+							// reset variables and try the whole process again next time.
+							else if objectArchetype == "Healer" {
+								// As long as a heal target exists
+								if instance_exists(currentTargetToHeal) {
+									// If the heal target is a player, set local variables to player values. Else, set
+									// to enemy values.
+									if currentTargetToHeal.object_index == obj_player {
+										var current_target_to_heal_current_hp_ = playerCurrentHP;
+										var current_target_to_heal_max_hp_ = playerMaxHP;
+									}
+									else {
+										var current_target_to_heal_current_hp_ = currentTargetToHeal.enemyCurrentHP;
+										var current_target_to_heal_max_hp_ = currentTargetToHeal.enemyMaxHP;
+									}
+									// As long as the object heal target has less than 100% HP,
+									if (current_target_to_heal_current_hp_ / current_target_to_heal_max_hp_) < 1 {
+										chosenEngine = "Heal Ally";
+									}
+									// Else if there's nothing else to do, just reset variables
+									// and try the whole process again next frame.
+									else {
+										chosenEngine = "";
+										decisionMadeForTargetAndAction = false;
+										alreadyTriedToChase = false;
+										alreadyTriedToChaseTimer = 0;
+										enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+										enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+										enemyTimeUntilNextManaAbilityUsableTimer = 0;
+									}
+								}
+							}
+							// Else if there's nothing else to do, just reset variables and
+							// try the whole process again next frame.
+							else {
+								chosenEngine = "";
+								decisionMadeForTargetAndAction = false;
 								alreadyTriedToChase = false;
 								alreadyTriedToChaseTimer = 0;
+								enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+								enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+								enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+								enemyTimeUntilNextManaAbilityUsableTimer = 0;
 							}
 						}
 						// Else if the obj_enemy doesn't have enough stamina to execute attack
@@ -389,20 +472,98 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 						// If the obj_enemy is not within enemyLightMeleeAttackRange
 						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightMeleeAttackRange {
-							// If the enemy hasn't already tried to chase it's target, then chase the target.
-							if !alreadyTriedToChase { 
-								enemyState = enemystates.moveWithinAttackRange;
-								enemyStateSprite = enemystates.moveWithinAttackRange;
-								alreadyTriedToChaseTimer = room_speed * 3;
-								enemyImageIndex = 0;
+							// Check for an existing path. If no path exists, then the enemy cannot melee, and
+							// should not try to chase the target. Instead, just fire a valid ranged attack
+							// at the target, should that apply to the enemy.
+							var path_exists_ = scr_path_exists_to_player_or_minions();
+							if path_exists_ {
+								// If the enemy hasn't already tried to chase it's target, then chase the target.
+								if !alreadyTriedToChase { 
+									enemyState = enemystates.moveWithinAttackRange;
+									enemyStateSprite = enemystates.moveWithinAttackRange;
+									alreadyTriedToChaseTimer = room_speed * 3;
+									enemyImageIndex = 0;
+								}
+								// If the enemy has already tried to chase the target, then set the chosen engine to ranged
+								// and don't try to continue to chase the target.
+								else if alreadyTriedToChase {
+									chosenEngine = "Light Ranged";
+									decisionMadeForTargetAndAction = true;
+									alreadyTriedToChase = false;
+									alreadyTriedToChaseTimer = 0;
+								}
 							}
-							// If the enemy has already tried to chase the target, then set the chosen engine to ranged
-							// and don't try to continue to chase the target.
-							else if alreadyTriedToChase {
-								chosenEngine = "Light Ranged";
-								decisionMadeForTargetAndAction = true;
+							// If any ranged attack from the enemy can be used over a chasm, then use it.
+							// If the heavy ranged attack is preferred at the current moment in time, then
+							// use it. Otherwise, default to light.
+							else if lightRangedCanBeUsedAcrossChasm || heavyRangedCanBeUsedAcrossChasm {
+								if lightRangedCanBeUsedAcrossChasm && heavyRangedCanBeUsedAcrossChasm {
+									if heavyRangedEngineTotalWeight >= lightRangedEngineTotalWeight {
+										chosenEngine = "Heavy Ranged";
+										decisionMadeForTargetAndAction = true;
+										alreadyTriedToChase = true;
+										alreadyTriedToChaseTimer = 0;
+									}
+								}
+								else if lightRangedCanBeUsedAcrossChasm {
+									chosenEngine = "Light Ranged";
+									decisionMadeForTargetAndAction = true;
+									alreadyTriedToChase = true;
+									alreadyTriedToChaseTimer = 0;
+								}
+								else {
+									chosenEngine = "Heavy Ranged";
+									decisionMadeForTargetAndAction = true;
+									alreadyTriedToChase = true;
+									alreadyTriedToChaseTimer = 0;
+								}
+							}
+							// Else if no other ability can be used, and I've already checked for a valid path
+							// to the target and none exists, then check if the object is a healer. If it is,
+							// and a valid heal target exists, then send it to heal that target. Otherwise, just
+							// reset variables and try the whole process again next time.
+							else if objectArchetype == "Healer" {
+								// As long as a heal target exists
+								if instance_exists(currentTargetToHeal) {
+									// If the heal target is a player, set local variables to player values. Else, set
+									// to enemy values.
+									if currentTargetToHeal.object_index == obj_player {
+										var current_target_to_heal_current_hp_ = playerCurrentHP;
+										var current_target_to_heal_max_hp_ = playerMaxHP;
+									}
+									else {
+										var current_target_to_heal_current_hp_ = currentTargetToHeal.enemyCurrentHP;
+										var current_target_to_heal_max_hp_ = currentTargetToHeal.enemyMaxHP;
+									}
+									// As long as the object heal target has less than 100% HP,
+									if (current_target_to_heal_current_hp_ / current_target_to_heal_max_hp_) < 1 {
+										chosenEngine = "Heal Ally";
+									}
+									// Else if there's nothing else to do, just reset variables
+									// and try the whole process again next frame.
+									else {
+										chosenEngine = "";
+										decisionMadeForTargetAndAction = false;
+										alreadyTriedToChase = false;
+										alreadyTriedToChaseTimer = 0;
+										enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+										enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+										enemyTimeUntilNextManaAbilityUsableTimer = 0;
+									}
+								}
+							}
+							// Else if there's nothing else to do, just reset variables and
+							// try the whole process again next frame.
+							else {
+								chosenEngine = "";
+								decisionMadeForTargetAndAction = false;
 								alreadyTriedToChase = false;
 								alreadyTriedToChaseTimer = 0;
+								enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+								enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+								enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+								enemyTimeUntilNextManaAbilityUsableTimer = 0;
 							}
 						}
 						// Else if the obj_enemy doesn't have enough stamina to execute attack
@@ -456,20 +617,83 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 					if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) { 
 						// If the obj_enemy is not within enemyHeavyRangedAttackRange
 						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHeavyRangedAttackRange {
-							// If the enemy hasn't already tried to chase it's target, then chase the target.
-							if !alreadyTriedToChase { 
-								enemyState = enemystates.moveWithinAttackRange;
-								enemyStateSprite = enemystates.moveWithinAttackRange;
-								alreadyTriedToChaseTimer = room_speed * 3;
-								enemyImageIndex = 0;
+							// Check for an existing path. If no path exists, then the enemy cannot melee, and
+							// should not try to chase the target. Instead, just fire a valid ranged attack
+							// at the target, should that apply to the enemy.
+							var path_exists_ = scr_path_exists_to_player_or_minions();
+							if path_exists_ {
+								// If the enemy hasn't already tried to chase it's target, then chase the target.
+								if !alreadyTriedToChase { 
+									enemyState = enemystates.moveWithinAttackRange;
+									enemyStateSprite = enemystates.moveWithinAttackRange;
+									alreadyTriedToChaseTimer = room_speed * 3;
+									enemyImageIndex = 0;
+								}
+								// If the enemy has already tried to chase the target, then set the chosen engine to ranged
+								// and don't try to continue to chase the target.
+								else if alreadyTriedToChase {
+									chosenEngine = "Light Ranged";
+									decisionMadeForTargetAndAction = true;
+									alreadyTriedToChase = false;
+									alreadyTriedToChaseTimer = 0;
+								}
 							}
-							// If the enemy has already tried to chase the target, then set the chosen engine to ranged
-							// and don't try to continue to chase the target.
-							else if alreadyTriedToChase {
+							// If the light ranged attack can be used across the chasm, then set that as the preferred
+							// attack.
+							else if lightRangedCanBeUsedAcrossChasm {
 								chosenEngine = "Light Ranged";
 								decisionMadeForTargetAndAction = true;
+								alreadyTriedToChase = true;
+								alreadyTriedToChaseTimer = 0;
+							}
+							// Else if no other ability can be used, and I've already checked for a valid path
+							// to the target and none exists, then check for a valid heal target. If one exists,
+							// and it can be handled, then make it heal that target. Otherwise, reset the process.
+							else if objectArchetype == "Healer" {
+								// As long as a heal target exists
+								if instance_exists(currentTargetToHeal) {
+									// If the heal target is a player, set local variables to player values. Else, set
+									// to enemy values.
+									if currentTargetToHeal.object_index == obj_player {
+										var current_target_to_heal_current_hp_ = playerCurrentHP;
+										var current_target_to_heal_max_hp_ = playerMaxHP;
+									}
+									else {
+										var current_target_to_heal_current_hp_ = currentTargetToHeal.enemyCurrentHP;
+										var current_target_to_heal_max_hp_ = currentTargetToHeal.enemyMaxHP;
+									}
+									// As long as the object heal target has less than 100% HP,
+									if (current_target_to_heal_current_hp_ / current_target_to_heal_max_hp_) < 1 {
+										chosenEngine = "Heal Ally";
+									}
+									// Else if there's nothing else to do, just reset variables
+									// and try the whole process again next frame.
+									else {
+										chosenEngine = "";
+										decisionMadeForTargetAndAction = false;
+										alreadyTriedToChase = false;
+										alreadyTriedToChaseTimer = 0;
+										enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+										enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+										enemyTimeUntilNextManaAbilityUsableTimer = 0;
+									}
+								}
+							}
+							// Else if there's nothing else to do, just reset variables and
+							// try the whole process again next frame.
+							else {
+								chosenEngine = "";
+								decisionMadeForTargetAndAction = false;
 								alreadyTriedToChase = false;
 								alreadyTriedToChaseTimer = 0;
+								enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+								enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+								enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+								enemyTimeUntilNextManaAbilityUsableTimer = 0;
+								
+								
+								
 							}
 						}
 						// Else if the obj_enemy doesn't have enough mana to execute attack
@@ -528,15 +752,18 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 						*/
 						// If enemy is not within light ranged attack range
 						if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightRangedAttackRange {
-							// If the enemy hasn't already tried to chase it's target, then chase the target.
-							if !alreadyTriedToChase { 
-								enemyState = enemystates.moveWithinAttackRange;
-								enemyStateSprite = enemystates.moveWithinAttackRange;
-								alreadyTriedToChaseTimer = room_speed * 3;
-								enemyImageIndex = 0;
+							var path_exists_ = scr_path_exists_to_player_or_minions();
+							if path_exists_ {
+								// If the enemy hasn't already tried to chase it's target, then chase the target.
+								if !alreadyTriedToChase { 
+									enemyState = enemystates.moveWithinAttackRange;
+									enemyStateSprite = enemystates.moveWithinAttackRange;
+									alreadyTriedToChaseTimer = room_speed * 3;
+									enemyImageIndex = 0;
+								}
 							}
-							// If obj_enemy cannot execute light ranged attack
-							else if alreadyTriedToChase {
+							// If obj_enemy cannot immediately execute light ranged attack
+							if alreadyTriedToChase || !path_exists_ {
 								// Last checks to see if any other attack can be executed - if not, the very last statement
 								// is executed, resetting decision making process.
 						
@@ -579,7 +806,6 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 								}
 							}
 						}
-				
 						// If the light ranged engine cannot be executed because there is not enough mana
 						// Else if the obj_enemy doesn't have enough mana to execute attack
 						else if enemyLightRangedAttackManaCost > enemyCurrentMana {
@@ -678,19 +904,71 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 						if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 							// If the obj_enemy is not within enemyHealAllyRange
 							if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyHealAllyRange {
-								// If the enemy hasn't already tried to chase it's target, then chase the target.
-								if !alreadyTriedToChase { 
-									enemyState = enemystates.moveWithinAttackRange;
-									enemyStateSprite = enemystates.moveWithinAttackRange;
-									alreadyTriedToChaseTimer = room_speed * 3;
+								var path_exists_ = scr_path_exists_to_player_or_minions();
+								if path_exists_ {
+									// If the enemy hasn't already tried to chase it's target, then chase the target.
+									if !alreadyTriedToChase { 
+										enemyState = enemystates.moveWithinAttackRange;
+										enemyStateSprite = enemystates.moveWithinAttackRange;
+										alreadyTriedToChaseTimer = room_speed * 3;
+									}
+									// If the enemy has already tried to chase the target, then set the chosen engine to ranged
+									// and don't try to continue to chase the target.
+									else if alreadyTriedToChase {
+										// Check to see if the heal was first choice for an action. If it wasn't, then it was sent to
+										// heal by a different block of code, and if that's the case, I should just reset values and
+										// try again.
+										if (healAllyEngineTotalWeight > heavyMeleeEngineTotalWeight) && (healAllyEngineTotalWeight > lightMeleeEngineTotalWeight) && (healAllyEngineTotalWeight > heavyRangedEngineTotalWeight) && (healAllyEngineTotalWeight > lightRangedEngineTotalWeight) {
+											chosenEngine = "Light Ranged";
+											decisionMadeForTargetAndAction = true;
+											alreadyTriedToChase = false;
+											alreadyTriedToChaseTimer = 0;
+										}
+										else {
+											chosenEngine = "";
+											decisionMadeForTargetAndAction = false;
+											alreadyTriedToChase = false;
+											alreadyTriedToChaseTimer = 0;
+											enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+											enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+											enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+											enemyTimeUntilNextManaAbilityUsableTimer = 0;
+										}
+									}
 								}
-								// If the enemy has already tried to chase the target, then set the chosen engine to ranged
-								// and don't try to continue to chase the target.
-								else if alreadyTriedToChase {
-									chosenEngine = "Light Ranged";
-									decisionMadeForTargetAndAction = true;
+								// If no path exists, check to see if the target to focus is in range, and if it is,
+								// then focus that target. Only do so, however, if healing was the object's first choice
+								// for an action. If it wasn't, then the object has already tried attacking, and so just
+								// reset values.
+								else if (healAllyEngineTotalWeight > heavyMeleeEngineTotalWeight) && (healAllyEngineTotalWeight > lightMeleeEngineTotalWeight) && (healAllyEngineTotalWeight > heavyRangedEngineTotalWeight) && (healAllyEngineTotalWeight > lightRangedEngineTotalWeight) {
+									if instance_exists(currentTargetToFocus) {
+										if scr_path_exists_to_player_or_minions() {
+											chosenEngine = "Heavy Ranged";
+											decisionMadeForTargetAndAction = true;
+											alreadyTriedToChase = false;
+											alreadyTriedToChaseTimer = 0;
+										}
+										else {
+											chosenEngine = "";
+											decisionMadeForTargetAndAction = false;
+											alreadyTriedToChase = false;
+											alreadyTriedToChaseTimer = 0;
+											enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+											enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+											enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+											enemyTimeUntilNextManaAbilityUsableTimer = 0;
+										}
+									}
+								}
+								else {
+									chosenEngine = "";
+									decisionMadeForTargetAndAction = false;
 									alreadyTriedToChase = false;
 									alreadyTriedToChaseTimer = 0;
+									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+									enemyTimeUntilNextManaAbilityUsableTimer = 0;
 								}
 							}
 							// Else if the obj_enemy doesn't have enough mana to execute heal

@@ -387,7 +387,7 @@ with obj_skill_tree {
 				if takenForPainSecondPhaseTimer <= (takenForPainSecondPhaseTimerStartTime / takenForPainNumberOfSpikes) * (quadrant_ + 1) {
 					// I count up from 0 and then reverse the quadrant_ value because otherwise
 					// the hitbox would be created in the first quadrant_, everytime
-					quadrant_ = abs(quadrant_ - (takenForPainNumberOfSpikes - 1))
+					quadrant_ = abs(quadrant_ - (takenForPainNumberOfSpikes - 1));
 					break;
 				}
 			}

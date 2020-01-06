@@ -371,6 +371,7 @@ switch (lastAttackButtonPressed) {
 		var i;
 		if variable_global_exists("objectIDsInBattle") {
 			if ds_exists(objectIDsInBattle, ds_type_list) {
+				obj_skill_tree.rushdownTarget = noone;
 				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 					var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
 					// As long as the potential target exists
@@ -383,7 +384,7 @@ switch (lastAttackButtonPressed) {
 								// then set the new potential target as the current target
 								var current_target_ = obj_skill_tree.rushdownTarget;
 								if instance_exists(current_target_) {
-									if !collision_line(x, y, instance_to_reference_.x, instance_to_reference_.y, obj_wall, true, true) {
+									if (!collision_line(x, y, instance_to_reference_.x, instance_to_reference_.y, obj_wall, true, true)) && (!collision_line(x, y, instance_to_reference_.x, instance_to_reference_.y, obj_chasm, true, true)) {
 										if point_distance(x, y, instance_to_reference_.x, instance_to_reference_.y) < point_distance(x, y, current_target_.x, current_target_.y) {
 											obj_skill_tree.rushdownTarget = instance_to_reference_;
 											current_target_ = instance_to_reference_;
@@ -393,7 +394,7 @@ switch (lastAttackButtonPressed) {
 								// Else if a target for rushdown doesn't even exist yet, set the target
 								// automatically to the first enemy detected within range.
 								else {
-									if !collision_line(x, y, instance_to_reference_.x, instance_to_reference_.y, obj_wall, true, true) {
+									if (!collision_line(x, y, instance_to_reference_.x, instance_to_reference_.y, obj_wall, true, true)) && (!collision_line(x, y, instance_to_reference_.x, instance_to_reference_.y, obj_chasm, true, true)) {
 										obj_skill_tree.rushdownTarget = instance_to_reference_;
 										current_target_ = instance_to_reference_;
 									}

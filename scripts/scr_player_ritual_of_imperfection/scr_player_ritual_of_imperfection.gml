@@ -54,7 +54,7 @@ if instance_exists(obj_player) {
 					objectArchetype = "Healer";
 					event_perform(ev_step, ev_step_normal);
 					with enemyGroundHurtbox {
-						teleport_to_nearest_empty_location(x, y, obj_player.x, obj_player.y, obj_wall, obj_ground_hurtbox);
+						teleport_to_nearest_empty_location(x, y, obj_player.x, obj_player.y, obj_wall, obj_ground_hurtbox, obj_chasm);
 					}
 				}
 			}
@@ -89,7 +89,7 @@ if instance_exists(obj_player) {
 					objectArchetype = "Tank";
 					event_perform(ev_step, ev_step_normal);
 					with enemyGroundHurtbox {
-						teleport_to_nearest_empty_location(x, y, obj_player.x, obj_player.y, obj_wall, obj_ground_hurtbox);
+						teleport_to_nearest_empty_location(x, y, obj_player.x, obj_player.y, obj_wall, obj_ground_hurtbox, obj_chasm);
 					}
 				}
 			}
@@ -124,7 +124,7 @@ if instance_exists(obj_player) {
 					objectArchetype = "Ranged DPS";
 					event_perform(ev_step, ev_step_normal);
 					with enemyGroundHurtbox {
-						teleport_to_nearest_empty_location(x, y, obj_player.x, obj_player.y, obj_wall, obj_ground_hurtbox);
+						teleport_to_nearest_empty_location(x, y, obj_player.x, obj_player.y, obj_wall, obj_ground_hurtbox, obj_chasm);
 					}
 				}
 			}

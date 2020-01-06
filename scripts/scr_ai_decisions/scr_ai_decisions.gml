@@ -2,17 +2,55 @@
 if instance_exists(obj_player) {
 	#region TARGETING ENGINE
 	if ds_exists(objectIDsInBattle, ds_type_list) {
-		// Destroy the objectIDsInBattle list if there are no objects in battle
-		if ds_list_size(objectIDsInBattle) < 1 {
-			ds_list_destroy(objectIDsInBattle)
-			objectIDsInBattle = noone;
+		var valid_object_ids_in_battle_;
+		if ds_exists(validObjectIDsInBattle, ds_type_list) {
+			valid_object_ids_in_battle_ = validObjectIDsInBattle;
+		}
+		else {
+			valid_object_ids_in_battle_ = objectIDsInBattle;
+		}
+		// Destroy the valid_object_ids_in_battle_ list if there are no objects in battle
+		if ds_list_size(valid_object_ids_in_battle_) < 1 {
+			ds_list_destroy(valid_object_ids_in_battle_)
+			valid_object_ids_in_battle_ = noone;
 			exit;
 		}
 		#region Targeting Engine for Each Object In Combat
 		// Set the target for each object to focus
 		var i, j, k, iteration_, instance_to_reference_, self_is_in_combat_, temporary_instance_to_reference_, number_of_enemy_targets_, number_of_minion_targets_, weight_at_which_this_target_would_be_focused_at_;
 		var number_of_enemies_next_to_enemy_heal_target_, number_of_enemies_next_to_minion_heal_target_, number_of_allies_next_to_enemy_heal_target_, number_of_allies_next_to_minion_heal_target_, weight_at_which_this_heal_target_would_be_focused_at_;
-		globalvar enemy_target_grid_, minion_target_grid_, enemy_heal_target_grid_, minion_heal_target_grid_;
+		if !variable_global_exists("enemy_target_grid_") {
+			globalvar enemy_target_grid_;
+			enemy_target_grid_ = -1;
+		}
+		if !variable_global_exists("minion_target_grid_") {
+			globalvar minion_target_grid_;
+			minion_target_grid_ = -1;
+		}
+		if !variable_global_exists("enemy_heal_target_grid_") {
+			globalvar enemy_heal_target_grid_;
+			enemy_heal_target_grid_ = -1;
+		}
+		if !variable_global_exists("minion_heal_target_grid_") {
+			globalvar minion_heal_target_grid_;
+			minion_heal_target_grid_ = -1;
+		}
+		if ds_exists(enemy_target_grid_, ds_type_grid) {
+			ds_grid_destroy(enemy_target_grid_);
+			enemy_target_grid_ = -1;
+		}
+		if ds_exists(minion_target_grid_, ds_type_grid) {
+			ds_grid_destroy(minion_target_grid_);
+			minion_target_grid_ = -1;
+		}
+		if ds_exists(enemy_heal_target_grid_, ds_type_grid) {
+			ds_grid_destroy(enemy_heal_target_grid_);
+			enemy_heal_target_grid_ = -1;
+		}
+		if ds_exists(minion_heal_target_grid_, ds_type_grid) {
+			ds_grid_destroy(minion_heal_target_grid_);
+			minion_heal_target_grid_ = -1;
+		}
 		enemy_target_grid_ = -1;
 		minion_target_grid_ = -1;
 		enemy_heal_target_grid_ = -1;
@@ -24,18 +62,18 @@ if instance_exists(obj_player) {
 		calling this script and nothing else. By limiting this script to only decide the current target and action for the object calling this script, I save processing power and a lot
 		of needless running through for loops.
 		*/
-		//if ds_exists(objectIDsInBattle, ds_type_list) {
-			//for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
-				//if instance_exists(ds_list_find_value(objectIDsInBattle, i)) {
+		//if ds_exists(valid_object_ids_in_battle_, ds_type_list) {
+			//for (i = 0; i <= ds_list_size(valid_object_ids_in_battle_) - 1; i++) {
+				//if instance_exists(ds_list_find_value(valid_object_ids_in_battle_, i)) {
 				if instance_exists(self) {
 					self_is_in_combat_ = false;
-					for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-						if ds_list_find_value(objectIDsInBattle, j) == self {
+					for (j = 0; j <= ds_list_size(valid_object_ids_in_battle_) - 1; j++) {
+						if ds_list_find_value(valid_object_ids_in_battle_, j) == self {
 							self_is_in_combat_ = true;
 						}
 					}
 					if self_is_in_combat_ {
-						//instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+						//instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, i);
 						instance_to_reference_ = self;
 						// Assign enemy targets
 						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
@@ -51,13 +89,13 @@ if instance_exists(obj_player) {
 									// Seventh column is the potential heal target's weight to focus based on adjacent allies
 									// Eighth column is the potential heal target's weight to focus based on adjacent enemies
 									/*
-									For the height of this grid, I add one to the ds_list_size (instead of subtracting one to match exactly the height of the list objectIDsInBattle)
+									For the height of this grid, I add one to the ds_list_size (instead of subtracting one to match exactly the height of the list valid_object_ids_in_battle_)
 									because of the way I use the local variable iteration_ right afterwards. I set the first slot in this grid to player info, which takes a space
-									not counted by objectIDsInBattle. And then, before adding any info from objectIDsInBattle, I add one to iteration_ originally set to 0, which takes
-									yet another slot. Because I take 2 slots to get to the space where I write the first bit of info from objectIDsInBattle, I add 2 to
-									ds_list_size(objectIDsInBattle) - 1, which brings us to ds_list_size(objectIDsInBattle) + 1.
+									not counted by valid_object_ids_in_battle_. And then, before adding any info from valid_object_ids_in_battle_, I add one to iteration_ originally set to 0, which takes
+									yet another slot. Because I take 2 slots to get to the space where I write the first bit of info from valid_object_ids_in_battle_, I add 2 to
+									ds_list_size(valid_object_ids_in_battle_) - 1, which brings us to ds_list_size(valid_object_ids_in_battle_) + 1.
 									*/
-									enemy_heal_target_grid_ = ds_grid_create(8, (ds_list_size(objectIDsInBattle) + 1));
+									enemy_heal_target_grid_ = ds_grid_create(8, (ds_list_size(valid_object_ids_in_battle_) + 1));
 								}
 								if ds_exists(enemy_heal_target_grid_, ds_type_grid) {
 									iteration_ = 0;
@@ -68,8 +106,8 @@ if instance_exists(obj_player) {
 									ds_grid_set(enemy_heal_target_grid_, 3, iteration_, ((obj_ai_decision_making.playerAttackPatternWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack) * (obj_ai_decision_making.potentialHealTargetsAreDifferentArchetypesStartWeight * 2)));
 									ds_grid_set(enemy_heal_target_grid_, 4, iteration_, temporary_instance_to_reference_.x);
 									ds_grid_set(enemy_heal_target_grid_, 5, iteration_, temporary_instance_to_reference_.y);
-									for (k = 0; k <= ds_list_size(objectIDsInBattle) - 1; k++) {
-										temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, k);
+									for (k = 0; k <= ds_list_size(valid_object_ids_in_battle_) - 1; k++) {
+										temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, k);
 										if instance_exists(temporary_instance_to_reference_) {
 											iteration_ += 1;
 											if temporary_instance_to_reference_.combatFriendlyStatus == "Enemy" {
@@ -96,7 +134,7 @@ if instance_exists(obj_player) {
 											ds_grid_set(enemy_heal_target_grid_, 5, iteration_, temporary_instance_to_reference_.y);
 										}
 									}
-									//show_debug_message(string(ds_grid_get(enemy_heal_target_grid_, 5, ds_list_size(objectIDsInBattle) + 1)))
+									//show_debug_message(string(ds_grid_get(enemy_heal_target_grid_, 5, ds_list_size(valid_object_ids_in_battle_) + 1)))
 									// This isn't necessary but its a great, simple way to disconnect the paragraph of code above with the paragraph of code below, and it makes the code easier
 									// to read along with. And to prevent a panic attack, its fine that I reset iteration_ here, because the above code is done with it.
 									iteration_ = -1;
@@ -178,8 +216,8 @@ if instance_exists(obj_player) {
 								// Third column is the weighted rank at which the enemy wants to attack each potential target, on a scale compared to the rest of the potential targets, based on distance
 								// Fourth column is the weighted rank at which the enemy wants to attack each potential target, based on how dominated one specific archetype of enemy's attack patterns is by melee or ranged
 								// Fifth column is the weighted rank at which the enemy wants to attack each potential target, based on how low the current HP of each potential target is
-								for (k = 0; k <= ds_list_size(objectIDsInBattle) - 1; k++) {
-									temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, k);
+								for (k = 0; k <= ds_list_size(valid_object_ids_in_battle_) - 1; k++) {
+									temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, k);
 									if instance_exists(temporary_instance_to_reference_) {
 										if (temporary_instance_to_reference_.combatFriendlyStatus == "Minion") {
 											number_of_enemy_targets_ += 1;
@@ -197,8 +235,8 @@ if instance_exists(obj_player) {
 							if ds_exists(enemy_target_grid_, ds_type_grid) {
 								/// ---DETERMINE HOW FAR EACH POTENTIAL TARGET IS FROM SPECIFIC OBJECT---
 								iteration_ = 0;
-								for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-									temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+								for (j = 0; j <= ds_list_size(valid_object_ids_in_battle_) - 1; j++) {
+									temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, j);
 									if instance_exists(temporary_instance_to_reference_) {
 										if (temporary_instance_to_reference_.combatFriendlyStatus == "Minion") {
 											iteration_ += 1;
@@ -278,6 +316,13 @@ if instance_exists(obj_player) {
 											ds_grid_set(enemy_target_grid_, 5, k, 0);
 										}
 										weight_at_which_this_target_would_be_focused_at_ = ds_grid_get(enemy_target_grid_, 2, k) + ds_grid_get(enemy_target_grid_, 3, k) + ds_grid_get(enemy_target_grid_, 4, k) + ds_grid_get(enemy_target_grid_, 5, k);
+										// If the ds_list validObjectIDsInBattle exists, and the player isn't included in that list,
+										// then remove the player as a possible target.
+										if temporary_instance_to_reference_ == obj_player {
+											if !playerIsAValidTarget {
+												weight_at_which_this_target_would_be_focused_at_ = 0;
+											}
+										}
 										if temporary_instance_to_reference_ == instance_to_reference_.currentTargetToFocus {
 											instance_to_reference_.weightAtWhichEnemyIsCurrentlyFocusingTargetAt = weight_at_which_this_target_would_be_focused_at_;
 										}
@@ -317,13 +362,13 @@ if instance_exists(obj_player) {
 									// Seventh column is the potential heal target's weight to focus based on adjacent allies
 									// Eighth column is the potential heal target's weight to focus based on adjacent enemies
 									/*
-									For the height of this grid, I add one to the ds_list_size (instead of subtracting one to match exactly the height of the list objectIDsInBattle)
+									For the height of this grid, I add one to the ds_list_size (instead of subtracting one to match exactly the height of the list valid_object_ids_in_battle_)
 									because of the way I use the local variable iteration_ right afterwards. I set the first slot in this grid to player info, which takes a space
-									not counted by objectIDsInBattle. And then, before adding any info from objectIDsInBattle, I add one to iteration_ originally set to 0, which takes
-									yet another slot. Because I take 2 slots to get to the space where I write the first bit of info from objectIDsInBattle, I add 2 to
-									ds_list_size(objectIDsInBattle) - 1, which brings us to ds_list_size(objectIDsInBattle) + 1.
+									not counted by valid_object_ids_in_battle_. And then, before adding any info from valid_object_ids_in_battle_, I add one to iteration_ originally set to 0, which takes
+									yet another slot. Because I take 2 slots to get to the space where I write the first bit of info from valid_object_ids_in_battle_, I add 2 to
+									ds_list_size(valid_object_ids_in_battle_) - 1, which brings us to ds_list_size(valid_object_ids_in_battle_) + 1.
 									*/
-									minion_heal_target_grid_ = ds_grid_create(9, (ds_list_size(objectIDsInBattle) + 1));
+									minion_heal_target_grid_ = ds_grid_create(9, (ds_list_size(valid_object_ids_in_battle_) + 1));
 								}
 								if ds_exists(minion_heal_target_grid_, ds_type_grid) {
 									iteration_ = 0;
@@ -334,8 +379,8 @@ if instance_exists(obj_player) {
 									ds_grid_set(minion_heal_target_grid_, 3, iteration_, ((obj_ai_decision_making.playerAttackPatternWeight / obj_ai_decision_making.numberOfPlayerAttacksToTrack) * (obj_ai_decision_making.potentialHealTargetsAreDifferentArchetypesStartWeight * 2)));
 									ds_grid_set(minion_heal_target_grid_, 4, iteration_, temporary_instance_to_reference_.x);
 									ds_grid_set(minion_heal_target_grid_, 5, iteration_, temporary_instance_to_reference_.y);
-									for (k = 0; k <= ds_list_size(objectIDsInBattle) - 1; k++) {
-										temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, k);
+									for (k = 0; k <= ds_list_size(valid_object_ids_in_battle_) - 1; k++) {
+										temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, k);
 										if instance_exists(temporary_instance_to_reference_) {
 											iteration_ += 1;
 											if temporary_instance_to_reference_.combatFriendlyStatus == "Enemy" {
@@ -463,8 +508,8 @@ if instance_exists(obj_player) {
 								// Third column is the weighted rank at which the minion wants to attack each potential target, on a scale compared to the rest of the potential targets, based on distance
 								// Fourth column is the weighted rank at which the minion wants to attack each potential target, based on how dominated one specific archetype of the minion's attack patterns is by melee or ranged
 								// Fifth column is the weighted rank at which the minion wants to attack each potential target, based on how low the current HP of each potential target is
-								for (k = 0; k <= ds_list_size(objectIDsInBattle) - 1; k++) {
-									temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, k);
+								for (k = 0; k <= ds_list_size(valid_object_ids_in_battle_) - 1; k++) {
+									temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, k);
 									if instance_exists(temporary_instance_to_reference_) {
 										if (temporary_instance_to_reference_.combatFriendlyStatus == "Enemy") {
 											number_of_minion_targets_ += 1;
@@ -479,8 +524,8 @@ if instance_exists(obj_player) {
 							if ds_exists(minion_target_grid_, ds_type_grid) {
 								/// ---DETERMINE HOW FAR EACH POTENTIAL TARGET IS FROM SPECIFIC OBJECT---
 								iteration_ = -1;
-								for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-									temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+								for (j = 0; j <= ds_list_size(valid_object_ids_in_battle_) - 1; j++) {
+									temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, j);
 									if instance_exists(temporary_instance_to_reference_) {
 										if (temporary_instance_to_reference_.combatFriendlyStatus == "Enemy") {
 											iteration_ += 1;
@@ -574,10 +619,17 @@ if instance_exists(obj_player) {
 
 	#region Setting Weights for each Individual Engine
 	if ds_exists(objectIDsInBattle, ds_type_list) {
+		var valid_object_ids_in_battle_;
+		if ds_exists(validObjectIDsInBattle, ds_type_list) {
+			valid_object_ids_in_battle_ = validObjectIDsInBattle;
+		}
+		else {
+			valid_object_ids_in_battle_ = objectIDsInBattle;
+		}
 		var i = 0;
-		//for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
-			//if instance_exists(ds_list_find_value(objectIDsInBattle, i)) {
-				//var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+		//for (i = 0; i <= ds_list_size(valid_object_ids_in_battle_) - 1; i++) {
+			//if instance_exists(ds_list_find_value(valid_object_ids_in_battle_, i)) {
+				//var instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, i);
 				if instance_exists(self) {
 					var instance_to_reference_ = self;
 					#region Heavy Melee Engine
@@ -739,8 +791,8 @@ if instance_exists(obj_player) {
 						temporary_instance_to_reference_max_hp_ = 0;
 						temporary_instance_to_reference_is_lowest_hp_ = noone;
 						if instance_to_reference_.combatFriendlyStatus == "Enemy" {
-							for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-								temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+							for (j = 0; j <= ds_list_size(valid_object_ids_in_battle_) - 1; j++) {
+								temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, j);
 								if instance_exists(temporary_instance_to_reference_) {
 									if temporary_instance_to_reference_.combatFriendlyStatus == "Enemy" {
 										temporary_instance_to_reference_current_hp_ += temporary_instance_to_reference_.enemyCurrentHP;
@@ -761,8 +813,8 @@ if instance_exists(obj_player) {
 							temporary_instance_to_reference_current_hp_ += playerCurrentHP;
 							temporary_instance_to_reference_max_hp_ += playerMaxHP;
 							temporary_instance_to_reference_is_lowest_hp_ = obj_player.id;
-							for (j = 0; j <= ds_list_size(objectIDsInBattle) - 1; j++) {
-								temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, j);
+							for (j = 0; j <= ds_list_size(valid_object_ids_in_battle_) - 1; j++) {
+								temporary_instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, j);
 								if instance_exists(temporary_instance_to_reference_) {
 									if temporary_instance_to_reference_.combatFriendlyStatus == "Minion" {
 										temporary_instance_to_reference_current_hp_ += temporary_instance_to_reference_.enemyCurrentHP;
@@ -834,9 +886,16 @@ if instance_exists(obj_player) {
 	
 	#region Setting Final Decision Weight based on Each Individual Engine Weight
 	if ds_exists(objectIDsInBattle, ds_type_list) {
-		//for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
-			//if instance_exists(ds_list_find_value(objectIDsInBattle, i)) {
-				//var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
+		var valid_object_ids_in_battle_;
+		if ds_exists(validObjectIDsInBattle, ds_type_list) {
+			valid_object_ids_in_battle_ = validObjectIDsInBattle;
+		}
+		else {
+			valid_object_ids_in_battle_ = objectIDsInBattle;
+		}
+		//for (i = 0; i <= ds_list_size(valid_object_ids_in_battle_) - 1; i++) {
+			//if instance_exists(ds_list_find_value(valid_object_ids_in_battle_, i)) {
+				//var instance_to_reference_ = ds_list_find_value(valid_object_ids_in_battle_, i);
 				var instance_to_reference_ = self;
 				if instance_to_reference_.objectArchetype != "Healer" {
 					if (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
@@ -869,29 +928,6 @@ if instance_exists(obj_player) {
 						instance_to_reference_.chosenEngine = "Heal Ally";
 					}
 				}
-				/*
-				This block of code is already executed in above code, delete after testing
-				if (!instance_to_reference_.chosenEngineUnableToBeExecuted) {
-					if instance_to_reference_.objectArchetype != "Healer" {
-						if (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
-							chosenEngine = "Heavy Ranged";
-						}
-						else if (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) {
-							chosenEngine = "Light Ranged";
-						}
-					}
-					else if instance_to_reference_.objectArchetype == "Healer" {
-						if (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyRangedEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
-							chosenEngine = "Heavy Ranged";
-						}
-						else if (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.lightRangedEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
-							chosenEngine = "Light Ranged";
-						}
-						else if (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.healAllyEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) {
-							chosenEngine = "Heal Ally";
-						}
-					}
-				}*/
 			//}
 		//}		
 	}

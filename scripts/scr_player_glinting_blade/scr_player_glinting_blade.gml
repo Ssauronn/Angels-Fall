@@ -41,22 +41,22 @@ if playerImageIndex <= 5 {
 			switch (target_.enemyDirectionFacing) {
 				case enemydirection.right:
 					with playerGroundHurtbox {
-						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x - (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x - (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_chasm);
 					}
 					break;
 				case enemydirection.up:
 					with playerGroundHurtbox {
-						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y + (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y + (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_chasm);
 					}
 					break;
 				case enemydirection.left:
 					with playerGroundHurtbox {
-						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x + (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x + (32 * 1.5), target_.y + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_chasm);
 					}
 					break;
 				case enemydirection.down:
 					with playerGroundHurtbox {
-						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y - (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall);
+						obj_player.playerDirectionFacing += teleport_to_nearest_empty_location(target_.x, target_.y - (32 * 1.5) + 13, target_.x, target_.y + 13, obj_ground_hurtbox, obj_wall, obj_chasm);
 					}
 					break;
 			}
@@ -104,9 +104,9 @@ if playerImageIndex <= 5 {
 				playerDirectionFacing = playerdirection.left;
 			}
 			with playerGroundHurtbox {
-				teleport_to_nearest_empty_location(target_location_x_, target_location_y_, target_location_x_, target_location_y_ + 13, obj_wall, obj_ground_hurtbox);
+				teleport_to_nearest_empty_location(target_location_x_, target_location_y_, target_location_x_, target_location_y_ + 13, obj_wall, obj_ground_hurtbox, obj_chasm);
 			}
-			//teleport_to_nearest_empty_location(target_location_x_, target_location_y_, target_location_x_, target_location_y_ + 17, obj_wall, obj_ground_hurtbox);
+			//teleport_to_nearest_empty_location(target_location_x_, target_location_y_, target_location_x_, target_location_y_ + 17, obj_wall, obj_ground_hurtbox, obj_chasm);
 			// I add just 3 onto the enemy timer so that the timer doesn't run out the exact moment
 			// the player is supposed to deal damage, and reset variables so that the script throws
 			// an error. Essentially lets the debuff last for 3 more frames, which is needed because 

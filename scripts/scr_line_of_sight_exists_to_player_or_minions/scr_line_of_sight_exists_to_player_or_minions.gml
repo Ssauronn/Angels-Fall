@@ -21,6 +21,8 @@ if combatFriendlyStatus == "Enemy" {
 	}
 	
 	// If a line of sight exists for any minion, then mark it as a valid line of sight exists.
+	// I use with obj_enemy, and I don't actually check for ds_list, because the ds_list might not be
+	// active.
 	with obj_enemy {
 		var target_ = self;
 		if target_.id != self_.id {
