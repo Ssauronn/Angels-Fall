@@ -41,8 +41,37 @@ if instance_exists(self) {
 		if !obj_skill_tree.wrathOfTheDiaboliActive {
 			// If the object calling this script has an enemy target to evaluate
 			if (enemy_found_) && (self_in_combat_) {
-				scr_ai_decisions();
-				decisionMadeForTargetAndAction = true;
+				var path_exists_to_valid_target_ = scr_path_exists_to_player_or_minions();
+				if combatFriendlyStatus == "Minion" {
+					if path_exists_to_valid_target_ || path_exists_to_valid_target_ == noone {
+						var yeet_ = 1;
+					}
+					var yeet_ = 1;
+				}
+				if (path_exists_to_valid_target_ || path_exists_to_valid_target_ == noone) {
+					scr_ai_decisions();
+					decisionMadeForTargetAndAction = true;
+				}
+				else {
+					currentTargetToFocus = noone;
+					currentTargetToHeal = noone;
+					enemyState = enemystates.idle;
+					enemyStateSprite = enemystates.idle;
+					chosenEngine = "";
+					decisionMadeForTargetAndAction = false;
+					alreadyTriedToChaseTimer = 0;
+					alreadyTriedToChase = false;
+					enemyTimeUntilNextManaAbilityUsableTimer = 0;
+					enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+					enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+					enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+					lineOfSightExists = true;
+					followingPlayer = false;
+					followingPlayerTarget = noone;
+					followingPlayerTargetX = -1;
+					followingPlayerTargetY = -1;
+					exit;
+				}
 			}
 		}
 		// If the object calling this script has no enemy target to evaluate then it must be a minion
@@ -220,6 +249,7 @@ if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBa
 									}
 								}
 								if !collision_found_ {
+									teleportMinionToPlayerTimer = -1;
 									followingPlayer = true;
 									chosenEngine = "";
 									decisionMadeForTargetAndAction = false;

@@ -46,7 +46,8 @@ tetherYRange = camera_get_view_height(view_camera[0]) * 2;
 #region VARIABLES USED BY ALL ACTION ENGINES
 // Valid target list, if one needs to exist
 validObjectIDsInBattle = noone;
-playerIsAValidTarget = false;
+playerIsAValidFocusTarget = false;
+playerIsAValidHealTarget = false;
 
 // Action chosen variable, set at the very end of scr_ai_decisions
 chosenEngine = "";
