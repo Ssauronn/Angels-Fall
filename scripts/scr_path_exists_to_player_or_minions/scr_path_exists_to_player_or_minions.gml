@@ -7,14 +7,14 @@ If the script returns noone: no path exists to the current target, but a path ex
 */
 
 // SET UP VARIABLES
-var self_ = self;
-var current_x_ = self_.enemyGroundHurtbox;
+var current_x_ = enemyGroundHurtbox;
 current_x_ = current_x_.x;
-var current_y_ = self_.enemyGroundHurtbox;
+var current_y_ = enemyGroundHurtbox;
 current_y_ = current_y_.y;
 var i;
 
 
+var path_exists_ = false;
 // Create the validObjectIDsInBattle ds_list, used to actually control
 // scr_ai_decisions.
 if ds_exists(objectIDsInBattle, ds_type_list) {
@@ -35,6 +35,7 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 		instance_to_reference_ground_hurtbox_ = instance_to_reference_.enemyGroundHurtbox;
 		if instance_to_reference_ != self {
 			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, instance_to_reference_ground_hurtbox_.x, instance_to_reference_ground_hurtbox_.y, true) {
+				path_exists_ = true;
 				if !ds_exists(validObjectIDsInBattle, ds_type_list) {
 					validObjectIDsInBattle = ds_list_create();
 				}
@@ -50,12 +51,18 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 			ds_list_add(validObjectIDsInBattle, instance_to_reference_);
 		}
 	}
+	if !path_exists_ {
+		if ds_exists(validObjectIDsInBattle, ds_type_list) {
+			ds_list_destroy(validObjectIDsInBattle);
+			validObjectIDsInBattle = noone;
+		}
+	}
 	if path_exists(path_) {
 		path_delete(path_);
 	}
 }
 
-var path_exists_ = false;
+path_exists_ = false;
 // Check for a path to any valid target for enemy objects
 if ds_exists(objectIDsInBattle, ds_type_list) {
 	if combatFriendlyStatus == "Enemy" {
@@ -69,7 +76,7 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 				path_exists_ = noone;
 				playerIsAValidFocusTarget = true;
 				if instance_exists(currentTargetToFocus) {
-					if currentTargetToFocus == obj_player {
+					if currentTargetToFocus == obj_player.id {
 						return true;
 					}
 				}
@@ -153,7 +160,7 @@ if combatFriendlyStatus == "Minion" {
 				path_exists_ = true;
 				playerIsAValidHealTarget = true;
 				if instance_exists(currentTargetToHeal) {
-					if currentTargetToHeal == obj_player {
+					if currentTargetToHeal == obj_player.id {
 						return true;
 					}
 				}
@@ -211,7 +218,7 @@ if combatFriendlyStatus == "Minion" {
 		instance_to_reference_ = obj_player;
 		instance_to_reference_ground_hurtbox_ = instance_to_reference_.playerGroundHurtbox;
 		// Check for healing the player first
-		if obj_player.playerCurrentHP < obj_player.playerMaxHP {
+		if playerCurrentHP < playerMaxHP {
 			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, instance_to_reference_ground_hurtbox_.x, instance_to_reference_ground_hurtbox_.y, true) {
 				path_exists_ = noone;
 				playerIsAValidHealTarget = true;

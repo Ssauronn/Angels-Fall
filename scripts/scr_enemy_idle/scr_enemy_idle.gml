@@ -7,7 +7,8 @@ if instance_exists(self) {
 		var instance_to_reference_, self_in_combat_, enemy_found_, i;
 		enemy_found_ = false;
 		self_in_combat_ = false;
-		// If there are obj_enemy objects on screen, whether friendly or enemy
+		// If there are obj_enemy objects on screen, whether friendly or enemy, mark the object
+		// running this code as in combat with a valid target
 		if ds_exists(objectIDsInBattle, ds_type_list) {
 			for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 				instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
@@ -21,6 +22,9 @@ if instance_exists(self) {
 							self_in_combat_ = true;
 						}
 					}
+					// This is auto set to true if the object running this code is an enemy,
+					// because if objectIDsInBattle exists, at least one enemy is in combat
+					// that can target the player.
 					else if self.combatFriendlyStatus == "Enemy" {
 						enemy_found_ = true;
 						self_in_combat_ = true;
@@ -41,14 +45,9 @@ if instance_exists(self) {
 		if !obj_skill_tree.wrathOfTheDiaboliActive {
 			// If the object calling this script has an enemy target to evaluate
 			if (enemy_found_) && (self_in_combat_) {
+				var line_of_sight_exists_to_valid_target_ = scr_line_of_sight_exists_to_valid_target();
 				var path_exists_to_valid_target_ = scr_path_exists_to_player_or_minions();
-				if combatFriendlyStatus == "Minion" {
-					if path_exists_to_valid_target_ || path_exists_to_valid_target_ == noone {
-						var yeet_ = 1;
-					}
-					var yeet_ = 1;
-				}
-				if (path_exists_to_valid_target_ || path_exists_to_valid_target_ == noone) {
+				if ((path_exists_to_valid_target_ || path_exists_to_valid_target_ == noone)) || (line_of_sight_exists_to_valid_target_) {
 					scr_ai_decisions();
 					decisionMadeForTargetAndAction = true;
 				}
@@ -381,7 +380,8 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 							// If any ranged attack from the enemy can be used over a chasm, then use it.
 							// If the heavy ranged attack is preferred at the current moment in time, then
 							// use it. Otherwise, default to light.
-							else if lightRangedCanBeUsedAcrossChasm || heavyRangedCanBeUsedAcrossChasm {
+							else if (lightRangedCanBeUsedAcrossChasm || heavyRangedCanBeUsedAcrossChasm) && (scr_line_of_sight_exists_to_valid_target()) {
+								scr_ai_decisions();
 								if lightRangedCanBeUsedAcrossChasm && heavyRangedCanBeUsedAcrossChasm {
 									if heavyRangedEngineTotalWeight >= lightRangedEngineTotalWeight {
 										chosenEngine = "Heavy Ranged";
@@ -526,7 +526,8 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 							// If any ranged attack from the enemy can be used over a chasm, then use it.
 							// If the heavy ranged attack is preferred at the current moment in time, then
 							// use it. Otherwise, default to light.
-							else if lightRangedCanBeUsedAcrossChasm || heavyRangedCanBeUsedAcrossChasm {
+							else if (lightRangedCanBeUsedAcrossChasm || heavyRangedCanBeUsedAcrossChasm) && (scr_line_of_sight_exists_to_valid_target()) {
+								scr_ai_decisions();
 								if lightRangedCanBeUsedAcrossChasm && heavyRangedCanBeUsedAcrossChasm {
 									if heavyRangedEngineTotalWeight >= lightRangedEngineTotalWeight {
 										chosenEngine = "Heavy Ranged";
@@ -670,7 +671,8 @@ if !obj_skill_tree.wrathOfTheDiaboliActive {
 							}
 							// If the light ranged attack can be used across the chasm, then set that as the preferred
 							// attack.
-							else if lightRangedCanBeUsedAcrossChasm {
+							else if (lightRangedCanBeUsedAcrossChasm) && (scr_line_of_sight_exists_to_valid_target()) {
+								scr_ai_decisions();
 								chosenEngine = "Light Ranged";
 								decisionMadeForTargetAndAction = true;
 								alreadyTriedToChase = true;
