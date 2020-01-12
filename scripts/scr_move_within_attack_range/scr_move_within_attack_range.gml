@@ -60,7 +60,30 @@ else if !lineOfSightExists {
 	// enemies while within line of sight. Its a really good fix to a bunch of problems, but again, it
 	// runs that complicated script and so it eats processing power while its going. I'll have to test
 	// further later on.
-	scr_ai_decisions();
+	var path_exists_ = scr_path_exists_to_player_or_minions();
+	if (path_exists_ || path_exists_ == noone) {
+		scr_ai_decisions();
+	}
+	else {
+		currentTargetToFocus = noone;
+		currentTargetToHeal = noone;
+		enemyState = enemystates.idle;
+		enemyStateSprite = enemystates.idle;
+		chosenEngine = "";
+		decisionMadeForTargetAndAction = false;
+		alreadyTriedToChaseTimer = 0;
+		alreadyTriedToChase = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		lineOfSightExists = true;
+		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
+		exit;
+	}
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		if chosenEngine != "Heal Ally" {
 			if currentTargetToFocus.id == obj_player.id {
@@ -85,7 +108,7 @@ else if !lineOfSightExists {
 			scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
 		}
 	}
-	else {
+	else if combatFriendlyStatus == "Minion" {
 		if (chosenEngine != "Heal Ally") || ((chosenEngine == "Heal Ally") && (!instance_exists(currentTargetToHeal))) {
 			target_x_ = obj_player.x;
 			target_y_ = obj_player.y;
@@ -98,6 +121,26 @@ else if !lineOfSightExists {
 				scr_line_of_sight_exists(target_x_, target_y_, obj_wall);
 			}
 		}
+	}
+	else {
+		currentTargetToFocus = noone;
+		currentTargetToHeal = noone;
+		enemyState = enemystates.idle;
+		enemyStateSprite = enemystates.idle;
+		chosenEngine = "";
+		decisionMadeForTargetAndAction = false;
+		alreadyTriedToChaseTimer = 0;
+		alreadyTriedToChase = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		lineOfSightExists = true;
+		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
+		exit;
 	}
 	chosenEngine = "";
 	distance_ = maxSpeed * 3;
@@ -177,13 +220,38 @@ else if (xPointToMoveTo == -1) && (yPointToMoveTo == -1) {
 	exit;
 }
 else {
-	scr_ai_decisions();
-	distance_ = maxSpeed * 5;
-	target_x_ = xPointToMoveTo;
-	target_y_ = yPointToMoveTo;
-	pathEndXGoal = xPointToMoveTo;
-	pathEndYGoal = yPointToMoveTo;
-	chosenEngine = "";
+	var path_exists_ = scr_path_exists_to_player_or_minions();
+	if (path_exists_ || path_exists_ == noone) {
+		scr_ai_decisions();
+		distance_ = maxSpeed * 5;
+		target_x_ = xPointToMoveTo;
+		target_y_ = yPointToMoveTo;
+		pathEndXGoal = xPointToMoveTo;
+		pathEndYGoal = yPointToMoveTo;
+		chosenEngine = "";
+		currentTargetToFocus = noone;
+		currentTargetToHeal = noone;
+	}
+	else {
+		currentTargetToFocus = noone;
+		currentTargetToHeal = noone;
+		enemyState = enemystates.idle;
+		enemyStateSprite = enemystates.idle;
+		chosenEngine = "";
+		decisionMadeForTargetAndAction = false;
+		alreadyTriedToChaseTimer = 0;
+		alreadyTriedToChase = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		lineOfSightExists = true;
+		followingPlayer = false;
+		followingPlayerTarget = noone;
+		followingPlayerTargetX = -1;
+		followingPlayerTargetY = -1;
+		exit;
+	}
 }
 
 // Finally, set ground hurtbox locations

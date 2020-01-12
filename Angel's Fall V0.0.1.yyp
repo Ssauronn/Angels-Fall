@@ -783,6 +783,14 @@
             }
         },
         {
+            "Key": "483c89bf-2479-4a6e-bb7e-0089f6c08172",
+            "Value": {
+                "id": "7a7ed33b-7d94-4e77-9a1c-c6945503a180",
+                "resourcePath": "scripts\\scr_line_of_sight_exists_to_valid_target\\scr_line_of_sight_exists_to_valid_target.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4b3bfd73-0ced-466e-ae58-c3232e76fd75",
             "Value": {
                 "id": "cf7d120d-57d5-485d-a52e-8c6a5ab0be92",
@@ -2729,6 +2737,7 @@
         "21ddc1fa-92ef-48b6-8279-a984718984c6",
         "2d82ea1b-5523-4fe4-a7cb-b94a581e2b39",
         "33357c95-b240-42a1-a73a-0b164625ce7e",
+        "483c89bf-2479-4a6e-bb7e-0089f6c08172",
         "36860504-d5ce-4d85-b5d0-33ee434ea554",
         "75f6c853-c34c-46b6-92bb-c6826095e349",
         "075f5161-a633-471b-b819-9f766ea38dd0"
