@@ -335,6 +335,22 @@ if (chosenEngine == "") && (ds_exists(objectIDsInBattle, ds_type_list)) {
 	enemyTimeUntilNextManaAbilityUsableTimer = 0;
 }
 
+// Exit the idle script so as to not move towards targets if, for some reason (like
+// being out of range, or no possible path existing and no line of sight exists) 
+// the object running this code is not in combat while other objects are in combat.
+if ds_exists(objectIDsInBattle, ds_type_list) {
+	if ds_list_find_index(objectIDsInBattle, self) == -1 {
+		chosenEngine = "";
+		decisionMadeForTargetAndAction = false;
+		alreadyTriedToChase = false;
+		alreadyTriedToChaseTimer = 0;
+		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+		enemyTimeUntilNextManaAbilityUsableTimer = 0;
+	}
+}
+
 var self_ground_hurtbox_ = enemyGroundHurtbox;
 if !obj_skill_tree.wrathOfTheDiaboliActive {
 	/// Actually sending the AI to the correct states depending on the decision made and chosenEngine

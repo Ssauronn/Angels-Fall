@@ -72,7 +72,8 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 		path_set_precision(path_, 1);
 		if chosenEngine != "Heal Ally" {
 			// First, check for a path to the player
-			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, obj_player.x, obj_player.y, true) {
+			var player_ground_hurtbox_ = obj_player.playerGroundHurtbox;
+			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, player_ground_hurtbox_.x, player_ground_hurtbox_.y, true) {
 				path_exists_ = noone;
 				playerIsAValidFocusTarget = true;
 				if instance_exists(currentTargetToFocus) {
@@ -156,7 +157,8 @@ if combatFriendlyStatus == "Minion" {
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		// If the minion is set to heal an ally, check for allies to heal first
 		if chosenEngine == "Heal Ally" { 
-			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, obj_player.x, obj_player.y, true) {
+			var player_ground_hurtbox_ = obj_player.playerGroundHurtbox;
+			if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, player_ground_hurtbox_.x, player_ground_hurtbox_.y, true) {
 				path_exists_ = true;
 				playerIsAValidHealTarget = true;
 				if instance_exists(currentTargetToHeal) {

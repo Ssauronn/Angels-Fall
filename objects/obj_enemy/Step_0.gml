@@ -82,6 +82,9 @@ if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_play
 			objectArchetype (what kind of role the enemy fills).
 			*/
 			if combatFriendlyStatus == "Enemy" {
+				if teleportMinionToPlayerTimer >= 0 {
+					teleportMinionToPlayerTimer = -1;
+				}
 				switch (objectArchetype) {
 					case "Healer": enemyHealersInBattle += 1;
 						break;
@@ -177,7 +180,8 @@ if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_play
 if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[0]), camera_get_view_y(view_camera[0]), camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0])), camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]))) {
 	// If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
 	var path_exists_ = scr_path_exists_to_player_or_minions();
-	if ((!path_exists_ && path_exists_ != noone) && (!scr_line_of_sight_exists_to_player_or_minions())) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
+	var line_of_sight_exists_to_player_or_minions_ = scr_line_of_sight_exists_to_player_or_minions();
+	if ((!path_exists_ && path_exists_ != noone) && (!line_of_sight_exists_to_player_or_minions_)) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 		// Force the object immediately into idle state if too far out of range, or no path exists to a target
 		forceReturnToIdleState = true;
 		// If the minion either doesn't have an existing path to the player once out of combat, or hits 0
@@ -261,10 +265,27 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 				decisionMadeForTargetAndAction = false;
 				alreadyTriedToChase = false;
 				alreadyTriedToChaseTimer = 0;
+				enemyState = enemystates.idle;
+				enemyStateSprite = enemystates.idle;
+				xPointToMoveTo = -1;
+				yPointToMoveTo = -1;
+				lineOfSightExists = true;
+				followingPlayer = false;
+				followingPlayerTarget = noone;
+				followingPlayerTargetX = -1;
+				followingPlayerTargetY = -1;
 				enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 				enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 				enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 				enemyTimeUntilNextManaAbilityUsableTimer = 0;
+				// reset the timer for chasing.
+				pathPos = 1;
+				pathCreated = false;
+				if !is_undefined(myPath) {
+					if path_exists(myPath) {
+						path_delete(myPath);
+					}
+				}
 			}
 		}
 		// Else if no combat exists but there are already active minions following the player

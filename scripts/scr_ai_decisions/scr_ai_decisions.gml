@@ -991,7 +991,7 @@ if instance_exists(obj_player) {
 	
 	
 	#region Setting Final Decision Weight based on Each Individual Engine Weight
-	if (ds_exists(validObjectIDsInBattle, ds_type_list)) || (ds_exists(validObjectIDsInLineOfSight, ds_type_list)) || ((playerIsAValidFocusTarget || playerIsAValidHealTargetInLineOfSight) && combatFriendlyStatus == "Enemy") || ((playerIsAValidHealTarget || playerIsAValidHealTargetInLineOfSight) && combatFriendlyStatus == "Minion") {
+	if (ds_exists(validObjectIDsInBattle, ds_type_list)) || (ds_exists(validObjectIDsInLineOfSight, ds_type_list)) || ((playerIsAValidFocusTarget || playerIsAValidFocusTargetInLineOfSight) && combatFriendlyStatus == "Enemy") || ((playerIsAValidHealTarget || playerIsAValidHealTargetInLineOfSight) && combatFriendlyStatus == "Minion") {
 		//for (i = 0; i <= ds_list_size(validObjectIDsInBattle) - 1; i++) {
 			//if instance_exists(ds_list_find_value(validObjectIDsInBattle, i)) {
 				//var instance_to_reference_ = ds_list_find_value(validObjectIDsInBattle, i);
@@ -1026,6 +1026,13 @@ if instance_exists(obj_player) {
 					}
 				}
 				else if instance_to_reference_.objectArchetype == "Healer" {
+					// First, set the target to healing the player in case the heal target did not previously exist but
+					// the player is currently a valid target.
+					if !instance_exists(currentTargetToHeal) {
+						if playerIsAValidHealTarget || playerIsAValidHealTargetInLineOfSight {
+							currentTargetToHeal = obj_player.id;
+						}
+					}
 					if ds_exists(validObjectIDsInBattle, ds_type_list) {
 						if (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightMeleeEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.heavyRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.lightRangedEngineTotalWeight) && (instance_to_reference_.heavyMeleeEngineTotalWeight > instance_to_reference_.healAllyEngineTotalWeight) {
 							instance_to_reference_.chosenEngine = "Heavy Melee";
@@ -1043,15 +1050,15 @@ if instance_exists(obj_player) {
 							instance_to_reference_.chosenEngine = "Heal Ally";
 						}
 					}
+					// Heals can always be used across chasms so I don't check to see if it can be used across the chasm.
+					else if instance_exists(currentTargetToHeal) {
+						instance_to_reference_.chosenEngine = "Heal Ally";
+					}
 					else if heavyRangedCanBeUsedAcrossChasm && instance_exists(currentTargetToFocus) {
 						instance_to_reference_.chosenEngine = "Heavy Ranged";
 					}
 					else if lightRangedCanBeUsedAcrossChasm && instance_exists(currentTargetToFocus) {
 						instance_to_reference_.chosenEngine = "Light Ranged";
-					}
-					// Heals can always be used across chasms so I don't check to see if it can be used across the chasm.
-					else if instance_exists(currentTargetToHeal) {
-						instance_to_reference_.chosenEngine = "Heal Ally";
 					}
 					else {
 						instance_to_reference_.chosenEngine = "";
