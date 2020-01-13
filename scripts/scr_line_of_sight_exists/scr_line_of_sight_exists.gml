@@ -32,7 +32,6 @@ if collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false,
 	path_ = path_add();
 	path_set_kind(path_, 1);
 	path_set_precision(path_, 1);
-	mp_grid_add_instances(roomMovementGrid, obj_wall, false);
 	if mp_grid_path(roomMovementGrid, path_, current_x_, current_y_, target_x_, target_y_, true) {
 		var number_of_points_on_path_ = path_get_number(path_);
 		if number_of_points_on_path_ > 0 {

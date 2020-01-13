@@ -288,7 +288,6 @@ if chosenEngine != "Heal Ally" {
 					myPath = path_add();
 					path_set_kind(myPath, 1);
 					path_set_precision(myPath, 8);
-					mp_grid_add_instances(roomMovementGrid, obj_wall, false);
 				}
 				with enemyGroundHurtbox {
 					mp_grid_path(roomMovementGrid, object_self_.myPath, object_self_.groundHurtboxX, object_self_.groundHurtboxY, object_self_.pathEndXGoal, object_self_.pathEndYGoal, true);
@@ -430,7 +429,6 @@ if chosenEngine == "Heal Ally" {
 				myPath = path_add();
 				path_set_kind(myPath, 1);
 				path_set_precision(myPath, 8);
-				mp_grid_add_instances(roomMovementGrid, obj_wall, false);
 			}
 			with enemyGroundHurtbox {
 				mp_grid_path(roomMovementGrid, object_self_.myPath, object_self_.x, object_self_.y, object_self_.pathEndXGoal, object_self_.pathEndYGoal, true);
