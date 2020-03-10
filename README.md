@@ -16,6 +16,7 @@ Movement -
 
 
 Combat -
+
   ---Left Mouse Button to melee attack.
   
   ---Right Mouse Button to cast currently selected spell.
