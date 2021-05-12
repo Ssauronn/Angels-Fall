@@ -1,4 +1,5 @@
-///@argument0 EnemyName
+/// @function scr_change_states(enemyName);
+/// @param {string} enemyName The name of the enemy
 function scr_change_states(argument0) {
 	/*
 	I run this state machine switch statement every frame in the Step event. I do this in a script

@@ -1,14 +1,15 @@
-///@argument0 topLeftX
-///@argument1 topLeftY
-///@argument2 height
-///@argument3 width
-///@argument4 thickness
-///@argument5 maxSegments
-///@argument6 segments
-///@argument7 startAngle
-///@argument8 direction
-///@argument9 color
-///@argument10 alpha
+/// @function draw_rectangle_healthbar(x, y, radius, thickness, maxSegments, segments, startAngle, totalAngle, direction, color);
+/// @param {real} topLeftX
+/// @param {real} topLeftY
+/// @param {real} height
+/// @param {real} width
+/// @param {real} thickness
+/// @param {real} maxSegments
+/// @param {real} segments
+/// @param {real} startAngle
+/// @param {real} direction
+/// @param {} color
+/// @param {real} alpha
 function draw_rectangle_healthbar(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10) {
 
 	//draw_rectangle_healthbar(x, y, radius, thickness, maxSegments, segments, startAngle, totalAngle, direction, color);

@@ -1,9 +1,10 @@
-///@description Check for line of sight and if it doesn't exist, move enemy to nearest point with line
+/// @function scr_line_of_sight_exists(TargetX, TargetY, CollisionObject(s)...);
+/// @param {real} TargetX
+/// @param {real} TargetY
+/// @param {real} CollisionObject(s)
 function scr_line_of_sight_exists() {
+	///@description Check for line of sight and if it doesn't exist, move enemy to nearest point with line
 	// of sight.
-	///@argument0 TargetX
-	///@argument1 TargetY
-	///@argument2 CollisionObject(s)
 
 	/// SET UP VARIABLES
 	var return_value_ = false;

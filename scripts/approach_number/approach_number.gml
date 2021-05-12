@@ -1,7 +1,7 @@
-///@function Approach Number
-///@argument0 StartValue
-///@argument1 TargetValue
-///@argument2 RateOfChangePerSecond
+/// @function approach_number(startValue, targetValue, rateOfChangePerSecond);
+/// @param {real} startValue
+/// @param {real} targetValue
+/// @param {real} rateOfChangePerSecond
 function approach_number(argument0, argument1, argument2) {
 
 	var start = argument0;
@@ -17,9 +17,6 @@ function approach_number(argument0, argument1, argument2) {
 	else {
 		return target_;
 	}
-
-
-
-
-
 }
+
+
