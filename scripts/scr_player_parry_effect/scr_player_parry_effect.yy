@@ -1,8 +1,12 @@
 {
-    "id": "a3280395-dabd-44f7-8bda-319593ffdb4d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_parry_effect",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_player_states",
+    "path": "folders/Scripts/grp_player_states.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_parry_effect",
+  "tags": [],
+  "resourceType": "GMScript",
 }

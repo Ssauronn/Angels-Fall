@@ -1,8 +1,12 @@
 {
-    "id": "03a18385-b2a6-4f0d-aaf9-243e85de3fcb",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_taken_for_pain",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_necromancy_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_necromancy_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_taken_for_pain",
+  "tags": [],
+  "resourceType": "GMScript",
 }

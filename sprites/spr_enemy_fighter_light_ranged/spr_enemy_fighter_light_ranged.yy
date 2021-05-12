@@ -1,246 +1,110 @@
 {
-    "id": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-    "modelName": "GMSprite",
-    "mvc": "1.12",
-    "name": "spr_enemy_fighter_light_ranged",
-    "For3D": false,
-    "HTile": false,
-    "VTile": false,
-    "bbox_bottom": 31,
-    "bbox_left": 0,
-    "bbox_right": 31,
-    "bbox_top": 0,
-    "bboxmode": 0,
-    "colkind": 1,
-    "coltolerance": 0,
-    "edgeFiltering": false,
-    "frames": [
-        {
-            "id": "7606f421-5265-49fa-8495-82440c624dc4",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "6f2e6bb4-96a8-4121-a1ae-00270aaa78bb",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "7606f421-5265-49fa-8495-82440c624dc4",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "ad9e0bd9-6f27-4bf0-ac56-25080a0a56b1",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "7606f421-5265-49fa-8495-82440c624dc4",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "d0a51aa2-2f87-43b8-a557-68f3f26cc119",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "9b272441-32c7-45cc-a61c-3d9a6bc330b0",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "d0a51aa2-2f87-43b8-a557-68f3f26cc119",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "2c4ca729-b2ca-482f-a2f3-0ad27a361bf7",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "d0a51aa2-2f87-43b8-a557-68f3f26cc119",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "0bd2d20f-9683-45ec-8b17-71403f30519c",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "7067c603-ae01-4502-a896-ee3388239373",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "0bd2d20f-9683-45ec-8b17-71403f30519c",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "07f38820-6f1e-439c-b698-3d20b79d8e33",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "0bd2d20f-9683-45ec-8b17-71403f30519c",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "11bcb778-3581-4c13-b91a-128732d1aebe",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "af13b112-7b14-40ea-b109-66ce4902810f",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "11bcb778-3581-4c13-b91a-128732d1aebe",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "70b90180-8ca2-42fc-8c7e-ac72fccf7e2b",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "11bcb778-3581-4c13-b91a-128732d1aebe",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "56c7b1c2-c597-41c5-918d-305bdd4bf826",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "51c55347-d6b3-4ece-9caf-c590973dfe79",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "56c7b1c2-c597-41c5-918d-305bdd4bf826",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "2a2b2d8f-4673-4926-a8e7-e7612b978f35",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "56c7b1c2-c597-41c5-918d-305bdd4bf826",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "f7c722e8-9e7c-4f74-99c5-fd9f883bcf66",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "ef65fc91-b5a7-4690-a16e-ea4626b9efef",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "f7c722e8-9e7c-4f74-99c5-fd9f883bcf66",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "012f5729-2518-49e1-8164-fef62c7320f3",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "f7c722e8-9e7c-4f74-99c5-fd9f883bcf66",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "0d6240b5-78d9-4476-bb95-f0768dbb9597",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "5f38b3ab-8b9c-4100-8ae5-bdf6d4c14aa3",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "0d6240b5-78d9-4476-bb95-f0768dbb9597",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "d57f6dfd-4f6b-4576-ae13-76c13ebd2dee",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "0d6240b5-78d9-4476-bb95-f0768dbb9597",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "9f9bbf1b-0c30-4cca-a18f-35b583c15d6e",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "7e7cd8e7-530f-4f26-9c83-86372f516ed0",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "9f9bbf1b-0c30-4cca-a18f-35b583c15d6e",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "134bbce8-d381-4655-9393-625b9a19a2d2",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "9f9bbf1b-0c30-4cca-a18f-35b583c15d6e",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        },
-        {
-            "id": "2593248a-7603-4c60-9053-db84031b4e68",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "compositeImage": {
-                "id": "da8e8727-a2e1-4585-8b2d-c9bb32bdc802",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "2593248a-7603-4c60-9053-db84031b4e68",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "ea884d03-c8ef-4f3a-a804-76d4f81971e2",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "2593248a-7603-4c60-9053-db84031b4e68",
-                    "LayerId": "4cc46369-31c8-468a-b3ed-e5b768e99ff8"
-                }
-            ]
-        }
-    ],
-    "gridX": 0,
-    "gridY": 0,
-    "height": 32,
-    "layers": [
-        {
-            "id": "4cc46369-31c8-468a-b3ed-e5b768e99ff8",
-            "modelName": "GMImageLayer",
-            "mvc": "1.0",
-            "SpriteId": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "blendMode": 0,
-            "isLocked": false,
-            "name": "default",
-            "opacity": 100,
-            "visible": true
-        }
-    ],
-    "origin": 4,
-    "originLocked": false,
-    "playbackSpeed": 15,
+  "bboxMode": 0,
+  "collisionKind": 1,
+  "type": 0,
+  "origin": 4,
+  "preMultiplyAlpha": false,
+  "edgeFiltering": false,
+  "collisionTolerance": 0,
+  "swfPrecision": 2.525,
+  "bbox_left": 0,
+  "bbox_right": 31,
+  "bbox_top": 0,
+  "bbox_bottom": 31,
+  "HTile": false,
+  "VTile": false,
+  "For3D": false,
+  "width": 32,
+  "height": 32,
+  "textureGroupId": {
+    "name": "Default",
+    "path": "texturegroups/Default",
+  },
+  "swatchColours": null,
+  "gridX": 0,
+  "gridY": 0,
+  "frames": [
+    {"compositeImage":{"FrameId":{"name":"7606f421-5265-49fa-8495-82440c624dc4","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"7606f421-5265-49fa-8495-82440c624dc4","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"7606f421-5265-49fa-8495-82440c624dc4","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"d0a51aa2-2f87-43b8-a557-68f3f26cc119","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"d0a51aa2-2f87-43b8-a557-68f3f26cc119","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"d0a51aa2-2f87-43b8-a557-68f3f26cc119","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"0bd2d20f-9683-45ec-8b17-71403f30519c","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"0bd2d20f-9683-45ec-8b17-71403f30519c","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"0bd2d20f-9683-45ec-8b17-71403f30519c","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"11bcb778-3581-4c13-b91a-128732d1aebe","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"11bcb778-3581-4c13-b91a-128732d1aebe","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"11bcb778-3581-4c13-b91a-128732d1aebe","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"56c7b1c2-c597-41c5-918d-305bdd4bf826","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"56c7b1c2-c597-41c5-918d-305bdd4bf826","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"56c7b1c2-c597-41c5-918d-305bdd4bf826","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f7c722e8-9e7c-4f74-99c5-fd9f883bcf66","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f7c722e8-9e7c-4f74-99c5-fd9f883bcf66","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"f7c722e8-9e7c-4f74-99c5-fd9f883bcf66","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"0d6240b5-78d9-4476-bb95-f0768dbb9597","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"0d6240b5-78d9-4476-bb95-f0768dbb9597","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"0d6240b5-78d9-4476-bb95-f0768dbb9597","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9f9bbf1b-0c30-4cca-a18f-35b583c15d6e","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9f9bbf1b-0c30-4cca-a18f-35b583c15d6e","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"9f9bbf1b-0c30-4cca-a18f-35b583c15d6e","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"2593248a-7603-4c60-9053-db84031b4e68","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"2593248a-7603-4c60-9053-db84031b4e68","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"LayerId":{"name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","name":"2593248a-7603-4c60-9053-db84031b4e68","tags":[],"resourceType":"GMSpriteFrame",},
+  ],
+  "sequence": {
+    "spriteId": {"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},
+    "timeUnits": 1,
+    "playback": 1,
+    "playbackSpeed": 15.0,
     "playbackSpeedType": 0,
-    "premultiplyAlpha": false,
-    "sepmasks": false,
-    "swatchColours": null,
-    "swfPrecision": 2.525,
-    "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f",
-    "type": 0,
-    "width": 32,
-    "xorig": 16,
-    "yorig": 16
+    "autoRecord": true,
+    "volume": 1.0,
+    "length": 9.0,
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
+    "tracks": [
+      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"efca5a00-b901-49bd-99fd-919b7fba78e2","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"7606f421-5265-49fa-8495-82440c624dc4","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"0356cd2a-c004-4465-acb1-090adfb82e75","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"d0a51aa2-2f87-43b8-a557-68f3f26cc119","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"379efe16-c1fe-404e-9ac8-9699c2852219","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0bd2d20f-9683-45ec-8b17-71403f30519c","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"f354dc87-faea-45c9-80e4-2db078c6bb27","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"11bcb778-3581-4c13-b91a-128732d1aebe","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"1e1ea81e-891e-4a05-9295-bd70a5a97090","Key":4.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"56c7b1c2-c597-41c5-918d-305bdd4bf826","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"275da571-011f-48ac-a780-5465cf0faca0","Key":5.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f7c722e8-9e7c-4f74-99c5-fd9f883bcf66","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"0ff490ed-a374-49e5-9307-c06d548ce810","Key":6.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0d6240b5-78d9-4476-bb95-f0768dbb9597","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"5209e871-0cd5-44b7-bfad-a4802c84d6a6","Key":7.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9f9bbf1b-0c30-4cca-a18f-35b583c15d6e","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"f4ba1945-428f-4dff-8a92-79c64d1da560","Key":8.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2593248a-7603-4c60-9053-db84031b4e68","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
+    ],
+    "visibleRange": {"x":0.0,"y":0.0,},
+    "lockOrigin": false,
+    "showBackdrop": true,
+    "showBackdropImage": false,
+    "backdropImagePath": "",
+    "backdropImageOpacity": 0.5,
+    "backdropWidth": 1920,
+    "backdropHeight": 1080,
+    "backdropXOffset": 0.0,
+    "backdropYOffset": 0.0,
+    "xorigin": 16,
+    "yorigin": 16,
+    "eventToFunction": {},
+    "eventStubScript": null,
+    "parent": {"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},
+    "resourceVersion": "1.3",
+    "name": "",
+    "tags": [],
+    "resourceType": "GMSequence",
+  },
+  "layers": [
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"4cc46369-31c8-468a-b3ed-e5b768e99ff8","tags":[],"resourceType":"GMImageLayer",},
+  ],
+  "parent": {
+    "name": "grp_fighter",
+    "path": "folders/Sprites/grp_enemy/grp_fighter.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spr_enemy_fighter_light_ranged",
+  "tags": [],
+  "resourceType": "GMSprite",
 }

@@ -110,7 +110,7 @@ if !is_undefined(owner) {
 						if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
 							// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 							for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
-								if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
+								if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self.id {
 									row_to_delete_ = i;
 								}
 							}
@@ -206,7 +206,7 @@ if !is_undefined(owner) {
 						if ds_list_size(obj_combat_controller.playerHitboxList) > 1 {
 							// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 							for (i = 0; i <= ds_list_size(obj_combat_controller.playerHitboxList) - 1; i++) {
-								if ds_list_find_value(obj_combat_controller.playerHitboxList, i) == self {
+								if ds_list_find_value(obj_combat_controller.playerHitboxList, i) == self.id {
 									row_to_delete_ = i;
 								}
 							}
@@ -345,7 +345,7 @@ if !is_undefined(owner) {
 	else {
 		// Here I'm checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
 		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
-		if variable_instance_exists(self, "enemyHitboxValue") {
+		if variable_instance_exists(self.id, "enemyHitboxValue") {
 			// Actually destroy the bullet object
 			var i, row_to_delete_;
 			row_to_delete_ = -1;
@@ -358,7 +358,7 @@ if !is_undefined(owner) {
 					if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
 						// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 						for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
-							if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
+							if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self.id {
 								row_to_delete_ = i;
 							}
 						}
@@ -398,7 +398,7 @@ if !is_undefined(owner) {
 		}
 		// Here I'm checking to determine whether the hitbox was fired by an enemy or the player by checking whether the
 		// "value" variable is named "enemyHitboxValue" or "playerHitboxValue".
-		else if variable_instance_exists(self, "playerHitboxValue") {
+		else if variable_instance_exists(self.id, "playerHitboxValue") {
 			// Actually destroy the bullet object
 			var i, row_to_delete_;
 			row_to_delete_ = -1;
@@ -411,7 +411,7 @@ if !is_undefined(owner) {
 					if ds_list_size(obj_combat_controller.playerHitboxList) > 1 {
 						// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 						for (i = 0; i <= ds_list_size(obj_combat_controller.playerHitboxList) - 1; i++) {
-							if ds_list_find_value(obj_combat_controller.playerHitboxList, i) == self {
+							if ds_list_find_value(obj_combat_controller.playerHitboxList, i) == self.id {
 								row_to_delete_ = i;
 							}
 						}
@@ -466,7 +466,7 @@ else {
 			if ds_list_size(obj_combat_controller.enemyHitboxList) > 1 {
 				// Here I'm setting the local variable "i" to the obj_hitbox ID that just hit the player
 				for (i = 0; i <= ds_list_size(obj_combat_controller.enemyHitboxList) - 1; i++) {
-					if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self {
+					if ds_list_find_value(obj_combat_controller.enemyHitboxList, i) == self.id {
 						row_to_delete_ = i;
 					}
 				}

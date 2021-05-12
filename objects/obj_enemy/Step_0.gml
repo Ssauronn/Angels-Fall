@@ -1,6 +1,6 @@
 /// @description Change Variables
-#region if instance_exists(self) {
-if instance_exists(self) {
+#region if instance_exists(self.id) {
+if instance_exists(self.id) {
 #endregion
 // Initialize variables if stats, sprite table, and scripts using have not yet been set
 if !enemyStatsAndSpritesInitialized {
@@ -58,7 +58,7 @@ var path_exists_ = scr_path_exists_to_player_or_minions();
 if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_player_or_minions())) && (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 	if ds_exists(objectIDsInBattle, ds_type_list) {
 		// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
-		if ds_list_find_index(objectIDsInBattle, self) == -1 {
+		if ds_list_find_index(objectIDsInBattle, self.id) == -1 {
 			/* 
 			If the object hasn't already been detected, reset the decision making variable 
 			decisionMadeForTargetAndAction so that the object can make a combat decision immediately
@@ -75,7 +75,7 @@ if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_play
 				}
 			}
 			// Add this object's ID to the list of objects in battle (objectIDsInBattle)
-			ds_list_add(objectIDsInBattle, self);
+			ds_list_add(objectIDsInBattle, self.id);
 			/*
 			The next if/else statement checks for the combatFriendlyStatus (whether the object is an enemy
 			or friend to the player) and then adjusts the correct variable depending on the object's 
@@ -120,7 +120,7 @@ if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_play
 		if combatFriendlyStatus == "Enemy" {
 			decisionMadeForTargetAndAction = false;
 			objectIDsInBattle = ds_list_create();
-			ds_list_add(objectIDsInBattle, self);
+			ds_list_add(objectIDsInBattle, self.id);
 			switch (objectArchetype) {
 				case "Healer": enemyHealersInBattle += 1;
 					currentTargetToHeal = noone;
@@ -138,7 +138,7 @@ if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_play
 	// then create a ds_list meant for tracking just minions outside of combat (objectIDsFollowingPlayer)
 	if (combatFriendlyStatus == "Minion") && (!ds_exists(objectIDsInBattle, ds_type_list)) && (rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 		if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
-			if ds_list_find_index(objectIDsFollowingPlayer, self) == -1 {
+			if ds_list_find_index(objectIDsFollowingPlayer, self.id) == -1 {
 				/* 
 				If the object hasn't already been detected, reset the decision making variable 
 				decisionMadeForTargetAndAction so that the object can make a combat decision immediately
@@ -155,7 +155,7 @@ if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_play
 					}
 				}
 				// Add itself's ID to the list of objects following the player
-				ds_list_add(objectIDsFollowingPlayer, self);
+				ds_list_add(objectIDsFollowingPlayer, self.id);
 			}
 		}
 		// Create the ds_list objectIDsFollowingPlayer if it doesn't already exist and add the object's information to the ds_list
@@ -163,7 +163,7 @@ if ((path_exists_ || path_exists_ == noone) || (scr_line_of_sight_exists_to_play
 			// As long as this object hasn't already been added to the list, add its information
 			decisionMadeForTargetAndAction = false;
 			objectIDsFollowingPlayer = ds_list_create();
-			ds_list_add(objectIDsFollowingPlayer, self);
+			ds_list_add(objectIDsFollowingPlayer, self.id);
 			if objectArchetype == "Healer" {
 				currentTargetToHeal = noone;
 			}
@@ -196,7 +196,7 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 		if ds_exists(objectIDsInBattle, ds_type_list) {
 			// If the instance is in combat and inside the combat list, then remove it from the combat
 			// list.
-			if (ds_list_find_index(objectIDsInBattle, self) != -1) {
+			if (ds_list_find_index(objectIDsInBattle, self.id) != -1) {
 				// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
 				// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first). And, reset
 				// the targets for any instance that had this specific instance as its target.
@@ -206,10 +206,10 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 						if instance_to_reference_.enemyState != enemystates.moveWithinAttackRange {
 							instance_to_reference_.decisionMadeForTargetAndAction = false;
 						}
-						if instance_to_reference_.currentTargetToFocus == self {
+						if instance_to_reference_.currentTargetToFocus == self.id {
 							instance_to_reference_.currentTargetToFocus = noone;
 						}
-						if instance_to_reference_.currentTargetToHeal == self {
+						if instance_to_reference_.currentTargetToHeal == self.id {
 							instance_to_reference_.currentTargetToHeal = noone;
 						}
 					}
@@ -229,7 +229,7 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 					enemyRangedDPSInBattle = 0;
 				}
 				else {
-					ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+					ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self.id));
 				}
 				if combatFriendlyStatus == "Enemy" {
 					switch (objectArchetype) {
@@ -292,7 +292,7 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 		else if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
 			// If this instance is a minion that was following the player, and its still in the list
 			// of minions following the player, remove it from that list.
-			if ds_list_find_index(objectIDsFollowingPlayer, self) != -1 {
+			if ds_list_find_index(objectIDsFollowingPlayer, self.id) != -1 {
 				// Set every instance that wasn't destroyed/left the tether area to make a new decision
 				for (j = 0; j <= ds_list_size(objectIDsFollowingPlayer) - 1; j++) {
 					instance_to_reference_ = ds_list_find_value(objectIDsFollowingPlayer, j);
@@ -305,7 +305,7 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 					objectIDsFollowingPlayer = noone;
 				}
 				else {
-					ds_list_delete(objectIDsFollowingPlayer, ds_list_find_index(objectIDsFollowingPlayer, self));
+					ds_list_delete(objectIDsFollowingPlayer, ds_list_find_index(objectIDsFollowingPlayer, self.id));
 				}
 			}
 		}
@@ -396,7 +396,7 @@ if instance_exists(obj_player) {
 				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 					temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
 					if instance_exists(temporary_instance_to_reference_) {
-						if (temporary_instance_to_reference_.combatFriendlyStatus == "Enemy") && (temporary_instance_to_reference_ != self) {
+						if (temporary_instance_to_reference_.combatFriendlyStatus == "Enemy") && (temporary_instance_to_reference_ != self.id) {
 							enemyTotalAlliesInBattle += 1;
 						}
 					}
@@ -407,7 +407,7 @@ if instance_exists(obj_player) {
 				for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 					temporary_instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
 					if instance_exists(temporary_instance_to_reference_) {
-						if (temporary_instance_to_reference_.combatFriendlyStatus == "Minion") && (temporary_instance_to_reference_ != self) {
+						if (temporary_instance_to_reference_.combatFriendlyStatus == "Minion") && (temporary_instance_to_reference_ != self.id) {
 							minionTotalAlliesInBattle += 1;
 						}
 					}
@@ -511,13 +511,13 @@ if objectArchetype == "" {
 	show_debug_message(string(selfCurrentHPPercentForHealAllyEngineTotalWeight) + " = selfCurrentHPPercentForHealAllyEngineTotalWeight");
 	show_debug_message("Total Heal Ally Engine Weight AFTER Multiplier = " + string(healAllyEngineTotalWeight));
 	show_debug_message("- BREAK -");
-	show_debug_message("And " + string(self) + "'s target is: " + string(currentTargetToFocus));
+	show_debug_message("And " + string(self.id) + "'s target is: " + string(currentTargetToFocus));
 	show_debug_message("- BREAK -");
 	show_debug_message("");
 }
 
 
-#region if instance_exists(self) { // closing brackets
+#region if instance_exists(self.id) { // closing brackets
 }
 #endregion
 

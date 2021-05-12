@@ -4,7 +4,7 @@ if enemyHitByPlayer {
 	comboCounterTimer = comboCounterTimerStartTime;
 	enemyHitByPlayer = false;
 }
-// If the combo timer runs out, or the player collects on the combo early, then reset variables, add to the player's
+// If the combo timer runs out, or the player collects on the combo early, then reset varables, add to the player's
 // Max HP, and add to the player's current HP
 if (comboCounterTimer < 0) || (obj_player.key_animecro_collect) {
 	// Reset combo variables
@@ -566,7 +566,7 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 	var i;
 	for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 		with ds_list_find_value(objectIDsInBattle, i) {
-			if variable_instance_exists(self, "slowEnemyTimeWithParryTimer") {
+			if variable_instance_exists(self.id, "slowEnemyTimeWithParryTimer") {
 				if slowEnemyTimeWithParryTimer > 0 {
 					slowEnemyTimeWithParryTimer -= 1;
 				}
@@ -578,7 +578,7 @@ if ds_exists(objectIDsInBattle, ds_type_list) {
 // ---ELIMINATE (DE)BUFFS---
 if instance_exists(obj_enemy) {
 	with obj_enemy {
-		if variable_instance_exists(self, "slowEnemyTimeWithParryTimer") {
+		if variable_instance_exists(self.id, "slowEnemyTimeWithParryTimer") {
 			if slowEnemyTimeWithParryTimer > 0 {
 				slowEnemyTimeWithParryActive = true;
 			}

@@ -1,8 +1,12 @@
 {
-    "id": "00cf991f-e280-405b-ac85-b56d9147b3c4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_glinting_blade_single",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_diabolus_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_diabolus_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_glinting_blade_single",
+  "tags": [],
+  "resourceType": "GMScript",
 }

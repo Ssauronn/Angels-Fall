@@ -1,8 +1,12 @@
 {
-    "id": "3b3f9e5a-6a21-4acf-8884-cc7a699fa0fd",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_attack2",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_basic_attacks",
+    "path": "folders/Scripts/grp_player_states/grp_basic_attacks.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_attack2",
+  "tags": [],
+  "resourceType": "GMScript",
 }

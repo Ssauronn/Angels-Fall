@@ -1,8 +1,12 @@
 {
-    "id": "c6985fd9-02a6-4c07-9fc3-44823621e628",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_hellish_landscape",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_diabolus_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_diabolus_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_hellish_landscape",
+  "tags": [],
+  "resourceType": "GMScript",
 }

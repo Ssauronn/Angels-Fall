@@ -55,11 +55,11 @@ if instance_exists(obj_player) {
 		var self_is_closest_basic_ = true;
 		var self_is_closest_dialogue_ = true;
 		var self_is_closest_menu_ = true;
-		var self_ = self;
+		var self_ = self.id;
 		with obj_interact {
 			// Make sure this specific object is the closest to player. If it isn't, then make sure only the
 			// closest interactable object runs the interactable code
-			if (self_ != self) && (point_distance(self_.x, self_.y, player_.x, player_.y) > point_distance(self.x, self.y, player_.x, player_.y)) {
+			if (self_ != self.id) && (point_distance(self_.x, self_.y, player_.x, player_.y) > point_distance(self.x, self.y, player_.x, player_.y)) {
 				if self_.interactableOpensDialogue {
 					if self.interactableOpensDialogue {
 						self_is_closest_dialogue_ = false;

@@ -1,8 +1,12 @@
 {
-    "id": "db7ff497-0dff-4e5a-8d85-47d04e189290",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_tank_light_melee",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_tank_attacks",
+    "path": "folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_tank_attacks.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_tank_light_melee",
+  "tags": [],
+  "resourceType": "GMScript",
 }

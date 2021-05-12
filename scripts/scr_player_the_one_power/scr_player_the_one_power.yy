@@ -1,8 +1,12 @@
 {
-    "id": "617b58e4-c274-4f0a-9698-8ba41497043a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_the_one_power",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_caelesti_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_caelesti_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_the_one_power",
+  "tags": [],
+  "resourceType": "GMScript",
 }

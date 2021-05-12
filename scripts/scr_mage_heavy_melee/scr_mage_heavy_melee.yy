@@ -1,8 +1,12 @@
 {
-    "id": "9bd697a2-c1de-4f04-884f-5fd90679e66a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_mage_heavy_melee",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_mage_attacks",
+    "path": "folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_mage_attacks.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_mage_heavy_melee",
+  "tags": [],
+  "resourceType": "GMScript",
 }

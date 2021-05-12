@@ -1,8 +1,12 @@
 {
-    "id": "d3d1a75a-790a-4fe3-992a-38c57023b9a4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_rushdown",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_diabolus_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_diabolus_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_rushdown",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "f589efc0-e9c7-4ce1-ac73-086377476634",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_healer_light_ranged",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_healer_attacks",
+    "path": "folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_healer_attacks.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_healer_light_ranged",
+  "tags": [],
+  "resourceType": "GMScript",
 }

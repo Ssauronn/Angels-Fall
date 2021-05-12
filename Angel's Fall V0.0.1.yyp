@@ -1,2746 +1,359 @@
 {
-    "id": "2872963f-8e7c-4c11-8d23-89c1de91ca44",
-    "modelName": "GMProject",
-    "mvc": "1.0",
-    "IsDnDProject": false,
-    "configs": [
-        
-    ],
-    "option_ecma": false,
-    "parentProject": {
-        "id": "f42f3173-382a-41db-864e-9c45fafe627d",
-        "modelName": "GMProjectParent",
-        "mvc": "1.0",
-        "alteredResources": [
-            {
-                "Key": "ed6a955d-5826-4f98-a450-10b414266c27",
-                "Value": {
-                    "configDeltas": [
-                        "inherited"
-                    ],
-                    "id": "f9270eb4-4c2c-4086-bef9-17969e63c0be",
-                    "resourcePath": "options\\main\\options_main.yy",
-                    "resourceType": "GMMainOptions"
-                }
-            }
-        ],
-        "hiddenResources": [
-            
-        ],
-        "projectPath": "${base_project}"
-    },
-    "resources": [
-        {
-            "Key": "00cf991f-e280-405b-ac85-b56d9147b3c4",
-            "Value": {
-                "id": "fe7d6621-016a-41ec-b74a-bffb27525e16",
-                "resourcePath": "scripts\\scr_player_glinting_blade_single\\scr_player_glinting_blade_single.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "01031304-9863-421a-8bd4-7481de161a78",
-            "Value": {
-                "id": "a9ed8513-00c3-4da5-8229-988cd7f1dbcf",
-                "resourcePath": "sprites\\spr_player_attack_left_2\\spr_player_attack_left_2.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "0220e1df-4862-4e94-9c9e-25916c498b13",
-            "Value": {
-                "id": "a28a5dbb-6692-4aec-b72f-5808774012a6",
-                "resourcePath": "sprites\\spr_enemy_healer_light_ranged\\spr_enemy_healer_light_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "032e7f80-1faa-44df-8555-2d9eabd55ec9",
-            "Value": {
-                "id": "c48aeb3e-bcf9-4b4d-9d6f-5016a01377ae",
-                "resourcePath": "scripts\\scr_player_parry_ready\\scr_player_parry_ready.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "034c3d9a-30a7-4c39-8bf0-4151526ce236",
-            "Value": {
-                "id": "f9e63b8a-bf33-4bc4-b98a-05aa01947548",
-                "resourcePath": "views\\034c3d9a-30a7-4c39-8bf0-4151526ce236.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "03a18385-b2a6-4f0d-aaf9-243e85de3fcb",
-            "Value": {
-                "id": "285db70d-087a-4549-a1d6-98a0b1891dac",
-                "resourcePath": "scripts\\scr_player_taken_for_pain\\scr_player_taken_for_pain.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "03e213b2-73e5-46f8-9b38-fda7a9d47896",
-            "Value": {
-                "id": "8b1ddf78-6e5b-40cb-8bed-b51e1f9ab003",
-                "resourcePath": "scripts\\scr_tank_heavy_ranged\\scr_tank_heavy_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "04bed1a4-6d09-41ce-b258-80e89af5607e",
-            "Value": {
-                "id": "e61015e5-1d28-4f02-bab0-3c609610d04c",
-                "resourcePath": "sprites\\spr_player_attack_left_4\\spr_player_attack_left_4.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "05c08fe1-67d3-4723-a130-2af0534e016b",
-            "Value": {
-                "id": "d89c3186-cd79-4e88-8fab-4e5ea855aa6e",
-                "resourcePath": "views\\05c08fe1-67d3-4723-a130-2af0534e016b.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "069f1f17-6cd5-4554-a9c0-a43bf140ba59",
-            "Value": {
-                "id": "1222ac84-797b-41ee-b046-2ff367369651",
-                "resourcePath": "views\\069f1f17-6cd5-4554-a9c0-a43bf140ba59.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "06c78b3a-a566-4cc3-99c4-256c76bed58e",
-            "Value": {
-                "id": "605b06e9-3d0c-4e26-8feb-c009d6b5bf08",
-                "resourcePath": "scripts\\apply_damage_and_healing\\apply_damage_and_healing.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "06e41520-6a21-4faf-9b31-aa686660170b",
-            "Value": {
-                "id": "5ea77e46-b7a2-4de1-a1ed-27dfff7a57ec",
-                "resourcePath": "views\\06e41520-6a21-4faf-9b31-aa686660170b.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "0736d820-4b6e-4eeb-9ffb-89c9dfb095dd",
-            "Value": {
-                "id": "6eaaa8b8-cf77-4da3-a2ab-d2aa4b1096ca",
-                "resourcePath": "sprites\\spr_player_dash_right\\spr_player_dash_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "075f5161-a633-471b-b819-9f766ea38dd0",
-            "Value": {
-                "id": "10274ca8-9932-4eb1-9f25-8a7d85fe0456",
-                "resourcePath": "scripts\\scr_interactables_managing\\scr_interactables_managing.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "07c1614d-ad7a-467b-b49c-9c066ebbeea4",
-            "Value": {
-                "id": "03f7d3d3-8f62-4773-9704-3a8d4ace79c4",
-                "resourcePath": "scripts\\scr_player_idle\\scr_player_idle.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "08c922b0-b9b1-4c60-961f-a62c0953099a",
-            "Value": {
-                "id": "7c2b6ea5-ae36-4053-acbb-f63d2ac98982",
-                "resourcePath": "sprites\\spr_enemy_mage_light_melee\\spr_enemy_mage_light_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "08cb37e9-603b-4367-bafb-819c7b2f7b86",
-            "Value": {
-                "id": "71122f27-8b74-44ce-8938-305e23aea39f",
-                "resourcePath": "scripts\\scr_fighter_light_melee\\scr_fighter_light_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "0aeaa3f9-5fc4-4d3c-a376-a00470bb0202",
-            "Value": {
-                "id": "f81b1518-4c3b-42ea-baf9-8a01eb798741",
-                "resourcePath": "views\\0aeaa3f9-5fc4-4d3c-a376-a00470bb0202.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "0afe9e54-0cd8-4513-b949-893ed4b3cae9",
-            "Value": {
-                "id": "e65d51a3-ab0a-4911-9a6a-877ae6a28350",
-                "resourcePath": "scripts\\round_to_n_multiple\\round_to_n_multiple.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "0bb6aea3-7aa2-46bc-81f9-b30097d23ed4",
-            "Value": {
-                "id": "7c01a2ec-cb70-46c8-b800-332d082623d0",
-                "resourcePath": "sprites\\spr_wall\\spr_wall.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "0bc826e4-5ecf-498f-bf57-509a3aae48fc",
-            "Value": {
-                "id": "8874fa3d-d081-467d-93d9-d6d22e38c441",
-                "resourcePath": "views\\0bc826e4-5ecf-498f-bf57-509a3aae48fc.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "0cf7e55c-2623-4446-8c4e-f88d5f81f07a",
-            "Value": {
-                "id": "c34f63d9-b37a-40b9-86ec-bb748704e8f8",
-                "resourcePath": "scripts\\scr_player_angelic_barrage\\scr_player_angelic_barrage.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "0d9f349b-b7d7-42fb-bc17-3accf756d35d",
-            "Value": {
-                "id": "5e2fb32e-b843-449d-929d-2f9229715925",
-                "resourcePath": "scripts\\obtain_direction\\obtain_direction.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "0daf6df1-a402-47fa-a8c6-860cde71b0c2",
-            "Value": {
-                "id": "440e05ad-b566-4628-a2c5-334e31b13aa4",
-                "resourcePath": "views\\0daf6df1-a402-47fa-a8c6-860cde71b0c2.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "0db76d87-343a-4136-b2ca-a95aac3efe59",
-            "Value": {
-                "id": "9ee8d6b0-99d1-471a-9004-9cf2944bad01",
-                "resourcePath": "views\\0db76d87-343a-4136-b2ca-a95aac3efe59.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "0ec28b29-0f35-4462-a4ed-bfac8d5cf2cb",
-            "Value": {
-                "id": "4e0193ea-319f-4ca5-9e0b-86ff0a951456",
-                "resourcePath": "scripts\\scr_player_ritual_of_death\\scr_player_ritual_of_death.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "0f82db21-18b2-432d-ad47-6a81a4278c8b",
-            "Value": {
-                "id": "8fbdb612-c2f8-45d6-8d56-67ba97956248",
-                "resourcePath": "scripts\\scr_player_all_out_attack\\scr_player_all_out_attack.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "11776d3d-1e32-47fe-8c5d-c65584bf4bc4",
-            "Value": {
-                "id": "7e23cb76-e17d-47b4-bc17-8f7990f02496",
-                "resourcePath": "sprites\\spr_whirlwind_hitbox\\spr_whirlwind_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "12348e03-c08a-49e2-8e22-948338e3e570",
-            "Value": {
-                "id": "91cc2c8f-f5aa-46c9-8103-bdfb86b2d1b5",
-                "resourcePath": "objects\\obj_movement_grid\\obj_movement_grid.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "13190248-d68f-464e-a9b2-55b9b6ed5721",
-            "Value": {
-                "id": "f0d68774-11a8-4a2a-a3b6-e4f9beaf86b4",
-                "resourcePath": "sprites\\spr_fling_staff_left\\spr_fling_staff_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "15529526-3211-4f1c-ad24-d7b1fcecc8f7",
-            "Value": {
-                "id": "f5a57017-d09a-43cc-8704-f5be2f87e7f1",
-                "resourcePath": "sprites\\spr_player_parry_ready_left\\spr_player_parry_ready_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "15540ead-a7d6-4c18-a35e-3acdb6a9c595",
-            "Value": {
-                "id": "335e1051-cc6f-49b5-b4c8-a460caeeeafd",
-                "resourcePath": "sprites\\spr_aoe_damage\\spr_aoe_damage.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "15c383b9-f04b-40c1-b210-7942b383a3d6",
-            "Value": {
-                "id": "dc1b3d26-b25f-4ac3-a20c-de9b7597f33c",
-                "resourcePath": "sprites\\spr_player_attack_up_2\\spr_player_attack_up_2.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "163462fe-c483-4e91-a40f-cf91897c3fcb",
-            "Value": {
-                "id": "9f1f31e3-c7f1-4457-a6f4-bacfb6fe6a9b",
-                "resourcePath": "objects\\obj_menu_manager\\obj_menu_manager.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "1c1b7c61-e452-4156-b690-53097275246d",
-            "Value": {
-                "id": "64aa14ee-fce7-4130-93c2-97651adf3996",
-                "resourcePath": "scripts\\scr_track_player_stats\\scr_track_player_stats.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "1c9adf63-9ea5-4ee7-a3fd-38294859478d",
-            "Value": {
-                "id": "ef2d46ba-3060-4e0b-9a39-0d710b0b8ffc",
-                "resourcePath": "sprites\\spr_player_attack_right_5\\spr_player_attack_right_5.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "1d70259f-29e9-4faa-ab72-7e30db958082",
-            "Value": {
-                "id": "ab7da9b3-7fc4-4c9a-8051-b31aee175f40",
-                "resourcePath": "sprites\\spr_single_hit\\spr_single_hit.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "1eadb1b5-6a65-420c-a69c-ed6a13360887",
-            "Value": {
-                "id": "82b973b6-22b0-4309-af21-439014b9695e",
-                "resourcePath": "sprites\\spr_ability_attack_up\\spr_ability_attack_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "20d46ef1-8baa-43a0-8d8b-c6f49440ccc7",
-            "Value": {
-                "id": "3c3465a1-653a-4805-8f31-3df8305d7dd2",
-                "resourcePath": "sprites\\spr_player_attack_down_4\\spr_player_attack_down_4.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "21ddc1fa-92ef-48b6-8279-a984718984c6",
-            "Value": {
-                "id": "584cd203-b931-41d0-adf0-8e727d6bddd2",
-                "resourcePath": "scripts\\scr_line_of_sight_exists\\scr_line_of_sight_exists.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "21ff2673-8c35-4820-8b1f-7fd35c5079db",
-            "Value": {
-                "id": "422ff734-35c7-4c10-9bc1-70555655f17e",
-                "resourcePath": "sprites\\spr_enemy_tank_idle\\spr_enemy_tank_idle.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "22f3b9a8-750c-4c2e-8e4f-5ec42c62d62e",
-            "Value": {
-                "id": "97fcc473-29dc-4f30-94ca-a3869f351afa",
-                "resourcePath": "views\\22f3b9a8-750c-4c2e-8e4f-5ec42c62d62e.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "259a747f-747e-4483-bc97-707c172aa422",
-            "Value": {
-                "id": "15effa7a-ad72-4aa9-aa52-2fa1638257e6",
-                "resourcePath": "views\\259a747f-747e-4483-bc97-707c172aa422.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "25aa4de2-81fc-40e8-8e94-3302fceaffc0",
-            "Value": {
-                "id": "b45b9b99-94bf-4b4c-871d-1f9910d0a097",
-                "resourcePath": "sprites\\spr_ready_up_right\\spr_ready_up_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "27c9135d-e686-446c-8f2d-58b544d8a201",
-            "Value": {
-                "id": "326c3003-fe41-40af-bcc9-f41f6d2bfb9d",
-                "resourcePath": "sprites\\spr_player_attack_left_3\\spr_player_attack_left_3.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "283cdbe0-b02d-4133-bba8-8b34f6f443b8",
-            "Value": {
-                "id": "c7c3697e-3a9a-4879-a50d-9fa5c92d0aae",
-                "resourcePath": "objects\\obj_camera_display_manager\\obj_camera_display_manager.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "28fc3355-4b6b-44cf-8861-00086fb0f420",
-            "Value": {
-                "id": "06aecb2f-b861-4e0d-bb6b-e2a21b5aa198",
-                "resourcePath": "views\\28fc3355-4b6b-44cf-8861-00086fb0f420.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "293a5161-a3c4-447e-b066-cda1b7ef8725",
-            "Value": {
-                "id": "ce4e52aa-3476-4dc3-beca-f77dd44d0bca",
-                "resourcePath": "sprites\\spr_power_up_right\\spr_power_up_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2953c573-55ac-4b30-8864-5664d5c24d4e",
-            "Value": {
-                "id": "90197f23-6b26-4a78-b352-406bc438875d",
-                "resourcePath": "views\\2953c573-55ac-4b30-8864-5664d5c24d4e.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "29cff32c-ec80-4296-957a-4d3cd625934f",
-            "Value": {
-                "id": "24aa0a62-dc0f-4c68-8415-cb45cc9717f3",
-                "resourcePath": "sprites\\spr_player_attack_down_3\\spr_player_attack_down_3.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2bcbb92d-d033-4513-b07d-cc3d50e451a4",
-            "Value": {
-                "id": "8274628a-5d81-4f53-a5ea-ca1a029b730f",
-                "resourcePath": "scripts\\scr_player_run\\scr_player_run.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2bd2be53-6c16-405f-ae03-0332acbc046a",
-            "Value": {
-                "id": "290df19e-8f55-4ccf-9494-829611c23117",
-                "resourcePath": "sprites\\spr_diabolus_blast_hitbox\\spr_diabolus_blast_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2cf098b8-9b09-469a-a213-8d208f392c86",
-            "Value": {
-                "id": "ee1ff28b-9302-4c19-aada-7b073b7e45f0",
-                "resourcePath": "sprites\\spr_enemy_healer_run\\spr_enemy_healer_run.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2d044e9f-1924-480f-8815-b55c5262492b",
-            "Value": {
-                "id": "20f68bd7-84ec-43a7-a96e-814e3aabc175",
-                "resourcePath": "sprites\\spr_enemy_tank_light_ranged\\spr_enemy_tank_light_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2d0bd8e0-861a-4025-926c-eb4b13d43365",
-            "Value": {
-                "id": "29af031c-085d-4dd4-8916-ff55936f1355",
-                "resourcePath": "sprites\\spr_player_run_right\\spr_player_run_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2d82ea1b-5523-4fe4-a7cb-b94a581e2b39",
-            "Value": {
-                "id": "8fd69aa7-09dc-40b2-b9ce-1a347315b52c",
-                "resourcePath": "scripts\\scr_path_exists_to_player_or_minions\\scr_path_exists_to_player_or_minions.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2e05b39e-ac67-433e-ac0d-ba65264810da",
-            "Value": {
-                "id": "bc18ee9c-2969-429a-9ef3-e23c1aa761c6",
-                "resourcePath": "views\\2e05b39e-ac67-433e-ac0d-ba65264810da.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "2ea8594a-3f19-478c-b8a1-c27ae5d52d18",
-            "Value": {
-                "id": "dee48dde-19b1-4079-940e-336f1b63cc9a",
-                "resourcePath": "sprites\\spr_player_skillshot_magic_down\\spr_player_skillshot_magic_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2ed0218a-cee0-4265-b3cc-e5eba01a3434",
-            "Value": {
-                "id": "3cd48c4e-eb6e-497f-b207-8dbb05f6ad73",
-                "resourcePath": "scripts\\scr_track_enemy_buffs_and_debuffs\\scr_track_enemy_buffs_and_debuffs.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2f025f61-5d31-4cee-af6e-c61b006b9d56",
-            "Value": {
-                "id": "bdd84060-fb86-4897-9f42-fee324cf7e69",
-                "resourcePath": "scripts\\scr_track_enemy_stats\\scr_track_enemy_stats.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2f979162-a229-4964-81b9-eb31946888be",
-            "Value": {
-                "id": "da1e8ebf-d2cd-4c61-8d6e-c6833b0a1b0d",
-                "resourcePath": "views\\2f979162-a229-4964-81b9-eb31946888be.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "31572666-9579-48ed-9aa3-3b6e60abd7bf",
-            "Value": {
-                "id": "ff354aa2-1e7b-417f-ba0c-b54d90beb28d",
-                "resourcePath": "scripts\\scr_player_attack4\\scr_player_attack4.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "31baee43-ad54-464e-a86a-79f75d05a7f9",
-            "Value": {
-                "id": "ac5c3a79-88cd-44a2-92df-e8db12d86971",
-                "resourcePath": "sprites\\spr_player_attack_right_3\\spr_player_attack_right_3.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "321dd82f-589f-4348-b5ab-d7cc7fe5ea15",
-            "Value": {
-                "id": "b488e102-c4ea-427c-bf10-c7c7bfb0aae5",
-                "resourcePath": "sprites\\spr_death_incarnate_standing_down\\spr_death_incarnate_standing_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "32c96bee-1e63-4774-bd73-c05970df5fa8",
-            "Value": {
-                "id": "35f86117-f580-4586-a730-dcdcb9e4fc80",
-                "resourcePath": "sprites\\spr_enemy_fighter_idle\\spr_enemy_fighter_idle.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "32f220cf-e0a5-4e87-b133-51411d40fa74",
-            "Value": {
-                "id": "15f8977b-9556-4652-ace4-318bb6ee034b",
-                "resourcePath": "sprites\\spr_aoe_heal\\spr_aoe_heal.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "33357c95-b240-42a1-a73a-0b164625ce7e",
-            "Value": {
-                "id": "c3de8f01-c959-4904-9895-1e5e9d0eb06f",
-                "resourcePath": "scripts\\scr_line_of_sight_exists_to_player_or_minions\\scr_line_of_sight_exists_to_player_or_minions.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "338ca8a8-4224-4541-a304-02168f0afe99",
-            "Value": {
-                "id": "6df65c20-4245-42a2-b7d2-9abab4e37cf4",
-                "resourcePath": "sprites\\spr_fling_staff_up\\spr_fling_staff_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "344900ea-64e3-49ed-bd7a-9e886e244a10",
-            "Value": {
-                "id": "741cbc3f-2f9b-4c2d-bda4-27f59cb3fb7a",
-                "resourcePath": "sprites\\spr_player_attack_right_2\\spr_player_attack_right_2.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "36860504-d5ce-4d85-b5d0-33ee434ea554",
-            "Value": {
-                "id": "32b7f51f-1d85-4df3-9b71-87de597fad2d",
-                "resourcePath": "scripts\\scr_interactables_with_no_menu\\scr_interactables_with_no_menu.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "37333b3e-6e48-4b89-99e5-25a6b578de8f",
-            "Value": {
-                "id": "66db0595-4608-4fdb-a0c9-5ee10eba5874",
-                "resourcePath": "scripts\\scr_stunned\\scr_stunned.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3998c64b-98a7-4698-9b5a-c0d192e07585",
-            "Value": {
-                "id": "4894924c-9288-42fe-b50b-71979a461b47",
-                "resourcePath": "scripts\\teleport_to_nearest_empty_location\\teleport_to_nearest_empty_location.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3a0d0a5e-92d6-46d9-bd37-ada2f8254a6f",
-            "Value": {
-                "id": "49a773b3-1d4d-4255-a91e-173b0e1ff2d5",
-                "resourcePath": "sprites\\spr_player_skillshot_magic_up\\spr_player_skillshot_magic_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "3a2eebd2-dead-4ced-8160-168e9bac2d58",
-            "Value": {
-                "id": "0dd7630a-d9b9-4067-b571-2345691b7ce3",
-                "resourcePath": "views\\3a2eebd2-dead-4ced-8160-168e9bac2d58.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "3a58c3d5-d503-4a2c-8629-0d744fa5e564",
-            "Value": {
-                "id": "cb44a978-02bf-419e-ad1a-d2870be83d4a",
-                "resourcePath": "views\\3a58c3d5-d503-4a2c-8629-0d744fa5e564.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "3acb5b9c-6047-49ca-8a1f-0e8d54968745",
-            "Value": {
-                "id": "dde48a78-c73e-4773-a9d3-e73a914e2420",
-                "resourcePath": "views\\3acb5b9c-6047-49ca-8a1f-0e8d54968745.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "3b3f9e5a-6a21-4acf-8884-cc7a699fa0fd",
-            "Value": {
-                "id": "b412bc40-cad1-421b-926e-908db7a362bb",
-                "resourcePath": "scripts\\scr_player_attack2\\scr_player_attack2.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3b97cee1-9935-4acf-89be-84b7a07a5fde",
-            "Value": {
-                "id": "000da5fd-4b15-4f84-afac-72e2721f7dad",
-                "resourcePath": "rooms\\room0\\room0.yy",
-                "resourceType": "GMRoom"
-            }
-        },
-        {
-            "Key": "3bee0e72-198b-45d8-8bc0-feade1e9b9f1",
-            "Value": {
-                "id": "b5bc2230-66d7-46f4-8313-77e5b2c135c6",
-                "resourcePath": "views\\3bee0e72-198b-45d8-8bc0-feade1e9b9f1.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "3c884d6d-28c2-4ba8-8e3a-219ea10b68ab",
-            "Value": {
-                "id": "2e48903c-f385-47a9-935b-3656f5a23bc5",
-                "resourcePath": "sprites\\spr_ground_slam_staff_down\\spr_ground_slam_staff_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "3d094b82-0ff8-435f-956c-a3365019e3f3",
-            "Value": {
-                "id": "b2911409-5f4c-46b8-9289-9a1efba5ad29",
-                "resourcePath": "scripts\\scr_enemy_idle\\scr_enemy_idle.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3d2cc270-7166-479c-b122-2eb2720189b1",
-            "Value": {
-                "id": "a0ea2208-1084-43a4-8993-f18634857299",
-                "resourcePath": "scripts\\scr_mage_light_melee\\scr_mage_light_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3e9b5d32-9746-41af-bb6e-bf1192ec2455",
-            "Value": {
-                "id": "ad883794-4297-4bdf-bd71-5a24ac406f3b",
-                "resourcePath": "scripts\\scr_player_lightning_spear\\scr_player_lightning_spear.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3f1e367b-e7c2-46f7-8314-a31c8315714e",
-            "Value": {
-                "id": "cf9cd16c-e44a-45c0-bdc1-1fba2095aa20",
-                "resourcePath": "objects\\obj_ground_hurtbox\\obj_ground_hurtbox.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "3fcc16de-fcba-4a17-a0af-6a14653ac8f4",
-            "Value": {
-                "id": "39cc9408-71ff-4def-8bd2-8b7f3ed5df95",
-                "resourcePath": "scripts\\scr_fighter_heavy_melee\\scr_fighter_heavy_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "406b935f-d20e-4f2c-a853-d1cecb1c9ce5",
-            "Value": {
-                "id": "2ae92b6f-028d-4d19-979c-8b8ef8bd3233",
-                "resourcePath": "sprites\\spr_enemy_mage_heavy_melee\\spr_enemy_mage_heavy_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4178cf28-a9db-463e-9764-7d7506e3bb44",
-            "Value": {
-                "id": "b8ea367f-3e19-4c8f-8127-784cdea39ff4",
-                "resourcePath": "objects\\obj_camera_follow_LEGACY\\obj_camera_follow_LEGACY.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "42b5e716-b959-42e0-a0f7-32327a948e2e",
-            "Value": {
-                "id": "0d2264c7-d8f1-41f7-91a0-26e26493f9dc",
-                "resourcePath": "views\\42b5e716-b959-42e0-a0f7-32327a948e2e.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "44bc70ce-cec3-41b2-800f-eb016425f069",
-            "Value": {
-                "id": "fbfe1a04-2d94-4867-9e87-705895f0178d",
-                "resourcePath": "scripts\\execute_attacks\\execute_attacks.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "44cb17a3-2225-44f0-bce1-4ac47a170959",
-            "Value": {
-                "id": "3f4fcc1f-7933-48bc-8590-d72cc7ae0026",
-                "resourcePath": "sprites\\spr_death_incarnate_dashing_down\\spr_death_incarnate_dashing_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "45be81d5-fd48-4ba4-9985-418afe3466ff",
-            "Value": {
-                "id": "00e4a0f9-1e51-4963-b24f-654b6009755b",
-                "resourcePath": "scripts\\scr_player_dinner_is_served\\scr_player_dinner_is_served.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "460c1219-d115-45da-b316-afe17e2b60c4",
-            "Value": {
-                "id": "8747fd60-448a-4a1e-a74f-60542d1523a4",
-                "resourcePath": "scripts\\move_movement_entity\\move_movement_entity.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "46cb30cf-c6b7-433f-bd23-672f9de461d9",
-            "Value": {
-                "id": "3eae302e-941f-4834-9565-9ec863c8926c",
-                "resourcePath": "sprites\\spr_enemy_mage_stunned\\spr_enemy_mage_stunned.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "475ef9f1-f1a9-47c9-9c09-6baa9ccd9126",
-            "Value": {
-                "id": "b85f7386-c490-4d73-a54d-c69b853d8bdd",
-                "resourcePath": "scripts\\scr_player_attack1\\scr_player_attack1.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "483c89bf-2479-4a6e-bb7e-0089f6c08172",
-            "Value": {
-                "id": "7a7ed33b-7d94-4e77-9a1c-c6945503a180",
-                "resourcePath": "scripts\\scr_line_of_sight_exists_to_valid_target\\scr_line_of_sight_exists_to_valid_target.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "4b3bfd73-0ced-466e-ae58-c3232e76fd75",
-            "Value": {
-                "id": "cf7d120d-57d5-485d-a52e-8c6a5ab0be92",
-                "resourcePath": "rooms\\initialization_room\\initialization_room.yy",
-                "resourceType": "GMRoom"
-            }
-        },
-        {
-            "Key": "4b9220de-2c08-4359-aa56-4a990cee0ca9",
-            "Value": {
-                "id": "c6531611-5385-4e43-a0fc-fc4d17aed50a",
-                "resourcePath": "sprites\\spr_power_up_down\\spr_power_up_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4bc01b92-cfe3-480f-81d4-46d2c4358b52",
-            "Value": {
-                "id": "02719687-85cf-4454-9462-bb1556691fda",
-                "resourcePath": "sprites\\spr_player_attack_up_1\\spr_player_attack_up_1.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4bf227ab-4234-42cb-b46b-8fe73bc9ecb6",
-            "Value": {
-                "id": "db434a2e-b6a2-4b4a-a3b2-65af074ac586",
-                "resourcePath": "sprites\\spr_player_bullet_hitbox\\spr_player_bullet_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4c16427b-3995-4c8e-b9eb-3d0a74f6b54b",
-            "Value": {
-                "id": "05b5a541-2387-44aa-bc0c-eb2964b49c8f",
-                "resourcePath": "scripts\\approach_number\\approach_number.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "4c4d08ff-8c1f-49a3-8ac8-68a7595570c5",
-            "Value": {
-                "id": "16703988-1f7f-49f2-8164-bad5e864bfeb",
-                "resourcePath": "sprites\\spr_player_idle_down\\spr_player_idle_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4c524fec-2be4-4249-a1f2-573d938ddc67",
-            "Value": {
-                "id": "cf9a1d21-3291-45f1-a776-d12fa46d542b",
-                "resourcePath": "objects\\obj_hurtbox\\obj_hurtbox.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "4c592577-24e5-4c16-bcc6-fb6d83f8028e",
-            "Value": {
-                "id": "7ed7b2a3-fab8-41e5-b88c-2a75f22073a7",
-                "resourcePath": "sprites\\spr_player_parry_ready_down\\spr_player_parry_ready_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4d124360-3953-489c-b292-cda716cee4f2",
-            "Value": {
-                "id": "4586376d-91a6-43e7-a504-373ca842d506",
-                "resourcePath": "sprites\\spr_death_incarnate_walking_up\\spr_death_incarnate_walking_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4dc9c204-c89a-4c96-85d1-9719d43a6fe3",
-            "Value": {
-                "id": "0f015ceb-ba37-4941-b5cc-8b37589a79a4",
-                "resourcePath": "sprites\\spr_player_dash_up\\spr_player_dash_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4e2453ea-d397-41b2-8eb4-9028c9d44086",
-            "Value": {
-                "id": "acf00f0e-4f87-42be-8e51-b201e7a186ae",
-                "resourcePath": "sprites\\spr_player_attack_left_1\\spr_player_attack_left_1.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "515a605f-4861-4e92-aaca-3fb0be39f960",
-            "Value": {
-                "id": "eade57b8-2a09-4e4f-b045-50bb9da13450",
-                "resourcePath": "sprites\\spr_player_parry_effect_right\\spr_player_parry_effect_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "51617e9d-8b8f-41d0-9ef7-194a2d659c8e",
-            "Value": {
-                "id": "b38f40fa-f0d3-4dad-99de-7e2d06224e57",
-                "resourcePath": "views\\51617e9d-8b8f-41d0-9ef7-194a2d659c8e.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "517e6c62-b243-4ed3-989c-cbe6c31b57bf",
-            "Value": {
-                "id": "7d0f7e2c-98d3-474c-a1d8-821e8672e550",
-                "resourcePath": "views\\517e6c62-b243-4ed3-989c-cbe6c31b57bf.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "52346423-e54a-43c7-8630-a2a382e7c600",
-            "Value": {
-                "id": "e4418437-b153-4c50-8673-9d7b2242fd65",
-                "resourcePath": "views\\52346423-e54a-43c7-8630-a2a382e7c600.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "52c29719-1690-4401-bc83-e082cc82a2d9",
-            "Value": {
-                "id": "efcfe2d0-ce30-4b1b-836a-20cad9d2b661",
-                "resourcePath": "sprites\\spr_enemy_fighter_heavy_melee\\spr_enemy_fighter_heavy_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "5646c7f1-06a6-4cd3-9e59-81d052fc1561",
-            "Value": {
-                "id": "7bf4ba9d-6336-47f2-b7f9-de1c1faa4ee9",
-                "resourcePath": "scripts\\scr_player_ritual_of_imperfection\\scr_player_ritual_of_imperfection.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "Value": {
-                "id": "a0967cbd-4ca1-41ca-91ff-5accf4a1dab7",
-                "resourcePath": "sprites\\spr_enemy_healer_light_melee\\spr_enemy_healer_light_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "590b5786-6754-4390-9d72-8ee292bcabd0",
-            "Value": {
-                "id": "7165b77d-a43b-4fe3-a8af-0971bfbdd4e2",
-                "resourcePath": "scripts\\scr_player_diabolus_blast\\scr_player_diabolus_blast.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "5b302184-2037-40d3-aadd-37feb2aafcb3",
-            "Value": {
-                "id": "fcac67ac-4bfa-47fb-8d36-3a583f45b5a6",
-                "resourcePath": "objects\\obj_hitbox\\obj_hitbox.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "5b39f0c8-38ad-4124-98c8-574aeb8515e9",
-            "Value": {
-                "id": "0e2214e2-48d8-421b-823f-4054a2f3b239",
-                "resourcePath": "objects\\obj_dead_body\\obj_dead_body.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "5b613181-4b23-48d5-a113-49c4f3c87c0f",
-            "Value": {
-                "id": "63719571-f728-4221-921a-2b02a5a21c44",
-                "resourcePath": "objects\\obj_wall\\obj_wall.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "5beb1b64-b2d3-4e8f-9161-6c38e54e4853",
-            "Value": {
-                "id": "00bb0291-7277-4166-860b-0e497fc8ebae",
-                "resourcePath": "sprites\\spr_player_attack_right_1\\spr_player_attack_right_1.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "5c40be0e-d923-4f9a-bbf4-2d7e9146f0ce",
-            "Value": {
-                "id": "6e83e30b-0839-44d6-aab6-d447c361e751",
-                "resourcePath": "sprites\\spr_player_idle_up\\spr_player_idle_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "5c8e3964-a770-47a3-b96b-7513c6aa7cd7",
-            "Value": {
-                "id": "b2f259a8-28c1-40f2-b0a5-d7c9dbb16260",
-                "resourcePath": "scripts\\draw_ring_healthbar\\draw_ring_healthbar.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "5d2785a0-4781-4983-8654-7e7d04253ab4",
-            "Value": {
-                "id": "fc3745fb-8e71-4f79-8c1c-eff79ced91a6",
-                "resourcePath": "sprites\\spr_ability_attack_left\\spr_ability_attack_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "5e597871-dde9-49ed-a82c-9f773f75ba5e",
-            "Value": {
-                "id": "b66224de-60c5-4fb5-a5ff-6d2da21dce43",
-                "resourcePath": "views\\5e597871-dde9-49ed-a82c-9f773f75ba5e.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "5f422b16-976c-4902-8fa8-a8bb3cb96b2c",
-            "Value": {
-                "id": "13bba525-387a-4234-aba8-32851d00c84e",
-                "resourcePath": "sprites\\spr_player_skillshot_magic_left\\spr_player_skillshot_magic_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "5f5fb537-3cc7-484a-be7b-ab60d25eecb7",
-            "Value": {
-                "id": "3f8ae050-e8a6-4072-a3c9-f38eff6b9858",
-                "resourcePath": "sprites\\spr_death_incarnate_dashing_up\\spr_death_incarnate_dashing_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "602da417-15a6-4b36-8652-caf4c746e444",
-            "Value": {
-                "id": "7b222d17-58f4-45f0-9d59-991c6f01362c",
-                "resourcePath": "scripts\\scr_player_attack5\\scr_player_attack5.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "60330a08-a44d-4656-8f95-5212f6d854db",
-            "Value": {
-                "id": "c531130d-90b3-407c-8df7-0ab77a46ce1d",
-                "resourcePath": "views\\60330a08-a44d-4656-8f95-5212f6d854db.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "60cfebae-8e67-4806-96d2-3353d3ac5dcd",
-            "Value": {
-                "id": "3c984395-6956-486c-a15a-cb0f0b45fbf8",
-                "resourcePath": "views\\60cfebae-8e67-4806-96d2-3353d3ac5dcd.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "616e0860-7ade-425c-8f62-78729ce7bf5d",
-            "Value": {
-                "id": "e305f25e-e411-42bc-aebc-098079174adf",
-                "resourcePath": "views\\616e0860-7ade-425c-8f62-78729ce7bf5d.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "617b58e4-c274-4f0a-9698-8ba41497043a",
-            "Value": {
-                "id": "0f07bca5-f213-43da-874a-b90dd4618b04",
-                "resourcePath": "scripts\\scr_player_the_one_power\\scr_player_the_one_power.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "6336f3cb-d656-4da1-be83-799cb554927c",
-            "Value": {
-                "id": "2a58faf5-544a-4c07-8469-f7223e56f806",
-                "resourcePath": "sprites\\spr_player_attack_right_4\\spr_player_attack_right_4.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "64fb211a-7aa2-4b8d-a56b-874908145a9d",
-            "Value": {
-                "id": "316b5b8d-f20c-4cfc-be60-d6fe226cc4c2",
-                "resourcePath": "sprites\\spr_player_run_left\\spr_player_run_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "65580bdb-7a49-4be5-b66a-7c0ed12f2ef5",
-            "Value": {
-                "id": "75e2dfcc-9029-41de-a79b-021c1b9bd8ca",
-                "resourcePath": "views\\65580bdb-7a49-4be5-b66a-7c0ed12f2ef5.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "694a68c3-7098-4f9d-9935-c8ea069bedba",
-            "Value": {
-                "id": "71d10921-a37d-466c-a786-25ca2bdfb898",
-                "resourcePath": "views\\694a68c3-7098-4f9d-9935-c8ea069bedba.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "6a125783-e227-4267-aa2b-7c31300e396d",
-            "Value": {
-                "id": "f8027240-34e4-4689-b2c1-bf25f614f8b5",
-                "resourcePath": "views\\6a125783-e227-4267-aa2b-7c31300e396d.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "6acf0c5c-b2f8-4007-ae80-7c7783a68e58",
-            "Value": {
-                "id": "4bf3d4f1-8cdc-41b5-a3f0-5b1dcff793d6",
-                "resourcePath": "sprites\\spr_enemy_fighter_light_melee\\spr_enemy_fighter_light_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "6c58a4b3-090b-447e-a960-5f67d9f5f310",
-            "Value": {
-                "id": "22d403dc-4e5d-4fce-93b1-f4e08b32a6fe",
-                "resourcePath": "sprites\\spr_fling_staff_right\\spr_fling_staff_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "6d06f7c2-977f-4e94-a0a1-a455090f34d2",
-            "Value": {
-                "id": "28556b24-0020-4afc-8c79-f059a2118add",
-                "resourcePath": "scripts\\scr_player_attack3\\scr_player_attack3.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "6d11da08-a18d-4c44-8075-b188d114fbe4",
-            "Value": {
-                "id": "7505d374-e87f-49ca-8d91-981e32834fb2",
-                "resourcePath": "views\\6d11da08-a18d-4c44-8075-b188d114fbe4.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "6f976a8c-f08f-40b7-af22-affcc4b27b0a",
-            "Value": {
-                "id": "3008d3fa-f625-4db8-970d-fda9b2e7c392",
-                "resourcePath": "sprites\\spr_player_attack_right_hitbox\\spr_player_attack_right_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "705eb0fe-f876-4955-a16a-24ab38eb29df",
-            "Value": {
-                "id": "d95fb8ef-6a22-4933-bac3-cbfd8b2d1b3a",
-                "resourcePath": "views\\705eb0fe-f876-4955-a16a-24ab38eb29df.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "71f67c6e-e097-4287-9a1a-93867e2e1d73",
-            "Value": {
-                "id": "90e2c7f6-4a5e-46bb-9deb-dbbca96bb3fe",
-                "resourcePath": "scripts\\scr_determine_direction_facing\\scr_determine_direction_facing.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "7207a0af-b6c8-43d1-b6cb-a0d8e33da8e5",
-            "Value": {
-                "id": "587f0d22-fe70-4b7f-bac5-c7fec295d5c2",
-                "resourcePath": "sprites\\spr_player_run_up\\spr_player_run_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "72b2abef-186d-45cf-905d-1bd7d08596bc",
-            "Value": {
-                "id": "239ff2fc-aea7-423e-8b56-2418433c131b",
-                "resourcePath": "scripts\\send_player_to_ability_state\\send_player_to_ability_state.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "73660ea7-2e71-47e4-9ca4-ccfafc1b8827",
-            "Value": {
-                "id": "7c0276fe-e5f7-45af-91f5-32359a96f43c",
-                "resourcePath": "sprites\\spr_enemy_tank_heavy_melee\\spr_enemy_tank_heavy_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "739c76ce-5381-488c-b894-70432b6cef7c",
-            "Value": {
-                "id": "0aa4925b-f0e8-4904-9a80-d63066dd3e48",
-                "resourcePath": "sprites\\spr_fling_staff_down\\spr_fling_staff_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "749ace49-a317-4651-95f5-7e3c7270d6ea",
-            "Value": {
-                "id": "eb9eb7c8-46cd-48b1-b77c-311efc5ed087",
-                "resourcePath": "sprites\\spr_player_dash_down\\spr_player_dash_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "74b075f8-ff75-4d22-b0bb-02d00538d8ee",
-            "Value": {
-                "id": "d5141a66-8b17-4867-b752-895690a576ba",
-                "resourcePath": "sprites\\spr_enemy_mage_idle\\spr_enemy_mage_idle.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "74d6a336-614b-4a02-b806-f29cc55e8896",
-            "Value": {
-                "id": "536f0fc8-a680-4ec8-bca0-a49fc773934e",
-                "resourcePath": "views\\74d6a336-614b-4a02-b806-f29cc55e8896.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "7573461a-232f-4c58-a418-8aeb5510c936",
-            "Value": {
-                "id": "76975f61-30e2-4573-b800-59376c3e69f4",
-                "resourcePath": "scripts\\set_movement_variables\\set_movement_variables.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "75f6c853-c34c-46b6-92bb-c6826095e349",
-            "Value": {
-                "id": "516ee24c-ace0-4bec-b462-420c32031569",
-                "resourcePath": "scripts\\scr_interactables_with_menu\\scr_interactables_with_menu.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "76844e61-7966-4cb9-bb9f-c7cf55310aa3",
-            "Value": {
-                "id": "bc699da2-47a9-4faa-be94-2d68e293b5f8",
-                "resourcePath": "views\\76844e61-7966-4cb9-bb9f-c7cf55310aa3.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "771bb317-e0e4-4fdb-b56a-5913d8970d4c",
-            "Value": {
-                "id": "a47d7bb7-fa0f-4353-8976-fbdbde15c587",
-                "resourcePath": "views\\771bb317-e0e4-4fdb-b56a-5913d8970d4c.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "77475bf3-d486-43e4-aca6-4d8430b92cb7",
-            "Value": {
-                "id": "5579db31-165c-4b2a-af70-29de4552603f",
-                "resourcePath": "sprites\\spr_enemy_healer_heal_ally\\spr_enemy_healer_heal_ally.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "77c60c7d-0dac-45d6-8cec-1804e600a686",
-            "Value": {
-                "id": "ade4b290-5df7-4c30-b0d4-097a12ba817a",
-                "resourcePath": "scripts\\scr_player_glinting_blade_aoe\\scr_player_glinting_blade_aoe.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "78030025-4cb3-4df5-a0b2-fd15cd4a39e2",
-            "Value": {
-                "id": "c66ca94a-fadf-4cf9-aba5-c4bc425284c2",
-                "resourcePath": "scripts\\scr_player_purifying_rage\\scr_player_purifying_rage.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "78ab8403-aa88-49ff-b4a3-d713287e4701",
-            "Value": {
-                "id": "53a441ec-f8a8-4ac5-aba1-15020c505816",
-                "resourcePath": "views\\78ab8403-aa88-49ff-b4a3-d713287e4701.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "79579f9e-c59f-4b55-8106-e1276cfafca6",
-            "Value": {
-                "id": "a82a472e-7105-4985-8892-f87d62ada6c4",
-                "resourcePath": "scripts\\scr_ai_decisions\\scr_ai_decisions.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "7afe6d7f-d636-46ad-90f4-9b52c2eb2a83",
-            "Value": {
-                "id": "a6025617-d317-4e2c-a9be-d56906a07b1b",
-                "resourcePath": "sprites\\spr_player_attack_up_3\\spr_player_attack_up_3.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "7c04a3ae-1ca0-4428-a879-29babf5044d6",
-            "Value": {
-                "id": "bd86c75e-fe53-48db-878b-0e83086dbc6b",
-                "resourcePath": "objects\\obj_player\\obj_player.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "7ca6414d-96f3-4602-9899-07ff7de8a4c7",
-            "Value": {
-                "id": "dc558fea-eab9-45b6-911e-41909b8eef72",
-                "resourcePath": "sprites\\spr_player_attack_down_1\\spr_player_attack_down_1.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "7d1fb05f-319f-4e2a-a768-21901ed368be",
-            "Value": {
-                "id": "cfae03fe-e045-42ef-a8c6-98693d04ceab",
-                "resourcePath": "scripts\\add_movement\\add_movement.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "7f55bc27-445f-4427-95fe-de86a650c05f",
-            "Value": {
-                "id": "86ccff7c-a398-4ae4-8b37-6e922e3bad00",
-                "resourcePath": "objects\\obj_enemy\\obj_enemy.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "80118822-241e-4049-b1c3-bb56f8d413c4",
-            "Value": {
-                "id": "7ad60a3a-b6e9-4992-992f-f5466811bf82",
-                "resourcePath": "scripts\\scr_player_risk_of_life\\scr_player_risk_of_life.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "802e7ddd-8108-440a-89da-820a410ffe7f",
-            "Value": {
-                "id": "2fd84771-400a-4979-a49e-7a0508ae4b18",
-                "resourcePath": "scripts\\scr_player_wrath_of_the_repentant\\scr_player_wrath_of_the_repentant.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "805b570a-c276-4720-ba88-3c5186c48eab",
-            "Value": {
-                "id": "b34d632a-9f5e-41a9-a6c2-ab9e6a883027",
-                "resourcePath": "sprites\\spr_enemy_fighter_heavy_ranged\\spr_enemy_fighter_heavy_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "812abc64-0457-4438-9eaa-d19213011b5b",
-            "Value": {
-                "id": "cfafbc54-30cb-46ff-b26d-8b3c85f6709f",
-                "resourcePath": "sprites\\spr_ready_up_down\\spr_ready_up_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "82304a18-02a6-422e-96e4-7f6f3bc335f4",
-            "Value": {
-                "id": "fd05027c-d623-494b-8054-295c83ee2781",
-                "resourcePath": "scripts\\scr_fighter_light_ranged\\scr_fighter_light_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "836fce16-d2fe-4824-9759-5a98a9b57a1b",
-            "Value": {
-                "id": "baf8c56c-f5cf-4b4d-a56e-a6d2123529b3",
-                "resourcePath": "scripts\\scr_healer_heavy_melee\\scr_healer_heavy_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "856c5081-351f-4f19-b2a2-dabddd11ef01",
-            "Value": {
-                "id": "de2fa83f-6cc0-42b9-8dff-107aac2f5f11",
-                "resourcePath": "sprites\\spr_death_incarnate_walking_right\\spr_death_incarnate_walking_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "857db59f-80a0-4e0d-92cd-97240e6f2d0d",
-            "Value": {
-                "id": "f393d55a-66ef-4db5-acdb-c6dd2c47281b",
-                "resourcePath": "scripts\\draw_rectangle_healthbar\\draw_rectangle_healthbar.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "86739193-7487-4575-852a-9b161b887976",
-            "Value": {
-                "id": "58e4da65-166e-42d0-85e7-39ccc3a38d2c",
-                "resourcePath": "scripts\\scr_player_input\\scr_player_input.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "86cd9206-b0fb-41b9-b377-0ae585a42de0",
-            "Value": {
-                "id": "43447866-9a88-489e-9134-cca444aae220",
-                "resourcePath": "scripts\\scr_healer_heavy_ranged\\scr_healer_heavy_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "873e28c6-eb6c-4161-9228-52fb329724ee",
-            "Value": {
-                "id": "dd52be20-3314-4763-925a-d29cc0d9bd6f",
-                "resourcePath": "sprites\\spr_player_parry_ready_up\\spr_player_parry_ready_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "874c5605-d553-4813-b462-34d91b6d10e5",
-            "Value": {
-                "id": "076ec6b9-af78-4ada-a7b3-1fe639a8e750",
-                "resourcePath": "views\\874c5605-d553-4813-b462-34d91b6d10e5.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "87f36390-e970-4c10-9987-620c094c0b26",
-            "Value": {
-                "id": "9264f2c9-fad0-41e8-bec3-e7d406d9a889",
-                "resourcePath": "views\\87f36390-e970-4c10-9987-620c094c0b26.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "895fdde3-add8-4b97-8c21-aebc6a08d491",
-            "Value": {
-                "id": "29d1a087-45cc-4ae6-8461-b09d3ae93c39",
-                "resourcePath": "sprites\\spr_player_idle_left\\spr_player_idle_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "8bf77fe6-015f-4c52-ad60-a062286cc7e6",
-            "Value": {
-                "id": "2c1260dc-7826-4879-ae06-a844822d8693",
-                "resourcePath": "views\\8bf77fe6-015f-4c52-ad60-a062286cc7e6.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "8c545737-5732-4234-8155-40fe5bda92a5",
-            "Value": {
-                "id": "fa9f4bc7-4824-4248-86d3-87960f0d11c1",
-                "resourcePath": "scripts\\scr_healer_light_melee\\scr_healer_light_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "8cc80df8-0f2d-4af2-ab0e-d7ea5c0561df",
-            "Value": {
-                "id": "81d3fea9-555a-4b40-8ff4-11a96a0d7cbf",
-                "resourcePath": "sprites\\spr_death_incarnate_standing_up\\spr_death_incarnate_standing_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "8db8a339-d043-4b03-a28b-db1313dba03d",
-            "Value": {
-                "id": "7053d615-bc6a-45fb-acfe-9dc1aef919db",
-                "resourcePath": "views\\8db8a339-d043-4b03-a28b-db1313dba03d.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "8df73e5b-99bf-469c-b27e-5451225f951e",
-            "Value": {
-                "id": "652c12a6-f4c5-4f1e-b336-ce27178a616a",
-                "resourcePath": "sprites\\spr_chasm\\spr_chasm.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "8e12f3f3-de36-40cd-9c30-b55317f1801a",
-            "Value": {
-                "id": "0fda0882-c0dc-4503-90ca-6e71322da988",
-                "resourcePath": "sprites\\spr_player_parry_ready_right\\spr_player_parry_ready_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "8e886691-aef4-4cbd-8c6f-8b5880b9b2c8",
-            "Value": {
-                "id": "ece0b0a0-71bf-42c9-81cb-e08c979a4421",
-                "resourcePath": "sprites\\spr_enemy_fighter_stunned\\spr_enemy_fighter_stunned.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "8f3003fc-39a9-4b2c-abf5-a806dda2d2e2",
-            "Value": {
-                "id": "f6007762-b022-4323-ad6b-5ab1ec4a415d",
-                "resourcePath": "views\\8f3003fc-39a9-4b2c-abf5-a806dda2d2e2.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "8f6a6470-a579-49eb-988f-56c77b63117b",
-            "Value": {
-                "id": "3e9428c7-f8b4-4f99-9488-4d4b7a725de8",
-                "resourcePath": "scripts\\scr_mage_light_ranged\\scr_mage_light_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "915b9282-ee7c-482c-b3da-04c7e8869a8b",
-            "Value": {
-                "id": "f816fc77-a809-4409-90e3-819cf5d62b1c",
-                "resourcePath": "sprites\\test_tile\\test_tile.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "938087e6-dbf9-43c8-babe-c6c91f60a039",
-            "Value": {
-                "id": "e82f0d3f-e601-4127-a883-1b505a4b0de5",
-                "resourcePath": "sprites\\spr_enemy_tank_light_melee\\spr_enemy_tank_light_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "943383a9-62d9-4903-b22f-4343a71d7c85",
-            "Value": {
-                "id": "10ba0835-af27-4980-9819-f795a0214b3b",
-                "resourcePath": "sprites\\spr_player_dash_left\\spr_player_dash_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "944d50cb-bd61-4670-b8f9-0ce633dc59c5",
-            "Value": {
-                "id": "9eaed25c-8122-4b1e-b173-5599f8871a06",
-                "resourcePath": "views\\944d50cb-bd61-4670-b8f9-0ce633dc59c5.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "958157a2-8ab4-4738-b31b-146a3a0db740",
-            "Value": {
-                "id": "33b04ded-0de6-40b3-b209-1043dcae16a4",
-                "resourcePath": "sprites\\spr_player_attack_up_5\\spr_player_attack_up_5.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "95d9bd83-b8f7-4723-a300-c0f359c1cdc3",
-            "Value": {
-                "id": "da9000ef-8a29-4f2b-9623-b415144c1a70",
-                "resourcePath": "sprites\\spr_power_up_up\\spr_power_up_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "96042b70-3dc6-44e1-986f-ac726648a1e8",
-            "Value": {
-                "id": "3c46649f-63ca-4bf8-9d1c-02080d3ebf39",
-                "resourcePath": "scripts\\scr_player_exploit_weakness\\scr_player_exploit_weakness.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "9618cf1f-b489-4bd4-bb67-1a4cc28baf0d",
-            "Value": {
-                "id": "b7d7afc2-7499-4072-9bd5-d6a365503289",
-                "resourcePath": "scripts\\choose_player_ability_state\\choose_player_ability_state.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "961d2b9f-4144-449c-b388-01e0c112087f",
-            "Value": {
-                "id": "12332b43-1bd9-495c-840c-d5bbef2d6dfb",
-                "resourcePath": "views\\961d2b9f-4144-449c-b388-01e0c112087f.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "96574422-2150-4485-b261-6d45ad941f74",
-            "Value": {
-                "id": "ecc00868-0d0d-42fd-bbcf-2d4dff21e7d9",
-                "resourcePath": "views\\96574422-2150-4485-b261-6d45ad941f74.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "96c3ffe7-dbee-497f-8a74-140d271e705f",
-            "Value": {
-                "id": "6bc39d11-3da1-45e4-b119-decdba7c3466",
-                "resourcePath": "views\\96c3ffe7-dbee-497f-8a74-140d271e705f.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "98b0742f-f509-4575-8f6d-ca86584326ce",
-            "Value": {
-                "id": "a3a6b558-1912-4f0a-aeb8-53ed636ad561",
-                "resourcePath": "scripts\\scr_initialize_enemy_stats\\scr_initialize_enemy_stats.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "99ad9344-48cf-45ec-b588-e1a5866292fe",
-            "Value": {
-                "id": "12d84bc4-3af0-48ba-8d9e-42984b25ec67",
-                "resourcePath": "scripts\\scr_player_sickly_proposition\\scr_player_sickly_proposition.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "9bd697a2-c1de-4f04-884f-5fd90679e66a",
-            "Value": {
-                "id": "95d4515e-ca18-49c4-b522-7137a8273a88",
-                "resourcePath": "scripts\\scr_mage_heavy_melee\\scr_mage_heavy_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "9d62d813-4076-4e9f-94e8-d0822d1b20b5",
-            "Value": {
-                "id": "d0271024-0548-4179-bf7f-81025747396c",
-                "resourcePath": "sprites\\spr_enemy_bullet_hitbox\\spr_enemy_bullet_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "9e70da64-514a-43bd-bb6f-a39a16248974",
-            "Value": {
-                "id": "9239efed-7585-4e5f-9da6-3e1db9bcb048",
-                "resourcePath": "sprites\\spr_death_incarnate_standing_right\\spr_death_incarnate_standing_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "9f6baf49-d428-4019-abac-e734206b2064",
-            "Value": {
-                "id": "b206010d-0287-4d93-915f-85676f0ec54f",
-                "resourcePath": "scripts\\scr_player_armor_of_the_caelesti\\scr_player_armor_of_the_caelesti.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "9fa2cbd6-44b0-4b87-a737-0774e7bfafd1",
-            "Value": {
-                "id": "0dad9557-a33e-4b1e-9d69-053b00b467be",
-                "resourcePath": "views\\9fa2cbd6-44b0-4b87-a737-0774e7bfafd1.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "a089f0b4-c211-4906-bbf6-d92acc86d430",
-            "Value": {
-                "id": "51191731-2192-4576-9a82-46b17056f8f6",
-                "resourcePath": "views\\a089f0b4-c211-4906-bbf6-d92acc86d430.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "a1d69ce9-f34a-489f-b876-97f79829d1d2",
-            "Value": {
-                "id": "e660bbd3-ca8e-44a0-a212-e3c066e464f3",
-                "resourcePath": "tilesets\\tl_test_tile\\tl_test_tile.yy",
-                "resourceType": "GMTileSet"
-            }
-        },
-        {
-            "Key": "a21755c2-6dd9-46d5-934f-9dc4e13a0198",
-            "Value": {
-                "id": "55f4a470-229a-4415-a27f-77c758c1d69e",
-                "resourcePath": "sprites\\spr_death_incarnate_walking_left\\spr_death_incarnate_walking_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "a3067635-28de-430f-ae70-02534baa93e7",
-            "Value": {
-                "id": "f1bfd588-16b9-4ef9-aeaf-e6ddc7089f8f",
-                "resourcePath": "views\\a3067635-28de-430f-ae70-02534baa93e7.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "a3280395-dabd-44f7-8bda-319593ffdb4d",
-            "Value": {
-                "id": "d73cd658-a7a2-4b7b-ada5-342498917ea3",
-                "resourcePath": "scripts\\scr_player_parry_effect\\scr_player_parry_effect.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "a623d930-c173-4409-b8f2-b05f6e1126c1",
-            "Value": {
-                "id": "8a080111-ad36-4a9d-bdd1-4165c5ac4648",
-                "resourcePath": "sprites\\spr_death_incarnate_attack_down\\spr_death_incarnate_attack_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "a728ef46-0c50-4ba7-bd66-88c9a198e860",
-            "Value": {
-                "id": "bd50589f-4271-4531-91a7-1c4000d9010b",
-                "resourcePath": "objects\\obj_combat_controller\\obj_combat_controller.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "a777dbbd-f454-463e-86c0-9494cf9e3150",
-            "Value": {
-                "id": "b8cc7562-71c6-4738-97b7-0c0969fc8752",
-                "resourcePath": "views\\a777dbbd-f454-463e-86c0-9494cf9e3150.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "a8010a12-b0fc-4c53-8792-a87fd2466be8",
-            "Value": {
-                "id": "2f458ab1-f29d-4053-8bb4-4fe88d8e9e6e",
-                "resourcePath": "sprites\\spr_power_up_left\\spr_power_up_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
-            "Value": {
-                "id": "19f7a0fb-096b-45dd-8845-6bfd19046e45",
-                "resourcePath": "options\\linux\\options_linux.yy",
-                "resourceType": "GMLinuxOptions"
-            }
-        },
-        {
-            "Key": "a973c939-6b04-41f6-b282-5fff7deb5185",
-            "Value": {
-                "id": "31ca086f-6494-4fb5-a900-eb03aaf3f852",
-                "resourcePath": "views\\a973c939-6b04-41f6-b282-5fff7deb5185.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "a98d2566-56cd-463d-b8ba-9f8e991eaaf9",
-            "Value": {
-                "id": "4603ee88-f2cb-420f-b9fa-f860d6b7bd1b",
-                "resourcePath": "sprites\\spr_enemy_healer_idle\\spr_enemy_healer_idle.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "a9f16799-9234-4c2a-aabc-fe41eeb1a63d",
-            "Value": {
-                "id": "2cdc284a-f77a-4fe7-8af2-7483ade82978",
-                "resourcePath": "sprites\\spr_player_attack_up_4\\spr_player_attack_up_4.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "aad7dc75-99b0-4456-a2af-49f2ac544da1",
-            "Value": {
-                "id": "53352f7a-d48c-4cf9-8bae-e1b87b393232",
-                "resourcePath": "views\\aad7dc75-99b0-4456-a2af-49f2ac544da1.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "ac122cb6-7187-41ef-aa86-5591fccc14f4",
-            "Value": {
-                "id": "531ce00c-a262-48fc-be48-871466de6dc9",
-                "resourcePath": "scripts\\scr_player_dash\\scr_player_dash.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "adf13692-3331-4591-b379-20334b5057a8",
-            "Value": {
-                "id": "3425498c-2e29-46ca-9e45-8c99f8f69da9",
-                "resourcePath": "views\\adf13692-3331-4591-b379-20334b5057a8.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "b0fe1beb-9156-41ef-9815-d9d5fd590219",
-            "Value": {
-                "id": "496c6b0f-d0ac-4975-9f2e-7e3e2abcc2ab",
-                "resourcePath": "sprites\\spr_player_attack_down_2\\spr_player_attack_down_2.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "b2276200-fa50-4322-85b9-6394a7f03926",
-            "Value": {
-                "id": "07a8a531-60f4-4d19-8642-09cc84e6c442",
-                "resourcePath": "views\\b2276200-fa50-4322-85b9-6394a7f03926.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "b24f1e48-14a8-431c-950b-14ab6e762333",
-            "Value": {
-                "id": "e744ccce-8a90-4004-bf18-528e345caf1d",
-                "resourcePath": "scripts\\scr_move_within_attack_range\\scr_move_within_attack_range.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b38c0d45-490a-42d1-bff4-326ff2e4b8ba",
-            "Value": {
-                "id": "36f058b4-b20c-4045-b3de-f421125619e7",
-                "resourcePath": "scripts\\scr_player_bindings_of_the_caelesti\\scr_player_bindings_of_the_caelesti.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b5924c3d-a789-445b-b182-0212e6591496",
-            "Value": {
-                "id": "320ef0e1-4549-45f5-a551-44114339f473",
-                "resourcePath": "scripts\\apply_friction_to_movement_entity\\apply_friction_to_movement_entity.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b5e290ad-0f3a-48b5-9e2c-49adabc650f3",
-            "Value": {
-                "id": "19c1f8cc-432a-4f0a-9900-8eadb1b91cac",
-                "resourcePath": "sprites\\spr_enemy_mage_heavy_ranged\\spr_enemy_mage_heavy_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "b7c43555-097e-4fb3-8d28-8a2bfade1823",
-            "Value": {
-                "id": "f555217f-c7fd-427b-8af5-8879f0456c1e",
-                "resourcePath": "scripts\\scr_healer_heal_ally\\scr_healer_heal_ally.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-            "Value": {
-                "id": "13b3dd61-bcc9-48ba-9630-121a5f44e303",
-                "resourcePath": "sprites\\spr_enemy_fighter_run\\spr_enemy_fighter_run.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "b8c02cc6-e4de-4019-8c69-b75b20fb880d",
-            "Value": {
-                "id": "cc417e89-4f9d-4272-a77d-5dda1b7ea836",
-                "resourcePath": "sprites\\spr_glinting_blade_projectile\\spr_glinting_blade_projectile.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "b8d8dfdf-e37d-4bf6-b1e5-dc736e7f87c6",
-            "Value": {
-                "id": "79d38fa7-2a43-4270-9209-5300191b8f0a",
-                "resourcePath": "views\\b8d8dfdf-e37d-4bf6-b1e5-dc736e7f87c6.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "bb2ce1ad-6690-48d6-a0aa-d025657d9ef3",
-            "Value": {
-                "id": "766d2c32-b37a-49f4-91f2-ba2bb0277e81",
-                "resourcePath": "views\\bb2ce1ad-6690-48d6-a0aa-d025657d9ef3.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "bcc42ddc-66c8-4148-8f47-77da9a3da69c",
-            "Value": {
-                "id": "43081de0-2e59-4626-b243-619c9625e9c7",
-                "resourcePath": "objects\\obj_interact\\obj_interact.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "bcdcea7f-4109-40d4-9ddb-10aaca2adf99",
-            "Value": {
-                "id": "438ef160-d1d6-43cb-aa6d-7a420d3b47cd",
-                "resourcePath": "scripts\\scr_player_death_incarnate\\scr_player_death_incarnate.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "be7566a7-1a2e-48b6-ac75-3b8062144637",
-            "Value": {
-                "id": "694a2a58-578b-4002-84da-0d9e31d31007",
-                "resourcePath": "sprites\\spr_enemy_tank_run\\spr_enemy_tank_run.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "bea2f9f9-98df-4fee-8626-3937a9ba4f38",
-            "Value": {
-                "id": "ca1e9ba2-f6c8-4074-b8d1-045edcb63b34",
-                "resourcePath": "views\\bea2f9f9-98df-4fee-8626-3937a9ba4f38.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "bf85d7fa-b546-4fc6-babc-f8eb0c7e53c1",
-            "Value": {
-                "id": "b7910ab2-6205-4933-808b-fcd5f89eceb3",
-                "resourcePath": "scripts\\scr_fighter_heavy_ranged\\scr_fighter_heavy_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "bf987c3b-3b6d-43b2-a80a-7ce2a1e07742",
-            "Value": {
-                "id": "7a44e604-9874-445a-832e-9e9fd82cb0d8",
-                "resourcePath": "scripts\\scr_change_states\\scr_change_states.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "bfca8d96-8355-4bff-9075-e99f48619b48",
-            "Value": {
-                "id": "8226ee12-2c61-4e0e-b454-9f8a379fc7cf",
-                "resourcePath": "scripts\\scr_tank_heavy_melee\\scr_tank_heavy_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "c02e88a2-4842-47bf-b050-95233faf3746",
-            "Value": {
-                "id": "0d3156c4-6c3f-4254-b819-e4da14b6e4d3",
-                "resourcePath": "views\\c02e88a2-4842-47bf-b050-95233faf3746.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "c11419b3-1898-4b6d-aee8-2bc3f1d464b0",
-            "Value": {
-                "id": "3e410449-dcd7-4e0f-bb21-92c08b03658b",
-                "resourcePath": "views\\c11419b3-1898-4b6d-aee8-2bc3f1d464b0.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "c14b9a03-227d-4132-a4ba-f3a24732c980",
-            "Value": {
-                "id": "023422ac-0c3a-42bd-9e59-0b95e857ecdb",
-                "resourcePath": "views\\c14b9a03-227d-4132-a4ba-f3a24732c980.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "c22f3e07-b9f4-41ec-bcff-e30740cd2cfc",
-            "Value": {
-                "id": "5c1ce8ed-9c3f-49db-b36d-106fe66c1579",
-                "resourcePath": "sprites\\spr_death_incarnate_dashing_right\\spr_death_incarnate_dashing_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c2e2358e-5b98-4896-9e57-06480748966b",
-            "Value": {
-                "id": "0399f2c4-8587-4b5b-9356-3f48f08123d2",
-                "resourcePath": "views\\c2e2358e-5b98-4896-9e57-06480748966b.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "c2fcde57-73c2-43d1-bd58-8cbb69874123",
-            "Value": {
-                "id": "2f373ba7-2ec0-4a71-b8e4-319267d4a108",
-                "resourcePath": "sprites\\spr_ground_slam_staff_left\\spr_ground_slam_staff_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c394ce92-5bc3-44e1-80fb-85d93692aa8a",
-            "Value": {
-                "id": "9a4fb600-79fe-4e65-9ccc-6480c4578c61",
-                "resourcePath": "sprites\\spr_enemy_mage_light_ranged\\spr_enemy_mage_light_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c4684858-8495-4988-8426-1c42b9f55c1e",
-            "Value": {
-                "id": "63f94a0f-3e59-408a-9327-1af87794619e",
-                "resourcePath": "sprites\\spr_death_incarnate_attack_left\\spr_death_incarnate_attack_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c47c6c79-b1f1-4e9f-8a41-2ab533b86e4b",
-            "Value": {
-                "id": "dbf149b8-43d2-40bb-9e72-dd02043249ce",
-                "resourcePath": "scripts\\scr_player_wrath_of_the_diaboli\\scr_player_wrath_of_the_diaboli.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "c4f32579-fefb-46b8-8016-1b2d3cf71b9a",
-            "Value": {
-                "id": "7b79b32c-75b0-4847-91d2-529e4487fe48",
-                "resourcePath": "views\\c4f32579-fefb-46b8-8016-1b2d3cf71b9a.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "c51f649c-1886-4608-951a-7aab78ebe694",
-            "Value": {
-                "id": "7a6f3356-3ccf-44d2-a996-c1f9d5a4b54e",
-                "resourcePath": "scripts\\scr_player_whirlwind\\scr_player_whirlwind.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "c54c6443-0553-4737-9998-6f9f5e952625",
-            "Value": {
-                "id": "f567a894-67ce-4417-a4b9-08321103986e",
-                "resourcePath": "sprites\\spr_player_run_down\\spr_player_run_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c5f37235-843b-4e82-8675-0f5349a7b03b",
-            "Value": {
-                "id": "05c6aef2-77a1-47d5-890e-fdf01215dd11",
-                "resourcePath": "sprites\\spr_skill_tree_background\\spr_skill_tree_background.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c667f889-a66f-4e76-9383-c4cd417d582a",
-            "Value": {
-                "id": "df757a5d-e589-4c86-aa75-02382ab7db41",
-                "resourcePath": "views\\c667f889-a66f-4e76-9383-c4cd417d582a.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "c6985fd9-02a6-4c07-9fc3-44823621e628",
-            "Value": {
-                "id": "401aa041-2a89-479f-be85-2dbae407f7fc",
-                "resourcePath": "scripts\\scr_player_hellish_landscape\\scr_player_hellish_landscape.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "c6c1db7f-490c-4f21-a70a-47354334b808",
-            "Value": {
-                "id": "6fbb1deb-1b9c-4131-a63f-063376e39eae",
-                "resourcePath": "scripts\\scr_player_holy_defense\\scr_player_holy_defense.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "c89b6330-b621-4089-937b-86f7d41b5393",
-            "Value": {
-                "id": "c6467daa-012b-4d67-8766-95e45f62e7a8",
-                "resourcePath": "sprites\\spr_ritual_of_imperfection_powering_up\\spr_ritual_of_imperfection_powering_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "c8b2e628-d717-4761-bc18-208ec0d33303",
-            "Value": {
-                "id": "e5cd4d9a-ea91-427f-a08d-31c1a16070a7",
-                "resourcePath": "scripts\\scr_player_final_parting\\scr_player_final_parting.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "c903ef42-186c-476f-aa55-69c02b880f0c",
-            "Value": {
-                "id": "e88ecc8f-eb19-4afe-a947-eddccd68f8af",
-                "resourcePath": "scripts\\create_dot_tic_hitbox\\create_dot_tic_hitbox.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "c99bd6e8-4da4-4b92-a424-f90b0c525cc5",
-            "Value": {
-                "id": "cf91856e-efab-46c3-b82e-a2a6ae569162",
-                "resourcePath": "objects\\obj_display_manager_LEGACY\\obj_display_manager_LEGACY.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "cace2e84-f01d-4bac-9c61-02ab917ced38",
-            "Value": {
-                "id": "08e9ed01-51c4-45c8-bd3e-c3605986ce33",
-                "resourcePath": "sprites\\spr_player_attack_up_hitbox\\spr_player_attack_up_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
-            "Value": {
-                "id": "a1722f7c-e69a-48ae-9375-a2baffa26a8a",
-                "resourcePath": "options\\windows\\options_windows.yy",
-                "resourceType": "GMWindowsOptions"
-            }
-        },
-        {
-            "Key": "ccf3fefd-7cc2-49a6-92a1-24f560aa8c34",
-            "Value": {
-                "id": "7f04c13e-5ef2-4b70-bf3e-28041c6231fb",
-                "resourcePath": "views\\ccf3fefd-7cc2-49a6-92a1-24f560aa8c34.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "cd367357-4d9c-4656-833e-d87dd42b0281",
-            "Value": {
-                "id": "ec6cd781-a213-4a99-87a2-fa94b87f3604",
-                "resourcePath": "sprites\\spr_death_incarnate_standing_left\\spr_death_incarnate_standing_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "cdc9a456-68ad-4f8d-925c-cd98914ce5b8",
-            "Value": {
-                "id": "b71c6f3c-5645-417c-93bd-2989a998a333",
-                "resourcePath": "views\\cdc9a456-68ad-4f8d-925c-cd98914ce5b8.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "cdcb3564-8437-41a2-bb14-feaf44443ca3",
-            "Value": {
-                "id": "1a7d3d4b-6fcf-490a-b86a-b9f275e62d7e",
-                "resourcePath": "sprites\\spr_ground_hurtbox\\spr_ground_hurtbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "ce4ea2c7-d9d9-4427-bb5c-745bdcf6cc63",
-            "Value": {
-                "id": "7ed26f09-5c0d-484b-a565-26e3496eb2fe",
-                "resourcePath": "views\\ce4ea2c7-d9d9-4427-bb5c-745bdcf6cc63.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "cebb7875-b847-49d7-a60a-57ee3711901d",
-            "Value": {
-                "id": "6c03bc91-bef8-435a-acad-a7b4979d86a1",
-                "resourcePath": "sprites\\spr_player_attack_down_5\\spr_player_attack_down_5.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "cf41e500-c1e9-45a4-a33c-69ac7aa02695",
-            "Value": {
-                "id": "0e529c2f-a4c8-4218-ab7c-91e81f7d94a4",
-                "resourcePath": "scripts\\scr_healer_ai_out_of_combat_targeting\\scr_healer_ai_out_of_combat_targeting.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "cfa7377d-633b-4dce-9e13-a16b79e7d8f9",
-            "Value": {
-                "id": "b689a5a4-ef22-4ff7-a697-7f5964284fa4",
-                "resourcePath": "scripts\\scr_tank_light_ranged\\scr_tank_light_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "d0af984f-e484-4de8-ac7b-fc0ee0b9fe41",
-            "Value": {
-                "id": "7dc0f678-4b57-4ef6-84d6-9b3af7d36b6a",
-                "resourcePath": "views\\d0af984f-e484-4de8-ac7b-fc0ee0b9fe41.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "d195f4b5-d97f-4c79-ac07-c1ea4aa6b2e8",
-            "Value": {
-                "id": "1babb278-e79b-4628-8690-d831ea1124af",
-                "resourcePath": "scripts\\scr_initialize_player_stats\\scr_initialize_player_stats.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "d3427092-4ec2-4fd6-b5d7-f793939344e6",
-            "Value": {
-                "id": "cd5885b3-1954-49ea-8361-2a8e68921e2b",
-                "resourcePath": "sprites\\spr_enemy_tank_stunned\\spr_enemy_tank_stunned.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "d38ee5aa-e520-418e-a90e-5587c52a82ee",
-            "Value": {
-                "id": "1c365481-c59d-4050-a56d-3957fcb645fa",
-                "resourcePath": "sprites\\spr_enemy_healer_stunned\\spr_enemy_healer_stunned.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "d3d1a75a-790a-4fe3-992a-38c57023b9a4",
-            "Value": {
-                "id": "bd0716ea-ec8d-446f-b1b4-22fc431bc7d5",
-                "resourcePath": "scripts\\scr_player_rushdown\\scr_player_rushdown.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "d638775e-0bbc-4753-b9a6-6211b9aed88f",
-            "Value": {
-                "id": "89976dda-9e4c-4704-a1b5-36252736639a",
-                "resourcePath": "sprites\\spr_death_incarnate_dashing_left\\spr_death_incarnate_dashing_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "d9a65963-952c-4d2e-8b1f-490afe710ba5",
-            "Value": {
-                "id": "a587b2ef-3c9e-4384-8a99-c41e7b884306",
-                "resourcePath": "views\\d9a65963-952c-4d2e-8b1f-490afe710ba5.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "db7ff497-0dff-4e5a-8d85-47d04e189290",
-            "Value": {
-                "id": "2b9fe698-acb0-41e1-99cc-11b76696dba5",
-                "resourcePath": "scripts\\scr_tank_light_melee\\scr_tank_light_melee.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "dc08c5b3-f02d-4898-b458-0ae4fc40930a",
-            "Value": {
-                "id": "3cc1d172-56f9-433e-8d91-ef3ee091d523",
-                "resourcePath": "sprites\\spr_enemy_fighter_light_ranged\\spr_enemy_fighter_light_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "dd106bbf-98bd-4a86-95a4-478ec9e737ae",
-            "Value": {
-                "id": "6673c956-71bc-4278-a62f-3c7895b9bf31",
-                "resourcePath": "sprites\\spr_player_skillshot_magic_right\\spr_player_skillshot_magic_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "dde75782-1b21-4ae2-9c32-07c5691d40fb",
-            "Value": {
-                "id": "421fb899-57b2-4f36-9b86-9d06c5bcc40c",
-                "resourcePath": "views\\dde75782-1b21-4ae2-9c32-07c5691d40fb.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "debb9bee-7e2c-417e-bc67-f81fb982e8a2",
-            "Value": {
-                "id": "3c1369ef-fbc5-4342-92d3-c42448189902",
-                "resourcePath": "views\\debb9bee-7e2c-417e-bc67-f81fb982e8a2.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "debe069c-6b7c-4a4f-b3e6-5cecc9828f3a",
-            "Value": {
-                "id": "9053e6dc-a7f7-4272-891b-4a45aa1799f5",
-                "resourcePath": "views\\debe069c-6b7c-4a4f-b3e6-5cecc9828f3a.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "e1e3ca50-089e-48fe-9dd7-97cfbfdfdae4",
-            "Value": {
-                "id": "b56a5c05-1d1f-4a6e-886c-d692e88ad95e",
-                "resourcePath": "sprites\\spr_dissolve_door_1\\spr_dissolve_door_1.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e2ea178f-159e-45eb-9a1c-59d8f61657f1",
-            "Value": {
-                "id": "425734c3-1d83-4cf8-9878-a0a369622d64",
-                "resourcePath": "sprites\\spr_dead_body\\spr_dead_body.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e3601108-7862-4d41-b4ee-284d104fa088",
-            "Value": {
-                "id": "b3e71c77-6f79-484a-97c0-1860080461bb",
-                "resourcePath": "sprites\\spr_player_parry_effect_down\\spr_player_parry_effect_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e38b9dee-e40a-4c08-ae35-7c6fbc506af2",
-            "Value": {
-                "id": "09294993-43a0-407a-9b99-36edb4125e06",
-                "resourcePath": "objects\\obj_game_manager\\obj_game_manager.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "e3fa57ac-08de-4ff9-a199-69c3ec88d204",
-            "Value": {
-                "id": "f165001e-f474-4d00-afc1-ab4dd678472e",
-                "resourcePath": "sprites\\spr_ground_slam_staff_right\\spr_ground_slam_staff_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e4056426-2d74-4a4f-9eb7-64ba6895f110",
-            "Value": {
-                "id": "a8433b73-3439-45e7-bc11-45d8a6a0f6bf",
-                "resourcePath": "sprites\\spr_player_attack_left_hitbox\\spr_player_attack_left_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e4e03e78-a4fb-41ad-b0af-3e49b95698db",
-            "Value": {
-                "id": "fb6c4fb3-d680-47a3-a295-a063253d2514",
-                "resourcePath": "views\\e4e03e78-a4fb-41ad-b0af-3e49b95698db.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "e6d55a31-719d-485f-8eab-fb3edc4f0480",
-            "Value": {
-                "id": "02b389f6-356b-4c06-b584-921e78c50fd1",
-                "resourcePath": "sprites\\spr_prime_damage_buff\\spr_prime_damage_buff.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e6e2ee59-5a48-4e9d-aef9-480639237897",
-            "Value": {
-                "id": "85082707-7f66-4176-a04e-1227649280aa",
-                "resourcePath": "views\\e6e2ee59-5a48-4e9d-aef9-480639237897.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "e6f9b991-ae55-4b5d-bfbd-b6cad162311c",
-            "Value": {
-                "id": "58368ba3-3679-41e8-8d44-c9e5630a52a1",
-                "resourcePath": "sprites\\spr_ability_attack_down\\spr_ability_attack_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e79a960f-8fa8-4012-bb55-2a17419e2bb9",
-            "Value": {
-                "id": "46f7aa19-320b-48bb-a461-9d27c2f11c52",
-                "resourcePath": "sprites\\spr_player_parry_effect_up\\spr_player_parry_effect_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e84b34ad-0d5f-4eca-addd-d8ff25575f8d",
-            "Value": {
-                "id": "8cc165ff-4d7f-4212-9eee-c3ff3ed5811e",
-                "resourcePath": "scripts\\scr_player_soul_tether\\scr_player_soul_tether.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "e8a5042e-25e5-4713-b307-20722a744f59",
-            "Value": {
-                "id": "576e5089-a861-417e-b905-603e39a26b8b",
-                "resourcePath": "scripts\\initialize_movement_entity\\initialize_movement_entity.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "e8d45f72-3f96-4915-ad84-2bf676665215",
-            "Value": {
-                "id": "3c2c537e-697e-4164-8d6f-09e61059f595",
-                "resourcePath": "sprites\\spr_player_parry_effect_left\\spr_player_parry_effect_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "e970af2e-ee53-4d2d-925e-03bd0d8bd15d",
-            "Value": {
-                "id": "75f4d39d-d9c6-475d-9648-c153af9a8d31",
-                "resourcePath": "sprites\\spr_death_incarnate_walking_down\\spr_death_incarnate_walking_down.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "eaef6556-197d-4245-9a0d-a35ad37ae0e8",
-            "Value": {
-                "id": "d1f2f59b-f1c2-449f-ba3e-819b3a351a52",
-                "resourcePath": "views\\eaef6556-197d-4245-9a0d-a35ad37ae0e8.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "eb335efc-1edd-4776-ba47-a29430163913",
-            "Value": {
-                "id": "81fdfd95-14c4-4764-88af-c2e0017d87cb",
-                "resourcePath": "views\\eb335efc-1edd-4776-ba47-a29430163913.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "ecc7b4fb-3cc4-4a44-a6f2-88645e561943",
-            "Value": {
-                "id": "e52b5da1-6796-4a1c-a11d-27927206035a",
-                "resourcePath": "sprites\\spr_enemy_healer_heavy_ranged\\spr_enemy_healer_heavy_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "ed0ad18f-a9dc-49ec-bc1d-914453118f25",
-            "Value": {
-                "id": "722b7cd3-9eb9-4f56-add7-f29304af7acb",
-                "resourcePath": "sprites\\spr_death_incarnate_attack_right\\spr_death_incarnate_attack_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "ed73a18f-7f79-4f53-b118-c3df682c3917",
-            "Value": {
-                "id": "8284f5d3-a075-4526-96bd-00f074582516",
-                "resourcePath": "sprites\\spr_enemy_mage_run\\spr_enemy_mage_run.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f0712a88-8814-4eb4-a96d-cc5aff97ed2f",
-            "Value": {
-                "id": "c3b3c9e8-3590-4f4c-8bd2-7fb7cce01fee",
-                "resourcePath": "sprites\\spr_ability_attack_right\\spr_ability_attack_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f0cba083-4878-4894-8a4d-c343242df1d4",
-            "Value": {
-                "id": "e0ce1c4d-c639-4baf-926b-c9db3c5b9021",
-                "resourcePath": "scripts\\scr_player_glinting_blade\\scr_player_glinting_blade.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f1433270-592c-47dc-b638-6fd7c38644dc",
-            "Value": {
-                "id": "c5739fc5-c806-4836-8734-992998ee87e7",
-                "resourcePath": "objects\\obj_ai_decision_making\\obj_ai_decision_making.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "f1698ca6-801e-4315-a81c-70be0dd021ac",
-            "Value": {
-                "id": "77d701b6-5a96-43b5-bb45-aefe11168b9d",
-                "resourcePath": "scripts\\scr_player_true_caelesti_wings\\scr_player_true_caelesti_wings.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f1b4e9d6-c65f-49e4-a0fa-021dc27854a8",
-            "Value": {
-                "id": "22239206-3c5b-4e9f-9f44-a1203d9d8eb8",
-                "resourcePath": "scripts\\scr_player_hidden_dagger\\scr_player_hidden_dagger.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f25d82c6-e2fd-4a9c-aee4-401feb613745",
-            "Value": {
-                "id": "3a9a6a0c-d141-4ff8-b7e9-07629642dc2f",
-                "resourcePath": "views\\f25d82c6-e2fd-4a9c-aee4-401feb613745.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
-            "Value": {
-                "id": "47317d54-ab6d-4297-b38b-4bd2375f7de1",
-                "resourcePath": "options\\mac\\options_mac.yy",
-                "resourceType": "GMMacOptions"
-            }
-        },
-        {
-            "Key": "f522fb37-ebb3-4e4b-866c-a9f9e1d6bb7e",
-            "Value": {
-                "id": "5f2edc5a-4f26-483f-90b7-5fd6e6353653",
-                "resourcePath": "sprites\\spr_ground_slam_staff_up\\spr_ground_slam_staff_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f589efc0-e9c7-4ce1-ac73-086377476634",
-            "Value": {
-                "id": "7cfe6b7a-ecce-47a3-acb8-f81676a2afaf",
-                "resourcePath": "scripts\\scr_healer_light_ranged\\scr_healer_light_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f5e79e40-4a29-4ffb-a20d-bb4807072ae3",
-            "Value": {
-                "id": "76f4f365-28d3-4161-8414-645bc48fcf19",
-                "resourcePath": "objects\\obj_skill_tree\\obj_skill_tree.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "f615d439-83b9-44b1-87f1-2eaceb128468",
-            "Value": {
-                "id": "7ed40177-7b83-4aa9-ad19-d3ed1a4951b3",
-                "resourcePath": "sprites\\spr_ready_up_left\\spr_ready_up_left.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f76f4350-20f9-45d7-8657-0ab056ebde3d",
-            "Value": {
-                "id": "e4cada87-ee1f-4ce7-8de6-46feb6ca50b7",
-                "resourcePath": "sprites\\spr_player_attack_down_hitbox\\spr_player_attack_down_hitbox.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f7a5b51b-3888-417d-8abb-ba3d872e6f53",
-            "Value": {
-                "id": "0d59717d-5342-4880-b6d4-698c9ea7d1f1",
-                "resourcePath": "scripts\\scr_mage_heavy_ranged\\scr_mage_heavy_ranged.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f84e0ed0-8bc0-4b21-bb02-ddc999af8a65",
-            "Value": {
-                "id": "d9b5b5a2-2523-4cd6-89b0-5a7c14302323",
-                "resourcePath": "sprites\\spr_death_incarnate_attack_up\\spr_death_incarnate_attack_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f8a2f1eb-acf3-4867-b6f5-8d3e7460e6e8",
-            "Value": {
-                "id": "7beb8672-0a4a-40aa-9ac3-45514c1035c1",
-                "resourcePath": "sprites\\spr_player_attack_left_5\\spr_player_attack_left_5.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f927d114-a872-4a39-b3d2-1ac960dc2be6",
-            "Value": {
-                "id": "6a550ede-dd54-425e-8376-5b8cbbf7855f",
-                "resourcePath": "views\\f927d114-a872-4a39-b3d2-1ac960dc2be6.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "f962739d-2234-4a13-9ba6-631d395d2c64",
-            "Value": {
-                "id": "f8c975a5-0fed-4875-a1a2-0e25c3e9b666",
-                "resourcePath": "sprites\\spr_player_idle_right\\spr_player_idle_right.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f9b2a7d7-9a3d-4c72-8136-ebcf09c594b5",
-            "Value": {
-                "id": "2856cb92-e4ae-4c64-bfcb-cc28c161b918",
-                "resourcePath": "sprites\\spr_enemy_healer_heavy_melee\\spr_enemy_healer_heavy_melee.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f9e6032e-c9fd-47e7-bcfa-d82190a2c214",
-            "Value": {
-                "id": "c7dc8a3c-cfd0-4f52-b05d-49fde7713545",
-                "resourcePath": "objects\\obj_chasm\\obj_chasm.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "faa1d4ea-cb61-4814-a9e1-f890cbbf1a1c",
-            "Value": {
-                "id": "b0dd479f-5a3e-43f5-aa02-2783255ede63",
-                "resourcePath": "sprites\\spr_enemy_tank_heavy_ranged\\spr_enemy_tank_heavy_ranged.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "fb0182f2-254e-48c5-b256-ed0a3014c2f9",
-            "Value": {
-                "id": "7afba3d1-3593-4531-906a-6f9364e6dd3e",
-                "resourcePath": "sprites\\spr_ready_up_up\\spr_ready_up_up.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "fb10e536-e31a-44b4-bc05-d27db414f91e",
-            "Value": {
-                "id": "31f3c5d2-a3ee-44f6-95ef-89a32f406dd7",
-                "resourcePath": "views\\fb10e536-e31a-44b4-bc05-d27db414f91e.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "fbdba8d0-1ae2-483e-a92e-27be16c5a693",
-            "Value": {
-                "id": "1a78790a-0d1f-428a-9cff-949d4895cb5f",
-                "resourcePath": "views\\fbdba8d0-1ae2-483e-a92e-27be16c5a693.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "fcc7e1b0-09be-4907-9728-559f2ac5d2f1",
-            "Value": {
-                "id": "c80bfad1-2a42-4a00-bd5c-8b429af10251",
-                "resourcePath": "views\\fcc7e1b0-09be-4907-9728-559f2ac5d2f1.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "fd0c9dcb-7138-4df4-b3fa-857ee110e366",
-            "Value": {
-                "id": "234fcb8c-8354-470d-9f73-8ae35fbf78f1",
-                "resourcePath": "views\\fd0c9dcb-7138-4df4-b3fa-857ee110e366.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "ff63d8bc-56da-40a8-b933-5417289337d8",
-            "Value": {
-                "id": "3ef59457-a414-4769-b4f7-aff88415697c",
-                "resourcePath": "views\\ff63d8bc-56da-40a8-b933-5417289337d8.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "ffff5d96-94ae-4367-be03-dff5ef139452",
-            "Value": {
-                "id": "6c616e11-f699-4423-b3ac-25aa84164ce7",
-                "resourcePath": "scripts\\scr_track_player_buffs_and_debuffs\\scr_track_player_buffs_and_debuffs.yy",
-                "resourceType": "GMScript"
-            }
-        }
-    ],
-    "script_order": [
-        "86739193-7487-4575-852a-9b161b887976",
-        "d195f4b5-d97f-4c79-ac07-c1ea4aa6b2e8",
-        "1c1b7c61-e452-4156-b690-53097275246d",
-        "ffff5d96-94ae-4367-be03-dff5ef139452",
-        "98b0742f-f509-4575-8f6d-ca86584326ce",
-        "2f025f61-5d31-4cee-af6e-c61b006b9d56",
-        "2ed0218a-cee0-4265-b3cc-e5eba01a3434",
-        "07c1614d-ad7a-467b-b49c-9c066ebbeea4",
-        "2bcbb92d-d033-4513-b07d-cc3d50e451a4",
-        "ac122cb6-7187-41ef-aa86-5591fccc14f4",
-        "032e7f80-1faa-44df-8555-2d9eabd55ec9",
-        "a3280395-dabd-44f7-8bda-319593ffdb4d",
-        "475ef9f1-f1a9-47c9-9c09-6baa9ccd9126",
-        "3b3f9e5a-6a21-4acf-8884-cc7a699fa0fd",
-        "6d06f7c2-977f-4e94-a0a1-a455090f34d2",
-        "31572666-9579-48ed-9aa3-3b6e60abd7bf",
-        "602da417-15a6-4b36-8652-caf4c746e444",
-        "c47c6c79-b1f1-4e9f-8a41-2ab533b86e4b",
-        "f0cba083-4878-4894-8a4d-c343242df1d4",
-        "00cf991f-e280-405b-ac85-b56d9147b3c4",
-        "77c60c7d-0dac-45d6-8cec-1804e600a686",
-        "c6985fd9-02a6-4c07-9fc3-44823621e628",
-        "f1b4e9d6-c65f-49e4-a0fa-021dc27854a8",
-        "0f82db21-18b2-432d-ad47-6a81a4278c8b",
-        "96042b70-3dc6-44e1-986f-ac726648a1e8",
-        "78030025-4cb3-4df5-a0b2-fd15cd4a39e2",
-        "d3d1a75a-790a-4fe3-992a-38c57023b9a4",
-        "590b5786-6754-4390-9d72-8ee292bcabd0",
-        "f1698ca6-801e-4315-a81c-70be0dd021ac",
-        "b38c0d45-490a-42d1-bff4-326ff2e4b8ba",
-        "9f6baf49-d428-4019-abac-e734206b2064",
-        "c6c1db7f-490c-4f21-a70a-47354334b808",
-        "802e7ddd-8108-440a-89da-820a410ffe7f",
-        "617b58e4-c274-4f0a-9698-8ba41497043a",
-        "3e9b5d32-9746-41af-bb6e-bf1192ec2455",
-        "0cf7e55c-2623-4446-8c4e-f88d5f81f07a",
-        "c51f649c-1886-4608-951a-7aab78ebe694",
-        "bcdcea7f-4109-40d4-9ddb-10aaca2adf99",
-        "5646c7f1-06a6-4cd3-9e59-81d052fc1561",
-        "0ec28b29-0f35-4462-a4ed-bfac8d5cf2cb",
-        "e84b34ad-0d5f-4eca-addd-d8ff25575f8d",
-        "45be81d5-fd48-4ba4-9985-418afe3466ff",
-        "c8b2e628-d717-4761-bc18-208ec0d33303",
-        "80118822-241e-4049-b1c3-bb56f8d413c4",
-        "03a18385-b2a6-4f0d-aaf9-243e85de3fcb",
-        "99ad9344-48cf-45ec-b588-e1a5866292fe",
-        "79579f9e-c59f-4b55-8106-e1276cfafca6",
-        "3d094b82-0ff8-435f-956c-a3365019e3f3",
-        "b24f1e48-14a8-431c-950b-14ab6e762333",
-        "bf987c3b-3b6d-43b2-a80a-7ce2a1e07742",
-        "71f67c6e-e097-4287-9a1a-93867e2e1d73",
-        "cf41e500-c1e9-45a4-a33c-69ac7aa02695",
-        "37333b3e-6e48-4b89-99e5-25a6b578de8f",
-        "8c545737-5732-4234-8155-40fe5bda92a5",
-        "836fce16-d2fe-4824-9759-5a98a9b57a1b",
-        "f589efc0-e9c7-4ce1-ac73-086377476634",
-        "86cd9206-b0fb-41b9-b377-0ae585a42de0",
-        "b7c43555-097e-4fb3-8d28-8a2bfade1823",
-        "db7ff497-0dff-4e5a-8d85-47d04e189290",
-        "bfca8d96-8355-4bff-9075-e99f48619b48",
-        "cfa7377d-633b-4dce-9e13-a16b79e7d8f9",
-        "03e213b2-73e5-46f8-9b38-fda7a9d47896",
-        "3d2cc270-7166-479c-b122-2eb2720189b1",
-        "9bd697a2-c1de-4f04-884f-5fd90679e66a",
-        "8f6a6470-a579-49eb-988f-56c77b63117b",
-        "f7a5b51b-3888-417d-8abb-ba3d872e6f53",
-        "08cb37e9-603b-4367-bafb-819c7b2f7b86",
-        "3fcc16de-fcba-4a17-a0af-6a14653ac8f4",
-        "82304a18-02a6-422e-96e4-7f6f3bc335f4",
-        "bf85d7fa-b546-4fc6-babc-f8eb0c7e53c1",
-        "e8a5042e-25e5-4713-b307-20722a744f59",
-        "0d9f349b-b7d7-42fb-bc17-3accf756d35d",
-        "460c1219-d115-45da-b316-afe17e2b60c4",
-        "7d1fb05f-319f-4e2a-a768-21901ed368be",
-        "7573461a-232f-4c58-a418-8aeb5510c936",
-        "b5924c3d-a789-445b-b182-0212e6591496",
-        "4c16427b-3995-4c8e-b9eb-3d0a74f6b54b",
-        "44bc70ce-cec3-41b2-800f-eb016425f069",
-        "72b2abef-186d-45cf-905d-1bd7d08596bc",
-        "9618cf1f-b489-4bd4-bb67-1a4cc28baf0d",
-        "5c8e3964-a770-47a3-b96b-7513c6aa7cd7",
-        "857db59f-80a0-4e0d-92cd-97240e6f2d0d",
-        "0afe9e54-0cd8-4513-b949-893ed4b3cae9",
-        "06c78b3a-a566-4cc3-99c4-256c76bed58e",
-        "c903ef42-186c-476f-aa55-69c02b880f0c",
-        "3998c64b-98a7-4698-9b5a-c0d192e07585",
-        "21ddc1fa-92ef-48b6-8279-a984718984c6",
-        "2d82ea1b-5523-4fe4-a7cb-b94a581e2b39",
-        "33357c95-b240-42a1-a73a-0b164625ce7e",
-        "483c89bf-2479-4a6e-bb7e-0089f6c08172",
-        "36860504-d5ce-4d85-b5d0-33ee434ea554",
-        "75f6c853-c34c-46b6-92bb-c6826095e349",
-        "075f5161-a633-471b-b819-9f766ea38dd0"
-    ],
-    "tutorial": ""
+  "resources": [
+    {"id":{"name":"spr_enemy_mage_idle","path":"sprites/spr_enemy_mage_idle/spr_enemy_mage_idle.yy",},"order":0,},
+    {"id":{"name":"spr_enemy_mage_run","path":"sprites/spr_enemy_mage_run/spr_enemy_mage_run.yy",},"order":1,},
+    {"id":{"name":"spr_enemy_mage_heavy_ranged","path":"sprites/spr_enemy_mage_heavy_ranged/spr_enemy_mage_heavy_ranged.yy",},"order":2,},
+    {"id":{"name":"spr_enemy_mage_light_ranged","path":"sprites/spr_enemy_mage_light_ranged/spr_enemy_mage_light_ranged.yy",},"order":3,},
+    {"id":{"name":"spr_enemy_mage_heavy_melee","path":"sprites/spr_enemy_mage_heavy_melee/spr_enemy_mage_heavy_melee.yy",},"order":4,},
+    {"id":{"name":"spr_enemy_mage_light_melee","path":"sprites/spr_enemy_mage_light_melee/spr_enemy_mage_light_melee.yy",},"order":5,},
+    {"id":{"name":"spr_enemy_mage_stunned","path":"sprites/spr_enemy_mage_stunned/spr_enemy_mage_stunned.yy",},"order":6,},
+    {"id":{"name":"spr_enemy_healer_idle","path":"sprites/spr_enemy_healer_idle/spr_enemy_healer_idle.yy",},"order":0,},
+    {"id":{"name":"spr_enemy_healer_run","path":"sprites/spr_enemy_healer_run/spr_enemy_healer_run.yy",},"order":1,},
+    {"id":{"name":"spr_enemy_healer_heavy_ranged","path":"sprites/spr_enemy_healer_heavy_ranged/spr_enemy_healer_heavy_ranged.yy",},"order":2,},
+    {"id":{"name":"spr_enemy_healer_light_ranged","path":"sprites/spr_enemy_healer_light_ranged/spr_enemy_healer_light_ranged.yy",},"order":3,},
+    {"id":{"name":"spr_enemy_healer_heavy_melee","path":"sprites/spr_enemy_healer_heavy_melee/spr_enemy_healer_heavy_melee.yy",},"order":4,},
+    {"id":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"order":5,},
+    {"id":{"name":"spr_enemy_healer_heal_ally","path":"sprites/spr_enemy_healer_heal_ally/spr_enemy_healer_heal_ally.yy",},"order":6,},
+    {"id":{"name":"spr_enemy_healer_stunned","path":"sprites/spr_enemy_healer_stunned/spr_enemy_healer_stunned.yy",},"order":7,},
+    {"id":{"name":"spr_enemy_tank_idle","path":"sprites/spr_enemy_tank_idle/spr_enemy_tank_idle.yy",},"order":0,},
+    {"id":{"name":"spr_enemy_tank_run","path":"sprites/spr_enemy_tank_run/spr_enemy_tank_run.yy",},"order":1,},
+    {"id":{"name":"spr_enemy_tank_heavy_ranged","path":"sprites/spr_enemy_tank_heavy_ranged/spr_enemy_tank_heavy_ranged.yy",},"order":2,},
+    {"id":{"name":"spr_enemy_tank_light_ranged","path":"sprites/spr_enemy_tank_light_ranged/spr_enemy_tank_light_ranged.yy",},"order":3,},
+    {"id":{"name":"spr_enemy_tank_heavy_melee","path":"sprites/spr_enemy_tank_heavy_melee/spr_enemy_tank_heavy_melee.yy",},"order":4,},
+    {"id":{"name":"spr_enemy_tank_light_melee","path":"sprites/spr_enemy_tank_light_melee/spr_enemy_tank_light_melee.yy",},"order":5,},
+    {"id":{"name":"spr_enemy_tank_stunned","path":"sprites/spr_enemy_tank_stunned/spr_enemy_tank_stunned.yy",},"order":6,},
+    {"id":{"name":"spr_enemy_fighter_idle","path":"sprites/spr_enemy_fighter_idle/spr_enemy_fighter_idle.yy",},"order":0,},
+    {"id":{"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"order":1,},
+    {"id":{"name":"spr_enemy_fighter_heavy_ranged","path":"sprites/spr_enemy_fighter_heavy_ranged/spr_enemy_fighter_heavy_ranged.yy",},"order":2,},
+    {"id":{"name":"spr_enemy_fighter_light_ranged","path":"sprites/spr_enemy_fighter_light_ranged/spr_enemy_fighter_light_ranged.yy",},"order":3,},
+    {"id":{"name":"spr_enemy_fighter_heavy_melee","path":"sprites/spr_enemy_fighter_heavy_melee/spr_enemy_fighter_heavy_melee.yy",},"order":4,},
+    {"id":{"name":"spr_enemy_fighter_light_melee","path":"sprites/spr_enemy_fighter_light_melee/spr_enemy_fighter_light_melee.yy",},"order":5,},
+    {"id":{"name":"spr_enemy_fighter_stunned","path":"sprites/spr_enemy_fighter_stunned/spr_enemy_fighter_stunned.yy",},"order":6,},
+    {"id":{"name":"spr_player_idle_right","path":"sprites/spr_player_idle_right/spr_player_idle_right.yy",},"order":0,},
+    {"id":{"name":"spr_player_idle_up","path":"sprites/spr_player_idle_up/spr_player_idle_up.yy",},"order":1,},
+    {"id":{"name":"spr_player_idle_left","path":"sprites/spr_player_idle_left/spr_player_idle_left.yy",},"order":2,},
+    {"id":{"name":"spr_player_idle_down","path":"sprites/spr_player_idle_down/spr_player_idle_down.yy",},"order":3,},
+    {"id":{"name":"spr_player_run_right","path":"sprites/spr_player_run_right/spr_player_run_right.yy",},"order":0,},
+    {"id":{"name":"spr_player_run_up","path":"sprites/spr_player_run_up/spr_player_run_up.yy",},"order":1,},
+    {"id":{"name":"spr_player_run_left","path":"sprites/spr_player_run_left/spr_player_run_left.yy",},"order":2,},
+    {"id":{"name":"spr_player_run_down","path":"sprites/spr_player_run_down/spr_player_run_down.yy",},"order":3,},
+    {"id":{"name":"spr_player_dash_right","path":"sprites/spr_player_dash_right/spr_player_dash_right.yy",},"order":0,},
+    {"id":{"name":"spr_player_dash_up","path":"sprites/spr_player_dash_up/spr_player_dash_up.yy",},"order":1,},
+    {"id":{"name":"spr_player_dash_left","path":"sprites/spr_player_dash_left/spr_player_dash_left.yy",},"order":2,},
+    {"id":{"name":"spr_player_dash_down","path":"sprites/spr_player_dash_down/spr_player_dash_down.yy",},"order":3,},
+    {"id":{"name":"spr_player_parry_ready_right","path":"sprites/spr_player_parry_ready_right/spr_player_parry_ready_right.yy",},"order":0,},
+    {"id":{"name":"spr_player_parry_ready_up","path":"sprites/spr_player_parry_ready_up/spr_player_parry_ready_up.yy",},"order":1,},
+    {"id":{"name":"spr_player_parry_ready_left","path":"sprites/spr_player_parry_ready_left/spr_player_parry_ready_left.yy",},"order":2,},
+    {"id":{"name":"spr_player_parry_ready_down","path":"sprites/spr_player_parry_ready_down/spr_player_parry_ready_down.yy",},"order":3,},
+    {"id":{"name":"spr_player_parry_effect_right","path":"sprites/spr_player_parry_effect_right/spr_player_parry_effect_right.yy",},"order":0,},
+    {"id":{"name":"spr_player_parry_effect_up","path":"sprites/spr_player_parry_effect_up/spr_player_parry_effect_up.yy",},"order":1,},
+    {"id":{"name":"spr_player_parry_effect_left","path":"sprites/spr_player_parry_effect_left/spr_player_parry_effect_left.yy",},"order":2,},
+    {"id":{"name":"spr_player_parry_effect_down","path":"sprites/spr_player_parry_effect_down/spr_player_parry_effect_down.yy",},"order":3,},
+    {"id":{"name":"spr_player_attack_right_1","path":"sprites/spr_player_attack_right_1/spr_player_attack_right_1.yy",},"order":0,},
+    {"id":{"name":"spr_player_attack_up_1","path":"sprites/spr_player_attack_up_1/spr_player_attack_up_1.yy",},"order":1,},
+    {"id":{"name":"spr_player_attack_left_1","path":"sprites/spr_player_attack_left_1/spr_player_attack_left_1.yy",},"order":2,},
+    {"id":{"name":"spr_player_attack_down_1","path":"sprites/spr_player_attack_down_1/spr_player_attack_down_1.yy",},"order":3,},
+    {"id":{"name":"spr_player_attack_right_2","path":"sprites/spr_player_attack_right_2/spr_player_attack_right_2.yy",},"order":0,},
+    {"id":{"name":"spr_player_attack_up_2","path":"sprites/spr_player_attack_up_2/spr_player_attack_up_2.yy",},"order":1,},
+    {"id":{"name":"spr_player_attack_left_2","path":"sprites/spr_player_attack_left_2/spr_player_attack_left_2.yy",},"order":2,},
+    {"id":{"name":"spr_player_attack_down_2","path":"sprites/spr_player_attack_down_2/spr_player_attack_down_2.yy",},"order":3,},
+    {"id":{"name":"spr_player_attack_right_3","path":"sprites/spr_player_attack_right_3/spr_player_attack_right_3.yy",},"order":0,},
+    {"id":{"name":"spr_player_attack_up_3","path":"sprites/spr_player_attack_up_3/spr_player_attack_up_3.yy",},"order":1,},
+    {"id":{"name":"spr_player_attack_left_3","path":"sprites/spr_player_attack_left_3/spr_player_attack_left_3.yy",},"order":2,},
+    {"id":{"name":"spr_player_attack_down_3","path":"sprites/spr_player_attack_down_3/spr_player_attack_down_3.yy",},"order":3,},
+    {"id":{"name":"spr_player_attack_right_4","path":"sprites/spr_player_attack_right_4/spr_player_attack_right_4.yy",},"order":0,},
+    {"id":{"name":"spr_player_attack_up_4","path":"sprites/spr_player_attack_up_4/spr_player_attack_up_4.yy",},"order":1,},
+    {"id":{"name":"spr_player_attack_left_4","path":"sprites/spr_player_attack_left_4/spr_player_attack_left_4.yy",},"order":2,},
+    {"id":{"name":"spr_player_attack_down_4","path":"sprites/spr_player_attack_down_4/spr_player_attack_down_4.yy",},"order":3,},
+    {"id":{"name":"spr_player_attack_right_5","path":"sprites/spr_player_attack_right_5/spr_player_attack_right_5.yy",},"order":0,},
+    {"id":{"name":"spr_player_attack_up_5","path":"sprites/spr_player_attack_up_5/spr_player_attack_up_5.yy",},"order":1,},
+    {"id":{"name":"spr_player_attack_left_5","path":"sprites/spr_player_attack_left_5/spr_player_attack_left_5.yy",},"order":2,},
+    {"id":{"name":"spr_player_attack_down_5","path":"sprites/spr_player_attack_down_5/spr_player_attack_down_5.yy",},"order":3,},
+    {"id":{"name":"spr_player_skillshot_magic_right","path":"sprites/spr_player_skillshot_magic_right/spr_player_skillshot_magic_right.yy",},"order":0,},
+    {"id":{"name":"spr_player_skillshot_magic_up","path":"sprites/spr_player_skillshot_magic_up/spr_player_skillshot_magic_up.yy",},"order":1,},
+    {"id":{"name":"spr_player_skillshot_magic_left","path":"sprites/spr_player_skillshot_magic_left/spr_player_skillshot_magic_left.yy",},"order":2,},
+    {"id":{"name":"spr_player_skillshot_magic_down","path":"sprites/spr_player_skillshot_magic_down/spr_player_skillshot_magic_down.yy",},"order":3,},
+    {"id":{"name":"spr_prime_damage_buff","path":"sprites/spr_prime_damage_buff/spr_prime_damage_buff.yy",},"order":12,},
+    {"id":{"name":"spr_ability_attack_right","path":"sprites/spr_ability_attack_right/spr_ability_attack_right.yy",},"order":0,},
+    {"id":{"name":"spr_ability_attack_up","path":"sprites/spr_ability_attack_up/spr_ability_attack_up.yy",},"order":1,},
+    {"id":{"name":"spr_ability_attack_left","path":"sprites/spr_ability_attack_left/spr_ability_attack_left.yy",},"order":2,},
+    {"id":{"name":"spr_ability_attack_down","path":"sprites/spr_ability_attack_down/spr_ability_attack_down.yy",},"order":3,},
+    {"id":{"name":"spr_fling_staff_right","path":"sprites/spr_fling_staff_right/spr_fling_staff_right.yy",},"order":0,},
+    {"id":{"name":"spr_fling_staff_up","path":"sprites/spr_fling_staff_up/spr_fling_staff_up.yy",},"order":1,},
+    {"id":{"name":"spr_fling_staff_left","path":"sprites/spr_fling_staff_left/spr_fling_staff_left.yy",},"order":2,},
+    {"id":{"name":"spr_fling_staff_down","path":"sprites/spr_fling_staff_down/spr_fling_staff_down.yy",},"order":3,},
+    {"id":{"name":"spr_ready_up_right","path":"sprites/spr_ready_up_right/spr_ready_up_right.yy",},"order":0,},
+    {"id":{"name":"spr_ready_up_up","path":"sprites/spr_ready_up_up/spr_ready_up_up.yy",},"order":1,},
+    {"id":{"name":"spr_ready_up_left","path":"sprites/spr_ready_up_left/spr_ready_up_left.yy",},"order":2,},
+    {"id":{"name":"spr_ready_up_down","path":"sprites/spr_ready_up_down/spr_ready_up_down.yy",},"order":3,},
+    {"id":{"name":"spr_ground_slam_staff_right","path":"sprites/spr_ground_slam_staff_right/spr_ground_slam_staff_right.yy",},"order":0,},
+    {"id":{"name":"spr_ground_slam_staff_up","path":"sprites/spr_ground_slam_staff_up/spr_ground_slam_staff_up.yy",},"order":1,},
+    {"id":{"name":"spr_ground_slam_staff_left","path":"sprites/spr_ground_slam_staff_left/spr_ground_slam_staff_left.yy",},"order":2,},
+    {"id":{"name":"spr_ground_slam_staff_down","path":"sprites/spr_ground_slam_staff_down/spr_ground_slam_staff_down.yy",},"order":3,},
+    {"id":{"name":"spr_power_up_right","path":"sprites/spr_power_up_right/spr_power_up_right.yy",},"order":0,},
+    {"id":{"name":"spr_power_up_up","path":"sprites/spr_power_up_up/spr_power_up_up.yy",},"order":1,},
+    {"id":{"name":"spr_power_up_left","path":"sprites/spr_power_up_left/spr_power_up_left.yy",},"order":2,},
+    {"id":{"name":"spr_power_up_down","path":"sprites/spr_power_up_down/spr_power_up_down.yy",},"order":3,},
+    {"id":{"name":"spr_player_attack_right_hitbox","path":"sprites/spr_player_attack_right_hitbox/spr_player_attack_right_hitbox.yy",},"order":0,},
+    {"id":{"name":"spr_player_attack_up_hitbox","path":"sprites/spr_player_attack_up_hitbox/spr_player_attack_up_hitbox.yy",},"order":1,},
+    {"id":{"name":"spr_player_attack_left_hitbox","path":"sprites/spr_player_attack_left_hitbox/spr_player_attack_left_hitbox.yy",},"order":2,},
+    {"id":{"name":"spr_player_attack_down_hitbox","path":"sprites/spr_player_attack_down_hitbox/spr_player_attack_down_hitbox.yy",},"order":3,},
+    {"id":{"name":"spr_diabolus_blast_hitbox","path":"sprites/spr_diabolus_blast_hitbox/spr_diabolus_blast_hitbox.yy",},"order":0,},
+    {"id":{"name":"spr_glinting_blade_projectile","path":"sprites/spr_glinting_blade_projectile/spr_glinting_blade_projectile.yy",},"order":1,},
+    {"id":{"name":"spr_death_incarnate_walking_right","path":"sprites/spr_death_incarnate_walking_right/spr_death_incarnate_walking_right.yy",},"order":0,},
+    {"id":{"name":"spr_death_incarnate_walking_up","path":"sprites/spr_death_incarnate_walking_up/spr_death_incarnate_walking_up.yy",},"order":1,},
+    {"id":{"name":"spr_death_incarnate_walking_left","path":"sprites/spr_death_incarnate_walking_left/spr_death_incarnate_walking_left.yy",},"order":2,},
+    {"id":{"name":"spr_death_incarnate_walking_down","path":"sprites/spr_death_incarnate_walking_down/spr_death_incarnate_walking_down.yy",},"order":3,},
+    {"id":{"name":"spr_death_incarnate_standing_right","path":"sprites/spr_death_incarnate_standing_right/spr_death_incarnate_standing_right.yy",},"order":0,},
+    {"id":{"name":"spr_death_incarnate_standing_up","path":"sprites/spr_death_incarnate_standing_up/spr_death_incarnate_standing_up.yy",},"order":1,},
+    {"id":{"name":"spr_death_incarnate_standing_left","path":"sprites/spr_death_incarnate_standing_left/spr_death_incarnate_standing_left.yy",},"order":2,},
+    {"id":{"name":"spr_death_incarnate_standing_down","path":"sprites/spr_death_incarnate_standing_down/spr_death_incarnate_standing_down.yy",},"order":3,},
+    {"id":{"name":"spr_death_incarnate_dashing_right","path":"sprites/spr_death_incarnate_dashing_right/spr_death_incarnate_dashing_right.yy",},"order":0,},
+    {"id":{"name":"spr_death_incarnate_dashing_up","path":"sprites/spr_death_incarnate_dashing_up/spr_death_incarnate_dashing_up.yy",},"order":1,},
+    {"id":{"name":"spr_death_incarnate_dashing_left","path":"sprites/spr_death_incarnate_dashing_left/spr_death_incarnate_dashing_left.yy",},"order":2,},
+    {"id":{"name":"spr_death_incarnate_dashing_down","path":"sprites/spr_death_incarnate_dashing_down/spr_death_incarnate_dashing_down.yy",},"order":3,},
+    {"id":{"name":"spr_death_incarnate_attack_right","path":"sprites/spr_death_incarnate_attack_right/spr_death_incarnate_attack_right.yy",},"order":0,},
+    {"id":{"name":"spr_death_incarnate_attack_up","path":"sprites/spr_death_incarnate_attack_up/spr_death_incarnate_attack_up.yy",},"order":1,},
+    {"id":{"name":"spr_death_incarnate_attack_left","path":"sprites/spr_death_incarnate_attack_left/spr_death_incarnate_attack_left.yy",},"order":2,},
+    {"id":{"name":"spr_death_incarnate_attack_down","path":"sprites/spr_death_incarnate_attack_down/spr_death_incarnate_attack_down.yy",},"order":3,},
+    {"id":{"name":"spr_player_bullet_hitbox","path":"sprites/spr_player_bullet_hitbox/spr_player_bullet_hitbox.yy",},"order":2,},
+    {"id":{"name":"spr_enemy_bullet_hitbox","path":"sprites/spr_enemy_bullet_hitbox/spr_enemy_bullet_hitbox.yy",},"order":3,},
+    {"id":{"name":"spr_aoe_heal","path":"sprites/spr_aoe_heal/spr_aoe_heal.yy",},"order":4,},
+    {"id":{"name":"spr_aoe_damage","path":"sprites/spr_aoe_damage/spr_aoe_damage.yy",},"order":5,},
+    {"id":{"name":"spr_single_hit","path":"sprites/spr_single_hit/spr_single_hit.yy",},"order":6,},
+    {"id":{"name":"spr_whirlwind_hitbox","path":"sprites/spr_whirlwind_hitbox/spr_whirlwind_hitbox.yy",},"order":7,},
+    {"id":{"name":"spr_skill_tree_background","path":"sprites/spr_skill_tree_background/spr_skill_tree_background.yy",},"order":0,},
+    {"id":{"name":"spr_ground_hurtbox","path":"sprites/spr_ground_hurtbox/spr_ground_hurtbox.yy",},"order":4,},
+    {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":5,},
+    {"id":{"name":"spr_chasm","path":"sprites/spr_chasm/spr_chasm.yy",},"order":6,},
+    {"id":{"name":"test_tile","path":"sprites/test_tile/test_tile.yy",},"order":7,},
+    {"id":{"name":"spr_dead_body","path":"sprites/spr_dead_body/spr_dead_body.yy",},"order":8,},
+    {"id":{"name":"spr_ritual_of_imperfection_powering_up","path":"sprites/spr_ritual_of_imperfection_powering_up/spr_ritual_of_imperfection_powering_up.yy",},"order":9,},
+    {"id":{"name":"spr_dissolve_door_1","path":"sprites/spr_dissolve_door_1/spr_dissolve_door_1.yy",},"order":10,},
+    {"id":{"name":"tl_test_tile","path":"tilesets/tl_test_tile/tl_test_tile.yy",},"order":0,},
+    {"id":{"name":"scr_player_input","path":"scripts/scr_player_input/scr_player_input.yy",},"order":0,},
+    {"id":{"name":"scr_initialize_player_stats","path":"scripts/scr_initialize_player_stats/scr_initialize_player_stats.yy",},"order":0,},
+    {"id":{"name":"scr_track_player_stats","path":"scripts/scr_track_player_stats/scr_track_player_stats.yy",},"order":1,},
+    {"id":{"name":"scr_track_player_buffs_and_debuffs","path":"scripts/scr_track_player_buffs_and_debuffs/scr_track_player_buffs_and_debuffs.yy",},"order":2,},
+    {"id":{"name":"scr_initialize_enemy_stats","path":"scripts/scr_initialize_enemy_stats/scr_initialize_enemy_stats.yy",},"order":0,},
+    {"id":{"name":"scr_track_enemy_stats","path":"scripts/scr_track_enemy_stats/scr_track_enemy_stats.yy",},"order":1,},
+    {"id":{"name":"scr_track_enemy_buffs_and_debuffs","path":"scripts/scr_track_enemy_buffs_and_debuffs/scr_track_enemy_buffs_and_debuffs.yy",},"order":2,},
+    {"id":{"name":"scr_player_idle","path":"scripts/scr_player_idle/scr_player_idle.yy",},"order":0,},
+    {"id":{"name":"scr_player_run","path":"scripts/scr_player_run/scr_player_run.yy",},"order":1,},
+    {"id":{"name":"scr_player_dash","path":"scripts/scr_player_dash/scr_player_dash.yy",},"order":2,},
+    {"id":{"name":"scr_player_parry_ready","path":"scripts/scr_player_parry_ready/scr_player_parry_ready.yy",},"order":3,},
+    {"id":{"name":"scr_player_parry_effect","path":"scripts/scr_player_parry_effect/scr_player_parry_effect.yy",},"order":4,},
+    {"id":{"name":"scr_player_attack1","path":"scripts/scr_player_attack1/scr_player_attack1.yy",},"order":0,},
+    {"id":{"name":"scr_player_attack2","path":"scripts/scr_player_attack2/scr_player_attack2.yy",},"order":1,},
+    {"id":{"name":"scr_player_attack3","path":"scripts/scr_player_attack3/scr_player_attack3.yy",},"order":2,},
+    {"id":{"name":"scr_player_attack4","path":"scripts/scr_player_attack4/scr_player_attack4.yy",},"order":3,},
+    {"id":{"name":"scr_player_attack5","path":"scripts/scr_player_attack5/scr_player_attack5.yy",},"order":4,},
+    {"id":{"name":"scr_player_wrath_of_the_diaboli","path":"scripts/scr_player_wrath_of_the_diaboli/scr_player_wrath_of_the_diaboli.yy",},"order":0,},
+    {"id":{"name":"scr_player_glinting_blade","path":"scripts/scr_player_glinting_blade/scr_player_glinting_blade.yy",},"order":1,},
+    {"id":{"name":"scr_player_glinting_blade_single","path":"scripts/scr_player_glinting_blade_single/scr_player_glinting_blade_single.yy",},"order":2,},
+    {"id":{"name":"scr_player_glinting_blade_aoe","path":"scripts/scr_player_glinting_blade_aoe/scr_player_glinting_blade_aoe.yy",},"order":3,},
+    {"id":{"name":"scr_player_hellish_landscape","path":"scripts/scr_player_hellish_landscape/scr_player_hellish_landscape.yy",},"order":4,},
+    {"id":{"name":"scr_player_hidden_dagger","path":"scripts/scr_player_hidden_dagger/scr_player_hidden_dagger.yy",},"order":5,},
+    {"id":{"name":"scr_player_all_out_attack","path":"scripts/scr_player_all_out_attack/scr_player_all_out_attack.yy",},"order":6,},
+    {"id":{"name":"scr_player_exploit_weakness","path":"scripts/scr_player_exploit_weakness/scr_player_exploit_weakness.yy",},"order":7,},
+    {"id":{"name":"scr_player_purifying_rage","path":"scripts/scr_player_purifying_rage/scr_player_purifying_rage.yy",},"order":8,},
+    {"id":{"name":"scr_player_rushdown","path":"scripts/scr_player_rushdown/scr_player_rushdown.yy",},"order":9,},
+    {"id":{"name":"scr_player_diabolus_blast","path":"scripts/scr_player_diabolus_blast/scr_player_diabolus_blast.yy",},"order":10,},
+    {"id":{"name":"scr_player_true_caelesti_wings","path":"scripts/scr_player_true_caelesti_wings/scr_player_true_caelesti_wings.yy",},"order":0,},
+    {"id":{"name":"scr_player_bindings_of_the_caelesti","path":"scripts/scr_player_bindings_of_the_caelesti/scr_player_bindings_of_the_caelesti.yy",},"order":1,},
+    {"id":{"name":"scr_player_armor_of_the_caelesti","path":"scripts/scr_player_armor_of_the_caelesti/scr_player_armor_of_the_caelesti.yy",},"order":2,},
+    {"id":{"name":"scr_player_holy_defense","path":"scripts/scr_player_holy_defense/scr_player_holy_defense.yy",},"order":3,},
+    {"id":{"name":"scr_player_wrath_of_the_repentant","path":"scripts/scr_player_wrath_of_the_repentant/scr_player_wrath_of_the_repentant.yy",},"order":4,},
+    {"id":{"name":"scr_player_the_one_power","path":"scripts/scr_player_the_one_power/scr_player_the_one_power.yy",},"order":5,},
+    {"id":{"name":"scr_player_lightning_spear","path":"scripts/scr_player_lightning_spear/scr_player_lightning_spear.yy",},"order":6,},
+    {"id":{"name":"scr_player_angelic_barrage","path":"scripts/scr_player_angelic_barrage/scr_player_angelic_barrage.yy",},"order":7,},
+    {"id":{"name":"scr_player_whirlwind","path":"scripts/scr_player_whirlwind/scr_player_whirlwind.yy",},"order":8,},
+    {"id":{"name":"scr_player_death_incarnate","path":"scripts/scr_player_death_incarnate/scr_player_death_incarnate.yy",},"order":0,},
+    {"id":{"name":"scr_player_ritual_of_imperfection","path":"scripts/scr_player_ritual_of_imperfection/scr_player_ritual_of_imperfection.yy",},"order":1,},
+    {"id":{"name":"scr_player_ritual_of_death","path":"scripts/scr_player_ritual_of_death/scr_player_ritual_of_death.yy",},"order":2,},
+    {"id":{"name":"scr_player_soul_tether","path":"scripts/scr_player_soul_tether/scr_player_soul_tether.yy",},"order":3,},
+    {"id":{"name":"scr_player_dinner_is_served","path":"scripts/scr_player_dinner_is_served/scr_player_dinner_is_served.yy",},"order":4,},
+    {"id":{"name":"scr_player_final_parting","path":"scripts/scr_player_final_parting/scr_player_final_parting.yy",},"order":5,},
+    {"id":{"name":"scr_player_risk_of_life","path":"scripts/scr_player_risk_of_life/scr_player_risk_of_life.yy",},"order":6,},
+    {"id":{"name":"scr_player_taken_for_pain","path":"scripts/scr_player_taken_for_pain/scr_player_taken_for_pain.yy",},"order":7,},
+    {"id":{"name":"scr_player_sickly_proposition","path":"scripts/scr_player_sickly_proposition/scr_player_sickly_proposition.yy",},"order":8,},
+    {"id":{"name":"scr_ai_decisions","path":"scripts/scr_ai_decisions/scr_ai_decisions.yy",},"order":0,},
+    {"id":{"name":"scr_enemy_idle","path":"scripts/scr_enemy_idle/scr_enemy_idle.yy",},"order":0,},
+    {"id":{"name":"scr_move_within_attack_range","path":"scripts/scr_move_within_attack_range/scr_move_within_attack_range.yy",},"order":1,},
+    {"id":{"name":"scr_change_states","path":"scripts/scr_change_states/scr_change_states.yy",},"order":2,},
+    {"id":{"name":"scr_determine_direction_facing","path":"scripts/scr_determine_direction_facing/scr_determine_direction_facing.yy",},"order":3,},
+    {"id":{"name":"scr_healer_ai_out_of_combat_targeting","path":"scripts/scr_healer_ai_out_of_combat_targeting/scr_healer_ai_out_of_combat_targeting.yy",},"order":2,},
+    {"id":{"name":"scr_stunned","path":"scripts/scr_stunned/scr_stunned.yy",},"order":3,},
+    {"id":{"name":"scr_healer_light_melee","path":"scripts/scr_healer_light_melee/scr_healer_light_melee.yy",},"order":0,},
+    {"id":{"name":"scr_healer_heavy_melee","path":"scripts/scr_healer_heavy_melee/scr_healer_heavy_melee.yy",},"order":1,},
+    {"id":{"name":"scr_healer_light_ranged","path":"scripts/scr_healer_light_ranged/scr_healer_light_ranged.yy",},"order":2,},
+    {"id":{"name":"scr_healer_heavy_ranged","path":"scripts/scr_healer_heavy_ranged/scr_healer_heavy_ranged.yy",},"order":3,},
+    {"id":{"name":"scr_healer_heal_ally","path":"scripts/scr_healer_heal_ally/scr_healer_heal_ally.yy",},"order":4,},
+    {"id":{"name":"scr_tank_light_melee","path":"scripts/scr_tank_light_melee/scr_tank_light_melee.yy",},"order":0,},
+    {"id":{"name":"scr_tank_heavy_melee","path":"scripts/scr_tank_heavy_melee/scr_tank_heavy_melee.yy",},"order":1,},
+    {"id":{"name":"scr_tank_light_ranged","path":"scripts/scr_tank_light_ranged/scr_tank_light_ranged.yy",},"order":2,},
+    {"id":{"name":"scr_tank_heavy_ranged","path":"scripts/scr_tank_heavy_ranged/scr_tank_heavy_ranged.yy",},"order":3,},
+    {"id":{"name":"scr_mage_light_melee","path":"scripts/scr_mage_light_melee/scr_mage_light_melee.yy",},"order":0,},
+    {"id":{"name":"scr_mage_heavy_melee","path":"scripts/scr_mage_heavy_melee/scr_mage_heavy_melee.yy",},"order":1,},
+    {"id":{"name":"scr_mage_light_ranged","path":"scripts/scr_mage_light_ranged/scr_mage_light_ranged.yy",},"order":2,},
+    {"id":{"name":"scr_mage_heavy_ranged","path":"scripts/scr_mage_heavy_ranged/scr_mage_heavy_ranged.yy",},"order":3,},
+    {"id":{"name":"scr_fighter_light_melee","path":"scripts/scr_fighter_light_melee/scr_fighter_light_melee.yy",},"order":0,},
+    {"id":{"name":"scr_fighter_heavy_melee","path":"scripts/scr_fighter_heavy_melee/scr_fighter_heavy_melee.yy",},"order":1,},
+    {"id":{"name":"scr_fighter_light_ranged","path":"scripts/scr_fighter_light_ranged/scr_fighter_light_ranged.yy",},"order":2,},
+    {"id":{"name":"scr_fighter_heavy_ranged","path":"scripts/scr_fighter_heavy_ranged/scr_fighter_heavy_ranged.yy",},"order":3,},
+    {"id":{"name":"initialize_movement_entity","path":"scripts/initialize_movement_entity/initialize_movement_entity.yy",},"order":0,},
+    {"id":{"name":"obtain_direction","path":"scripts/obtain_direction/obtain_direction.yy",},"order":1,},
+    {"id":{"name":"move_movement_entity","path":"scripts/move_movement_entity/move_movement_entity.yy",},"order":2,},
+    {"id":{"name":"add_movement","path":"scripts/add_movement/add_movement.yy",},"order":3,},
+    {"id":{"name":"set_movement_variables","path":"scripts/set_movement_variables/set_movement_variables.yy",},"order":4,},
+    {"id":{"name":"apply_friction_to_movement_entity","path":"scripts/apply_friction_to_movement_entity/apply_friction_to_movement_entity.yy",},"order":5,},
+    {"id":{"name":"approach_number","path":"scripts/approach_number/approach_number.yy",},"order":0,},
+    {"id":{"name":"execute_attacks","path":"scripts/execute_attacks/execute_attacks.yy",},"order":1,},
+    {"id":{"name":"send_player_to_ability_state","path":"scripts/send_player_to_ability_state/send_player_to_ability_state.yy",},"order":2,},
+    {"id":{"name":"choose_player_ability_state","path":"scripts/choose_player_ability_state/choose_player_ability_state.yy",},"order":3,},
+    {"id":{"name":"draw_ring_healthbar","path":"scripts/draw_ring_healthbar/draw_ring_healthbar.yy",},"order":4,},
+    {"id":{"name":"draw_rectangle_healthbar","path":"scripts/draw_rectangle_healthbar/draw_rectangle_healthbar.yy",},"order":5,},
+    {"id":{"name":"round_to_n_multiple","path":"scripts/round_to_n_multiple/round_to_n_multiple.yy",},"order":6,},
+    {"id":{"name":"apply_damage_and_healing","path":"scripts/apply_damage_and_healing/apply_damage_and_healing.yy",},"order":7,},
+    {"id":{"name":"create_dot_tic_hitbox","path":"scripts/create_dot_tic_hitbox/create_dot_tic_hitbox.yy",},"order":8,},
+    {"id":{"name":"teleport_to_nearest_empty_location","path":"scripts/teleport_to_nearest_empty_location/teleport_to_nearest_empty_location.yy",},"order":9,},
+    {"id":{"name":"scr_line_of_sight_exists","path":"scripts/scr_line_of_sight_exists/scr_line_of_sight_exists.yy",},"order":10,},
+    {"id":{"name":"scr_path_exists_to_player_or_minions","path":"scripts/scr_path_exists_to_player_or_minions/scr_path_exists_to_player_or_minions.yy",},"order":11,},
+    {"id":{"name":"scr_line_of_sight_exists_to_player_or_minions","path":"scripts/scr_line_of_sight_exists_to_player_or_minions/scr_line_of_sight_exists_to_player_or_minions.yy",},"order":12,},
+    {"id":{"name":"scr_line_of_sight_exists_to_valid_target","path":"scripts/scr_line_of_sight_exists_to_valid_target/scr_line_of_sight_exists_to_valid_target.yy",},"order":13,},
+    {"id":{"name":"scr_interactables_with_no_menu","path":"scripts/scr_interactables_with_no_menu/scr_interactables_with_no_menu.yy",},"order":0,},
+    {"id":{"name":"scr_interactables_with_menu","path":"scripts/scr_interactables_with_menu/scr_interactables_with_menu.yy",},"order":1,},
+    {"id":{"name":"scr_interactables_managing","path":"scripts/scr_interactables_managing/scr_interactables_managing.yy",},"order":2,},
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
+    {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},"order":1,},
+    {"id":{"name":"obj_dead_body","path":"objects/obj_dead_body/obj_dead_body.yy",},"order":2,},
+    {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},"order":3,},
+    {"id":{"name":"obj_chasm","path":"objects/obj_chasm/obj_chasm.yy",},"order":4,},
+    {"id":{"name":"obj_interact","path":"objects/obj_interact/obj_interact.yy",},"order":5,},
+    {"id":{"name":"obj_movement_grid","path":"objects/obj_movement_grid/obj_movement_grid.yy",},"order":0,},
+    {"id":{"name":"obj_game_manager","path":"objects/obj_game_manager/obj_game_manager.yy",},"order":1,},
+    {"id":{"name":"obj_hurtbox","path":"objects/obj_hurtbox/obj_hurtbox.yy",},"order":1,},
+    {"id":{"name":"obj_hitbox","path":"objects/obj_hitbox/obj_hitbox.yy",},"order":0,},
+    {"id":{"name":"obj_ground_hurtbox","path":"objects/obj_ground_hurtbox/obj_ground_hurtbox.yy",},"order":2,},
+    {"id":{"name":"obj_ai_decision_making","path":"objects/obj_ai_decision_making/obj_ai_decision_making.yy",},"order":0,},
+    {"id":{"name":"obj_menu_manager","path":"objects/obj_menu_manager/obj_menu_manager.yy",},"order":0,},
+    {"id":{"name":"obj_combat_controller","path":"objects/obj_combat_controller/obj_combat_controller.yy",},"order":0,},
+    {"id":{"name":"obj_camera_display_manager","path":"objects/obj_camera_display_manager/obj_camera_display_manager.yy",},"order":0,},
+    {"id":{"name":"obj_camera_follow_LEGACY","path":"objects/obj_camera_follow_LEGACY/obj_camera_follow_LEGACY.yy",},"order":1,},
+    {"id":{"name":"obj_display_manager_LEGACY","path":"objects/obj_display_manager_LEGACY/obj_display_manager_LEGACY.yy",},"order":2,},
+    {"id":{"name":"obj_skill_tree","path":"objects/obj_skill_tree/obj_skill_tree.yy",},"order":7,},
+    {"id":{"name":"initialization_room","path":"rooms/initialization_room/initialization_room.yy",},"order":0,},
+    {"id":{"name":"room0","path":"rooms/room0/room0.yy",},"order":1,},
+  ],
+  "Options": [
+    {"name":"Linux","path":"options/linux/options_linux.yy",},
+    {"name":"Windows","path":"options/windows/options_windows.yy",},
+    {"name":"macOS","path":"options/mac/options_mac.yy",},
+    {"name":"Main","path":"options/main/options_main.yy",},
+  ],
+  "isDnDProject": false,
+  "isEcma": false,
+  "tutorialPath": "",
+  "configs": {
+    "name": "Default",
+    "children": [],
+  },
+  "RoomOrderNodes": [
+    {"roomId":{"name":"initialization_room","path":"rooms/initialization_room/initialization_room.yy",},},
+    {"roomId":{"name":"room0","path":"rooms/room0/room0.yy",},},
+  ],
+  "Folders": [
+    {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_enemy.yy","order":0,"resourceVersion":"1.0","name":"grp_enemy","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_enemy/grp_mage.yy","order":0,"resourceVersion":"1.0","name":"grp_mage","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_enemy/grp_healer.yy","order":1,"resourceVersion":"1.0","name":"grp_healer","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_enemy/grp_tank.yy","order":2,"resourceVersion":"1.0","name":"grp_tank","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_enemy/grp_fighter.yy","order":3,"resourceVersion":"1.0","name":"grp_fighter","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player.yy","order":1,"resourceVersion":"1.0","name":"grp_player","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_idle.yy","order":0,"resourceVersion":"1.0","name":"grp_idle","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_run.yy","order":1,"resourceVersion":"1.0","name":"grp_run","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_dash.yy","order":2,"resourceVersion":"1.0","name":"grp_dash","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_parry_ready.yy","order":3,"resourceVersion":"1.0","name":"grp_parry_ready","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_parry_effect.yy","order":4,"resourceVersion":"1.0","name":"grp_parry_effect","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_attack1.yy","order":5,"resourceVersion":"1.0","name":"grp_attack1","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_attack2.yy","order":6,"resourceVersion":"1.0","name":"grp_attack2","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_attack3.yy","order":7,"resourceVersion":"1.0","name":"grp_attack3","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_attack4.yy","order":8,"resourceVersion":"1.0","name":"grp_attack4","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_attack5.yy","order":9,"resourceVersion":"1.0","name":"grp_attack5","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_abilities.yy","order":10,"resourceVersion":"1.0","name":"grp_abilities","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_abilities/grp_diabolus_magic.yy","order":0,"resourceVersion":"1.0","name":"grp_diabolus_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_abilities/grp_caelesti_magic.yy","order":1,"resourceVersion":"1.0","name":"grp_caelesti_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_abilities/grp_necromancy_magic.yy","order":2,"resourceVersion":"1.0","name":"grp_necromancy_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_skillshot_magic.yy","order":11,"resourceVersion":"1.0","name":"grp_skillshot_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_ability_attack.yy","order":13,"resourceVersion":"1.0","name":"grp_ability_attack","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_fling_staff.yy","order":14,"resourceVersion":"1.0","name":"grp_fling_staff","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/hes just standing there... menacingly.yy","order":15,"resourceVersion":"1.0","name":"hes just standing there... menacingly","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_ground_slam_staff.yy","order":16,"resourceVersion":"1.0","name":"grp_ground_slam_staff","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_player/grp_power_up.yy","order":17,"resourceVersion":"1.0","name":"grp_power_up","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes.yy","order":2,"resourceVersion":"1.0","name":"grp_hitboxes","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes/grp_melee_attacks.yy","order":0,"resourceVersion":"1.0","name":"grp_melee_attacks","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes/grp_diabolus_magic.yy","order":1,"resourceVersion":"1.0","name":"grp_diabolus_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes/grp_diabolus_magic/grp_death_incarnate.yy","order":2,"resourceVersion":"1.0","name":"grp_death_incarnate","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes/grp_diabolus_magic/grp_death_incarnate/grp_death_incarnate_walking.yy","order":0,"resourceVersion":"1.0","name":"grp_death_incarnate_walking","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes/grp_diabolus_magic/grp_death_incarnate/grp_death_incarnate_standing.yy","order":1,"resourceVersion":"1.0","name":"grp_death_incarnate_standing","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes/grp_diabolus_magic/grp_death_incarnate/grp_death_incarnate_dashing.yy","order":2,"resourceVersion":"1.0","name":"grp_death_incarnate_dashing","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_hitboxes/grp_diabolus_magic/grp_death_incarnate/grp_death_incarnate_attack.yy","order":3,"resourceVersion":"1.0","name":"grp_death_incarnate_attack","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_inventories_and_guis.yy","order":3,"resourceVersion":"1.0","name":"grp_inventories_and_guis","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/grp_inventories_and_guis/grp_skill_tree_gui.yy","order":0,"resourceVersion":"1.0","name":"grp_skill_tree_gui","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Tile Sets.yy","order":3,"resourceVersion":"1.0","name":"Tile Sets","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sounds.yy","order":4,"resourceVersion":"1.0","name":"Sounds","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Paths.yy","order":5,"resourceVersion":"1.0","name":"Paths","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts.yy","order":6,"resourceVersion":"1.0","name":"Scripts","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_inputs.yy","order":0,"resourceVersion":"1.0","name":"grp_player_inputs","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_stats.yy","order":1,"resourceVersion":"1.0","name":"grp_player_stats","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_stats.yy","order":2,"resourceVersion":"1.0","name":"grp_enemy_stats","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_states.yy","order":3,"resourceVersion":"1.0","name":"grp_player_states","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_states/grp_basic_attacks.yy","order":5,"resourceVersion":"1.0","name":"grp_basic_attacks","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_states/grp_abilities.yy","order":6,"resourceVersion":"1.0","name":"grp_abilities","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_states/grp_abilities/grp_diabolus_magic.yy","order":0,"resourceVersion":"1.0","name":"grp_diabolus_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_states/grp_abilities/grp_caelesti_magic.yy","order":1,"resourceVersion":"1.0","name":"grp_caelesti_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_player_states/grp_abilities/grp_necromancy_magic.yy","order":2,"resourceVersion":"1.0","name":"grp_necromancy_magic","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_scripts.yy","order":4,"resourceVersion":"1.0","name":"grp_enemy_scripts","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_scripts/grp_enemy_weighted_engine_states.yy","order":1,"resourceVersion":"1.0","name":"grp_enemy_weighted_engine_states","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_scripts/grp_enemy_attacks.yy","order":4,"resourceVersion":"1.0","name":"grp_enemy_attacks","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_healer_attacks.yy","order":0,"resourceVersion":"1.0","name":"grp_healer_attacks","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_tank_attacks.yy","order":1,"resourceVersion":"1.0","name":"grp_tank_attacks","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_mage_attacks.yy","order":2,"resourceVersion":"1.0","name":"grp_mage_attacks","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_fighter_attacks.yy","order":3,"resourceVersion":"1.0","name":"grp_fighter_attacks","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_movement_engine.yy","order":5,"resourceVersion":"1.0","name":"grp_movement_engine","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_helper_scripts.yy","order":6,"resourceVersion":"1.0","name":"grp_helper_scripts","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_menu_managing.yy","order":7,"resourceVersion":"1.0","name":"grp_menu_managing","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_menu_managing/grp_menus.yy","order":0,"resourceVersion":"1.0","name":"grp_menus","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/grp_menu_managing/grp_dialogue.yy","order":1,"resourceVersion":"1.0","name":"grp_dialogue","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Shaders.yy","order":7,"resourceVersion":"1.0","name":"Shaders","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Fonts.yy","order":8,"resourceVersion":"1.0","name":"Fonts","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Timelines.yy","order":9,"resourceVersion":"1.0","name":"Timelines","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects.yy","order":10,"resourceVersion":"1.0","name":"Objects","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/grp_player_interactable_objects.yy","order":0,"resourceVersion":"1.0","name":"grp_player_interactable_objects","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/grp_background_processes.yy","order":1,"resourceVersion":"1.0","name":"grp_background_processes","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/grp_hit_and_hurtboxes.yy","order":2,"resourceVersion":"1.0","name":"grp_hit_and_hurtboxes","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/grp_enemy_ai.yy","order":3,"resourceVersion":"1.0","name":"grp_enemy_ai","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/grp_player_menus.yy","order":4,"resourceVersion":"1.0","name":"grp_player_menus","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/grp_combat_controllers.yy","order":5,"resourceVersion":"1.0","name":"grp_combat_controllers","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/grp_camera_objects.yy","order":6,"resourceVersion":"1.0","name":"grp_camera_objects","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Rooms.yy","order":11,"resourceVersion":"1.0","name":"Rooms","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Notes.yy","order":12,"resourceVersion":"1.0","name":"Notes","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Extensions.yy","order":13,"resourceVersion":"1.0","name":"Extensions","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sequences.yy","order":1,"resourceVersion":"1.0","name":"Sequences","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Animation Curves.yy","order":2,"resourceVersion":"1.0","name":"Animation Curves","tags":[],"resourceType":"GMFolder",},
+  ],
+  "AudioGroups": [
+    {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
+  ],
+  "TextureGroups": [
+    {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"Default","resourceType":"GMTextureGroup",},
+  ],
+  "IncludedFiles": [],
+  "MetaData": {
+    "IDEVersion": "2.3.1.542",
+  },
+  "resourceVersion": "1.4",
+  "name": "Angel's Fall V0.0.1",
+  "tags": [],
+  "resourceType": "GMProject",
 }

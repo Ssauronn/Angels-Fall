@@ -1,8 +1,12 @@
 {
-    "id": "79579f9e-c59f-4b55-8106-e1276cfafca6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_ai_decisions",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_enemy_scripts",
+    "path": "folders/Scripts/grp_enemy_scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_ai_decisions",
+  "tags": [],
+  "resourceType": "GMScript",
 }

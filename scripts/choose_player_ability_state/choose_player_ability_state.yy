@@ -1,8 +1,12 @@
 {
-    "id": "9618cf1f-b489-4bd4-bb67-1a4cc28baf0d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "choose_player_ability_state",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_helper_scripts",
+    "path": "folders/Scripts/grp_helper_scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "choose_player_ability_state",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "99ad9344-48cf-45ec-b588-e1a5866292fe",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_sickly_proposition",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_necromancy_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_necromancy_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_sickly_proposition",
+  "tags": [],
+  "resourceType": "GMScript",
 }

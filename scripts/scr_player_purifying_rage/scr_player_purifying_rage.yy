@@ -1,8 +1,12 @@
 {
-    "id": "78030025-4cb3-4df5-a0b2-fd15cd4a39e2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_purifying_rage",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_diabolus_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_diabolus_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_purifying_rage",
+  "tags": [],
+  "resourceType": "GMScript",
 }

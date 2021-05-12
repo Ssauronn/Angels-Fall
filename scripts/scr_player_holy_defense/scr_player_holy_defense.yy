@@ -1,8 +1,12 @@
 {
-    "id": "c6c1db7f-490c-4f21-a70a-47354334b808",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_holy_defense",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_caelesti_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_caelesti_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_holy_defense",
+  "tags": [],
+  "resourceType": "GMScript",
 }
