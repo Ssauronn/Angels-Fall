@@ -1,7 +1,7 @@
-///@function Add Movement
-///@argument0 MaxSpeed
-///@argument1 Acceleration
-///@argument2 Direction
+/// @function add_movement(maxSpeed, acceleration, direction);
+/// @param {real} maxSpeed
+/// @param {real} acceleration
+/// @param {real} direction
 function add_movement(argument0, argument1, argument2) {
 
 	var max_speed_ = argument0;

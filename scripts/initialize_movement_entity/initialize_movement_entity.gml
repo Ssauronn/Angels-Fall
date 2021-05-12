@@ -1,10 +1,11 @@
-///@argument0 MaxSpeed
-///@argument1 CurrentSpeed
-///@argument2 Acceleration
-///@argument3 CurrentDirection
-///@argument4 FrictionAmount
-///@argument5 BouncePercent
-///@argument6 CollisionObject(s)...
+/// @function initialize_movement_entity(maxSpeed, currentSpeed, acceleration, currentDirection, frictionAmount, bouncePercent, collisionObject(s)...);
+/// @param {real} maxSpeed
+/// @param {real} currentSpeed
+/// @param {real} acceleration
+/// @param {real} currentDirection
+/// @param {real} frictionAmount
+/// @param {real} bouncePercent
+/// @param {real} collisionObjects
 function initialize_movement_entity() {
 	var max_speed_ = argument[0];
 	var current_speed_ = argument[1];
@@ -34,7 +35,6 @@ function initialize_movement_entity() {
 		}
 	}
 	collisionFound = -1;
-	turnRate = 1.500 / 60.000;
 
 	// Last movement key pressed
 	longestMoveKeyPress = -1;
@@ -42,9 +42,6 @@ function initialize_movement_entity() {
 	upMovementKeyTimer = 0;
 	leftMovementKeyTimer = 0;
 	downMovementKeyTimer = 0;
-
-
-
-
-
 }
+
+

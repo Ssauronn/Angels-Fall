@@ -1,7 +1,8 @@
+/// @function choose_player_ability_state(equippedAbilityInKeyPressedSlot, ComboingFromAbility);
+/// @param {string} equippedAbilityInKeyPressedSlot
+/// @param {boolean} comboingFromAbility
 ///@description Switch Statement for choosing the correct ability state to send the player to after an
 /// ability button is pressed.
-///@argument0 EquippedAbilityInKeyPressedSlot
-///@argument1 ComboingFromAbility?
 function choose_player_ability_state(argument0, argument1) {
 
 	var equipped_ability_ = argument0;

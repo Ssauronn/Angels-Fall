@@ -1,5 +1,11 @@
-///@description Teleport to the location that's closest to the desired location, that won't cause a
+/// @function teleport_to_nearest_empty_location(TargetX, TargetY, OriginOfCircleX, OriginOfCircleY, ColisionObjects);
+/// @param {real} TargetX
+/// @param {real} TargetY
+/// @param {real} OriginOfCircleX
+/// @param {real} OriginOfCircleY
+/// @param {real} CollisionObjects(s)...
 function teleport_to_nearest_empty_location() {
+	///@description Teleport to the location that's closest to the desired location, that won't cause a
 	// collision with another object. At the end, the script returns a value of 0 if teleportation could
 	// be successfully achieved without editing the given target location. Otherwise, it returns a value
 	// between 0 and 3 inclusive: 0 if the target location wasn't changed between preset 90 degree angle
@@ -160,3 +166,5 @@ function teleport_to_nearest_empty_location() {
 
 
 }
+
+

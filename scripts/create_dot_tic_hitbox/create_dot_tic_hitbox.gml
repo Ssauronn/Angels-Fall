@@ -1,6 +1,7 @@
-///@argument0TargetEnemyID
-///@argument1 TotalTicDamage
-///@argument2 CanBeTransferredThroughSoulTether
+/// @function create_dot_tic_hitbox(TargetEnemyID, TotalTicDamage, canBeTransferredThroughSoulTether);
+/// @param {real} TargetEnemyID
+/// @param {real} TotalTicDamage
+/// @param {boolean} canBeTransferredThroughSoulTether
 function create_dot_tic_hitbox(argument0, argument1, argument2) {
 	var target_enemy_, total_damage_, can_be_transferred_to_others_;
 	target_enemy_ = argument0;

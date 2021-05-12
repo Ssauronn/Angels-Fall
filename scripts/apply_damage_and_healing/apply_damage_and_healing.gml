@@ -1,6 +1,6 @@
-///@description Apply Damages and Healing Correctly using Attacker and Defender stats
-///@argument0 AttackerID
-///@argument1 DefenderID
+/// @function apply_damage_and_healing(AttackerID, DefenderID);
+/// @param {real} AttackerID
+/// @param {real} DefenderID
 function apply_damage_and_healing(argument0, argument1) {
 
 #region Set Up Variables Used to Control Damages

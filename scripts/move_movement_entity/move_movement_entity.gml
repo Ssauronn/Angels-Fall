@@ -1,4 +1,5 @@
-///@argument0 Bounce
+/// @function move_movement_entity(bounce);
+/// @param {boolean} bounce
 function move_movement_entity(argument0) {
 	var bounce_ = argument0;
 

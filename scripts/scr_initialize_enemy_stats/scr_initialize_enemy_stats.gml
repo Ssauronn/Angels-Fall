@@ -1,4 +1,5 @@
-///@argument0 enemyName
+/// @function scr_initialize_enemy_stats(enemyName);
+/// @param {string} enemyName The name of the object
 function scr_initialize_enemy_stats(argument0) {
 
 	var enemy_name_ = argument0;

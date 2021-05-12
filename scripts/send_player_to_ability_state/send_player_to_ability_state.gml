@@ -1,5 +1,6 @@
+/// @function send_player_to_ability_state(comboingFromAttack);
+/// @param {boolean} comboingFromAttack
 ///@description Send the player to the correct state based on the currently equipped ability
-///@argument0 ComboingFromAttack?
 function send_player_to_ability_state(argument0) {
 
 	var combo_ = argument0;
