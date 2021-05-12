@@ -1,246 +1,110 @@
 {
-    "id": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-    "modelName": "GMSprite",
-    "mvc": "1.12",
-    "name": "spr_enemy_healer_light_melee",
-    "For3D": false,
-    "HTile": false,
-    "VTile": false,
-    "bbox_bottom": 31,
-    "bbox_left": 0,
-    "bbox_right": 31,
-    "bbox_top": 0,
-    "bboxmode": 0,
-    "colkind": 1,
-    "coltolerance": 0,
-    "edgeFiltering": false,
-    "frames": [
-        {
-            "id": "359c5b74-a3e1-471d-8345-e86214123072",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "958fb7a6-bb50-4aee-940f-ca1ff5cc846a",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "359c5b74-a3e1-471d-8345-e86214123072",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "9e0f2c63-a2b9-45fe-b03b-7dbb735ae87e",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "359c5b74-a3e1-471d-8345-e86214123072",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "f4d34b37-b409-4f65-bbe7-cf6266565cda",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "c8f4d2d3-6b0f-48b9-ae00-e6186339873e",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "f4d34b37-b409-4f65-bbe7-cf6266565cda",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "c9d15508-7c80-4c2b-9915-9e680b2b3faf",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "f4d34b37-b409-4f65-bbe7-cf6266565cda",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "776870f4-f582-4d96-a0ad-7ce9edb18603",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "df16528d-3500-4317-9831-a02fc3859837",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "776870f4-f582-4d96-a0ad-7ce9edb18603",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "6c369d84-40cf-4cfb-a999-2ea0a907075f",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "776870f4-f582-4d96-a0ad-7ce9edb18603",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "f25bbae9-e35b-4cc8-9fc7-d9976413e88c",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "be72dcab-3808-4bf1-9738-7bf7e7028082",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "f25bbae9-e35b-4cc8-9fc7-d9976413e88c",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "6ec90493-0f4b-4d6d-a726-789182b344da",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "f25bbae9-e35b-4cc8-9fc7-d9976413e88c",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "1c2e3473-54ff-4ff6-9e6c-f1787c427e99",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "8b9f714c-5402-4955-a317-b656d809937a",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "1c2e3473-54ff-4ff6-9e6c-f1787c427e99",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "56b2d12b-f871-4493-ac26-0fe64b39ffc9",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "1c2e3473-54ff-4ff6-9e6c-f1787c427e99",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "56686be4-0d63-4e65-b2fb-5984c3c35627",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "1f450b2e-3051-4090-bf9e-c365a382e49f",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "56686be4-0d63-4e65-b2fb-5984c3c35627",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "51a71484-f0b4-4756-9deb-c05e037b1f2b",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "56686be4-0d63-4e65-b2fb-5984c3c35627",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "1013ebbd-bdf0-4ef4-981e-d67c7c2a1961",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "e1cb01b2-506d-40c9-a4c3-6570c0213337",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "1013ebbd-bdf0-4ef4-981e-d67c7c2a1961",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "6a15cb9e-f952-4b70-9f97-d3c03e7079c3",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "1013ebbd-bdf0-4ef4-981e-d67c7c2a1961",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "942e9ce7-8b60-476c-aef7-04e973f3f9d6",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "9bf22e7b-5ff3-4f88-9456-2e7b4ab60f48",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "942e9ce7-8b60-476c-aef7-04e973f3f9d6",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "2e20c253-50dc-4481-94e3-9925b8ff3045",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "942e9ce7-8b60-476c-aef7-04e973f3f9d6",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        },
-        {
-            "id": "43f1ec58-6432-43e4-bec7-013684b50936",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "compositeImage": {
-                "id": "f49bb4d8-43eb-49b1-a9bb-13bc5fb3bf2d",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "43f1ec58-6432-43e4-bec7-013684b50936",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "78e34b18-0e49-4d72-b9e8-eb80486dd6b2",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "43f1ec58-6432-43e4-bec7-013684b50936",
-                    "LayerId": "b6290b62-0e5b-4acd-888c-870904612115"
-                }
-            ]
-        }
-    ],
-    "gridX": 0,
-    "gridY": 0,
-    "height": 32,
-    "layers": [
-        {
-            "id": "b6290b62-0e5b-4acd-888c-870904612115",
-            "modelName": "GMImageLayer",
-            "mvc": "1.0",
-            "SpriteId": "57ac679d-cf69-4642-902e-72ba48b75dc5",
-            "blendMode": 0,
-            "isLocked": false,
-            "name": "default",
-            "opacity": 100,
-            "visible": true
-        }
-    ],
-    "origin": 4,
-    "originLocked": false,
-    "playbackSpeed": 15,
+  "bboxMode": 0,
+  "collisionKind": 1,
+  "type": 0,
+  "origin": 4,
+  "preMultiplyAlpha": false,
+  "edgeFiltering": false,
+  "collisionTolerance": 0,
+  "swfPrecision": 2.525,
+  "bbox_left": 0,
+  "bbox_right": 31,
+  "bbox_top": 0,
+  "bbox_bottom": 31,
+  "HTile": false,
+  "VTile": false,
+  "For3D": false,
+  "width": 32,
+  "height": 32,
+  "textureGroupId": {
+    "name": "Default",
+    "path": "texturegroups/Default",
+  },
+  "swatchColours": null,
+  "gridX": 0,
+  "gridY": 0,
+  "frames": [
+    {"compositeImage":{"FrameId":{"name":"359c5b74-a3e1-471d-8345-e86214123072","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"359c5b74-a3e1-471d-8345-e86214123072","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"359c5b74-a3e1-471d-8345-e86214123072","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f4d34b37-b409-4f65-bbe7-cf6266565cda","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f4d34b37-b409-4f65-bbe7-cf6266565cda","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"f4d34b37-b409-4f65-bbe7-cf6266565cda","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"776870f4-f582-4d96-a0ad-7ce9edb18603","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"776870f4-f582-4d96-a0ad-7ce9edb18603","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"776870f4-f582-4d96-a0ad-7ce9edb18603","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f25bbae9-e35b-4cc8-9fc7-d9976413e88c","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f25bbae9-e35b-4cc8-9fc7-d9976413e88c","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"f25bbae9-e35b-4cc8-9fc7-d9976413e88c","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"1c2e3473-54ff-4ff6-9e6c-f1787c427e99","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"1c2e3473-54ff-4ff6-9e6c-f1787c427e99","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"1c2e3473-54ff-4ff6-9e6c-f1787c427e99","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"56686be4-0d63-4e65-b2fb-5984c3c35627","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"56686be4-0d63-4e65-b2fb-5984c3c35627","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"56686be4-0d63-4e65-b2fb-5984c3c35627","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"1013ebbd-bdf0-4ef4-981e-d67c7c2a1961","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"1013ebbd-bdf0-4ef4-981e-d67c7c2a1961","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"1013ebbd-bdf0-4ef4-981e-d67c7c2a1961","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"942e9ce7-8b60-476c-aef7-04e973f3f9d6","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"942e9ce7-8b60-476c-aef7-04e973f3f9d6","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"942e9ce7-8b60-476c-aef7-04e973f3f9d6","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"43f1ec58-6432-43e4-bec7-013684b50936","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"43f1ec58-6432-43e4-bec7-013684b50936","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"LayerId":{"name":"b6290b62-0e5b-4acd-888c-870904612115","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","name":"43f1ec58-6432-43e4-bec7-013684b50936","tags":[],"resourceType":"GMSpriteFrame",},
+  ],
+  "sequence": {
+    "spriteId": {"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},
+    "timeUnits": 1,
+    "playback": 1,
+    "playbackSpeed": 15.0,
     "playbackSpeedType": 0,
-    "premultiplyAlpha": false,
-    "sepmasks": false,
-    "swatchColours": null,
-    "swfPrecision": 2.525,
-    "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f",
-    "type": 0,
-    "width": 32,
-    "xorig": 16,
-    "yorig": 16
+    "autoRecord": true,
+    "volume": 1.0,
+    "length": 9.0,
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
+    "tracks": [
+      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"605e4305-d6ac-4fb8-93e2-ee14bb631d0e","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"359c5b74-a3e1-471d-8345-e86214123072","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"af5a40b3-5f49-4540-a0e7-da3ab40c4da1","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f4d34b37-b409-4f65-bbe7-cf6266565cda","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"cf9b7de4-574f-4c46-9aeb-791a8e19c515","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"776870f4-f582-4d96-a0ad-7ce9edb18603","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"9ac6ef2d-cedf-4f1c-9c3c-97cdcd9cb5ff","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f25bbae9-e35b-4cc8-9fc7-d9976413e88c","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"5ee513ed-e11d-413d-b748-1c89b25c93e8","Key":4.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1c2e3473-54ff-4ff6-9e6c-f1787c427e99","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"d528780f-0e2a-4b0f-92ea-d480d32faa55","Key":5.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"56686be4-0d63-4e65-b2fb-5984c3c35627","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"fa4d1e6c-30cc-4125-bf50-a29fca3220bb","Key":6.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1013ebbd-bdf0-4ef4-981e-d67c7c2a1961","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"ef01b604-bdf1-466d-9a96-21b092a45bc8","Key":7.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"942e9ce7-8b60-476c-aef7-04e973f3f9d6","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"e2d1d0d4-6bfd-41fc-9830-20a8b9f8610f","Key":8.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"43f1ec58-6432-43e4-bec7-013684b50936","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
+    ],
+    "visibleRange": {"x":0.0,"y":0.0,},
+    "lockOrigin": false,
+    "showBackdrop": true,
+    "showBackdropImage": false,
+    "backdropImagePath": "",
+    "backdropImageOpacity": 0.5,
+    "backdropWidth": 1920,
+    "backdropHeight": 1080,
+    "backdropXOffset": 0.0,
+    "backdropYOffset": 0.0,
+    "xorigin": 16,
+    "yorigin": 16,
+    "eventToFunction": {},
+    "eventStubScript": null,
+    "parent": {"name":"spr_enemy_healer_light_melee","path":"sprites/spr_enemy_healer_light_melee/spr_enemy_healer_light_melee.yy",},
+    "resourceVersion": "1.3",
+    "name": "",
+    "tags": [],
+    "resourceType": "GMSequence",
+  },
+  "layers": [
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b6290b62-0e5b-4acd-888c-870904612115","tags":[],"resourceType":"GMImageLayer",},
+  ],
+  "parent": {
+    "name": "grp_healer",
+    "path": "folders/Sprites/grp_enemy/grp_healer.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spr_enemy_healer_light_melee",
+  "tags": [],
+  "resourceType": "GMSprite",
 }

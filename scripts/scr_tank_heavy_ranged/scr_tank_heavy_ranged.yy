@@ -1,8 +1,12 @@
 {
-    "id": "03e213b2-73e5-46f8-9b38-fda7a9d47896",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_tank_heavy_ranged",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_tank_attacks",
+    "path": "folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_tank_attacks.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_tank_heavy_ranged",
+  "tags": [],
+  "resourceType": "GMScript",
 }

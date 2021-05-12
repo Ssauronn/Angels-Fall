@@ -1,8 +1,12 @@
 {
-    "id": "b38c0d45-490a-42d1-bff4-326ff2e4b8ba",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_bindings_of_the_caelesti",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_caelesti_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_caelesti_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_bindings_of_the_caelesti",
+  "tags": [],
+  "resourceType": "GMScript",
 }

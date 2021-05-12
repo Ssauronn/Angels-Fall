@@ -1,8 +1,12 @@
 {
-    "id": "f1698ca6-801e-4315-a81c-70be0dd021ac",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_true_caelesti_wings",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_caelesti_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_caelesti_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_true_caelesti_wings",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "86739193-7487-4575-852a-9b161b887976",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_input",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_player_inputs",
+    "path": "folders/Scripts/grp_player_inputs.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_input",
+  "tags": [],
+  "resourceType": "GMScript",
 }

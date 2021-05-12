@@ -18,7 +18,7 @@ if !obj_combat_controller.levelPaused && !obj_combat_controller.gamePaused {
 			// that enemy have been created.
 			// Set the new object's location to an empty location in case it spawned inside a
 			// non-eligible location, and create the new object.
-			var self_ = self;
+			var self_ = self.id;
 			var resurrector_ = deadBodyResurrectedBy;
 			with resurrected_enemy_ {
 				event_perform(ev_create, 0);

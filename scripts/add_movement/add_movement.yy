@@ -1,8 +1,12 @@
 {
-    "id": "7d1fb05f-319f-4e2a-a768-21901ed368be",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "add_movement",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_movement_engine",
+    "path": "folders/Scripts/grp_movement_engine.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "add_movement",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "07c1614d-ad7a-467b-b49c-9c066ebbeea4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_idle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_player_states",
+    "path": "folders/Scripts/grp_player_states.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_idle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

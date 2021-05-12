@@ -1,8 +1,12 @@
 {
-    "id": "e84b34ad-0d5f-4eca-addd-d8ff25575f8d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_soul_tether",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_necromancy_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_necromancy_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_soul_tether",
+  "tags": [],
+  "resourceType": "GMScript",
 }

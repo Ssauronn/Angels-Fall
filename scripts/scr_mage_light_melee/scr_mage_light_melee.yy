@@ -1,8 +1,12 @@
 {
-    "id": "3d2cc270-7166-479c-b122-2eb2720189b1",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_mage_light_melee",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_mage_attacks",
+    "path": "folders/Scripts/grp_enemy_scripts/grp_enemy_attacks/grp_mage_attacks.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_mage_light_melee",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -20,7 +20,7 @@ if !is_undefined(enemyCurrentHP) {
 	}
 
 	draw_sprite(enemySprite[enemyStateSprite, enemyDirectionFacing], enemyImageIndex, x, y);
-	if variable_instance_exists(self, "slowEnemyTimeWithParryActive") {
+	if variable_instance_exists(self.id, "slowEnemyTimeWithParryActive") {
 		if slowEnemyTimeWithParryActive {
 			draw_rectangle_color(x - 16, y - 16, x + 16, y + 16, c_purple, c_purple, c_purple, c_purple, false)
 		}

@@ -1,8 +1,12 @@
 {
-    "id": "802e7ddd-8108-440a-89da-820a410ffe7f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_player_wrath_of_the_repentant",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grp_caelesti_magic",
+    "path": "folders/Scripts/grp_player_states/grp_abilities/grp_caelesti_magic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_player_wrath_of_the_repentant",
+  "tags": [],
+  "resourceType": "GMScript",
 }

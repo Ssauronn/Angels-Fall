@@ -57,7 +57,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 									// Remove the instance from the objectIDsInBattle and re-add it using the new correct
 									// combatFriendlyStatus that the object has.
 									if ds_exists(objectIDsInBattle, ds_type_list) {
-										if (ds_list_find_index(objectIDsInBattle, self) != -1) {
+										if (ds_list_find_index(objectIDsInBattle, self.id) != -1) {
 											// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
 											// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first)
 											var j;
@@ -67,7 +67,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 												instance_to_reference_.currentTargetToFocus = noone;
 												instance_to_reference_.currentTargetToHeal = noone;
 											}
-											ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+											ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self.id));
 											switch (objectArchetype) {
 												case "Healer": friendlyHealersInBattle -= 1;
 													currentTargetToHeal = noone;
@@ -110,7 +110,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 									// objectIDsInBattle list
 									if ds_exists(objectIDsInBattle, ds_type_list) {
 										// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
-										if ds_list_find_index(objectIDsInBattle, self) == -1 {
+										if ds_list_find_index(objectIDsInBattle, self.id) == -1 {
 											/* 
 											If the object hasn't already been detected, reset the decision making variable 
 											decisionMadeForTargetAndAction so that the object can make a combat decision immediately
@@ -126,7 +126,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 												instance_to_reference_.currentTargetToHeal = noone;
 											}
 											// Add this object's ID to the list of objects in battle (objectIDsInBattle)
-											ds_list_add(objectIDsInBattle, self);
+											ds_list_add(objectIDsInBattle, self.id);
 											switch (objectArchetype) {
 												case "Healer": enemyHealersInBattle += 1;
 													currentTargetToHeal = noone;
@@ -155,7 +155,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 								// Remove the instance from the objectIDsInBattle and re-add it using the new correct
 								// combatFriendlyStatus that the object has.
 								if ds_exists(objectIDsInBattle, ds_type_list) {
-									if (ds_list_find_index(objectIDsInBattle, self) != -1) {
+									if (ds_list_find_index(objectIDsInBattle, self.id) != -1) {
 										// Set every instance that wasn't destroyed/left the tether area to make a new decision, as long as the instance
 										// isn't currently chasing its target (if it is, I want it to finish out it's series of actions first)
 										var j;
@@ -180,7 +180,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 											enemyRangedDPSInBattle = 0;
 										}
 										else {
-											ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+											ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self.id));
 										}
 										switch (objectArchetype) {
 											case "Healer": enemyHealersInBattle -= 1;
@@ -237,7 +237,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 								// objectIDsInBattle list
 								if ds_exists(objectIDsInBattle, ds_type_list) {
 									// As long as the object hasn't already been detected and added to objectIDsInBattle, executed code
-									if ds_list_find_index(objectIDsInBattle, self) == -1 {
+									if ds_list_find_index(objectIDsInBattle, self.id) == -1 {
 										/* 
 										If the object hasn't already been detected, reset the decision making variable 
 										decisionMadeForTargetAndAction so that the object can make a combat decision immediately
@@ -253,7 +253,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 											instance_to_reference_.currentTargetToHeal = noone;
 										}
 										// Add this object's ID to the list of objects in battle (objectIDsInBattle)
-										ds_list_add(objectIDsInBattle, self);
+										ds_list_add(objectIDsInBattle, self.id);
 										switch (objectArchetype) {
 											case "Healer": friendlyHealersInBattle += 1;
 												currentTargetToHeal = noone;
@@ -275,7 +275,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 								// then create a ds_list meant for tracking just minions outside of combat (objectIDsFollowingPlayer)
 								if !ds_exists(objectIDsInBattle, ds_type_list) {
 									if ds_exists(objectIDsFollowingPlayer, ds_type_list) {
-										if ds_list_find_index(objectIDsFollowingPlayer, self) == -1 {
+										if ds_list_find_index(objectIDsFollowingPlayer, self.id) == -1 {
 											/* 
 											If the object hasn't already been detected, reset the decision making variable 
 											decisionMadeForTargetAndAction so that the object can make a combat decision immediately
@@ -292,7 +292,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 												}
 											}
 											// Add itself's ID to the list of objects following the player
-											ds_list_add(objectIDsFollowingPlayer, self);
+											ds_list_add(objectIDsFollowingPlayer, self.id);
 										}
 									}
 									// Create the ds_list objectIDsFollowingPlayer if it doesn't already exist and add the object's information to the ds_list
@@ -300,7 +300,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 										// As long as this object hasn't already been added to the list, add its information
 										decisionMadeForTargetAndAction = false;
 										objectIDsFollowingPlayer = ds_list_create();
-										ds_list_add(objectIDsFollowingPlayer, self);
+										ds_list_add(objectIDsFollowingPlayer, self.id);
 										if objectArchetype == "Healer" {
 											currentTargetToHeal = noone;
 										}
@@ -343,7 +343,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 											enemyRangedDPSInBattle = 0;
 										}
 										else {
-											ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self));
+											ds_list_delete(objectIDsInBattle, ds_list_find_index(objectIDsInBattle, self.id));
 										}
 										switch (objectArchetype) {
 											case "Healer": enemyHealersInBattle -= 1;
@@ -416,7 +416,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 											instance_to_reference_.currentTargetToHeal = noone;
 										}
 										// Add this object's ID to the list of objects in battle (objectIDsInBattle)
-										ds_list_add(objectIDsInBattle, self);
+										ds_list_add(objectIDsInBattle, self.id);
 										switch (objectArchetype) {
 											case "Healer": friendlyHealersInBattle += 1;
 												currentTargetToHeal = noone;
@@ -455,7 +455,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 												}
 											}
 											// Add itself's ID to the list of objects following the player
-											ds_list_add(objectIDsFollowingPlayer, self);
+											ds_list_add(objectIDsFollowingPlayer, self.id);
 										}
 									}
 									// Create the ds_list objectIDsFollowingPlayer if it doesn't already exist and add the object's information to the ds_list
@@ -463,7 +463,7 @@ if primeAbilityChosen == "Overwhelming Chains" {
 										// As long as this object hasn't already been added to the list, add its information
 										decisionMadeForTargetAndAction = false;
 										objectIDsFollowingPlayer = ds_list_create();
-										ds_list_add(objectIDsFollowingPlayer, self);
+										ds_list_add(objectIDsFollowingPlayer, self.id);
 										if objectArchetype == "Healer" {
 											currentTargetToHeal = noone;
 										}

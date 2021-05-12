@@ -1,158 +1,94 @@
 {
-    "id": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-    "modelName": "GMSprite",
-    "mvc": "1.12",
-    "name": "spr_enemy_fighter_run",
-    "For3D": false,
-    "HTile": false,
-    "VTile": false,
-    "bbox_bottom": 31,
-    "bbox_left": 0,
-    "bbox_right": 31,
-    "bbox_top": 0,
-    "bboxmode": 0,
-    "colkind": 1,
-    "coltolerance": 0,
-    "edgeFiltering": false,
-    "frames": [
-        {
-            "id": "f795d4d9-4808-4499-aff1-54ea3cd8ef2e",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-            "compositeImage": {
-                "id": "3cd6740c-3fe7-49a1-bd7b-abb9b1cf3f18",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "f795d4d9-4808-4499-aff1-54ea3cd8ef2e",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "664bd5c9-ff2b-4f75-a148-ee7db41a2b72",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "f795d4d9-4808-4499-aff1-54ea3cd8ef2e",
-                    "LayerId": "e5e735f9-5c1f-4017-91cc-d13e9cc250fe"
-                }
-            ]
-        },
-        {
-            "id": "9bc9e7cd-1227-4f25-9ea1-e5ad94916b90",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-            "compositeImage": {
-                "id": "ec9e7987-d43e-424c-ad3f-f932e9cd5b6a",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "9bc9e7cd-1227-4f25-9ea1-e5ad94916b90",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "2c2a81ec-c483-4f36-8016-d23da37685de",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "9bc9e7cd-1227-4f25-9ea1-e5ad94916b90",
-                    "LayerId": "e5e735f9-5c1f-4017-91cc-d13e9cc250fe"
-                }
-            ]
-        },
-        {
-            "id": "dcf54456-1ebb-44b3-827e-3c1826f2286f",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-            "compositeImage": {
-                "id": "c2bc1200-30e7-47a3-bbc2-740e960ed583",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "dcf54456-1ebb-44b3-827e-3c1826f2286f",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "b5d6c258-d6eb-491f-8197-dd2bc167b8d8",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "dcf54456-1ebb-44b3-827e-3c1826f2286f",
-                    "LayerId": "e5e735f9-5c1f-4017-91cc-d13e9cc250fe"
-                }
-            ]
-        },
-        {
-            "id": "f771fcf5-5610-4dc6-a55f-2921244f1439",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-            "compositeImage": {
-                "id": "aa2a50dc-02af-445a-8e56-30003804b733",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "f771fcf5-5610-4dc6-a55f-2921244f1439",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "dc78f2b5-76dd-49d5-9085-2fbd7c906832",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "f771fcf5-5610-4dc6-a55f-2921244f1439",
-                    "LayerId": "e5e735f9-5c1f-4017-91cc-d13e9cc250fe"
-                }
-            ]
-        },
-        {
-            "id": "cce3eb31-0697-4d94-b68e-049cfad33cd7",
-            "modelName": "GMSpriteFrame",
-            "mvc": "1.0",
-            "SpriteId": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-            "compositeImage": {
-                "id": "b42ecf8a-a021-4240-ad97-4ce61c139731",
-                "modelName": "GMSpriteImage",
-                "mvc": "1.0",
-                "FrameId": "cce3eb31-0697-4d94-b68e-049cfad33cd7",
-                "LayerId": "00000000-0000-0000-0000-000000000000"
-            },
-            "images": [
-                {
-                    "id": "7f2b9ab5-192e-4dea-9747-2e525ec5b350",
-                    "modelName": "GMSpriteImage",
-                    "mvc": "1.0",
-                    "FrameId": "cce3eb31-0697-4d94-b68e-049cfad33cd7",
-                    "LayerId": "e5e735f9-5c1f-4017-91cc-d13e9cc250fe"
-                }
-            ]
-        }
-    ],
-    "gridX": 0,
-    "gridY": 0,
-    "height": 32,
-    "layers": [
-        {
-            "id": "e5e735f9-5c1f-4017-91cc-d13e9cc250fe",
-            "modelName": "GMImageLayer",
-            "mvc": "1.0",
-            "SpriteId": "b86612a1-4272-400e-869a-1946a5ecc8ae",
-            "blendMode": 0,
-            "isLocked": false,
-            "name": "default",
-            "opacity": 100,
-            "visible": true
-        }
-    ],
-    "origin": 4,
-    "originLocked": false,
-    "playbackSpeed": 15,
+  "bboxMode": 0,
+  "collisionKind": 1,
+  "type": 0,
+  "origin": 4,
+  "preMultiplyAlpha": false,
+  "edgeFiltering": false,
+  "collisionTolerance": 0,
+  "swfPrecision": 2.525,
+  "bbox_left": 0,
+  "bbox_right": 31,
+  "bbox_top": 0,
+  "bbox_bottom": 31,
+  "HTile": false,
+  "VTile": false,
+  "For3D": false,
+  "width": 32,
+  "height": 32,
+  "textureGroupId": {
+    "name": "Default",
+    "path": "texturegroups/Default",
+  },
+  "swatchColours": null,
+  "gridX": 0,
+  "gridY": 0,
+  "frames": [
+    {"compositeImage":{"FrameId":{"name":"f795d4d9-4808-4499-aff1-54ea3cd8ef2e","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f795d4d9-4808-4499-aff1-54ea3cd8ef2e","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":{"name":"e5e735f9-5c1f-4017-91cc-d13e9cc250fe","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"f795d4d9-4808-4499-aff1-54ea3cd8ef2e","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9bc9e7cd-1227-4f25-9ea1-e5ad94916b90","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9bc9e7cd-1227-4f25-9ea1-e5ad94916b90","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":{"name":"e5e735f9-5c1f-4017-91cc-d13e9cc250fe","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"9bc9e7cd-1227-4f25-9ea1-e5ad94916b90","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"dcf54456-1ebb-44b3-827e-3c1826f2286f","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"dcf54456-1ebb-44b3-827e-3c1826f2286f","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":{"name":"e5e735f9-5c1f-4017-91cc-d13e9cc250fe","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"dcf54456-1ebb-44b3-827e-3c1826f2286f","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f771fcf5-5610-4dc6-a55f-2921244f1439","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f771fcf5-5610-4dc6-a55f-2921244f1439","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":{"name":"e5e735f9-5c1f-4017-91cc-d13e9cc250fe","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"f771fcf5-5610-4dc6-a55f-2921244f1439","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"cce3eb31-0697-4d94-b68e-049cfad33cd7","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"cce3eb31-0697-4d94-b68e-049cfad33cd7","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"LayerId":{"name":"e5e735f9-5c1f-4017-91cc-d13e9cc250fe","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","name":"cce3eb31-0697-4d94-b68e-049cfad33cd7","tags":[],"resourceType":"GMSpriteFrame",},
+  ],
+  "sequence": {
+    "spriteId": {"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},
+    "timeUnits": 1,
+    "playback": 1,
+    "playbackSpeed": 15.0,
     "playbackSpeedType": 0,
-    "premultiplyAlpha": false,
-    "sepmasks": false,
-    "swatchColours": null,
-    "swfPrecision": 2.525,
-    "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f",
-    "type": 0,
-    "width": 32,
-    "xorig": 16,
-    "yorig": 16
+    "autoRecord": true,
+    "volume": 1.0,
+    "length": 5.0,
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
+    "tracks": [
+      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"e98f0be3-30d6-45e9-8c26-3cbe39626b39","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f795d4d9-4808-4499-aff1-54ea3cd8ef2e","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"9df615fd-5657-4ae2-8b88-6bf304f25409","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9bc9e7cd-1227-4f25-9ea1-e5ad94916b90","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"37135f8c-d8ec-4d5b-af8f-5e78b9c666da","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"dcf54456-1ebb-44b3-827e-3c1826f2286f","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"0b6b136e-447a-419d-865c-79302321c9f7","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f771fcf5-5610-4dc6-a55f-2921244f1439","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"4737e5cc-acc7-4cd6-a215-5e08c0b71637","Key":4.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"cce3eb31-0697-4d94-b68e-049cfad33cd7","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
+    ],
+    "visibleRange": {"x":0.0,"y":0.0,},
+    "lockOrigin": false,
+    "showBackdrop": true,
+    "showBackdropImage": false,
+    "backdropImagePath": "",
+    "backdropImageOpacity": 0.5,
+    "backdropWidth": 1920,
+    "backdropHeight": 1080,
+    "backdropXOffset": 0.0,
+    "backdropYOffset": 0.0,
+    "xorigin": 16,
+    "yorigin": 16,
+    "eventToFunction": {},
+    "eventStubScript": null,
+    "parent": {"name":"spr_enemy_fighter_run","path":"sprites/spr_enemy_fighter_run/spr_enemy_fighter_run.yy",},
+    "resourceVersion": "1.3",
+    "name": "",
+    "tags": [],
+    "resourceType": "GMSequence",
+  },
+  "layers": [
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"e5e735f9-5c1f-4017-91cc-d13e9cc250fe","tags":[],"resourceType":"GMImageLayer",},
+  ],
+  "parent": {
+    "name": "grp_fighter",
+    "path": "folders/Sprites/grp_enemy/grp_fighter.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spr_enemy_fighter_run",
+  "tags": [],
+  "resourceType": "GMSprite",
 }
