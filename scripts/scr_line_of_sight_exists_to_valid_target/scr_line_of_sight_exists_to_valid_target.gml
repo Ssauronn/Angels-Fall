@@ -8,6 +8,7 @@ function scr_line_of_sight_exists_to_valid_target() {
 			ds_list_destroy(validObjectIDsInLineOfSight);
 			validObjectIDsInLineOfSight = noone;
 		}
+		// Check first for enemy line of sight to player minions, or vice versa
 		for (i = 0; i <= ds_list_size(objectIDsInBattle) - 1; i++) {
 			var instance_to_reference_ = ds_list_find_value(objectIDsInBattle, i);
 			var instance_to_reference_ground_hurtbox_ = instance_to_reference_.enemyGroundHurtbox;

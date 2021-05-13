@@ -1,6 +1,6 @@
 ///@description Check for a line of sight to player or any minions.
 function scr_line_of_sight_exists_to_player_or_minions() {
-
+	
 	// Only run code if this is an enemy. Else if it isn't, there's no need because minions will be
 	// teleported back to player if out of sight long enough.
 	if combatFriendlyStatus == "Enemy" {
@@ -13,14 +13,14 @@ function scr_line_of_sight_exists_to_player_or_minions() {
 		var player_ground_hurtbox_ = obj_player.playerGroundHurtbox;
 		var target_x_ = player_ground_hurtbox_.x;
 		var target_y_ = player_ground_hurtbox_.y;
-
-
+		
+		
 		var valid_line_of_sight_exists_ = false;
 		// If a line of sight exists for the enemy vs player, then mark it as a valid line of sight exists.
 		if !collision_line(current_x_, current_y_, target_x_, target_y_, obj_wall, false, true) {
 			valid_line_of_sight_exists_ = true;
 		}
-	
+		
 		// If a line of sight exists for any minion, then mark it as a valid line of sight exists.
 		// I use with obj_enemy, and I don't actually check for ds_list, because the ds_list might not be
 		// active.
@@ -52,9 +52,6 @@ function scr_line_of_sight_exists_to_player_or_minions() {
 	else {
 		return true;
 	}
-
-
-
-
-
 }
+
+
