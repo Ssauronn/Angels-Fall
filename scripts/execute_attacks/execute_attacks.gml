@@ -159,8 +159,6 @@ function execute_attacks() {
 						lastAttackButtonPressed = "";
 						playerCurrentStamina -= obj_skill_tree.wrathOfTheDiaboliStaminaCost;
 						playerCurrentStamina += obj_skill_tree.wrathOfTheDiaboliStaminaRegen;
-						playerCurrentMana -= obj_skill_tree.wrathOfTheDiaboliManaCost;
-						playerCurrentMana += obj_skill_tree.wrathOfTheDiaboliManaRegen;
 						obj_skill_tree.wrathOfTheDiaboliTargetsHit = 0;
 						obj_skill_tree.wrathOfTheDiaboliStartXPos = x;
 						obj_skill_tree.wrathOfTheDiaboliStartYPos = y;
@@ -244,8 +242,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.hellishLandscapeStaminaCost;
 			playerCurrentStamina += obj_skill_tree.hellishLandscapeStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.hellishLandscapeManaCost;
-			playerCurrentMana += obj_skill_tree.hellishLandscapeManaRegen;
 			obj_skill_tree.hellishLandscapeTargetX = mouse_x;
 			obj_skill_tree.hellishLandscapeTargetY = mouse_y;
 			var dir_ = point_direction(x, y, mouse_x, mouse_y);
@@ -287,8 +283,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.hiddenDaggerStaminaCost;
 			playerCurrentStamina += obj_skill_tree.hiddenDaggerStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.hiddenDaggerManaCost;
-			playerCurrentMana += obj_skill_tree.hiddenDaggerManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -312,8 +306,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.allOutAttackStaminaCost;
 			playerCurrentStamina += obj_skill_tree.allOutAttackStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.allOutAttackManaCost;
-			playerCurrentMana += obj_skill_tree.allOutAttackManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -337,8 +329,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.exploitWeaknessStaminaCost;
 			playerCurrentStamina += obj_skill_tree.exploitWeaknessStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.exploitWeaknessManaCost;
-			playerCurrentMana += obj_skill_tree.exploitWeaknessManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -362,8 +352,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.purifyingRageStaminaCost;
 			playerCurrentStamina += obj_skill_tree.purifyingRageStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.purifyingRageManaCost;
-			playerCurrentMana += obj_skill_tree.purifyingRageManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -448,8 +436,6 @@ function execute_attacks() {
 				lastAttackButtonPressed = "";
 				playerCurrentStamina -= obj_skill_tree.rushdownStaminaCost;
 				playerCurrentStamina += obj_skill_tree.rushdownStaminaRegen;
-				playerCurrentMana -= obj_skill_tree.rushdownManaCost;
-				playerCurrentMana += obj_skill_tree.rushdownManaRegen;
 				comboAbilityButton = 0;
 				comboTrueTimer = -1;
 			}
@@ -474,8 +460,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.diabolusBlastStaminaCost;
 			playerCurrentStamina += obj_skill_tree.diabolusBlastStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.diabolusBlastManaCost;
-			playerCurrentMana += obj_skill_tree.diabolusBlastManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -501,8 +485,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.trueCaelestiWingsStaminaCost;
 			playerCurrentStamina += obj_skill_tree.trueCaelestiWingsStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.trueCaelestiWingsManaCost;
-			playerCurrentMana += obj_skill_tree.trueCaelestiWingsManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -526,8 +508,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.bindingsOfTheCaelestiStaminaCost;
 			playerCurrentStamina += obj_skill_tree.bindingsOfTheCaelestiStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.bindingsOfTheCaelestiManaCost;
-			playerCurrentMana += obj_skill_tree.bindingsOfTheCaelestiManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -551,8 +531,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.armorOfTheCaelestiStaminaCost;
 			playerCurrentStamina += obj_skill_tree.armorOfTheCaelestiStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.armorOfTheCaelestiManaCost;
-			playerCurrentMana += obj_skill_tree.armorOfTheCaelestiManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -576,8 +554,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.holyDefenseStaminaCost;
 			playerCurrentStamina += obj_skill_tree.holyDefenseStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.holyDefenseManaCost;
-			playerCurrentMana += obj_skill_tree.holyDefenseManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -601,8 +577,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.wrathOfTheRepentantStaminaCost;
 			playerCurrentStamina += obj_skill_tree.wrathOfTheRepentantStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.wrathOfTheRepentantManaCost;
-			playerCurrentMana += obj_skill_tree.wrathOfTheRepentantManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -626,8 +600,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.theOnePowerStaminaCost;
 			playerCurrentStamina += obj_skill_tree.theOnePowerStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.theOnePowerManaCost;
-			playerCurrentMana += obj_skill_tree.theOnePowerManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -651,8 +623,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.lightningSpearStaminaCost;
 			playerCurrentStamina += obj_skill_tree.lightningSpearStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.lightningSpearManaCost;
-			playerCurrentMana += obj_skill_tree.lightningSpearManaRegen;
 			obj_skill_tree.lightningSpearTargetXPos = mouse_x;
 			obj_skill_tree.lightningSpearTargetYPos = mouse_y;
 			comboAbilityButton = 0;
@@ -678,8 +648,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.angelicBarrageStaminaCost;
 			playerCurrentStamina += obj_skill_tree.angelicBarrageStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.angelicBarrageManaCost;
-			playerCurrentMana += obj_skill_tree.angelicBarrageManaRegen;
 			obj_skill_tree.angelicBarrageTargetXPos = mouse_x;
 			obj_skill_tree.angelicBarrageTargetYPos = mouse_y;
 			comboAbilityButton = 0;
@@ -705,8 +673,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.whirlwindStaminaCost;
 			playerCurrentStamina += obj_skill_tree.whirlwindStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.whirlwindManaCost;
-			playerCurrentMana += obj_skill_tree.whirlwindManaRegen;
 			obj_skill_tree.whirlwindTargetXPos = mouse_x;
 			obj_skill_tree.whirlwindTargetYPos = mouse_y;
 			comboAbilityButton = 0;
@@ -731,8 +697,6 @@ function execute_attacks() {
 					lastAttackButtonPressed = "";
 					playerCurrentStamina -= obj_skill_tree.deathIncarnateStaminaCost;
 					playerCurrentStamina += obj_skill_tree.deathIncarnateStaminaRegen;
-					playerCurrentMana -= obj_skill_tree.deathIncarnateManaCost;
-					playerCurrentMana += obj_skill_tree.deathIncarnateManaRegen;
 					obj_skill_tree.deathIncarnateFirstPhaseTargetXPos = mouse_x;
 					obj_skill_tree.deathIncarnateFirstPhaseTargetYPos = mouse_y;
 					obj_skill_tree.deathIncarnateSecondPhaseCurrentTarget = noone;
@@ -791,13 +755,13 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
-			// I'll subtract the mana from the player inside the attack script based on how long the
-			// button is held (meaning how much mana the player dedicates to the summoning)
+			// I'll subtract the stamina from the player inside the attack script based on how long the
+			// button is held (meaning how much stamina the player dedicates to the summoning)
 			break;
 		case "Ritual of Death":
-			// Determine if the player's current Mana and Stamina, after 7 more frames of regeneration,
+			// Determine if the player's current Stamina, after 7 more frames of regeneration,
 			// will be enough to cast the spell, and if so, cast it.
-			if ((playerCurrentMana + (playerManaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathManaCost) && ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) {
+			if ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) {
 				if comboTrue != "" {
 					comboTrue = "";
 					playerDirectionFacing = comboPlayerDirectionFacing;
@@ -839,8 +803,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.soulTetherStaminaCost;
 			playerCurrentStamina += obj_skill_tree.soulTetherStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.soulTetherManaCost;
-			playerCurrentMana += obj_skill_tree.soulTetherManaRegen;
 			comboAbilityButton = 0;
 			comboTrueTimer = -1;
 			break;
@@ -879,8 +841,6 @@ function execute_attacks() {
 							lastAttackButtonPressed = "";
 							playerCurrentStamina -= obj_skill_tree.dinnerIsServedStaminaCost;
 							playerCurrentStamina += obj_skill_tree.dinnerIsServedStaminaRegen;
-							playerCurrentMana -= obj_skill_tree.dinnerIsServedManaCost;
-							playerCurrentMana += obj_skill_tree.dinnerIsServedManaRegen;
 							comboAbilityButton = 0;
 							comboTrueTimer = -1;
 						}
@@ -908,8 +868,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.finalPartingStaminaCost;
 			playerCurrentStamina += obj_skill_tree.finalPartingStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.finalPartingManaCost;
-			playerCurrentMana += obj_skill_tree.finalPartingManaRegen;
 			obj_skill_tree.finalPartingTargetXPos = mouse_x;
 			obj_skill_tree.finalPartingTargetYPos = mouse_y;
 			comboAbilityButton = 0;
@@ -935,8 +893,6 @@ function execute_attacks() {
 			lastAttackButtonPressed = "";
 			playerCurrentStamina -= obj_skill_tree.riskOfLifeStaminaCost;
 			playerCurrentStamina += obj_skill_tree.riskOfLifeStaminaRegen;
-			playerCurrentMana -= obj_skill_tree.riskOfLifeManaCost;
-			playerCurrentMana += obj_skill_tree.riskOfLifeManaRegen;
 			obj_skill_tree.riskOfLifeTargetXPos = mouse_x;
 			obj_skill_tree.riskOfLifeTargetYPos = mouse_y;
 			comboAbilityButton = 0;
@@ -944,7 +900,7 @@ function execute_attacks() {
 			break;
 		case "Taken for Pain":
 			if !obj_skill_tree.takenForPainFirstPhaseActive && !obj_skill_tree.takenForPainSecondPhaseActive {
-				if (playerCurrentStamina >= obj_skill_tree.takenForPainStaminaCost) && (playerCurrentMana >= obj_skill_tree.takenForPainManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.takenForPainStaminaCost) {
 					if comboTrue != "" {
 						comboTrue = "";
 						playerDirectionFacing = comboPlayerDirectionFacing;
@@ -964,15 +920,13 @@ function execute_attacks() {
 					lastAttackButtonPressed = "";
 					playerCurrentStamina -= obj_skill_tree.takenForPainStaminaCost;
 					playerCurrentStamina += obj_skill_tree.takenForPainStaminaRegen;
-					playerCurrentMana -= obj_skill_tree.takenForPainManaCost;
-					playerCurrentMana += obj_skill_tree.takenForPainManaRegen;
 					comboAbilityButton = 0;
 					comboTrueTimer = -1;
 				}
 			}
 			break;
 		case "Sickly Proposition":
-			if (playerCurrentStamina >= obj_skill_tree.sicklyPropositionStaminaCost) && (playerCurrentMana >= obj_skill_tree.sicklyPropositionManaCost) {
+			if (playerCurrentStamina >= obj_skill_tree.sicklyPropositionStaminaCost) {
 				if comboTrue != "" {
 					comboTrue = "";
 					playerDirectionFacing = comboPlayerDirectionFacing;
@@ -992,8 +946,6 @@ function execute_attacks() {
 				lastAttackButtonPressed = "";
 				playerCurrentStamina -= obj_skill_tree.sicklyPropositionStaminaCost;
 				playerCurrentStamina += obj_skill_tree.sicklyPropositionStaminaRegen;
-				playerCurrentMana -= obj_skill_tree.sicklyPropositionManaCost;
-				playerCurrentMana += obj_skill_tree.sicklyPropositionManaRegen;
 				obj_skill_tree.sicklyPropositionTargetXPos = mouse_x;
 				obj_skill_tree.sicklyPropositionTargetYPos = mouse_y;
 				comboAbilityButton = 0;

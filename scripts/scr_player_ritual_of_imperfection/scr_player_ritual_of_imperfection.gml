@@ -26,11 +26,9 @@ function scr_player_ritual_of_imperfection() {
 		var final_cast_time_ = obj_skill_tree.ritualOfImperfectionFinalCastTime;
 		if final_cast_time_ > 0 {
 			if final_cast_time_ >= obj_skill_tree.ritualOfImperfectionCastTimeRequiredForThirdDemon {
-				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionThirdDemonStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionThirdDemonManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionThirdDemonStaminaCost) && (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionThirdDemonStaminaCost) {
 					playerCurrentStamina -= obj_skill_tree.ritualOfImperfectionThirdDemonStaminaCost;
 					playerCurrentStamina += obj_skill_tree.ritualOfImperfectionThirdDemonStaminaRegen;
-					playerCurrentMana -= obj_skill_tree.ritualOfImperfectionThirdDemonManaCost;
-					playerCurrentMana += obj_skill_tree.ritualOfImperfectionThirdDemonManaRegen;
 					if instance_exists(obj_skill_tree.ritualOfImperfectionThirdDemonActive) {
 						var existing_demon_ = obj_skill_tree.ritualOfImperfectionThirdDemonActive;
 						existing_demon_.enemyCurrentHP = -1;
@@ -61,11 +59,9 @@ function scr_player_ritual_of_imperfection() {
 				}
 			}
 			else if final_cast_time_ >= obj_skill_tree.ritualOfImperfectionCastTimeRequiredForSecondDemon {
-				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionSecondDemonStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionSecondDemonManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionSecondDemonStaminaCost) && (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionSecondDemonStaminaCost) {
 					playerCurrentStamina -= obj_skill_tree.ritualOfImperfectionSecondDemonStaminaCost;
 					playerCurrentStamina += obj_skill_tree.ritualOfImperfectionSecondDemonStaminaRegen;
-					playerCurrentMana -= obj_skill_tree.ritualOfImperfectionSecondDemonManaCost;
-					playerCurrentMana += obj_skill_tree.ritualOfImperfectionSecondDemonManaRegen;
 					if instance_exists(obj_skill_tree.ritualOfImperfectionSecondDemonActive) {
 						var existing_demon_ = obj_skill_tree.ritualOfImperfectionSecondDemonActive;
 						existing_demon_.enemyCurrentHP = -1;
@@ -96,11 +92,9 @@ function scr_player_ritual_of_imperfection() {
 				}
 			}
 			else if final_cast_time_ >= obj_skill_tree.ritualOfImperfectionCastTimeRequiredForFirstDemon {
-				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) && (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) {
 					playerCurrentStamina -= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost;
 					playerCurrentStamina += obj_skill_tree.ritualOfImperfectionFirstDemonStaminaRegen;
-					playerCurrentMana -= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost;
-					playerCurrentMana += obj_skill_tree.ritualOfImperfectionFirstDemonManaRegen;
 					if instance_exists(obj_skill_tree.ritualOfImperfectionFirstDemonActive) {
 						var existing_demon_ = obj_skill_tree.ritualOfImperfectionFirstDemonActive;
 						existing_demon_.enemyCurrentHP = -1;

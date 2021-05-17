@@ -9,8 +9,6 @@ function scr_stunned() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 
 	if forceReturnToIdleState {
@@ -25,8 +23,6 @@ function scr_stunned() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 
 

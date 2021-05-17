@@ -37,7 +37,7 @@ potentialHealTargetsAdjacentEnemiesStartWeight = 0.275;
 
 #region Heavy Melee Engine
 selfCurrentHPPercentForHeavyMeleeEngineStartWeight = 0.15;
-targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight = 0.05;
+targetCurrentPercentageOfStaminaForHeavyMeleeEngineStartWeight = 0.05;
 targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight = 0.15;
 objectProximityToTargetForHeavyMeleeEngineStartWeight = 0.3;
 percentageOfDamageToTargetTotalHPForHeavyMeleeEngineStartWeight = 0.2;
@@ -47,7 +47,7 @@ totalEnemiesInBattleForHeavyMeleeEngineStartWeight = 0.15;
 #endregion
 #region Light Melee Engine
 selfCurrentHPPercentForLightMeleeEngineStartWeight = 0.15;
-targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineStartWeight = 0.05;
+targetCurrentPercentageOfStaminaForLightMeleeEngineStartWeight = 0.05;
 targetOfTargetCurrentHPForLightMeleeEngineStartWeight = 0.15;
 objectProximityToTargetForLightMeleeEngineStartWeight = 0.3;
 percentageOfDamageToTargetCurrentHPForLightMeleeEngineStartWeight = 0.2;

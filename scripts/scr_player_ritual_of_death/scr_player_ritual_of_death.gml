@@ -16,14 +16,12 @@ function scr_player_ritual_of_death() {
 	// Resurrect a dead body
 	if instance_exists(obj_player) {
 		if (playerImageIndex > 7) && (!hitboxCreated) {
-			if (playerCurrentStamina >= obj_skill_tree.ritualOfDeathStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfDeathManaCost) {
+			if (playerCurrentStamina >= obj_skill_tree.ritualOfDeathStaminaCost) {
 				var nearest_dead_body_ = instance_nearest(x, y, obj_dead_body);
 				if instance_exists(nearest_dead_body_) {
 					if point_distance(x, y, nearest_dead_body_.x, nearest_dead_body_.y) <= obj_skill_tree.ritualOfDeathRange {
 						playerCurrentStamina -= obj_skill_tree.ritualOfDeathStaminaCost;
 						playerCurrentStamina += obj_skill_tree.ritualOfDeathStaminaRegen;
-						playerCurrentMana -= obj_skill_tree.ritualOfDeathManaCost;
-						playerCurrentMana += obj_skill_tree.ritualOfDeathManaRegen;
 						var current_ritual_of_death_minion_ = obj_skill_tree.ritualOfDeathActive;
 						// Destroy the existing minion that was raised from the dead before raising a new one
 						if instance_exists(current_ritual_of_death_minion_) {

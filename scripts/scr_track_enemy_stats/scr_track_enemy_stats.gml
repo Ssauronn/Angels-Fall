@@ -14,16 +14,13 @@ function scr_track_enemy_stats() {
 #endregion
 
 
-#region Track Basic Stats - HP, Stamina, and Mana
+#region Track Basic Stats - HP and Stamina
 	// Base Stat Regenerations
 	if enemyHPRegeneration != 0 {
 		enemyCurrentHP += ((enemyHPRegeneration * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier);
 	}
 	if enemyStaminaRegeneration != 0 {
 		enemyCurrentStamina += ((enemyStaminaRegeneration * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier) * dinnerIsServedEnemyStaminaRegenerationMultiplier * solidifyEnemyStaminaRegenerationMultiplier;
-	}
-	if enemyManaRegeneration != 0 {
-		enemyCurrentMana += ((enemyManaRegeneration * enemyTotalSpeed) * stunMultiplier * hitstunMultiplier) * dinnerIsServedEnemyManaRegenerationMultiplier * solidifyEnemyManaRegenerationMultiplier;
 	}
 
 	// Make sure current stat values do not exceed max stat values
@@ -32,9 +29,6 @@ function scr_track_enemy_stats() {
 	}
 	if enemyCurrentStamina > enemyMaxStamina {
 		enemyCurrentStamina = enemyMaxStamina;
-	}
-	if enemyCurrentMana > enemyMaxMana {
-		enemyCurrentMana = enemyMaxMana;
 	}
 #endregion
 
@@ -164,7 +158,6 @@ function scr_track_enemy_stats() {
 		}
 		if obj_skill_tree.allOutAttackActive {
 			playerCurrentStamina += obj_skill_tree.allOutAttackStaminaBonusOnKill * playerMaxStamina;
-			playerCurrentMana += obj_skill_tree.allOutAttackManaBonusOnKill * playerMaxMana;
 		}
 		if combatFriendlyStatus == "Enemy" {
 			animecroPool += animecroRewardUponDeath;
@@ -248,14 +241,10 @@ function scr_track_enemy_stats() {
 			alreadyTriedToChaseTimer -= 1 * enemyTotalSpeed * solidifyEnemyChaseTimerSpeedMultiplier;
 		}
 
-		// Timer for mana and stamina abilities, so that the enemy doesn't endlessly wait for resource
+		// Timer forstamina abilities, so that the enemy doesn't endlessly wait for resource
 		// regeneration. Prevents stalling if player debuffs enemy regeneration.
 		if enemyTimeUntilNextStaminaAbilityUsableTimer > 0 {
 			enemyTimeUntilNextStaminaAbilityUsableTimer -= 1;
-		}
-
-		if enemyTimeUntilNextManaAbilityUsableTimer > 0 {
-			enemyTimeUntilNextManaAbilityUsableTimer -= 1;
 		}
 
 		// Timer for limiting time between attacks. Prevents enemy spamming attack until it runs out of resources,

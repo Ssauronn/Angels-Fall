@@ -74,8 +74,6 @@ function scr_move_within_attack_range() {
 			decisionMadeForTargetAndAction = false;
 			alreadyTriedToChaseTimer = 0;
 			alreadyTriedToChase = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			lineOfSightExists = true;
@@ -132,8 +130,6 @@ function scr_move_within_attack_range() {
 			decisionMadeForTargetAndAction = false;
 			alreadyTriedToChaseTimer = 0;
 			alreadyTriedToChase = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			lineOfSightExists = true;
@@ -186,8 +182,6 @@ function scr_move_within_attack_range() {
 			decisionMadeForTargetAndAction = false;
 			alreadyTriedToChaseTimer = 0;
 			alreadyTriedToChase = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			lineOfSightExists = true;
@@ -209,8 +203,6 @@ function scr_move_within_attack_range() {
 		decisionMadeForTargetAndAction = false;
 		alreadyTriedToChaseTimer = 0;
 		alreadyTriedToChase = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		lineOfSightExists = true;
@@ -242,8 +234,6 @@ function scr_move_within_attack_range() {
 			decisionMadeForTargetAndAction = false;
 			alreadyTriedToChaseTimer = 0;
 			alreadyTriedToChase = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			lineOfSightExists = true;
@@ -667,8 +657,6 @@ function scr_move_within_attack_range() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		xPointToMoveTo = -1;
 		yPointToMoveTo = -1;
 		lineOfSightExists = true;

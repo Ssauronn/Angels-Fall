@@ -280,8 +280,6 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 				followingPlayerTargetY = -1;
 				enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 				enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-				enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-				enemyTimeUntilNextManaAbilityUsableTimer = 0;
 				// reset the timer for chasing.
 				pathPos = 1;
 				pathCreated = false;
@@ -446,14 +444,14 @@ if instance_exists(obj_player) {
 				targetOfTargetCurrentHP = -1;
 			}
 		}
-		// here I set targetCurrentPercentageOfStaminaAndMana
-		// Since targetCurrentPercentageOfStaminaAndMana is a scale between 0 to 2, multiply this value
+		// here I set targetCurrentPercentageOfStamina
+		// Since targetCurrentPercentageOfStamina is a scale between 0 to 2, multiply this value
 		// directly against the weight (since the weights can range from 0 to weight*2)
 		if currentTargetToFocus != obj_player.id {
-			targetCurrentPercentageOfStaminaAndMana = (currentTargetToFocus.enemyCurrentStamina / currentTargetToFocus.enemyMaxStamina) + (currentTargetToFocus.enemyCurrentMana / currentTargetToFocus.enemyMaxMana);
+			targetCurrentPercentageOfStamina = (currentTargetToFocus.enemyCurrentStamina / currentTargetToFocus.enemyMaxStamina);
 		}
 		else {
-			targetCurrentPercentageOfStaminaAndMana = (playerCurrentStamina / playerMaxStamina) + (playerCurrentMana / playerMaxMana);
+			targetCurrentPercentageOfStamina = (playerCurrentStamina / playerMaxStamina);
 		}
 	}
 }
@@ -471,7 +469,7 @@ if objectArchetype == "" {
 	show_debug_message(string(id) + "'s state is: " + string(enemyState));
 	show_debug_message("For " + string(self.id) + " these are the following weights for heavy melee attack:");
 	show_debug_message(string(selfCurrentHPPercentForHeavyMeleeEngineTotalWeight) + " = selfCurrentHPPercentForHeavyMeleeEngineTotalWeight");
-	show_debug_message(string(targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight");
+	show_debug_message(string(targetCurrentPercentageOfStaminaForHeavyMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaForHeavyMeleeEngineTotalWeight");
 	show_debug_message(string(targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight) + " = targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight");
 	show_debug_message(string(objectProximityToTargetForHeavyMeleeEngineTotalWeight) + " = objectProximityToTargetForHeavyMeleeEngineTotalWeight");
 	show_debug_message(string(percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight) + " = percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight");
@@ -481,7 +479,7 @@ if objectArchetype == "" {
 	show_debug_message("And for light melee attack: ")
 	show_debug_message("For " + string(self.id) + " these are the following weights:" );
 	show_debug_message(string(selfCurrentHPPercentForLightMeleeEngineTotalWeight) + " = selfCurrentHPPercentForLightMeleeEngineTotalWeight");
-	show_debug_message(string(targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight");
+	show_debug_message(string(targetCurrentPercentageOfStaminaForLightMeleeEngineTotalWeight) + " = targetCurrentPercentageOfStaminaForLightMeleeEngineTotalWeight");
 	show_debug_message(string(targetOfTargetCurrentHPForLightMeleeEngineTotalWeight) + " = targetOfTargetCurrentHPForLightMeleeEngineTotalWeight");
 	show_debug_message(string(objectProximityToTargetForLightMeleeEngineTotalWeight) + " = objectProximityToTargetForLightMeleeEngineTotalWeight");
 	show_debug_message(string(percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight) + " = percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight");

@@ -61,8 +61,6 @@ function scr_enemy_idle() {
 						decisionMadeForTargetAndAction = false;
 						alreadyTriedToChaseTimer = 0;
 						alreadyTriedToChase = false;
-						enemyTimeUntilNextManaAbilityUsableTimer = 0;
-						enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 						enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 						enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 						lineOfSightExists = true;
@@ -114,8 +112,6 @@ function scr_enemy_idle() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 
 	if ds_exists(objectIDsFollowingPlayer, ds_type_list) && !ds_exists(objectIDsInBattle, ds_type_list) {
@@ -289,8 +285,6 @@ function scr_enemy_idle() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 	if hitstunActive {
 		chosenEngine = "";
@@ -299,8 +293,6 @@ function scr_enemy_idle() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 #endregion
 
@@ -312,8 +304,6 @@ function scr_enemy_idle() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 	if ((!instance_exists(currentTargetToHeal)) || (currentTargetToHeal == noone)) && (objectArchetype == "Healer") && (chosenEngine == "Heal Ally") {
 		chosenEngine = "";
@@ -322,8 +312,6 @@ function scr_enemy_idle() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 	if (chosenEngine == "") && (ds_exists(objectIDsInBattle, ds_type_list)) {
 		chosenEngine = "";
@@ -332,8 +320,6 @@ function scr_enemy_idle() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 
 	// Exit the idle script so as to not move towards targets if, for some reason (like
@@ -347,8 +333,6 @@ function scr_enemy_idle() {
 			alreadyTriedToChaseTimer = 0;
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
 		}
 	}
 
@@ -450,8 +434,6 @@ function scr_enemy_idle() {
 											alreadyTriedToChaseTimer = 0;
 											enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 											enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-											enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-											enemyTimeUntilNextManaAbilityUsableTimer = 0;
 										}
 									}
 								}
@@ -464,8 +446,6 @@ function scr_enemy_idle() {
 									alreadyTriedToChaseTimer = 0;
 									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
 								}
 							}
 							// Else if the obj_enemy doesn't have enough stamina to execute attack
@@ -596,8 +576,6 @@ function scr_enemy_idle() {
 											alreadyTriedToChaseTimer = 0;
 											enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 											enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-											enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-											enemyTimeUntilNextManaAbilityUsableTimer = 0;
 										}
 									}
 								}
@@ -610,8 +588,6 @@ function scr_enemy_idle() {
 									alreadyTriedToChaseTimer = 0;
 									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
 								}
 							}
 							// Else if the obj_enemy doesn't have enough stamina to execute attack
@@ -724,8 +700,6 @@ function scr_enemy_idle() {
 											alreadyTriedToChaseTimer = 0;
 											enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 											enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-											enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-											enemyTimeUntilNextManaAbilityUsableTimer = 0;
 										}
 									}
 								}
@@ -738,38 +712,33 @@ function scr_enemy_idle() {
 									alreadyTriedToChaseTimer = 0;
 									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
-								
-								
-								
 								}
 							}
-							// Else if the obj_enemy doesn't have enough mana to execute attack
-							else if enemyHeavyRangedAttackManaCost > enemyCurrentMana {
-								// Evaluate current mana and mana regen vs heavy ranged cost, set timer based on
-								// exact amount of frames + 1 needed to get to the mana cost.
-								if !enemyTimeUntilNextManaAbilityUsableTimerSet {
-									var time_to_get_required_mana_ = round((enemyHeavyRangedAttackManaCost - enemyCurrentMana) / enemyManaRegeneration) + 1;
-									enemyTimeUntilNextManaAbilityUsableTimer = time_to_get_required_mana_;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = true;
+							// Else if the obj_enemy doesn't have enough stamina to execute attack
+							else if enemyHeavyRangedAttackStamCost > enemyCurrentStamina {
+								// Evaluate current stamina and stam regen vs heavy ranged cost, set timer based on
+								// exact amount of frames + 1 needed to get to the stamina cost.
+								if !enemyTimeUntilNextStaminaAbilityUsableTimerSet {
+									var time_to_get_required_stamina_ = round((enemyHeavyRangedAttackStamCost - enemyCurrentStamina) / enemyStaminaRegeneration) + 1;
+									enemyTimeUntilNextStaminaAbilityUsableTimer = time_to_get_required_stamina_;
+									enemyTimeUntilNextStaminaAbilityUsableTimerSet = true;
 								}
-								// If mana still hasn't gotten above the required mana cost, meaning regen has been
+								// If stamina still hasn't gotten above the required stamina cost, meaning regen has been
 								// debuffed
-								else if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyHeavyRangedAttackManaCost) && (enemyTimeUntilNextManaAbilityUsableTimerSet) {
+								else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyHeavyRangedAttackStamCost) && (enemyTimeUntilNextStaminaAbilityUsableTimerSet) {
 									chosenEngine = "Light Ranged";
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 								}
 							}
 							// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
-							// has enough mana to execute attack) then execute heavy ranged attack
+							// has enough stamina to execute attack) then execute heavy ranged attack
 							else {
 								// If the enemy has waited long enough to use another attack, then execute the attack.
 								// I don't have an else statement connected to this timer because this timer will always count
 								// down in 2.5 real world seconds or less, so the enemy will never really be waiting too long.
 								if enemyTimeUntilNextAttackUsableTimer < 0 {
 									// execute heavy ranged attack script
-									enemyCurrentMana -= enemyHeavyRangedAttackManaCost;
+									enemyCurrentStamina -= enemyHeavyRangedAttackStamCost;
 									enemyState = enemystates.heavyRangedAttack;
 									enemyStateSprite = enemystates.heavyRangedAttack;
 									chosenEngine = "";
@@ -778,8 +747,8 @@ function scr_enemy_idle() {
 									enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
 									alreadyTriedToChaseTimer = 0;
 									alreadyTriedToChase = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 								}
 							}
 						}
@@ -796,8 +765,8 @@ function scr_enemy_idle() {
 						if scr_line_of_sight_exists(target_ground_hurtbox_.x, target_ground_hurtbox_.y, obj_wall) {
 							/*
 							IF ANY OTHER ENGINE IS UNABLE TO BE EXECUTED I NEED ENEMY TO RUN TOWARDS TARGET; 
-							THIS IS BECAUSE I SEND ALL FAILED ATTACKS FOR STAMINA AND MANA ABILITIES TO THIS STATE AND IF THOSE 
-							FAIL, THAT MEANS THE obj_enemy'S STAMINA AND MANA REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
+							THIS IS BECAUSE I SEND ALL FAILED ATTACKS FOR STAMINA ABILITIES TO THIS STATE AND IF THOSE 
+							FAIL, THAT MEANS THE obj_enemy'S STAMINA AND STAM REGEN HAVE BEEN DEBUFFED, LEAVING IT TOO WEAK TO FIGHT
 							*/
 							// If enemy is not within light ranged attack range
 							if point_distance(self_ground_hurtbox_.x, self_ground_hurtbox_.y, target_ground_hurtbox_.x, target_ground_hurtbox_.y) > enemyLightRangedAttackRange {
@@ -850,23 +819,21 @@ function scr_enemy_idle() {
 										alreadyTriedToChaseTimer = 0;
 										enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 										enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-										enemyTimeUntilNextManaAbilityUsableTimer = 0;
 									}
 								}
 							}
-							// If the light ranged engine cannot be executed because there is not enough mana
-							// Else if the obj_enemy doesn't have enough mana to execute attack
-							else if enemyLightRangedAttackManaCost > enemyCurrentMana {
-								// Evaluate current mana and mana regen vs light ranged cost, set timer based on
-								// exact amount of frames + 1 needed to get to the mana cost.
-								if !enemyTimeUntilNextManaAbilityUsableTimerSet {
-									var time_to_get_required_mana_ = round((enemyLightRangedAttackManaCost - enemyCurrentMana) / enemyManaRegeneration) + 1;
-									enemyTimeUntilNextManaAbilityUsableTimer = time_to_get_required_mana_;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = true;
+							// If the light ranged engine cannot be executed because there is not enough stamina
+							// Else if the obj_enemy doesn't have enough stamina to execute attack
+							else if enemyLightRangedAttackStamCost > enemyCurrentStamina {
+								// Evaluate current stamina and stam regen vs light ranged cost, set timer based on
+								// exact amount of frames + 1 needed to get to the stamina cost.
+								if !enemyTimeUntilNextStaminaAbilityUsableTimerSet {
+									var time_to_get_required_stamina_ = round((enemyLightRangedAttackStamCost - enemyCurrentStamina) / enemyStaminaRegeneration) + 1;
+									enemyTimeUntilNextStaminaAbilityUsableTimer = time_to_get_required_stamina_;
+									enemyTimeUntilNextStaminaAbilityUsableTimerSet = true;
 								}
-								// If mana has not been regen'd enough, meaning regen was debuffed
-								if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyLightRangedAttackManaCost) && (enemyTimeUntilNextManaAbilityUsableTimerSet) {
+								// If stamina has not been regen'd enough, meaning regen was debuffed
+								if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyLightRangedAttackStamCost) && (enemyTimeUntilNextStaminaAbilityUsableTimerSet) {
 									// Last checks to see if any other attack can be executed - if not, the very last statement
 									// is executed, resetting decision making process.
 						
@@ -904,20 +871,18 @@ function scr_enemy_idle() {
 										alreadyTriedToChaseTimer = 0;
 										enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 										enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-										enemyTimeUntilNextManaAbilityUsableTimer = 0;
 									}
 								}
 							}
 							// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
-							// has enough mana to execute attack) then execute light ranged attack
+							// has enough stamina to execute attack) then execute light ranged attack
 							else {
 								// If the enemy has waited long enough to use another attack, then execute the attack.
 								// I don't have an else statement connected to this timer because this timer will always count
 								// down in 2.5 real world seconds or less, so the enemy will never really be waiting too long.
 								if enemyTimeUntilNextAttackUsableTimer < 0 {
 									// execute light ranged attack script
-									enemyCurrentMana -= enemyLightRangedAttackManaCost;
+									enemyCurrentStamina -= enemyLightRangedAttackStamCost;
 									enemyState = enemystates.lightRangedAttack;
 									enemyStateSprite = enemystates.lightRangedAttack;
 									chosenEngine = "";
@@ -926,8 +891,8 @@ function scr_enemy_idle() {
 									enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
 									alreadyTriedToChaseTimer = 0;
 									alreadyTriedToChase = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
+									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 								}
 							}
 						}
@@ -980,8 +945,6 @@ function scr_enemy_idle() {
 												alreadyTriedToChaseTimer = 0;
 												enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 												enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-												enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-												enemyTimeUntilNextManaAbilityUsableTimer = 0;
 											}
 										}
 									}
@@ -1004,8 +967,6 @@ function scr_enemy_idle() {
 												alreadyTriedToChaseTimer = 0;
 												enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 												enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-												enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-												enemyTimeUntilNextManaAbilityUsableTimer = 0;
 											}
 										}
 									}
@@ -1016,32 +977,30 @@ function scr_enemy_idle() {
 										alreadyTriedToChaseTimer = 0;
 										enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 										enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-										enemyTimeUntilNextManaAbilityUsableTimer = 0;
 									}
 								}
-								// Else if the obj_enemy doesn't have enough mana to execute heal
-								else if 450 > enemyCurrentMana { //enemyHealManaCost > enemyCurrentMana {
-									// Evaluate current mana and mana regen vs heal ally cost, set timer based on
-									// exact amount of frames + 1 needed to get to the mana cost.
-									if !enemyTimeUntilNextManaAbilityUsableTimerSet {
-										var time_to_get_required_mana_ = round((enemyHealManaCost - enemyCurrentMana) / enemyManaRegeneration) + 1;
-										enemyTimeUntilNextManaAbilityUsableTimer = time_to_get_required_mana_;
-										enemyTimeUntilNextManaAbilityUsableTimerSet = true;
+								// Else if the obj_enemy doesn't have enough stamina to execute heal
+								else if enemyHealStamCost > enemyCurrentStamina {
+									// Evaluate current stamina and stam regen vs heal ally cost, set timer based on
+									// exact amount of frames + 1 needed to get to the stamina cost.
+									if !enemyTimeUntilNextStaminaAbilityUsableTimerSet {
+										var time_to_get_required_stamina_ = round((enemyHealStamCost - enemyCurrentStamina) / enemyStaminaRegeneration) + 1;
+										enemyTimeUntilNextStaminaAbilityUsableTimer = time_to_get_required_stamina_;
+										enemyTimeUntilNextStaminaAbilityUsableTimerSet = true;
 									}
-									// If mana still hasn't gotten above the required mana cost, meaning regen has been
+									// If stamina still hasn't gotten above the required stamina cost, meaning regen has been
 									// debuffed
-									else if (enemyTimeUntilNextManaAbilityUsableTimer <= 0) && (enemyCurrentMana < enemyHealManaCost) && (enemyTimeUntilNextManaAbilityUsableTimerSet) {
+									else if (enemyTimeUntilNextStaminaAbilityUsableTimer <= 0) && (enemyCurrentStamina < enemyHealStamCost) && (enemyTimeUntilNextStaminaAbilityUsableTimerSet) {
 										chosenEngine = "Light Ranged";
-										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
+										enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 									}
 								}
 								// Else if all conditions are satisfied (this engine is chosen, obj_enemy is within range and
-								// has enough mana to execute heal) then execute heal
+								// has enough stamina to execute heal) then execute heal
 								else {
 									if enemyTimeUntilNextAttackUsableTimer < 0 {
 										// execute heal ally script
-										enemyCurrentMana -= enemyHealManaCost;
+										enemyCurrentStamina -= enemyHealStamCost;
 										enemyState = enemystates.healAlly;
 										enemyStateSprite = enemystates.healAlly;
 										chosenEngine = "";
@@ -1050,8 +1009,6 @@ function scr_enemy_idle() {
 										enemyTimeUntilNextAttackUsableTimer = enemyTimeUntilNextAttackUsableTimerStartTime;
 										alreadyTriedToChaseTimer = 0;
 										alreadyTriedToChase = false;
-										enemyTimeUntilNextManaAbilityUsableTimer = 0;
-										enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 										healAllyEngineTimer = healAllyEngineTimerBaseTime;
 									}
 								}

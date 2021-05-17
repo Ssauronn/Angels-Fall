@@ -24,7 +24,7 @@ slowEnemyTimeWithParryTimerStartTime = 2 * room_speed;
 parryWindowActive = false;
 successfulParryEffectNeedsToBeAppliedToEnemy = false;
 successfulParryInvulnerabilityActive = false;
-parryFailureManaCost = 100;
+parryFailureStaminaCost = 100;
 parrySuccessfullyCombod = false;
 #endregion
 
@@ -77,7 +77,6 @@ forcesOfLifeDamageMultiplier = 1;
 /// Blood Pact
 bloodPactBloodMagicCost = 3.5; // Cost is given as a number of how much Blood Magic resources will be taken (out of 10)
 bloodPactStaminaReturn = 0.35; // Return is given as a multiplier of percent of max stam restored
-bloodPactManaReturn = 0.35; // Return is given as a multiplier of percent of max stam restored
 
 /// Life Tax
 lifeTaxBloodMagicCost = 4;
@@ -142,13 +141,9 @@ Regen: 5% of max resource
 #region Necromancy Magic
 #region Tier 1
 /// Death Incarnate
-deathIncarnateManaCostMultiplier = 0.8;
-deathIncarnateStaminaCostMultiplier = 0;
-deathIncarnateManaRegenMultiplier = 0;
+deathIncarnateStaminaCostMultiplier = 0.8;
 deathIncarnateStaminaRegenMultiplier = 0;
-deathIncarnateManaCost = 800;
-deathIncarnateStaminaCost = 0;
-deathIncarnateManaRegen = 0;
+deathIncarnateStaminaCost = 800;
 deathIncarnateStaminaRegen = 0;
 deathIncarnateFirstPhaseActive = false;
 deathIncarnateFirstPhaseDamage = 15;
@@ -173,31 +168,19 @@ deathIncarnateFirstPhaseReachedTarget = false;
 #region Tier 2
 /// Ritual of Imperfection
 // First Demon Costs and Regens
-ritualOfImperfectionFirstDemonManaCostMultiplier = 0.125;
-ritualOfImperfectionFirstDemonStaminaCostMultiplier = 0;
-ritualOfImperfectionFirstDemonManaRegenMultiplier = 0;
+ritualOfImperfectionFirstDemonStaminaCostMultiplier = 0.125;
 ritualOfImperfectionFirstDemonStaminaRegenMultiplier = 0;
-ritualOfImperfectionFirstDemonManaCost = 125;
-ritualOfImperfectionFirstDemonStaminaCost = 0;
-ritualOfImperfectionFirstDemonManaRegen = 0;
+ritualOfImperfectionFirstDemonStaminaCost = 125;
 ritualOfImperfectionFirstDemonStaminaRegen = 0;
 // Second Demon Costs and Regens
-ritualOfImperfectionSecondDemonManaCostMultiplier = 0.25;
-ritualOfImperfectionSecondDemonStaminaCostMultiplier = 0;
-ritualOfImperfectionSecondDemonManaRegenMultiplier = 0;
+ritualOfImperfectionSecondDemonStaminaCostMultiplier = 0.25;
 ritualOfImperfectionSecondDemonStaminaRegenMultiplier = 0;
-ritualOfImperfectionSecondDemonManaCost = 250;
-ritualOfImperfectionSecondDemonStaminaCost = 0;
-ritualOfImperfectionSecondDemonManaRegen = 0;
+ritualOfImperfectionSecondDemonStaminaCost = 250;
 ritualOfImperfectionSecondDemonStaminaRegen = 0;
 // Third Demon Costs and Regens
-ritualOfImperfectionThirdDemonManaCostMultiplier = 0.5;
-ritualOfImperfectionThirdDemonStaminaCostMultiplier = 0;
-ritualOfImperfectionThirdDemonManaRegenMultiplier = 0;
+ritualOfImperfectionThirdDemonStaminaCostMultiplier = 0.5;
 ritualOfImperfectionThirdDemonStaminaRegenMultiplier = 0;
-ritualOfImperfectionThirdDemonManaCost = 500;
-ritualOfImperfectionThirdDemonStaminaCost = 0;
-ritualOfImperfectionThirdDemonManaRegen = 0;
+ritualOfImperfectionThirdDemonStaminaCost = 500;
 ritualOfImperfectionThirdDemonStaminaRegen = 0;
 // Whether or not the demons or active; assign these variables an existing object ID
 ritualOfImperfectionFirstDemonActive = noone;
@@ -212,13 +195,9 @@ ritualOfImperfectionCurrentCastTime = -1;
 ritualOfImperfectionFinalCastTime = -1;
 
 /// Ritual of Death
-ritualOfDeathManaCostMultiplier = 0.5;
-ritualOfDeathStaminaCostMultiplier = 0;
-ritualOfDeathManaRegenMultiplier = 0;
+ritualOfDeathStaminaCostMultiplier = 0.5;
 ritualOfDeathStaminaRegenMultiplier = 0;
-ritualOfDeathManaCost = 500;
-ritualOfDeathStaminaCost = 0;
-ritualOfDeathManaRegen = 0;
+ritualOfDeathStaminaCost = 500;
 ritualOfDeathStaminaRegen = 0;
 ritualOfDeathActive = noone;
 ritualOfDeathRange = 32 * 6;
@@ -226,13 +205,9 @@ ritualOfDeathRange = 32 * 6;
 
 #region Tier 3
 /// Soul Tether
-soulTetherManaCostMultiplier = 0.2;
-soulTetherStaminaCostMultiplier = 0;
-soulTetherManaRegenMultiplier = 0;
+soulTetherStaminaCostMultiplier = 0.2;
 soulTetherStaminaRegenMultiplier = 0;
-soulTetherManaCost = 200;
-soulTetherStaminaCost = 0;
-soulTetherManaRegen = 0;
+soulTetherStaminaCost = 200;
 soulTetherStaminaRegen = 0;
 soulTetherActive = false;
 soulTetherCanBeRefreshed = true;
@@ -242,13 +217,9 @@ soulTetherTimer = -1;
 soulTetherTimerStartTime = room_speed * 10;
 
 /// Dinner is Served
-dinnerIsServedManaCostMultiplier = 0.2;
-dinnerIsServedStaminaCostMultiplier = 0;
-dinnerIsServedManaRegenMultiplier = 0;
+dinnerIsServedStaminaCostMultiplier = 0.2;
 dinnerIsServedStaminaRegenMultiplier = 0;
-dinnerIsServedManaCost = 200;
-dinnerIsServedStaminaCost = 0;
-dinnerIsServedManaRegen = 0;
+dinnerIsServedStaminaCost = 200;
 dinnerIsServedStaminaRegen = 0;
 dinnerIsServedActive = false;
 dinnerIsServedStartingDamage = 15;
@@ -256,13 +227,11 @@ dinnerIsServedRampMultiplier = 1.1;
 dinnerIsServedCanBeRefreshed = true;
 dinnerIsServedTicTimer = -1;
 dinnerIsServedTicTimerStartTime = room_speed * 0.5;
-// The next three multipliers are used against the enemy(s) stamina and mana regen stats, and 
-// movement speed stats, to debuff them
+// The next three multipliers are used against the enemy(s) stamina regen stat, and 
+// movement speed stat, to debuff them
 dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = 0.5;
-dinnerIsServedBaseEnemyManaRegenerationMultiplier = 0.5;
 dinnerIsServedBaseEnemyMovementSpeedMultiplier = 0.5;
 dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
-dinnerIsServedEnemyManaRegenerationMultiplier = 1;
 dinnerIsServedEnemyMovementSpeedMultiplier = 1;
 dinnerIsServedRange = 32 * 5.5;
 dinnerIsServedTargetArray = noone;
@@ -270,13 +239,9 @@ dinnerIsServedTimer = -1;
 dinnerIsServedTimerStartTime = (room_speed * 5) + 1;
 
 /// Final Parting - DEBUFF IS APPLIED TO NEW TARGET IN THE scr_track_enemy_stats SCRIPT
-finalPartingManaCostMultiplier = 0;
 finalPartingStaminaCostMultiplier = 0.2;
-finalPartingManaRegenMultiplier = 0;
 finalPartingStaminaRegenMultiplier = 0;
-finalPartingManaCost = 0;
 finalPartingStaminaCost = 200;
-finalPartingManaRegen = 0;
 finalPartingStaminaRegen = 0;
 finalPartingActive = false;
 finalPartingDamage = 25;
@@ -291,13 +256,9 @@ finalPartingTimer = -1;
 finalPartingTimerStartTime = (room_speed * 5) + 1;
 
 /// Risk of Life
-riskOfLifeManaCostMultiplier = 0;
 riskOfLifeStaminaCostMultiplier = 0.2;
-riskOfLifeManaRegenMultiplier = 0;
 riskOfLifeStaminaRegenMultiplier = 0;
-riskOfLifeManaCost = 0;
 riskOfLifeStaminaCost = 200;
-riskOfLifeManaRegen = 0;
 riskOfLifeStaminaRegen = 0;
 riskOfLifeSpeed = (32 * 4) / room_speed;
 riskOfLifeTargetXPos = -1;
@@ -310,13 +271,9 @@ riskOfLifeAoEDamage = 100;
 
 #region Tier 4
 /// Taken for Pain
-takenForPainManaCostMultiplier = 0;
 takenForPainStaminaCostMultiplier = 0;
-takenForPainManaRegenMultiplier = 0;
 takenForPainStaminaRegenMultiplier = 0.05;
-takenForPainManaCost = 0;
 takenForPainStaminaCost = 0;
-takenForPainManaRegen = 0;
 takenForPainStaminaRegen = 50;
 takenForPainFirstPhaseActive = false;
 takenForPainSecondPhaseActive = false;
@@ -332,14 +289,10 @@ takenForPainSecondPhaseTimer = -1;
 takenForPainSecondPhaseTimerStartTime = room_speed * 1;
 
 /// Sickly Proposition
-sicklyPropositionManaCostMultiplier = 0;
 sicklyPropositionStaminaCostMultiplier = 0;
-sicklyPropositionManaRegenMultiplier = 0.05;
-sicklyPropositionStaminaRegenMultiplier = 0;
-sicklyPropositionManaCost = 0;
+sicklyPropositionStaminaRegenMultiplier = 0.05;
 sicklyPropositionStaminaCost = 0;
-sicklyPropositionManaRegen = 50;
-sicklyPropositionStaminaRegen = 0;
+sicklyPropositionStaminaRegen = 50;
 sicklyPropositionActive = false;
 sicklyPropositionCanBeRefreshed = true;
 sicklyPropositionDamage = 100;
@@ -358,13 +311,9 @@ sicklyPropositionTimerStartTime = (room_speed * 5) + 1;
 #region Diabolus Magic
 #region Tier 1
 /// Wrath of the Diaboli
-wrathOfTheDiaboliManaCostMultiplier = 0;
 wrathOfTheDiaboliStaminaCostMultiplier = 0.8;
-wrathOfTheDiaboliManaRegenMultiplier = 0;
 wrathOfTheDiaboliStaminaRegenMultiplier = 0;
-wrathOfTheDiaboliManaCost = 0;
 wrathOfTheDiaboliStaminaCost = 800;
-wrathOfTheDiaboliManaRegen = 0;
 wrathOfTheDiaboliStaminaRegen = 0;
 wrathOfTheDiaboliActive = false;
 wrathOfTheDiaboliRange = 32 * 5.5;
@@ -381,13 +330,9 @@ wrathOfTheDiaboliTeleportedToNextTarget = false;
 
 #region Tier 2
 /// Glinting Blade
-glintingBladeManaCostMultiplier = 0.5;
-glintingBladeStaminaCostMultiplier = 0;
-glintingBladeManaRegenMultiplier = 0;
+glintingBladeStaminaCostMultiplier = 0.5;
 glintingBladeStaminaRegenMultiplier = 0;
-glintingBladeManaCost = 500;
-glintingBladeStaminaCost = 0;
-glintingBladeManaRegen = 0;
+glintingBladeStaminaCost = 500;
 glintingBladeStaminaRegen = 0;
 glintingBladeActive = false;
 glintingBladeDamage = 50;
@@ -410,13 +355,9 @@ glintingBladeTimer = -1;
 glintingBladeTimerStartTime = room_speed * 15;
 
 /// Hellish Landscape
-hellishLandscapeManaCostMultiplier = 0.5;
-hellishLandscapeStaminaCostMultiplier = 0;
-hellishLandscapeManaRegenMultiplier = 0;
+hellishLandscapeStaminaCostMultiplier = 0.5;
 hellishLandscapeStaminaRegenMultiplier = 0;
-hellishLandscapeManaCost = 500;
-hellishLandscapeStaminaCost = 0;
-hellishLandscapeManaRegen = 0;
+hellishLandscapeStaminaCost = 500;
 hellishLandscapeStaminaRegen = 0;
 hellishLandscapeDamage = 75;
 hellishLandscapeStunDuration = room_speed * 3;
@@ -426,13 +367,9 @@ hellishLandscapeTargetY = 0;
 
 #region Tier 3
 /// Hidden Dagger
-hiddenDaggerManaCostMultiplier = 0;
 hiddenDaggerStaminaCostMultiplier = 0.2;
-hiddenDaggerManaRegenMultiplier = 0;
 hiddenDaggerStaminaRegenMultiplier = 0;
-hiddenDaggerManaCost = 0;
 hiddenDaggerStaminaCost = 200;
-hiddenDaggerManaRegen = 0;
 hiddenDaggerStaminaRegen = 0;
 hiddenDaggerDamage = 50;
 hiddenDaggerCanBeRefreshed = false;
@@ -442,31 +379,22 @@ hiddenDaggerBaseDamageMultiplier = 2;
 hiddenDaggerDamageMultiplierTimerStartTime = hiddenDaggerStunDuration;
 
 /// All Out Attack
-allOutAttackManaCostMultiplier = 0;
 allOutAttackStaminaCostMultiplier = 0.2;
-allOutAttackManaRegenMultiplier = 0;
 allOutAttackStaminaRegenMultiplier = 0;
-allOutAttackManaCost = 0;
 allOutAttackStaminaCost = 200;
-allOutAttackManaRegen = 0;
 allOutAttackStaminaRegen = 0;
 allOutAttackActive = false;
 allOutAttackBaseMeleeRangeDamageMultiplier = 2;
 allOutAttackRange = 32 * 1.5;
-allOutAttackManaBonusOnKill = 0.4;
 allOutAttackStaminaBonusOnKill = 0.4;
 allOutAttackTimer = -1;
 allOutAttackTimerStartTime = room_speed * 10;
 
 /// Exploit Weakness
 // ***Exploit weakness does not proc itself.***
-exploitWeaknessManaCostMultiplier = 0.2;
-exploitWeaknessStaminaCostMultiplier = 0;
-exploitWeaknessManaRegenMultiplier = 0;
+exploitWeaknessStaminaCostMultiplier = 0.2;
 exploitWeaknessStaminaRegenMultiplier = 0;
-exploitWeaknessManaCost = 200;
-exploitWeaknessStaminaCost = 0;
-exploitWeaknessManaRegen = 0;
+exploitWeaknessStaminaCost = 200;
 exploitWeaknessStaminaRegen = 0;
 exploitWeaknessDamage = 25;
 exploitWeaknessDoTDamage = 0;
@@ -476,13 +404,9 @@ exploitWeaknessTicTimerStartTime = room_speed * 0.5;
 exploitWeaknessTimerStartTime = room_speed * 6;
 
 /// Purifying Rage
-purifyingRageManaCostMultiplier = 0.2;
-purifyingRageStaminaCostMultiplier = 0;
-purifyingRageManaRegenMultiplier = 0;
+purifyingRageStaminaCostMultiplier = 0.2;
 purifyingRageStaminaRegenMultiplier = 0;
-purifyingRageManaCost = 200;
-purifyingRageStaminaCost = 0;
-purifyingRageManaRegen = 0;
+purifyingRageStaminaCost = 200;
 purifyingRageStaminaRegen = 0;
 purifyingRageActive = false;
 purifyingRageBaseDamageMultiplierForPoisons = 1;
@@ -493,13 +417,9 @@ purifyingRageTimerStartTime = room_speed * 6;
 
 #region Tier 4
 /// Rushdown
-rushdownManaCostMultiplier = 0;
 rushdownStaminaCostMultiplier = 0;
-rushdownManaRegenMultiplier = 0;
 rushdownStaminaRegenMultiplier = 0.05;
-rushdownManaCost = 0;
 rushdownStaminaCost = 0;
-rushdownManaRegen = 0;
 rushdownStaminaRegen = 50;
 rushdownDashDamage = 25;
 rushdownDashDamageMultiplierActive = false;
@@ -514,14 +434,10 @@ rushdownDashTimer = -1;
 rushdownDashTimerStartTime = room_speed * 1;
 
 /// Diabolus Blast
-diabolusBlastManaCostMultiplier = 0;
 diabolusBlastStaminaCostMultiplier = 0;
-diabolusBlastManaRegenMultiplier = 0.05;
-diabolusBlastStaminaRegenMultiplier = 0;
-diabolusBlastManaCost = 0;
+diabolusBlastStaminaRegenMultiplier = 0.05;
 diabolusBlastStaminaCost = 0;
-diabolusBlastManaRegen = 50;
-diabolusBlastStaminaRegen = 0;
+diabolusBlastStaminaRegen = 50;
 diabolusBlastBaseDamage = 25;
 diabolusBlastMaxRange = 32 * 4;
 diabolusBlastMaxExtraDamage = 50;
@@ -531,13 +447,9 @@ diabolusBlastMaxExtraDamage = 50;
 #region Caelestus Magic
 #region Tier 1
 /// True Caelesti Wings
-trueCaelestiWingsManaCostMultiplier = 0;
 trueCaelestiWingsStaminaCostMultiplier = 0.8;
-trueCaelestiWingsManaRegenMultiplier = 0;
 trueCaelestiWingsStaminaRegenMultiplier = 0;
-trueCaelestiWingsManaCost = 0;
 trueCaelestiWingsStaminaCost = 800;
-trueCaelestiWingsManaRegen = 0;
 trueCaelestiWingsStaminaRegen = 0;
 trueCaelestiWingsActive = false;
 trueCaelestiWingsBaseDamageMultiplier = 1.5;
@@ -558,13 +470,9 @@ trueCaelestiWingsTimerStartTime = room_speed * 15;
 
 #region Tier 2
 /// Bindings of the Caelesti
-bindingsOfTheCaelestiManaCostMultiplier = 0.5;
-bindingsOfTheCaelestiStaminaCostMultiplier = 0;
-bindingsOfTheCaelestiManaRegenMultiplier = 0;
+bindingsOfTheCaelestiStaminaCostMultiplier = 0.5;
 bindingsOfTheCaelestiStaminaRegenMultiplier = 0;
-bindingsOfTheCaelestiManaCost = 500;
-bindingsOfTheCaelestiStaminaCost = 0;
-bindingsOfTheCaelestiManaRegen = 0;
+bindingsOfTheCaelestiStaminaCost = 500;
 bindingsOfTheCaelestiStaminaRegen = 0;
 bindingsOfTheCaelestiActive = false;
 bindingsOfTheCaelestiDamage = 15;
@@ -578,13 +486,9 @@ bindingsOfTheCaelestiTicTimer = -1;
 bindingsOfTheCaelestiTicTimerStartTime = room_speed * 0.5;
 
 /// Armor of the Caelesti
-armorOfTheCaelestiManaCostMultiplier = 0;
 armorOfTheCaelestiStaminaCostMultiplier = 0.5;
-armorOfTheCaelestiManaRegenMultiplier = 0;
 armorOfTheCaelestiStaminaRegenMultiplier = 0;
-armorOfTheCaelestiManaCost = 0;
 armorOfTheCaelestiStaminaCost = 500;
-armorOfTheCaelestiManaRegen = 0;
 armorOfTheCaelestiStaminaRegen = 0;
 armorOfTheCaelestiActive = false;
 armorOfTheCaelestiBaseResistanceMultiplier = 0.5;
@@ -598,13 +502,9 @@ armorOfTheCaelestiTimerStartTime = room_speed * 8;
 
 #region Tier 3
 /// Holy Defense
-holyDefenseManaCostMultiplier = 0;
 holyDefenseStaminaCostMultiplier = 0.2;
-holyDefenseManaRegenMultiplier = 0;
 holyDefenseStaminaRegenMultiplier = 0;
-holyDefenseManaCost = 0;
 holyDefenseStaminaCost = 200;
-holyDefenseManaRegen = 0;
 holyDefenseStaminaRegen = 0;
 holyDefenseActive = false;
 holyDefenseBaseDamage = 50;
@@ -619,13 +519,9 @@ holyDefenseTimer = 300;
 holyDefenseTimerStartTime = (room_speed * 3) + 1;
 
 /// Wrath of the Repentant
-wrathOfTheRepentantManaCostMultiplier = 0.2;
-wrathOfTheRepentantStaminaCostMultiplier = 0;
-wrathOfTheRepentantManaRegenMultiplier = 0;
+wrathOfTheRepentantStaminaCostMultiplier = 0.2;
 wrathOfTheRepentantStaminaRegenMultiplier = 0;
-wrathOfTheRepentantManaCost = 200;
-wrathOfTheRepentantStaminaCost = 0;
-wrathOfTheRepentantManaRegen = 0;
+wrathOfTheRepentantStaminaCost = 200;
 wrathOfTheRepentantStaminaRegen = 0;
 wrathOfTheRepentantActive = false;
 wrathOfTheRepentantBaseBasicMeleeDamageBonus = 1.5;
@@ -639,13 +535,9 @@ wrathOfTheRepentantTimer = -1;
 wrathOfTheRepentantTimerStartTime = room_speed * 10;
 
 /// The One Power
-theOnePowerManaCostMultiplier = 0.2;
-theOnePowerStaminaCostMultiplier = 0;
-theOnePowerManaRegenMultiplier = 0;
+theOnePowerStaminaCostMultiplier = 0.2;
 theOnePowerStaminaRegenMultiplier = 0;
-theOnePowerManaCost = 200;
-theOnePowerStaminaCost = 0;
-theOnePowerManaRegen = 0;
+theOnePowerStaminaCost = 200;
 theOnePowerStaminaRegen = 0;
 theOnePowerActive = false;
 theOnePowerRange = 32 * 4.5;
@@ -666,13 +558,9 @@ theOnePowerTimer = -1;
 theOnePowerTimerStartTime = room_speed * 30;
 
 /// Lightning Spear
-lightningSpearManaCostMultiplier = 0;
 lightningSpearStaminaCostMultiplier = 0.2;
-lightningSpearManaRegenMultiplier = 0;
 lightningSpearStaminaRegenMultiplier = 0;
-lightningSpearManaCost = 0;
 lightningSpearStaminaCost = 200;
-lightningSpearManaRegen = 0;
 lightningSpearStaminaRegen = 0;
 lightningSpearDamage = 75;
 lightningSpearSpeed = 32 * 4 / room_speed;
@@ -685,14 +573,10 @@ lightningSpearBasicMeleeDamageMultiplier = 1;
 
 #region Tier 4
 /// Angelic Barrage
-angelicBarrageManaCostMultiplier = 0;
 angelicBarrageStaminaCostMultiplier = 0;
-angelicBarrageManaRegenMultiplier = 0.05;
-angelicBarrageStaminaRegenMultiplier = 0;
-angelicBarrageManaCost = 0;
+angelicBarrageStaminaRegenMultiplier = 0.05;
 angelicBarrageStaminaCost = 0;
-angelicBarrageManaRegen = 50;
-angelicBarrageStaminaRegen = 0;
+angelicBarrageStaminaRegen = 50;
 // Simply set as active for as long as object is in the target array. Otherwise, set as false.
 // Then, just apply the damage if this is active and the tic timer is at or less than 0, and apply
 // the damage buff if this is active, period.
@@ -713,13 +597,9 @@ angelicBarrageDamageMultiplier = 1;
 angelicBarrageTimerStartTime = room_speed * 4;
 
 /// Whirlwind
-whirlwindManaCostMultiplier = 0;
 whirlwindStaminaCostMultiplier = 0;
-whirlwindManaRegenMultiplier = 0;
 whirlwindStaminaRegenMultiplier = 0.05;
-whirlwindManaCost = 0;
 whirlwindStaminaCost = 0;
-whirlwindManaRegen = 0;
 whirlwindStaminaRegen = 50;
 whirlwindActive = false;
 whirlwindDamage = 25;

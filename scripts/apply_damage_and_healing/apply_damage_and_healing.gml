@@ -183,9 +183,8 @@ function apply_damage_and_healing(argument0, argument1) {
 						comboDamageDealt += total_damage_;
 						other_owner_.enemyCurrentHP -= total_damage_;
 						lastEnemyHitByPlayer = other_owner_;
-						// Add stamina and mana to player current resources if the attack has connected
+						// Add stamina to player current resources if the attack has connected
 						playerCurrentStamina += obj_player.meleeStaminaRegen;
-						playerCurrentMana += obj_player.meleeManaRegen;
 						// Exploit Weakness needs to add .25 of total damage after resistances to poisons if active
 						if ((other_owner_.exploitWeaknessActive) || (self_.playerHitboxAbilityOrigin == "Exploit Weakness")) && (self_.playerHitboxAbilityOrigin != "DoT Tic") {
 							if !obj_skill_tree.purifyingRageActive {

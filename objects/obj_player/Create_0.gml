@@ -1,7 +1,7 @@
 /// @description Create Variables
 #region Base Stats, Base Attack Costs
 // Set all global player variables
-globalvar playerGameSpeed, playerTotalSpeed, playerMaxHP, playerMaxPermanentHP, playerCurrentPermanentHP, playerMaxAnimecroHP, playerCurrentAnimecroHP, playerMaxFluidHP, playerCurrentFluidHP, playerCurrentHP, playerHPRegeneration, playerMaxStamina, playerCurrentStamina, playerStaminaRegeneration, playerMaxMana, playerCurrentMana, playerManaRegeneration, playerMaxBloodMagic, playerCurrentBloodMagic;
+globalvar playerGameSpeed, playerTotalSpeed, playerMaxHP, playerMaxPermanentHP, playerCurrentPermanentHP, playerMaxAnimecroHP, playerCurrentAnimecroHP, playerMaxFluidHP, playerCurrentFluidHP, playerCurrentHP, playerHPRegeneration, playerMaxStamina, playerCurrentStamina, playerStaminaRegeneration, playerMaxBloodMagic, playerCurrentBloodMagic;
 
 
 // Variables used to control the universal speed of the player
@@ -24,17 +24,12 @@ playerHPRegeneration = 0 / room_speed;
 playerMaxStamina = 1000;
 playerCurrentStamina = playerMaxStamina;
 playerStaminaRegeneration = 12 / room_speed;
-// Variables used to control mana resources for player
-playerMaxMana = 1000;
-playerCurrentMana = playerMaxMana;
-playerManaRegeneration = 12 / room_speed;
 // Variables used to control blood magic resources for player
 playerMaxBloodMagic = 10;
 playerCurrentBloodMagic = playerMaxBloodMagic;
 // Costs on resources for using various attacks
 // Melee costs and regen
 meleeStaminaRegen = 25;
-meleeManaRegen = 25;
 // Dash costs and regen
 dashStaminaCost = 100;
 dashAvoidedDamage = false;

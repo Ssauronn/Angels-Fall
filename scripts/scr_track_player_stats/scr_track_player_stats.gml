@@ -21,11 +21,10 @@ function scr_track_player_stats() {
 #endregion
 
 
-#region Player HP, Stamina, and Mana Tracking
+#region Player HP and Stamina Tracking
 	// Used to regenerate resources
 	playerCurrentHP += playerHPRegeneration * playerTotalSpeed;
 	playerCurrentStamina += playerStaminaRegeneration * playerTotalSpeed;
-	playerCurrentMana += playerManaRegeneration * playerTotalSpeed;
 	// Used to control the resources of the player, make sure nothing goes above the max amounts
 	playerMaxHP = playerMaxAnimecroHP + playerMaxPermanentHP + playerMaxFluidHP;
 	if playerCurrentHP > playerMaxHP {
@@ -46,9 +45,6 @@ function scr_track_player_stats() {
 	}
 	if playerCurrentStamina > playerMaxStamina {
 		playerCurrentStamina = playerMaxStamina;
-	}
-	if playerCurrentMana > playerMaxMana {
-		playerCurrentMana = playerMaxMana;
 	}
 	if playerCurrentBloodMagic > playerMaxBloodMagic {
 		playerCurrentBloodMagic = playerMaxBloodMagic;
