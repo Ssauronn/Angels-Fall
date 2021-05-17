@@ -680,7 +680,7 @@ function scr_ai_decisions() {
 					#region Heavy Melee Engine
 						if instance_exists(instance_to_reference_.currentTargetToFocus) {
 							instance_to_reference_.selfCurrentHPPercentForHeavyMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForHeavyMeleeEngineStartWeight * 2))
-							instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight * 2) - (instance_to_reference_.targetCurrentPercentageOfStaminaAndMana * obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineStartWeight);
+							instance_to_reference_.targetCurrentPercentageOfStaminaForHeavyMeleeEngineTotalWeight = (obj_ai_decision_making.targetCurrentPercentageOfStaminaForHeavyMeleeEngineStartWeight * 2) - (instance_to_reference_.targetCurrentPercentageOfStamina * obj_ai_decision_making.targetCurrentPercentageOfStaminaForHeavyMeleeEngineStartWeight);
 							if instance_to_reference_.targetOfTargetCurrentHP != -1 {
 								instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight = (instance_to_reference_.targetOfTargetCurrentHP * (obj_ai_decision_making.targetOfTargetCurrentHPForHeavyMeleeEngineStartWeight * 2));
 							}
@@ -696,13 +696,13 @@ function scr_ai_decisions() {
 								instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight = (((enemyHealersInBattle + enemyTanksInBattle + enemyMeleeDPSInBattle + enemyRangedDPSInBattle) / obj_ai_decision_making.idealAmountOfTotalEnemiesInBattleForHeavyMeleeEngine) * (obj_ai_decision_making.totalEnemiesInBattleForHeavyMeleeEngineStartWeight));
 							}
 							// Set the total weight
-							instance_to_reference_.heavyMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight) * instance_to_reference_.heavyMeleeEngineWeightMultiplier;
+							instance_to_reference_.heavyMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaForHeavyMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForHeavyMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForHeavyMeleeEngineTotalWeight) * instance_to_reference_.heavyMeleeEngineWeightMultiplier;
 						}
 					#endregion
 					#region Light Melee Engine
 						if instance_exists(instance_to_reference_.currentTargetToFocus) {
 							instance_to_reference_.selfCurrentHPPercentForLightMeleeEngineTotalWeight = (obj_ai_decision_making.selfCurrentHPPercentForLightMeleeEngineStartWeight * 2) - (instance_to_reference_.selfCurrentHPPercent * (obj_ai_decision_making.selfCurrentHPPercentForLightMeleeEngineStartWeight * 2))
-							instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight = (instance_to_reference_.targetCurrentPercentageOfStaminaAndMana * obj_ai_decision_making.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineStartWeight);
+							instance_to_reference_.targetCurrentPercentageOfStaminaForLightMeleeEngineTotalWeight = (instance_to_reference_.targetCurrentPercentageOfStamina * obj_ai_decision_making.targetCurrentPercentageOfStaminaForLightMeleeEngineStartWeight);
 							if instance_to_reference_.targetOfTargetCurrentHP != -1 {
 								instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight = (obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight * 2) - (instance_to_reference_.targetOfTargetCurrentHP * (obj_ai_decision_making.targetOfTargetCurrentHPForLightMeleeEngineStartWeight * 2));
 							}
@@ -728,7 +728,7 @@ function scr_ai_decisions() {
 								}
 							}
 							// Set the total weight
-							instance_to_reference_.lightMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForLightMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight) * instance_to_reference_.lightMeleeEngineWeightMultiplier;
+							instance_to_reference_.lightMeleeEngineTotalWeight = (instance_to_reference_.selfCurrentHPPercentForLightMeleeEngineTotalWeight + instance_to_reference_.targetCurrentPercentageOfStaminaForLightMeleeEngineTotalWeight + instance_to_reference_.targetOfTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.objectProximityToTargetForLightMeleeEngineTotalWeight + instance_to_reference_.percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight + instance_to_reference_.totalEnemiesInBattleForLightMeleeEngineTotalWeight) * instance_to_reference_.lightMeleeEngineWeightMultiplier;
 						}
 					#endregion
 					#region Heavy Ranged Engine

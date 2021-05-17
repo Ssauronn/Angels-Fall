@@ -98,8 +98,6 @@ if primeAbilityChosen == "Overwhelming Chains" {
 									alreadyTriedToChaseTimer = 0;
 									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
 									if !stunActive {
 										chosenEngine = "";
 										enemyImageIndex = 0;
@@ -227,8 +225,6 @@ if primeAbilityChosen == "Overwhelming Chains" {
 									alreadyTriedToChaseTimer = 0;
 									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
 									enemyImageIndex = 0;
 								}
 								#region Re-Add Object to the Correct ds_list (objectIDsInBattle or objectIDsFollowingPlayer)
@@ -390,8 +386,6 @@ if primeAbilityChosen == "Overwhelming Chains" {
 									alreadyTriedToChaseTimer = 0;
 									enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 									enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-									enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-									enemyTimeUntilNextManaAbilityUsableTimer = 0;
 									enemyImageIndex = 0;
 								}
 								#region Re-Add Object to the Correct ds_list (objectIDsInBattle or objectIDsFollowingPlayer)
@@ -626,7 +620,6 @@ if primeAbilityChosen == "Blood Pact" {
 		if playerCurrentBloodMagic >= bloodPactBloodMagicCost {
 			playerCurrentBloodMagic -= bloodPactBloodMagicCost;
 			playerCurrentStamina += (playerMaxStamina * bloodPactStaminaReturn);
-			playerCurrentMana += (playerMaxMana * bloodPactManaReturn);
 		}
 	}
 }
@@ -770,7 +763,6 @@ if primeAbilityChosen == "Solidify" {
 						solidifyTarget.solidifyEnemyImageSpeedMultiplier = 1;
 						solidifyTarget.solidifyEnemyMovementSpeedMultiplier = 1;
 						solidifyTarget.solidifyEnemyStaminaRegenerationMultiplier = 1;
-						solidifyTarget.solidifyEnemyManaRegenerationMultiplier = 1;
 						solidifyTarget.solidifyEnemyChaseTimerSpeedMultiplier = 1;
 					}
 					playerCurrentBloodMagic -= solidifyBloodMagicCost;
@@ -780,7 +772,6 @@ if primeAbilityChosen == "Solidify" {
 					solidifyTarget.solidifyEnemyImageSpeedMultiplier = 0;
 					solidifyTarget.solidifyEnemyMovementSpeedMultiplier = 0;
 					solidifyTarget.solidifyEnemyStaminaRegenerationMultiplier = 0;
-					solidifyTarget.solidifyEnemyManaRegenerationMultiplier = 0;
 					solidifyTarget.solidifyEnemyChaseTimerSpeedMultiplier = 0;
 				}
 			}
@@ -796,7 +787,6 @@ if solidifyActive {
 		solidifyTarget.solidifyEnemyImageSpeedMultiplier = 1;
 		solidifyTarget.solidifyEnemyMovementSpeedMultiplier = 1;
 		solidifyTarget.solidifyEnemyStaminaRegenerationMultiplier = 1;
-		solidifyTarget.solidifyEnemyManaRegenerationMultiplier = 1;
 		solidifyTarget.solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		solidifyTarget = noone;
 	}
@@ -831,71 +821,49 @@ if instance_exists(obj_player) {
 	#region Necromancy Magic
 	#region Tier 1
 	// Death Incarnate
-	deathIncarnateManaCost = deathIncarnateManaCostMultiplier * playerMaxMana;
 	deathIncarnateStaminaCost = deathIncarnateStaminaCostMultiplier * playerMaxStamina;
-	deathIncarnateManaRegen = deathIncarnateManaRegenMultiplier * playerMaxMana;
 	deathIncarnateStaminaRegen = deathIncarnateStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 2
 	// Ritual of Imperfection
 	// First Demon
-	ritualOfImperfectionFirstDemonManaCost = ritualOfImperfectionFirstDemonManaCostMultiplier * playerMaxMana;
 	ritualOfImperfectionFirstDemonStaminaCost = ritualOfImperfectionFirstDemonStaminaCostMultiplier * playerMaxStamina;
-	ritualOfImperfectionFirstDemonManaRegen = ritualOfImperfectionFirstDemonManaRegenMultiplier * playerMaxMana;
 	ritualOfImperfectionFirstDemonStaminaRegen = ritualOfImperfectionFirstDemonStaminaRegenMultiplier * playerMaxStamina;
 	// Second Demon
-	ritualOfImperfectionSecondDemonManaCost = ritualOfImperfectionSecondDemonManaCostMultiplier * playerMaxMana;
 	ritualOfImperfectionSecondDemonStaminaCost = ritualOfImperfectionSecondDemonStaminaCostMultiplier * playerMaxStamina;
-	ritualOfImperfectionSecondDemonManaRegen = ritualOfImperfectionSecondDemonManaRegenMultiplier * playerMaxMana;
 	ritualOfImperfectionSecondDemonStaminaRegen = ritualOfImperfectionSecondDemonStaminaRegenMultiplier * playerMaxStamina;
 	// Third Demon
-	ritualOfImperfectionThirdDemonManaCost = ritualOfImperfectionThirdDemonManaCostMultiplier * playerMaxMana;
 	ritualOfImperfectionThirdDemonStaminaCost = ritualOfImperfectionThirdDemonStaminaCostMultiplier * playerMaxStamina;
-	ritualOfImperfectionThirdDemonManaRegen = ritualOfImperfectionThirdDemonManaRegenMultiplier * playerMaxMana;
 	ritualOfImperfectionThirdDemonStaminaRegen = ritualOfImperfectionThirdDemonStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Ritual of Death
-	ritualOfDeathManaCost = ritualOfDeathManaCostMultiplier * playerMaxMana;
 	ritualOfDeathStaminaCost = ritualOfDeathStaminaCostMultiplier * playerMaxStamina;
-	ritualOfDeathManaRegen = ritualOfDeathManaRegenMultiplier * playerMaxMana;
 	ritualOfDeathStaminaRegen = ritualOfDeathStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 3
 	// Soul Tether
-	soulTetherManaCost = soulTetherManaCostMultiplier * playerMaxMana;
 	soulTetherStaminaCost = soulTetherStaminaCostMultiplier * playerMaxStamina;
-	soulTetherManaRegen = soulTetherManaRegenMultiplier * playerMaxMana;
 	soulTetherStaminaRegen = soulTetherStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Dinner is Served
-	dinnerIsServedManaCost = dinnerIsServedManaCostMultiplier * playerMaxMana;
 	dinnerIsServedStaminaCost = dinnerIsServedStaminaCostMultiplier * playerMaxStamina;
-	dinnerIsServedManaRegen = dinnerIsServedManaRegenMultiplier * playerMaxMana;
 	dinnerIsServedStaminaRegen = dinnerIsServedStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Final Parting
-	finalPartingManaCost = finalPartingManaCostMultiplier * playerMaxMana;
 	finalPartingStaminaCost = finalPartingStaminaCostMultiplier * playerMaxStamina;
-	finalPartingManaRegen = finalPartingManaRegenMultiplier * playerMaxMana;
 	finalPartingStaminaRegen = finalPartingStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Risk of Life
-	riskOfLifeManaCost = riskOfLifeManaCostMultiplier * playerMaxMana;
 	riskOfLifeStaminaCost = riskOfLifeStaminaCostMultiplier * playerMaxStamina;
-	riskOfLifeManaRegen = riskOfLifeManaRegenMultiplier * playerMaxMana;
 	riskOfLifeStaminaRegen = riskOfLifeStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 4
 	// Taken for Pain
-	takenForPainManaCost = takenForPainManaCostMultiplier * playerMaxMana;
 	takenForPainStaminaCost = takenForPainStaminaCostMultiplier * playerMaxStamina;
-	takenForPainManaRegen = takenForPainManaRegenMultiplier * playerMaxMana;
 	takenForPainStaminaRegen = takenForPainStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Sickly Proposition
-	sicklyPropositionManaCost = sicklyPropositionManaCostMultiplier * playerMaxMana;
 	sicklyPropositionStaminaCost = sicklyPropositionStaminaCostMultiplier * playerMaxStamina;
-	sicklyPropositionManaRegen = sicklyPropositionManaRegenMultiplier * playerMaxMana;
 	sicklyPropositionStaminaRegen = sicklyPropositionStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#endregion
@@ -903,60 +871,42 @@ if instance_exists(obj_player) {
 	#region Diabolus Magic
 	#region Tier 1
 	// Wrath of the Diaboli
-	wrathOfTheDiaboliManaCost = wrathOfTheDiaboliManaCostMultiplier * playerMaxMana;
 	wrathOfTheDiaboliStaminaCost = wrathOfTheDiaboliStaminaCostMultiplier * playerMaxStamina;
-	wrathOfTheDiaboliManaRegen = wrathOfTheDiaboliManaRegenMultiplier * playerMaxMana;
 	wrathOfTheDiaboliStaminaRegen = wrathOfTheDiaboliStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 2
 	// Glinting Blade
-	glintingBladeManaCost = glintingBladeManaCostMultiplier * playerMaxMana;
 	glintingBladeStaminaCost = glintingBladeStaminaCostMultiplier * playerMaxStamina;
-	glintingBladeManaRegen = glintingBladeManaRegenMultiplier * playerMaxMana;
 	glintingBladeStaminaRegen = glintingBladeStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Hellish Landscape
-	hellishLandscapeManaCost = hellishLandscapeManaCostMultiplier * playerMaxMana;
 	hellishLandscapeStaminaCost = hellishLandscapeStaminaCostMultiplier * playerMaxStamina;
-	hellishLandscapeManaRegen = hellishLandscapeManaRegenMultiplier * playerMaxMana;
 	hellishLandscapeStaminaRegen = hellishLandscapeStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 3
 	// Hidden Dagger
-	hiddenDaggerManaCost = hiddenDaggerManaCostMultiplier * playerMaxMana;
 	hiddenDaggerStaminaCost = hiddenDaggerStaminaCostMultiplier * playerMaxStamina;
-	hiddenDaggerManaRegen = hiddenDaggerManaRegenMultiplier * playerMaxMana;
 	hiddenDaggerStaminaRegen = hiddenDaggerStaminaRegenMultiplier * playerMaxStamina;
 	
 	// All Out Attack
-	allOutAttackManaCost = allOutAttackManaCostMultiplier * playerMaxMana;
 	allOutAttackStaminaCost = allOutAttackStaminaCostMultiplier * playerMaxStamina;
-	allOutAttackManaRegen = allOutAttackManaRegenMultiplier * playerMaxMana;
 	allOutAttackStaminaRegen = allOutAttackStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Exploit Weakness
-	exploitWeaknessManaCost = exploitWeaknessManaCostMultiplier * playerMaxMana;
 	exploitWeaknessStaminaCost = exploitWeaknessStaminaCostMultiplier * playerMaxStamina;
-	exploitWeaknessManaRegen = exploitWeaknessManaRegenMultiplier * playerMaxMana;
 	exploitWeaknessStaminaRegen = exploitWeaknessStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Purifying Rage
-	purifyingRageManaCost = purifyingRageManaCostMultiplier * playerMaxMana;
 	purifyingRageStaminaCost = purifyingRageStaminaCostMultiplier * playerMaxStamina;
-	purifyingRageManaRegen = purifyingRageManaRegenMultiplier * playerMaxMana;
 	purifyingRageStaminaRegen = purifyingRageStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 4
 	// Rushdown
-	rushdownManaCost = rushdownManaCostMultiplier * playerMaxMana;
 	rushdownStaminaCost = rushdownStaminaCostMultiplier * playerMaxStamina;
-	rushdownManaRegen = rushdownManaRegenMultiplier * playerMaxMana;
 	rushdownStaminaRegen = rushdownStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Diabolus Blast
-	diabolusBlastManaCost = diabolusBlastManaCostMultiplier * playerMaxMana;
 	diabolusBlastStaminaCost = diabolusBlastStaminaCostMultiplier * playerMaxStamina;
-	diabolusBlastManaRegen = diabolusBlastManaRegenMultiplier * playerMaxMana;
 	diabolusBlastStaminaRegen = diabolusBlastStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#endregion
@@ -964,60 +914,42 @@ if instance_exists(obj_player) {
 	#region Caelesti Magic
 	#region Tier 1
 	// True Caelesti Wings
-	trueCaelestiWingsManaCost = trueCaelestiWingsManaCostMultiplier * playerMaxMana;
 	trueCaelestiWingsStaminaCost = trueCaelestiWingsStaminaCostMultiplier * playerMaxStamina;
-	trueCaelestiWingsManaRegen = trueCaelestiWingsManaRegenMultiplier * playerMaxMana;
 	trueCaelestiWingsStaminaRegen = trueCaelestiWingsStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 2
 	// Bindings of the Caelesti
-	bindingsOfTheCaelestiManaCost = bindingsOfTheCaelestiManaCostMultiplier * playerMaxMana;
 	bindingsOfTheCaelestiStaminaCost = bindingsOfTheCaelestiStaminaCostMultiplier * playerMaxStamina;
-	bindingsOfTheCaelestiManaRegen = bindingsOfTheCaelestiManaRegenMultiplier * playerMaxMana;
 	bindingsOfTheCaelestiStaminaRegen = bindingsOfTheCaelestiStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Armor of the Caelesti
-	armorOfTheCaelestiManaCost = armorOfTheCaelestiManaCostMultiplier * playerMaxMana;
 	armorOfTheCaelestiStaminaCost = armorOfTheCaelestiStaminaCostMultiplier * playerMaxStamina;
-	armorOfTheCaelestiManaRegen = armorOfTheCaelestiManaRegenMultiplier * playerMaxMana;
 	armorOfTheCaelestiStaminaRegen = armorOfTheCaelestiStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 3
 	// Holy Defense
-	holyDefenseManaCost = holyDefenseManaCostMultiplier * playerMaxMana;
 	holyDefenseStaminaCost = holyDefenseStaminaCostMultiplier * playerMaxStamina;
-	holyDefenseManaRegen = holyDefenseManaRegenMultiplier * playerMaxMana;
 	holyDefenseStaminaRegen = holyDefenseStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Wrath of the Repentant
-	wrathOfTheRepentantManaCost = wrathOfTheRepentantManaCostMultiplier * playerMaxMana;
 	wrathOfTheRepentantStaminaCost = wrathOfTheRepentantStaminaCostMultiplier * playerMaxStamina;
-	wrathOfTheRepentantManaRegen = wrathOfTheRepentantManaRegenMultiplier * playerMaxMana;
 	wrathOfTheRepentantStaminaRegen = wrathOfTheRepentantStaminaRegenMultiplier * playerMaxStamina;
 	
 	// The One Power
-	theOnePowerManaCost = theOnePowerManaCostMultiplier * playerMaxMana;
 	theOnePowerStaminaCost = theOnePowerStaminaCostMultiplier * playerMaxStamina;
-	theOnePowerManaRegen = theOnePowerManaRegenMultiplier * playerMaxMana;
 	theOnePowerStaminaRegen = theOnePowerStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Lightning Spear
-	lightningSpearManaCost = lightningSpearManaCostMultiplier * playerMaxMana;
 	lightningSpearStaminaCost = lightningSpearStaminaCostMultiplier * playerMaxStamina;
-	lightningSpearManaRegen = lightningSpearManaRegenMultiplier * playerMaxMana;
 	lightningSpearStaminaRegen = lightningSpearStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#region Tier 4
 	// Angelic Barrage
-	angelicBarrageManaCost = angelicBarrageManaCostMultiplier * playerMaxMana;
 	angelicBarrageStaminaCost = angelicBarrageStaminaCostMultiplier * playerMaxStamina;
-	angelicBarrageManaRegen = angelicBarrageManaRegenMultiplier * playerMaxMana;
 	angelicBarrageStaminaRegen = angelicBarrageStaminaRegenMultiplier * playerMaxStamina;
 	
 	// Whirlwind
-	whirlwindManaCost = whirlwindManaCostMultiplier * playerMaxMana;
 	whirlwindStaminaCost = whirlwindStaminaCostMultiplier * playerMaxStamina;
-	whirlwindManaRegen = whirlwindManaRegenMultiplier * playerMaxMana;
 	whirlwindStaminaRegen = whirlwindStaminaRegenMultiplier * playerMaxStamina;
 	#endregion
 	#endregion

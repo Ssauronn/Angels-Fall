@@ -19,7 +19,7 @@ function choose_player_ability_state(argument0, argument1) {
 			if variable_global_exists("objectIDsInBattle") {
 				if ds_exists(objectIDsInBattle, ds_type_list) {
 					if combo_ {
-						if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheDiaboliManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) {
 							comboTrue = "Wrath of the Diaboli";
 							comboTrueTimer = 10;
 							// I don't directly set lastAttackButtonPressed to comboTrue here because the only
@@ -36,7 +36,7 @@ function choose_player_ability_state(argument0, argument1) {
 						}
 					}
 					else {
-						if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheDiaboliManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.wrathOfTheDiaboliStaminaCost) {
 							lastAttackButtonPressed = "Wrath of the Diaboli";
 							execute_attacks();
 						}
@@ -58,7 +58,7 @@ function choose_player_ability_state(argument0, argument1) {
 		case "Glinting Blade":
 			if !obj_skill_tree.glintingBladeActive {
 				if combo_ {
-					if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) && (playerCurrentMana >= obj_skill_tree.glintingBladeManaCost) {
+					if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) {
 						comboTrue = "Glinting Blade";
 						comboTrueTimer = 10;
 					}
@@ -69,7 +69,7 @@ function choose_player_ability_state(argument0, argument1) {
 					}
 				}
 				else {
-					if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) && (playerCurrentMana >= obj_skill_tree.glintingBladeManaCost) {
+					if (playerCurrentStamina >= obj_skill_tree.glintingBladeStaminaCost) {
 						lastAttackButtonPressed = "Glinting Blade";
 						execute_attacks();
 					}
@@ -94,7 +94,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Hellish Landscape":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.hellishLandscapeStaminaCost) && (playerCurrentMana >= obj_skill_tree.hellishLandscapeManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.hellishLandscapeStaminaCost) {
 					comboTrue = "Hellish Landscape";
 					comboTrueTimer = 10;
 				}
@@ -105,7 +105,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.hellishLandscapeStaminaCost) && (playerCurrentMana >= obj_skill_tree.hellishLandscapeManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.hellishLandscapeStaminaCost) {
 					lastAttackButtonPressed = "Hellish Landscape";
 					execute_attacks();
 				}
@@ -116,7 +116,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Hidden Dagger":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.hiddenDaggerStaminaCost) && (playerCurrentMana >= obj_skill_tree.hiddenDaggerManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.hiddenDaggerStaminaCost) {
 					comboTrue = "Hidden Dagger";
 					comboTrueTimer = 10;
 				}
@@ -127,7 +127,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.hiddenDaggerStaminaCost) && (playerCurrentMana >= obj_skill_tree.hiddenDaggerManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.hiddenDaggerStaminaCost) {
 					lastAttackButtonPressed = "Hidden Dagger";
 					execute_attacks();
 				}
@@ -138,7 +138,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "All Out Attack":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.allOutAttackStaminaCost) && (playerCurrentMana >= obj_skill_tree.allOutAttackManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.allOutAttackStaminaCost) {
 					comboTrue = "All Out Attack";
 					comboTrueTimer = 10;
 				}
@@ -149,7 +149,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.allOutAttackStaminaCost) && (playerCurrentMana >= obj_skill_tree.allOutAttackManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.allOutAttackStaminaCost) {
 					lastAttackButtonPressed = "All Out Attack";
 					execute_attacks();
 				}
@@ -160,7 +160,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Exploit Weakness":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.exploitWeaknessStaminaCost) && (playerCurrentMana >= obj_skill_tree.exploitWeaknessManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.exploitWeaknessStaminaCost) {
 					comboTrue = "Exploit Weakness";
 					comboTrueTimer = 10;
 				}
@@ -171,7 +171,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.exploitWeaknessStaminaCost) && (playerCurrentMana >= obj_skill_tree.exploitWeaknessManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.exploitWeaknessStaminaCost) {
 					lastAttackButtonPressed = "Exploit Weakness";
 					execute_attacks();
 				}
@@ -182,7 +182,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Purifying Rage":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.purifyingRageStaminaCost) && (playerCurrentMana >= obj_skill_tree.purifyingRageManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.purifyingRageStaminaCost) {
 					comboTrue = "Purifying Rage";
 					comboTrueTimer = 10;
 				}
@@ -193,7 +193,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.purifyingRageStaminaCost) && (playerCurrentMana >= obj_skill_tree.purifyingRageManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.purifyingRageStaminaCost) {
 					lastAttackButtonPressed = "Purifying Rage";
 					execute_attacks();
 				}
@@ -206,7 +206,7 @@ function choose_player_ability_state(argument0, argument1) {
 			if variable_global_exists("objectIDsInBattle") {
 				if ds_exists(objectIDsInBattle, ds_type_list) {
 					if combo_ {
-						if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) && (playerCurrentMana >= obj_skill_tree.rushdownManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) {
 							comboTrue = "Rushdown";
 							comboTrueTimer = 10;
 						}
@@ -217,7 +217,7 @@ function choose_player_ability_state(argument0, argument1) {
 						}
 					}
 					else {
-						if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) && (playerCurrentMana >= obj_skill_tree.rushdownManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.rushdownStaminaCost) {
 							lastAttackButtonPressed = "Rushdown";
 							execute_attacks();
 						}
@@ -238,7 +238,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Diabolus Blast":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.diabolusBlastStaminaCost) && (playerCurrentMana >= obj_skill_tree.diabolusBlastManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.diabolusBlastStaminaCost) {
 					comboTrue = "Diabolus Blast";
 					comboTrueTimer = 10;
 				}
@@ -249,7 +249,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.diabolusBlastStaminaCost) && (playerCurrentMana >= obj_skill_tree.diabolusBlastManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.diabolusBlastStaminaCost) {
 					lastAttackButtonPressed = "Diabolus Blast";
 					execute_attacks();
 				}
@@ -262,7 +262,7 @@ function choose_player_ability_state(argument0, argument1) {
 	#region Caelesti Abilities
 		case "True Caelesti Wings":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.trueCaelestiWingsStaminaCost) && (playerCurrentMana >= obj_skill_tree.trueCaelestiWingsManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.trueCaelestiWingsStaminaCost) {
 					comboTrue = "True Caelesti Wings";
 					comboTrueTimer = 10;
 				}
@@ -273,7 +273,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.trueCaelestiWingsStaminaCost) && (playerCurrentMana >= obj_skill_tree.trueCaelestiWingsManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.trueCaelestiWingsStaminaCost) {
 					lastAttackButtonPressed = "True Caelesti Wings";
 					execute_attacks();
 				}
@@ -286,7 +286,7 @@ function choose_player_ability_state(argument0, argument1) {
 			if variable_global_exists("objectIDsInBattle") {
 				if ds_exists(objectIDsInBattle, ds_type_list) {
 					if combo_ {
-						if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.bindingsOfTheCaelestiManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) {
 							comboTrue = "Bindings of the Caelesti";
 							comboTrueTimer = 10;
 						}
@@ -297,7 +297,7 @@ function choose_player_ability_state(argument0, argument1) {
 						}
 					}
 					else {
-						if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.bindingsOfTheCaelestiManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.bindingsOfTheCaelestiStaminaCost) {
 							lastAttackButtonPressed = "Bindings of the Caelesti";
 							execute_attacks();
 						}
@@ -318,7 +318,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Armor of the Caelesti":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.armorOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.armorOfTheCaelestiManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.armorOfTheCaelestiStaminaCost) {
 					comboTrue = "Armor of the Caelesti";
 					comboTrueTimer = 10;
 				}
@@ -329,7 +329,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.armorOfTheCaelestiStaminaCost) && (playerCurrentMana >= obj_skill_tree.armorOfTheCaelestiManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.armorOfTheCaelestiStaminaCost) {
 					lastAttackButtonPressed = "Armor of the Caelesti";
 					execute_attacks();
 				}
@@ -340,7 +340,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Holy Defense":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.holyDefenseStaminaCost) && (playerCurrentMana >= obj_skill_tree.holyDefenseManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.holyDefenseStaminaCost) {
 					comboTrue = "Holy Defense";
 					comboTrueTimer = 10;
 				}
@@ -351,7 +351,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.holyDefenseStaminaCost) && (playerCurrentMana >= obj_skill_tree.holyDefenseManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.holyDefenseStaminaCost) {
 					lastAttackButtonPressed = "Holy Defense";
 					execute_attacks();
 				}
@@ -362,7 +362,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Wrath of the Repentant":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.wrathOfTheRepentantStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheRepentantManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.wrathOfTheRepentantStaminaCost) {
 					comboTrue = "Wrath of the Repentant";
 					comboTrueTimer = 10;
 				}
@@ -373,7 +373,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.wrathOfTheRepentantStaminaCost) && (playerCurrentMana >= obj_skill_tree.wrathOfTheRepentantManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.wrathOfTheRepentantStaminaCost) {
 					lastAttackButtonPressed = "Wrath of the Repentant";
 					execute_attacks();
 				}
@@ -384,7 +384,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "The One Power":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.theOnePowerStaminaCost) && (playerCurrentMana >= obj_skill_tree.theOnePowerManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.theOnePowerStaminaCost) {
 					comboTrue = "The One Power";
 					comboTrueTimer = 10;
 				}
@@ -395,7 +395,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.theOnePowerStaminaCost) && (playerCurrentMana >= obj_skill_tree.theOnePowerManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.theOnePowerStaminaCost) {
 					lastAttackButtonPressed = "The One Power";
 					execute_attacks();
 				}
@@ -406,7 +406,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Lightning Spear":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.lightningSpearStaminaCost) && (playerCurrentMana >= obj_skill_tree.lightningSpearManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.lightningSpearStaminaCost) {
 					comboTrue = "Lightning Spear";
 					comboTrueTimer = 10;
 				}
@@ -417,7 +417,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.lightningSpearStaminaCost) && (playerCurrentMana >= obj_skill_tree.lightningSpearManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.lightningSpearStaminaCost) {
 					lastAttackButtonPressed = "Lightning Spear";
 					execute_attacks();
 				}
@@ -428,7 +428,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Angelic Barrage":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.angelicBarrageStaminaCost) && (playerCurrentMana >= obj_skill_tree.angelicBarrageManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.angelicBarrageStaminaCost) {
 					comboTrue = "Angelic Barrage";
 					comboTrueTimer = 10;
 				}
@@ -439,7 +439,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.angelicBarrageStaminaCost) && (playerCurrentMana >= obj_skill_tree.angelicBarrageManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.angelicBarrageStaminaCost) {
 					lastAttackButtonPressed = "Angelic Barrage";
 					execute_attacks();
 				}
@@ -450,7 +450,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Whirlwind":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.whirlwindStaminaCost) && (playerCurrentMana >= obj_skill_tree.whirlwindManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.whirlwindStaminaCost) {
 					comboTrue = "Whirlwind";
 					comboTrueTimer = 10;
 				}
@@ -461,7 +461,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.whirlwindStaminaCost) && (playerCurrentMana >= obj_skill_tree.whirlwindManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.whirlwindStaminaCost) {
 					lastAttackButtonPressed = "Whirlwind";
 					execute_attacks();
 				}
@@ -475,7 +475,7 @@ function choose_player_ability_state(argument0, argument1) {
 		case "Death Incarnate":
 			if !obj_skill_tree.deathIncarnateFirstPhaseActive {
 				if combo_ {
-					if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) && (playerCurrentMana >= obj_skill_tree.deathIncarnateManaCost) {
+					if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) {
 						comboTrue = "Death Incarnate";
 						comboTrueTimer = 10;
 					}
@@ -486,7 +486,7 @@ function choose_player_ability_state(argument0, argument1) {
 					}
 				}
 				else {
-					if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) && (playerCurrentMana >= obj_skill_tree.deathIncarnateManaCost) {
+					if (playerCurrentStamina >= obj_skill_tree.deathIncarnateStaminaCost) {
 						lastAttackButtonPressed = "Death Incarnate";
 						execute_attacks();
 					}
@@ -508,7 +508,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Ritual of Imperfection":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) {
 					comboTrue = "Ritual of Imperfection";
 					comboTrueTimer = 10;
 				}
@@ -519,7 +519,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) && (playerCurrentMana >= obj_skill_tree.ritualOfImperfectionFirstDemonManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.ritualOfImperfectionFirstDemonStaminaCost) {
 					lastAttackButtonPressed = "Ritual of Imperfection";
 					execute_attacks();
 				}
@@ -537,7 +537,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 				if dead_body_found_ {
 					if combo_ {
-						if ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) && ((playerCurrentMana + (playerManaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathManaCost) {
+						if ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) {
 							comboTrue = "Ritual of Death";
 							comboTrueTimer = 10;
 						}
@@ -548,7 +548,7 @@ function choose_player_ability_state(argument0, argument1) {
 						}
 					}
 					else {
-						if ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) && ((playerCurrentMana + (playerManaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathManaCost) {
+						if ((playerCurrentStamina + (playerStaminaRegeneration * 7)) >= obj_skill_tree.ritualOfDeathStaminaCost) {
 							lastAttackButtonPressed = "Ritual of Death";
 							execute_attacks();
 						}
@@ -563,7 +563,7 @@ function choose_player_ability_state(argument0, argument1) {
 			if variable_global_exists("objectIDsInBattle") {
 				if ds_exists(objectIDsInBattle, ds_type_list) {
 					if combo_ {
-						if (playerCurrentStamina >= obj_skill_tree.soulTetherStaminaCost) && (playerCurrentMana >= obj_skill_tree.soulTetherManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.soulTetherStaminaCost) {
 							comboTrue = "Soul Tether";
 							comboTrueTimer = 10;
 						}
@@ -574,7 +574,7 @@ function choose_player_ability_state(argument0, argument1) {
 						}
 					}
 					else {
-						if (playerCurrentStamina >= obj_skill_tree.soulTetherStaminaCost) && (playerCurrentMana >= obj_skill_tree.soulTetherManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.soulTetherStaminaCost) {
 							lastAttackButtonPressed = "Soul Tether";
 							execute_attacks();
 						}
@@ -597,7 +597,7 @@ function choose_player_ability_state(argument0, argument1) {
 			if variable_global_exists("objectIDsInBattle") {
 				if ds_exists(objectIDsInBattle, ds_type_list) {
 					if combo_ {
-						if (playerCurrentStamina >= obj_skill_tree.dinnerIsServedStaminaCost) && (playerCurrentMana >= obj_skill_tree.dinnerIsServedManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.dinnerIsServedStaminaCost) {
 							comboTrue = "Dinner is Served";
 							comboTrueTimer = 10;
 						}
@@ -608,7 +608,7 @@ function choose_player_ability_state(argument0, argument1) {
 						}
 					}
 					else {
-						if (playerCurrentStamina >= obj_skill_tree.dinnerIsServedStaminaCost) && (playerCurrentMana >= obj_skill_tree.dinnerIsServedManaCost) {
+						if (playerCurrentStamina >= obj_skill_tree.dinnerIsServedStaminaCost) {
 							lastAttackButtonPressed = "Dinner is Served";
 							execute_attacks();
 						}
@@ -629,7 +629,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Final Parting":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.finalPartingStaminaCost) && (playerCurrentMana >= obj_skill_tree.finalPartingManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.finalPartingStaminaCost) {
 					comboTrue = "Final Parting";
 					comboTrueTimer = 10;
 				}
@@ -640,7 +640,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.finalPartingStaminaCost) && (playerCurrentMana >= obj_skill_tree.finalPartingManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.finalPartingStaminaCost) {
 					lastAttackButtonPressed = "Final Parting";
 					execute_attacks();
 				}
@@ -651,7 +651,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Risk of Life":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.riskOfLifeStaminaCost) && (playerCurrentMana >= obj_skill_tree.riskOfLifeManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.riskOfLifeStaminaCost) {
 					comboTrue = "riskOfLife";
 					comboTrueTimer = 10;
 				}
@@ -662,7 +662,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.riskOfLifeStaminaCost) && (playerCurrentMana >= obj_skill_tree.riskOfLifeManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.riskOfLifeStaminaCost) {
 					lastAttackButtonPressed = "Risk of Life";
 					execute_attacks();
 				}
@@ -673,7 +673,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Taken for Pain":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.takenForPainStaminaCost) && (playerCurrentMana >= obj_skill_tree.takenForPainManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.takenForPainStaminaCost) {
 					comboTrue = "Taken for Pain";
 					comboTrueTimer = 10;
 				}
@@ -684,7 +684,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.takenForPainStaminaCost) && (playerCurrentMana >= obj_skill_tree.takenForPainManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.takenForPainStaminaCost) {
 					lastAttackButtonPressed = "Taken for Pain";
 					execute_attacks();
 				}
@@ -695,7 +695,7 @@ function choose_player_ability_state(argument0, argument1) {
 			break;
 		case "Sickly Proposition":
 			if combo_ {
-				if (playerCurrentStamina >= obj_skill_tree.sicklyPropositionStaminaCost) && (playerCurrentMana >= obj_skill_tree.sicklyPropositionManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.sicklyPropositionStaminaCost) {
 					comboTrue = "Sickly Proposition";
 					comboTrueTimer = 10;
 				}
@@ -706,7 +706,7 @@ function choose_player_ability_state(argument0, argument1) {
 				}
 			}
 			else {
-				if (playerCurrentStamina >= obj_skill_tree.sicklyPropositionStaminaCost) && (playerCurrentMana >= obj_skill_tree.sicklyPropositionManaCost) {
+				if (playerCurrentStamina >= obj_skill_tree.sicklyPropositionStaminaCost) {
 					lastAttackButtonPressed = "Sickly Proposition";
 					execute_attacks();
 				}

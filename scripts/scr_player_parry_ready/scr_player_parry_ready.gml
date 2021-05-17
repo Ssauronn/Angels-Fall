@@ -7,7 +7,7 @@ function scr_player_parry_ready() {
 			playerState = playerstates.idle;
 			playerStateSprite = playerstates.idle;
 			playerImageIndex = 0;
-			playerCurrentMana -= obj_skill_tree.parryFailureManaCost;
+			playerCurrentStamina -= obj_skill_tree.parryFailureStaminaCost;
 		}
 		else {
 			playerState = playerstates.parryeffect;

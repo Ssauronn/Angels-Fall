@@ -96,8 +96,6 @@ function scr_healer_heal_ally() {
 		alreadyTriedToChaseTimer = -1;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = -1;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = -1;
 	}
 
 	if forceReturnToIdleState {
@@ -114,12 +112,6 @@ function scr_healer_heal_ally() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
-
-
-
-
 
 }

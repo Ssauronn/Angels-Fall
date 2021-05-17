@@ -54,8 +54,6 @@ function scr_line_of_sight_exists() {
 								decisionMadeForTargetAndAction = false;
 								enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 								enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-								enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-								enemyTimeUntilNextManaAbilityUsableTimer = 0;
 							}
 							enemyState = enemystates.moveWithinAttackRange;
 							enemyStateSprite = enemystates.moveWithinAttackRange;

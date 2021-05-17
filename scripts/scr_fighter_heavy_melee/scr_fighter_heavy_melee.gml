@@ -89,8 +89,6 @@ function scr_fighter_heavy_melee() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 
 	if forceReturnToIdleState {
@@ -107,7 +105,5 @@ function scr_fighter_heavy_melee() {
 		alreadyTriedToChaseTimer = 0;
 		enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 		enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
-		enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-		enemyTimeUntilNextManaAbilityUsableTimer = 0;
 	}
 }

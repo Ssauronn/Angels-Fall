@@ -8,13 +8,13 @@ function scr_initialize_enemy_stats(argument0) {
 		#region Mage
 			// Powerful Being?
 			powerfulBeing = false;
-		
+			
 			// Speed variable for specific enemies
 			enemyGameSpeed = 1;
 			enemyTotalSpeed = 1;
-		
+			
 		#region Stats and Damage Values
-			// Base Stats (HP, Stamina, Mana)
+			// Base Stats (HP, Stamina)
 			enemyMaxHP = 500;
 			enemyHPRegeneration = 0 / room_speed;
 			enemyCurrentHP = enemyMaxHP;
@@ -23,11 +23,6 @@ function scr_initialize_enemy_stats(argument0) {
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyCurrentStamina = enemyMaxStamina;
-			enemyMaxMana = 500;
-			enemyManaRegeneration = (enemyMaxMana * 0.3) / room_speed;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyCurrentMana = enemyMaxMana;
 		
 			// Animecro Reward to player for Killing Enemy
 			animecroRewardUponDeath = 150;
@@ -49,8 +44,8 @@ function scr_initialize_enemy_stats(argument0) {
 			// Enemies' Attack Resrouces Costs
 			enemyLightMeleeAttackStamCost = enemyMaxStamina * 0.6;
 			enemyHeavyMeleeAttackStamCost = enemyMaxStamina * 0.9;
-			enemyLightRangedAttackManaCost = enemyMaxMana * 0.6;
-			enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.9;
+			enemyLightRangedAttackStamCost = enemyMaxStamina * 0.6;
+			enemyHeavyRangedAttackStamCost = enemyMaxStamina * 0.9;
 		
 			// Enemies' Attack Ranges
 			enemyLightMeleeAttackRange = 32 * 1.5;
@@ -153,7 +148,6 @@ function scr_initialize_enemy_stats(argument0) {
 			solidifyEnemyMovementSpeedMultiplier = 1;
 			solidifyEnemyImageSpeedMultiplier = 1;
 			solidifyEnemyStaminaRegenerationMultiplier = 1;
-			solidifyEnemyManaRegenerationMultiplier = 1;
 			solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
@@ -187,8 +181,6 @@ function scr_initialize_enemy_stats(argument0) {
 		
 			// Dinner Is Served
 			dinnerIsServedActive = false;
-			dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
-			dinnerIsServedEnemyManaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
 			dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;
@@ -375,7 +367,7 @@ function scr_initialize_enemy_stats(argument0) {
 			enemyGameSpeed = 1;
 			enemyTotalSpeed = 1;
 		#region Stats and Damage Values
-			// Base Stats (HP, Stamina, Mana)
+			// Base Stats (HP, Stamina)
 			enemyMaxHP = 500;
 			enemyHPRegeneration = 0 / room_speed;
 			enemyCurrentHP = enemyMaxHP;
@@ -384,11 +376,6 @@ function scr_initialize_enemy_stats(argument0) {
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyCurrentStamina = enemyMaxStamina;
-			enemyMaxMana = 500;
-			enemyManaRegeneration = (enemyMaxMana * 0.3) / room_speed;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyCurrentMana = enemyMaxMana;
 		
 			// Animecro Reward to player for Killing Enemy
 			animecroRewardUponDeath = 100;
@@ -411,9 +398,9 @@ function scr_initialize_enemy_stats(argument0) {
 			// Enemies Attacks' Resrouces Costs
 			enemyLightMeleeAttackStamCost = enemyMaxStamina * 0.6;
 			enemyHeavyMeleeAttackStamCost = enemyMaxStamina * 0.9;
-			enemyLightRangedAttackManaCost = enemyMaxMana * 0.5;
-			enemyHeavyRangedAttackManaCost = enemyMaxMana * 0.8;
-			enemyHealManaCost = enemyMaxMana * 0.9;
+			enemyLightRangedAttackStamCost = enemyMaxStamina * 0.5;
+			enemyHeavyRangedAttackStamCost = enemyMaxStamina * 0.8;
+			enemyHealStamCost = enemyMaxStamina * 0.9;
 		
 			// Enemies' Attack Ranges
 			enemyLightMeleeAttackRange = 32 * 1.5;
@@ -517,7 +504,6 @@ function scr_initialize_enemy_stats(argument0) {
 			solidifyEnemyMovementSpeedMultiplier = 1;
 			solidifyEnemyImageSpeedMultiplier = 1;
 			solidifyEnemyStaminaRegenerationMultiplier = 1;
-			solidifyEnemyManaRegenerationMultiplier = 1;
 			solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
@@ -551,8 +537,6 @@ function scr_initialize_enemy_stats(argument0) {
 		
 			// Dinner Is Served
 			dinnerIsServedActive = false;
-			dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
-			dinnerIsServedEnemyManaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
 			dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;
@@ -744,7 +728,7 @@ function scr_initialize_enemy_stats(argument0) {
 			enemyTotalSpeed = 1;
 		
 		#region Stats and Damage Values
-			// Base Stats (HP, Stamina, Mana)
+			// Base Stats (HP, Stamina)
 			enemyMaxHP = 750;
 			enemyHPRegeneration = 0 / room_speed;
 			enemyCurrentHP = enemyMaxHP;
@@ -753,11 +737,6 @@ function scr_initialize_enemy_stats(argument0) {
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyCurrentStamina = enemyMaxStamina;
-			enemyMaxMana = 500;
-			enemyManaRegeneration = (enemyMaxMana * 0.3) / room_speed;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyCurrentMana = enemyMaxMana;
 		
 			// Animecro Reward to player for Killing Enemy
 			animecroRewardUponDeath = 300;
@@ -779,8 +758,8 @@ function scr_initialize_enemy_stats(argument0) {
 			// Enemies' Attack Resrouces Costs
 			enemyLightMeleeAttackStamCost = enemyMaxStamina * 0.5;
 			enemyHeavyMeleeAttackStamCost = enemyMaxStamina * 0.75;
-			enemyLightRangedAttackManaCost = enemyMaxMana * 0.75;
-			enemyHeavyRangedAttackManaCost = enemyMaxMana * 1.0;
+			enemyLightRangedAttackStamCost = enemyMaxStamina * 0.75;
+			enemyHeavyRangedAttackStamCost = enemyMaxStamina * 1.0;
 		
 			// Enemies' Attack Ranges
 			enemyLightMeleeAttackRange = 32 * 1.5;
@@ -883,7 +862,6 @@ function scr_initialize_enemy_stats(argument0) {
 			solidifyEnemyMovementSpeedMultiplier = 1;
 			solidifyEnemyImageSpeedMultiplier = 1;
 			solidifyEnemyStaminaRegenerationMultiplier = 1;
-			solidifyEnemyManaRegenerationMultiplier = 1;
 			solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
@@ -917,8 +895,6 @@ function scr_initialize_enemy_stats(argument0) {
 		
 			// Dinner Is Served
 			dinnerIsServedActive = false;
-			dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
-			dinnerIsServedEnemyManaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
 			dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;
@@ -1106,7 +1082,7 @@ function scr_initialize_enemy_stats(argument0) {
 			enemyTotalSpeed = 1;
 		
 		#region Stats and Damage Values
-			// Base Stats (HP, Stamina, Mana)
+			// Base Stats (HP, Stamina)
 			enemyMaxHP = 500;
 			enemyHPRegeneration = 0 / room_speed;
 			enemyCurrentHP = enemyMaxHP;
@@ -1115,11 +1091,6 @@ function scr_initialize_enemy_stats(argument0) {
 			enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 			enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 			enemyCurrentStamina = enemyMaxStamina;
-			enemyMaxMana = 500;
-			enemyManaRegeneration = (enemyMaxMana * 0.3) / room_speed;
-			enemyTimeUntilNextManaAbilityUsableTimerSet = false;
-			enemyTimeUntilNextManaAbilityUsableTimer = 0;
-			enemyCurrentMana = enemyMaxMana;
 		
 			// Animecro Reward to player for Killing Enemy
 			animecroRewardUponDeath = 200;
@@ -1141,8 +1112,8 @@ function scr_initialize_enemy_stats(argument0) {
 			// Enemies' Attack Resrouces Costs
 			enemyLightMeleeAttackStamCost = enemyMaxStamina * 0.5;
 			enemyHeavyMeleeAttackStamCost = enemyMaxStamina * 0.75;
-			enemyLightRangedAttackManaCost = enemyMaxMana * 0.75;
-			enemyHeavyRangedAttackManaCost = enemyMaxMana * 1.0;
+			enemyLightRangedAttackStamCost = enemyMaxStamina * 0.75;
+			enemyHeavyRangedAttackStamCost = enemyMaxStamina * 1.0;
 		
 			// Enemies' Attack Ranges
 			enemyLightMeleeAttackRange = 32 * 1.5;
@@ -1245,7 +1216,6 @@ function scr_initialize_enemy_stats(argument0) {
 			solidifyEnemyMovementSpeedMultiplier = 1;
 			solidifyEnemyImageSpeedMultiplier = 1;
 			solidifyEnemyStaminaRegenerationMultiplier = 1;
-			solidifyEnemyManaRegenerationMultiplier = 1;
 			solidifyEnemyChaseTimerSpeedMultiplier = 1;
 		#endregion
 		#region Poison Values
@@ -1279,8 +1249,6 @@ function scr_initialize_enemy_stats(argument0) {
 		
 			// Dinner Is Served
 			dinnerIsServedActive = false;
-			dinnerIsServedBaseEnemyManaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyManaRegenerationMultiplier;
-			dinnerIsServedEnemyManaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyStaminaRegenerationMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
 			dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
 			dinnerIsServedBaseEnemyMovementSpeedMultiplier = obj_skill_tree.dinnerIsServedBaseEnemyMovementSpeedMultiplier;

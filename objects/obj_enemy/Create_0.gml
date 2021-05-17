@@ -60,7 +60,7 @@ alreadyTriedToChase = false;
 alreadyTriedToChaseTimer = 0;
 // The percentage of this specific object's current HP compared to this object's max HP
 selfCurrentHPPercent = 1;
-targetCurrentPercentageOfStaminaAndMana = 0;
+targetCurrentPercentageOfStamina = 0;
 objectProximityToTarget = 0;
 // The percentage each attack able to be dealt by this object will deal to the target's Current HP
 percentageOfDamageToTargetCurrentHPHeavyMeleeAttackWillDeal = 0;
@@ -88,7 +88,7 @@ heavyMeleeEngineWeightMultiplier = 1;
 heavyMeleeEngineTotalWeight = heavyMeleeEngineWeightMultiplier;
 // Set correctly every step of combat in obj_ai_decision_making
 selfCurrentHPPercentForHeavyMeleeEngineTotalWeight = 0;
-targetCurrentPercentageOfStaminaAndManaForHeavyMeleeEngineTotalWeight = 0;
+targetCurrentPercentageOfStaminaForHeavyMeleeEngineTotalWeight = 0;
 targetOfTargetCurrentHPForHeavyMeleeEngineTotalWeight = 0;
 objectProximityToTargetForHeavyMeleeEngineTotalWeight = 0;
 percentageOfDamageToTargetTotalHPForHeavyMeleeEngineTotalWeight = 0;
@@ -99,7 +99,7 @@ lightMeleeEngineWeightMultiplier = 1
 lightMeleeEngineTotalWeight = lightMeleeEngineWeightMultiplier;
 // Set correctly every step of combat in obj_ai_decision_making
 selfCurrentHPPercentForLightMeleeEngineTotalWeight = 0;
-targetCurrentPercentageOfStaminaAndManaForLightMeleeEngineTotalWeight = 0;
+targetCurrentPercentageOfStaminaForLightMeleeEngineTotalWeight = 0;
 targetOfTargetCurrentHPForLightMeleeEngineTotalWeight = 0;
 objectProximityToTargetForLightMeleeEngineTotalWeight = 0;
 percentageOfDamageToTargetCurrentHPForLightMeleeEngineTotalWeight = 0;

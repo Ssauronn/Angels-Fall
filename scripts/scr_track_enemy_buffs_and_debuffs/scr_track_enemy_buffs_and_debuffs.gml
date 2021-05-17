@@ -290,12 +290,10 @@ function scr_track_enemy_buffs_and_debuffs() {
 		if dinnerIsServedTimer < 0 {
 			dinnerIsServedActive = false;
 			// If Dinner Is Served is not poisoning the enemy, reset values to default of 1
-			dinnerIsServedEnemyManaRegenerationMultiplier = 1;
 			dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
 			dinnerIsServedEnemyMovementSpeedMultiplier = 1;
 		}
 		else if dinnerIsServedTimer >= 0 {
-			dinnerIsServedEnemyManaRegenerationMultiplier = dinnerIsServedBaseEnemyManaRegenerationMultiplier;
 			dinnerIsServedEnemyStaminaRegenerationMultiplier = dinnerIsServedBaseEnemyStaminaRegenerationMultiplier;
 			dinnerIsServedEnemyMovementSpeedMultiplier = dinnerIsServedBaseEnemyMovementSpeedMultiplier;
 			poisoned = true;
@@ -312,7 +310,6 @@ function scr_track_enemy_buffs_and_debuffs() {
 	}
 	else {
 		// If Dinner Is Served is not poisoning the enemy, reset values to default of 1
-		dinnerIsServedEnemyManaRegenerationMultiplier = 1;
 		dinnerIsServedEnemyStaminaRegenerationMultiplier = 1;
 		dinnerIsServedEnemyMovementSpeedMultiplier = 1;
 	}

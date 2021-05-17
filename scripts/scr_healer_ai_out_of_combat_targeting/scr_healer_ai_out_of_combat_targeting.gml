@@ -33,8 +33,6 @@ function scr_healer_ai_out_of_combat_targeting() {
 				enemyImageIndex = 0;
 				alreadyTriedToChaseTimer = 0;
 				alreadyTriedToChase = false;
-				enemyTimeUntilNextManaAbilityUsableTimer = 0;
-				enemyTimeUntilNextManaAbilityUsableTimerSet = false;
 				enemyTimeUntilNextStaminaAbilityUsableTimer = 0;
 				enemyTimeUntilNextStaminaAbilityUsableTimerSet = false;
 				enemyState = enemystates.idle;

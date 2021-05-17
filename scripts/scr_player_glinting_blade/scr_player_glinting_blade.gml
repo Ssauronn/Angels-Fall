@@ -115,7 +115,7 @@ function scr_player_glinting_blade() {
 				obj_skill_tree.glintingBladeTimer += 3;
 			}
 		}
-		else if (playerCurrentStamina < obj_skill_tree.glintingBladeStaminaCost) || (playerCurrentMana < obj_skill_tree.glintingBladeManaCost) {
+		else if (playerCurrentStamina < obj_skill_tree.glintingBladeStaminaCost) {
 			playerState = playerstates.idle;
 			playerStateSprite = playerstates.idle;
 			hitboxCreated = false;
@@ -126,8 +126,6 @@ function scr_player_glinting_blade() {
 	if (!hitboxCreated) && (playerImageIndex > 5) {
 		playerCurrentStamina -= obj_skill_tree.glintingBladeStaminaCost;
 		playerCurrentStamina += obj_skill_tree.glintingBladeStaminaRegen;
-		playerCurrentMana -= obj_skill_tree.glintingBladeManaCost;
-		playerCurrentMana += obj_skill_tree.glintingBladeManaRegen;
 		hitboxCreated = true;
 		// Set the direction the player will face, and the direction the hitbox will face as well.
 		// Then create the hitbox.
