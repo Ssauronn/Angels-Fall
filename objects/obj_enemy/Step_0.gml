@@ -181,11 +181,7 @@ if point_in_rectangle(obj_player.x, obj_player.y, camera_get_view_x(view_camera[
 	// If the enemy object is destroyed or it leaves the screen, remove it from the objects in combat
 	var path_exists_ = scr_path_exists_to_player_or_minions();
 	var line_of_sight_exists_to_player_or_minions_ = scr_line_of_sight_exists_to_player_or_minions();
-	var line_of_sight_exists_to_target_ = false;
-	if instance_exists(currentTargetToFocus) {
-		line_of_sight_exists_to_target_ = scr_line_of_sight_exists_to_valid_target();
-	}
-	if ((!path_exists_ && path_exists_ != noone) && (!line_of_sight_exists_to_player_or_minions_) && (!line_of_sight_exists_to_target_)) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
+	if ((!path_exists_ && path_exists_ != noone) && (!line_of_sight_exists_to_player_or_minions_)) || (self.enemyCurrentHP <= 0) || (!rectangle_in_rectangle(self.bbox_left, self.bbox_top, self.bbox_right, self.bbox_bottom, (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) - (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) - (tetherYRange / 2), (camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2)) + (tetherXRange / 2), (camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2)) + (tetherYRange / 2))) {
 		// Force the object immediately into idle state if too far out of range, or no path exists to a target
 		forceReturnToIdleState = true;
 		// If the minion either doesn't have an existing path to the player once out of combat, or hits 0
